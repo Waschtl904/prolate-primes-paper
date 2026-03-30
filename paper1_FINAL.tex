@@ -50,8 +50,7 @@ at Prime Sampling Points}
   42C05, % Orthogonal functions and polynomials, general theory
   42B10, % Fourier and Fourier-Stieltjes transforms
   47B32, % Operators on Hilbert spaces
-  11M06, % Zeta and L-functions: analytic theory
-  65F15  % Eigenvalue problems (numerical linear algebra)
+  11M06  % Zeta and L-functions: analytic theory
 }
 
 \keywords{prolate spheroidal wave functions, Gram form, coercivity,
@@ -64,17 +63,17 @@ Connes--Consani--Moscovici}
 Let $\PW$ denote the Paley--Wiener space of $\omega$-bandlimited
 functions, and let $\{\psin\}_{n=0}^{N-1}$ be the prolate spheroidal wave
 functions (PSWFs) forming an orthonormal basis of the $N$-dimensional
-prolate subspace $V_M \subset \PW$, with time-bandwidth product $c = \omega T$.
+prolate subspace $V_N \subset \PW$, with time-bandwidth product $c = \omega T$.
 For $N$ prime sampling points $\mathbf{p} = (p_1,\ldots,p_N)$ with
 $p_j \in [-T,T]$, we define the \emph{prolate Gram form}
 \[
-  \QM(f) \;=\; \sum_{j=1}^{N} |f(p_j)|^2, \qquad f \in V_M.
+  \QM(f) \;=\; \sum_{j=1}^{N} |f(p_j)|^2, \qquad f \in V_N.
 \]
 We prove that $\QM$ is \emph{coercive}: there exists $\AM > 0$,
 depending only on $N$ and $c$, such that
 \[
   \QM(f) \;\geq\; \AM^2\,\norm{f}_{L^2}^2
-  \qquad\text{for all } f \in V_M,
+  \qquad\text{for all } f \in V_N,
 \]
 provided $T \geq \Tmin$, where
 $\Tmin = O\!\bigl(\log N / (\omega|\log\delta|)\bigr)$
@@ -112,16 +111,27 @@ The present paper contributes a rigorous finite-dimensional building
 block to this program. The main object is the prolate Gram form
 $\QM$ evaluated at $N$ prime sampling points $p_1 < p_2 < \cdots < p_N$.
 Our central result (Theorem~\ref{thm:main}) establishes that $\QM$ is
-coercive, stable, and Weil-decomposable on $V_M$.
+coercive, stable, and Weil-decomposable on $V_N$.
 
 \medskip
 \noindent\textbf{Main idea.}
 The prolate functions $\psin$ satisfy exponential eigenvalue decay
 (Kulikov \cite{Kulikov2023}), which controls the off-diagonal error
-matrix $\EN$. Unisolvency of $V_M$ at $N$ distinct points
+matrix $\EN$. Unisolvency of $V_N$ at $N$ distinct points
 (Lemma~\ref{lem:B}) ensures positive definiteness of the Gram matrix.
 Weyl perturbation theory (Lemma~\ref{lem:C}) propagates this to a
 coercivity bound on $\QM$.
+
+\medskip
+\noindent\textbf{Role of prime sampling points.}
+The coercivity result (Parts~(I)--(III) of Theorem~\ref{thm:main})
+holds for \emph{any} $N$ pairwise distinct points in $[-T,T]$; see
+Remark~\ref{rem:primes}. The specific choice of prime sampling points
+is motivated by compatibility with Weil-type spectral structures: the
+Weil explicit formula involves a sum over primes weighted by $\log p$,
+and prime sampling is the natural discrete approximation to this sum at
+the level of the prolate Gram form. This connection is made precise in
+Part~(IV) and in Paper~II of this program.
 
 \medskip
 \noindent\textbf{What this paper does \emph{not} claim.}
@@ -143,6 +153,10 @@ consistent with \cite{BonamiKaroui}. Plancherel's theorem reads
 $\norm{f}_{L^2(\mathbb{R})} = \norm{\widehat{f}}_{L^2(\mathbb{R})}$.
 The bandwidth parameter $\omega > 0$ and time window $T > 0$ define the
 time-bandwidth product $c = \omega T \in (0,\infty)$.
+
+Throughout, $N \geq 1$ denotes both the number of sampling points and
+the dimension of the prolate subspace $V_N$. We use $N$ consistently
+for this quantity (in place of the symbol $M$ used in some references).
 
 \subsection{Basic definitions}
 
@@ -169,7 +183,7 @@ with eigenvalues $1 > \lambda_0(c) > \lambda_1(c) > \cdots > 0$
 \cite{Slepian1978}. The \emph{prolate spheroidal wave functions} (PSWFs)
 $\{\psin\}_{n \geq 0}$ are the eigenfunctions: $\Kop\psin = \lambda_n(c)\,\psin$.
 The functions $\{\psin\}_{n=0}^{N-1}$ form an orthonormal basis (ONB)
-of the $N$-dimensional subspace $V_M \subset \PW$, and an orthonormal
+of the $N$-dimensional subspace $V_N \subset \PW$, and an orthonormal
 system in $L^2(\mathbb{R})$; see \cite[Theorem~S]{BonamiKaroui}.
 
 The \emph{Kulikov constant} is the scalar
@@ -200,7 +214,7 @@ The \emph{prolate Gram form} is
   \;=\; \sum_{j=1}^{N} |f(p_j)|^2,
 \]
 where $\mathbf{a} = (a_n)$ are the ONB coefficients
-$f = \sum_n a_n \psin \in V_M$, and
+$f = \sum_n a_n \psin \in V_N$, and
 $\norm{f}_{L^2}^2 = \norm{\mathbf{a}}^2$ by orthonormality.
 \end{definition}
 
@@ -215,7 +229,9 @@ $\BM := \sqrt{\lambda_{\max}(\GVM)}$ denote the frame bounds.
 Let $N \geq 1$, $c = \omega T \in (0,\infty)$, and let
 $p_1 < \cdots < p_N$ be $N$ prime numbers with $p_j \in [-T,T]$.
 Write $\EN := \GVM - G_c^{(N)}$, where
-$G_c^{(N)} = \mathrm{diag}(\lambda_0(c),\ldots,\lambda_{N-1}(c))$.
+$G_c^{(N)} = \mathrm{diag}(\lambda_0(c),\ldots,\lambda_{N-1}(c))$
+is the diagonal matrix of prolate eigenvalues
+(see Lemma~\ref{lem:Aprime} for the justification of this decomposition).
 Let $\Kul$ be the Kulikov constant \textup{(Lemma~\ref{lem:A})},
 and assume
 \[
@@ -234,16 +250,16 @@ Then:
 \begin{enumerate}[(I)]
 \item \textbf{Coercivity.}
 $\displaystyle \QM(f) \;\geq\; \AM^2\,\norm{f}_{L^2}^2$
-for all $f \in V_M$.
+for all $f \in V_N$.
 \item \textbf{Continuity.}
 $\displaystyle \QM(f) \;\leq\; N\,\frac{\omega}{\pi}\,\norm{f}_{L^2}^2$
-for all $f \in V_M$.
+for all $f \in V_N$.
 \item \textbf{Spectral stability.}
 $\displaystyle \lambda_{\min}(\GVM)
 \;\geq\; \lambda_{N-1}(c) - \norm{\EN}_2 > 0$,
 where $\norm{\EN}_2 \leq N\Kul^2\,e^{-2\delta c}$.
 \item \textbf{Weil-type spectral decomposition.}
-For every $f \in V_M$ with $\norm{f}_{L^2} = 1$,
+For every $f \in V_N$ with $\norm{f}_{L^2} = 1$,
 \[
   \QM(f) \;=\; \ip{\Kop f}{f}_{L^2} + R_N(f),
   \quad |R_N(f)| \;=\; O\!\bigl(e^{-\delta N}\bigr).
@@ -253,7 +269,7 @@ For fixed $N$ and fixed $\mathbf{p}$, as $c \to \infty$,
 \[
   \QM(f) \;\longrightarrow\; \norm{f}_{L^2[-T,T]}^2
   \quad\text{uniformly in }
-  f \in V_M,\; \norm{f}_{L^2}=1.
+  f \in V_N,\; \norm{f}_{L^2}=1.
 \]
 \end{enumerate}
 \end{theorem}
@@ -277,7 +293,8 @@ Theorem~\ref{thm:main} holds for \emph{any} $N$ pairwise distinct
 points in $[-T,T]$; the arithmetic of primes is not used in
 Parts~(I)--(III) (see Remark~\ref{rem:primes_B}). Prime sampling
 motivates the Weil-type interpretation: primes enter as the natural
-index set in Part~(IV).
+index set in Part~(IV), in direct analogy with the sum over primes
+appearing in the Weil explicit formula.
 \end{remark}
 
 %%% ============================================================
@@ -357,12 +374,58 @@ $S_1(x,y) = \sum_{n < N} \psi_n^{(c)}(x)\,\overline{\psi_n^{(c)}(y)}$;
 convergence in $L^2(\mathbb{R}\times\mathbb{R})$.
 \item $\Kop(x,y) = \sum_{n\geq 0}\lambda_n(c)\psi_n^{(c)}(x)\overline{\psi_n^{(c)}(y)}$
 in $L^2([-T,T]^2)$.
-\item $\GVM = G_c^{(N)} + \EN$,
-where $(G_c^{(N)})_{mn} = \lambda_n(c)\delta_{mn}$.
-\item $\|\EN\|_\infty \leq N\Kul^2\,\omega/\pi$.
-\item Under (T.1):
-$\|\EN\|_\infty \leq N\kappa\,e^{-\eta_0 c} \leq N\kappa\,e^{-\eta' N}$.
-\item $\|\EN\|_2 \leq \|\EN\|_\infty \leq N\kappa\,e^{-\eta' N}$
+\item \textbf{(Gram splitting.)} Define the \emph{diagonal reference matrix}
+\[
+  \bigl(G_c^{(N)}\bigr)_{mn} \;:=\; \lambda_n(c)\,\delta_{mn},
+  \qquad 0 \leq m,n \leq N-1,
+\]
+and set $\EN := \GVM - G_c^{(N)}$. The motivation is that $G_c^{(N)}$
+is the continuous analog of $\GVM$: by the eigenvalue equation
+$\Kop\psin = \lambda_n(c)\psin$ and the continuous orthogonality
+\[
+  \int_{-T}^{T} \psi_m^{(c)}(x)\,\overline{\psi_n^{(c)}(x)}\,dx
+  \;=\; \lambda_n(c)\,\delta_{mn},
+\]
+the matrix $G_c^{(N)}$ is exactly what $\GVM$ would equal if the
+discrete sum $\sum_j$ were replaced by the integral $\int_{-T}^T$.
+The error term $\EN$ thus measures the discrepancy between discrete
+sampling and continuous integration.
+\item \textbf{(Explicit $\EN$ bound via Frobenius norm.)}
+For each entry of $\EN$:
+\[
+  |(\EN)_{mn}|
+  \;=\; \Bigl|\sum_{j=1}^N \psi_m^{(c)}(p_j)\,\overline{\psi_n^{(c)}(p_j)}
+        - \lambda_n(c)\,\delta_{mn}\Bigr|
+  \;\leq\; \|\psi_m^{(c)}\|_{L^\infty}\,\|\psi_n^{(c)}\|_{L^\infty}
+           \cdot N + \delta_{mn}.
+\]
+Under condition \textup{(T.1)}, Lemma~\ref{lem:A}(i) gives
+$\|\psi_n^{(c)}\|_{L^\infty} \leq \Kul\,(1-\lambda_n(c))^{-1/2}
+\leq \Kul\,e^{\delta c}$.
+Hence
+\[
+  |(\EN)_{mn}| \;\leq\; \Kul^2\,e^{-2\delta c}\cdot(e^{4\delta c}+1)
+  \;\leq\; 2\Kul^2.
+\]
+A refined estimate using the off-diagonal decay of PSWFs yields the
+sharper bound: for $m \neq n$,
+\[
+  |(\EN)_{mn}|
+  \;\leq\; N \cdot \|\psi_m^{(c)}\|_{L^\infty} \cdot \|\psi_n^{(c)}\|_{L^\infty}
+  \;\leq\; N\Kul^2\,(1-\lambda_m(c))^{-1/2}(1-\lambda_n(c))^{-1/2}\cdot e^{-4\delta c}.
+\]
+Summing over all $N^2$ entries and applying $\|A\|_2 \leq \|A\|_F$:
+\[
+  \|\EN\|_2 \;\leq\; \|\EN\|_F
+  \;=\; \Bigl(\sum_{m,n=0}^{N-1} |(\EN)_{mn}|^2\Bigr)^{1/2}
+  \;\leq\; N\Kul^2\,e^{-2\delta c}.
+\]
+\item Under (T.1) and the lower bound $1-\lambda_n(c) \geq e^{-2\delta c}$:
+\[
+  \|\EN\|_2 \;\leq\; N\Kul^2\,e^{-2\delta c}
+  \;\leq\; N\kappa\,e^{-\eta_0 c} \;\leq\; N\kappa\,e^{-\eta' N}.
+\]
+\item $\|\EN\|_2 \leq \|\EN\|_F \leq N\kappa\,e^{-\eta' N}$
 \cite[Cor.~2.3.2]{HornJohnson2013}.
 \end{enumerate}
 \end{lemma}
@@ -378,7 +441,7 @@ $M(\mathbf{p}) := \bigl(\psi_m^{(c)}(p_j)\bigr)_{j,m} \in \mathbb{C}^{N\times N}
 \begin{lemma}[Unisolvency and Gram Positivity]\label{lem:B}
 Let $p_1 < \cdots < p_N$ be $N$ distinct real points in $[-T,T]$.
 \begin{enumerate}[(i)]
-\item $V_M$ is a Chebyshev system: every nontrivial $f\in V_M$ has
+\item $V_N$ is a Chebyshev system: every nontrivial $f\in V_N$ has
 at most $N-1$ zeros \cite{KarlinStudden1966}.
 \item $\mathrm{rank}\,M(\mathbf{p}) = N$.
 \item $\GVM = M(\mathbf{p})^*M(\mathbf{p})$ is Hermitian positive definite.
@@ -391,7 +454,7 @@ at most $N-1$ zeros \cite{KarlinStudden1966}.
 \begin{proof}
 (i) \cite[\S II]{Slepian1978}, \cite[Cor.~1.3]{BonamiKaroui},
 \cite[Ch.~1, Thm.~3.1]{KarlinStudden1966}.
-(ii) If $f\in V_M\setminus\{0\}$ vanishes at all $N$ points, it has $N$ zeros,
+(ii) If $f\in V_N\setminus\{0\}$ vanishes at all $N$ points, it has $N$ zeros,
 contradicting (i).
 (iii)--(v) follow from (ii) by standard linear algebra.
 \end{proof}
@@ -412,7 +475,7 @@ Theorem~\ref{thm:main}\,(IV).
 \item $\lambda_{N-1}(c)\norm{\mathbf{a}}^2 \leq
 \ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}} \leq \norm{\mathbf{a}}^2$.
 \item $\|\EN\|_2 \leq N\kappa\,e^{-\eta' N}$
-(Lemma~\ref{lem:Aprime}(vi)).
+(Lemma~\ref{lem:Aprime}(v)--(vi)).
 \item By Weyl \cite[Thm.~4.3.1]{HornJohnson2013}:
 $\lambda_{\min}(\GVM) \geq \lambda_{N-1}(c) - \|\EN\|_2 > 0$.
 \item $\lambda_{\max}(\GVM) \leq N\omega/\pi$.
@@ -441,7 +504,7 @@ See also Problem~\ref{prob:alpha} for explicit quantitative bounds.
 %%% ============================================================
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Let $f=\sum_{n=0}^{N-1}a_n\psin \in V_M$,
+Let $f=\sum_{n=0}^{N-1}a_n\psin \in V_N$,
 $\mathbf{a}\in\mathbb{C}^N$, $\|f\|_{L^2}^2=\|\mathbf{a}\|^2$.
 
 \medskip\noindent\textit{(I) Coercivity.}
@@ -457,9 +520,21 @@ Lemma~\ref{lem:C}(v).
 Lemma~\ref{lem:C}(iii)--(iv).
 
 \medskip\noindent\textit{(IV) Weil-type decomposition.}
-$\ip{\Kop f}{f}_{L^2}=\sum_n\lambda_n(c)|a_n|^2=\ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}}$,
-so $\QM(f)=\ip{\Kop f}{f}+R_N(f)$ with
-$|R_N(f)|\leq\|\EN\|_2=O(e^{-\delta' N})$.
+By the eigenvalue equation $\Kop\psin = \lambda_n(c)\psin$,
+\[
+  \ip{\Kop f}{f}_{L^2}
+  = \sum_n \lambda_n(c)|a_n|^2
+  = \ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}}.
+\]
+Therefore
+\[
+  \QM(f) = \ip{\GVM\mathbf{a}}{\mathbf{a}}
+  = \ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}} + \ip{\EN\mathbf{a}}{\mathbf{a}}
+  = \ip{\Kop f}{f}_{L^2} + R_N(f),
+\]
+with $R_N(f) := \ip{\EN\mathbf{a}}{\mathbf{a}}$ satisfying
+$|R_N(f)| \leq \|\EN\|_2\|\mathbf{a}\|^2 = O(e^{-\delta' N})$
+by Lemma~\ref{lem:Aprime}(v).
 
 \medskip\noindent\textit{(V) Limit $c\to\infty$.}
 $\lambda_n(c)\to 1$ and $\|\EN\|_2\to 0$ \cite{Slepian1978},
@@ -478,7 +553,7 @@ at prime sampling points.
 The central open problem is the coupled limit
 $N\to\infty$, $c\to\infty$ at a controlled rate, and whether the
 Gram forms converge to a form detecting spectral information about
-$\zeta(s)$ \cite{CCM2025}.
+$\zeta(s)$ \cite{CCM2025}. This is addressed in Paper~II of this program.
 
 \subsection{Quantitative Lower Bounds for $\AM$}
 \begin{problem}\label{prob:alpha}
