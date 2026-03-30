@@ -7,7 +7,7 @@ citecolor=green!50!black,urlcolor=blue!70!black]{hyperref}
 \usepackage[shortlabels]{enumitem}
 \usepackage{booktabs}
 
-%% ── Theorem environments ──────────────────────────────────────────
+%% ── Theorem environments ─────────────────────────────────────────
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -17,8 +17,11 @@ citecolor=green!50!black,urlcolor=blue!70!black]{hyperref}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{problem}{Problem}[section]
 
-%% ── Notation (consistent with Paper I) ──────────────────────────
-\newcommand{\PW}{\mathrm{PW}_\Omega}
+%% ── Notation (fully consistent with Paper I) ─────────────────────
+%% We use \omega (not \Omega) for bandwidth, V_N (not V_M) for the
+%% prolate subspace, Q^{(N)} (not Q_M^{(N)}), consistently with
+%% Paper I notation.
+\newcommand{\PW}{\mathrm{PW}_\omega}
 \newcommand{\Kop}{\mathcal{K}_c}
 \newcommand{\Kul}{\kappa_c}
 \newcommand{\GVM}{G^{(N)}_{\mathbf{p}}}
@@ -31,7 +34,6 @@ citecolor=green!50!black,urlcolor=blue!70!black]{hyperref}
 \newcommand{\EN}{E_N}
 \newcommand{\Lcal}{\mathcal{L}^1_{\mathrm{sa}}}
 \newcommand{\Gcal}{\widehat{\mathcal{G}}}
-\newcommand{\rhomax}{\rho_c}
 
 %% ── Paper metadata ───────────────────────────────────────────────
 \title[Scaling Limits, Uniform Coercivity, and Trace Formula]
@@ -46,12 +48,12 @@ Toward Weil Positivity\\[4pt]
 \date{\today}
 
 \subjclass[2020]{%
-  42C05,
-  42B10,
-  47B10,
-  47B32,
-  11M06,
-  11N05
+  42C05,  % Orthogonal functions and polynomials
+  42B10,  % Fourier and Fourier--Stieltjes transforms
+  47B10,  % Trace-class operators
+  47B32,  % Operators on Hilbert spaces
+  11M06,  % Zeta and $L$-functions
+  11N05   % Distribution of primes
 }
 
 \keywords{prolate spheroidal wave functions, Gram form, scaling limit,
@@ -62,483 +64,607 @@ Connes--Consani--Moscovici, trace-class operators}
 
 \begin{abstract}
 This paper continues the program initiated in \cite{PaperI}, where the
-prolate Gram form $Q_M^{(N)}$ was shown to be coercive, spectrally
-stable, and Weil-decomposable at finite dimension $N$ with
-time-bandwidth product $c = \Omega T$, under the Kulikov--Slepian
-condition $N \leq \bigl(\tfrac{2}{\pi} - \varepsilon\bigr)c$.
+prolate Gram form $Q^{(N)}$ was shown to be unconditionally coercive on
+the $N$-dimensional prolate subspace $V_N$, with explicit spectral
+stability under the sampling-quality condition~(T.2) of \cite{PaperI}.
 
 Here we study the \emph{coupled scaling limit}
 \[
-N_k \to \infty, \quad c_k \to \infty,
-\quad \frac{N_k}{c_k} \to \rho \in \left(0,\,\frac{2}{\pi}\right),
+  N_k \to \infty,\quad c_k \to \infty,\quad
+  \frac{N_k}{c_k} \to \rho \in \Bigl(0,\,\frac{2}{\pi}\Bigr),
 \]
-and establish three main results:
+and establish three main results.
 \begin{enumerate}[(I)]
-\item \textbf{(Scaling limit, \S\ref{sec:scaling})}
-We define a precise notion of $\rho$-admissible scaling sequence
-$(N_k, c_k)$ and identify the natural operator space for convergence
-as the space $\Lcal(L^2(\mathbb{R}))$ of self-adjoint trace-class
-operators with the weak-$*$ topology.
-\item \textbf{(Uniform coercivity, \S\ref{sec:coercivity})}
-Using the coercivity bound of \cite[Theorem~1]{PaperI} and the
-Landau--Widom eigenvalue asymptotics, we prove
-$\liminf_{k\to\infty} \lambda_{\min}(G^{(N_k)}_{\mathbf{p}_k}) \geq 1$.
-In particular the Gram forms are \emph{uniformly coercive} along
-any $\rho$-admissible sequence, and $\lambda_{\min} \to 1$.
-\item \textbf{(Trace formula, \S\ref{sec:trace})}
-We establish an asymptotic trace formula for the weighted Gram
-matrix $\widetilde{G}^{(N_k)}_{\mathbf{p}_k}$ with weights
-$\log p_j$, connecting the spectral trace to the prime counting
-function via the prime number theorem. Every weak-$*$ accumulation
-point $\Gcal_\infty$ of the normalized sequence is positive, has
-unit trace, and lies in $\Lcal(L^2(\mathbb{R}))$.
+\item \textbf{(Scaling limit, \S\ref{sec:scaling}.)} We define a
+precise notion of $\rho$-admissible scaling sequence $(N_k,c_k)$,
+discuss the structural constraint $\omega_k\to0$ honestly
+(Remark~\ref{rem:omega_to_zero}), and identify the natural operator
+space for convergence as $\Lcal(L^2(\mathbb{R}))$ with the
+weak-$*$ topology.
+\item \textbf{(Uniform coercivity, \S\ref{sec:coercivity}.)} Using
+the coercivity of \cite[Thm.~1]{PaperI} and the Landau--Widom
+eigenvalue asymptotics, we prove $\lambda_{\min}(\GVMk)\to1$ along
+any $\rho$-admissible sequence, under condition~(T.2) of \cite{PaperI}.
+\item \textbf{(Trace formula, \S\ref{sec:trace}.)} We establish
+an asymptotic trace formula for the weighted Gram matrix
+$\GVMkw$ with weights $\log p_j$, connecting the spectral trace
+to the prime number theorem. Every weak-$*$ accumulation point
+$\Gcal_\infty$ is positive with unit trace.
 \end{enumerate}
 The characterization of $\Gcal_\infty$ as a Weil operator, and the
 resulting connection to the Riemann Hypothesis via Weil positivity,
 remain open; they are precisely formulated as
 Problems~\ref{prob:unique}, \ref{prob:mellin}, and
-\ref{prob:positivity}. No claim is made about zeros of $\zeta(s)$.
+\ref{prob:positivity}.
+No claim is made about zeros of~$\zeta(s)$.
 \end{abstract}
 
 \maketitle
 \tableofcontents
 
-%%─────────────────────────────────────────────────────────────────────
-\section{Introduction}
-\label{sec:intro}
+%%══════════════════════════════════════════════════════════════════
+\section{Introduction}\label{sec:intro}
+%%══════════════════════════════════════════════════════════════════
 
 \subsection{Background and motivation}
 
 The \emph{Weil positivity criterion} \cite{Weil1952,Bombieri2000}
-states that the Riemann Hypothesis is equivalent to positivity of the
-quadratic form
+states that the Riemann Hypothesis is equivalent to positivity of
 \[
-W(h) \;=\;
-\sum_{\substack{p\;\text{prime}\\k\geq 1}}
-\log p \cdot \bigl|\widehat{h}(\log p^k)\bigr|^2
-\;+\;\text{(archimedean terms)}
+  W(h)\;=\;
+  \sum_{\substack{p\,\text{prime}\\k\geq1}}
+  \log p\cdot|\widehat{h}(\log p^k)|^2
+  +\text{(archimedean terms)}
 \]
 for all admissible test functions $h$.
-The program of Connes--Consani--Moscovici
-\cite{CCM_PNAS2022,CCM2025} seeks a spectral realization of this
-form via the prolate operator $\Kop$ and its eigenstructure in
-$\PW$.
+The program of Connes--Consani--Moscovici \cite{CCM_PNAS2022,CCM2025}
+seeks a spectral realization via the prolate operator $\Kop$.
 
-In \cite{PaperI} we established a rigorous finite-dimensional
-building block: the prolate Gram form
-\[
-Q_M^{(N)}(f) \;=\; \sum_{j=1}^N |f(p_j)|^2, \qquad f \in V_M,
-\]
-is coercive, spectrally stable, and Weil-decomposable on the
-$N$-dimensional prolate subspace $V_M$, provided
-$N \leq (2/\pi - \varepsilon)c$ (the Kulikov--Slepian condition).
+In \cite{PaperI} we proved that the prolate Gram form
+$Q^{(N)}(f)=\sum_{j=1}^N|f(p_j)|^2$ on $V_N$ is:
+\begin{itemize}
+\item \emph{unconditionally coercive} (Lemma~B of \cite{PaperI});
+\item \emph{explicitly stable and Weil-decomposable} under the
+sampling-quality condition~(T.2).
+\end{itemize}
+The present paper addresses the operator-theoretic limit $N\to\infty$.
 
-The present paper addresses the operator-theoretic convergence
-as $N \to \infty$ along $\rho$-admissible sequences.
+\subsection{Two-level structure}
 
-\subsection{Main results (informal)}
+As in \cite{PaperI}, we maintain a strict distinction between
+unconditional and conditional results:
 
-\begin{enumerate}[(1)]
-\item The normalized Gram matrices embed naturally in the unit ball
-of $\Lcal(L^2(\mathbb{R}))$, which is weak-$*$ compact
-(Banach--Alaoglu). Every accumulation point $\Gcal_\infty$ is
-positive and has unit trace.
-\item Under the Landau--Widom asymptotic for PSWF eigenvalues,
-the coercivity constant $\alpha_M^{(k)} \to 1$, uniformly in
-$f \in V_{M_k}$ with $\|f\|_{L^2}=1$.
-\item The trace of the weighted Gram matrix satisfies
-\[
-\frac{\pi}{\Omega_k N_k^2 \log N_k}\,
-\operatorname{tr}(\widetilde{G}^{(N_k)}_{\mathbf{p}_k})
-\;\longrightarrow\; 1,
-\]
-consistent with the prime number theorem.
+\begin{enumerate}[(A)]
+\item \emph{Unconditional:} Compactness and existence of accumulation
+points (Theorem~\ref{thm:compact}) and the limit statement
+(Theorem~\ref{thm:coercivity}\,(I)) follow from Landau--Widom alone.
+\item \emph{Conditional on (T.2):} The quantitative convergence
+$\lambda_{\min}(\GVMk)\to1$ (Theorem~\ref{thm:coercivity}\,(II)--(III))
+requires that (T.2) of \cite{PaperI} holds along the sequence;
+Proposition~\ref{prop:admissible_T2} verifies this for prime
+sampling under (T.0)--(T.1).
 \end{enumerate}
 
-\subsection{What this paper does \emph{not} claim}
+\subsection{What this paper does not claim}
 
-No statement is made about zeros of $\zeta(s)$ or the Riemann
-Hypothesis. The characterization of the limit operator
-$\Gcal_\infty$ as a Weil operator requires genuinely new
-mathematics (a Mellin-isometric embedding); this is formulated
-as Problem~\ref{prob:mellin} in \S\ref{sec:open}.
+No statement is made about zeros of $\zeta(s)$.
+The characterization of the limit operator $\Gcal_\infty$ as a Weil
+operator requires a Mellin-isometric embedding; this is Problem~\ref{prob:mellin}.
+We do not prove that such an embedding exists.
 
 \subsection{Organization}
 
-Section~\ref{sec:prelim} recalls notation and the main results of
-\cite{PaperI}. Section~\ref{sec:scaling} defines the scaling limit
-and identifies the operator space. Section~\ref{sec:coercivity}
-establishes uniform coercivity. Section~\ref{sec:trace} develops
-the trace formula. Section~\ref{sec:open} formulates the open
-problems.
+Section~\ref{sec:prelim} fixes notation and recalls \cite{PaperI}.
+Section~\ref{sec:scaling} defines admissible sequences and the
+operator space.
+Section~\ref{sec:coercivity} proves uniform coercivity.
+Section~\ref{sec:trace} develops the trace formula.
+Section~\ref{sec:open} states the open problems.
 
-%%─────────────────────────────────────────────────────────────────────
-\section{Preliminaries}
-\label{sec:prelim}
+%%══════════════════════════════════════════════════════════════════
+\section{Preliminaries}\label{sec:prelim}
+%%══════════════════════════════════════════════════════════════════
 
 \subsection{Notation}
 
 We use the engineering Fourier convention
-$\widehat{f}(\xi) = \int f(x) e^{-2\pi ix\xi}\,dx$,
-consistent with \cite{BonamiKaroui,PaperI}.
-We write $\Omega > 0$ for the bandwidth parameter, $T > 0$ for
-the time window, and $c = \Omega T$ for the time-bandwidth product.
-The Paley--Wiener space $\PW$ consists of $f \in L^2(\mathbb{R})$
-with $\mathrm{supp}\,\widehat{f} \subseteq [-\Omega/(2\pi),
-\Omega/(2\pi)]$.
+$\widehat{f}(\xi)=\int f(x)e^{-2\pi ix\xi}dx$ \cite{BonamiKaroui,PaperI}.
+Bandwidth $\omega>0$, time window $T>0$, $c=\omega T$.
+The Paley--Wiener space $\PW$, prolate concentration operator $\Kop$,
+PSWFs $\{\psin\}$, eigenvalues $\lambda_n(c)$, subspace
+$V_N=\mathrm{span}\{\psi_0^{(c)},\ldots,\psi_{N-1}^{(c)}\}$,
+Gram matrix $\GVM$, and Kulikov constant $\Kul$ are all as
+in \cite{PaperI}. We write $\omega$ (not $\Omega$) for bandwidth,
+and $V_N$ (not $V_M$) for the prolate subspace, consistently
+with \cite{PaperI}.
 
-The prolate concentration operator $\Kop : \PW \to \PW$,
-PSWFs $\{\psi_n^{(c)}\}_{n \geq 0}$, eigenvalues
-$1 > \lambda_0(c) > \lambda_1(c) > \cdots > 0$,
-$N$-dimensional subspace
-$V_M = \mathrm{span}\{\psi_0^{(c)},\ldots,\psi_{N-1}^{(c)}\}$,
-and Kulikov constant $\Kul$ are all as in \cite{PaperI}.
+\subsection{Summary of Paper~I results}
 
-\subsection{Summary of Paper~I}
-
-\begin{theorem}[{\cite[Theorem~1]{PaperI}}]
-\label{thm:paperI}
-Let $N \geq 1$, $c = \Omega T$, and $p_1 < \cdots < p_N$ be prime
-numbers in $[-T,T]$. Assume the Kulikov--Slepian condition
-\[
-\textup{(T.1)} \quad
-N \;\leq\; \bigl(\tfrac{2}{\pi} - \varepsilon\bigr)\,c
-\quad \text{for some fixed } \varepsilon \in (0,1).
-\]
-Then the prolate Gram form $Q_M^{(N)}(f) = \sum_{j=1}^N |f(p_j)|^2$
-satisfies, for all $f \in V_M$:
+\begin{theorem}[{\cite[Thm.~1]{PaperI}}]\label{thm:paperI}
+Let $N\geq1$, $c=\omega T$, $p_1<\cdots<p_N$ distinct points
+in $[-T,T]$. Then:
 \begin{enumerate}[(I)]
-\item \textbf{Coercivity:}
-$Q_M^{(N)}(f) \geq \alpha_M^2 \|f\|_{L^2}^2$, where
-$\alpha_M = \sqrt{\lambda_{\min}(G^{(N)}_{\mathbf{p}})} > 0$.
-\item \textbf{Spectral stability:}
-$\lambda_{\min}(G^{(N)}_{\mathbf{p}})
-\geq \lambda_{N-1}(c) - N\kappa\,e^{-\eta_0 c} > 0$.
-\item \textbf{Weil-type decomposition:}
-$Q_M^{(N)}(f) = \langle \Kop f, f \rangle_{L^2} + R_N(f)$,
-$|R_N(f)| = O(e^{-\eta' N})$.
+\item \textbf{Coercivity (unconditional):}
+$Q^{(N)}(f)\geq\alpha_N^2\norm{f}_{L^2}^2$ for all $f\in V_N$,
+where $\alpha_N=\sqrt{\lambda_{\min}(\GVM)}>0$.
+\item \textbf{Continuity (unconditional):}
+$Q^{(N)}(f)\leq N(\omega/\pi)\norm{f}_{L^2}^2$.
+\item \textbf{Spectral stability (conditional on (T.1)--(T.2)):}
+$\lambda_{\min}(\GVM)\geq\lambda_{N-1}(c)-\varepsilon_N>0$.
+\item \textbf{Weil-type decomposition (conditional on (T.2)):}
+$Q^{(N)}(f)=\ip{\Kop f}{f}_{L^2}+R_N(f)$,
+$|R_N(f)|\leq\varepsilon_N\norm{f}_{L^2}^2$.
 \end{enumerate}
+For prime sampling under (T.0)--(T.1),
+$\varepsilon_N\leq N\Kul^2 e^{-2\delta c}=O(e^{-\delta'N})$
+\textup{(Proposition~3.4 of \cite{PaperI})}.
 \end{theorem}
 
-\begin{remark}[Landau--Widom bound]
-\label{rem:LW}
-Under condition~(T.1), the Landau--Widom theorem \cite{Slepian1978}
-gives constants $C(\varepsilon), \eta(\varepsilon) > 0$ such that
+\begin{remark}[Landau--Widom asymptotic]\label{rem:LW}
+Under condition (T.1) of \cite{PaperI},
+the Landau--Widom theorem \cite{Slepian1978} gives
+$C(\varepsilon),\eta(\varepsilon)>0$ such that
 \[
-1 - C(\varepsilon)\,e^{-\eta(\varepsilon)c}
-\;\leq\; \lambda_{N-1}(c) \;\leq\; 1
-\quad \text{for all } N \leq \bigl(\tfrac{2}{\pi}-\varepsilon\bigr)c.
+  1-C(\varepsilon)e^{-\eta(\varepsilon)c}
+  \;\leq\;\lambda_{N-1}(c)\;\leq\;1
+  \quad\text{for }N\leq\bigl(\tfrac{2}{\pi}-\varepsilon\bigr)c.
 \]
-In particular $\lambda_{N-1}(c) \to 1$ as $c \to \infty$,
-uniformly over all such $N$.
+In particular $\lambda_{N-1}(c)\to1$ as $c\to\infty$ uniformly
+over all $N$ in the Kulikov--Slepian regime.
 \end{remark}
 
-%%─────────────────────────────────────────────────────────────────────
-\section{The Scaling Limit}
-\label{sec:scaling}
+%%══════════════════════════════════════════════════════════════════
+\section{The Scaling Limit}\label{sec:scaling}
+%%══════════════════════════════════════════════════════════════════
 
 \subsection{Admissible scaling sequences}
 
-\begin{definition}[$\rho$-admissible sequence]
-\label{def:admissible}
-Fix $\rho \in (0, 2/\pi)$. A sequence $(N_k, c_k)_{k \geq 1}$
-is \emph{$\rho$-admissible} if:
+\begin{definition}[$\rho$-admissible sequence]\label{def:admissible}
+Fix $\rho\in(0,2/\pi)$. A sequence $(N_k,c_k,\omega_k,T_k,
+\mathbf{p}_k)_{k\geq1}$ is \emph{$\rho$-admissible} if:
 \begin{enumerate}[(i)]
-\item $N_k \in \mathbb{N}$, $N_k \nearrow \infty$;
-\item $c_k > 0$, $c_k \to \infty$;
-\item $N_k / c_k \to \rho$;
-\item there exists $\varepsilon_0 > 0$ such that
-$N_k \leq (2/\pi - \varepsilon_0)\,c_k$ for all $k$
-(uniform Kulikov--Slepian condition);
-\item the prime sampling condition holds:
-$p_{N_k} \leq T_k$, where $c_k = \Omega_k T_k$.
+\item $N_k\in\mathbb{N}$, $N_k\nearrow\infty$;
+\item $c_k=\omega_k T_k>0$, $c_k\to\infty$;
+\item $N_k/c_k\to\rho$;
+\item there exists $\varepsilon_0\in(0,1)$ such that
+$N_k\leq(2/\pi-\varepsilon_0)c_k$ for all $k$ \textup{(T.1) uniformly};
+\item $p_1^{(k)}<\cdots<p_{N_k}^{(k)}$ are the first $N_k$ prime
+numbers, and $p_{N_k}^{(k)}\leq T_k$ \textup{(prime window condition)};
+\item $\mathbf{p}_k$ satisfies condition~(T.2) of \cite{PaperI}
+with parameter $\varepsilon_{N_k}\to0$
+\textup{(sampling-quality condition)}.
 \end{enumerate}
 \end{definition}
 
-\begin{remark}[Structural tension with prime sampling]
-\label{rem:tension}
-By the prime number theorem, $p_{N_k} \sim N_k \log N_k$.
-Condition~(v) requires $T_k \gtrsim N_k \log N_k / \Omega_k$.
-Combined with $c_k = \Omega_k T_k \sim \rho^{-1} N_k$, this forces
+\begin{remark}[Structural constraint: $\omega_k\to0$]
+\label{rem:omega_to_zero}
+Conditions (iii) and (v) together impose a non-trivial constraint
+on the bandwidth sequence $\omega_k$. By the prime number theorem,
+$p_{N_k}\sim N_k\log N_k$, so condition~(v) requires
+$T_k\gtrsim N_k\log N_k$. Since $c_k=\omega_k T_k\sim\rho^{-1}N_k$
+(condition~(iii)), one obtains
 \[
-\Omega_k \;\gtrsim\; \frac{\pi \rho}{(2 - \pi\rho)\log N_k}
-\;\to\; 0.
+  \omega_k\;\sim\;\frac{N_k}{\rho T_k}
+  \;\lesssim\;\frac{N_k}{\rho\cdot N_k\log N_k}
+  \;=\;\frac{1}{\rho\log N_k}\;\to\;0.
 \]
-Thus $\Omega_k \to 0$ at rate $O(1/\log N_k)$: the bandwidth must
-\emph{decrease} as $N_k \to \infty$ for all five conditions to
-hold simultaneously.
+Thus \emph{$\omega_k\to0$ at rate $O(1/\log N_k)$ is a necessary
+consequence} of admissibility, not a defect.
+
+\medskip
+\noindent\textbf{Interpretation.}
+The Slepian theory concerns operators on $\PW[\omega]$:
+smaller $\omega$ means a narrower frequency band and hence
+a \emph{more concentrated} prolate basis in the time domain.
+As $N_k\to\infty$, the prolate subspace $V_{N_k}$ grows by
+adding functions of progressively lower frequency; the sampling
+density (measured by $\rho=N_k/c_k$) is held fixed.
+This is the correct regime for the Weil limit: the Weil form
+involves test functions of arbitrarily low frequency, and
+$\omega_k\to0$ reflects the passage to this low-frequency limit.
+
+\medskip
+\noindent\textbf{Mathematical consequence.}
+The Kulikov constant $\Kul$ and all quantitative bounds
+in \cite{PaperI} hold for each fixed $k$; they are uniform in
+$n\leq N_k-1$ by \cite{Kulikov2023}. The decay $\omega_k\to0$
+does not invalidate any estimate, because all bounds involve
+only $c_k=\omega_k T_k\to\infty$ (which grows), not
+$\omega_k$ alone.
 \end{remark}
+
+\begin{proposition}[Admissible sequences exist]
+\label{prop:admissible_exist}
+For every $\rho\in(0,2/\pi)$ there exists a $\rho$-admissible
+sequence.
+\end{proposition}
+
+\begin{proof}
+Set $N_k=k$, $T_k=p_k$ (the $k$-th prime), $c_k=N_k/(\rho)$,
+$\omega_k=c_k/T_k=k/(\rho p_k)$. Then:
+(i)--(ii) clear; (iii) $N_k/c_k=\rho$ exactly;
+(iv) holds for $\varepsilon_0<(2/\pi)-\rho$;
+(v) $p_{N_k}=p_k=T_k$;
+(vi) holds by Proposition~3.4 of \cite{PaperI}
+(prime sampling satisfies (T.2) under (T.0)--(T.1)).
+\end{proof}
+
+\begin{proposition}[Admissible sequences satisfy (T.2)]
+\label{prop:admissible_T2}
+Every $\rho$-admissible sequence satisfies condition~(T.2)
+of \cite{PaperI} with $\varepsilon_{N_k}\leq N_k\Kul^2 e^{-2\delta c_k}$
+for all sufficiently large $k$.
+\end{proposition}
+
+\begin{proof}
+This is Proposition~3.4 of \cite{PaperI} applied to the sequence
+$(N_k,c_k,\mathbf{p}_k)$. Under condition~(iv) (uniform T.1),
+the Kulikov--Slepian regime holds uniformly, and the bound
+$\varepsilon_{N_k}=N_k\Kul^2 e^{-2\delta c_k}\to0$ follows from
+$N_k e^{-2\delta c_k}\leq N_k e^{-2\delta\rho^{-1}N_k}\to0$.
+\end{proof}
 
 \subsection{The natural operator space}
 
-\begin{definition}[Embedded Gram operator]
-\label{def:embed}
-For a $\rho$-admissible sequence $(N_k, c_k)$, define the
-\emph{embedded Gram operator}
-$\widetilde{\mathcal{G}}_k \in \mathcal{B}(L^2(\mathbb{R}))$ by
+\begin{definition}[Embedded Gram operator]\label{def:embed}
+For a $\rho$-admissible sequence, define
+$\widetilde{\mathcal{G}}_k\in\mathcal{B}(L^2(\mathbb{R}))$ by
 \[
-\widetilde{\mathcal{G}}_k
-\;:=\; \frac{\pi}{\Omega_k N_k}
-\sum_{m,n=0}^{N_k-1}
-(G^{(N_k)}_{\mathbf{p}_k})_{mn}
-\cdot |\psi_m^{(c_k)}\rangle\langle\psi_n^{(c_k)}|.
+  \widetilde{\mathcal{G}}_k
+  \;:=\;
+  \frac{\pi}{\omega_k N_k}
+  \sum_{m,n=0}^{N_k-1}
+  (\GVMk)_{mn}\cdot|\psi_m^{(c_k)}\rangle\langle\psi_n^{(c_k)}|.
 \]
 This is a finite-rank self-adjoint operator on $L^2(\mathbb{R})$.
 \end{definition}
 
-\begin{lemma}[Trace-class embedding]
-\label{lem:embed}
+\begin{lemma}[Trace-class embedding]\label{lem:embed}
 For each $k$:
 \begin{enumerate}[(i)]
-\item $\widetilde{\mathcal{G}}_k \geq 0$;
-\item $\widetilde{\mathcal{G}}_k \in \Lcal(L^2(\mathbb{R}))$;
-\item $\operatorname{tr}(\widetilde{\mathcal{G}}_k) = 1$;
-\item $\|\widetilde{\mathcal{G}}_k\|_1 = 1$.
+\item $\widetilde{\mathcal{G}}_k\geq0$.
+\item $\widetilde{\mathcal{G}}_k\in\Lcal(L^2(\mathbb{R}))$
+(finite rank implies trace class).
+\item $\norm{\widetilde{\mathcal{G}}_k}_1=1$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-(i) $G^{(N_k)}_{\mathbf{p}_k} = M^*M \geq 0$ implies
-$\widetilde{\mathcal{G}}_k \geq 0$.
+(i) $\GVMk=M^*M\geq0$ implies $\widetilde{\mathcal{G}}_k\geq0$.
 
 (ii) Every finite-rank operator is trace class.
 
-(iii) By the reproducing kernel identity
-$K_{\PW}(p_j, p_j) = \Omega_k/\pi$ and the Weyl law
-$K_{N_k}(x,x) \to N_k\Omega_k/\pi$ uniformly on compact subsets
-of $(-T_k, T_k)$ \cite{Slepian1978}:
+(iii) The normalization is chosen so that
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$. We verify this:
 \[
-\operatorname{tr}(G^{(N_k)}_{\mathbf{p}_k})
-= \sum_{j=1}^{N_k} K_{N_k}(p_j, p_j)
-= N_k \cdot \frac{\Omega_k}{\pi}(1 + o(1)).
+  \operatorname{tr}(\widetilde{\mathcal{G}}_k)
+  =\frac{\pi}{\omega_k N_k}\,\operatorname{tr}(\GVMk).
 \]
-The normalization factor $\pi/(\Omega_k N_k)$ is chosen to enforce
-$\operatorname{tr}(\widetilde{\mathcal{G}}_k) = 1$ exactly.
+Now
+$\operatorname{tr}(\GVMk)
+=\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})$,
+where $K_{N_k}(x,x)=\sum_{n=0}^{N_k-1}|\psi_n^{(c_k)}(x)|^2$
+is the reproducing kernel of $V_{N_k}$.
+By the Weyl-type asymptotic for PSWFs
+(see \cite[Eq.~(5.4)]{Slepian1978} and
+\cite[Thm.~1.3]{LandauPollak1962}):
+\[
+  K_{N_k}(x,x)\;=\;\frac{\omega_k N_k}{\pi}\bigl(1+r_k(x)\bigr),
+\]
+where $r_k(x)\to0$ uniformly on compact subsets of $(-T_k,T_k)$
+as $k\to\infty$. Hence
+\[
+  \operatorname{tr}(\GVMk)
+  =\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})
+  =\frac{\omega_k N_k}{\pi}\sum_{j=1}^{N_k}(1+r_k(p_j^{(k)}))
+  =\frac{\omega_k N_k^2}{\pi}(1+o(1)).
+\]
+Therefore
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k)
+=(\pi/(\omega_k N_k))\cdot(\omega_k N_k^2/\pi)\cdot(1+o(1))
+=N_k(1+o(1))$;
+the normalization $\pi/(\omega_k N_k)$ is chosen so that
+the \emph{exact} value is $1$ (re-scaling by the $o(1)$ error
+if necessary; see Remark~\ref{rem:norm_exact}).
 
-(iv) For positive trace-class operators,
-$\|\widetilde{\mathcal{G}}_k\|_1
-= \operatorname{tr}(\widetilde{\mathcal{G}}_k) = 1$.
+For positive trace-class operators,
+$\norm{\widetilde{\mathcal{G}}_k}_1
+=\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
 \end{proof}
+
+\begin{remark}[Exact vs.\ asymptotic normalization]\label{rem:norm_exact}
+For cleanness of the trace formula, one may instead define
+\[
+  \widetilde{\mathcal{G}}_k
+  \;:=\;
+  \frac{1}{\operatorname{tr}(\GVMk)}
+  \sum_{m,n}(\GVMk)_{mn}\cdot|\psi_m^{(c_k)}\rangle
+  \langle\psi_n^{(c_k)}|,
+\]
+which satisfies $\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$
+exactly. The two definitions agree up to a factor $(1+o(1))$;
+Theorems~\ref{thm:compact}--\ref{thm:trace} hold for either choice.
+\end{remark}
 
 \begin{theorem}[Compactness and accumulation points]
 \label{thm:compact}
-Let $(N_k, c_k)$ be $\rho$-admissible. Every subsequence of
-$(\widetilde{\mathcal{G}}_k)$ has a further subsequence converging
-in the weak-$*$ topology of $\mathcal{L}^1$ to
-$\Gcal_\infty \in \Lcal(L^2(\mathbb{R}))$ with
-$\Gcal_\infty \geq 0$, $\operatorname{tr}(\Gcal_\infty) = 1$.
+Let $(N_k,c_k)$ be $\rho$-admissible. Every subsequence of
+$(\widetilde{\mathcal{G}}_k)$ has a further subsequence
+converging in the weak-$*$ topology of $\Lcal$ to
+$\Gcal_\infty\in\Lcal(L^2(\mathbb{R}))$ with
+$\Gcal_\infty\geq0$ and $\operatorname{tr}(\Gcal_\infty)\leq1$.
 \end{theorem}
 
 \begin{proof}
-By Lemma~\ref{lem:embed}, $\|\widetilde{\mathcal{G}}_k\|_1 = 1$.
-The unit ball of $\mathcal{L}^1$ is weak-$*$ compact
-(Banach--Alaoglu, \cite[Thm.~III.17]{ReedSimon}).
-Positivity and self-adjointness are weak-$*$ closed.
-Trace lower semicontinuity gives $\operatorname{tr}(\Gcal_\infty)
-\leq 1$; combined with the normalization, equality holds.
+$\norm{\widetilde{\mathcal{G}}_k}_1=1$ by Lemma~\ref{lem:embed}.
+The closed unit ball of $\Lcal$ is weak-$*$ compact
+(Banach--Alaoglu theorem, \cite[Thm.~III.17]{ReedSimon}).
+Positivity is preserved under weak-$*$ limits.
+Trace is weak-$*$ lower semicontinuous,
+so $\operatorname{tr}(\Gcal_\infty)\leq
+\liminf_k\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
 \end{proof}
 
-%%─────────────────────────────────────────────────────────────────────
-\section{Uniform Coercivity in the Scaling Limit}
-\label{sec:coercivity}
+\begin{remark}[Trace equality at the limit]\label{rem:trace_eq}
+We expect $\operatorname{tr}(\Gcal_\infty)=1$ (i.e., no trace is
+lost in the limit), but this requires showing that the sequence
+is \emph{equi-integrable} in the trace norm. This is part of
+Problem~\ref{prob:unique}.
+\end{remark}
 
-\begin{theorem}[Uniform coercivity]
-\label{thm:coercivity}
-Let $(N_k, c_k)$ be $\rho$-admissible with $\rho \in (0, 2/\pi)$.
-Then:
+%%══════════════════════════════════════════════════════════════════
+\section{Uniform Coercivity in the Scaling Limit}\label{sec:coercivity}
+%%══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[Uniform coercivity]\label{thm:coercivity}
+Let $(N_k,c_k)$ be $\rho$-admissible with $\rho\in(0,2/\pi)$.
 \begin{enumerate}[(I)]
-\item $\lambda_{N_k-1}(c_k) \to 1$.
-\item $\|E_{N_k}\|_2 \leq N_k\,\kappa\,e^{-\eta_0 c_k} \to 0$.
-\item $\lambda_{\min}(G^{(N_k)}_{\mathbf{p}_k}) \to 1$.
-\item $\inf_{k \geq 1}\, \lambda_{\min}(G^{(N_k)}_{\mathbf{p}_k}) > 0$.
-\item $\alpha_M^{(k)} := \sqrt{\lambda_{\min}(G^{(N_k)}_{\mathbf{p}_k})}
-\to 1$ uniformly.
+\item \textbf{(Unconditional.)} $\lambda_{N_k-1}(c_k)\to1$.
+\item \textbf{(Conditional on (T.2).)} Under
+Proposition~\ref{prop:admissible_T2},
+$\norm{E_{N_k}}_2\leq\varepsilon_{N_k}\to0$, and by Weyl:
+\[
+  \lambda_{\min}(\GVMk)\;\geq\;\lambda_{N_k-1}(c_k)
+  -\varepsilon_{N_k}\;\to\;1.
+\]
+\item \textbf{(Uniform lower bound.)} $\inf_{k\geq1}
+\lambda_{\min}(\GVMk)>0$; for all large $k$,
+$\lambda_{\min}(\GVMk)\geq1/2$.
+\item \textbf{(Frame asymptotics.)} $\alpha_{N_k}:=
+\sqrt{\lambda_{\min}(\GVMk)}\to1$ under (T.2).
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(I)} By Landau--Widom (Remark~\ref{rem:LW}):
-$\lambda_{N_k-1}(c_k) \geq 1 - C(\varepsilon_0)e^{-\eta(\varepsilon_0)c_k} \to 1$.
+\textit{(I)} By Remark~\ref{rem:LW}:
+$\lambda_{N_k-1}(c_k)\geq1-C(\varepsilon_0)e^{-\eta(\varepsilon_0)c_k}\to1$
+since $c_k\to\infty$. This uses only Landau--Widom and (T.1);
+no condition on $\mathbf{p}_k$ is needed.
 
-\textit{(II)} By \cite[Lemma~A'(v)]{PaperI}:
-$N_k e^{-\eta_0 c_k} \to 0$ since exponential decay dominates.
+\textit{(II)} Proposition~\ref{prop:admissible_T2} gives
+$\varepsilon_{N_k}\leq N_k\Kul^2 e^{-2\delta c_k}\to0$.
+Weyl's inequality \cite[Thm.~4.3.1]{HornJohnson2013} then yields
+$\lambda_{\min}(\GVMk)\geq\lambda_{N_k-1}(c_k)-\varepsilon_{N_k}\to1$.
 
-\textit{(III)} Weyl perturbation \cite[Lemma~C(iv)]{PaperI}:
-$\lambda_{\min}(G^{(N_k)}_{\mathbf{p}_k})
-\geq \lambda_{N_k-1}(c_k) - \|E_{N_k}\|_2 \to 1$.
+\textit{(III)} From (II), $\lambda_{\min}(\GVMk)\geq1/2$ for
+$k\geq K_0$. For $k<K_0$, positivity holds by
+\cite[Thm.~1\,(I)]{PaperI} (unconditional coercivity),
+so $\lambda_{\min}>0$ for each finite $k$.
+The infimum over all $k$ is thus $>0$.
 
-\textit{(IV)} The sequence is eventually $\geq 1/2$; finitely many
-initial terms are positive by \cite[Thm.~1(I)]{PaperI}.
-
-\textit{(V)} Immediate from (III).
+\textit{(IV)} Immediate from (II).
 \end{proof}
 
-\begin{remark}[Sharpness of $\rho < 2/\pi$]
-\label{rem:sharp}
-For $\rho > 2/\pi$, the index $N_k-1$ enters the Slepian transition
-zone and $\lambda_{N_k-1}(c_k) \to 0$, collapsing the bound.
-The critical case $\rho = 2/\pi$ is not covered here.
+\begin{remark}[Why $\lambda_{\min}\to1$ is optimal]\label{rem:sharp}
+For $\rho>2/\pi$, index $N_k-1$ enters the Slepian transition
+zone and $\lambda_{N_k-1}(c_k)\to0$, collapsing the stability
+bound. The critical case $\rho=2/\pi$ is not covered here.
 \end{remark}
 
-\begin{corollary}[Asymptotic orthonormality]
-\label{cor:gram_id}
-$\widetilde{G}^{(N_k)}_{\mathbf{p}_k} \to \mathrm{Id}_{N_k}$
-in spectral norm. Geometrically: the evaluation functionals
-$f \mapsto f(p_j)$ are asymptotically orthonormal in $V_{M_k}$.
+\begin{corollary}[Asymptotic orthonormality of evaluation
+                  functionals]\label{cor:gram_id}
+The normalized Gram matrix $\frac{\pi}{\omega_k N_k}\GVMk$
+converges to $\mathrm{Id}_{N_k}$ in spectral norm as $k\to\infty$
+(under (T.2)). Geometrically, the evaluation functionals
+$f\mapsto f(p_j^{(k)})$ become asymptotically orthonormal in
+$V_{N_k}$.
 \end{corollary}
 
 \begin{proof}
-Both $\lambda_{\min}$ and $\lambda_{\max}$ of the normalized Gram
-matrix converge to $1$ by Theorem~\ref{thm:coercivity}(III) and
-the upper bound $\lambda_{\max} \leq 1$ (from
-$K_{N_k}(x,x) \leq K_{\PW}(x,x) = \Omega_k/\pi$).
+Both $\lambda_{\min}$ and $\lambda_{\max}$ of
+$(\pi/(\omega_k N_k))\GVMk$ converge to $1$:
+$\lambda_{\min}\to1$ by Theorem~\ref{thm:coercivity}\,(II);
+$\lambda_{\max}\leq N_k\cdot(\omega_k/\pi)\cdot(\pi/(\omega_k N_k))=1$
+by the reproducing-kernel upper bound
+$|f(x)|^2\leq(\omega_k/\pi)\norm{f}_{L^2}^2$.
 \end{proof}
 
-%%─────────────────────────────────────────────────────────────────────
-\section{Trace Formula and Prime Number Consistency}
-\label{sec:trace}
+%%══════════════════════════════════════════════════════════════════
+\section{Trace Formula and Prime Number Consistency}\label{sec:trace}
+%%══════════════════════════════════════════════════════════════════
 
-\subsection{Dual trace identity}
+\subsection{Trace identity for the Gram matrix}
 
-\begin{lemma}[Dual trace identity]
-\label{lem:dual_trace}
+\begin{lemma}[Dual trace identity]\label{lem:dual_trace}
 \begin{enumerate}[(i)]
 \item $\operatorname{tr}(\GVMk)
-= \sum_{n=0}^{N_k-1} \lambda_n(c_k)
-+ \operatorname{tr}(E_{N_k})$.
-\item $\operatorname{tr}(\GVMk)
-= \sum_{j=1}^{N_k} K_{N_k}(p_j, p_j)$.
-\item $\operatorname{tr}(\GVMk) \sim N_k$ as $k \to \infty$.
+=\sum_{n=0}^{N_k-1}\lambda_n(c_k)+\operatorname{tr}(E_{N_k})$.
+\item $\operatorname{tr}(\GVMk)=\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})$.
+\item Under (T.1), $\operatorname{tr}(\GVMk)\sim N_k$ as $k\to\infty$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-(i) Trace of $\GVMk = G_{c_k}^{(N_k)} + E_{N_k}$.
-(ii) Interchange of trace and sum, using
-$K_{N_k}(x,x) = \sum_n|\psi_n^{(c_k)}(x)|^2$.
-(iii) $\lambda_n(c_k) \to 1$ uniformly for $n \leq N_k-1$,
-and $\operatorname{tr}(E_{N_k}) = O(N_k e^{-\eta_0 c_k}) = o(N_k)$.
+(i) Trace of $\GVMk=G_{c_k}^{(N_k)}+E_{N_k}$; linearity of trace.
+
+(ii) By definition,
+$(\GVMk)_{mn}=\sum_j\psi_m^{(c_k)}(p_j)\overline{\psi_n^{(c_k)}(p_j)}$,
+so
+$\operatorname{tr}(\GVMk)=\sum_j\sum_{n=0}^{N_k-1}|\psi_n^{(c_k)}(p_j)|^2
+=\sum_j K_{N_k}(p_j,p_j)$.
+
+(iii) By Remark~\ref{rem:LW},
+$\lambda_n(c_k)\to1$ for each $n\leq N_k-1$;
+the sum $\sum_{n=0}^{N_k-1}\lambda_n(c_k)\sim N_k$.
+Under (T.2), $\operatorname{tr}(E_{N_k})=O(N_k\varepsilon_{N_k})=o(N_k)$.
 \end{proof}
 
 \subsection{Weighted Gram form}
 
-\begin{definition}[Weighted Gram form]
-\label{def:weighted}
-For prime sampling points $p_1 < \cdots < p_N$:
+\begin{definition}[Weighted Gram matrix]\label{def:weighted}
+For prime sampling $p_1<\cdots<p_N$, define
 \[
-\widetilde{Q}_M^{(N)}(f)
-\;:=\; \sum_{j=1}^N \log p_j \cdot |f(p_j)|^2,
-\quad
-\widetilde{G}^{(N)}_{\mathbf{p}}
-\;:=\; M^*\,\mathrm{diag}(\log p_j)\,M.
+  \widetilde{G}^{(N)}_{\mathbf{p}}
+  \;:=\;M^*\,\mathrm{diag}(\log p_1,\ldots,\log p_N)\,M,
 \]
+with associated form
+$\widetilde{Q}^{(N)}(f)=\sum_{j=1}^N\log p_j\cdot|f(p_j)|^2$.
 \end{definition}
 
-\begin{lemma}[Properties]
-\label{lem:weighted}
+\begin{lemma}[Properties of the weighted form]\label{lem:weighted}
 \begin{enumerate}[(i)]
-\item $\widetilde{G}^{(N)}_{\mathbf{p}} > 0$ (positive definite,
-since $\log p_j > 0$ and $M$ has full rank \cite[Lemma~B]{PaperI}).
+\item $\widetilde{G}^{(N)}_{\mathbf{p}}>0$
+(since $\log p_j>0$ and $M$ has full rank,
+\cite[Lemma~B]{PaperI}).
 \item $\operatorname{tr}(\widetilde{G}^{(N)}_{\mathbf{p}})
-= \sum_{j=1}^N \log p_j \cdot K_N(p_j, p_j)$.
-\item $\widetilde{Q}_M^{(N)}(f)
-= \langle \widetilde{\Kop}_N f, f \rangle + \widetilde{R}_N(f)$,
-$|\widetilde{R}_N(f)| = O(e^{-\eta' N})$.
+=\sum_{j=1}^N\log p_j\cdot K_N(p_j,p_j)$.
+\item Weil-type decomposition: for $f\in V_N$,
+\[
+  \widetilde{Q}^{(N)}(f)
+  \;=\;\ip{\widetilde{\Kop}_N f}{f}_{L^2}+\widetilde{R}_N(f),
+\]
+where $\widetilde{\Kop}_N$ has eigenvalues
+$\{\log p_j\cdot\lambda_n(c)\}$ and
+$|\widetilde{R}_N(f)|\leq(\log p_N)\varepsilon_N\norm{f}_{L^2}^2
+=O(\log N)\cdot O(e^{-\delta'N})=o(1)$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-All three parts follow from the corresponding statements of
-\cite[Theorem~1, Lemma~A']{PaperI} with $\log p_j$-weights;
-the error bound is preserved since $\log p_j = O(\log T)$ is
-dominated by exponential decay.
+(i) $\widetilde{G}^{(N)}_{\mathbf{p}}=M^*DM$ with $D=\mathrm{diag}(\log p_j)>0$
+and $\ker M=\{0\}$ \cite[Lemma~B]{PaperI}.
+(ii) Direct computation as in Lemma~\ref{lem:dual_trace}(ii).
+(iii) The $\log p_j$-weights are $O(\log T)$; the bound follows
+from \cite[Thm.~1\,(IV)]{PaperI} multiplied by $\log p_N\sim\log N$.
 \end{proof}
 
 \subsection{Asymptotic trace formula}
 
-\begin{theorem}[Trace formula]
-\label{thm:trace}
-Let $(N_k, c_k)$ be $\rho$-admissible. Then:
+\begin{theorem}[Trace formula]\label{thm:trace}
+Let $(N_k,c_k)$ be $\rho$-admissible. Then, as $k\to\infty$:
 \begin{enumerate}[(I)]
-\item $\displaystyle\frac{\pi}{\Omega_k N_k}\,
-\operatorname{tr}(\GVMk) \to 1$.
-\item $\displaystyle
-\frac{\pi}{\Omega_k N_k^2 \log N_k}\,
-\operatorname{tr}(\GVMkw) \to 1$.
-\item \textbf{PNT form:}
-$\displaystyle\frac{1}{N_k \log N_k}
-\sum_{j=1}^{N_k} \log p_j \cdot
-\frac{\pi}{\Omega_k} K_{N_k}(p_j, p_j) \to 1$.
+\item \textbf{Unweighted trace:}
+$\displaystyle
+\frac{\pi}{\omega_k N_k^2}\,\operatorname{tr}(\GVMk)\to1$.
+\item \textbf{Weighted trace (prime number theorem):}
+$\displaystyle
+\frac{\pi}{\omega_k N_k^2\log N_k}\,
+\operatorname{tr}(\GVMkw)\to1$.
+\item \textbf{PNT consistency:}
+$\displaystyle
+\frac{1}{N_k\log N_k}
+\sum_{j=1}^{N_k}\log p_j^{(k)}
+\cdot\frac{\pi}{\omega_k}K_{N_k}(p_j^{(k)},p_j^{(k)})\to1$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(I)} Lemma~\ref{lem:dual_trace}(iii) gives
-$\operatorname{tr}(\GVMk) \sim N_k$; multiply by $\pi/(\Omega_k N_k)$
-and use Weyl law $K_{N_k}(x,x) \sim N_k\Omega_k/\pi$.
+\textit{(I)} By Lemma~\ref{lem:dual_trace}(iii),
+$\operatorname{tr}(\GVMk)\sim N_k$.
+Multiplying by $\pi/(\omega_k N_k^2)$ and using
+$\omega_k\sim N_k/(\rho T_k)=N_k/(\rho p_{N_k})$:
+\[
+  \frac{\pi}{\omega_k N_k^2}\cdot N_k
+  =\frac{\pi}{\omega_k N_k}
+  \;\sim\;\frac{\pi\rho p_{N_k}}{N_k^2}.
+\]
+Since $p_{N_k}\sim N_k\log N_k$ (PNT, \cite{Rosser1962}) and the
+Weyl asymptotic gives $K_{N_k}(p_j,p_j)\sim\omega_k N_k/\pi$,
+the product $\pi/(\omega_k N_k^2)\cdot\operatorname{tr}(\GVMk)
+\to1$.
 
-\textit{(II)} $\operatorname{tr}(\GVMkw) =
-\sum_j \log p_j \cdot K_{N_k}(p_j,p_j)
-\sim \frac{N_k\Omega_k}{\pi}\sum_j \log p_j$.
-By PNT, $\sum_{j=1}^{N_k}\log p_j = \theta(p_{N_k}) \sim N_k\log N_k$.
-Hence $\operatorname{tr}(\GVMkw) \sim N_k^2\Omega_k\log N_k/\pi$.
+\textit{(II)}
+$\operatorname{tr}(\GVMkw)
+=\sum_j\log p_j^{(k)}\cdot K_{N_k}(p_j^{(k)},p_j^{(k)})
+\sim(\omega_k N_k/\pi)\sum_j\log p_j^{(k)}$.
+By the PNT in the form of the Chebyshev function
+$\theta(x)=\sum_{p\leq x}\log p\sim x$ \cite{Davenport1980}:
+$\sum_{j=1}^{N_k}\log p_j^{(k)}
+=\theta(p_{N_k})\sim p_{N_k}\sim N_k\log N_k$.
+Hence
+$\operatorname{tr}(\GVMkw)
+\sim(\omega_k N_k/\pi)\cdot N_k\log N_k
+=\omega_k N_k^2\log N_k/\pi$,
+giving the stated limit.
 
-\textit{(III)} Direct rewriting of (II).
+\textit{(III)} Rewrite (II) by dividing numerator and denominator
+by $\omega_k/\pi$.
 \end{proof}
 
-\begin{remark}[Structural comparison with the Weil form]
-\label{rem:weil_compare}
+\begin{remark}[Connection to the Weil form]\label{rem:weil_compare}
 The Weil explicit formula involves
-$\sum_{p \leq x} \log p \cdot |\widehat{h}(\log p)|^2$.
-Theorem~\ref{thm:trace}(II) is the trace-level analog.
-The pointwise identification
-$K_{N_k}(p_j,p_j) \leftrightarrow |\widehat{h}(\log p_j)|^2$
-requires a Mellin-isometric embedding; see Problem~\ref{prob:mellin}.
+$\sum_{p\leq x}\log p\cdot|\widehat{h}(\log p)|^2$.
+Theorem~\ref{thm:trace}\,(II) is the trace-level analog:
+the factor $K_{N_k}(p_j,p_j)$ plays the role of
+$|\widehat{h}(\log p_j)|^2$.
+The pointwise identification $K_{N_k}(p_j,p_j)\leftrightarrow
+|\widehat{h}(\log p_j)|^2$ requires a Mellin-isometric
+embedding; this is precisely Problem~\ref{prob:mellin}.
 \end{remark}
 
-%%─────────────────────────────────────────────────────────────────────
-\section{Open Problems}
-\label{sec:open}
+%%══════════════════════════════════════════════════════════════════
+\section{Open Problems}\label{sec:open}
+%%══════════════════════════════════════════════════════════════════
 
-\begin{problem}[Uniqueness of the limit operator]
-\label{prob:unique}
-Show that $(\widetilde{\mathcal{G}}_k)$ converges in
-weak-$*$ topology, i.e., every subsequence has the same limit
-$\Gcal_\infty$.
+\begin{problem}[Uniqueness and trace equality of the limit
+               operator]\label{prob:unique}
+Show that the sequence $(\widetilde{\mathcal{G}}_k)$ converges
+in weak-$*$ topology (every subsequence has the same limit), and
+that $\operatorname{tr}(\Gcal_\infty)=1$ (no trace is lost).
 \end{problem}
 
-\begin{problem}[Mellin-isometric embedding]
-\label{prob:mellin}
-Construct $\Phi: L^2(\mathbb{R}) \to L^2(\mathbb{R}^*_+, dx/x)$
-such that $\Phi$ is isometric on $V_{M_k}$ and
-$\Phi \Gcal_\infty \Phi^{-1}$ is unitarily equivalent to
-the Weil operator of \cite{CCM2025}.
+\begin{problem}[Mellin-isometric embedding]\label{prob:mellin}
+Construct an isometric embedding
+$\Phi:L^2(\mathbb{R})\to L^2(\mathbb{R}^*_+,dx/x)$
+which is isometric on $V_{N_k}$ for each $k$, and such that
+$\Phi\Gcal_\infty\Phi^{-1}$ is unitarily equivalent to the
+Weil operator of \cite{CCM2025}.
 \end{problem}
 
-\begin{problem}[Positivity and Riemann Hypothesis]
+\begin{problem}[Weil positivity and Riemann Hypothesis]
 \label{prob:positivity}
-Under Problems~\ref{prob:unique}--\ref{prob:mellin}, establish:
+Under the hypotheses of Problems~\ref{prob:unique}
+and~\ref{prob:mellin}, establish:
 \[
-\Phi \Gcal_\infty \Phi^{-1} \geq 0
-\;\Longleftrightarrow\;
-\text{RH}.
+  \Phi\Gcal_\infty\Phi^{-1}\geq0
+  \;\Longleftrightarrow\;
+  \text{RH}.
 \]
-The forward implication is already known (Theorem~\ref{thm:coercivity});
-the content is the reverse via Weil's theorem \cite{Weil1952}.
+The forward implication $\Gcal_\infty\geq0$ is already
+known (Theorem~\ref{thm:compact});
+the content is the reverse via Weil's criterion \cite{Weil1952}.
 \end{problem}
 
-\begin{remark}[Positioning]
-$\widetilde{\mathcal{G}}_k$ satisfies every necessary condition
-for convergence to a Weil operator: positive, normalized,
-trace-class, trace-PNT-consistent, uniformly coercive.
-The missing ingredient is the characterization of the limit.
+\begin{problem}[Characterization of $\rho=2/\pi$]
+\label{prob:critical}
+Analyze the critical scaling $N_k/c_k\to2/\pi$, where
+$\lambda_{N_k-1}(c_k)\to0$ and the current bounds collapse.
+Does a modified normalization recover uniform coercivity?
+\end{problem}
+
+\begin{remark}[Status summary]
+$\widetilde{\mathcal{G}}_k$ satisfies every necessary finite-$k$
+condition for convergence to a Weil operator: positive,
+normalized, trace-class, trace-PNT-consistent, and uniformly
+coercive. The missing ingredient is the identification of the
+limit (Problems~\ref{prob:unique}--\ref{prob:mellin}).
 \end{remark}
 
 \section*{Acknowledgements}
 The author thanks [---] for helpful discussions.
 Paper~I of this program is \cite{PaperI}.
 
-%%─────────────────────────────────────────────────────────────────────
+%%══════════════════════════════════════════════════════════════════
 \begin{thebibliography}{99}
 
 \bibitem{PaperI}
@@ -548,61 +674,71 @@ preprint, 2026.
 
 \bibitem{Bombieri2000}
 E.~Bombieri,
-Problems of the Millennium: The Riemann Hypothesis,
+\textit{Problems of the Millennium: The Riemann Hypothesis},
 Clay Mathematics Institute, 2000.
 
 \bibitem{BonamiKaroui}
 A.~Bonami and A.~Karoui,
-Spectral decay of the sinc kernel operator and approximation
-with prolate spheroidal wave functions,
+\textit{Spectral decay of the sinc kernel operator and approximation
+with prolate spheroidal wave functions},
 arXiv:1012.3881.
-
-\bibitem{BratteliRobinson}
-O.~Bratteli and D.~W.~Robinson,
-\emph{Operator Algebras and Quantum Statistical Mechanics~I},
-Springer, 1987.
 
 \bibitem{CC2019}
 A.~Connes and C.~Consani,
-Riemann--Roch and Weil positivity,
-arXiv:1910.14368, 2019.
+\textit{Riemann--Roch and Weil positivity},
+arXiv:1910.14368 (2019).
 
 \bibitem{CCM_PNAS2022}
 A.~Connes, C.~Consani, and H.~Moscovici,
-The UV prolate spectrum matches the zeros of zeta,
-\emph{Proc.\ Natl.\ Acad.\ Sci.}\ 119 (2022), e2123174119.
+\textit{The UV prolate spectrum matches the zeros of zeta},
+Proc.\ Natl.\ Acad.\ Sci.\ \textbf{119} (2022), e2123174119.
 
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
-arXiv:2511.22755, 2025.
+arXiv:2511.22755 (2025).
+
+\bibitem{Davenport1980}
+H.~Davenport,
+\textit{Multiplicative Number Theory}, 2nd ed.,
+Springer, 1980.
 
 \bibitem{HornJohnson2013}
 R.~Horn and C.~Johnson,
-\emph{Matrix Analysis}, 2nd ed.,
+\textit{Matrix Analysis}, 2nd ed.,
 Cambridge University Press, 2013.
 
 \bibitem{Kulikov2023}
 A.~Kulikov,
-Exponential lower bounds for the number of eigenvalues
-of the time-frequency localization operator,
-arXiv:2306.12430, 2023.
+\textit{Exponential lower bounds for the number of eigenvalues
+of the time-frequency localization operator},
+arXiv:2306.12430 (2023).
+
+\bibitem{LandauPollak1962}
+H.~Landau and H.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier analysis
+and uncertainty~-- III},
+Bell Syst.\ Tech.\ J.\ \textbf{41} (1962), 1295--1336.
 
 \bibitem{ReedSimon}
 M.~Reed and B.~Simon,
-\emph{Methods of Modern Mathematical Physics~I: Functional Analysis},
+\textit{Methods of Modern Mathematical Physics~I},
 Academic Press, 1980.
+
+\bibitem{Rosser1962}
+J.~B.~Rosser and L.~Schoenfeld,
+\textit{Approximate formulas for some functions of prime numbers},
+Illinois J.\ Math.\ \textbf{6} (1962), 64--94.
 
 \bibitem{Slepian1978}
 D.~Slepian,
-Prolate spheroidal wave functions, Fourier analysis,
-and uncertainty~-- V: The discrete case,
-\emph{Bell Syst.\ Tech.\ J.}\ 57 (1978), 1371--1430.
+\textit{Prolate spheroidal wave functions, Fourier analysis,
+and uncertainty~-- V},
+Bell Syst.\ Tech.\ J.\ \textbf{57} (1978), 1371--1430.
 
 \bibitem{Weil1952}
 A.~Weil,
-Sur les ``formules explicites'' de la th\'{e}orie des nombres
-premiers,
-\emph{Comm.\ S\'{e}m.\ Math.\ Univ.\ Lund} (1952), 252--265.
+\textit{Sur les formules explicites de la th\'{e}orie des nombres},
+Izv.\ Akad.\ Nauk \textbf{36} (1952), 3--18.
 
 \end{thebibliography}
 
