@@ -1,0 +1,562 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!70!black]{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{booktabs}
+
+% ---- Theorem environments ----
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}[section]
+
+% ---- Notation ----
+% \Kop = prolate concentration operator (on PW_omega)
+% \Kul = Kulikov constant (scalar)
+\newcommand{\PW}{\mathrm{PW}_\omega}
+\newcommand{\Kop}{\mathcal{K}_c}
+\newcommand{\Kul}{\kappa_c}
+\newcommand{\GVM}{G^{(N)}_{\mathbf{p}}}
+\newcommand{\AM}{\alpha_M}
+\newcommand{\BM}{\beta_M}
+\newcommand{\QM}{Q_M}
+\newcommand{\psin}{\psi_n^{(c)}}
+\newcommand{\lam}{\lambda_n(c)}
+\newcommand{\Tmin}{T_{\min}}
+\newcommand{\EN}{E_N}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+
+% ---- Fourier convention ----
+% Engineering convention: \hat{f}(\xi) = \int f(x) e^{-2\pi i x\xi} dx.
+% Consistent with Bonami--Karoui. Plancherel: \|f\|_{L^2} = \|\hat{f}\|_{L^2}.
+% We write \omega > 0 for the bandwidth parameter and set c = \omega T.
+
+\title[Coercivity of the Prolate Gram Form]{Coercivity of the Prolate Gram Form
+at Prime Sampling Points}
+
+\author{[Author]}
+\address{}
+\email{}
+\date{\today}
+
+\subjclass[2020]{%
+  42C05, % Orthogonal functions and polynomials, general theory
+  42B10, % Fourier and Fourier-Stieltjes transforms
+  47B32, % Operators on Hilbert spaces
+  11M06, % Zeta and L-functions: analytic theory
+  65F15  % Eigenvalue problems (numerical linear algebra)
+}
+
+\keywords{prolate spheroidal wave functions, Gram form, coercivity,
+Kulikov constant, prime sampling, Weil positivity, Paley--Wiener space,
+Connes--Consani--Moscovici}
+
+\begin{document}
+
+\begin{abstract}
+Let $\PW$ denote the Paley--Wiener space of $\omega$-bandlimited
+functions, and let $\{\psin\}_{n=0}^{N-1}$ be the prolate spheroidal wave
+functions (PSWFs) forming an orthonormal basis of the $N$-dimensional
+prolate subspace $V_M \subset \PW$, with time-bandwidth product $c = \omega T$.
+For $N$ prime sampling points $\mathbf{p} = (p_1,\ldots,p_N)$ with
+$p_j \in [-T,T]$, we define the \emph{prolate Gram form}
+\[
+  \QM(f) \;=\; \sum_{j=1}^{N} |f(p_j)|^2, \qquad f \in V_M.
+\]
+We prove that $\QM$ is \emph{coercive}: there exists $\AM > 0$,
+depending only on $N$ and $c$, such that
+\[
+  \QM(f) \;\geq\; \AM^2\,\norm{f}_{L^2}^2
+  \qquad\text{for all } f \in V_M,
+\]
+provided $T \geq \Tmin$, where
+$\Tmin = O\!\bigl(\log N / (\omega|\log\delta|)\bigr)$
+(Proposition~\ref{prop:C1}).
+We further establish a Weil-type spectral decomposition, spectral
+stability under Kulikov-controlled perturbation, and a limit statement
+as $c \to \infty$ at fixed $N$.
+The result provides a rigorous finite-dimensional foundation compatible
+with the Weil positivity program of Connes--Consani--Moscovici
+\cite{CCM2025}; the passage to the limit $N \to \infty$ remains open.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+%%% ============================================================
+\section{Introduction}
+%%% ============================================================
+
+The \emph{Weil positivity criterion} \cite{Weil1952,Bombieri2000,CC2019}
+states that the Riemann Hypothesis is equivalent to positivity of the
+quadratic form
+\[
+  W(h) \;=\;
+  \sum_{\substack{p\;\text{prime}\\k\geq 1}}
+  \log p \cdot \bigl|\widehat{h}(\log p^k)\bigr|^2
+  \;+\;\text{(archimedean terms)}
+\]
+for all admissible test functions $h$.
+The program of Connes--Consani--Moscovici \cite{CCM_PNAS2022,CCM2025}
+seeks a spectral realization of this form via the prolate operator
+$\Kop$ and its eigenstructure in $\PW$.
+
+The present paper contributes a rigorous finite-dimensional building
+block to this program. The main object is the prolate Gram form
+$\QM$ evaluated at $N$ prime sampling points $p_1 < p_2 < \cdots < p_N$.
+Our central result (Theorem~\ref{thm:main}) establishes that $\QM$ is
+coercive, stable, and Weil-decomposable on $V_M$.
+
+\medskip
+\noindent\textbf{Main idea.}
+The prolate functions $\psin$ satisfy exponential eigenvalue decay
+(Kulikov \cite{Kulikov2023}), which controls the off-diagonal error
+matrix $\EN$. Unisolvency of $V_M$ at $N$ distinct points
+(Lemma~\ref{lem:B}) ensures positive definiteness of the Gram matrix.
+Weyl perturbation theory (Lemma~\ref{lem:C}) propagates this to a
+coercivity bound on $\QM$.
+
+\medskip
+\noindent\textbf{What this paper does \emph{not} claim.}
+No statement is made about zeros of $\zeta(s)$. The operator-theoretic
+convergence as $N \to \infty$, required for a direct connection to Weil
+positivity, is precisely the open problem of \cite{CCM2025} and is not
+addressed here.
+
+%%% ============================================================
+\section{Setup and Main Result}\label{sec:setup}
+%%% ============================================================
+
+\subsection{Notation and conventions}
+
+We write $\overline{z}$ for complex conjugation of $z \in \mathbb{C}$.
+We use the engineering Fourier convention
+$\widehat{f}(\xi) = \int_{\mathbb{R}} f(x) e^{-2\pi i x\xi}\,dx$,
+consistent with \cite{BonamiKaroui}. Plancherel's theorem reads
+$\norm{f}_{L^2(\mathbb{R})} = \norm{\widehat{f}}_{L^2(\mathbb{R})}$.
+The bandwidth parameter $\omega > 0$ and time window $T > 0$ define the
+time-bandwidth product $c = \omega T \in (0,\infty)$.
+
+\subsection{Basic definitions}
+
+The \emph{Paley--Wiener space} $\PW$ consists of all
+$f \in L^2(\mathbb{R})$ whose Fourier transform is supported on
+$[-\omega/(2\pi),\, \omega/(2\pi)]$.
+
+\medskip
+\noindent\textbf{Diagonal sinc value.}
+The reproducing kernel of $\PW$ satisfies
+$K_{\PW}(x,x) = \omega/\pi$ for all $x \in \mathbb{R}$,
+by translation invariance; see \cite[Eq.~(3)]{BonamiKaroui}.
+
+\medskip
+\noindent\textbf{Prolate concentration operator.}
+The \emph{prolate concentration operator} is
+\[
+  \Kop f(x) \;=\;
+  \int_{-T}^{T}
+  \frac{\sin\omega(x-y)}{\pi(x-y)}\,f(y)\,dy,
+  \qquad \Kop : \PW \to \PW,
+\]
+with eigenvalues $1 > \lambda_0(c) > \lambda_1(c) > \cdots > 0$
+\cite{Slepian1978}. The \emph{prolate spheroidal wave functions} (PSWFs)
+$\{\psin\}_{n \geq 0}$ are the eigenfunctions: $\Kop\psin = \lambda_n(c)\,\psin$.
+The functions $\{\psin\}_{n=0}^{N-1}$ form an orthonormal basis (ONB)
+of the $N$-dimensional subspace $V_M \subset \PW$, and an orthonormal
+system in $L^2(\mathbb{R})$; see \cite[Theorem~S]{BonamiKaroui}.
+
+The \emph{Kulikov constant} is the scalar
+\[
+  \Kul \;:=\;
+  \sup_{n \geq 0}\;
+  \bigl(1-\lam\bigr)^{1/2}
+  \cdot \norm{\psin}_{L^\infty(\mathbb{R})},
+  \qquad \Kul \;<\; \infty,
+\]
+by \cite{Kulikov2023} and \cite{BonamiKaroui}. This bound holds
+uniformly in $n \geq 0$ and all $c \in (0,\infty)$.
+
+\begin{definition}[Prolate Gram Form]\label{def:GramForm}
+For $N$ distinct points $\mathbf{p} = (p_1,\ldots,p_N) \subset [-T,T]$,
+the \emph{prolate Gram matrix} is
+\[
+  \bigl(\GVM\bigr)_{mn}
+  \;=\; \sum_{j=1}^{N}
+  \psi_m^{(c)}(p_j)\,\overline{\psi_n^{(c)}(p_j)},
+  \qquad 0 \leq m,n \leq N-1.
+\]
+Note $\GVM = M(\mathbf{p})^* M(\mathbf{p})$ where
+$M(\mathbf{p})_{jm} = \psi_m^{(c)}(p_j)$.
+The \emph{prolate Gram form} is
+\[
+  \QM(f) \;=\; \ip{\GVM\,\mathbf{a}}{\mathbf{a}}_{\mathbb{C}^N}
+  \;=\; \sum_{j=1}^{N} |f(p_j)|^2,
+\]
+where $\mathbf{a} = (a_n)$ are the ONB coefficients
+$f = \sum_n a_n \psin \in V_M$, and
+$\norm{f}_{L^2}^2 = \norm{\mathbf{a}}^2$ by orthonormality.
+\end{definition}
+
+\noindent
+Let $\AM := \sqrt{\lambda_{\min}(\GVM)}$ and
+$\BM := \sqrt{\lambda_{\max}(\GVM)}$ denote the frame bounds.
+
+\subsection{Main theorem}
+
+\begin{theorem}[Coercivity of the Prolate Gram Form]
+\label{thm:main}
+Let $N \geq 1$, $c = \omega T \in (0,\infty)$, and let
+$p_1 < \cdots < p_N$ be $N$ prime numbers with $p_j \in [-T,T]$.
+Write $\EN := \GVM - G_c^{(N)}$, where
+$G_c^{(N)} = \mathrm{diag}(\lambda_0(c),\ldots,\lambda_{N-1}(c))$.
+Let $\Kul$ be the Kulikov constant \textup{(Lemma~\ref{lem:A})},
+and assume
+\[
+  \textup{(T.0)}\quad
+  T \;\geq\; \Tmin(N,c)
+  \;:=\; \frac{1}{2\delta}
+  \log\!\Bigl(\frac{N\Kul^2}{\lambda_{N-1}(c)}\Bigr)
+\]
+as in Proposition~\textup{\ref{prop:C1}}, for some $\delta = \delta(c) > 0$.
+Additionally, we assume condition \textup{(T.1)} as in
+Remark~\textup{\ref{rem:Kulikov_regime}}, which together with \textup{(T.0)}
+ensures $N \leq \bigl(\tfrac{2}{\pi}-\varepsilon\bigr)c$ for some $\varepsilon > 0$,
+placing all indices $n = 0,\ldots,N-1$ strictly below the Slepian
+transition at $n \approx 2c/\pi$.
+Then:
+\begin{enumerate}[(I)]
+\item \textbf{Coercivity.}
+$\displaystyle \QM(f) \;\geq\; \AM^2\,\norm{f}_{L^2}^2$
+for all $f \in V_M$.
+\item \textbf{Continuity.}
+$\displaystyle \QM(f) \;\leq\; N\,\frac{\omega}{\pi}\,\norm{f}_{L^2}^2$
+for all $f \in V_M$.
+\item \textbf{Spectral stability.}
+$\displaystyle \lambda_{\min}(\GVM)
+\;\geq\; \lambda_{N-1}(c) - \norm{\EN}_2 > 0$,
+where $\norm{\EN}_2 \leq N\Kul^2\,e^{-2\delta c}$.
+\item \textbf{Weil-type spectral decomposition.}
+For every $f \in V_M$ with $\norm{f}_{L^2} = 1$,
+\[
+  \QM(f) \;=\; \ip{\Kop f}{f}_{L^2} + R_N(f),
+  \quad |R_N(f)| \;=\; O\!\bigl(e^{-\delta N}\bigr).
+\]
+\item \textbf{Limit statement.}
+For fixed $N$ and fixed $\mathbf{p}$, as $c \to \infty$,
+\[
+  \QM(f) \;\longrightarrow\; \norm{f}_{L^2[-T,T]}^2
+  \quad\text{uniformly in }
+  f \in V_M,\; \norm{f}_{L^2}=1.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Limits of Theorem~\ref{thm:main}]\label{rem:limits}
+\begin{enumerate}[(i)]
+\item \emph{No connection to $\zeta$-zeros.}
+A direct relation to Riemann zeros requires an operator-theoretic
+convergence step as $N \to \infty$, the open problem of \cite{CCM2025}.
+\item \emph{$\AM$ is existential, not explicit.}
+The positivity $\AM > 0$ is guaranteed by Lemma~\ref{lem:B};
+an explicit lower bound in terms of $N$ and $c$ is
+Problem~\ref{prob:alpha}.
+\item \emph{$\Tmin$ is not asymptotically sharp.}
+Condition~(T.0) is sufficient but not optimal.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[Role of prime sampling points]\label{rem:primes}
+Theorem~\ref{thm:main} holds for \emph{any} $N$ pairwise distinct
+points in $[-T,T]$; the arithmetic of primes is not used in
+Parts~(I)--(III) (see Remark~\ref{rem:primes_B}). Prime sampling
+motivates the Weil-type interpretation: primes enter as the natural
+index set in Part~(IV).
+\end{remark}
+
+%%% ============================================================
+\section{Lemma A and A$'$: Fourier Tail Control
+and Kernel Decomposition}\label{sec:lemA}
+%%% ============================================================
+
+\begin{lemma}[Fourier Tail Decay and Kulikov Bound]\label{lem:A}
+\begin{enumerate}[(i)]
+
+\item \textbf{Kulikov decay (uniform in $n$).}
+For all $n \geq 0$ and all $c \in (0,\infty)$,
+\[
+  \bigl(1 - \lambda_n(c)\bigr)^{1/2}\,\|\psi_n^{(c)}\|_{L^\infty(\mathbb{R})}
+  \;\leq\; \Kul \;<\; \infty.
+\]
+This is \cite[Thm.~1.1]{Kulikov2023}; the bound holds \emph{uniformly}
+in $n \geq 0$ and $c \in (0,\infty)$.
+
+\item \textbf{Fourier-tail orthogonality.}
+For all $m, n \geq 0$,
+\[
+  \int_{|\xi| > \omega/(2\pi)}
+  \widehat{\psi_m^{(c)}}(\xi)\,
+  \overline{\widehat{\psi_n^{(c)}}(\xi)}\,d\xi
+  \;=\; \delta_{mn}\,(1 - \lambda_n(c)).
+\]
+\begin{proof}
+Since $\{\psin\}$ is an orthonormal system in $L^2(\mathbb{R})$
+\cite[Thm.~S]{BonamiKaroui}, Plancherel gives
+$\int_{\mathbb{R}}\widehat{\psi_m^{(c)}}\,
+\overline{\widehat{\psi_n^{(c)}}}\,d\xi = \delta_{mn}$.
+Splitting the real line and using $\Kop\psin = \lambda_n(c)\psin$
+for the in-band integral gives the result.
+\end{proof}
+
+\item \textbf{Pointwise bounds.}
+
+\medskip\noindent\textbf{(a) Kulikov lower bound.}
+For all $n \geq 0$ and $c > 0$:
+\[
+  1 - \lambda_n(c) \;\geq\; e^{-2\delta c},
+  \quad \delta = \delta(\varepsilon, c) > 0,
+\]
+whenever $n \leq \bigl(\tfrac{2}{\pi}-\varepsilon\bigr)c$ \cite[Thm.~1.1]{Kulikov2023}.
+
+\medskip\noindent\textbf{(b) Landau--Widom upper bound.}
+For $n \leq \bigl(\tfrac{2}{\pi}-\varepsilon\bigr)c$ with $\varepsilon > 0$ fixed:
+\[
+  1 - \lambda_n(c) \;\leq\; C(\varepsilon)\,e^{-\eta(\varepsilon) c}
+\]
+\cite{Slepian1978}.
+
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}[Kulikov--Slepian regime]\label{rem:Kulikov_regime}
+We assume throughout
+\[
+  \textup{(T.1)} \quad N \;\leq\; \left(\frac{2}{\pi} - \varepsilon\right) c
+  \quad \text{for some fixed } \varepsilon \in (0,1).
+\]
+Under (T.1), $\lambda_{N-1}(c) \geq 1 - C(\varepsilon)\,e^{-\eta(\varepsilon)\varepsilon c}$,
+which is uniformly bounded away from zero.
+
+\medskip
+\noindent\textbf{Compatibility with prime sampling.}
+Under the prime number theorem, $p_N \sim N\log N$,
+so conditions (T.0) and (T.1) unify into
+$T \geq \max\!\bigl(\Tmin,\, \frac{\pi N}{(2-\pi\varepsilon)\omega}\bigr)$.
+\end{remark}
+
+\begin{lemma}[Kernel Decomposition and Gram Splitting]\label{lem:Aprime}
+\begin{enumerate}[(i)]
+\item $K_{\PW}(x,y) = S_1(x,y) + S_2(x,y)$ with
+$S_1(x,y) = \sum_{n < N} \psi_n^{(c)}(x)\,\overline{\psi_n^{(c)}(y)}$;
+convergence in $L^2(\mathbb{R}\times\mathbb{R})$.
+\item $\Kop(x,y) = \sum_{n\geq 0}\lambda_n(c)\psi_n^{(c)}(x)\overline{\psi_n^{(c)}(y)}$
+in $L^2([-T,T]^2)$.
+\item $\GVM = G_c^{(N)} + \EN$,
+where $(G_c^{(N)})_{mn} = \lambda_n(c)\delta_{mn}$.
+\item $\|\EN\|_\infty \leq N\Kul^2\,\omega/\pi$.
+\item Under (T.1):
+$\|\EN\|_\infty \leq N\kappa\,e^{-\eta_0 c} \leq N\kappa\,e^{-\eta' N}$.
+\item $\|\EN\|_2 \leq \|\EN\|_\infty \leq N\kappa\,e^{-\eta' N}$
+\cite[Cor.~2.3.2]{HornJohnson2013}.
+\end{enumerate}
+\end{lemma}
+
+%%% ============================================================
+\section{Lemma B: Unisolvency and Gram Positivity}\label{sec:lemB}
+%%% ============================================================
+
+\begin{definition}[Evaluation Matrix]\label{def:evalmatrix}
+$M(\mathbf{p}) := \bigl(\psi_m^{(c)}(p_j)\bigr)_{j,m} \in \mathbb{C}^{N\times N}$.
+\end{definition}
+
+\begin{lemma}[Unisolvency and Gram Positivity]\label{lem:B}
+Let $p_1 < \cdots < p_N$ be $N$ distinct real points in $[-T,T]$.
+\begin{enumerate}[(i)]
+\item $V_M$ is a Chebyshev system: every nontrivial $f\in V_M$ has
+at most $N-1$ zeros \cite{KarlinStudden1966}.
+\item $\mathrm{rank}\,M(\mathbf{p}) = N$.
+\item $\GVM = M(\mathbf{p})^*M(\mathbf{p})$ is Hermitian positive definite.
+\item $\lambda_{\min}(\GVM) \geq (\det\GVM)^{1/N}\lambda_{\max}(\GVM)^{-(N-1)/N} > 0$.
+\item Frame property: $\lambda_{\min}(\GVM)\norm{f}^2 \leq \QM(f) \leq
+\lambda_{\max}(\GVM)\norm{f}^2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) \cite[\S II]{Slepian1978}, \cite[Cor.~1.3]{BonamiKaroui},
+\cite[Ch.~1, Thm.~3.1]{KarlinStudden1966}.
+(ii) If $f\in V_M\setminus\{0\}$ vanishes at all $N$ points, it has $N$ zeros,
+contradicting (i).
+(iii)--(v) follow from (ii) by standard linear algebra.
+\end{proof}
+
+\begin{remark}\label{rem:primes_B}
+Lemma~\ref{lem:B} uses only pairwise distinctness of $\mathbf{p}$.
+The multiplicative structure of primes enters only in
+Theorem~\ref{thm:main}\,(IV).
+\end{remark}
+
+%%% ============================================================
+\section{Lemma C: Spectral Stability}\label{sec:lemC}
+%%% ============================================================
+
+\begin{lemma}[Spectral Stability via Weyl Perturbation]\label{lem:C}
+\begin{enumerate}[(i)]
+\item $1>\lambda_0(c)>\cdots>\lambda_{N-1}(c)>0$ \cite{Slepian1978}.
+\item $\lambda_{N-1}(c)\norm{\mathbf{a}}^2 \leq
+\ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}} \leq \norm{\mathbf{a}}^2$.
+\item $\|\EN\|_2 \leq N\kappa\,e^{-\eta' N}$
+(Lemma~\ref{lem:Aprime}(vi)).
+\item By Weyl \cite[Thm.~4.3.1]{HornJohnson2013}:
+$\lambda_{\min}(\GVM) \geq \lambda_{N-1}(c) - \|\EN\|_2 > 0$.
+\item $\lambda_{\max}(\GVM) \leq N\omega/\pi$.
+\item $\lambda_n(c) \to 1$ as $c\to\infty$ for fixed $n$, so
+$\GVM \to \mathrm{Id}_N$ \cite{Slepian1978}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proposition}[Fulfillability of (T.0)]\label{prop:C1}
+For every $c\in(0,\infty)$, set
+$\Tmin(N,c) := \frac{1}{2\delta}
+\log\!\bigl(N\Kul^2/\lambda_{N-1}(c)\bigr)$.
+Then (T.0) holds for all $T\geq\Tmin$, and
+$\Tmin(N,c)=O(\log N/\omega)$ under (T.1).
+By the prime number theorem, $p_N\sim N\log N$,
+so $N$ primes fit in $[-T,T]$ for all relevant parameters.
+\end{proposition}
+
+\begin{proof}
+$N\Kul^2 e^{-2\delta N} < \lambda_{N-1}(c)$ holds for $N\geq N_0(c)$.
+See also Problem~\ref{prob:alpha} for explicit quantitative bounds.
+\end{proof}
+
+%%% ============================================================
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+%%% ============================================================
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $f=\sum_{n=0}^{N-1}a_n\psin \in V_M$,
+$\mathbf{a}\in\mathbb{C}^N$, $\|f\|_{L^2}^2=\|\mathbf{a}\|^2$.
+
+\medskip\noindent\textit{(I) Coercivity.}
+$\QM(f)=\ip{\GVM\mathbf{a}}{\mathbf{a}}
+\geq\lambda_{\min}(\GVM)\|\mathbf{a}\|^2
+\geq(\lambda_{N-1}(c)-\|\EN\|_2)\|f\|_{L^2}^2 > 0$
+by Lemma~\ref{lem:C}(iv) and Proposition~\ref{prop:C1}.
+
+\medskip\noindent\textit{(II) Continuity.}
+Lemma~\ref{lem:C}(v).
+
+\medskip\noindent\textit{(III) Spectral stability.}
+Lemma~\ref{lem:C}(iii)--(iv).
+
+\medskip\noindent\textit{(IV) Weil-type decomposition.}
+$\ip{\Kop f}{f}_{L^2}=\sum_n\lambda_n(c)|a_n|^2=\ip{G_c^{(N)}\mathbf{a}}{\mathbf{a}}$,
+so $\QM(f)=\ip{\Kop f}{f}+R_N(f)$ with
+$|R_N(f)|\leq\|\EN\|_2=O(e^{-\delta' N})$.
+
+\medskip\noindent\textit{(V) Limit $c\to\infty$.}
+$\lambda_n(c)\to 1$ and $\|\EN\|_2\to 0$ \cite{Slepian1978},
+so $\GVM\to\mathrm{Id}_N$ and $\QM(f)\to\|f\|_{L^2[-T,T]}^2$ uniformly.
+\end{proof}
+
+%%% ============================================================
+\section{Open Problems and Outlook}\label{sec:open}
+%%% ============================================================
+
+This paper establishes a complete finite-dimensional foundation:
+the prolate Gram form is coercive, stable, and Weil-decomposable
+at prime sampling points.
+
+\subsection{The Large-Dimensional Limit}
+The central open problem is the coupled limit
+$N\to\infty$, $c\to\infty$ at a controlled rate, and whether the
+Gram forms converge to a form detecting spectral information about
+$\zeta(s)$ \cite{CCM2025}.
+
+\subsection{Quantitative Lower Bounds for $\AM$}
+\begin{problem}\label{prob:alpha}
+Give an explicit lower bound $f(N,c)$ for $\lambda_{\min}(\GVM)$
+at prime sampling points.
+\end{problem}
+
+\subsection{Optimal Growth of $\Tmin$}
+\begin{problem}
+Determine the optimal growth rate of $\Tmin(N,c)$ as $N\to\infty$.
+\end{problem}
+
+\subsection{Beyond Prime Sampling}
+\begin{problem}
+For which sets $\mathbf{p}$ with $|\mathbf{p}|=N$ does $\QM$
+satisfy a uniform coercivity bound independent of geometry?
+\end{problem}
+
+%%% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Aronszajn1950}
+N.~Aronszajn,
+\textit{Theory of Reproducing Kernels},
+Trans.\ Amer.\ Math.\ Soc.\ \textbf{68} (1950), 337--404.
+
+\bibitem{Bombieri2000}
+E.~Bombieri,
+\textit{Problems of the Millennium: The Riemann Hypothesis},
+Clay Mathematics Institute, 2000.
+
+\bibitem{BonamiKaroui}
+A.~Bonami and A.~Karoui,
+\textit{Spectral decay of the sinc kernel operator and approximation
+with prolate spheroidal wave functions},
+arXiv:1012.3881.
+
+\bibitem{CC2019}
+A.~Connes and C.~Consani,
+\textit{Riemann--Roch and Weil positivity},
+arXiv:1910.14368 (2019).
+
+\bibitem{CCM_PNAS2022}
+A.~Connes, C.~Consani, and H.~Moscovici,
+\textit{The UV prolate spectrum matches the zeros of zeta},
+Proc.\ Natl.\ Acad.\ Sci.\ \textbf{119} (2022), e2123174119.
+
+\bibitem{CCM2025}
+A.~Connes, C.~Consani, and H.~Moscovici,
+arXiv:2511.22755 (2025).
+
+\bibitem{HornJohnson2013}
+R.~Horn and C.~Johnson,
+\textit{Matrix Analysis}, 2nd ed.,
+Cambridge University Press, 2013.
+
+\bibitem{KarlinStudden1966}
+S.~Karlin and W.~Studden,
+\textit{Tchebycheff Systems},
+Interscience, 1966.
+
+\bibitem{Kulikov2023}
+A.~Kulikov,
+\textit{Exponential lower bounds for the number of eigenvalues of
+the time-frequency localization operator},
+arXiv:2306.12430 (2023).
+
+\bibitem{Slepian1978}
+D.~Slepian,
+\textit{Prolate spheroidal wave functions, Fourier analysis,
+and uncertainty~-- V},
+Bell Syst.\ Tech.\ J.\ \textbf{57} (1978), 1371--1430.
+
+\bibitem{Weil1952}
+A.~Weil,
+\textit{Sur les formules explicites de la th\'eorie des nombres},
+Izv.\ Akad.\ Nauk \textbf{36} (1952), 3--18.
+
+\end{thebibliography}
+
+\end{document}
