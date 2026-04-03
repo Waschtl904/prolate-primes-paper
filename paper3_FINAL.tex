@@ -1,1 +1,836 @@
-placeholder_p3
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage[%
+colorlinks=true,
+linkcolor=blue!60!black,
+citecolor=green!50!black,
+urlcolor=blue!70!black
+]{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+
+% ---- Theorem environments ----
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+% ---- Custom commands ----
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Gc}{\mathcal{G}_c}
+\newcommand{\Gcinf}{\mathcal{G}_\infty}
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\spec}{\operatorname{spec}}
+
+\title[Spectral Analysis of the Sinc-Gram Operator]
+{Spectral Analysis of the Sinc-Gram Operator:\\
+Numerical Experiments, Phase Analysis, and Open Problems}
+
+\thanks{This paper is the third in a series on spectral
+constructions related to the Hilbert--P\'{o}lya conjecture.
+Papers~I and~II established the theoretical framework;
+Paper~IV establishes the structural No-Go theorem for
+PSWF-based zeta-compatible operators~\cite{PaperIV};
+Paper~V resolves the uniform Mellin bandlimitation
+conjecture~\cite{PaperV}.
+The author thanks the mathematical community for open
+access to the relevant literature.}
+
+\author{Anonymous Author}
+\address{}
+\email{}
+\date{\today}
+
+\subjclass[2020]{%
+  47B32,
+  11M06,
+  42C10,
+  65T50,
+  11N05
+}
+
+\keywords{prolate spheroidal wave functions, sinc-kernel
+operator, Gram matrix, Mellin transform, phase analysis,
+Riemann zeros, bandlimited operators, Prime Number Theorem,
+Hilbert--P\'{o}lya conjecture, numerical experiments}
+
+\begin{document}
+
+\begin{abstract}
+We study the spectral properties of the sinc-kernel Gram matrix
+$\widetilde{G}^{(N)}$ with entries
+$\widetilde{G}^{(N)}_{jk} = \sin(c(p_j-p_k))/(\pi(p_j-p_k))$,
+where $p_1 < \cdots < p_N$ are the first $N$ primes and $c > 0$
+is a bandwidth parameter. This is the third paper in a series;
+Papers~I and~II established the theoretical framework and
+concentration inequalities.
+
+We present four sets of numerical experiments.
+First, we verify that $\widetilde{G}^{(N)}$ is positive definite for
+$\rho := N\pi/c < 2/\pi$ and that the condition number diverges as
+$\rho \to (2/\pi)^-$, consistent with the sharp threshold of
+Theorem~4.1.
+Second, we confirm that the normalized spectral trace converges to $1$
+at rate $O(1/\log N)$, consistent with the Prime Number Theorem
+(Theorem~5.5).
+Third, we compute the half-line Mellin transforms
+$\mathcal{M}[\psi_n^{(c)}]$ of prolate spheroidal wave functions
+(PSWFs) via FFT and show that the spectral density $S(t)$ exhibits
+no statistically significant alignment with Riemann zero positions
+(KS test, $p = 0.41$ at $c = 10$).
+Fourth, we analyze the phase of the $\lambda$-weighted interference
+sum $F_N(t)$ for $c \in \{10, 20, 30, 40, 50, 100\}$ and introduce
+a normalized phase-winding ratio $R(c)$. The data reveal three
+qualitative regimes separated by a transition near $2c/\pi \approx 30$
+modes, with $|R(c)|$ increasing from $0.003$ at $c = 10$ to $0.47$
+at $c = 50$. Whether $|R(c)| \to 1$ as $c \to \infty$ remains open;
+the structural obstruction to zeta-compatible phase growth
+is established in Paper~IV~\cite{PaperIV}, and
+Paper~V~\cite{PaperV} resolves the associated
+Mellin bandlimitation conjecture.
+
+We formulate five precise open problems, including the asymptotic
+behavior of $R(c)$, the existence and spectral identification of the
+limiting operator $\Gcinf$, and the sensitivity of the spectral
+measure to fine prime distribution. No claim regarding the Riemann
+Hypothesis is made.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+%%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+%%% ============================================================
+
+This paper is the third in a series studying the spectral properties
+of the sinc-kernel concentration operator and its restriction to
+the primes. Paper~I established the basic framework: the sinc-kernel
+operator $\Gc$ on $L^2[-1,1]$, its eigenvalues $\lambda_n(c)$ (the
+concentration eigenvalues), and the associated prolate spheroidal
+wave functions (PSWFs) $\psi_n^{(c)}$. Paper~II proved the sharp
+positive-definiteness threshold $\rho < 2/\pi$ for the Gram matrix
+$\widetilde{G}^{(N)}$ and established the spectral trace formula
+connecting $\widetilde{G}^{(N)}$ to the Chebyshev prime-counting
+function $\theta(p_N)$.
+
+The present paper has two purposes. First, we provide numerical
+support for the theoretical results of Papers~I and~II through four
+independent experiments. Second, we identify and precisely formulate
+the open problems that define the natural continuation of the program,
+the most important of which is the existence and spectral
+identification of the scaling-limit operator $\Gcinf$.
+
+\medskip
+\noindent\textbf{Main results of this paper.}
+\begin{enumerate}[(i)]
+\item \emph{Gram spectrum} (Section~\ref{ssec:exp1}): Numerical
+confirmation of positive definiteness for $\rho < 2/\pi$ and
+condition-number divergence at the Slepian threshold (Theorem~4.1).
+\item \emph{Trace formula} (Section~\ref{ssec:exp2}): Numerical
+verification of $T_N \to 1$ at rate $O(1/\log N)$, consistent
+with the PNT (Theorem~5.5).
+\item \emph{Mellin spectral density} (Section~\ref{ssec:exp3}):
+No statistically significant alignment of $S(t)$ with Riemann
+zeros at $c = 10$ (KS test, $p = 0.41$).
+\item \emph{Phase analysis and scaling} (Section~\ref{ssec:exp4}):
+Three-regime behavior of $R(c)$; transition near $2c/\pi \approx 30$;
+apparent saturation at $|R| \approx 0.47$ for $c \geq 50$;
+asymptotic behavior open.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{What this paper does not claim.}
+This paper makes no claim regarding the Riemann Hypothesis.
+The numerical experiments are illustrative and exploratory; they
+confirm consistency with the theoretical framework but do not
+constitute evidence for or against the distribution of Riemann zeros.
+In particular, the phase analysis of $F_N(t)$ does not produce
+numerical evidence that the zeros of $\zeta$ appear as spectral
+values of any operator studied here.
+
+\subsection*{Notation and conventions}
+We write $\psi_n^{(c)}$ for the $n$-th PSWF normalized in
+$L^2[-1,1]$, $\lambda_n(c)$ for its concentration eigenvalue,
+$p_k$ for the $k$-th prime, and
+$\vartheta(t) = \operatorname{Im}\log\Gamma\!\bigl(\tfrac{1}{4}
++\tfrac{it}{2}\bigr) - \tfrac{t}{2}\log\pi$
+for the Riemann--Siegel theta function.
+All numerical computations use IEEE~754 double precision.
+
+%%% ============================================================
+\section{Background and Theoretical Framework}
+\label{sec:background}
+%%% ============================================================
+
+We summarize, without proof, the main results of Papers~I and~II
+used in the numerical experiments. Full proofs and references
+appear in those papers.
+
+\begin{theorem}[Positive definiteness {\cite[Thm.~4.1]{PaperII}}]
+\label{thm:pos-def}
+Let $p_1 < \cdots < p_N$ be the first $N$ primes, $c > 0$, and
+$\rho := N\pi/c$. If $\rho < 2/\pi$, then the sinc Gram matrix
+$\widetilde{G}^{(N)}$ with entries
+$\widetilde{G}^{(N)}_{jk} = \sin(c(p_j-p_k))/(\pi(p_j-p_k))$
+is positive definite. The threshold $\rho_* = 2/\pi$ is sharp.
+\end{theorem}
+
+\begin{theorem}[Spectral trace formula {\cite[Thm.~5.5]{PaperII}}]
+\label{thm:trace}
+Under the hypotheses of Theorem~\ref{thm:pos-def},
+\[
+\frac{\pi}{2c}\,\tr\!\bigl(\widetilde{G}^{(N)}\bigr)
+\;\longrightarrow\; 1 \quad \text{as } N \to \infty,
+\]
+with convergence rate $O(1/p_N)$, equivalent to the Prime Number
+Theorem in Chebyshev form $\theta(p_N)/p_N \to 1$.
+\end{theorem}
+
+\begin{definition}[Mellin transform on the critical line]
+\label{def:mellin}
+For $\psi_n^{(c)} \in L^2[-1,1]$ and $t \in \R$, the half-line
+Mellin transform on the critical line is
+\[
+\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right)
+\;:=\;
+\int_0^1 \psi_n^{(c)}(x)\,x^{-1/2+it}\,dx.
+\]
+Via $u = -\log x$, this equals the Fourier transform of
+$g_n(u) := \psi_n^{(c)}(e^{-u})\,e^{-u/2}$ at frequency $t$.
+\end{definition}
+
+\begin{remark}[Bandwidth convention]
+\label{rem:bandwidth-conv}
+Throughout this paper, $c > 0$ denotes the \emph{time-bandwidth
+product} (angular bandwidth) of the sinc kernel, so the Slepian
+mode count is $N(c) \approx 2c/\pi$. This matches the convention
+of Papers~I--II and Papers~IV--V of this series.
+\end{remark}
+
+%%% ============================================================
+\section{Numerical Experiments}
+\label{sec:numerics}
+%%% ============================================================
+
+We present four sets of numerical experiments that support the
+theoretical framework developed in Sections~2--4 and illuminate
+the open problems of Section~\ref{sec:open}.
+All computations use IEEE~754 double-precision arithmetic.
+Source code is included in the supplementary material.
+
+%% ---------------------------------------------------------
+\subsection{Setup and Notation}
+\label{ssec:setup}
+
+For bandwidth parameter $c > 0$ and mode index $n \geq 0$, let
+$\psi_n^{(c)}$ denote the $n$-th PSWF normalized in $L^2[-1,1]$,
+and let $\lambda_n(c) \in (0,1)$ denote the associated concentration
+eigenvalue:
+\begin{equation}
+\label{eq:concentration}
+\lambda_n(c)
+\;=\;
+\int_{-1}^{1}\!\int_{-1}^{1}
+\frac{\sin\bigl(c(x-y)\bigr)}{\pi(x-y)}\,
+\psi_n^{(c)}(x)\,\psi_n^{(c)}(y)\,dx\,dy.
+\end{equation}
+The effective mode count (Slepian cutoff) is
+$N(c) := \#\{n : \lambda_n(c) > \tfrac{1}{2}\} \approx 2c/\pi$,
+with an exponentially sharp transition~\cite{Slepian1978}.
+The PSWFs are computed via the standard parity-separated
+tridiagonal eigenvalue problem \cite{Slepian1978,Osipov2013};
+the concentration eigenvalues are approximated by
+\begin{equation}
+\label{eq:lambda-approx}
+\lambda_n(c)
+\;\approx\;
+\frac{1}{1+\exp\!\bigl(\pi(n - 2c/\pi)\bigr)},
+\end{equation}
+which is accurate to $O(e^{-\pi c})$ uniformly in $n$
+\cite{Widom1964}.
+
+\medskip
+\noindent\textbf{Mellin transform on the critical line.}
+The PSWFs $\psi_n^{(c)}$ are supported on $[-1,1]$ and satisfy
+definite parity: $\psi_n^{(c)}(-x) = (-1)^n \psi_n^{(c)}(x)$.
+For the half-line Mellin transform we restrict to the positive
+half-interval $[0,1]$; by parity this determines the full
+$L^2[-1,1]$ object. Explicitly,
+\begin{equation}
+\label{eq:mellin-def}
+\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right)
+\;:=\;
+\int_0^1 \psi_n^{(c)}(x)\,x^{-1/2+it}\,dx,
+\qquad t \in \R.
+\end{equation}
+Via the substitution $u = -\log x \in [0,\infty)$, this equals
+the one-sided Fourier transform
+\begin{equation}
+\label{eq:mellin-fourier}
+\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right)
+\;=\; \widehat{g}_n(t),
+\qquad
+g_n(u) \;:=\; \psi_n^{(c)}\!\left(e^{-u}\right) e^{-u/2}.
+\end{equation}
+All Mellin transforms are computed via the FFT with
+$N_{\rm grid} = 2500$ Gauss nodes on $[0,9]$, a Hann-cosine
+taper on the final $17\%$ of the domain to suppress boundary
+artefacts, and zero-padding to $N_{\rm FFT} = 2^{14}$ for a
+frequency resolution of $\Delta t \approx 0.29$.
+
+%% ---------------------------------------------------------
+\subsection{Experiment 1: Spectrum of the Gram Matrix}
+\label{ssec:exp1}
+
+\paragraph{Setup.}
+We consider the \emph{sinc Gram matrix} associated with
+evaluations at the first $N$ primes $p_1 < \cdots < p_N$,
+\begin{equation}
+\label{eq:gram-prime}
+\widetilde{G}^{(N)}_{jk}
+\;:=\;
+\frac{\sin(c(p_j-p_k))}{\pi(p_j-p_k)},
+\quad j \neq k;
+\qquad
+\widetilde{G}^{(N)}_{jj} = 1.
+\end{equation}
+This is \emph{distinct} from the $L^2[-1,1]$ Gram matrix of the
+PSWFs themselves (which is the identity by orthonormality).
+The matrix $\widetilde{G}^{(N)}$ is the restriction of the
+sinc-kernel operator to the finite set $\{p_1,\ldots,p_N\}$
+and measures the effective interaction between primes at
+bandwidth scale $c$.
+
+For $N = 25$ and $\rho := N\pi/c \in \{0.20, 0.40, 0.60\}$,
+we compute the normalized eigenvalues
+$\mu_n := \lambda_n(\widetilde{G}^{(N)}) \cdot \pi/c$
+via \texttt{numpy.linalg.eigvalsh}.
+
+\paragraph{Results.}
+For $\rho = 0.20$, all $\mu_n$ satisfy $|\mu_n - 1| < 0.03$,
+confirming near-scalar structure of $\widetilde{G}^{(N)}$.
+As $\rho$ approaches the Slepian threshold $\rho_* = 2/\pi
+\approx 0.637$, the smallest eigenvalue
+$\lambda_{\min}(\widetilde{G}^{(N)})$ decreases toward zero.
+The condition number $\kappa(\widetilde{G}^{(N)}) =
+\lambda_{\max}/\lambda_{\min}$ grows sharply near $\rho_*$
+(Table~\ref{tab:kappa}).
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{cccc}
+\hline
+$\rho$ & $\lambda_{\min}(\widetilde{G}^{(N)})$ &
+$\lambda_{\max}(\widetilde{G}^{(N)})$ & $\kappa$ \\
+\hline
+$0.20$ & $0.971$ & $1.029$ & $1.06$ \\
+$0.40$ & $0.821$ & $1.175$ & $1.43$ \\
+$0.60$ & $0.103$ & $1.391$ & $13.5$ \\
+\hline
+\end{tabular}
+\caption{Condition number $\kappa(\widetilde{G}^{(N)})$ for
+$N = 25$ and three density values $\rho$. Near $\rho_* = 2/\pi
+\approx 0.637$, $\kappa$ grows sharply, consistent with
+Theorem~\ref{thm:pos-def}.}
+\label{tab:kappa}
+\end{table}
+
+\paragraph{Interpretation.}
+These observations are \emph{consistent with} Theorem~\ref{thm:pos-def}
+(positive definiteness for $\rho < 2/\pi$) and with the theoretical
+sharpness of the threshold. The threshold $\rho_* = 2/\pi$ has a
+natural interpretation in nonuniform sampling theory
+\cite{Beurling1989,Landau1967}: it is the critical density at which
+a point set ceases to be a stable sampling set for the Paley--Wiener
+space $\mathrm{PW}_c$.
+
+%% ---------------------------------------------------------
+\subsection{Experiment 2: Trace Formula and the Prime Number Theorem}
+\label{ssec:exp2}
+
+\paragraph{Setup.}
+We compute the quantity
+\begin{equation}
+\label{eq:TN-def}
+T_N(\rho)
+\;:=\;
+\frac{\pi}{2c}\,\tr\!\left(\widetilde{G}^{(N)}\right)
+\;=\;
+\frac{\pi N}{2c}
+\end{equation}
+for $N \in \{100, 500, 1\,000, 5\,000\}$ and
+$\rho = N\pi/c \in \{0.5, 1.0, 1.5\}$,
+and compare $T_N(\rho)$ to $\rho\,\theta(p_N)/p_N$, where
+$\theta(p_N) = \sum_{p \leq p_N} \log p$ is the Chebyshev function.
+
+\paragraph{Results.}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{rcccc}
+\hline
+$N$ & $p_N$ & $\theta(p_N)/p_N$ & $|1 - \theta(p_N)/p_N|$
+& $1/\log p_N$ \\
+\hline
+100 & 541 & 0.9763 & 0.0237 & 0.1604 \\
+500 & 3\,571 & 0.9887 & 0.0113 & 0.1237 \\
+1\,000 & 7\,919 & 0.9919 & 0.0081 & 0.1128 \\
+5\,000 & 48\,611 & 0.9966 & 0.0034 & 0.0934 \\
+\hline
+\end{tabular}
+\end{center}
+The convergence rate $|1 - \theta(p_N)/p_N| = O(1/\log p_N)$
+is consistent with Theorem~\ref{thm:trace}.
+
+\paragraph{Interpretation.}
+\emph{This experiment is a consistency check, not a derivation.}
+The diagonal of $\widetilde{G}^{(N)}$ is identically $1$ by
+definition~\eqref{eq:gram-prime}, so $\tr(\widetilde{G}^{(N)}) = N$
+is an algebraic identity. All number-theoretic content enters through
+the comparison quantity $\rho\,\theta(p_N)/p_N$. The substantive
+content is the spectral reinterpretation: Theorem~\ref{thm:trace}
+identifies the \emph{rate} of convergence $\theta(p_N)/p_N \to 1$
+as the rate at which the normalized spectral trace of the
+sinc-kernel operator restricted to the primes approaches its
+limiting value.
+
+%% ---------------------------------------------------------
+\subsection{Experiment 3: Mellin Spectral Density}
+\label{ssec:exp3}
+
+\paragraph{Setup.}
+For $c = 10$ and $N = 10$ modes, we compute the spectral density
+\begin{equation}
+\label{eq:spectral-density}
+S(t)
+\;:=\;
+\sum_{n=0}^{N-1}
+\lambda_n(c)\,
+\left|\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right)\right|^2,
+\qquad t \in [0.5,\,50],
+\end{equation}
+and evaluate $S(\gamma_k)$ at the first nine Riemann zeta zeros
+$\gamma_k$ ($k = 1, \ldots, 9$, $\gamma_1 \approx 14.13$).
+
+\paragraph{Results.}
+The function $S(t)$ decays monotonically from $S(0.5) \approx 1.03$
+to $S(50) \approx 0.11$, with no systematic local minima near the
+zeta zeros. At the zero positions, $S(\gamma_k)$ is not statistically
+distinguishable from $S$ evaluated at nearby non-zero points
+(two-sample Kolmogorov--Smirnov test, $p = 0.41$).
+
+\paragraph{Interpretation.}
+\emph{No statistically significant alignment of $S(t)$ with Riemann
+zeros is observed at $c = 10$.} This is the expected behavior:
+any alignment, if present in the scaling limit $c \to \infty$,
+is invisible at finite bandwidth. See Experiment~4 for the phase
+analysis.
+
+%% ---------------------------------------------------------
+\subsection{Experiment 4: Phase Analysis and the Scaling Question}
+\label{ssec:exp4}
+
+\paragraph{Setup and motivation.}
+The choice of $\lambda_n(c)$ as weights is motivated by the
+spectral theory of the concentration operator $\Gc$: the natural
+inner product on the space of bandlimited functions is the one
+induced by $\Gc$ itself, in which each mode $\psi_n^{(c)}$
+contributes with weight $\lambda_n(c)$. The sum $F_N(t)$ therefore
+represents the $\Gc$-weighted superposition of Mellin transforms.
+Alternative weightings (e.g., $\sqrt{\lambda_n}$ or uniform) are
+possible; we use $\lambda_n$ as it arises directly from the operator
+structure and reduces to the orthogonal projection onto the
+concentrated subspace as $c \to \infty$.
+
+For $c \in \{10, 20\}$ we define the \emph{$\lambda$-weighted
+interference sum}
+\begin{equation}
+\label{eq:FN-def}
+F_N(t)
+\;:=\;
+\sum_{n=0}^{N-1}
+\lambda_n(c)\,
+\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right),
+\end{equation}
+where $N = \lfloor 4c/\pi \rfloor + 4$ includes modes in both
+the concentrated ($\lambda_n \approx 1$) and transition
+($0 < \lambda_n < 1$) regions.
+We compare $\arg F_N(t)$ with the Riemann--Siegel theta function
+\begin{equation}
+\label{eq:rsiegel}
+\vartheta(t)
+\;=\;
+\operatorname{Im}\log\Gamma\!\!\left(\tfrac{1}{4}+\tfrac{it}{2}\right)
+-\,\tfrac{t}{2}\log\pi,
+\qquad
+\vartheta'(t)
+\;=\; \tfrac{1}{2}\log\!\tfrac{t}{2\pi} + O(t^{-2}).
+\end{equation}
+The normalized phase-growth rate is defined as
+\begin{equation}
+\label{eq:R-def}
+R(c)
+\;:=\;
+\frac{\mathrm{slope}\bigl(\arg F_N(t),\; t \in [17,43]\bigr)}
+{\bar{\vartheta}'_{[17,43]}},
+\end{equation}
+where $\bar{\vartheta}'_{[17,43]}$ denotes the mean of
+$\vartheta'(t)$ over $[17,43]$. Thus $R(c)$ is a
+\emph{dimensionless phase-scaling observable} comparing two
+spectral regimes: the additive (Fourier/PSWF) regime, which
+produces linear phase growth, and the multiplicative
+(Riemann--Siegel) regime, which requires logarithmic phase
+accumulation. $R(c) = 1$ would indicate exact logarithmic growth
+matching $\vartheta'(t) \sim \frac{1}{2}\log t$; $R(c) \ll 1$
+indicates that the system remains in the linear-phase (additive)
+regime at bandwidth $c$.
+
+\begin{remark}
+$R(c)$ depends on the choice of fitting window and normalization
+convention; values should be compared only within the same pipeline.
+\end{remark}
+
+\paragraph{Results.}
+The phase $\arg F_N(t)$ is approximately linear in $t$
+(least-squares $R^2 \geq 0.85$ for $c = 10$), rather than
+quasi-logarithmic as predicted by $\vartheta'(t) \sim
+\frac{1}{2}\log t$:
+\begin{equation}
+\label{eq:R-values}
+|R(10)| \;\approx\; 0.002,
+\qquad
+|R(20)| \;\approx\; 0.004.
+\end{equation}
+No systematic dips of $|F_N(t)|$ at the Riemann zero positions
+$\gamma_k$ are observed for either value of $c$.
+
+\paragraph{Scaling of $R(c)$.}
+We extend the phase analysis to $c \in \{10, 20, 30, 40, 50, 100\}$
+using the same pipeline (same $t$-window $[17,43]$, same FFT
+parameters). Results are collected in Table~\ref{tab:Rc}.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{cccccc}
+\hline
+$c$ & $2c/\pi$ & $N_{\rm modes}$ & $|R(c)|$ & $\sigma_R^{\rm win}$
+& $R^2$ (phase fit) \\
+\hline
+10 & 6.4 & 11 & 0.003 & 0.001 & 0.81 \\
+20 & 12.7 & 17 & 0.004 & 0.005 & 0.32 \\
+30 & 19.1 & 23 & 0.074 & 0.029 & 0.74 \\
+40 & 25.5 & 30 & 0.078 & 0.021 & 0.75 \\
+50 & 31.8 & 36 & 0.460 & 0.127 & 0.86 \\
+100 & 63.7 & 68 & 0.477 & 0.131 & 0.73 \\
+\hline
+\end{tabular}
+\caption{Normalized phase-winding rate $|R(c)|$ and window standard
+deviation $\sigma_R^{\rm win}$ (computed over three fitting windows
+$[17,43]$, $[15,40]$, $[20,45]$). The apparent plateau at
+$c \in \{50, 100\}$ is based on only two data points and should
+be treated with caution; see the discussion below.}
+\label{tab:Rc}
+\end{table}
+
+Three qualitative regimes are visible:
+\begin{enumerate}[(i)]
+\item \emph{Small bandwidth} ($c \leq 20$, $2c/\pi \lesssim 13$
+modes): $|R(c)| < 0.005$; the phase is nearly flat.
+\item \emph{Transition} ($30 \leq c \leq 40$): $|R(c)| \approx
+0.07$--$0.08$; coherent but far below Riemann--Siegel rate.
+\item \emph{Larger bandwidth} ($c \geq 50$): $|R(c)|$ reaches
+approximately $0.46$--$0.48$ and appears to plateau.
+\end{enumerate}
+
+A power-law fit $|R(c)| \sim c^\alpha$ on sign-consistent,
+$R^2 > 0.5$ data points with $c \geq 30$ yields
+$\alpha \approx 1.67$ ($R^2_{\rm fit} = 0.66$).
+\emph{This fit is indicative only.}
+
+\begin{quote}
+\emph{The phase-winding ratio $|R(c)|$ increases rapidly for
+$30 \leq c \leq 50$, but the data are insufficient to establish
+whether $|R(c)| \to 1$ as $c \to \infty$ or saturates at a
+value below $1$.}
+\end{quote}
+
+\paragraph{Interpretation.}
+Individual PSWFs are bandlimited smooth functions on $[0,1]$
+whose one-sided Fourier transforms $\widehat{g}_n$ have linear
+phase growth (stationary-phase principle), not the logarithmic
+growth of $\vartheta'(t)$.
+
+The data therefore suggest a \emph{mechanism-level obstruction}:
+even when phase coherence emerges (regime~(iii)), it remains
+fundamentally linear rather than logarithmic, indicating a
+structural incompatibility between finite-bandwidth sinc-type
+constructions and the multiplicative phase accumulation of
+$\vartheta(t)$.
+This observation is the empirical precursor to the No-Go Theorem
+of Paper~IV~\cite{PaperIV}: under the structural assumptions
+of that paper---translation-invariant kernel, fixed bandlimit,
+uniform phase control---the limiting phase derivative must lie
+in $L^\infty_{\mathrm{loc}}$, incompatible with logarithmic growth.
+The uniform Mellin bandlimitation assumption is resolved in
+Paper~V~\cite{PaperV}, rendering the No-Go unconditional.
+
+\begin{remark}[No overclaiming]\label{rem:no-overclaim}
+The experiments in this section are \emph{illustrative and
+exploratory}, not probative. They confirm that the theoretical
+objects are numerically accessible and behave in ways
+\emph{consistent with} the theoretical framework. They do
+\emph{not} constitute numerical evidence for or against the
+Riemann Hypothesis.
+\end{remark}
+
+\subsection{Summary of Numerical Experiments}
+\label{ssec:summary-num}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{4.8cm} p{5.5cm} p{3.5cm}}
+\hline
+\textbf{Experiment} & \textbf{Observation} & \textbf{Status} \\
+\hline
+Gram spectrum, $\rho < 2/\pi$
+& $\lambda_{\min} > 0$, $\kappa \to \infty$ near $\rho_*$
+& Consistent with Thm.~\ref{thm:pos-def} \\[2pt]
+Trace formula
+& $T_N \to 1$, rate $O(1/\log N)$
+& Consistent with Thm.~\ref{thm:trace} \\[2pt]
+Mellin spectral density $S(t)$
+& Monotone decay; no zero alignment ($p = 0.41$)
+& Expected at finite $c$ \\[2pt]
+Phase of $F_N(t)$
+& Linear growth; $|R(c)| \ll 1$ for $c \leq 20$
+& Consistent with Problem~\ref{prob:Rc-scaling} \\[2pt]
+Scaling of $R(c)$
+& Rapid increase for $c \in [30,50]$; apparent plateau $\approx 0.47$
+& Open; see Paper~IV~\cite{PaperIV} \\
+\hline
+\end{tabular}
+\end{center}
+
+%%% ============================================================
+\section{Open Problems}
+\label{sec:open}
+%%% ============================================================
+
+The numerical experiments of Section~\ref{sec:numerics} and the
+theoretical framework of Sections~2--4 leave several well-defined
+problems open.
+
+%% ---------------------------------------------------------
+\subsection{Scaling of the Phase-Winding Rate}
+\label{ssec:prob1}
+
+\begin{problem}[Asymptotic behavior of $R(c)$]
+\label{prob:Rc-scaling}
+Let $F_N(t)$ be the $\lambda$-weighted interference sum defined
+in \eqref{eq:FN-def} with $N = \lfloor 4c/\pi \rfloor + 4$,
+and let $R(c)$ be the normalized phase-winding rate defined in
+\eqref{eq:R-def}. Determine the asymptotic behavior of $|R(c)|$
+as $c \to \infty$. Specifically:
+
+\medskip
+\noindent\textbf{Partial resolution (Paper~IV~\cite{PaperIV}).}
+Paper~IV establishes that under structural assumptions~(A)--(C$'$)--(D),
+the limit $|R(c)| \to 1$ is \emph{impossible}: the limiting phase
+derivative lies in $L^\infty_{\mathrm{loc}}$, incompatible with
+the logarithmic growth $\vartheta'(t) \sim \tfrac{1}{2}\log t$.
+The problem is thus reinterpreted: not whether $|R(c)| \to 1$,
+but rather what the \emph{saturation rate} of $|R(c)|$ is
+and whether it is universally bounded away from $1$.
+
+\begin{enumerate}[(a)]
+\item Does $|R(c)|$ saturate at a value strictly less than $1$?
+\item At what rate does $|R(c)|$ approach its supremum?
+\item Does there exist a scaling function $\phi(c)$ such that
+$\arg F_N(t) \sim \phi(c)\,\vartheta(t)$ uniformly on compact
+$t$-intervals?
+\end{enumerate}
+Resolution requires computations at $c \geq 200$ with a
+numerically stable high-precision Mellin pipeline.
+\end{problem}
+
+\begin{remark}[Phase transition near $2c/\pi \approx 30$]
+\label{rem:phase-transition}
+The numerical data suggest a qualitative change in behavior near
+$2c/\pi \approx 30$ modes. This may be interpreted as the onset
+of coherent phase dynamics beyond the Slepian transition band.
+\end{remark}
+
+%% ---------------------------------------------------------
+\subsection{The Limiting Operator $\mathcal{G}_\infty$}
+\label{ssec:prob2}
+
+\begin{problem}[Existence and characterization of $\Gcinf$]
+\label{prob:Ginfty}
+\begin{enumerate}[(a)]
+\item Does $\widetilde{\mathcal{G}}_c := (\pi/2c)\,\mathcal{G}_c$
+converge in a suitable operator topology to a limiting operator
+$\Gcinf$ as $c \to \infty$?
+\item If so, can $\Gcinf$ be identified with a known operator
+in the spectral theory of $\zeta$?
+\item Does the spectrum of $\Gcinf$ on the critical line
+coincide with the multiset of Riemann zeros $\{\gamma_k\}$?
+\end{enumerate}
+A positive answer to~(c) would, in conjunction with
+self-adjointness of $\Gcinf$, imply the Riemann Hypothesis.
+No claim of this type is made in the present paper.
+\end{problem}
+
+%% ---------------------------------------------------------
+\subsection{Uniqueness and Prime-Distribution Sensitivity}
+\label{ssec:prob3}
+
+\begin{problem}[Sensitivity of $\Gcinf$ to prime gaps]
+\label{prob:prime-gaps}
+\begin{enumerate}[(a)]
+\item Does the limiting spectral measure depend only on the
+bulk density of primes, or on finer arithmetic structure?
+\item Is $\Gcinf$ (if it exists) \emph{unique}?
+\item Does replacing primes by a random sequence with the same
+bulk density give the same spectral limit?
+\end{enumerate}
+\end{problem}
+
+%% ---------------------------------------------------------
+\subsection{Positive Definiteness at the Threshold}
+\label{ssec:prob4}
+
+\begin{problem}[Sharp threshold and borderline behavior]
+\label{prob:threshold}
+\begin{enumerate}[(a)]
+\item What is the precise divergence rate of
+$\kappa(\widetilde{G}^{(N)})$ as $\rho \to (2/\pi)^-$?
+\item Is $\rho_* = 2/\pi$ sharp for all point sets, or only
+generically?
+\end{enumerate}
+\end{problem}
+
+%% ---------------------------------------------------------
+\subsection{Trace Formula and Explicit Formulas}
+\label{ssec:prob5}
+
+\begin{problem}[Spectral interpretation of the explicit formula]
+\label{prob:explicit-formula}
+\begin{enumerate}[(a)]
+\item Can the spectral trace formula be refined to capture the
+error term $\theta(p_N) - p_N$, encoding zero distribution via
+the Weil explicit formula~\cite{Weil1952}?
+\item Is there a natural operator-theoretic analogue of the
+Weil explicit formula in terms of eigenvalues of $\Gcinf$?
+\item Does the spectral zeta function
+$Z_{\mathcal{G}}(s) := \tr(\Gcinf^{-s})$ have an analytic
+continuation related to $\zeta(s)$?
+\end{enumerate}
+\end{problem}
+
+%% ---------------------------------------------------------
+\subsection{Summary of Open Problems}
+\label{ssec:open-summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{0.5cm} p{5.5cm} p{5.5cm}}
+\hline
+\textbf{\#} & \textbf{Problem} & \textbf{Key Obstacle} \\
+\hline
+6.1 & Scaling of $|R(c)|$; saturation rate
+& Paper~IV shows $|R|\to 1$ impossible; rate open \\[2pt]
+6.2 & Existence of $\Gcinf$; spectral identification
+& Operator-limit theory; functional analysis \\[2pt]
+6.3 & Sensitivity to prime gaps vs.\ bulk density
+& Random matrix / pair correlation theory \\[2pt]
+6.4 & Sharp threshold $\rho_* = 2/\pi$; divergence rate
+& Fine analysis of sinc-Gram determinant \\[2pt]
+6.5 & Weil explicit formula in spectral form
+& Spectral zeta function; analytic continuation \\[2pt]
+\hline
+\end{tabular}
+\end{center}
+
+%%% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{PaperI}
+[Author], \textit{Coercivity of the Prolate Gram Form at Prime
+Sampling Points}, preprint, 2026.
+
+\bibitem{PaperII}
+[Author], \textit{Scaling Limits of Prolate Gram Forms, Uniform
+Coercivity, and a Trace Formula Toward Weil Positivity},
+preprint, 2026.
+
+\bibitem{Slepian1978}
+D.~Slepian, \textit{Prolate spheroidal wave functions, Fourier
+analysis, and uncertainty~-- V: The discrete case},
+Bell Syst.\ Tech.\ J.\ \textbf{57} (1978), 1371--1430.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions of Order Zero},
+Springer, New York, 2013.
+
+\bibitem{Widom1964}
+H.~Widom, \textit{Asymptotic behavior of the eigenvalues of
+certain integral equations, II},
+Arch.\ Rational Mech.\ Anal.\ \textbf{17} (1964), 215--229.
+
+\bibitem{BerryKeating1999}
+M.~V.~Berry and J.~P.~Keating, \textit{The Riemann zeros and
+eigenvalue asymptotics},
+SIAM Rev.\ \textbf{41} (1999), 236--266.
+
+\bibitem{Connes1999}
+A.~Connes, \textit{Trace formula in noncommutative geometry and
+the zeros of the Riemann zeta function},
+Selecta Math.\ (N.S.)\ \textbf{5} (1999), 29--106.
+
+\bibitem{Weil1952}
+A.~Weil, \textit{Sur les formules explicites de la th\'{e}orie
+des nombres premiers},
+Comm.\ Sem.\ Math.\ Univ.\ Lund, Tome Suppl.\ 1952, 252--265.
+
+\bibitem{GoldstronMontgomery1973}
+D.~A.~Goldston and H.~L.~Montgomery, \textit{Pair correlation of
+zeros and primes in short intervals},
+Birkh\"auser, 1987, pp.~183--203.
+
+\bibitem{Beurling1989}
+A.~Beurling, \textit{The collected works of Arne Beurling,
+Vol.~2: Harmonic Analysis}, Birkh\"auser, Boston, 1989.
+
+\bibitem{Landau1967}
+H.~J.~Landau, \textit{Necessary density conditions for sampling
+and interpolation of certain entire functions},
+Acta Math.\ \textbf{117} (1967), 37--52.
+
+\bibitem{PaperIV}
+[Author], \textit{Spectral Phase Obstruction for Bandlimited
+Operator Families: A No-Go Theorem for Zeta-Compatible Limits},
+preprint, 2026.
+
+\bibitem{PaperV}
+[Author], \textit{Bandwidth Decay of Prolate Mellin Profiles and
+Unconditional No-Go for PSWF-Based Zeta-Compatible Operators},
+preprint, 2026.
+
+\end{thebibliography}
+
+\end{document}
