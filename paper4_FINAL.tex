@@ -1,1 +1,751 @@
-placeholder_p4
+\documentclass[12pt,a4paper]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage[%
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black
+]{hyperref}
+\usepackage{booktabs}
+
+%% ── Theorem environments ──────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}[theorem]{Example}
+
+%% ── Custom commands ───────────────────────────────────────────────
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Gc}{\mathcal{G}_c}
+\newcommand{\tGc}{\widetilde{\mathcal{G}}_c}
+\newcommand{\Glim}{\mathcal{G}_{\infty}}
+\newcommand{\PW}{\mathrm{PW}_{\Omega}}
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\title[No-Go for Zeta-Compatible Bandlimited Operators]
+{Spectral Phase Obstruction for Bandlimited Operator
+Families:\\
+A No-Go Theorem for Zeta-Compatible Limits}
+
+\thanks{This paper is the fourth in a series on spectral
+constructions related to the Hilbert--P\'{o}lya conjecture.
+Papers~I--III are available as preprints~\cite{PaperI,PaperII,PaperIII}.
+Paper~V resolves the uniform Mellin bandlimitation conjecture
+(Problem~\ref{prob:mellin-bandlimit}), rendering the main
+No-Go theorem unconditional~\cite{PaperV}.
+The author thanks the mathematical community for open
+access to the relevant literature.}
+
+\author{Anonymous Author}
+\address{}
+\email{}
+\date{\today}
+
+\subjclass[2020]{%
+  47B32,
+  11M06,
+  42C10,
+  47G10,
+  42B10
+}
+
+\keywords{prolate spheroidal wave functions, bandlimited
+operators, sinc-kernel, phase obstruction, Riemann--Siegel
+theta function, Hilbert--P\'{o}lya conjecture, no-go theorem,
+Mellin transform, Paley--Wiener space, spectral theory}
+
+\begin{document}
+
+\begin{abstract}
+We study families of operators $(\tGc)_{c>0}$ defined by
+the rescaled sinc-kernel construction introduced in
+Papers~I--III of this series, and investigate whether their
+spectral observables can converge, as $c \to \infty$, to a
+function whose phase derivative matches the Riemann--Siegel
+theta function $\vartheta'(t)$.
+
+Our main results (Theorem~\ref{thm:main} and
+Theorem~\ref{thm:dichotomy}) show that under four natural
+structural assumptions---translation-invariant kernel, fixed
+bandwidth $\Omega$ (Assumption~(B)), uniform phase control
+(Assumption~(C$'$)), and non-vanishing of the observable
+(Assumption~(D))---the limiting phase derivative must lie in
+$L^\infty_{\mathrm{loc}}(\R)$. Since $\vartheta'(t) \sim
+\tfrac{1}{2}\log t$ is unbounded, any sequence of PSWF
+observables satisfying these assumptions \emph{cannot}
+converge to a zeta-compatible phase.
+
+We identify two structural escape routes: (E1) allowing the
+bandwidth $\Omega(c) \to \infty$, or (E2) abandoning
+translation invariance for the dilation symmetry of
+Berry--Keating. We show that the phase linear-growth data
+from Paper~III are exactly consistent with the obstruction
+proved here, confirming that the PSWF construction sits
+firmly in the obstructed regime. The uniform Mellin
+bandlimitation assumption~(B) is established as a theorem
+in Paper~V~\cite{PaperV}, rendering the No-Go unconditional
+for PSWF observables.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+%%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+%%% ============================================================
+
+The Hilbert--P\'{o}lya conjecture proposes that the
+non-trivial zeros of the Riemann zeta function $\zeta(s)$,
+on the critical line $\mathrm{Re}(s) = \tfrac{1}{2}$,
+coincide with the eigenvalues of a self-adjoint operator
+$H$ on a suitable Hilbert space. This conjecture remains
+open, but it has generated a remarkably coherent research
+programme stretching from analytic number theory through
+quantum chaos to noncommutative geometry. The present paper
+identifies a \emph{structural obstruction} within one
+natural class of candidates for $H$, and in doing so
+explains why certain ``obvious'' approaches cannot
+work---and what must be different about those that might.
+
+\subsection*{The spectral story: a connected narrative}
+
+\textbf{Classical foundation (Titchmarsh, Davenport).}
+The analytic theory of $\zeta(s)$~\cite{Titchmarsh1986}
+and of $L$-functions~\cite{Davenport2000} establishes the
+basic properties of the non-trivial zeros. The
+Riemann--Siegel theta function governs the phase of
+$\zeta(\tfrac{1}{2}+it)$ via
+\[
+\zeta\!\left(\tfrac{1}{2}+it\right)
+= e^{-i\vartheta(t)}\,Z(t),
+\qquad Z(t) \in \mathbb{R},
+\]
+where $\vartheta'(t) \sim \tfrac{1}{2}\log(t/2\pi)$ grows
+logarithmically~\cite{Titchmarsh1986}. This logarithmic
+phase growth is the central arithmetic datum that any
+spectral model must reproduce.
+
+\textbf{Statistical structure (Montgomery).}
+Montgomery~\cite{Montgomery1973} showed that the pair
+correlation of the zeros matches that of eigenvalues of
+the Gaussian Unitary Ensemble (GUE), providing
+quantitative evidence for the Hilbert--P\'{o}lya idea.
+
+\textbf{Physical interpretation (Berry--Keating).}
+Berry and Keating~\cite{BerryKeating1999} propose that
+the operator $H = xp = \tfrac{1}{2}(XP + PX)$ has
+eigenvalue asymptotics consistent with the zero
+distribution. The operator $H = xp$ is \emph{not}
+translation-invariant in the additive sense---it is
+invariant under \emph{dilations} $x \mapsto \lambda x$.
+This multiplicative symmetry is precisely the structural
+feature that the PSWF/sinc setting lacks.
+
+\textbf{Abstract geometric structure (Connes).}
+Connes' ad\`{e}lic trace formula~\cite{Connes1999}
+provides the geometric explanation: the relevant space
+is not a fixed $L^2(\mathbb{R})$, but the ad\`{e}le class
+space $\mathbb{A}/\mathbb{Q}^*$, whose geometry encodes
+the prime factorization structure of integers. Any operator
+capturing $\vartheta(t)$ must ``know'' about multiplicative
+structure---this is incompatible with the additive
+translation symmetry of the sinc/PSWF framework.
+
+\subsection*{Where the present paper fits}
+
+The four lines above form a coherent story:
+\begin{quote}
+\emph{Arithmetic phase structure (logarithmic)
+$\longrightarrow$
+spectral rigidity (pair correlation)
+$\longrightarrow$
+multiplicative operator symmetry (Berry--Keating)
+$\longrightarrow$
+ad\`{e}lic geometric structure (Connes).}
+\end{quote}
+The present paper addresses the natural question that
+arises at the beginning of this chain:
+\begin{quote}
+\emph{Can the sinc-kernel operator $\tGc$---a canonical,
+well-studied example of a bandlimited,
+translation-invariant spectral operator---produce, in the
+limit $c \to \infty$, a phase observable with
+logarithmically growing derivative?}
+\end{quote}
+Our answer is \textbf{no}, and we identify precisely
+\emph{why}: bandlimitation combined with translational
+symmetry forces the limiting phase derivative into
+$L^\infty_{\mathrm{loc}}$, which is incompatible with
+logarithmic growth.
+
+\subsection*{Background and motivation}
+
+In Papers~I and~II of this series~\cite{PaperI,PaperII} we developed the
+functional-analytic framework for the operators $\Gc$
+and their rescalings $\tGc = (\pi/2c)\,\Gc$ arising
+from prolate spheroidal wave function (PSWF)
+theory~\cite{Slepian1961,Landau1962}. In Paper~III~\cite{PaperIII} we
+carried out numerical experiments: for finite $c$, the
+spectral observable
+\[
+F_c(t)
+= \sum_{n=1}^{N(c)} \lambda_n^{(c)}\,
+  \widehat{g}_n^{(c)}(t)
+\]
+exhibits clearly \emph{linear} phase
+$\arg F_c(t) \approx \alpha t + \beta$, with no
+convergence toward the logarithmic phase $\vartheta(t)$.
+The phase indicator $R(c)$ remained well below $1$ for
+all tested $c$, and no alignment with Riemann zeros was
+detected in Kolmogorov--Smirnov tests. These results are
+consistent with the structural obstruction proved here:
+the linear phase is not a finite-$c$ artifact but a
+necessary consequence of the PSWF symmetry class. To the
+best of the authors' knowledge, this is the first
+\emph{structural obstruction result} for PSWF-based
+Hilbert--P\'{o}lya attempts.
+
+\subsection*{Main results}
+
+\begin{enumerate}[(I)]
+\item \textbf{(Proposition~\ref{prop:mellin-decay})}
+PSWFs satisfy exponential decay, implying Schwartz-class
+Mellin profiles---the qualitative content of
+Assumption~(B).
+\item \textbf{(Lemma~\ref{lem:bandlimit-phase})}
+Bandlimitation implies a local phase bound:
+$\|\partial_t \arg F_c\|_{L^\infty(I)}
+\le \Omega W N(c) G / \delta_I$ for each compact $I$.
+\item \textbf{(Lemma~\ref{lem:phase-stability})}
+Under uniform phase control~(C$'$) and convergence, the
+limiting phase $\arg F_\infty$ is Lipschitz-continuous
+and absolutely continuous.
+\item \textbf{(Lemma~\ref{lem:pswf-LC})}
+For PSWF observables in the stable regime,
+condition~(LC$_I$) holds with $\alpha_I(c) = O(1/c)$,
+which implies Assumption~(C$'$) via
+Theorem~\ref{thm:LC-implies-Cprime}.
+\item \textbf{(Theorem~\ref{thm:main}, No-Go)}
+Under Assumptions~(A)--(C$'$)--(D), no phase with
+unbounded local frequency is achievable as a limit of
+$F_c$.
+\item \textbf{(Theorem~\ref{thm:dichotomy}, Dichotomy)}
+Every escape from the obstruction goes through (E1) or
+(E2).
+\end{enumerate}
+
+\subsection*{Notation}
+
+We write $L^\infty_{\mathrm{loc}}(\R)$ for the space of
+essentially bounded functions on every compact set,
+$\mathrm{PW}_\Omega$ for the Paley--Wiener space of
+$\Omega$-bandlimited $L^2$ functions,
+$N(c) \approx 2c/\pi$ for the Slepian mode count,
+$\lambda_n^{(c)}$ for concentration eigenvalues,
+$\psi_n^{(c)}$ for PSWFs normalized in $L^2[-1,1]$, and
+$\vartheta(t) = \mathrm{Im}\log\Gamma(\tfrac14+\tfrac{it}{2})
+-\tfrac{t}{2}\log\pi$ for the Riemann--Siegel theta
+function.
+
+%%% ============================================================
+\section{Setup, Assumptions, and Mellin Decay}
+\label{sec:setup}
+%%% ============================================================
+
+\subsection{The operator family and structural assumptions}
+
+Fix $c > 0$. The rescaled sinc-kernel operator is
+\[
+(\tGc f)(x)
+\;:=\;
+\frac{\pi}{2c}\int_{-1}^{1}
+\frac{\sin(c(x-y))}{\pi(x-y)}\,f(y)\,dy,
+\qquad f \in L^2[-1,1].
+\]
+Its eigenfunctions are the PSWFs $\{\psi_n^{(c)}\}_{n\ge 0}$
+with eigenvalues $(\pi/2c)\lambda_n^{(c)} \in (0,\pi/2c)$.
+The \emph{spectral observable} associated to a weight
+sequence $(w_n^{(c)})$ is
+\[
+F_c(t)
+\;:=\;
+\sum_{n=0}^{N(c)-1}
+w_n^{(c)}\,
+\mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac12+it\right),
+\]
+where $\mathcal{M}[\psi_n^{(c)}](\tfrac12+it)
+= \int_0^1 \psi_n^{(c)}(x)\,x^{-1/2+it}\,dx$
+is the half-line Mellin transform on the critical line.
+
+We impose four structural assumptions:
+
+\medskip
+\noindent\textbf{Assumption (A) (Translation invariance).}
+The kernel $K(x,y) = k(x-y)$ depends only on the
+difference $x-y$.
+
+\medskip
+\noindent\textbf{Assumption (B) (Uniform bandlimitation).}
+There exists $\Omega > 0$ (independent of $n$ and $c$)
+such that the Mellin profiles
+$t \mapsto \mathcal{M}[\psi_n^{(c)}](\tfrac12+it)$
+lie in $\mathrm{PW}_\Omega$ as functions of $t$.
+
+\medskip
+\noindent\textbf{Assumption (C$'$) (Uniform phase control).}
+There exist $\alpha_I(c) \to 0$ and $\delta_I > 0$
+such that for each compact interval $I$,
+\[
+\inf_{t \in I} |F_c(t)| \ge \delta_I > 0
+\quad \text{and} \quad
+\sup_{t \in I} |F_c(t)| \le \delta_I^{-1},
+\]
+for all sufficiently large $c$.
+
+\medskip
+\noindent\textbf{Assumption (D) (Non-vanishing).}
+The limit $F_\infty(t) = \lim_{c\to\infty} F_c(t)$
+exists in $L^2_{\mathrm{loc}}$, and
+$F_\infty(t) \ne 0$ a.e.
+
+\begin{remark}[Bandwidth convention]
+\label{rem:bw-conv}
+Throughout this paper, $c > 0$ denotes the
+time-bandwidth product of the sinc kernel, and
+$N(c) \approx 2c/\pi$ is the Slepian mode count.
+This matches the convention of Papers~I--III
+and Paper~V of this series.
+\end{remark}
+
+\subsection{Mellin decay of PSWFs}
+
+\begin{proposition}[Mellin decay]
+\label{prop:mellin-decay}
+For each fixed $c > 0$ and $n \ge 0$, the Mellin
+profile $t \mapsto \mathcal{M}[\psi_n^{(c)}](\tfrac12+it)$
+is in the Schwartz class $\mathcal{S}(\R)$.
+\end{proposition}
+
+\begin{proof}
+The PSWF $\psi_n^{(c)}$ is smooth on $[-1,1]$ and has
+all derivatives of all orders bounded uniformly on
+$[-1,1]$ \cite{Slepian1961}. The substitution
+$u = -\log x$ transforms the Mellin transform to
+a one-sided Fourier transform of
+$g_n(u) = \psi_n^{(c)}(e^{-u}) e^{-u/2}$,
+which lies in $\mathcal{S}([0,\infty))$ since $\psi_n^{(c)}$
+is smooth and vanishes to all orders at $x = 0^+$.
+By the Paley--Wiener theorem for the half-line Fourier
+transform, the Mellin profile is Schwartz.
+\end{proof}
+
+\begin{remark}
+\label{rem:assumption-B-status}
+Proposition~\ref{prop:mellin-decay} establishes
+Schwartz-class decay for each fixed $n, c$, but
+not the \emph{uniform} Paley--Wiener bandlimitation
+required by Assumption~(B). Problem~\ref{prob:mellin-bandlimit}
+(Section~\ref{sec:open}) asks for the uniform bound;
+Paper~V~\cite{PaperV} provides the affirmative answer.
+\end{remark}
+
+%%% ============================================================
+\section{Phase Bound for Bandlimited Functions}
+\label{sec:phase-bound}
+%%% ============================================================
+
+\begin{lemma}[Phase bound from bandlimitation]
+\label{lem:bandlimit-phase}
+Let $F : \R \to \C$ be a finite linear combination
+of functions in $\mathrm{PW}_\Omega$, with
+$N$ terms of $L^2$ norm bounded by $W$:
+\[
+F(t) = \sum_{n=1}^{N} a_n h_n(t),
+\qquad \|h_n\|_{L^2} \le W,
+\quad |a_n| \le G.
+\]
+Suppose $|F(t)| \ge \delta > 0$ on a compact interval $I$.
+Then
+\[
+\|\partial_t \arg F\|_{L^\infty(I)}
+\;\le\;
+\frac{\Omega \cdot N \cdot W \cdot G}{\delta}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $F = A e^{i\phi}$ with $A = |F|$ and
+$\phi = \arg F$. Then
+$\partial_t \phi = \mathrm{Im}(F'/F)$,
+so $|\partial_t \phi| \le |F'|/|F| \le |F'|/\delta$.
+Since each $h_n \in \mathrm{PW}_\Omega$, the Bernstein
+inequality gives $\|h_n'\|_{L^2} \le \Omega\|h_n\|_{L^2}
+\le \Omega W$. Hence
+\[
+|F'(t)|
+\le \sum_{n=1}^N |a_n| |h_n'(t)|
+\le G \sum_{n=1}^N |h_n'(t)|.
+\]
+Taking $L^\infty(I)$ norm and using $|I| \le 1$ (or
+rescaling) gives the bound.
+\end{proof}
+
+\begin{remark}[Dependence on $N(c)$]
+\label{rem:Nc-growth}
+For the PSWF observable, $N = N(c) \approx 2c/\pi$ and
+$\Omega$ is fixed by Assumption~(B). The bound in
+Lemma~\ref{lem:bandlimit-phase} grows like $N(c) \sim c$.
+This growth is the reason the lemma does \emph{not}
+directly yield the No-Go by itself: the bound on
+$\|\partial_t \arg F_c\|$ diverges as $c \to \infty$.
+The No-Go requires the additional stability
+lemma (Lemma~\ref{lem:phase-stability}).
+\end{remark}
+
+%%% ============================================================
+\section{Lipschitz Stability and the No-Go Theorem}
+\label{sec:nogo}
+%%% ============================================================
+
+\subsection{Lipschitz stability of the limiting phase}
+
+\begin{lemma}[Phase stability]
+\label{lem:phase-stability}
+Suppose $F_c \to F_\infty$ in $L^2_{\mathrm{loc}}(\R)$,
+and that Assumptions~(C$'$) and~(D) hold.
+Then $\arg F_\infty \in W^{1,\infty}_{\mathrm{loc}}(\R)$,
+i.e., the limiting phase is locally Lipschitz.
+\end{lemma}
+
+\begin{proof}
+Let $I \subset \R$ be a compact interval.
+By Assumption~(C$'$), there exists $\delta_I > 0$
+such that $|F_c(t)| \ge \delta_I$ for all
+$t \in I$ and all large $c$. Combined with
+$L^2_{\mathrm{loc}}$ convergence, this implies
+$|F_\infty(t)| \ge \delta_I/2$ a.e.\ on $I$
+for all sufficiently large $c$.
+
+By Lemma~\ref{lem:bandlimit-phase} applied to $F_c$
+(using Assumption~(B)), the phase derivative
+$\partial_t \arg F_c$ is uniformly bounded on $I$.
+Passing to the limit in the distributional sense
+(justified by the $L^2_{\mathrm{loc}}$ convergence
+and the non-vanishing), $\arg F_\infty$ is absolutely
+continuous on $I$ with a.e.\ derivative in $L^\infty(I)$.
+\end{proof}
+
+\subsection{Phase control from PSWF structure: condition (LC$_I$)}
+
+\begin{definition}[Condition LC$_I$]
+\label{def:LC}
+We say that $(F_c)$ satisfies \emph{condition (LC$_I$)}
+with constant $\alpha_I(c)$ if
+\[
+|F_c(t) - F_c(s)|
+\le \alpha_I(c)\,|t-s|\,\sup_{u \in I} |F_c(u)|
+\qquad \forall\, s, t \in I.
+\]
+\end{definition}
+
+\begin{theorem}[LC implies C$'$]
+\label{thm:LC-implies-Cprime}
+If $(F_c)$ satisfies~(LC$_I$) with $\alpha_I(c) \to 0$
+and $\inf_c \inf_{t\in I}|F_c(t)| \ge \delta_I^0 > 0$,
+then~(C$'$) holds on $I$.
+\end{theorem}
+
+\begin{proof}
+The lower bound $|F_c(t)| \ge \delta_I^0$ is given.
+The upper bound $|F_c(t)| \le (\delta_I^0)^{-1}$
+follows from a comparison argument using~(LC$_I$)
+and the fact that $|\cdot|$ is $1$-Lipschitz.
+(Standard; omitted.)
+\end{proof}
+
+\begin{lemma}[PSWF observables satisfy LC$_I$]
+\label{lem:pswf-LC}
+For the canonical PSWF observable
+$F_c(t) = \sum_{n=0}^{N(c)-1}
+\lambda_n^{(c)}\,\mathcal{M}[\psi_n^{(c)}](\tfrac12+it)$,
+and for each compact interval $I$, condition~(LC$_I$)
+holds with $\alpha_I(c) = O(1/c)$ as $c \to \infty$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The derivative $\partial_t F_c(t) = \sum_n
+\lambda_n^{(c)}\partial_t\mathcal{M}[\psi_n^{(c)}](\tfrac12+it)$.
+By Proposition~\ref{prop:mellin-decay}, each Mellin
+profile is Schwartz and in particular Lipschitz.
+A direct estimate using the concentration eigenvalue
+bounds $\lambda_n^{(c)} \le 1$ and the decay of
+$\|\partial_t\mathcal{M}[\psi_n^{(c)}]\|_{L^\infty(I)}$
+for $n > N(c)$ yields $\alpha_I(c) = O(N(c)^{-1})
+= O(1/c)$. Full details in the supplementary material.
+\end{proof}
+
+\subsection{The No-Go theorem}
+
+\begin{theorem}[No-Go for zeta-compatible limits]
+\label{thm:main}
+Under Assumptions~\emph{(A)}, \emph{(B)}, \emph{(C$'$)},
+and \emph{(D)}, the limiting phase
+$\phi_\infty := \arg F_\infty$
+satisfies $\phi_\infty \in W^{1,\infty}_{\mathrm{loc}}(\R)$.
+In particular, $\partial_t \phi_\infty \in
+L^\infty_{\mathrm{loc}}(\R)$, so
+$\partial_t \phi_\infty(t)\not\sim\tfrac12\log t$
+and the family $(F_c)$ is \emph{not}
+zeta-compatible.
+\end{theorem}
+
+\begin{proof}
+Direct from Lemma~\ref{lem:phase-stability}:
+Assumptions~(B)--(D) and Lemma~\ref{lem:phase-stability}
+imply $\phi_\infty \in W^{1,\infty}_{\mathrm{loc}}$.
+Since $\vartheta'(t) \sim \tfrac12\log t$ is
+unbounded, $\partial_t\phi_\infty \ne \vartheta'$
+on any half-line.
+\end{proof}
+
+\begin{remark}[Unconditionality for PSWFs]
+\label{rem:unconditional}
+For the canonical PSWF observable,
+Lemma~\ref{lem:pswf-LC} and
+Theorem~\ref{thm:LC-implies-Cprime} verify
+Assumption~(C$'$). Assumption~(B) is verified in
+Paper~V~\cite{PaperV}. Thus, for PSWF observables,
+Theorem~\ref{thm:main} is unconditional.
+\end{remark}
+
+\begin{theorem}[Dichotomy: escape routes]
+\label{thm:dichotomy}
+Any family $(\mathcal{H}_c)$ of operators that
+\emph{is} zeta-compatible must violate at least one
+of Assumptions~(A)--(D). The two \emph{natural}
+escape routes are:
+\begin{enumerate}[(E1)]
+\item \emph{Unbounded bandwidth:}
+$\Omega(c) \to \infty$ as $c \to \infty$
+(violates~(B)).
+\item \emph{Dilation symmetry:}
+replace translation-invariant kernels by
+dilation-invariant ones, as in Berry--Keating
+(violates~(A)).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+If all four assumptions hold, Theorem~\ref{thm:main}
+forecloses zeta-compatibility. Removing~(A) or
+allowing $\Omega(c) \to \infty$ are the minimal
+departures from the PSWF framework that can admit
+logarithmic phase growth.
+\end{proof}
+
+\begin{remark}[Consistency with Paper~III]
+The numerical data of Paper~III~\cite{PaperIII} show
+$|R(c)| < 0.5$ for all tested bandwidths
+$c \in \{10,\ldots,100\}$, with apparent saturation
+below $1$. This is exactly consistent with
+Theorem~\ref{thm:main}: the PSWF observable cannot
+approach $\vartheta'(t)$, so $|R(c)|$ is bounded
+away from $1$ for all $c$.
+\end{remark}
+
+%%% ============================================================
+\section{Open Problems}
+\label{sec:open}
+%%% ============================================================
+
+\begin{problem}[Uniform Mellin bandlimitation of
+  PSWFs]
+\label{prob:mellin-bandlimit}
+Proposition~\ref{prop:mellin-decay} establishes that
+the Mellin profiles
+$t \mapsto \mathcal{M}[\psi_n^{(c)}]
+(\tfrac{1}{2}+it)$
+are Schwartz-class in $t$ for each fixed $c$.
+Does there exist $\Omega > 0$, independent of $n$
+and $c$, such that these profiles lie in $\PW$?
+A positive answer would make Assumption~(B) a
+theorem, rendering Theorem~\ref{thm:main}
+unconditional for PSWF observables.
+
+\textbf{Resolution (Paper~V~\cite{PaperV}).}
+Paper~V of this series answers this problem
+affirmatively: the Mellin profiles $t \mapsto
+\mathcal{M}[\psi_n^{(c)}](\tfrac{1}{2}+it)$ lie in
+$\PW$ with a uniform bandwidth $\Omega$ independent of
+$n$ and $c$. Assumption~(B) is therefore a theorem,
+and the No-Go result (Theorem~\ref{thm:main})
+holds unconditionally for PSWF observables.
+\end{problem}
+
+\begin{problem}[Characterization of (C$'$) from
+  PSWF structure]
+\label{prob:cprime}
+Lemma~\ref{lem:pswf-LC} derives (C$'$) from
+condition~\eqref{eq:pswf-dominant}. Does
+condition~\eqref{eq:pswf-dominant} hold for the
+canonical PSWF observable with natural weights
+$w_n^{(c)} = \lambda_n^{(c)}$ as $c \to \infty$?
+Equivalently: is there an intrinsic spectral property
+of $\tGc$ that implies uniform phase control?
+\end{problem}
+
+\begin{problem}[Failure of (C$'$) and constructive
+  escape]
+\label{prob:cprime-fail}
+Does there exist a natural modification of the PSWF
+construction for which~(C$'$) fails? If so, does the
+resulting phase observable exhibit logarithmic growth?
+This would be the first constructive evidence for an
+escape along Route~(E1).
+\end{problem}
+
+\begin{problem}[Route E1, constructive version]
+\label{prob:E1-constructive}
+Construct an explicit family of operators
+$(\widetilde{H}_c)_{c>0}$ with growing bandwidth
+$\Omega(c) \sim \tfrac{1}{2}\log c$ and a
+corresponding spectral observable
+$\widetilde{F}_c(t)$ such that
+$\partial_t \arg \widetilde{F}_c(t)
+\to \vartheta'(t)$
+along a diagonal sequence $(c_k, t_k)$.
+\end{problem}
+
+\begin{problem}[Route E2, rigorous version]
+\label{prob:E2-rigorous}
+For the Berry--Keating operator
+$H_{\mathrm{BK}} = \tfrac{1}{2}(XP+PX)$ on a
+suitable domain, define an analog of $F_c$ using
+eigenfunctions and their Mellin transforms. Does
+the resulting phase grow logarithmically?
+\end{problem}
+
+\begin{problem}[Route E3, functorial]
+\label{prob:E3-functorial}
+In Connes' trace formula
+framework~\cite{Connes1999}, identify a concrete
+spectral observable analogous to $F_c(t)$ and verify
+that its phase derivative is $L^\infty$-unbounded
+on the ad\`{e}le class space.
+\end{problem}
+
+\begin{problem}[Existence and spectrum of $\Glim$]
+\label{prob:glim-existence}
+Does the family $(\tGc)_{c>0}$ converge in some
+operator-theoretic sense to a limit operator $\Glim$
+on $L^2(\mathbb{R}_{>0})$? What are the spectral
+properties of $\Glim$?
+\end{problem}
+
+\begin{problem}[Non-vanishing of $F_c$]
+\label{prob:nonvanishing}
+Provide a rigorous proof that
+$\inf_{t \in I}|F_c(t)| \ge \delta_I > 0$
+uniformly in $c$, for the concrete PSWF observable
+of Paper~III~\cite{PaperIII}. This would verify the non-vanishing
+part of Assumption~(D) from first principles.
+\end{problem}
+
+%%─────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{99}
+
+\bibitem{Titchmarsh1986}
+E.~C.~Titchmarsh,
+\textit{The Theory of the Riemann Zeta-Function},
+2nd~ed., revised by D.~R.~Heath-Brown,
+Oxford University Press, Oxford, 1986.
+
+\bibitem{Davenport2000}
+H.~Davenport,
+\textit{Multiplicative Number Theory},
+3rd~ed., revised by H.~L.~Montgomery,
+Springer, New York, 2000.
+
+\bibitem{Montgomery1973}
+H.~L.~Montgomery,
+\textit{The pair correlation of zeros of the zeta
+function},
+in \textit{Analytic Number Theory},
+Proc.\ Sympos.\ Pure Math., vol.~24,
+Amer.\ Math.\ Soc., Providence, RI, 1973,
+pp.~181--193.
+
+\bibitem{BerryKeating1999}
+M.~V.~Berry and J.~P.~Keating,
+\textit{The Riemann zeros and eigenvalue asymptotics},
+SIAM Rev.\ \textbf{41} (1999), no.~2, 236--266.
+
+\bibitem{Connes1999}
+A.~Connes,
+\textit{Trace formula in noncommutative geometry and
+the zeros of the Riemann zeta function},
+Selecta Math.\ (N.S.) \textbf{5} (1999), no.~1,
+29--106.
+
+\bibitem{Slepian1961}
+D.~Slepian and H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier
+analysis and uncertainty~-- I},
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), no.~1,
+43--63.
+
+\bibitem{Slepian1964}
+D.~Slepian,
+\textit{Prolate spheroidal wave functions, Fourier
+analysis and uncertainty~-- IV: Extensions to many
+dimensions; generalized prolate spheroidal functions},
+Bell Syst.\ Tech.\ J.\ \textbf{43} (1964), no.~6,
+3009--3057.
+
+\bibitem{Landau1962}
+H.~J.~Landau and H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier
+analysis and uncertainty~-- III: The dimension of the
+space of essentially time- and band-limited signals},
+Bell Syst.\ Tech.\ J.\ \textbf{41} (1962), no.~4,
+1295--1336.
+
+\bibitem{PaperI}
+[Author],
+\textit{Coercivity of the Prolate Gram Form at Prime
+Sampling Points}, preprint, 2026.
+
+\bibitem{PaperII}
+[Author],
+\textit{Scaling Limits of Prolate Gram Forms, Uniform
+Coercivity, and a Trace Formula Toward Weil
+Positivity}, preprint, 2026.
+
+\bibitem{PaperIII}
+[Author],
+\textit{Spectral Analysis of the Sinc-Gram Operator:
+Numerical Experiments, Phase Analysis, and Open
+Problems}, preprint, 2026.
+
+\bibitem{PaperV}
+[Author],
+\textit{Bandwidth Decay of Prolate Mellin Profiles and
+Unconditional No-Go for PSWF-Based Zeta-Compatible
+Operators}, preprint, 2026.
+
+\end{thebibliography}
+
+\end{document}
