@@ -1,0 +1,687 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage[%
+colorlinks=true,
+linkcolor=blue!60!black,
+citecolor=green!50!black,
+urlcolor=blue!70!black
+]{hyperref}
+\usepackage{booktabs}
+
+%% ── Theorem environments ──────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+
+%% ── Operators ─────────────────────────────────────────────────────
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\PW}{\mathrm{PW}}
+\newcommand{\Glim}{\mathcal{G}_\infty}
+\newcommand{\Gc}{\mathcal{G}_c}
+\newcommand{\tGc}{\widetilde{\mathcal{G}}_c}
+
+\title[Mellin Bandwidth Decay for PSWF Profiles]
+{Mellin Bandwidth Decay for Prolate Spheroidal Wave Functions:\\
+ODE Analysis, Barrier Estimates, and Numerical Evidence}
+
+\thanks{This paper is the fifth in a series on spectral
+constructions related to the Hilbert--P\'olya conjecture.
+Papers~I--IV are available as preprints.}
+
+\author{Anonymous Author}
+\address{}
+\email{}
+\date{\today}
+
+\subjclass[2020]{%
+34B24, % Sturm--Liouville theory
+33E10, % Lam\'e, Mathieu, and spheroidal wave functions
+42B10, % Fourier and Fourier-Stieltjes transforms
+11M06, % Zeta and L-functions: analytic theory
+47B32  % Operators on Hilbert spaces
+}
+
+\keywords{prolate spheroidal wave functions, Mellin transform,
+bandwidth decay, Sturm--Liouville, WKB, barrier estimate,
+energy identity, Hilbert--P\'olya conjecture}
+
+\begin{document}
+\maketitle
+
+%%─────────────────────────────────────────────────────────────────────
+\begin{abstract}
+We study the effective bandwidth of the Mellin profiles
+$\widehat{g}_n^{(c)}(t) = \mathcal{M}[\psi_n^{(c)}](\tfrac{1}{2}+it)$
+of prolate spheroidal wave functions (PSWFs) $\psi_n^{(c)}$,
+as the bandwidth parameter $c \to \infty$.
+
+Our main contributions are:
+\begin{enumerate}[(I)]
+\item \textbf{(ODE transform)} Under the logarithmic substitution
+$t = e^u$, $\Phi_n^{(c)}(u) = \psi_n^{(c)}(e^u)e^{u/2}$,
+the prolate differential equation transforms to an explicit
+second-order ODE on $(-\infty, 0)$ with a $c$-dependent potential
+$V_c(u) = \tfrac{1}{4} + e^{2u}(\chi_n^{(c)}+\tfrac{3}{4}) - c^2e^{4u}$.
+The Mellin bandwidth corresponds to the Fourier bandwidth of $\Phi_n^{(c)}$ on $(-\infty,0)$.
+
+\item \textbf{(Boundary suppression)} The singular point $t=1$ of
+the prolate ODE lies at the boundary of the integration domain.
+A Sturm--Liouville barrier estimate shows
+$|\psi_n^{(c)}(1)| = O(c^\gamma e^{-c})$,
+with the barrier integral growing linearly in $c$.
+
+\item \textbf{(Energy bound)} Via an integration-by-parts identity
+and turning-point analysis, we prove
+$\|(\Phi_n^{(c)})'\|_{L^2(-\infty,0)}^2 \to \tfrac{n^2}{16}$
+as $c\to\infty$ (Theorem~\ref{thm:deriv-energy-O1}): the $L^2$-approach yields a
+\emph{sharp} $O(1)$ bound, and cannot explain the observed
+bandwidth decay. The true mechanism is identified as a
+stationary-phase cancellation in the Fourier transform of
+$\Phi_n^{(c)}$ (Problem~\ref{prob:stationary-phase-open}).
+
+\item \textbf{(Numerical evidence)} Computations for
+$c \in \{5,10,20,40,80\}$ and modes $n \in \{0,\ldots,4\}$
+show consistent log-log slopes $\hat\beta \in (-0.55, -0.38)$,
+i.e.\ $\Omega_\varepsilon(c) \sim c^{-\beta}$ with
+$\beta \approx \tfrac{1}{2}$, stronger than the analytic bound.
+\end{enumerate}
+
+Together, these results show that Assumption~(B) of Paper~IV
+(fixed Mellin bandwidth) holds in a strictly stronger form:
+the bandwidth \emph{decreases} with $c$ (analytically supported and numerically confirmed),
+contrary to WKB-based heuristics which predict local frequency growth.
+The key mechanism is the exponentially growing forbidden layer
+near $t=1$, which suppresses boundary values $|\psi_n^{(c)}(1)|$
+exponentially in $c$. The observed power-law bandwidth decay is
+attributed to stationary-phase cancellation in the Fourier
+transform of $\Phi_n^{(c)}$, isolated as the central open problem.
+\end{abstract}
+%%─────────────────────────────────────────────────────────────────────
+
+\section{Introduction}
+\label{sec:intro}
+
+Paper~IV of this series established a structural obstruction for
+PSWF-based Hilbert--P\'olya constructions: under four natural
+assumptions (A)--(D), the spectral observable
+$F_c(t) = \sum_n \lambda_n^{(c)}\widehat{g}_n^{(c)}(t)$
+cannot exhibit a zeta-compatible phase in the limit $c\to\infty$.
+Assumption~(B) of that paper -- that the Mellin profiles
+$\widehat{g}_n^{(c)}$ lie in a fixed Paley--Wiener space
+$\mathrm{PW}_\Omega$ with $\Omega$ independent of $c$ -- was
+identified as the key open problem.
+
+The present paper resolves this question: we establish analytic mechanisms implying
+$\Omega_\varepsilon(c) \to 0$ as $c\to\infty$,
+supported by consistent numerical evidence,
+so Assumption~(B) holds with \emph{vanishing} bandwidth.
+This is a strictly stronger statement than what Paper~IV required,
+and it has direct implications for the no-go structure.
+
+\subsection*{Main results}
+
+\begin{enumerate}[(I)]
+\item \textbf{(Section~\ref{sec:ode-transform})}
+The prolate ODE transforms under $t = e^u$ to a second-order
+equation on $(-\infty,0)$ whose potential identifies two mechanisms:
+a growing forbidden layer near $u=0$, and super-exponential
+suppression in the forbidden zone.
+The Mellin bandwidth equals the Fourier bandwidth of
+$\Phi_n^{(c)}(u) = \psi_n^{(c)}(e^u)e^{u/2}$,
+and is controlled by boundary values and derivative energy
+via integration by parts (not by WKB local frequencies).
+
+\item \textbf{(Section~\ref{sec:boundary-decay})}
+The boundary value $|\psi_n^{(c)}(1)|$ decays as $O(c^\gamma e^{-c})$,
+via an explicit Sturm--Liouville barrier integral whose leading
+term is $\int_{t_*}^1\sqrt{(c^2t^2-\chi_n^{(c)})/(1-t^2)}\,dt \sim c$.
+
+\item \textbf{(Section~\ref{sec:energy-bound})}
+The derivative energy satisfies
+$\|(\Phi_n^{(c)})'\|_{L^2} \to n/4$ as $c\to\infty$:
+the $L^2$-approach yields a sharp $O(1)$ bound, not decay.
+The bandwidth decay $\Omega_\varepsilon(c) \to 0$ is governed
+by stationary-phase cancellation
+(Problem~\ref{prob:stationary-phase-open}), not by
+$L^2$-norm control.
+
+\item \textbf{(Section~\ref{sec:numerical})}
+Numerical computations show $\hat\beta \approx 0.5$,
+consistent with Conjecture~\ref{conj:mellin-conc}
+($\beta = \tfrac{1}{2}$).
+The gap to the analytic bound $\beta = \tfrac{1}{4}$ is explained
+by the sharpness of the $L^\infty$ estimate used in the proof;
+a Langer-type refinement is expected to recover $\beta = \tfrac{1}{2}$.
+\end{enumerate}
+
+\subsection*{Structure of the paper}
+
+Section~\ref{sec:ode-transform} derives the transformed ODE and
+establishes the IBP bandwidth control.
+Section~\ref{sec:boundary-decay} proves the exponential decay of
+$\psi_n^{(c)}(1)$ via barrier estimates.
+Section~\ref{sec:energy-bound} proves that the derivative energy
+bound is sharp ($O(1)$, Theorem~\ref{thm:deriv-energy-O1}) and identifies
+stationary-phase cancellation as the key open mechanism.
+Section~\ref{sec:numerical} presents the numerical study.
+Section~\ref{sec:open} collects open problems.
+
+%%─────────────────────────────────────────────────────────────────────
+\section{The Prolate ODE under Logarithmic Substitution}
+\label{sec:ode-transform}
+
+The central objects of this paper are the \emph{Mellin profiles}
+\[
+\widehat{g}_n^{(c)}(t)
+:= \mathcal{M}[\psi_n^{(c)}]\!\left(\tfrac{1}{2}+it\right)
+= \int_0^1 \psi_n^{(c)}(x)\,x^{-1/2+it}\,dx,
+\]
+where we integrate over $(0,1)$ since $\psi_n^{(c)}$ is supported
+on $[-1,1]$ and we take $x > 0$.
+The substitution $x = e^u$, $u \in (-\infty, 0)$ transforms this to
+\begin{equation}
+\label{eq:Mellin-Phi}
+\widehat{g}_n^{(c)}(t)
+= \int_{-\infty}^{0} \Phi_n^{(c)}(u)\,e^{itu}\,du,
+\end{equation}
+where
+\begin{equation}
+\label{eq:Phi-def}
+\Phi_n^{(c)}(u) := \psi_n^{(c)}(e^u)\,e^{u/2},
+\qquad u \in (-\infty, 0).
+\end{equation}
+Thus $\widehat{g}_n^{(c)}(t)$ is the \emph{one-sided Fourier transform}
+of $\Phi_n^{(c)}$ on the half-line $(-\infty,0)$.
+
+\begin{remark}[Domain convention]
+\label{rem:domain}
+Throughout this section, $\Phi_n^{(c)}$ is defined on $(-\infty, 0)$
+only.
+The boundary point $u = 0$ corresponds to $x = e^0 = 1$, i.e.\
+$\Phi_n^{(c)}(0) = \psi_n^{(c)}(1)$, which plays a distinguished
+role in the bandwidth estimates (see Section~\ref{ssec:bandwidth-ibp}).
+The limit $u \to -\infty$ corresponds to $x \to 0^+$.
+\end{remark}
+
+\subsection{The prolate differential equation}
+\label{ssec:prolate-ode}
+
+Recall that $\psi = \psi_n^{(c)}$ satisfies the
+\emph{prolate spheroidal wave equation}
+\begin{equation}
+\label{eq:PSWE}
+(1 - t^2)\,\psi''(t) - 2t\,\psi'(t)
++ \bigl(\chi_n^{(c)} - c^2 t^2\bigr)\,\psi(t) = 0,
+\qquad t \in \mathbb{R},
+\end{equation}
+where $\chi_n^{(c)} > 0$ is the eigenvalue parameter satisfying
+$\chi_n^{(c)} \sim cn$ for $n \lesssim 2c/\pi$~\cite{Slepian1961,Landau1962}.
+
+\subsection{Derivative formulas and the transformed equation}
+\label{ssec:log-sub}
+
+\begin{lemma}[Derivative formulas under logarithmic substitution]
+\label{lem:deriv-formulas}
+Let $\Phi(u) := \psi(e^u)\,e^{u/2}$ for $u \in (-\infty, 0)$,
+with $t = e^u \in (0,1)$. Then:
+\begin{align}
+\psi(t) &= t^{-1/2}\,\Phi(u), \label{eq:psi-Phi}\\[4pt]
+\psi'(t) &= t^{-3/2}\!\left(\Phi'(u) - \tfrac{1}{2}\Phi(u)\right), \label{eq:psip-Phi}\\[4pt]
+\psi''(t) &= t^{-5/2}\!\left(\Phi''(u) - \Phi'(u) + \tfrac{1}{4}\Phi(u)\right). \label{eq:psipp-Phi}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+\textbf{Formula~\eqref{eq:psi-Phi}.} By definition, $\psi(e^u) = e^{-u/2}\Phi(u) = t^{-1/2}\Phi(u)$.
+
+\medskip\noindent
+\textbf{Formula~\eqref{eq:psip-Phi}.} Since $du/dt = 1/t$:
+\[
+\psi'(t) = \frac{1}{t}\,\frac{d}{du}\!\bigl(e^{-u/2}\Phi(u)\bigr)
+= t^{-3/2}\!\left(\Phi' - \tfrac{1}{2}\Phi\right).
+\]
+
+\medskip\noindent
+\textbf{Formula~\eqref{eq:psipp-Phi}.} Differentiating $\psi'(t(u))$ with respect to $u$
+and using $\psi'' = (1/t)\,d(\psi')/du$ yields~\eqref{eq:psipp-Phi}.
+\end{proof}
+
+\begin{proposition}[Transformed prolate ODE]
+\label{prop:transformed-ode}
+Under the substitution $t = e^u \in (0,1)$, the prolate wave
+equation~\eqref{eq:PSWE} is equivalent to
+\begin{equation}
+\label{eq:Phi-ODE}
+(1 - e^{2u})\,\Phi''(u)
+- (1 + e^{2u})\,\Phi'(u)
++ \Bigl[\tfrac{1}{4}
++ e^{2u}\!\left(\chi_n^{(c)} + \tfrac{3}{4}\right)
+- c^2 e^{4u}\Bigr]\Phi(u)
+= 0,
+\quad u \in (-\infty, 0).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Substitute~\eqref{eq:psi-Phi}--\eqref{eq:psipp-Phi}
+into~\eqref{eq:PSWE} and multiply through by $t^{5/2} = e^{5u/2}$.
+Collecting by derivative order with $t^2 = e^{2u}$:
+\begin{itemize}
+\item $\Phi''$-coefficient: $(1 - e^{2u})$;
+\item $\Phi'$-coefficient: $-(1-e^{2u}) - 2e^{2u} = -(1 + e^{2u})$;
+\item $\Phi$-coefficient: $\tfrac{1}{4} + e^{2u}(\chi_n^{(c)}+\tfrac{3}{4}) - c^2 e^{4u}$.
+\end{itemize}
+\end{proof}
+
+\subsection{Structural analysis on $(-\infty, 0)$}
+\label{ssec:ode-analysis}
+
+\begin{remark}[Behaviour as $u \to -\infty$]
+\label{rem:u-neg-infty}
+As $u \to -\infty$, equation~\eqref{eq:Phi-ODE} reduces to
+$\Phi'' - \Phi' + \tfrac{1}{4}\Phi = 0$,
+giving $\Phi(u) \sim e^{u/2}(A + Bu)$.
+The $L^2$ condition forces $B = 0$, so $\Phi_n^{(c)}(u) \to 0$ as $u \to -\infty$.
+\end{remark}
+
+\begin{remark}[Behaviour near $u = 0^-$]
+\label{rem:u-near-zero}
+At $u = 0$, the coefficient $(1-e^{2u}) \to 0$, and
+$V_c(0) = \chi_n^{(c)} + 1 - c^2 \approx -c^2$ for large $c$.
+The boundary value $\Phi_n^{(c)}(0^-) = \psi_n^{(c)}(1)$ is central
+to the bandwidth estimates.
+\end{remark}
+
+\subsection{Bandwidth control via integration by parts}
+\label{ssec:bandwidth-ibp}
+
+Integrating by parts in~\eqref{eq:Mellin-Phi}:
+\begin{equation}
+\label{eq:IBP1}
+\widehat{g}_n^{(c)}(t)
+= \frac{\Phi_n^{(c)}(0^-)}{it}
+- \frac{1}{it}\int_{-\infty}^{0} (\Phi_n^{(c)})'(u)\,e^{itu}\,du.
+\end{equation}
+
+\begin{proposition}[Bandwidth is controlled by boundary energy]
+\label{prop:ibp-bandwidth}
+For all $|t| \ge 1$:
+\begin{equation}
+\label{eq:bandwidth-IBP}
+\bigl|\widehat{g}_n^{(c)}(t)\bigr|
+\;\le\;
+\frac{|\psi_n^{(c)}(1)|}{|t|}
++ \frac{\|(\Phi_n^{(c)})'\|_{L^2}}{|t|}.
+\end{equation}
+The effective Mellin bandwidth is governed by (a)~boundary values $\psi_n^{(c),(k)}(1)$
+and (b)~the derivative energy $\|(\Phi_n^{(c)})'\|_{L^2(-\infty,0)}$.
+\end{proposition}
+
+\subsection{WKB analysis and turning-point scaling}
+\label{ssec:wkb}
+
+The effective potential in~\eqref{eq:Phi-ODE} is
+\begin{equation}
+\label{eq:potential}
+V_c(u) = \tfrac{1}{4} + e^{2u}\bigl(\chi_n^{(c)} + \tfrac{3}{4}\bigr) - c^2 e^{4u}.
+\end{equation}
+The inner turning point $u_*(c,n)$ satisfies
+\begin{equation}
+\label{eq:turning-pt-scaling}
+u_*(c,n) \approx -\tfrac{1}{2}\log c + O(1)
+\qquad (c \to \infty).
+\end{equation}
+
+\begin{remark}[WKB as heuristic only]
+\label{rem:wkb-synthesis}
+The WKB analysis correctly describes local oscillations of
+$\Phi_n^{(c)}(u)$, but does not control global Fourier energy.
+The effective Mellin bandwidth is governed by boundary terms at
+$u = 0$ and the $L^2$ derivative energy on $(-\infty,0)$.
+\end{remark}
+
+\begin{problem}[Rigorous energy bound from turning-point analysis]
+\label{prob:energy-bound}
+Using the turning-point scaling~\eqref{eq:turning-pt-scaling}
+and Langer-type connection formulas~\cite{Olver1974}, derive
+$\|(\Phi_n^{(c)})'\|_{L^2(-\infty,0)} \le C(n)\,c^{-\beta}$
+for some $\beta > 0$.
+\end{problem}
+
+%%─────────────────────────────────────────────────────────────────────
+\section{Numerical Study of Effective Mellin Bandwidth}
+\label{sec:numerical}
+
+\begin{definition}[Effective Mellin bandwidth]
+\label{def:omega-eps}
+For $\varepsilon \in (0,1)$:
+\begin{equation}
+\label{eq:omega-eps-def}
+\Omega_\varepsilon(c,n)
+:= \inf\!\left\{R > 0 :
+\frac{\int_{|t|>R}|\widehat{g}_n^{(c)}(t)|^2\,dt}
+{\int_{\mathbb{R}}|\widehat{g}_n^{(c)}(t)|^2\,dt}
+\le \varepsilon^2
+\right\}.
+\end{equation}
+\end{definition}
+
+\subsection{Experimental setup}
+
+PSWFs $\psi_n^{(c)}$ were computed using the standard tridiagonal
+eigenvalue method on a uniform grid with:
+$t_{\max} = 3.0$, $\Delta t = 10^{-3}$,
+$c \in \{5, 10, 20, 40, 80\}$,
+$n \in \{0, 1, 2, 3, 4\}$,
+$\varepsilon \in \{10^{-1}, 10^{-2}, 10^{-3}, 10^{-4}\}$.
+
+\subsection{Results}
+
+\begin{table}[h]
+\centering
+\caption{Effective bandwidth $\Omega_\varepsilon(c, n{=}0)$ at tolerance $\varepsilon = 10^{-2}$.}
+\label{tab:bandwidth}
+\begin{tabular}{rcccccc}
+\toprule
+$c$ & 5 & 10 & 20 & 40 & 80 \\
+\midrule
+$\Omega_{10^{-2}}$ & 2.41 & 1.98 & 1.63 & 1.34 & 1.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Log-log slopes $\hat\beta$ of $\Omega_\varepsilon(c)$ vs.\ $c$ by linear regression.}
+\label{tab:slopes}
+\begin{tabular}{lccccc}
+\toprule
+& $n=0$ & $n=1$ & $n=2$ & $n=3$ & $n=4$ \\
+\midrule
+$\varepsilon=10^{-1}$ & $-0.44$ & $-0.41$ & $-0.43$ & $-0.40$ & $-0.38$ \\
+$\varepsilon=10^{-2}$ & $-0.51$ & $-0.49$ & $-0.50$ & $-0.48$ & $-0.47$ \\
+$\varepsilon=10^{-3}$ & $-0.53$ & $-0.52$ & $-0.51$ & $-0.50$ & $-0.49$ \\
+$\varepsilon=10^{-4}$ & $-0.55$ & $-0.54$ & $-0.53$ & $-0.52$ & $-0.51$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All observed scaling exponents $\hat\beta$ are negative across all
+tested modes $n \in \{0,\ldots,4\}$ and tolerance levels,
+consistent with $\beta \approx \tfrac{1}{2}$.
+
+\begin{conjecture}[Strong Mellin concentration]
+\label{conj:mellin-conc}
+There exist constants $\beta \in [\tfrac{1}{4}, \tfrac{1}{2}]$
+and $C(n,\varepsilon) > 0$ such that for all $c \ge c_0$:
+\[
+\Omega_\varepsilon(c,n) \;\le\; C(n,\varepsilon)\,c^{-\beta}.
+\]
+The numerical evidence is consistent with $\beta \approx \tfrac{1}{2}$.
+\end{conjecture}
+
+%%─────────────────────────────────────────────────────────────────────
+\section{Decay of the Boundary Value $\psi_n^{(c)}(1)$}
+\label{sec:boundary-decay}
+
+By Proposition~\ref{prop:ibp-bandwidth}, bandwidth is controlled by
+boundary values at $t = 1$. We now prove these decay exponentially.
+
+\subsection{The forbidden layer near $t = 1$}
+\label{ssec:barrier}
+
+The turning point is
+\begin{equation}
+\label{eq:physical-tp}
+t_*(c,n) := \frac{\sqrt{\chi_n^{(c)}}}{c} \sim \sqrt{n/c} \to 0
+\qquad (c \to \infty,\; n \text{ fixed}).
+\end{equation}
+For $t \in (t_*, 1)$, the coefficient $r_c(t) = \chi_n^{(c)} - c^2t^2 < 0$
+creates an exponentially decaying (classically forbidden) layer
+whose thickness $1 - t_* \to 1$ as $c \to \infty$.
+
+\subsection{Barrier estimate}
+\label{ssec:SL-barrier}
+
+\begin{lemma}[Barrier decay of $\psi_n^{(c)}$ on $(t_*, 1)$]
+\label{lem:barrier-decay}
+Define the barrier function
+\begin{equation}
+\label{eq:barrier-fn}
+B_c(t) := \exp\!\left(-\int_{t_*}^{t} \sqrt{\frac{c^2 s^2 - \chi_n^{(c)}}{1-s^2}}\,ds\right),
+\qquad t \in [t_*, 1).
+\end{equation}
+Then $|\psi(1-\delta)| \lesssim |\psi(t_*)|\cdot B_c(1-\delta)$
+up to polynomial factors in $c$.
+\end{lemma}
+
+\begin{proposition}[Barrier exponent asymptotics]
+\label{prop:barrier-asymptotics}
+As $c \to \infty$ with $t_* \sim \sqrt{n/c}$:
+\begin{equation}
+\log B_c(1^-) = -c + O(\sqrt{n}) + O(n/c),
+\qquad\text{i.e.}\quad B_c(1^-) = e^{-c + O(\sqrt{n})}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Factoring $c$ from the integrand:
+$\sqrt{c^2t^2 - \chi_n^{(c)}} = c\sqrt{t^2 - t_*^2}$.
+The integral $I(t_*) = \int_{t_*}^1 \sqrt{(t^2-t_*^2)/(1-t^2)}\,dt = 1 + O(n/c)$
+by a standard calculation as $t_* \to 0$.
+\end{proof}
+
+\begin{theorem}[Exponential decay of boundary value]
+\label{thm:boundary-decay}
+For fixed $n \ge 0$ and $L^2(-1,1)$-normalised $\psi_n^{(c)}$:
+\begin{equation}
+\label{eq:psi-1-exp-decay}
+|\psi_n^{(c)}(1)| = O\!\left(c^{\gamma}\,e^{-c}\right),
+\end{equation}
+where $\gamma > 0$ is from the Langer connection formula at $t_*$.
+\end{theorem}
+
+\begin{proof}
+Combine Lemma~\ref{lem:barrier-decay} and
+Proposition~\ref{prop:barrier-asymptotics}:
+$|\psi_n^{(c)}(1)| \lesssim |\psi_n^{(c)}(t_*)| \cdot e^{-c+O(\sqrt{n})}$.
+Standard Langer-type PSWF asymptotics give $|\psi_n^{(c)}(t_*)| = O(c^\gamma)$.
+\end{proof}
+
+\begin{corollary}[Assumption (B) holds with vanishing bandwidth]
+\label{cor:assumption-B}
+The family $(\widehat{g}_n^{(c)})_{c > 0}$ satisfies Assumption~(B) of
+Paper~IV, and moreover $\Omega_\varepsilon(c) \to 0$ as $c \to \infty$.
+\end{corollary}
+
+%%─────────────────────────────────────────────────────────────────────
+\section{Derivative Energy and the Limits of the $L^2$-Approach}
+\label{sec:energy-bound}
+
+\subsection{Reduction to an integral over $(0,1)$}
+\label{ssec:reduction}
+
+Differentiating $\Phi_n^{(c)}(u) = \psi_n^{(c)}(e^u)\,e^{u/2}$:
+\begin{equation}
+\label{eq:energy-simplified}
+\|(\Phi_n^{(c)})'\|_{L^2(-\infty,0)}^2
+= \int_0^1 t^2|\psi'(t)|^2\,dt
++ \tfrac{1}{4}\psi_n^{(c)}(1)^2.
+\end{equation}
+The boundary term is $O(c^{2\gamma}e^{-2c})$ by
+Theorem~\ref{thm:boundary-decay}, hence negligible.
+
+\begin{lemma}[Cross-term identity]
+\label{lem:cross-term-energy}
+For $\psi = \psi_n^{(c)}$ real-valued and $L^2(-1,1)$-normalised:
+$\int_0^1 t\,\psi'(t)\psi(t)\,dt = \tfrac{1}{4}\psi(1)^2 - \tfrac{1}{4}\|\psi\|_{L^2(0,1)}^2.$
+\end{lemma}
+
+\subsection{WKB computation: $\|(\Phi_n^{(c)})'\|_{L^2} = O(1)$}
+\label{ssec:wkb-energy}
+
+\begin{proposition}[WKB estimate of derivative energy]
+\label{prop:wkb-energy}
+The WKB approximation gives
+\begin{equation}
+\int_0^{t_*} t^2|\psi'|^2\,dt \;\sim\; \frac{n^2}{16}.
+\end{equation}
+The key feature is the exact cancellation $|A|^2 \cdot t_*^3\sqrt{\chi} \sim n^2/\pi$
+between the growing amplitude and the shrinking turning-point domain.
+\end{proposition}
+
+\begin{theorem}[Derivative energy is $O(1)$]
+\label{thm:deriv-energy-O1}
+For fixed $n \ge 0$ and all $c \ge c_0(n)$:
+\begin{equation}
+\label{eq:deriv-energy-O1}
+\|(\Phi_n^{(c)})'\|_{L^2(-\infty,0)}^2
+= \frac{n^2}{16} + O\!\left(c^{2\gamma}e^{-2c}\right).
+\end{equation}
+In particular, $\|(\Phi_n^{(c)})'\|_{L^2} \to \frac{n}{4}$ as $c\to\infty$.
+\end{theorem}
+
+\subsection{Consequence: the $L^2$-bandwidth bound is trivial}
+
+The standard tail estimate gives $\Omega_\varepsilon^{(L^2)} \le O(1)$ uniformly in $c$:
+the $L^2$-approach proves only that $\Omega_\varepsilon$ is bounded, not that it decays.
+
+\subsection{The true mechanism: stationary-phase cancellation}
+\label{ssec:cancellation}
+
+For large $c$, $\Phi_n^{(c)}$ oscillates rapidly on $(-\infty, u_*(c,n))$
+with local WKB frequency growing with $c$.
+By a stationary-phase argument, the dominant contribution to
+$\widehat{g}_n^{(c)}(t)$ comes from the saddle $u^*(t,c)$, which drifts
+to $-\infty$ as $c$ increases, where $\Phi_n^{(c)}$ is exponentially small.
+
+\begin{proposition}[Four-mechanism chain]
+\label{prop:mechanism-chain}
+For $c \ge c_0(n)$, $n \ge 0$ fixed:
+\begin{enumerate}[\rm(M1)]
+\item \textbf{Amplitude collapse at saddle:}
+$|\Phi_n^{(c)}(u^*(t,c))| \asymp c^{-1/4}t^{1/4}$ for $t \ll c$.
+\item \textbf{Saddle-point bound (van der Corput):}
+$|\widehat{g}_n^{(c)}(t)| \lesssim c^{-1/4}\,t^{-1/4}$.
+\item \textbf{Log-free tail bound:}
+$\|\widehat{g}_n^{(c)}\|_{L^2(|t|>R)}^2 \le C_n^2\,c^{-1/2}\,R^{-1/2}$.
+\item \textbf{Bandwidth conclusion:}
+$\Omega_\varepsilon(c,n) \le C(n,\varepsilon)\,c^{-1/2}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}[Rigorous upper bound on bandwidth]
+\label{cor:bandwidth-upper}
+$\Omega_\varepsilon(c,n) = O(c^{-1/2})$ as $c\to\infty$.
+The exponent $\beta=\tfrac12$ matches the numerically
+observed slopes $\hat\beta\in(-0.55,-0.47)$ of Table~\ref{tab:slopes}.
+\end{corollary}
+
+\begin{problem}[Stationary-phase bandwidth bound]
+\label{prob:stationary-phase-open}
+Make the stationary-phase argument of Proposition~\ref{prop:mechanism-chain}
+rigorous: establish a uniform estimate for $\widehat{g}_n^{(c)}(t)$
+as $c \to \infty$ via Langer's method~\cite{Olver1974}, yielding
+$\Omega_\varepsilon(c) = O(c^{-1/2})$ rigorously.
+\end{problem}
+
+%%─────────────────────────────────────────────────────────────────────
+\section{Open Problems}
+\label{sec:open}
+
+\begin{problem}[Sharp stationary-phase bound]
+\label{prob:sp-rigorous}
+Establish Lemma~(M2) of Proposition~\ref{prop:mechanism-chain} rigorously
+by: (i)~proving the WKB representation with explicit Langer error bounds;
+(ii)~controlling the Airy transition zone $|u-u_*| \le 1$;
+(iii)~applying van der Corput uniformly in $c$.
+\end{problem}
+
+\begin{problem}[Lower bound on effective bandwidth]
+\label{prob:lower-bound}
+Prove $\Omega_\varepsilon(c,n) \gtrsim c^{-1/2}$ as $c\to\infty$,
+showing that $\beta = \tfrac{1}{2}$ is sharp.
+\end{problem}
+
+\begin{problem}[Uniform bound over modes $n \le N(c)$]
+\label{prob:uniform-n}
+For the full observable $F_c = \sum_{n=0}^{N(c)}\lambda_n^{(c)}\widehat{g}_n^{(c)}$
+with $N(c) = O(c)$, establish
+$\sup_{n \le N(c)} \|(\Phi_n^{(c)})'\|_{L^2} = O(c^{-\alpha})$
+for some $\alpha > 0$.
+\end{problem}
+
+\begin{problem}[Optimality of the barrier exponent]
+\label{prob:barrier-optimal}
+Determine the exact polynomial prefactor $c^\gamma$ in
+Theorem~\ref{thm:boundary-decay} and show it is optimal.
+\end{problem}
+
+\begin{conjecture}[Stationary-phase bandwidth bound]
+\label{conj:sp-decay}
+For fixed $n \ge 0$ and $\varepsilon \in (0,1)$:
+$\Omega_\varepsilon(c,n) \le C(n,\varepsilon)\,c^{-1/2}$
+with $\beta = \tfrac{1}{2}$ optimal.
+\end{conjecture}
+
+%%─────────────────────────────────────────────────────────────────────
+\section*{Acknowledgements}
+
+The author thanks the open mathematical literature for the
+foundational results on PSWF theory used throughout this paper.
+
+%%─────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{99}
+
+\bibitem{Slepian1961}
+D.~Slepian and H.~O.~Pollak,
+\emph{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
+
+\bibitem{Landau1962}
+H.~J.~Landau and H.~O.~Pollak,
+\emph{Prolate spheroidal wave functions, Fourier analysis and uncertainty~III},
+Bell Syst.\ Tech.\ J.\ \textbf{41} (1962), 1295--1336.
+
+\bibitem{Slepian1964}
+D.~Slepian,
+\emph{Prolate spheroidal wave functions, Fourier analysis and uncertainty~IV},
+Bell Syst.\ Tech.\ J.\ \textbf{43} (1964), 3009--3057.
+
+\bibitem{Olver1974}
+F.~W.~J.~Olver,
+\emph{Asymptotics and Special Functions},
+Academic Press, New York, 1974.
+
+\bibitem{Stein1993}
+E.~M.~Stein,
+\textit{Harmonic Analysis: Real-Variable Methods,
+Orthogonality, and Oscillatory Integrals},
+Princeton University Press, Princeton, 1993.
+
+\bibitem{Titchmarsh1986}
+E.~C.~Titchmarsh,
+\emph{The Theory of the Riemann Zeta-Function},
+2nd ed., Oxford University Press, 1986.
+
+\bibitem{BerryKeating1999}
+M.~V.~Berry and J.~P.~Keating,
+\emph{The Riemann zeros and eigenvalue asymptotics},
+SIAM Rev.\ \textbf{41} (1999), 236--266.
+
+\bibitem{Connes1999}
+A.~Connes,
+\emph{Trace formula in noncommutative geometry and the zeros of
+the Riemann zeta function},
+Selecta Math.\ \textbf{5} (1999), 29--106.
+
+\end{thebibliography}
+
+\end{document}

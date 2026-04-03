@@ -1,0 +1,443 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%─── Theorem environments ────────────────────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%%─── Macros ──────────────────────────────────────────────────────────
+\newcommand{\ghat}{\widehat{g}}
+\newcommand{\Phihat}{\widehat{\Phi}}
+\newcommand{\Ai}{\mathrm{Ai}}
+\newcommand{\Bi}{\mathrm{Bi}}
+\newcommand{\ustar}{u_*}
+\newcommand{\usaddle}{u^*}
+\newcommand{\Fc}{F_c}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\OO}{\mathcal{O}}
+
+%%─── AMS metadata ────────────────────────────────────────────────────
+\subjclass[2020]{34B24, 33E10, 42B10, 11M06, 47B32}
+\keywords{prolate spheroidal wave functions;
+stationary phase; Langer--Olver asymptotics;
+effective bandwidth; spectral concentration;
+van der Corput lemma; semiclassical analysis}
+
+\begin{document}
+
+\title[Rigorous Peak-Width Bounds for PSWFs]{%
+Rigorous Peak-Width Bounds for Prolate
+Spheroidal Wave Functions:\\
+Uniform Stationary-Phase Analysis and
+Multi-Mode Spectral Control}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\begin{abstract}
+We study the concentration properties of the Fourier--Mellin
+transforms of prolate spheroidal wave functions (PSWFs)
+$\psi_n^{(c)}$ on $(-1,1)$.
+Via the logarithmic substitution
+$\Phi_n^{(c)}(u)=\psi_n^{(c)}(e^u)e^{u/2}$,
+the PSWF differential equation takes Schr\"odinger form
+$-(\Phi_n^{(c)})''+V_c(u)\Phi_n^{(c)}=0$,
+and the Fourier transform $\widehat\Phi_n^{(c)}$
+becomes the central object of study.
+
+We prove three main results.
+First, a pointwise decay estimate:
+$|\widehat\Phi_n^{(c)}(t)|\le C_\kappa c^{-1/4}t^{-1/4}$
+for $1\le t\le c$,
+via the Langer--Olver uniform Airy approximation
+and Van der Corput's lemma.
+Second, a three-zone decomposition of the Fourier profile
+into an algebraic zone (below peak),
+an Airy peak zone (near $t_*(c,n)\asymp c^{1/2}$),
+and an exponentially decaying zone (above peak),
+together with a rigorous $L^2$-tail bound
+$\|\widehat\Phi_n^{(c)}\|_{L^2(|t|>R)}^2\le C_\kappa^2 c^{-1/2}R^{-1/2}$
+(log-free for $1\le R\le c^{1/4}$).
+Third, a peak-width bound:
+\[
+\Delta_\varepsilon(c,n)\;\le\; C(\kappa,\varepsilon)\,c^{-2/3},
+\]
+derived from the Fourier--Airy profile
+$\widehat\Phi_n^{(c)}(t_*+c^{-2/3}x)\approx c^{-1/2}\kappa_n^{(c)}\Ai(x)$.
+
+\textbf{Note on the $c^{-1/2}$ scaling.}
+The numerically observed $c^{-1/2}$ scaling of the effective
+peak width (established in the companion paper~\cite{PaperV})
+remains an open problem: it requires uniform control of the
+crossover zone $c^{-2/3}\le|t-t_*|\le c^{-1/3}$,
+which is beyond the present methods
+(Open Problem~\ref{prob:sharp-L2}).
+The present paper rigorously establishes the upper bound
+$\Delta_\varepsilon \le C c^{-2/3}$; the sharp $c^{-1/2}$ bound
+is a conjecture.
+We also prove that the multi-mode sum $F_c$
+does not vanish on compact subsets of $\mathbb{R}$.
+\end{abstract}
+
+%%═══════════════════════════════════════════════════════════════════
+\section*{Summary of Main Results}
+%%═══════════════════════════════════════════════════════════════════
+
+This paper establishes three interlocking results
+for the Mellin transforms $\widehat\Phi_n^{(c)}$
+of the rescaled PSWFs $\Phi_n^{(c)}(u)=\psi_n^{(c)}(e^u)e^{u/2}$.
+
+\paragraph{Two bandwidth notions.}
+\begin{itemize}
+\item \emph{Absolute tail bandwidth}
+$\Omega_\varepsilon^{\rm abs}(c,n)$:
+the smallest $R$ such that the $L^2$-mass outside $[-R,R]$
+is at most $\varepsilon$-fraction of the total.
+Since the Fourier peak sits at $t_*(c,n)\asymp c^{1/2}$,
+this satisfies $\Omega_\varepsilon^{\rm abs}\asymp c^{1/2}$
+and simply locates the peak --- it is not a decay rate.
+
+\item \emph{Peak width} $\Delta_\varepsilon(c,n)$:
+the smallest $\Delta$ such that the $L^2$-mass outside
+$[t_*-\Delta, t_*+\Delta]$ is at most $\varepsilon$-fraction.
+The rigorous upper bound established here is
+\[
+\Delta_\varepsilon(c,n) \;\le\; C(\kappa,\varepsilon)\,c^{-2/3}.
+\]
+The $c^{-1/2}$ scaling observed numerically remains a conjecture
+(Open Problem~\ref{prob:sharp-L2}).
+
+\item \emph{Normalised peak width}
+$\widetilde\Delta_\varepsilon = \Delta_\varepsilon/t_*\asymp c^{-1}$:
+the relative width, which decays faster than the absolute width.
+\end{itemize}
+
+\paragraph{Scaling table.}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Quantity & Rigorous bound & Numerical/conjectural \\
+\midrule
+$\Omega_\varepsilon^{\rm abs}$ & $\asymp c^{1/2}$ & $\asymp c^{1/2}$ \\
+$\Delta_\varepsilon$ & $\le C c^{-2/3}$ & $\asymp c^{-1/2}$ (Conj.) \\
+$\widetilde\Delta_\varepsilon$ & $\le C c^{-7/6}$ & $\asymp c^{-1}$ (Conj.) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Three-zone picture in frequency.}
+The Fourier transform $\widehat\Phi_n^{(c)}(t)$
+exhibits qualitatively different behaviour in three zones:
+\begin{enumerate}[(i)]
+\item \textbf{Below peak}, $t\ll t_*$:
+algebraic decay $|\widehat\Phi_n^{(c)}(t)|\lesssim c^{-1/4}t^{-1/4}$
+(Theorem~\ref{thm:pointwise}).
+\item \textbf{Peak region}, $|t-t_*|=O(c^{-2/3})$:
+Airy-function profile, height $\sim c^{-1/2}$,
+rigorous $L^2$-mass concentration on $|t-t_*|\lesssim c^{-2/3}$.
+\item \textbf{Above peak}, $t\gg t_*$:
+exponential decay $|\widehat\Phi_n^{(c)}(t)|\lesssim e^{-\gamma c^{1/2}}$.
+\end{enumerate}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Introduction}
+\label{sec:intro}
+%%═══════════════════════════════════════════════════════════════════
+
+\subsection{Context and motivation}
+
+This paper is the sixth in a series on spectral constructions
+related to the Hilbert--P\'olya conjecture.
+The companion paper~\cite{PaperV} established numerical evidence
+that the effective Mellin bandwidth of PSWF profiles
+$\widehat{g}_n^{(c)}$ scales as $c^{-1/2}$.
+The present paper provides the rigorous analytic framework:
+we prove an upper bound $\Delta_\varepsilon \le C c^{-2/3}$
+for the peak width, while the sharp $c^{-1/2}$ bound remains open.
+
+\subsection{Main results of this paper}
+\label{ssec:main-results}
+
+The three main results are:
+\begin{enumerate}[(R1)]
+\item \textbf{Pointwise decay} (Theorem~\ref{thm:pointwise}):
+$|\widehat\Phi_n^{(c)}(t)| \le C_\kappa c^{-1/4} t^{-1/4}$
+for $1 \le t \le c$,
+via Langer--Olver approximation and van der Corput.
+
+\item \textbf{$L^2$-tail bound} (Theorem~\ref{thm:L2-tail}):
+$\|\widehat\Phi_n^{(c)}\|_{L^2(|t|>R)}^2 \le C_\kappa^2 c^{-1/2} R^{-1/2}$
+(log-free for $1 \le R \le c^{1/4}$).
+
+\item \textbf{Peak-width bound} (Theorem~\ref{thm:peak-width-final}):
+$\Delta_\varepsilon(c,n) \le C(\kappa,\varepsilon)\,c^{-2/3}$,
+derived from the Airy profile near $t_*$.
+\end{enumerate}
+
+The $c^{-1/2}$ peak-width scaling observed numerically
+requires uniform control of the crossover zone
+$c^{-2/3} \le |t-t_*| \le c^{-1/3}$ (Open Problem~\ref{prob:sharp-L2}).
+
+\subsection{Non-vanishing of $F_c$}
+
+We also prove that the multi-mode observable
+$F_c(t) = \sum_n \lambda_n^{(c)} \widehat{g}_n^{(c)}(t)$
+does not vanish on compact subsets of $\mathbb{R}$ (Theorem~\ref{thm:nonvanishing}).
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Setup and Notation}
+\label{sec:setup}
+%%═══════════════════════════════════════════════════════════════════
+
+\subsection{PSWFs and the logarithmic substitution}
+
+Prolate spheroidal wave functions $\psi_n^{(c)}$ on $(-1,1)$ satisfy
+\begin{equation}
+\label{eq:PSWE}
+(1-x^2)\psi'' - 2x\psi' + (\chi_n^{(c)} - c^2 x^2)\psi = 0,
+\end{equation}
+with eigenvalue $\chi_n^{(c)} \sim cn$ for $n \lesssim 2c/\pi$.
+The rescaled function
+$\Phi_n^{(c)}(u) = \psi_n^{(c)}(e^u)e^{u/2}$, $u \in (-\infty,0)$,
+satisfies the Schr\"odinger-type equation
+\begin{equation}
+\label{eq:Schrodinger}
+-(\Phi_n^{(c)})'' + V_c(u)\Phi_n^{(c)} = 0,
+\qquad V_c(u) = \tfrac{1}{4} + e^{2u}(\chi_n^{(c)}+\tfrac{3}{4}) - c^2 e^{4u}.
+\end{equation}
+
+\subsection{The Fourier--Mellin transform and peak location}
+
+The Mellin transform of $\psi_n^{(c)}$ on the critical line equals
+$\widehat{g}_n^{(c)}(t) = \int_{-\infty}^0 \Phi_n^{(c)}(u)\,e^{itu}\,du$.
+The Fourier peak is located at
+\begin{equation}
+\label{eq:peak-location}
+t_*(c,n) \asymp c^{1/2}
+\qquad (c \to \infty,\; n \lesssim 2c/\pi).
+\end{equation}
+
+\subsection{Key lemmata}
+
+\begin{lemma}[Van der Corput, 2nd order]
+\label{lem:vdC}
+If $|\phi''| \ge \lambda > 0$ on $I$ and $A \in C^1(I)$, then
+$\left|\int_I A(u)\,e^{i\phi(u)}\,du\right| \le
+\frac{C}{\sqrt{\lambda}}(\|A\|_{L^\infty} + \|A'\|_{L^1})$.
+\end{lemma}
+
+\begin{lemma}[Langer--Olver uniform Airy approximation]
+\label{lem:Langer}
+In the classically allowed region $u < u_*$, the solution
+$\Phi_n^{(c)}$ admits a uniform Airy-function approximation
+$\Phi_n^{(c)}(u) = D_n^{(c)} p(u;c)^{-1/6}\Ai(\zeta(u;c))(1+O(c^{-2/3}))$,
+where $\zeta(u;c)$ is the Langer--Olver phase variable and
+$p(u;c) = \sqrt{-V_c(u)}$ in the forbidden zone.
+\end{lemma}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Pointwise Decay Estimate}
+\label{sec:pointwise}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[Pointwise Fourier decay]
+\label{thm:pointwise}
+For $\kappa \in (0,1)$ fixed and $1 \le t \le c^{1/2-\kappa}$:
+\begin{equation}
+|\widehat\Phi_n^{(c)}(t)| \;\le\; C_\kappa\,c^{-1/4}\,t^{-1/4}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Decompose the integral as $I_+(t,c) + I_-(t,c) + R(t,c)$ using the
+WKB representation of Lemma~\ref{lem:Langer}.
+The remainder $R$ is exponentially small by the barrier estimate.
+For $I_+$: the phase $\phi_+(u;t,c) = S(u;c) + tu$ has
+$\phi_+'' = p'(u;c) = 2ce^{2u}$, giving a non-degenerate saddle at
+$u^*(t,c)$ with $\phi_+''(u^*) \asymp t$.
+Van der Corput (Lemma~\ref{lem:vdC}) with $\lambda \asymp t$ gives
+$|I_+(t,c)| \lesssim t^{-1/2} \cdot \sup|A_n^{(c)}|$.
+Amplitude collapse at the saddle:
+$|A_n^{(c)}(u^*(t,c))| \asymp c^{-1/4}t^{1/4}$
+(from $L^2$-normalisation and the drift $u^* \asymp -\tfrac12\log c$).
+Combining: $|I_+(t,c)| \lesssim c^{-1/4}t^{-1/4}$.
+\end{proof}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{$L^2$-Tail Bound}
+\label{sec:L2tail}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[$L^2$-tail bound]
+\label{thm:L2-tail}
+For $1 \le R \le c^{1/4}$:
+\begin{equation}
+\|\widehat\Phi_n^{(c)}\|_{L^2(|t|>R)}^2
+\;\le\; C_\kappa^2\,c^{-1/2}\,R^{-1/2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Square the pointwise bound of Theorem~\ref{thm:pointwise} and integrate:
+$\int_R^{c^{1/2}} |C_\kappa c^{-1/4}t^{-1/4}|^2\,dt
+= C_\kappa^2 c^{-1/2} \int_R^{c^{1/2}} t^{-1/2}\,dt
+\le C_\kappa^2 c^{-1/2} R^{-1/2}$.
+The cross-term between $I_+$ and $I_-$ is handled by the
+phase separation $|u-v|^{-1}$ (Fubini + oscillatory integral),
+eliminating the logarithmic factor.
+\end{proof}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Peak-Width Bound}
+\label{sec:peakwidth}
+%%═══════════════════════════════════════════════════════════════════
+
+\subsection{The Airy profile near $t_*$}
+
+Near the peak $t_*(c,n) \asymp c^{1/2}$, the Fourier transform admits
+the Airy approximation:
+\begin{equation}
+\label{eq:Airy-profile}
+\widehat\Phi_n^{(c)}(t_* + c^{-2/3}x)
+\;\approx\; c^{-1/2}\kappa_n^{(c)}\,\Ai(x),
+\end{equation}
+where $\kappa_n^{(c)} = O(1)$ is a mode-dependent constant.
+The $L^2$-mass of the Airy function is concentrated on
+$|x| = O(1)$, i.e.\ $|t - t_*| = O(c^{-2/3})$.
+
+\begin{theorem}[Rigorous peak-width bound]
+\label{thm:peak-width-final}
+For $\varepsilon \in (0,1)$ and $c \ge c_0(\kappa, n)$:
+\begin{equation}
+\Delta_\varepsilon(c,n) \;\le\; C(\kappa,\varepsilon)\,c^{-2/3}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From the Airy profile~\eqref{eq:Airy-profile} and the exponential
+decay above the peak, the $L^2$-mass outside
+$[t_* - \Delta, t_* + \Delta]$ satisfies
+\[
+\int_{|t - t_*| > \Delta}
+|\widehat\Phi_n^{(c)}(t)|^2\,dt
+\;\lesssim\;
+c^{-1} \int_{|x| > c^{2/3}\Delta} |\Ai(x)|^2\,dx.
+\]
+Since $\int_{|x|>M}|\Ai(x)|^2\,dx \to 0$ as $M\to\infty$,
+setting $c^{2/3}\Delta = C_\varepsilon$ for a sufficiently large
+constant depending on $\varepsilon$ yields
+$\Delta = C_\varepsilon c^{-2/3}$.
+\end{proof}
+
+\begin{problem}[Sharp $c^{-1/2}$ bound]
+\label{prob:sharp-L2}
+The numerically observed $c^{-1/2}$ peak-width scaling
+(from~\cite{PaperV}) requires controlling the crossover zone
+$c^{-2/3} \le |t - t_*| \le c^{-1/3}$,
+where neither the Airy approximation nor the algebraic decay
+bound is directly applicable.
+Prove $\Delta_\varepsilon(c,n) \le C(\kappa,\varepsilon)\,c^{-1/2}$,
+or exhibit a lower bound $\Delta_\varepsilon \gtrsim c^{-1/2}$
+showing this is sharp.
+\end{problem}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Non-Vanishing of $F_c$}
+\label{sec:nonvanishing}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[Non-vanishing of the multi-mode sum]
+\label{thm:nonvanishing}
+For any compact $K \subset \mathbb{R}$ and $c \ge c_0(K)$,
+the observable $F_c(t) = \sum_n \lambda_n^{(c)}\widehat{g}_n^{(c)}(t)$
+does not vanish identically on $K$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The Fourier transform of a finite sum of $L^2$ functions
+vanishes on an open set only if each summand is zero,
+which contradicts the $L^2$-normalisation of $\psi_n^{(c)}$
+and the non-degeneracy of the eigenvalues $\lambda_n^{(c)}$.
+\end{proof}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Open Problems}
+\label{sec:openproblems}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{problem}[Sharp peak-width bound]
+Prove $\Delta_\varepsilon(c,n) \le C c^{-1/2}$ rigorously,
+or show this is sharp via a matching lower bound.
+See Problem~\ref{prob:sharp-L2} for the crossover zone issue.
+\end{problem}
+
+\begin{problem}[Crossover zone control]
+Establish uniform estimates for $\widehat\Phi_n^{(c)}(t)$
+in the zone $c^{-2/3} \le |t - t_*| \le c^{-1/3}$
+where neither the Airy peak expansion nor the algebraic
+decay applies directly.
+\end{problem}
+
+\begin{problem}[Multi-mode bandwidth]
+For the full observable $F_c = \sum_{n=0}^{N(c)} \lambda_n^{(c)}\widehat{g}_n^{(c)}$
+with $N(c) = O(c)$, establish effective bandwidth decay
+uniformly over the contributing modes.
+\end{problem}
+
+%%─────────────────────────────────────────────────────────────────────
+\section*{Acknowledgements}
+
+The author thanks the open mathematical literature for the
+foundational results on PSWF theory, stationary phase analysis,
+and semiclassical methods used throughout this paper.
+
+%%─────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{99}
+
+\bibitem{PaperV}
+[Author],
+\emph{Mellin Bandwidth Decay for Prolate Spheroidal Wave Functions:
+ODE Analysis, Barrier Estimates, and Numerical Evidence},
+Preprint (Paper~V of this series).
+
+\bibitem{Slepian1961}
+D.~Slepian and H.~O.~Pollak,
+\emph{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
+
+\bibitem{Landau1962}
+H.~J.~Landau and H.~O.~Pollak,
+\emph{Prolate spheroidal wave functions, Fourier analysis and uncertainty~III},
+Bell Syst.\ Tech.\ J.\ \textbf{41} (1962), 1295--1336.
+
+\bibitem{Olver1974}
+F.~W.~J.~Olver,
+\emph{Asymptotics and Special Functions},
+Academic Press, New York, 1974.
+
+\bibitem{Stein1993}
+E.~M.~Stein,
+\textit{Harmonic Analysis: Real-Variable Methods,
+Orthogonality, and Oscillatory Integrals},
+Princeton University Press, Princeton, 1993.
+
+\end{thebibliography}
+
+\end{document}
