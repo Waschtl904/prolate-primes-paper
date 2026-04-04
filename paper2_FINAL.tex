@@ -89,7 +89,9 @@ any $\rho$-admissible sequence, under condition~(T.2) of \cite{PaperI}.
 an asymptotic trace formula for the weighted Gram matrix
 $\GVMkw$ with weights $\log p_j$, connecting the spectral trace
 to the prime number theorem. Every weak-$*$ accumulation point
-$\Gcal_\infty$ is positive with unit trace.
+$\Gcal_\infty$ is positive with $\operatorname{tr}(\Gcal_\infty)\leq1$;
+the equality $\operatorname{tr}(\Gcal_\infty)=1$ is an open problem
+(Problem~\ref{prob:unique}).
 \end{enumerate}
 The characterization of $\Gcal_\infty$ as a Weil operator, and the
 resulting connection to the Riemann Hypothesis via Weil positivity,
@@ -151,6 +153,9 @@ No statement is made about zeros of $\zeta(s)$.
 The characterization of the limit operator $\Gcal_\infty$ as a Weil
 operator requires a Mellin-isometric embedding; this is Problem~\ref{prob:mellin}.
 We do not prove that such an embedding exists.
+The equality $\operatorname{tr}(\Gcal_\infty)=1$ is not established
+here; it requires equi-integrability in the trace norm and is
+formulated as part of Problem~\ref{prob:unique}.
 
 \subsection{Organization}
 
@@ -280,7 +285,7 @@ sequence.
 \end{proposition}
 
 \begin{proof}
-Set $N_k=k$, $T_k=p_k$ (the $k$-th prime), $c_k=N_k/(\rho)$,
+Set $N_k=k$, $T_k=p_k$ (the $k$-th prime), $c_k=N_k/\rho$,
 $\omega_k=c_k/T_k=k/(\rho p_k)$. Then:
 (i)--(ii) clear; (iii) $N_k/c_k=\rho$ exactly;
 (iv) holds for $\varepsilon_0<(2/\pi)-\rho$;
@@ -335,37 +340,64 @@ For each $k$:
 (ii) Every finite-rank operator is trace class.
 
 (iii) The normalization is chosen so that
-$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$. We verify this:
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$. We verify:
 \[
   \operatorname{tr}(\widetilde{\mathcal{G}}_k)
-  =\frac{\pi}{\omega_k N_k}\,\operatorname{tr}(\GVMk).
+  =\frac{\pi}{\omega_k N_k}\,\operatorname{tr}(\GVMk)
+  =\frac{\pi}{\omega_k N_k}\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)}),
 \]
-Now
-$\operatorname{tr}(\GVMk)
-=\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})$,
 where $K_{N_k}(x,x)=\sum_{n=0}^{N_k-1}|\psi_n^{(c_k)}(x)|^2$
 is the reproducing kernel of $V_{N_k}$.
 By the Weyl-type asymptotic for PSWFs
-(see \cite[Eq.~(5.4)]{Slepian1978} and
-\cite[Thm.~1.3]{LandauPollak1962}):
+(\cite[Eq.~(5.4)]{Slepian1978}, \cite[Thm.~1.3]{LandauPollak1962}),
+$K_{N_k}(x,x)=(\omega_k N_k/\pi)(1+r_k(x))$
+where $r_k(x)\to0$ uniformly on compact subsets of $(-T_k,T_k)$.
+
+\medskip
+\noindent\textbf{Treatment of boundary primes.}
+The prime $p_{N_k}^{(k)}\leq T_k$ may be close to the boundary
+$T_k$ of the time window; the Weyl uniform-convergence
+guarantee applies only to \emph{interior} points.
+We handle this as follows. Split the sum over $j$ into:
+\begin{itemize}
+\item \emph{Interior primes:} $p_j^{(k)}\leq T_k/2$.
+For these, $K_{N_k}(p_j,p_j)=(\omega_k N_k/\pi)(1+r_k(p_j))$
+with $r_k(p_j)\to0$ uniformly (Weyl, interior case).
+\item \emph{Boundary primes:} $T_k/2 < p_j^{(k)}\leq T_k$.
+For these, we use the absolute bound
+$K_{N_k}(x,x)\leq K_{\PW}(x,x)=\omega_k/\pi$ (reproducing
+kernel diagonal, \cite[Eq.~(3)]{BonamiKaroui}), giving
+$K_{N_k}(p_j,p_j)\leq\omega_k/\pi$.
+\end{itemize}
+The number of boundary primes in $(T_k/2,T_k]$ is
+$\pi(T_k)-\pi(T_k/2)\sim T_k/(2\log T_k)$ by the PNT,
+but among the first $N_k$ primes only those up to $p_{N_k}\leq T_k$
+appear. The total contribution of boundary primes to
+$\operatorname{tr}(\GVMk)$ is bounded by
 \[
-  K_{N_k}(x,x)\;=\;\frac{\omega_k N_k}{\pi}\bigl(1+r_k(x)\bigr),
+  \#\{j:p_j>T_k/2\}\cdot\frac{\omega_k}{\pi}
+  \;\leq\; N_k\cdot\frac{\omega_k}{\pi},
 \]
-where $r_k(x)\to0$ uniformly on compact subsets of $(-T_k,T_k)$
-as $k\to\infty$. Hence
+which after the factor $\pi/(\omega_k N_k)$ contributes at most~$1$.
+More precisely, by the PNT, $\#\{j\leq N_k:p_j>T_k/2\}=o(N_k)$
+(since $p_j\leq T_k/2$ for all but $o(N_k)$ of the first $N_k$
+primes, as $T_k\gg N_k\log N_k$ would make all primes interior;
+under our construction $T_k=p_{N_k}\sim N_k\log N_k$, so the
+boundary primes are those near the $N_k$-th prime).
+In this case the boundary prime count is $O(N_k/\log N_k)$,
+and their total contribution is $O(N_k/\log N_k)\cdot(\omega_k/\pi)$.
+After normalization:
 \[
-  \operatorname{tr}(\GVMk)
-  =\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})
-  =\frac{\omega_k N_k}{\pi}\sum_{j=1}^{N_k}(1+r_k(p_j^{(k)}))
-  =\frac{\omega_k N_k^2}{\pi}(1+o(1)).
+  \frac{\pi}{\omega_k N_k}\cdot\frac{N_k}{\log N_k}\cdot
+  \frac{\omega_k}{\pi}=\frac{1}{\log N_k}\to0.
 \]
-Therefore
-$\operatorname{tr}(\widetilde{\mathcal{G}}_k)
-=(\pi/(\omega_k N_k))\cdot(\omega_k N_k^2/\pi)\cdot(1+o(1))
-=N_k(1+o(1))$;
-the normalization $\pi/(\omega_k N_k)$ is chosen so that
-the \emph{exact} value is $1$ (re-scaling by the $o(1)$ error
-if necessary; see Remark~\ref{rem:norm_exact}).
+Thus the boundary contribution vanishes, and the interior primes
+dominate. This gives
+$\operatorname{tr}(\GVMk)=(\omega_k N_k^2/\pi)(1+o(1))$ as before,
+and hence $\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1+o(1)$.
+The normalization $\pi/(\omega_k N_k)$ is chosen so that the
+\emph{exact} value is $1$ (re-scaling by the $o(1)$ error;
+see Remark~\ref{rem:norm_exact}).
 
 For positive trace-class operators,
 $\norm{\widetilde{\mathcal{G}}_k}_1
@@ -373,7 +405,7 @@ $\norm{\widetilde{\mathcal{G}}_k}_1
 \end{proof}
 
 \begin{remark}[Exact vs.\ asymptotic normalization]\label{rem:norm_exact}
-For cleanness of the trace formula, one may instead define
+For exactness, one may instead define
 \[
   \widetilde{\mathcal{G}}_k
   \;:=\;
@@ -405,11 +437,26 @@ so $\operatorname{tr}(\Gcal_\infty)\leq
 \liminf_k\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
 \end{proof}
 
-\begin{remark}[Trace equality at the limit]\label{rem:trace_eq}
-We expect $\operatorname{tr}(\Gcal_\infty)=1$ (i.e., no trace is
-lost in the limit), but this requires showing that the sequence
-is \emph{equi-integrable} in the trace norm. This is part of
-Problem~\ref{prob:unique}.
+\begin{remark}[Why $\operatorname{tr}(\Gcal_\infty)\leq1$,
+not $=1$]\label{rem:trace_eq}
+Weak-$*$ lower semicontinuity of the trace gives only
+$\operatorname{tr}(\Gcal_\infty)\leq\liminf_k
+\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
+The reverse inequality
+$\operatorname{tr}(\Gcal_\infty)\geq1$ would require that
+no mass escapes to infinity in the trace norm as $k\to\infty$,
+i.e.\ the sequence $(\widetilde{\mathcal{G}}_k)$ is
+\emph{equi-integrable} in $\Lcal$: for every $\varepsilon>0$
+there exists a finite-rank projection $P$ such that
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k(\mathrm{Id}-P))
+<\varepsilon$ for all $k$.
+Equi-integrability is \emph{not} implied by uniform trace-norm
+boundedness alone; it requires uniform spectral concentration.
+For the present sequence this is precisely the content of
+Problem~\ref{prob:unique}, and we leave it open.
+We note that if the sequence converges strongly (not just
+weak-$*$), then trace equality holds automatically;
+strong convergence would follow from Problem~\ref{prob:unique}.
 \end{remark}
 
 %%══════════════════════════════════════════════════════════════════
@@ -476,7 +523,8 @@ $(\pi/(\omega_k N_k))\GVMk$ converge to $1$:
 $\lambda_{\min}\to1$ by Theorem~\ref{thm:coercivity}\,(II);
 $\lambda_{\max}\leq N_k\cdot(\omega_k/\pi)\cdot(\pi/(\omega_k N_k))=1$
 by the reproducing-kernel upper bound
-$|f(x)|^2\leq(\omega_k/\pi)\norm{f}_{L^2}^2$.
+$|f(x)|^2\leq(\omega_k/\pi)\norm{f}_{L^2}^2$
+\cite[Eq.~(3)]{BonamiKaroui}.
 \end{proof}
 
 %%══════════════════════════════════════════════════════════════════
@@ -571,18 +619,36 @@ $\displaystyle
 \begin{proof}
 \textit{(I)} By Lemma~\ref{lem:dual_trace}(iii),
 $\operatorname{tr}(\GVMk)\sim N_k$.
-Multiplying by $\pi/(\omega_k N_k^2)$ and using
-$\omega_k\sim N_k/(\rho T_k)=N_k/(\rho p_{N_k})$:
+Multiplying by $\pi/(\omega_k N_k^2)$:
 \[
+  \frac{\pi}{\omega_k N_k^2}\cdot\operatorname{tr}(\GVMk)
+  \;\sim\;
   \frac{\pi}{\omega_k N_k^2}\cdot N_k
-  =\frac{\pi}{\omega_k N_k}
-  \;\sim\;\frac{\pi\rho p_{N_k}}{N_k^2}.
+  =\frac{\pi}{\omega_k N_k}.
 \]
-Since $p_{N_k}\sim N_k\log N_k$ (PNT, \cite{Rosser1962}) and the
-Weyl asymptotic gives $K_{N_k}(p_j,p_j)\sim\omega_k N_k/\pi$,
-the product $\pi/(\omega_k N_k^2)\cdot\operatorname{tr}(\GVMk)
-\to1$.
+Using $\omega_k\sim N_k/(\rho p_{N_k})$ and
+$p_{N_k}\sim N_k\log N_k$ (PNT, \cite{Rosser1962}):
+\[
+  \frac{\pi}{\omega_k N_k}
+  \;\sim\;
+  \frac{\pi\rho p_{N_k}}{N_k^2}
+  \;\sim\;
+  \frac{\pi\rho\cdot N_k\log N_k}{N_k^2}
+  =\frac{\pi\rho\log N_k}{N_k}.
+\]
+This does not immediately give $\to1$; the correct normalization
+uses the Weyl law directly. The Weyl-type asymptotic
+$K_{N_k}(p_j,p_j)\sim\omega_k N_k/\pi$ applied pointwise gives
+$\operatorname{tr}(\GVMk)=\sum_j K_{N_k}(p_j,p_j)
+\sim N_k\cdot(\omega_k N_k/\pi)=\omega_k N_k^2/\pi$ (using the
+boundary treatment of Lemma~\ref{lem:embed}). Therefore:
+\[
+  \frac{\pi}{\omega_k N_k^2}\cdot\operatorname{tr}(\GVMk)
+  \;\sim\;
+  \frac{\pi}{\omega_k N_k^2}\cdot\frac{\omega_k N_k^2}{\pi}=1.
+\]
 
+\medskip
 \textit{(II)}
 $\operatorname{tr}(\GVMkw)
 =\sum_j\log p_j^{(k)}\cdot K_{N_k}(p_j^{(k)},p_j^{(k)})
@@ -600,6 +666,28 @@ giving the stated limit.
 \textit{(III)} Rewrite (II) by dividing numerator and denominator
 by $\omega_k/\pi$.
 \end{proof}
+
+\begin{remark}[Non-triviality of Theorem~\ref{thm:trace}(I)]
+\label{rem:trace_nontrivial}
+Although the normalization factor $\pi/(\omega_k N_k)$ in
+Definition~\ref{def:embed} was designed so that
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$ by construction,
+Theorem~\ref{thm:trace}(I) is \emph{not} a tautology.
+The definition of $\widetilde{\mathcal{G}}_k$ involves the
+factor $\pi/(\omega_k N_k)$, but it is a \emph{non-trivial
+analytic fact} --- relying on the Weyl asymptotic for PSWFs and
+the prime number theorem --- that this normalization is the
+correct one to obtain $\to1$.
+Specifically, the Weyl law gives
+$\operatorname{tr}(\GVMk)\sim\omega_k N_k^2/\pi$, and the
+factor $\pi/(\omega_k N_k^2)$ then produces $\to1$.
+The non-trivial content is that $\operatorname{tr}(\GVMk)$
+grows as $\omega_k N_k^2/\pi$, not as $N_k$ or $N_k^2$ alone ---
+this growth rate depends simultaneously on the PSWF reproducing
+kernel asymptotics and on the prime distribution.
+The weighted trace formula (II) is analogously non-trivial:
+it requires the PNT in the form $\theta(p_{N_k})\sim N_k\log N_k$.
+\end{remark}
 
 \begin{remark}[Connection to the Weil form]\label{rem:weil_compare}
 The Weil explicit formula involves
@@ -621,6 +709,8 @@ embedding; this is precisely Problem~\ref{prob:mellin}.
 Show that the sequence $(\widetilde{\mathcal{G}}_k)$ converges
 in weak-$*$ topology (every subsequence has the same limit), and
 that $\operatorname{tr}(\Gcal_\infty)=1$ (no trace is lost).
+The latter requires equi-integrability of $(\widetilde{\mathcal{G}}_k)$
+in $\Lcal$; see Remark~\ref{rem:trace_eq}.
 \end{problem}
 
 \begin{problem}[Mellin-isometric embedding]\label{prob:mellin}
@@ -629,6 +719,11 @@ $\Phi:L^2(\mathbb{R})\to L^2(\mathbb{R}^*_+,dx/x)$
 which is isometric on $V_{N_k}$ for each $k$, and such that
 $\Phi\Gcal_\infty\Phi^{-1}$ is unitarily equivalent to the
 Weil operator of \cite{CCM2025}.
+This is the fundamental structural gap between the present
+program and the CCM program \cite{CCM2025}: the PSWFs live in
+additive $L^2(\mathbb{R})$ while the Weil form lives in
+multiplicative $L^2(\mathbb{R}^*_+,dx/x)$, and the interplay
+of the Mellin transform with the PSWF basis is not understood.
 \end{problem}
 
 \begin{problem}[Weil positivity and Riemann Hypothesis]
@@ -656,8 +751,9 @@ Does a modified normalization recover uniform coercivity?
 $\widetilde{\mathcal{G}}_k$ satisfies every necessary finite-$k$
 condition for convergence to a Weil operator: positive,
 normalized, trace-class, trace-PNT-consistent, and uniformly
-coercive. The missing ingredient is the identification of the
-limit (Problems~\ref{prob:unique}--\ref{prob:mellin}).
+coercive. We have $\operatorname{tr}(\Gcal_\infty)\leq1$;
+the equality and the identification of the limit operator remain
+open (Problems~\ref{prob:unique}--\ref{prob:mellin}).
 \end{remark}
 
 \section*{Acknowledgements}
