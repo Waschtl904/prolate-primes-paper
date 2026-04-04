@@ -3,7 +3,12 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage[%
+colorlinks=true,
+linkcolor=blue!60!black,
+citecolor=green!50!black,
+urlcolor=blue!70!black
+]{hyperref}
 \usepackage{booktabs}
 
 %%─── Theorem environments ────────────────────────────────────────────
@@ -39,17 +44,28 @@ stationary phase; Langer--Olver asymptotics;
 effective bandwidth; spectral concentration;
 van der Corput lemma; semiclassical analysis}
 
-\begin{document}
-
 \title[Rigorous Peak-Width Bounds for PSWFs]{%
 Rigorous Peak-Width Bounds for Prolate
 Spheroidal Wave Functions:\\
 Uniform Stationary-Phase Analysis and
 Multi-Mode Spectral Control}
 
-\author{[Author]}
-\address{[Address]}
-\email{[Email]}
+\thanks{This paper is the sixth in a series on spectral
+constructions related to the Hilbert--P\'olya conjecture.
+Papers~I--V are available as preprints (see \cite{PaperI}--\cite{PaperV}).
+Paper~V established numerical evidence that the effective Mellin
+bandwidth of PSWF profiles scales as $c^{-1/2}$; the present paper
+provides the rigorous analytic framework for that conjecture.
+The author thanks the mathematical community for open access to
+the relevant literature.}
+
+\author{Anonymous Author}
+\address{}
+\email{}
+\date{\today}
+
+\begin{document}
+\maketitle
 
 \begin{abstract}
 We study the concentration properties of the Fourier--Mellin
@@ -234,6 +250,15 @@ t_*(c,n) \asymp c^{1/2}
 \qquad (c \to \infty,\; n \lesssim 2c/\pi).
 \end{equation}
 
+\begin{remark}[Bandwidth convention]
+\label{rem:omega-convention}
+Throughout, $\Delta_\varepsilon(c,n)$ denotes the peak width and
+$\Omega_\varepsilon^{\rm abs}(c,n)$ the absolute tail bandwidth,
+under the Fourier convention
+$\hat{f}(\xi) = \int f(t)e^{-2\pi i\xi t}\,dt$.
+This is consistent with the conventions used in Papers~III, IV and~V.
+\end{remark}
+
 \subsection{Key lemmata}
 
 \begin{lemma}[Van der Corput, 2nd order]
@@ -379,43 +404,37 @@ and the non-degeneracy of the eigenvalues $\lambda_n^{(c)}$.
 
 %%═══════════════════════════════════════════════════════════════════
 \section{Open Problems}
-\label{sec:openproblems}
+\label{sec:open}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{problem}[Sharp peak-width bound]
-Prove $\Delta_\varepsilon(c,n) \le C c^{-1/2}$ rigorously,
-or show this is sharp via a matching lower bound.
-See Problem~\ref{prob:sharp-L2} for the crossover zone issue.
-\end{problem}
-
 \begin{problem}[Crossover zone control]
-Establish uniform estimates for $\widehat\Phi_n^{(c)}(t)$
-in the zone $c^{-2/3} \le |t - t_*| \le c^{-1/3}$
-where neither the Airy peak expansion nor the algebraic
-decay applies directly.
+\label{prob:crossover}
+Establish uniform bounds for $\widehat\Phi_n^{(c)}(t)$
+in the crossover zone $c^{-2/3} \le |t-t_*| \le c^{-1/3}$,
+interpolating between the Airy approximation and the algebraic decay.
 \end{problem}
 
-\begin{problem}[Multi-mode bandwidth]
-For the full observable $F_c = \sum_{n=0}^{N(c)} \lambda_n^{(c)}\widehat{g}_n^{(c)}$
-with $N(c) = O(c)$, establish effective bandwidth decay
-uniformly over the contributing modes.
+\begin{problem}[Mode-uniform peak-width bound]
+\label{prob:mode-uniform}
+Extend Theorem~\ref{thm:peak-width-final} to hold uniformly for
+$0 \le n \le N(c) = \lfloor 2c/\pi \rfloor$, with constants
+$C(\kappa,\varepsilon)$ independent of $n$.
 \end{problem}
 
-%%─────────────────────────────────────────────────────────────────────
+\begin{problem}[Sharp $c^{-1/2}$ peak-width bound]
+\label{prob:sharp-L2-sec6}
+See Open Problem~\ref{prob:sharp-L2} in Section~\ref{sec:peakwidth}.
+\end{problem}
+
+%%═══════════════════════════════════════════════════════════════════
 \section*{Acknowledgements}
+%%═══════════════════════════════════════════════════════════════════
 
-The author thanks the open mathematical literature for the
-foundational results on PSWF theory, stationary phase analysis,
-and semiclassical methods used throughout this paper.
+The author thanks the mathematical community for open access to
+the relevant literature on PSWF theory and semiclassical analysis.
 
-%%─────────────────────────────────────────────────────────────────────
+%%═══════════════════════════════════════════════════════════════════
 \begin{thebibliography}{99}
-
-\bibitem{PaperV}
-[Author],
-\emph{Mellin Bandwidth Decay for Prolate Spheroidal Wave Functions:
-ODE Analysis, Barrier Estimates, and Numerical Evidence},
-Preprint (Paper~V of this series).
 
 \bibitem{Slepian1961}
 D.~Slepian and H.~O.~Pollak,
@@ -437,6 +456,40 @@ E.~M.~Stein,
 \textit{Harmonic Analysis: Real-Variable Methods,
 Orthogonality, and Oscillatory Integrals},
 Princeton University Press, Princeton, 1993.
+
+\bibitem{BerryKeating1999}
+M.~V.~Berry and J.~P.~Keating,
+\emph{The Riemann zeros and eigenvalue asymptotics},
+SIAM Rev.\ \textbf{41} (1999), 236--266.
+
+\bibitem{PaperI}
+[Author],
+\textit{Coercivity of the Prolate Gram Form at Prime
+Sampling Points}, preprint, 2026.
+
+\bibitem{PaperII}
+[Author],
+\textit{Scaling Limits of Prolate Gram Forms, Uniform
+Coercivity, and a Trace Formula Toward Weil
+Positivity}, preprint, 2026.
+
+\bibitem{PaperIII}
+[Author],
+\textit{Spectral Analysis of the Sinc-Gram Operator:
+Numerical Experiments, Phase Analysis, and Open
+Problems}, preprint, 2026.
+
+\bibitem{PaperIV}
+[Author],
+\textit{Spectral Phase Obstruction for Bandlimited
+Operator Families: A No-Go Theorem for
+Zeta-Compatible Limits}, preprint, 2026.
+
+\bibitem{PaperV}
+[Author],
+\textit{Mellin Bandwidth Decay for Prolate Spheroidal
+Wave Functions: ODE Analysis, Barrier Estimates, and
+Numerical Evidence}, preprint, 2026.
 
 \end{thebibliography}
 
