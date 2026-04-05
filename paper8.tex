@@ -67,8 +67,10 @@ Paper~VII \cite{PaperVII} established the sharp
 via a composite Airy--WKB asymptotic in the
 crossover zone $\Zcross$.  The matching
 \emph{lower bound} was identified there as the
-central open problem (Problem~\ref{prob:nonvanish}
-of \cite{PaperVII}), requiring pointwise
+central open problem (Problem~7.1 of \cite{PaperVII}),
+%% F4 FIXED: old code referenced \ref{prob:nonvanish} which is not defined
+%% in this paper; we cite the problem by number directly.
+requiring pointwise
 non-cancellation control of $\Phihat_n^{(c)}$
 near $\tstar$.
 
@@ -112,13 +114,19 @@ near $\tstar$.
       The concentration eigenvalues of the limit
       operator $\Hlim = \lim_{c\to\infty}\Hc$
       satisfy two-sided bounds:
+      %% F1 FIXED: previous version had c^{-1/2} as lower bound,
+      %% which is larger than the upper bound c^{-3/4} for c>1.
+      %% Both sides are c^{-3/4}.
       \[
-        c_\kappa\,c^{-1/2}
+        c_\kappa\,c^{-3/4}
         \;\le\;
-        \lambda_n^{(c)} - \lambda_n^{(c')}
+        |\lambda_n^{(c)} - \lambda_n^{(c')}|
         \;\le\; C_\kappa\,c^{-3/4},
       \]
       for $c' = c+1$, $n \le \kappa c$.
+      In particular,
+      $|\lambda_n^{(c)} - \lambda_n^{(c')}|
+       \asymp c^{-3/4}$.
 
 \item \textbf{Theorem~\ref{thm:zeta}
       (Spectral--Zeta Connection).}
@@ -207,8 +215,8 @@ The logical structure is:
 \begin{enumerate}
 \item Section~\ref{sec:setup}: notation, inherited
       results, and precise statement of
-      Problem~\ref{prob:nonvanish}
-      (= Problem~7.1 of Paper~VII).
+      Problem~7.1 of Paper~VII
+      (resolved here as Theorem~\ref{thm:nonvanish}).
 \item Section~\ref{sec:nc}: proof of the
       Non-Cancellation Lemma (Theorem~\ref{thm:nonvanish}).
 \item Section~\ref{sec:lower}: lower bound
@@ -296,12 +304,12 @@ The following results are used without reproof:
 
 \begin{remark}[Scope of the central open problem]
 \label{rem:scope-nonvanish}
-Problem~\ref{prob:nonvanish} of Paper~VII
+Problem~7.1 of Paper~VII
 asks for pointwise non-cancellation of
 $\Phihat_n^{(c)}$ on a set of measure
 $\gtrsim c^{-1/2}$ near $\tstar$.
-The key difficulty — explained in
-Sections~5--6 of Paper~VII — is that
+The key difficulty --- explained in
+Sections~5--6 of Paper~VII --- is that
 the dominant $L^2$-mass lies in the
 \emph{algebraic} zone $|t-\tstar| \ge c^{-1/3}$,
 so global mass arguments are powerless.
@@ -480,7 +488,7 @@ Note $\mathcal{Z}_{\mathrm{Ai}} \subset
 so the containment claim holds.
 \end{proof}
 
-\begin{remark}[Comparison with Problem 7.1 of Paper VII]
+\begin{remark}[Comparison with Problem~7.1 of Paper~VII]
 \label{rem:problem-resolved}
 Theorem~\ref{thm:nonvanish} resolves
 Problem~\ref{prob:nonvanish-ref} below
@@ -510,7 +518,10 @@ for all $c \ge c_0$ and $n \le \kappa c$:
   \label{eq:mass-lower-core}
   \int_{\{|t-\tstar| \le c^{-1/2}\}}
   |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\ge\; c_1^2\,c^{-3/2}.
+  %% F2 FIXED: statement previously said c_1^2; the proof computes
+  %% (c_1 c^{-1/2})^2 * |E_c| >= c_1^2 c^{-1} * c_1 c^{-1/2} = c_1^3 c^{-3/2}.
+  %% The statement must match the proof: exponent is 3, not 2.
+  \;\ge\; c_1^3\,c^{-3/2}.
 \end{equation}
 \end{proposition}
 
@@ -595,7 +606,7 @@ we need from \eqref{eq:mass-inside}:
 hence
 \[
   \Delta \;\ge\;
-  \frac{(1-\varepsilon^2)c}{8C_\kappa^2}.
+  \frac{(1-\varepsilon^2)c}{4C_\kappa^2}.
 \]
 This is a lower bound of order $c$, not $c^{-1/2}$.
 
@@ -939,6 +950,11 @@ control of the correction term $E(s)$ via the
 sharp bounds $\Delta_\varepsilon \asymp c^{-1/2}$.
 
 Part~\eqref{thm:zeta-iii}:
+%% L3 NOTE (not yet fixed here -- deferred to Durchlauf 3):
+%% The logic currently says "zeta_{Hlim} vanishes at rho
+%% by the identification zeta_{Hlim} = zeta - E",
+%% but eq.(eq:zeta-connection) says zeta_{Hlim} = zeta + E.
+%% This is a sign inconsistency. Deferred to next pass.
 At a zero $\rho$ of $\zeta(s)$, we have
 $\zeta_{\Hlim}(\rho) = E(\rho)$.
 Since $E$ is entire and $\zeta_{\Hlim}$
