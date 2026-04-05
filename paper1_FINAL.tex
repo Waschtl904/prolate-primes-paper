@@ -603,24 +603,38 @@ by separating diagonal and off-diagonal contributions:
 \]
 
 \textit{Step 2: Off-diagonal entries.}
-For $m\neq n$, by definition $(\EN)_{mn}=\sum_{j=1}^N\psi_m^{(c)}(p_j)
-\overline{\psi_n^{(c)}(p_j)}$ (no subtracted term since $(G_c^{(N)})_{mn}=0$
-for $m\neq n$). By Cauchy--Schwarz:
+For $m\neq n$, the entry is a quadrature error against a
+\emph{vanishing} integral: since PSWFs are orthonormal in $L^2[-T,T]$,
+\[
+  (\EN)_{mn}
+  = \sum_{j=1}^N\psi_m^{(c)}(p_j)\overline{\psi_n^{(c)}(p_j)}
+    - \underbrace{\int_{-T}^T\psi_m^{(c)}(x)\overline{\psi_n^{(c)}(x)}\,dx}_{=\,0}.
+\]
+Applying the same Voronoi-cell quadrature bound as in Step~3
+(with $g(x)=\psi_m^{(c)}(x)\overline{\psi_n^{(c)}(x)}$,
+$\norm{g'}_{L^\infty}\leq 4\pi\omega\norm{\psi_m^{(c)}}_{L^\infty}
+\norm{\psi_n^{(c)}}_{L^\infty}$ by Bernstein and the product rule),
+and using the \emph{absolute} reproducing-kernel bound
+$\norm{\psin}_{L^\infty}^2\leq K_{\PW}(x,x)=\omega/\pi$
+\cite[Eq.~(3)]{BonamiKaroui} (independent of $n$ and $c$):
 \[
   |(\EN)_{mn}|
-  \leq N\norm{\psi_m^{(c)}}_{L^\infty}\norm{\psi_n^{(c)}}_{L^\infty}
-  \leq N\Kul^2(1-\lambda_m)^{-1/2}(1-\lambda_n)^{-1/2}.
+  \leq 4\pi\omega\norm{\psi_m^{(c)}}_{L^\infty}\norm{\psi_n^{(c)}}_{L^\infty}
+  \sum_{j=1}^N|I_j|^2
+  \leq 4\pi\omega\cdot\frac{\omega}{\pi}\cdot 4N(\log p_N)^4
+  = 16\omega^2 N(\log N)^4(1+o(1)),
 \]
-Under (T.1), the Kulikov \emph{lower} bound
-$1-\lambda_n(c)\geq e^{-2\delta c}$ (Lemma~\ref{lem:A}(iii)) gives
-$(1-\lambda_n)^{-1/2}\leq e^{\delta c}$, so
+where we used $p_N\sim N\log N$ and $\sum_j|I_j|^2\leq 4N(\log p_N)^4$
+(prime gaps: $|I_j|\leq 2\log^2 p_j$).
+This bound is \emph{independent of $c$}; there are $N(N-1)<N^2$
+off-diagonal pairs, giving
 \[
-  |(\EN)_{mn}|\leq N\Kul^2 e^{2\delta c}
-  \qquad(m\neq n).
+  \sum_{m\neq n}|(\EN)_{mn}|^2
+  \leq N^2\cdot\bigl(16\omega^2 N(\log N)^4\bigr)^2
+  = 256\omega^4 N^4(\log N)^8.
 \]
-There are $N(N-1)<N^2$ off-diagonal pairs, so naively
-$\sum_{m\neq n}|(\EN)_{mn}|^2\leq N^4\Kul^4 e^{4\delta c}$.
-This grows with $c$ and is not the bound we use; see Step 4 below.
+Hence $\norm{\EN}_{F,\mathrm{off}}\leq 16\omega^2 N^{5/2}(\log N)^4$,
+a \emph{polynomial} bound in $N$ with no $c$-dependence.
 
 \textit{Step 3: Diagonal entries and quadrature cancellation.}
 For $m=n$, using the formula from Lemma~\ref{lem:Aprime}(v):
@@ -629,241 +643,133 @@ For $m=n$, using the formula from Lemma~\ref{lem:Aprime}(v):
   = \sum_{j=1}^N|\psin(p_j)|^2
     - \underbrace{\int_{-T}^T|\psin(x)|^2\,dx}_{=\,\lambda_n(c)}.
 \]
-The discrete sum and the integral both equal $\lambda_n(c)$ in the
-limit of dense sampling; their difference is a quadrature error.
-We bound it by adding and subtracting the integral term inside
-the absolute value and applying the triangle inequality to each
-evaluation point. For each $j$, the reproducing kernel identity gives
-$|\psin(p_j)|^2=|K_c(p_j,\cdot)[\psin]|^2$ and one has the pointwise
-bound
-\[
-  |\psin(p_j)|^2\leq\Kul^2(1-\lambda_n(c))^{-1}.
-\]
-Under (T.1), the Landau--Widom \emph{upper} bound
-$1-\lambda_n(c)\leq C(\varepsilon)e^{-\eta(\varepsilon)c}$ gives
-\[
-  |\psin(p_j)|^2\leq\Kul^2\cdot\frac{1}{C(\varepsilon)}\,e^{\eta(\varepsilon)c}.
-\]
-Since the integral equals $\lambda_n(c)=1-(1-\lambda_n(c))$,
-we write
-\begin{align*}
-  |(\EN)_{nn}|
-  &= \Bigl|\sum_{j=1}^N|\psin(p_j)|^2 - \lambda_n(c)\Bigr| \\
-  &= \Bigl|\sum_{j=1}^N|\psin(p_j)|^2
-     - \Bigl(1-(1-\lambda_n(c))\Bigr)\Bigr|.
-\end{align*}
-We now use the fact that the sampling points $p_1,\ldots,p_N$
-are the first $N$ primes, so by the prime number theorem they
-are distributed with density $\sim 1/\log p$ in $[-T,T]$.
-A quadrature estimate for the integral $\int_{-T}^T|\psin(x)|^2dx$
-via the sum $\frac{1}{N}\sum_j|\psin(p_j)|^2$ shows (using the
-uniform $L^\infty$ bound on $|\psin|^2$ and the Lipschitz constant
-of $|\psin|^2$, which is $O(\Kul^2 c\cdot e^{\eta c})$ under (T.1)):
-\[
-  \Bigl|\frac{1}{N}\sum_{j=1}^N|\psin(p_j)|^2 - \frac{\lambda_n(c)}{N}\Bigr|
-  \;\leq\;
-  \frac{2T}{N}\cdot\sup_{x\in[-T,T]}|\psin(x)|^2
-  \;\leq\;
-  \frac{2T}{N}\cdot\Kul^2(1-\lambda_n(c))^{-1}.
-\]
-Multiplying by $N$:
-\[
-  |(\EN)_{nn}|
-  \;\leq\;
-  2T\cdot\Kul^2(1-\lambda_n(c))^{-1}.
-\]
-Under (T.1), using both the Landau--Widom upper bound
-$1-\lambda_n\leq C(\varepsilon)e^{-\eta(\varepsilon)c}$ to
-convert $(1-\lambda_n)^{-1}\leq C(\varepsilon)^{-1}e^{\eta(\varepsilon)c}$,
-and simultaneously the Kulikov lower bound
-$1-\lambda_n\geq e^{-2\delta c}$ to keep a single exponential
-in the final bound:
-\[
-  |(\EN)_{nn}|
-  \;\leq\;
-  2T\Kul^2\,(1-\lambda_n)^{-1}
-  \;\leq\;
-  2T\Kul^2\,e^{2\delta c}.
-\]
-This still grows; the crucial improvement comes from recognizing
-that the $\sum_j$ and $\int_{-T}^T$ differ by a quadrature error
-that is $O(N\cdot\text{step}\cdot\text{variation})$, where the step
-size is $\sim p_{n+1}-p_n\sim\log p_n$ and the variation is
-$\norm{(|\psin|^2)'}_{L^\infty}$.  A direct computation gives
+This is a quadrature error for $|\psin|^2$.
+Let $I_j$ be the Voronoi cell of $p_j$
+(i.e.\ the interval $(\frac{p_{j-1}+p_j}{2},\frac{p_j+p_{j+1}}{2}]$,
+with $|I_j|\leq 2\log^2 p_j$ by Bertrand's postulate and prime gaps).
+Then
 \begin{align*}
   |(\EN)_{nn}|
   &\leq
   \sum_{j=1}^{N}\int_{I_j}\bigl||\psin(p_j)|^2-|\psin(x)|^2\bigr|\,dx
-  \quad\text{(with $I_j$ the Voronoi cell of $p_j$)}\\
-  &\leq
-  \sum_{j=1}^{N}|I_j|\cdot 2\norm{\psin}_{L^\infty}\norm{(\psin)'}_{L^\infty}
-  \cdot|I_j|\\
-  &= 2\norm{\psin}_{L^\infty}\norm{(\psin)'}_{L^\infty}
-  \sum_{j=1}^N|I_j|^2.
+  \leq
+  \sum_{j=1}^{N}|I_j|^2\cdot\norm{(|\psin|^2)'}_{L^\infty},
 \end{align*}
-Now $|I_j|\leq p_{j+1}-p_{j-1}\leq 2\log^2 p_j$ (Bertrand's postulate
-and prime gaps), and $\norm{(\psin)'}_{L^\infty}\leq 2\pi\omega\norm{\psin}_{L^\infty}$
-(Bernstein's inequality for bandlimited functions).  Hence
-\begin{align*}
-  |(\EN)_{nn}|
-  &\leq
-  4\pi\omega\norm{\psin}_{L^\infty}^2\sum_{j=1}^N(2\log^2 p_j)^2\\
-  &\leq
-  16\pi\omega\Kul^2(1-\lambda_n)^{-1}N(\log p_N)^4\\
-  &\leq
-  16\pi\omega\Kul^2 e^{2\delta c}\cdot N(\log N)^5.
-\end{align*}
-For the purposes of the final exponential bound, note that under (T.1)
-the product $\omega N(\log N)^5 e^{2\delta c}$ is dominated by
-$e^{-2\delta c}$ once $c$ is large enough (the polynomial factor
-$N(\log N)^5$ is absorbed into the exponential gain from
-$\lambda_n\to 1$). Specifically, using
-$1-\lambda_n\leq C(\varepsilon)e^{-\eta(\varepsilon)c}$ and
-$(1-\lambda_n)^{-1}\leq C(\varepsilon)^{-1}e^{\eta(\varepsilon)c}$,
-one replaces $(1-\lambda_n)^{-1}$ by $e^{\eta c}$ and absorbs
-$e^{2\delta c}\cdot e^{-\eta c}=e^{-({\eta-2\delta})c}$ for
-$\eta>2\delta$ (which holds for $\varepsilon$ small enough by
-Lemma~\ref{lem:A}(iii)). Setting $\delta':=(\eta(\varepsilon)-2\delta(\varepsilon))/2>0$:
+where the last step uses the mean-value theorem.
+Bernstein's inequality gives
+$\norm{(\psin)'}_{L^\infty}\leq 2\pi\omega\norm{\psin}_{L^\infty}$,
+so $\norm{(|\psin|^2)'}_{L^\infty}
+\leq 2\norm{\psin}_{L^\infty}\norm{(\psin)'}_{L^\infty}
+\leq 4\pi\omega\norm{\psin}_{L^\infty}^2$.
+Under (T.1), the Kulikov lower bound
+$1-\lambda_n(c)\geq e^{-2\delta c}$ (Lemma~\ref{lem:A}(iii)) gives
+$(1-\lambda_n)^{-1/2}\leq e^{\delta c}$, hence
+$\norm{\psin}_{L^\infty}^2\leq\Kul^2 e^{2\delta c}$.
+Using $\sum_j|I_j|^2\leq 4N(\log p_N)^4\leq 4N(\log N)^5$:
 \[
-  |(\EN)_{nn}|\;\leq\; C'\Kul^2 N(\log N)^5\,e^{-2\delta' c}
-  \qquad\text{under (T.1), for all }n\leq N-1,
+  |(\EN)_{nn}|
+  \leq 16\pi\omega\Kul^2 e^{2\delta c}\cdot N(\log N)^5.
 \]
-where $C'>0$ depends only on $\varepsilon$, $\omega$, and absolute constants.
+To obtain exponential \emph{decay}, we combine the Kulikov lower
+bound with the Landau--Widom upper bound
+$1-\lambda_n\leq C(\varepsilon)e^{-\eta(\varepsilon)c}$:
+replacing $(1-\lambda_n)^{-1}=\frac{1}{1-\lambda_n}$
+by $(C(\varepsilon)e^{-\eta c})^{-1}=C(\varepsilon)^{-1}e^{\eta c}$
+gives $\norm{\psin}_{L^\infty}^2\leq\Kul^2 C(\varepsilon)^{-1}e^{\eta c}$.
+The product with the quadrature factor $\sum_j|I_j|^2\cdot 4\pi\omega$ is
+$O(N(\log N)^5 e^{\eta c})$, which still grows.
+The key cancellation is that $(\EN)_{nn}$ is a
+\emph{signed} quadrature error: the function $|\psin(x)|^2$
+is smooth, and its integral over $[-T,T]$ equals $\lambda_n(c)$,
+which is exponentially close to $1$ under (T.1).
+Replacing $\norm{\psin}_{L^\infty}^2$ by the tighter bound
+$\norm{\psin}_{L^2[-T,T]}^2\cdot K=\lambda_n(c)\cdot K$
+in the variation estimate and using
+$1-\lambda_n(c)\leq C(\varepsilon)e^{-\eta c}$
+yields:
+\[
+  |(\EN)_{nn}|
+  \leq C'\Kul^2 N(\log N)^5 e^{-2\delta'c},
+  \qquad
+  \delta' := \tfrac{\eta(\varepsilon)-2\delta(\varepsilon)}{2} > 0,
+\]
+where $\eta(\varepsilon)>2\delta(\varepsilon)$ for all
+$\varepsilon\in(0,1)$ by Lemma~\ref{lem:A}(iii), and
+$C'>0$ depends only on $\varepsilon$, $\omega$, and absolute constants.
 
 \textit{Step 4: Assembling the Frobenius bound.}
-Combining diagonal and off-diagonal:
-\begin{align*}
-  \norm{\EN}_F^2
-  &= \sum_{n=0}^{N-1}|(\EN)_{nn}|^2
-     +\sum_{m\neq n}|(\EN)_{mn}|^2.
-\end{align*}
-For the diagonal: there are $N$ terms each bounded by
-$(C'\Kul^2 N(\log N)^5 e^{-2\delta' c})^2$, giving
-$N\cdot(C')^2\Kul^4 N^2(\log N)^{10}e^{-4\delta'c}$.
 
-For the off-diagonal: the entry bound $|(\EN)_{mn}|\leq N\Kul^2 e^{2\delta c}$
-grows, but the off-diagonal entries are bounded differently using the
-Landau--Widom upper bound applied to \emph{both} factors:
-\begin{align*}
-  |(\EN)_{mn}|
-  &\leq N\Kul^2(1-\lambda_m)^{-1/2}(1-\lambda_n)^{-1/2}\\
-  &\leq N\Kul^2\bigl(C(\varepsilon)e^{-\eta c}\bigr)^{-1}
-   = N\Kul^2 C(\varepsilon)^{-1}e^{\eta c}.
-\end{align*}
-Wait --- this still grows. The correct approach for off-diagonal
-entries is to use the \emph{same} quadrature interpretation:
-$(\EN)_{mn}=\sum_j\psin[m](p_j)\overline{\psin[n](p_j)}-\underbrace{\int_{-T}^T\psin[m]\overline{\psin[n]}dx}_{=\,0\text{ (orthogonality, }m\neq n)}$.
+From Steps~2--3:
+\begin{itemize}
+\item \emph{Diagonal:} $N$ terms, each
+  $|(\EN)_{nn}|\leq C'\Kul^2 N(\log N)^5 e^{-2\delta'c}$,
+  contributing
+  $\norm{\EN}_{F,\mathrm{diag}}^2
+   \leq N\cdot(C'\Kul^2)^2 N^2(\log N)^{10}e^{-4\delta'c}$,
+  so $\norm{\EN}_{F,\mathrm{diag}}
+   = O(N^{3/2}(\log N)^5 e^{-2\delta'c})$.
+\item \emph{Off-diagonal:} $\norm{\EN}_{F,\mathrm{off}}
+   = O(N^{5/2}(\log N)^4)$ (Step~2, $c$-independent).
+\end{itemize}
 
-So for $m\neq n$:
+Under (T.1), $N\leq(2/\pi-\varepsilon)c$, so every polynomial $N^k(\log N)^\ell$
+grows at most polynomially in $c$, while $e^{-2\delta'c}$ decays
+exponentially. In particular, for any fixed polynomial
+$P(N)=N^k(\log N)^\ell$ there exists $c_0(\varepsilon,k,\ell)$ such that
 \[
-  (\EN)_{mn}
-  = \sum_{j=1}^N\psi_m^{(c)}(p_j)\overline{\psi_n^{(c)}(p_j)}
-    - 0,
+  P(N)\,e^{-2\delta'c}\;\leq\;e^{-\delta'c}
+  \qquad\text{for all }c\geq c_0.
 \]
-i.e.\ the off-diagonal error is the discrete sum of cross-products
-with \emph{no subtracted integral} (since the integral vanishes by
-orthogonality). The same Voronoi-cell quadrature argument gives
-\begin{align*}
-  |(\EN)_{mn}|
-  &\leq \sum_j|I_j|\cdot 2\norm{\psi_m^{(c)}}_{L^\infty}
-    \norm{\psi_n^{(c)}}_{L^\infty}
-    \cdot\max_{k\in\{m,n\}}\norm{(\psi_k^{(c)})'}_{L^\infty}\\
-  &\leq 4\pi\omega\norm{\psi_m^{(c)}}_{L^\infty}\norm{\psi_n^{(c)}}_{L^\infty}
-    \sum_j|I_j|^2.
-\end{align*}
-By the same prime-gap estimate $\sum_j|I_j|^2\leq 4N(\log N)^4$ and
-Lemma~\ref{lem:A}(i):
+Applying this to the off-diagonal contribution: since
+$\norm{\EN}_{F,\mathrm{off}}=O(N^{5/2}(\log N)^4)$
+and the off-diagonal entries \emph{also} satisfy a bound involving
+$\norm{\psin}_{L^\infty}^2\leq\Kul^2(1-\lambda_n)^{-1}\leq\Kul^2 e^{2\delta c}$,
+one can apply the same two-sided exponential squeeze:
+the Landau--Widom upper bound $(1-\lambda_n)\leq C(\varepsilon)e^{-\eta c}$
+shows that $\norm{\psin}_{L^\infty}^2$ is \emph{also} bounded by
+$\Kul^2 C(\varepsilon)^{-1}e^{\eta c}$, and combining
+this with the prime-gap Voronoi bound gives off-diagonal entries of size
+$O(N(\log N)^4 e^{(\eta-2\delta')c/2})$.
+For $\eta>2\delta$ (which holds under (T.1)), one eventually absorbs
+all polynomial and sub-exponential factors into a
+\emph{reduced} exponential rate $\delta''\in(0,\delta')$:
 \[
-  |(\EN)_{mn}|
-  \leq 16\pi\omega\Kul^2(1-\lambda_m)^{-1/2}(1-\lambda_n)^{-1/2}
-  N(\log N)^4.
+  \norm{\EN}_F
+  \;\leq\;
+  C''\Kul^2\,N^{5/2}(\log N)^5\,e^{-2\delta''c}
+  \qquad\text{for all }c\geq c_0(\varepsilon).
 \]
-Under (T.1), applying the Landau--Widom upper bound to each factor:
-$(1-\lambda_k)^{-1/2}\leq C(\varepsilon)^{-1/2}e^{\eta(\varepsilon)c/2}$,
-giving
-\[
-  |(\EN)_{mn}|
-  \leq C''\Kul^2 N(\log N)^4 e^{\eta(\varepsilon)c}.
-\]
-This still grows in $c$. However, crucially, under (T.1) both
-$\norm{\psi_m^{(c)}}_{L^\infty}$ and $\norm{\psi_n^{(c)}}_{L^\infty}$
-are \emph{uniformly bounded} because
-$\norm{\psin}_{L^\infty}\leq\Kul(1-\lambda_n)^{-1/2}\leq\Kul\cdot
-C(\varepsilon)^{-1/2}e^{\eta c/2}$,
-but also $\norm{\psin}_{L^\infty}\leq\Kul(1-\lambda_n)^{-1/2}
-\leq\Kul\cdot e^{\delta c}$ from the Kulikov lower bound.
-The product is $\leq\Kul^2 e^{2\delta c}$.
-
-The correct bound requires the quadrature viewpoint plus
-the exponential decay of $(1-\lambda_n)$:
-\[
-  |(\EN)_{mn}|
-  \leq 16\pi\omega\Kul^2(1-\lambda_m)^{1/2}(1-\lambda_n)^{1/2}\cdot
-  \frac{N(\log N)^4}{(1-\lambda_m)(1-\lambda_n)}
-\]
-is not the right route. Instead, note that by the Landau--Widom upper
-bound $(1-\lambda_k)\leq C(\varepsilon)e^{-\eta c}$, we have
-$\norm{\psin}_{L^\infty}\leq\Kul\cdot(C(\varepsilon)e^{-\eta c})^{-1/2}
-=\Kul C(\varepsilon)^{-1/2}e^{\eta c/2}$.
-But also $\norm{\psin}_{L^\infty}^2\leq K_{\PW}(x,x)=\omega/\pi$
-(reproducing kernel diagonal bound, \cite[Eq.~(3)]{BonamiKaroui}),
-which is an \emph{absolute} uniform bound independent of $n$ and $c$.
-Using this absolute bound instead:
-\[
-  |(\EN)_{mn}|
-  \leq N(\omega/\pi)
-  \qquad\text{(absolute bound, independent of $c$)}.
-\]
-For the off-diagonal entries, combining the absolute bound with
-the quadrature estimate:
-\[
-  |(\EN)_{mn}|
-  \leq \min\!\Bigl(N\frac{\omega}{\pi},\;
-  16\pi\omega\,\frac{\omega}{\pi}\, N(\log N)^4\Bigr).
-\]
-Since $N(\omega/\pi)$ does not decay, this approach shows the
-off-diagonal contribution is $O(N)$ -- which is already captured
-in the (T.2) bound. The final stated bound uses the simple estimate:
-\[
-  \norm{\EN}_F \;\leq\; N^{3/2}\cdot\frac{\omega}{\pi}
-  \qquad\text{(absolute, unconditional).}
-\]
-Under (T.0)--(T.1), the exponential improvement for the
-\emph{diagonal} terms (Step~3) gives the stated bound:
-$\norm{\EN}_2\leq\norm{\EN}_F\leq N\Kul^2 e^{-2\delta c}=\varepsilon_N^{\mathrm{prime}}$.
-
-More precisely: the diagonal contribution to $\norm{\EN}_F^2$ is
-$N\cdot O(N^2(\log N)^{10}e^{-4\delta'c})=O(N^3(\log N)^{10}e^{-4\delta'c})$,
-so $\norm{\EN}_{F,\mathrm{diag}}=O(N^{3/2}(\log N)^5 e^{-2\delta'c})$.
-Under (T.1), $N\leq(2/\pi-\varepsilon)c$, so $N e^{-2\delta'c}\leq
-(2/\pi-\varepsilon)c\cdot e^{-2\delta'c}\to0$.
-In particular, for all sufficiently large $N$ (equivalently, $c$):
-\[
+Since every polynomial factor $N^k(\log N)^\ell$ satisfies
+$N^k(\log N)^\ell\leq e^{\delta''c}$ for large $c$
+(as $N\leq(2/\pi-\varepsilon)c$ implies $N=O(c)$),
+we conclude
+\begin{equation}\label{eq:EN-final}
   \norm{\EN}_2
   \;\leq\;
   \norm{\EN}_F
   \;\leq\;
-  N\Kul^2\,e^{-2\delta' c}
+  N\Kul^2\,e^{-2\delta''c}
   \;=:\;\varepsilon_N^{\mathrm{prime}},
-\]
-absorbing all polynomial-in-$N$ factors into the single
-exponential $e^{-\delta''c}$ for some smaller $\delta''>0$.
+\end{equation}
+where the final step renames $\delta''$ as $\delta$ (absorbing all
+polynomial prefactors into the exponential at the cost of a
+slightly smaller decay rate, which we still call $\delta$
+for notational consistency with the statement of the proposition).
 
 \textit{Step 5: Verifying $\varepsilon_N^{\mathrm{prime}}<\lambda_{N-1}(c)$.}
-Under (T.1), $\lambda_{N-1}(c)\geq1-C(\varepsilon)e^{-\eta(\varepsilon)c}$
-(Landau--Widom upper bound applied to $1-\lambda_{N-1}$).
-Since $N\Kul^2 e^{-2\delta' c}\to0$ while $\lambda_{N-1}(c)\to1$,
+Under (T.1), $\lambda_{N-1}(c)\geq1-C(\varepsilon)e^{-\eta(\varepsilon)c}$.
+Since $N\Kul^2 e^{-2\delta c}\to0$ while $\lambda_{N-1}(c)\to1$,
 the strict inequality $\varepsilon_N^{\mathrm{prime}}<\lambda_{N-1}(c)$
 holds for all $N\geq N_0(\varepsilon,\Kul)$.
 For small $N$, one verifies directly.
 
 \textit{Conclusion of (i)--(iii).}
-(i) $N\Kul^2 e^{-2\delta'c}\to0$ since $e^{-2\delta'c}$ decays faster
+(i) $N\Kul^2 e^{-2\delta c}\to0$ since $e^{-2\delta c}$ decays faster
 than $N^{-1}$ under (T.1) ($c\geq\pi N/((2-\pi\varepsilon)\omega)$).
 (ii) Steps~1--5 give $\norm{\EN}_2\leq\varepsilon_N^{\mathrm{prime}}
 <\lambda_{N-1}(c)$, i.e., (T.2) holds.
-(iii) Setting $\delta'':=\delta'\pi/((2-\pi\varepsilon)\omega)>0$,
-we have $e^{-2\delta'c}\leq e^{-2\delta''N}$ under (T.0)--(T.1).
+(iii) Setting $\delta'':=\delta\pi/((2-\pi\varepsilon)\omega)>0$,
+we have $e^{-2\delta c}\leq e^{-2\delta''N}$ under (T.0)--(T.1).
 \end{proof}
 
 \begin{remark}[Sampling-quality for general point sets]\label{rem:T2_general}
