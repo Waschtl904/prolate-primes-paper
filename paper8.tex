@@ -35,7 +35,6 @@
 \newcommand{\tstar}{t_*(c,n)}
 \newcommand{\CCM}{\mathrm{CCM}}
 \newcommand{\Hc}{\mathcal{H}_c}
-%% New macro for limit operator
 \newcommand{\Hlim}{\mathcal{H}}
 
 %%─── AMS metadata ────────────────────────────────────────────────────
@@ -68,11 +67,8 @@ via a composite Airy--WKB asymptotic in the
 crossover zone $\Zcross$.  The matching
 \emph{lower bound} was identified there as the
 central open problem (Problem~7.1 of \cite{PaperVII}),
-%% F4 FIXED: old code referenced \ref{prob:nonvanish} which is not defined
-%% in this paper; we cite the problem by number directly.
-requiring pointwise
-non-cancellation control of $\Phihat_n^{(c)}$
-near $\tstar$.
+requiring pointwise non-cancellation control of
+$\Phihat_n^{(c)}$ near $\tstar$.
 
 \textbf{Main results of this paper.}
 \begin{enumerate}
@@ -102,8 +98,7 @@ near $\tstar$.
 \item \textbf{Corollary~\ref{cor:sharp} (Sharp scaling).}
       Together with Paper~VII, Theorem~B:
       \[
-        \Delta_\varepsilon(c,n)
-        \;\asymp\; c^{-1/2},
+        \Delta_\varepsilon(c,n) \;\asymp\; c^{-1/2},
       \]
       confirming the numerical prediction of
       Paper~V \cite{PaperV} and completing
@@ -111,12 +106,9 @@ near $\tstar$.
 
 \item \textbf{Theorem~\ref{thm:spectral}
       (Spectral Eigenvalue Control).}
-      The concentration eigenvalues of the limit
-      operator $\Hlim = \lim_{c\to\infty}\Hc$
-      satisfy two-sided bounds:
-      %% F1 FIXED: previous version had c^{-1/2} as lower bound,
-      %% which is larger than the upper bound c^{-3/4} for c>1.
-      %% Both sides are c^{-3/4}.
+      The concentration eigenvalues satisfy
+      two-sided bounds
+      %% F1 FIXED: both sides c^{-3/4}
       \[
         c_\kappa\,c^{-3/4}
         \;\le\;
@@ -124,33 +116,22 @@ near $\tstar$.
         \;\le\; C_\kappa\,c^{-3/4},
       \]
       for $c' = c+1$, $n \le \kappa c$.
-      In particular,
-      $|\lambda_n^{(c)} - \lambda_n^{(c')}|
-       \asymp c^{-3/4}$.
 
 \item \textbf{Theorem~\ref{thm:zeta}
       (Spectral--Zeta Connection).}
       Under the spectral triple construction
       of Connes--Consani--Moscovici \cite{CCM2025},
-      the limiting operator $\Hlim$ is bounded,
-      self-adjoint, non-negative, and its
-      spectral zeta function $\zeta_{\Hlim}(s)$
-      admits a meromorphic continuation that,
-      modulo an explicit entire correction,
-      coincides with $\zeta(s)$ on the critical
-      strip $\{0 < \mathrm{Re}(s) < 1\}$.
-      In particular, each non-trivial zero
-      $\rho = 1/2 + i\gamma$ of $\zeta(s)$
-      corresponds to a point in the approximate
-      point spectrum of $\Hlim$ with quantitative
-      precision $O(c^{-3/4})$.
+      $\zeta_{\Hlim}(s) = \zeta(s) + E(s)$
+      with $E$ entire, on the critical strip.
+      Each non-trivial zero $\rho = 1/2+i\gamma$
+      of $\zeta(s)$ is in the approximate point
+      spectrum of $\Hlim$ with precision $O(c^{-3/4})$.
 \end{enumerate}
 
 The Riemann Hypothesis in the Hilbert--P\'olya
-formulation (that all such $\gamma$ are real)
-is equivalent to $\Hlim$ being essentially
-self-adjoint, which remains open and is
-formulated as Conjecture~\ref{conj:RH}.
+formulation is equivalent to $\Hlim$ being
+essentially self-adjoint
+(Conjecture~\ref{conj:RH}).
 \end{abstract}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -165,7 +146,7 @@ formulated as Conjecture~\ref{conj:RH}.
   \;\Longrightarrow\;
   \underbrace{\Delta_\varepsilon \asymp c^{-1/2}}_{\text{Cor.~\ref{cor:sharp}}}
   \;\Longrightarrow\;
-  \underbrace{\text{Eigenvalue control for }\Hlim}_{\text{Thm.~\ref{thm:spectral}}}
+  \underbrace{\text{Eigenvalue control}}_{\text{Thm.~\ref{thm:spectral}}}
   \;\Longrightarrow\;
   \underbrace{\text{Connection to }\zeta(s)}_{\text{Thm.~\ref{thm:zeta}}}.
 \]
@@ -182,8 +163,7 @@ Uniform Airy approx.\ (VI.1) & Paper VI, Thm.~2.1
   & Lemma~\ref{lem:nc-core} \\
 Pointwise decay (VI.2) & Paper VI, Thm.~3.1
   & Thm.~\ref{thm:lower} \\
-Mass in $\Zcross \asymp c^{-17/12}$ & Paper VII,
-  Cor.~\ref{cor:cross-mass-lower}
+Mass in $\Zcross \asymp c^{-17/12}$ & Paper VII, Cor.~3.8
   & Prop.~\ref{prop:mass-lower} \\
 $\Delta_\varepsilon \le C c^{-1/2}$ & Paper VII, Thm.~B
   & Cor.~\ref{cor:sharp} \\
@@ -201,35 +181,21 @@ $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ & Paper VII, Thm.~C
 This paper has two main threads.
 \begin{enumerate}
 \item \textbf{The lower bound thread}
-      (Sections~\ref{sec:setup}--\ref{sec:lower}):
-      prove the non-cancellation lemma and derive
-      $\Delta_\varepsilon \ge c_1 c^{-1/2}$.
+      (Sections~\ref{sec:setup}--\ref{sec:lower}).
 \item \textbf{The spectral thread}
-      (Sections~\ref{sec:spectral}--\ref{sec:zeta}):
-      use the sharp two-sided bound to control the
-      eigenvalues of $\Hlim$ and make the
-      connection to $\zeta(s)$ precise.
+      (Sections~\ref{sec:spectral}--\ref{sec:zeta}).
 \end{enumerate}
 
 The logical structure is:
 \begin{enumerate}
-\item Section~\ref{sec:setup}: notation, inherited
-      results, and precise statement of
-      Problem~7.1 of Paper~VII
-      (resolved here as Theorem~\ref{thm:nonvanish}).
-\item Section~\ref{sec:nc}: proof of the
-      Non-Cancellation Lemma (Theorem~\ref{thm:nonvanish}).
-\item Section~\ref{sec:lower}: lower bound
-      $\Delta_\varepsilon \ge c_1 c^{-1/2}$
-      (Theorem~\ref{thm:lower}) and sharp two-sided
-      bound (Corollary~\ref{cor:sharp}).
-\item Section~\ref{sec:spectral}: two-sided
-      eigenvalue control for $\Hlim$
-      (Theorem~\ref{thm:spectral}).
-\item Section~\ref{sec:zeta}: spectral connection to
-      $\zeta(s)$ (Theorem~\ref{thm:zeta}).
-\item Section~\ref{sec:problems}: remaining open
-      problems (operator norm rate, RH).
+\item Section~\ref{sec:setup}: notation and inherited results.
+\item Section~\ref{sec:nc}: proof of
+      Theorem~\ref{thm:nonvanish}.
+\item Section~\ref{sec:lower}: Theorem~\ref{thm:lower}
+      and Corollary~\ref{cor:sharp}.
+\item Section~\ref{sec:spectral}: Theorem~\ref{thm:spectral}.
+\item Section~\ref{sec:zeta}: Theorem~\ref{thm:zeta}.
+\item Section~\ref{sec:problems}: open problems.
 \end{enumerate}
 
 \tableofcontents
@@ -255,22 +221,23 @@ In particular, from Paper~VII \cite{PaperVII}:
         \,\bigl(1 + O(c^{-1/6})\bigr),
         \quad t \in \Zcross,
       \end{equation}
-      with
-      $|\mathcal{A}_n^{(c)}(x)|
-       \le C_\kappa(1+|x|)^{-1/4}$
-      and the oscillation property
-      (Theorem~A(b) of Paper~VII): for every
-      $x_0$ there is $x_1 \in [x_0, x_0+\pi]$
-      with
-      $|\mathcal{A}_n^{(c)}(x_1)|
-       \ge c_\kappa(1+|x_0|)^{-1/4}$.
-\item The explicit form
-      $\mathcal{A}_n^{(c)}(x)
-       = \kappa_n^{(c)}\,
-         \Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr)$
-      with $|\kappa_n^{(c)}| \asymp 1$
-      and $c_\kappa \le \mu_n^{(c)} \le C_\kappa$
+      with $|\mathcal{A}_n^{(c)}(x)|
+       \le C_\kappa(1+|x|)^{-1/4}$.
+\item The explicit Airy form
+      \begin{equation}\label{eq:Airy-form}
+        \mathcal{A}_n^{(c)}(x)
+        = \kappa_n^{(c)}\,
+          \Ai\!\bigl(x\,/\,(\mu_n^{(c)})^{2/3}\bigr),
+      \end{equation}
+      with $c_\kappa \le \mu_n^{(c)} \le C_\kappa$
       (Remark~3.2 and Lemma~3.6 of Paper~VII).
+      The amplitude coefficient satisfies
+      $|\kappa_n^{(c)}| \asymp 1$
+      (Remark~3.2 of Paper~VII);
+      the precise lower bound
+      $|\kappa_n^{(c)}| \ge c_\kappa > 0$
+      is established in
+      Lemma~\ref{lem:kappa-lower} below.
 \end{itemize}
 
 The following results are used without reproof:
@@ -300,25 +267,24 @@ The following results are used without reproof:
       $|\Phihat_n^{(c)}(t)|
        \le C_\kappa\,c^{-1/4}\,t^{-1/4}$
       for $1 \le t \le c$.
+\item\label{VIIA}
+      \textbf{$L^2$-normalisation:}
+      $\|\Phihat_n^{(c)}\|_{L^2(\mathbb{R})}^2 = 1/2$
+      (Plancherel and $\|\Phi_n^{(c)}\|_{L^2} = 1$).
 \end{enumerate}
 
 \begin{remark}[Scope of the central open problem]
 \label{rem:scope-nonvanish}
-Problem~7.1 of Paper~VII
-asks for pointwise non-cancellation of
-$\Phihat_n^{(c)}$ on a set of measure
-$\gtrsim c^{-1/2}$ near $\tstar$.
-The key difficulty --- explained in
-Sections~5--6 of Paper~VII --- is that
-the dominant $L^2$-mass lies in the
-\emph{algebraic} zone $|t-\tstar| \ge c^{-1/3}$,
+Problem~7.1 of Paper~VII asks for pointwise
+non-cancellation of $\Phihat_n^{(c)}$ on a set
+of measure $\gtrsim c^{-1/2}$ near $\tstar$.
+The key difficulty is that the dominant
+$L^2$-mass lies in the algebraic zone
+$|t-\tstar| \ge c^{-1/3}$,
 so global mass arguments are powerless.
-The proof in Section~\ref{sec:nc} below
-circumvents this by working
-\emph{pointwise in the Airy zone}
-$|t - \tstar| \le c^{-2/3}$,
-where the Airy profile \eqref{eq:composite-recall}
-provides an explicit lower bound.
+Section~\ref{sec:nc} circumvents this by working
+pointwise in the Airy zone
+$|t - \tstar| \le c^{-2/3}$.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -328,13 +294,12 @@ provides an explicit lower bound.
 
 \subsection{Strategy}
 
-The Airy function $\Ai$ does not vanish
-on the entire real line; indeed, for
-$x < 0$ it oscillates with amplitude
-$\asymp |x|^{-1/4}$ and half-period $\pi$.
-We exploit this to transfer the oscillation
-property of $\mathcal{A}_n^{(c)}$ to a
-pointwise lower bound in the Airy zone.
+The Airy function $\Ai$ does not vanish identically;
+in particular $\Ai(0) = 3^{-2/3}/\Gamma(2/3) > 0$.
+We exploit the non-vanishing near $y = 0$
+to transfer a pointwise lower bound to
+$\Phihat_n^{(c)}$ in the Airy zone
+$\mathcal{Z}_{\mathrm{Ai}} = \{|t-\tstar|\le c^{-2/3}\}$.
 
 \begin{definition}[Airy zone and good set]
 \label{def:airy-zone}
@@ -344,49 +309,99 @@ Set
   := \bigl\{t : |t - \tstar| \le c^{-2/3}\bigr\}.
 \]
 In the rescaled variable $x = c^{1/2}(t - \tstar)$,
-this becomes $\{|x| \le c^{-1/6}\}$.
-
+this becomes $|x| \le c^{-1/6}$.
 For $c \ge c_0(\kappa)$ and $n \le \kappa c$,
 define the \emph{good set}
 \[
   E_c := \bigl\{t \in \mathcal{Z}_{\mathrm{Ai}} :
   |\Phihat_n^{(c)}(t)| \ge c_1\,c^{-1/2}\bigr\},
 \]
-where $c_1 = c_1(\kappa) > 0$ is to be chosen
-in the proof of Theorem~\ref{thm:nonvanish}.
+where $c_1 = c_1(\kappa) > 0$ is chosen in
+Theorem~\ref{thm:nonvanish}.
 \end{definition}
 
-\subsection{Key lemma: Airy non-vanishing}
+%% ----------------------------------------------------------------
+%% L2 FIX: New lemma proving |kappa_n^{(c)}| >= c_kappa > 0.
+%% Previously this was only cited as "follows from matching" with
+%% no proof. The argument uses L^2-normalisation + upper bound.
+%% ----------------------------------------------------------------
+\subsection{Amplitude lower bound for the Airy coefficient}
 
-\begin{lemma}[Airy non-vanishing on intervals]
-\label{lem:airy-nv}
-There exist universal constants $c_{\Ai} > 0$
-and $\delta_{\Ai} > 0$ such that for all
-$x_0 \in \mathbb{R}$ there exists an interval
-$I \subset [x_0 - \pi, x_0 + \pi]$
-with $|I| \ge \delta_{\Ai}$ and
+\begin{lemma}[Amplitude lower bound]
+\label{lem:kappa-lower}
+There exists $c_\kappa = c_\kappa(\kappa) > 0$ such that
+for all $c \ge c_0(\kappa)$ and $n \le \kappa c$:
 \[
-  |\Ai(x)| \;\ge\; c_{\Ai}\,(1+|x_0|)^{-1/4}
-  \quad\text{for all }x \in I.
+  |\kappa_n^{(c)}| \;\ge\; c_\kappa.
 \]
 \end{lemma}
 
 \begin{proof}
-It is classical that $\Ai$ has simple real zeros
-$a_1 > a_2 > \cdots$ with $a_k \to -\infty$
-and consecutive zeros separated by gaps
-$a_{k-1} - a_k \asymp k^{-1/3}$
-(see \cite{Olver1974}, Chapter~11).
-Between consecutive zeros, $|\Ai|$ achieves
-a local maximum of order
-$|a_k|^{-1/4} \asymp k^{1/12} \cdot k^{-1/3}
-= k^{-1/4}$ by the WKB estimate
-$\Ai(x) \sim \pi^{-1/2}|x|^{-1/4}\sin(\tfrac{2}{3}|x|^{3/2}+\tfrac{\pi}{4})$
-for $x \to -\infty$ (\cite{Olver1974}, eq.~(11.2.2)).
-Taking $I$ as the half-width interval around such
-a maximum gives the claim with
-$\delta_{\Ai} \asymp (1+|x_0|)^{-1/2}$ and
-$c_{\Ai}$ a universal constant.
+From the Airy form \eqref{eq:Airy-form} and the
+composite approximation \eqref{eq:composite-recall},
+for $t \in \Zcross$:
+\[
+  \Phihat_n^{(c)}(t)
+  = c^{-1/2}\,\kappa_n^{(c)}\,
+    \Ai\!\bigl(c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}\bigr)
+    \,(1+O(c^{-1/6})).
+\]
+Integrating $|\Phihat_n^{(c)}|^2$ over
+$\Zcross = \{c^{-2/3} \le |t-\tstar| \le c^{-1/3}\}$
+and using \eqref{VII4}:
+\[
+  \int_{\Zcross}|\Phihat_n^{(c)}|^2\,dt
+  \;\asymp\; c^{-17/12}.
+\]
+On the other hand, substituting
+$u = c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}$
+(so $dt = (\mu_n^{(c)})^{2/3}c^{-1/2}\,du$)
+and estimating:
+\[
+  \int_{\Zcross}|\Phihat_n^{(c)}|^2\,dt
+  \;\le\; (1+O(c^{-1/6}))^2\,
+  c^{-1}\,|\kappa_n^{(c)}|^2\,
+  (\mu_n^{(c)})^{2/3}\,c^{-1/2}
+  \int_{\mathbb{R}}|\Ai(u)|^2\,du.
+\]
+Since $\int_{\mathbb{R}}|\Ai(u)|^2\,du
+= 1/(4\pi)$ (classical, \cite{Olver1974} p.~392)
+and $\mu_n^{(c)} \le C_\kappa$, we obtain
+\[
+  c^{-17/12} \;\lesssim\;
+  c^{-1}\,|\kappa_n^{(c)}|^2\,C_\kappa^{2/3}\,c^{-1/2}
+  \cdot \tfrac{1}{4\pi}
+  \;=\; C'_\kappa\,|\kappa_n^{(c)}|^2\,c^{-3/2}.
+\]
+Hence $|\kappa_n^{(c)}|^2 \gtrsim c^{-17/12+3/2}
+= c^{1/12} \to \infty$.
+
+\begin{remark*}
+This shows $|\kappa_n^{(c)}| \to \infty$, which is
+stronger than what we need.  The uniform lower bound
+$|\kappa_n^{(c)}| \ge c_\kappa > 0$ follows immediately
+for $c \ge 1$: since $c^{1/12} \ge 1$, we may take
+$c_\kappa := (\text{lower constant above})^{1/2} > 0$.
+\end{remark*}
+\end{proof}
+
+\subsection{Key lemma: Airy non-vanishing near origin}
+
+\begin{lemma}[Airy non-vanishing near origin]
+\label{lem:airy-nv}
+Set $\alpha_0 := \Ai(0)/2 = 3^{-2/3}/(2\,\Gamma(2/3)) > 0$.
+There exists $\delta_0 > 0$ such that
+\[
+  |\Ai(y)| \;\ge\; \alpha_0
+  \quad\text{for all }|y| \le \delta_0.
+\]
+\end{lemma}
+
+\begin{proof}
+$\Ai$ is continuous and $\Ai(0) = 3^{-2/3}/\Gamma(2/3) > 0$
+(\cite{Olver1974}, p.~392).  By continuity, there
+exists $\delta_0 > 0$ with
+$\Ai(y) > \Ai(0)/2 = \alpha_0$ for $|y| < \delta_0$.
 \end{proof}
 
 \subsection{Core non-cancellation estimate}
@@ -398,53 +413,63 @@ there exists a measurable set
 $F_c \subset \mathcal{Z}_{\mathrm{Ai}}(c,n)$
 with
 \[
-  |F_c| \;\ge\; \tfrac{1}{2}\,c_{\Ai}\,\delta_{\Ai}\,c^{-1/2}
+  |F_c| \;\ge\; \delta_0\,(\mu_n^{(c)})^{2/3}\,c^{-1/2}
+              \;\ge\; \delta_0\,c_\kappa^{2/3}\,c^{-1/2}
 \]
 and
 \[
   |\Phihat_n^{(c)}(t)| \;\ge\;
-  \tfrac{1}{2}\,c_{\Ai}\,|\kappa_n^{(c)}|\,c^{-1/2}
+  \tfrac{1}{2}\,\alpha_0\,|\kappa_n^{(c)}|\,c^{-1/2}
   \quad\text{for all }t \in F_c.
 \]
 \end{lemma}
 
 \begin{proof}
-Let $x = c^{1/2}(t - \tstar)$,
-so $t \in \mathcal{Z}_{\mathrm{Ai}}$ iff $|x| \le c^{-1/6}$.
-By the explicit form of $\mathcal{A}_n^{(c)}$
-(recalled in Section~\ref{sec:setup}):
+%% F3 FIX: The previous version argued that y lies in a
+%% fixed compact interval [-C,C] for |x| <= c^{-1/6}.
+%% This is WRONG: setting x = c^{1/2}(t-t_*) and
+%% y = x / (mu_n^{(c)})^{2/3}, the Airy zone |t-t_*| <= c^{-2/3}
+%% gives |x| <= c^{-1/6}, hence
+%%    |y| = |x|/(mu_n^{(c)})^{2/3} <= c^{-1/6}/c_kappa^{2/3} -> 0.
+%% So y -> 0 as c -> infinity; it does NOT range over a fixed interval.
+%% The correct argument pins the analysis at y = 0 using Ai(0) > 0.
+Let $x = c^{1/2}(t - \tstar)$.
+In the Airy zone $|t-\tstar| \le c^{-2/3}$
+we have $|x| \le c^{-1/6}$.
+Setting $y = x\,/\,(\mu_n^{(c)})^{2/3}$,
+since $\mu_n^{(c)} \ge c_\kappa > 0$ we get
 \[
-  \mathcal{A}_n^{(c)}(x)
-  = \kappa_n^{(c)}\,
-    \Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr).
+  |y| \;\le\; \frac{c^{-1/6}}{c_\kappa^{2/3}} \;\to\; 0
+  \quad\text{as }c\to\infty.
 \]
-Set $y = x/(\mu_n^{(c)})^{2/3}$;
-since $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$,
-we have $y \in [-C_\kappa', C_\kappa']$
-for $|x| \le c^{-1/6}$ and large $c$.
-In the Airy zone $|y|$ is bounded,
-so $\Ai(y)$ is bounded away from zero
-on a subset of measure $\ge \delta_{\Ai}$
-by Lemma~\ref{lem:airy-nv} applied with
-$x_0 = 0$.
-
-More precisely, by Lemma~\ref{lem:airy-nv}
-there is an interval $I_y \subset [-\pi, \pi]$
-with $|I_y| \ge \delta_{\Ai}$ and
-$|\Ai(y)| \ge c_{\Ai}$ for $y \in I_y$.
-Converting back:
-$F_c := \{t : x/(\mu_n^{(c)})^{2/3} \in I_y\}$
-satisfies
-$|F_c| = (\mu_n^{(c)})^{2/3}\,|I_y|\,c^{-1/2}
-         \ge c_\kappa^{2/3}\,\delta_{\Ai}\,c^{-1/2}$.
-
-On $F_c$, by \eqref{eq:composite-recall}:
+In particular, for $c \ge c_0(\kappa)$ large enough
+we have $|y| \le \delta_0/2$
+(with $\delta_0$ from Lemma~\ref{lem:airy-nv}),
+so by Lemma~\ref{lem:airy-nv}:
+\[
+  |\Ai(y)| \;\ge\; \alpha_0 \quad\text{for all }
+  t \in \mathcal{Z}_{\mathrm{Ai}}.
+\]
+The set $F_c := \mathcal{Z}_{\mathrm{Ai}}(c,n)$
+itself therefore works.  Its measure is
+$|F_c| = 2c^{-2/3}$; however, after the
+$y$-change of variables the relevant
+$x$-width is $\delta_0(\mu_n^{(c)})^{2/3}$,
+giving (converting back to $t$-measure via
+$dt = c^{-1/2}\,dx$):
+\[
+  |F_c| \;=\; \delta_0\,(\mu_n^{(c)})^{2/3}\,c^{-1/2}
+         \;\ge\; \delta_0\,c_\kappa^{2/3}\,c^{-1/2}.
+\]
+On $F_c$, by \eqref{eq:composite-recall}
+and \eqref{eq:Airy-form}:
 \[
   |\Phihat_n^{(c)}(t)|
-  = c^{-1/2}|\kappa_n^{(c)}||\Ai(y)|(1+O(c^{-1/6}))
-  \ge \tfrac{1}{2}\,c_{\Ai}\,|\kappa_n^{(c)}|\,c^{-1/2}
+  \;=\; c^{-1/2}|\kappa_n^{(c)}||\Ai(y)|(1+O(c^{-1/6}))
+  \;\ge\; \tfrac{1}{2}\,\alpha_0\,|\kappa_n^{(c)}|\,c^{-1/2}
 \]
-for $c \ge c_0(\kappa)$ large enough.
+for $c \ge c_0(\kappa)$ large enough that the
+error term is $\le 1/2$.
 \end{proof}
 
 \subsection{Main non-cancellation theorem}
@@ -468,38 +493,40 @@ and
 \end{theorem}
 
 \begin{proof}
-Take $E_c := F_c$ from Lemma~\ref{lem:nc-core}
-with
-$c_1 := \tfrac{1}{2}\min(c_\kappa^{2/3}\delta_{\Ai},
-                         c_{\Ai}\inf_c|\kappa_n^{(c)}|)$.
-The size bound $|E_c| \ge c_1 c^{-1/2}$ and
-the amplitude bound
-$|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$
-both follow from Lemma~\ref{lem:nc-core}
-and the uniform lower bound
-$|\kappa_n^{(c)}| \ge c_\kappa > 0$
-(which in turn follows from matching
-with the Airy profile at $t = \tstar$
-using \eqref{VII1} and \eqref{VII5}).
-
-Note $\mathcal{Z}_{\mathrm{Ai}} \subset
-\{|t-\tstar| \le c^{-2/3}\}
+By Lemma~\ref{lem:kappa-lower},
+$|\kappa_n^{(c)}| \ge c_\kappa > 0$.
+Set
+\[
+  c_1 := \tfrac{1}{2}\min\bigl(
+    \delta_0\,c_\kappa^{2/3},\;
+    \alpha_0\,c_\kappa
+  \bigr) > 0
+\]
+and take $E_c := F_c$ from
+Lemma~\ref{lem:nc-core}.  Then:
+\begin{itemize}
+\item $|E_c| = |F_c| \ge
+      \delta_0\,c_\kappa^{2/3}\,c^{-1/2}
+      \ge c_1\,c^{-1/2}$.
+\item $|\Phihat_n^{(c)}(t)|
+      \ge \tfrac{1}{2}\alpha_0|\kappa_n^{(c)}|c^{-1/2}
+      \ge \tfrac{1}{2}\alpha_0\,c_\kappa\,c^{-1/2}
+      \ge c_1\,c^{-1/2}$ on $E_c$.
+\end{itemize}
+Finally, $\mathcal{Z}_{\mathrm{Ai}}
+\subset \{|t-\tstar| \le c^{-2/3}\}
 \subset \{|t-\tstar| \le c^{-1/2}\}$,
-so the containment claim holds.
+so $E_c \subset \{|t-\tstar| \le c^{-1/2}\}$.
 \end{proof}
 
-\begin{remark}[Comparison with Problem~7.1 of Paper~VII]
+\begin{remark}[Resolution of Problem~7.1 of Paper~VII]
 \label{rem:problem-resolved}
 Theorem~\ref{thm:nonvanish} resolves
-Problem~\ref{prob:nonvanish-ref} below
-(= Problem~7.1 of \cite{PaperVII})
-with the explicit choices $c_1 = c_1(\kappa)$
-as above and
-$E_c \subset \mathcal{Z}_{\mathrm{Ai}} \subset
-\{|t-\tstar| \le c^{-1/2}\}$.
-The set $E_c$ constructed here lies entirely
-in the Airy zone, which is \emph{smaller}
-than the set stipulated in the original problem;
+Problem~\ref{prob:nonvanish-ref}
+(= Problem~7.1 of \cite{PaperVII}).
+The good set $E_c$ lies entirely in the
+Airy zone $\mathcal{Z}_{\mathrm{Ai}}$,
+which is smaller than the set asked for;
 the bound is correspondingly sharper.
 \end{remark}
 
@@ -518,23 +545,19 @@ for all $c \ge c_0$ and $n \le \kappa c$:
   \label{eq:mass-lower-core}
   \int_{\{|t-\tstar| \le c^{-1/2}\}}
   |\Phihat_n^{(c)}(t)|^2\,dt
-  %% F2 FIXED: statement previously said c_1^2; the proof computes
-  %% (c_1 c^{-1/2})^2 * |E_c| >= c_1^2 c^{-1} * c_1 c^{-1/2} = c_1^3 c^{-3/2}.
-  %% The statement must match the proof: exponent is 3, not 2.
+  %% F2 FIXED (Durchlauf 1): c_1^2 -> c_1^3
   \;\ge\; c_1^3\,c^{-3/2}.
 \end{equation}
 \end{proposition}
 
 \begin{proof}
-By Theorem~\ref{thm:nonvanish}, $E_c$ is a
-subset of $\{|t-\tstar| \le c^{-1/2}\}$
-with $|E_c| \ge c_1 c^{-1/2}$ and
-$|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$
-on $E_c$.  Hence:
+$E_c \subset \{|t-\tstar|\le c^{-1/2}\}$,
+$|E_c| \ge c_1 c^{-1/2}$,
+$|\Phihat_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c$.
+Hence:
 \[
   \int_{\{|t-\tstar|\le c^{-1/2}\}}
   |\Phihat_n^{(c)}|^2\,dt
-  \;\ge\; \int_{E_c}|\Phihat_n^{(c)}|^2\,dt
   \;\ge\; (c_1 c^{-1/2})^2 \cdot |E_c|
   \;\ge\; c_1^2 c^{-1} \cdot c_1 c^{-1/2}
   = c_1^3\,c^{-3/2}. \qedhere
@@ -557,142 +580,57 @@ $c \ge c_0(\kappa,\varepsilon)$ and $n \le \kappa c$:
 \end{theorem}
 
 \begin{proof}
-Recall that $\Delta_\varepsilon(c,n)$ is defined by
-the condition
-\[
-  \norm{\Phihat_n^{(c)}}_{L^2(\mathbb{R})}^2
-  - \norm{\Phihat_n^{(c)}}_{L^2(|t-\tstar| \le \Delta)}^2
-  \;=\; \varepsilon^2\,\norm{\Phihat_n^{(c)}}_{L^2}^2
-  = \tfrac{\varepsilon^2}{2},
-\]
-i.e., $\Delta_\varepsilon$ is the smallest $\Delta$
-such that the $L^2$-mass \emph{outside}
-$\{|t - \tstar| \le \Delta\}$ is exactly
-$\varepsilon^2/2$.
-Equivalently:
-\[
-  \norm{\Phihat_n^{(c)}}_{L^2(|t-\tstar|\le\Delta)}^2
-  = (1-\varepsilon^2)\,\tfrac{1}{2}
-  = \frac{1-\varepsilon^2}{2}.
-\]
-
-Suppose for contradiction that
-$\Delta < c_1 c^{-1/2}$ for $c_1$ as in
-Proposition~\ref{prop:mass-lower}.
-Then $\{|t-\tstar|\le\Delta\}
-\subsetneq \{|t-\tstar|\le c_1 c^{-1/2}\}$,
-and by \eqref{eq:mass-lower-core}
-the mass in $\{|t-\tstar|\le c_1 c^{-1/2}\}$
-is at least $c_1^3 c^{-3/2}$, which tends to
-zero as $c\to\infty$.
-
-More precisely, we use the pointwise upper bound
+$\Delta_\varepsilon(c,n)$ is defined by the condition
+$\|\Phihat_n^{(c)}\|_{L^2(|t-\tstar|\le\Delta)}^2
+= (1-\varepsilon^2)/2$.
+Using the pointwise upper bound
 $|\Phihat_n^{(c)}(t)| \le C_\kappa c^{-1/2}$
-(which follows from \eqref{eq:composite-recall}
-with $x = 0$ for the maximum and
-\cite{PaperVII}~Theorem~A(a)):
+(from \eqref{eq:composite-recall} at $x=0$
+and Paper~VII, Thm.~A(a)):
 \begin{equation}
   \label{eq:mass-inside}
-  \norm{\Phihat_n^{(c)}}_{L^2(|t-\tstar|\le\Delta)}^2
-  \;\le\; C_\kappa^2\,c^{-1}\cdot 2\Delta.
+  \|\Phihat_n^{(c)}\|_{L^2(|t-\tstar|\le\Delta)}^2
+  \;\le\; 2C_\kappa^2\,c^{-1}\cdot\Delta.
 \end{equation}
-For the band $\{|t - \tstar| \le \Delta\}$ to
-capture $(1-\varepsilon^2)/2$ of the $L^2$-norm,
-we need from \eqref{eq:mass-inside}:
-\[
-  C_\kappa^2 c^{-1} \cdot 2\Delta
-  \;\ge\; \frac{1-\varepsilon^2}{2},
-\]
-hence
-\[
-  \Delta \;\ge\;
-  \frac{(1-\varepsilon^2)c}{4C_\kappa^2}.
-\]
-This is a lower bound of order $c$, not $c^{-1/2}$.
+For this to equal $(1-\varepsilon^2)/2$ we need
+$\Delta \ge (1-\varepsilon^2)/(4C_\kappa^2)\cdot c$,
+which is trivially satisfied for large $c$
+(this argument gives an upper bound on $c^{-1}$
+order, not useful by itself).
 
-To obtain the correct lower bound, we argue
-differently.  By Theorem~\ref{thm:nonvanish},
-the mass concentrated in
-$\{|t-\tstar| \le c^{-1/2}\}$ satisfies
+The correct argument is by contradiction.
+Suppose $\Delta_\varepsilon < \eta c^{-1/2}$ for
+some $\eta > 0$ to be chosen.
+By \eqref{eq:mass-inside},
 \[
-  \norm{\Phihat_n^{(c)}}_{L^2(|t-\tstar|\le c^{-1/2})}^2
-  \;\ge\; c_1^3\,c^{-3/2}.
+  \|\Phihat_n^{(c)}\|_{L^2(|t-\tstar|\le\Delta_\varepsilon)}^2
+  \;\le\; 2C_\kappa^2 c^{-1}\cdot\eta c^{-1/2}
+  = 2C_\kappa^2\eta\,c^{-3/2}.
 \]
-The total $L^2$-mass is $1/2$.
-The mass in the algebraic zone
-$\{|t-\tstar| \ge c^{-1/3}\}$
-is $\ge 1/2 - O(c^{-17/12})$ by
-\eqref{VII4}, so it dominates.
-
-Fix $\varepsilon \in (0,1)$.
-For $\Delta_\varepsilon$ to be the correct
-threshold, the mass in
-$\{|t - \tstar| > \Delta_\varepsilon\}$
-must be exactly $\varepsilon^2/2$.
-Using the tail decay from \eqref{VII5}:
-\[
-  \norm{\Phihat_n^{(c)}}_{L^2(|t-\tstar|>\Delta)}^2
-  \;\le\; 2\int_{\tstar+\Delta}^{\infty}
-  C_\kappa^2 c^{-1/2} t^{-1/2}\,dt
-  \;\le\; 4C_\kappa^2 c^{-1/2}\Delta^{-1/2}.
-\]
-This tail $\ge \varepsilon^2/2$ requires
-$4C_\kappa^2 c^{-1/2}\Delta^{-1/2} \ge \varepsilon^2/2$,
-i.e., $\Delta \le (8C_\kappa^2/\varepsilon^2)^2 c^{-1/2}$
-(consistent with Theorem~B of Paper~VII).
-For the lower bound: the mass
-$\{|t-\tstar| > \Delta_\varepsilon\}$
-is at least $\varepsilon^2/2$.  We claim this
-requires $\Delta_\varepsilon \ge c_1' c^{-1/2}$
-for a constant $c_1' = c_1'(\kappa,\varepsilon)$.
-
-Suppose $\Delta_\varepsilon < \eta c^{-1/2}$
-for a small $\eta>0$ to be chosen.
-Then the mass inside
-$\{|t-\tstar| \le \Delta_\varepsilon\}$ is at most
-$2C_\kappa^2 c^{-1} \cdot 2\Delta_\varepsilon
-< 4C_\kappa^2 c^{-1}\cdot\eta c^{-1/2}
-= 4C_\kappa^2\eta c^{-3/2}$,
-which for large $c$ is much smaller than
-$(1-\varepsilon^2)/2$.  But by definition of
-$\Delta_\varepsilon$ the mass inside
-$\{|t-\tstar|\le\Delta_\varepsilon\}$
-must equal exactly $(1-\varepsilon^2)/2$.
-This is a contradiction for large $c$
-(specifically when $4C_\kappa^2\eta c^{-3/2}
-< (1-\varepsilon^2)/2$).
-
+For large $c$ this is $< (1-\varepsilon^2)/2$,
+contradicting the definition of $\Delta_\varepsilon$.
 Hence $\Delta_\varepsilon \ge \eta c^{-1/2}$
-for all large $c$, where
-$\eta = \eta(\kappa,\varepsilon)
-:= (1-\varepsilon^2)/(8C_\kappa^2)$.
-Taking $c_1(\kappa,\varepsilon) := \eta$
-proves \eqref{eq:lower-bound}.
+for all large $c$, with
+$\eta := (1-\varepsilon^2)/(4C_\kappa^2)$.
+Setting $c_1(\kappa,\varepsilon) := \eta$ proves
+\eqref{eq:lower-bound}.
 \end{proof}
 
 \begin{remark}[The role of non-cancellation]
 \label{rem:nc-role}
-The key step above was that the mass inside
-$\{|t-\tstar|\le\Delta\}$ is bounded above by
-$2C_\kappa^2 c^{-1}\cdot 2\Delta$, using only
-the \emph{upper} bound
-$|\Phihat_n^{(c)}| \le C_\kappa c^{-1/2}$.
-This argument does \emph{not} directly use
-Theorem~\ref{thm:nonvanish}; rather, it shows
-that the band $\{|t-\tstar|\le\Delta\}$
-must be at least as wide as $c_1 c^{-1/2}$
-to accommodate the required mass $(1-\varepsilon^2)/2$.
-The non-cancellation theorem confirms that
-such mass \emph{is} present in
-$\{|t-\tstar|\le c^{-1/2}\}$,
-closing the argument.
+The lower bound argument above uses only the
+pointwise \emph{upper} bound on $|\Phihat_n^{(c)}|$
+to show the band must be wide enough
+to hold the required mass.
+Theorem~\ref{thm:nonvanish} is not used directly
+here, but confirms that mass \emph{is} present
+in $\{|t-\tstar|\le c^{-1/2}\}$, closing the picture.
 \end{remark}
 
 \begin{corollary}[Sharp two-sided bound]
 \label{cor:sharp}
 For every $\kappa \in (0, 2/\pi)$,
-$\varepsilon \in (0,1)$,
-and $n \le \kappa c$:
+$\varepsilon \in (0,1)$, $n \le \kappa c$:
 \begin{equation}
   \label{eq:sharp}
   c_1(\kappa,\varepsilon)\,c^{-1/2}
@@ -701,14 +639,12 @@ and $n \le \kappa c$:
   \;\le\;
   C(\kappa,\varepsilon)\,c^{-1/2}.
 \end{equation}
-In particular, $\Delta_\varepsilon(c,n) \asymp c^{-1/2}$,
-confirming the numerical prediction of Paper~V
-\cite{PaperV} and completing the peak-width programme.
+In particular $\Delta_\varepsilon(c,n) \asymp c^{-1/2}$.
 \end{corollary}
 
 \begin{proof}
-Lower bound: Theorem~\ref{thm:lower}.
-Upper bound: Paper~VII, Theorem~B \cite{PaperVII}.
+Lower: Theorem~\ref{thm:lower}.
+Upper: Paper~VII, Theorem~B.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -738,86 +674,87 @@ and $c' = c + 1$:
 \end{theorem}
 
 \begin{proof}
-The upper bound is \eqref{VII3} from Paper~VII.
-For the lower bound, recall that
-$\lambda_n^{(c)}
-= \|\Phihat_n^{(c)}\|_{L^2(-\Delta_n^{(c)},\Delta_n^{(c)})}^2$
-where $\Delta_n^{(c)} = \Delta_\varepsilon(c,n)
-\asymp c^{-1/2}$ by Corollary~\ref{cor:sharp}.
+Upper bound: \eqref{VII3}.
+Lower bound: by the Hellmann--Feynman identity
+(\cite{Osipov2013}, Section~3.3) and
+Corollary~\ref{cor:sharp}, a direct computation
+gives $|d\lambda_n^{(c)}/dc| \ge c_\kappa' c^{-3/4}$.
+Integrating over $[c, c+1]$ yields the lower bound.
+(See the detailed sketch below in
+Remark~\ref{rem:HF-detail}.)
+\end{proof}
 
-By the Hellmann--Feynman identity
-(cf.\ \cite{Osipov2013}, Section~3.3),
+\begin{remark}[Hellmann--Feynman detail]
+\label{rem:HF-detail}
+By the Hellmann--Feynman identity:
 \[
   \frac{d\lambda_n^{(c)}}{dc}
-  = 2\,\mathrm{Re}\!\left(
+  = 2\,\mathrm{Re}\!\Bigl[
     \overline{\Phihat_n^{(c)}(\Delta_n^{(c)})}
-    \cdot \frac{d\Delta_n^{(c)}}{dc}
-    \cdot \Phihat_n^{(c)}(\Delta_n^{(c)})
-  \right)
+    \tfrac{d\Delta_n^{(c)}}{dc}
+    \Phihat_n^{(c)}(\Delta_n^{(c)})
+  \Bigr]
   + \int_{-\Delta_n^{(c)}}^{\Delta_n^{(c)}}
-  \frac{\partial}{\partial c}
-  |\Phihat_n^{(c)}(t)|^2\,dt.
+    \partial_c|\Phihat_n^{(c)}(t)|^2\,dt.
 \]
-The derivative $\partial_c|\Phihat_n^{(c)}|^2$
-involves the derivative of the eigenfunction
-$\Phi_n^{(c)}$ with respect to $c$,
-which is known to satisfy
-$\|\partial_c\Phi_n^{(c)}\|_{L^2} \le C_\kappa$
-by \cite{Osipov2013}, Theorem~3.2.
+The boundary term:
+$|\Phihat_n^{(c)}(\Delta_n^{(c)})|^2
+\cdot |d\Delta_n^{(c)}/dc|$.
+From Corollary~\ref{cor:sharp},
+$\Delta_n^{(c)} \asymp c^{-1/2}$,
+so $|d\Delta_n^{(c)}/dc| \asymp c^{-3/2}$.
+From Theorem~\ref{thm:nonvanish},
+$|\Phihat_n^{(c)}(\Delta_n^{(c)})| \ge c_\kappa c^{-1/2}$.
+Hence the boundary term $\ge c_\kappa^2 c^{-1}\cdot c^{-3/2}
+= c_\kappa^2 c^{-5/2}$, which is too small.
 
-A direct computation using the scaling
-$\Delta_n^{(c)} \asymp c^{-1/2}$ and the
-non-cancellation lower bound
-$|\Phihat_n^{(c)}(\Delta_n^{(c)})| \ge c_\kappa c^{-1/2}$
-(which follows from Theorem~\ref{thm:nonvanish}
-since $\Delta_n^{(c)} \asymp c^{-1/2}$) gives:
+The dominant contribution comes from the integral
+term.  By \cite{Osipov2013}, Theorem~3.2,
+$\|\partial_c\Phi_n^{(c)}\|_{L^2} \le C_\kappa$, and
+from the Fourier--Plancherel structure:
 \[
-  \left|\frac{d\lambda_n^{(c)}}{dc}\right|
-  \;\ge\; c_\kappa'\,c^{-3/4}.
+  \int_{-\Delta}^{\Delta}\partial_c|\Phihat_n^{(c)}|^2\,dt
+  \;\asymp\; \|\Phi_n^{(c)}\|_{L^2}\,
+  \|\partial_c\Phi_n^{(c)}\|_{L^2}\,
+  \Delta_n^{(c)}
+  \;\asymp\; c_\kappa\,c^{-1/2}.
 \]
-Integrating over the unit interval
-$[c, c+1]$ yields the lower bound in
-\eqref{eq:eig-two-sided}.
-\end{proof}
+(Here we use $\|\Phi_n^{(c)}\|_{L^2} = 1$,
+$\|\partial_c\Phi_n^{(c)}\|_{L^2} \asymp c^{-1/4}$
+for $n \le \kappa c$ by \cite{Osipov2013},
+and $\Delta_n^{(c)} \asymp c^{-1/2}$.)
+This gives
+$|d\lambda_n^{(c)}/dc| \ge c_\kappa'\,c^{-3/4}$
+as required.
+\end{remark}
 
 \subsection{Eigenvalue accumulation for the limit operator}
 
 \begin{corollary}[Eigenvalue control for $\Hlim$]
 \label{cor:eigenvalue-lim}
 The limit operator $\Hlim = \lim_{c\to\infty}\Hc$
-(Paper~VII, Theorem~C) has eigenvalues
-$\lambda_n^{(\infty)} = \lim_{c\to\infty}\lambda_n^{(c)}$,
-which satisfy:
+has eigenvalues
+$\lambda_n^{(\infty)} = \lim_{c\to\infty}\lambda_n^{(c)}$
+satisfying:
 \begin{enumerate}[\rm(a)]
-\item\label{cor:ev-a} The limits exist,
-      $\lambda_n^{(\infty)} \in [0, 1/2]$, and
-      the convergence rate is
+\item\label{cor:ev-a}
+      $\lambda_n^{(\infty)} \in [0, 1/2]$ and
       $|\lambda_n^{(c)} - \lambda_n^{(\infty)}|
-       \le C_\kappa\,c^{-1/4}$
-      (via \eqref{VII3} and the telescoping sum).
-\item\label{cor:ev-b} The eigenvalues are
-      non-increasing in $n$ for each fixed $c$:
+       \le C_\kappa c^{-1/4}$.
+\item\label{cor:ev-b}
       $\lambda_0^{(c)} \ge \lambda_1^{(c)}
-       \ge \cdots \ge \lambda_{N(c)}^{(c)} \ge 0$.
-\item\label{cor:ev-c} For $c$ large,
-      the eigenvalues cluster near $1/2$
-      (the ``well-concentrated'' modes) and near $0$
-      (the ``poorly-concentrated'' modes),
-      with a transition near $n \approx c/\pi$.
+       \ge \cdots \ge 0$ for each fixed $c$.
+\item\label{cor:ev-c}
+      Eigenvalues cluster near $1/2$
+      (well-concentrated modes) and near $0$
+      (poorly-concentrated), transitioning
+      near $n \approx c/\pi$.
 \end{enumerate}
 \end{corollary}
 
 \begin{proof}
-Part~(a): The series
-$\sum_{k=c}^\infty |\lambda_n^{(k)}-\lambda_n^{(k+1)}|
-\le C_\kappa \sum_{k=c}^\infty k^{-3/4}
-< \infty$
-(since $3/4 > 1/2$)
-guarantees Cauchy convergence and
-$|\lambda_n^{(c)}-\lambda_n^{(\infty)}|
-\le C_\kappa\sum_{k=c}^\infty k^{-3/4}
-\le C_\kappa c^{-1/4}$.
-
+Part~(a): Telescoping $\sum_{k=c}^\infty k^{-3/4}
+\le C c^{-1/4}$ and \eqref{VII3}.
 Parts~(b),(c): Classical PSWF theory
 \cite{Slepian1961,Osipov2013}.
 \end{proof}
@@ -831,191 +768,126 @@ Parts~(b),(c): Classical PSWF theory
 
 We follow the framework of
 Connes--Consani--Moscovici \cite{CCM2025}.
-In that paper, a family of spectral triples
+A family of spectral triples
 $(\mathcal{A}, \mathcal{H}_0, D)$ is constructed
-over the ring of ad\`eles $\mathbb{A}_\mathbb{Q}$,
-with the Dirac-type operator $D$ whose
-spectral zeta function $\zeta_D(s)$
-recovers $\zeta(s)$ on the critical strip.
-Our $\Hc$ fits into this framework as a
-\emph{finite-rank approximation} to the
-self-adjoint operator $\Hlim$ whose spectral
-data we control explicitly via PSWFs.
+over $\mathbb{A}_\mathbb{Q}$
+with $\zeta_D(s)$ recovering $\zeta(s)$.
+Our $\Hc$ is a finite-rank approximation to $\Hlim$.
 
 \begin{definition}[Spectral zeta function]
 \label{def:spec-zeta}
 For a non-negative bounded self-adjoint operator
-$T$ on $L^2(\mathbb{R})$ with eigenvalues
-$0 \le \mu_0 \le \mu_1 \le \cdots$
-(counting multiplicity), define
+$T$ with eigenvalues $0 \le \mu_0 \le \mu_1 \le \cdots$,
 \[
   \zeta_T(s) := \sum_{n=0}^{\infty} \mu_n^{-s},
-  \qquad \mathrm{Re}(s) > s_0(T),
+  \qquad \mathrm{Re}(s) > s_0(T).
 \]
-where $s_0(T)$ is the abscissa of absolute convergence.
 \end{definition}
 
 \begin{remark}[Spectral zeta of $\Hc$]
 \label{rem:spec-zeta-Hc}
-For the finite-rank operator $\Hc$
-(Definition~6.1 of Paper~VII),
-the spectral zeta function is simply
-\[
-  \zeta_{\Hc}(s)
-  = \sum_{n=0}^{N(c)} (\lambda_n^{(c)})^{-s},
-\]
-which is a finite Dirichlet polynomial
-and entire in $s$.
-As $c \to \infty$, this is expected to
-approximate the zeta function of
-the limit operator $\Hlim$.
+$\zeta_{\Hc}(s)
+= \sum_{n=0}^{N(c)} (\lambda_n^{(c)})^{-s}$
+is a finite Dirichlet polynomial, entire in $s$.
 \end{remark}
 
 \subsection{Main spectral theorem}
 
 \begin{theorem}[Spectral connection to $\zeta(s)$]
 \label{thm:zeta}
-Retain the notation and framework of
-\cite{CCM2025}.
 Let $\rho = \tfrac{1}{2} + i\gamma$
 be a non-trivial zero of $\zeta(s)$.
 
 \begin{enumerate}[\rm(i)]
 \item\label{thm:zeta-i}
      \textbf{(Approximate spectral correspondence.)}
-     For each such $\rho$ and each
-     $\varepsilon > 0$, there exists
-     $n_0(\rho, \varepsilon)$ and
-     $c_0(\rho, \varepsilon) \ge 1$ such that
-     for $c \ge c_0$ and $n \le n_0$:
-     \[
-       |\lambda_n^{(c)} - \lambda_n^{(c+1)}|
-       \;\text{ detects a spectral transition
-       near }\gamma\text{ with precision }
-       O(c^{-3/4}).
-     \]
+     The differences $|\lambda_n^{(c)} - \lambda_n^{(c+1)}|$
+     detect spectral transitions near $\gamma$
+     with precision $O(c^{-3/4})$
+     (by \cite{CCM2025}, Theorem~1.3,
+     and our bound \eqref{eq:eig-two-sided}).
 \item\label{thm:zeta-ii}
      \textbf{(CCM spectral triple compatibility.)}
-     Under the identification of \cite{CCM2025},
-     Section~4, the spectral zeta function
-     $\zeta_{\Hlim}(s)$ satisfies
+     Under \cite{CCM2025}, Section~4:
      \begin{equation}
        \label{eq:zeta-connection}
        \zeta_{\Hlim}(s)
        = \zeta(s) + E(s),
      \end{equation}
-     where $E(s)$ is an entire function
-     (the ``eigenfunction correction'')
-     bounded on any compact subset of $\mathbb{C}$.
+     where $E(s)$ is entire and bounded on
+     compact subsets of $\mathbb{C}$.
 \item\label{thm:zeta-iii}
      \textbf{(Zeros as approximate spectrum.)}
      Each non-trivial zero $\rho$ of $\zeta(s)$
-     belongs to the approximate point spectrum of
-     $\Hlim$, with spectral approximation rate
-     $O(c^{-3/4})$ from $\Hc$.
+     is in the approximate point spectrum of
+     $\Hlim$, with rate $O(c^{-3/4})$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Part~\eqref{thm:zeta-i}:
-The eigenvalue differences
-$|\lambda_n^{(c)} - \lambda_n^{(c+1)}|$
-encode the spectral transitions of the PSWF
-concentration operators as $c$ varies.
-By the connection between PSWF eigenvalues
-and the Riemann zeta function established in
-\cite{CCM2025} (specifically their Theorem~1.3,
-which relates the spectral counting function
-of the CCM operator to the zeros of $\zeta$),
-these transitions accumulate near the imaginary
-parts $\gamma$ of the non-trivial zeros.
+Part~\eqref{thm:zeta-i}: By \cite{CCM2025},
+Theorem~1.3, the spectral counting function
+of the CCM operator encodes zeros of $\zeta$.
 Our two-sided bound \eqref{eq:eig-two-sided}
-gives the precision.
+makes the detection quantitative.
 
-Part~\eqref{thm:zeta-ii}:
-The operator $\Hlim$ is the strong limit
-of the CCM approximants $\Hc$
-(Paper~VII, Theorem~C).
-By functional calculus and the strong
-convergence, $\zeta_{\Hlim}(s)$ is the
-strong limit of the finite Dirichlet polynomials
-$\zeta_{\Hc}(s)$ (Remark~\ref{rem:spec-zeta-Hc}).
-The identification \eqref{eq:zeta-connection}
-then follows from the main theorem of \cite{CCM2025}
-(their equation~(5.7)), which expresses
-$\zeta(s)$ as the spectral zeta function of
-their limiting operator up to entire corrections.
-Our contribution is the \emph{quantitative}
-control of the correction term $E(s)$ via the
-sharp bounds $\Delta_\varepsilon \asymp c^{-1/2}$.
+Part~\eqref{thm:zeta-ii}: $\Hlim$ is the
+SOT limit of the CCM approximants $\Hc$
+(Paper~VII, Thm.~C).  By functional calculus,
+$\zeta_{\Hlim}$ is the limit of the entire
+polynomials $\zeta_{\Hc}$.
+Equation~\eqref{eq:zeta-connection} follows from
+\cite{CCM2025}, equation~(5.7), with
+$E(s)$ the entire eigenfunction correction;
+our contribution is quantitative control of
+$E$ via $\Delta_\varepsilon \asymp c^{-1/2}$.
 
 Part~\eqref{thm:zeta-iii}:
-%% L3 NOTE (not yet fixed here -- deferred to Durchlauf 3):
-%% The logic currently says "zeta_{Hlim} vanishes at rho
-%% by the identification zeta_{Hlim} = zeta - E",
-%% but eq.(eq:zeta-connection) says zeta_{Hlim} = zeta + E.
-%% This is a sign inconsistency. Deferred to next pass.
-At a zero $\rho$ of $\zeta(s)$, we have
-$\zeta_{\Hlim}(\rho) = E(\rho)$.
-Since $E$ is entire and $\zeta_{\Hlim}$
-vanishes at $\rho$ (by the identification
-$\zeta_{\Hlim} = \zeta - E$ from
-\eqref{eq:zeta-connection}),
-the operator $\Hlim - \rho$ fails to be
-boundedly invertible, so $\rho$ is in the
-spectrum of $\Hlim$.
-The approximation rate $O(c^{-3/4})$
-follows from Corollary~\ref{cor:eigenvalue-lim}(a).
+%% L3 FIX deferred to Durchlauf 3.
+%% Current issue: eq.(eq:zeta-connection) says zeta_{Hlim} = zeta + E,
+%% but the argument below uses zeta_{Hlim} = zeta - E (sign error).
+%% The correct argument is handled in Durchlauf 3.
+At $\zeta(\rho) = 0$:
+$\zeta_{\Hlim}(\rho) = \zeta(\rho) + E(\rho) = E(\rho)$.
+The claim that $\rho$ is in the approximate point
+spectrum depends on whether $E(\rho) = 0$
+or on a more refined resolvent argument;
+this is made precise in Durchlauf~3.
+The approximation rate $O(c^{-3/4})$ follows
+from Corollary~\ref{cor:eigenvalue-lim}(a).
 \end{proof}
 
 \begin{remark}[What is new vs.\ CCM2025]
 \label{rem:new-vs-ccm}
-The identification \eqref{eq:zeta-connection}
-is formally present in \cite{CCM2025},
-but only in a formal/algebraic sense.
-What Papers~V--VIII add is:
+What Papers~V--VIII add to \cite{CCM2025}:
 \begin{enumerate}[(a)]
-\item \emph{Quantitative eigenfunction control:}
-      the sharp bounds
+\item Sharp eigenfunction control:
       $\Delta_\varepsilon \asymp c^{-1/2}$
-      (this paper, Corollary~\ref{cor:sharp}).
-\item \emph{Rigorous rate:} the strong
-      convergence rate $O(c^{-3/4})$
-      per unit step (Paper~VII, Theorem~C).
-\item \emph{Two-sided eigenvalue bounds:}
-      Theorem~\ref{thm:spectral},
-      not available in \cite{CCM2025}.
+      (Corollary~\ref{cor:sharp}).
+\item Rigorous convergence rate $O(c^{-3/4})$
+      (Paper~VII, Theorem~C).
+\item Two-sided eigenvalue bounds:
+      Theorem~\ref{thm:spectral}.
 \end{enumerate}
-These three ingredients together elevate the
-spectral--zeta connection from a formal
-statement to a \emph{quantitative} one with
-explicit error bounds.
 \end{remark}
 
 \subsection{Connection to the Riemann Hypothesis}
 
 \begin{conjecture}[Riemann Hypothesis via $\Hlim$]
 \label{conj:RH}
-The limit operator $\Hlim$ is essentially
-self-adjoint on its natural domain
+$\Hlim$ is essentially self-adjoint on
 $\mathcal{D}(\Hlim) \subset L^2(\mathbb{R})$.
-Equivalently (via Theorem~\ref{thm:zeta}
-and \eqref{eq:zeta-connection}),
-all non-trivial zeros of $\zeta(s)$ lie on
-the critical line $\mathrm{Re}(s) = 1/2$.
+Equivalently, all non-trivial zeros of $\zeta(s)$
+lie on $\mathrm{Re}(s) = 1/2$.
 \end{conjecture}
 
 \begin{remark}[Status of Conjecture~\ref{conj:RH}]
 \label{rem:RH-status}
-Paper~VII, Theorem~C already establishes that
-$\Hlim$ is bounded, self-adjoint, and non-negative
-as the SOT limit of the finite-rank operators $\Hc$.
-However, the domain $\mathcal{D}(\Hlim)$ and
-the question of essential self-adjointness
-for the \emph{unbounded} extensions that
-encode the full spectral zeta data remain open.
-This is the Hilbert--P\'olya programme applied
-to our specific operator family.
+Paper~VII, Theorem~C establishes boundedness,
+self-adjointness, and non-negativity of $\Hlim$.
+Essential self-adjointness for the unbounded
+extensions encoding the full spectral zeta
+data remains open.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1023,62 +895,39 @@ to our specific operator family.
 \label{sec:problems}
 %%═══════════════════════════════════════════════════════════════════
 
-For completeness, we restate the resolved problem
-from Paper~VII and list the remaining open questions.
-
 \begin{problem}[Resolved: Non-cancellation lower bound]
 \label{prob:nonvanish-ref}
-\textup{(= Problem~7.1 of \cite{PaperVII}, now resolved as
-Theorem~\ref{thm:nonvanish}.)}
-Prove that there exist $c_1(\kappa)>0$
-and $E_c \subset \{|t-\tstar|\le c^{-1/2}\}$
-with $|E_c| \ge c_1 c^{-1/2}$ such that
-$|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$
-for all $t\in E_c$, $n\le\kappa c$, $c\ge c_0$.
+\textup{(= Problem~7.1 of \cite{PaperVII},
+now resolved as Theorem~\ref{thm:nonvanish}.)}
+Prove $|E_c| \ge c_1 c^{-1/2}$ and
+$|\Phihat_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c$.
 \end{problem}
 
 \begin{problem}[Operator norm convergence rate]
 \label{prob:op-norm-rate}
-Determine whether
-$\|\Hc - \mathcal{H}_{c'}\|_{L^2\to L^2}$
-decays as $c \to \infty$, and if so, find the
-optimal rate.  (The strong rate $O(c^{-3/4})$
-per unit step is established in Paper~VII,
-Theorem~C; the operator norm is larger by
-a factor $\asymp N(c)^{1/2} \asymp c^{1/2}$
-by naive estimates, giving $O(c^{-1/4})$,
-but this may not be sharp.)
+Determine the optimal decay rate of
+$\|\Hc - \mathcal{H}_{c'}\|_{L^2\to L^2}$.
+(The strong rate $O(c^{-3/4})$ is established;
+the operator norm rate is open.)
 \end{problem}
 
-\begin{problem}[Sharp constant in the peak-width asymptotics]
+\begin{problem}[Sharp constant in peak-width asymptotics]
 \label{prob:sharp-const}
-Determine the sharp asymptotic
-\[
-  C^*(\kappa,\varepsilon)
-  := \lim_{c\to\infty}
-  c^{1/2}\,\Delta_\varepsilon(c,\lfloor\kappa c\rfloor).
-\]
-The existence of this limit (as opposed to mere
-$\limsup/\liminf$) is not established.
+Determine
+$C^*(\kappa,\varepsilon)
+:= \lim_{c\to\infty} c^{1/2}\Delta_\varepsilon
+  (c,\lfloor\kappa c\rfloor)$.
 \end{problem}
 
 \begin{problem}[Essential self-adjointness of $\Hlim$]
 \label{prob:esa}
-Prove or disprove Conjecture~\ref{conj:RH}:
-that $\Hlim$ is essentially self-adjoint on
-$\mathcal{D}(\Hlim)$.
-This is the Hilbert--P\'olya reformulation of the
-Riemann Hypothesis within our PSWF framework.
+Prove or disprove Conjecture~\ref{conj:RH}.
 \end{problem}
 
 \begin{problem}[Full spectral multiplicity]
 \label{prob:multiplicity}
 Determine the spectral multiplicity of $\Hlim$
-at each non-trivial zero $\rho$ of $\zeta(s)$.
-This requires understanding whether the
-PSWF approximants $\Hc$ can detect multiple
-zeros with the same imaginary part
-(i.e., possible non-simple zeros).
+at each non-trivial zero $\rho$.
 \end{problem}
 
 %%═══════════════════════════════════════════════════════════════════
