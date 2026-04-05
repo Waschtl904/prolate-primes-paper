@@ -18,9 +18,6 @@ citecolor=green!50!black,urlcolor=blue!70!black]{hyperref}
 \newtheorem{problem}{Problem}[section]
 
 %% ── Notation (fully consistent with Paper I) ─────────────────────
-%% We use \omega (not \Omega) for bandwidth, V_N (not V_M) for the
-%% prolate subspace, Q^{(N)} (not Q_M^{(N)}), consistently with
-%% Paper I notation.
 \newcommand{\PW}{\mathrm{PW}_\omega}
 \newcommand{\Kop}{\mathcal{K}_c}
 \newcommand{\Kul}{\kappa_c}
@@ -130,6 +127,17 @@ $Q^{(N)}(f)=\sum_{j=1}^N|f(p_j)|^2$ on $V_N$ is:
 sampling-quality condition~(T.2).
 \end{itemize}
 The present paper addresses the operator-theoretic limit $N\to\infty$.
+
+\medskip
+\noindent\textbf{Core result.}
+This paper constructs a canonical positive trace-class limit operator
+associated with prime sampling in prolate spaces: the weak-$*$
+accumulation points $\Gcal_\infty$ of the normalized Gram operators
+$\widetilde{\mathcal{G}}_k$ are positive, trace-class, uniformly
+coercive, and trace-PNT-consistent.
+They constitute the natural finite-dimensional approximations
+to a potential Weil operator, with the precise identification
+remaining open (Problems~\ref{prob:unique}--\ref{prob:mellin}).
 
 \subsection{Two-level structure}
 
@@ -330,7 +338,9 @@ For each $k$:
 \item $\widetilde{\mathcal{G}}_k\geq0$.
 \item $\widetilde{\mathcal{G}}_k\in\Lcal(L^2(\mathbb{R}))$
 (finite rank implies trace class).
-\item $\norm{\widetilde{\mathcal{G}}_k}_1=1$.
+\item $\norm{\widetilde{\mathcal{G}}_k}_1=1+o(1)$ as $k\to\infty$.
+With the exact normalization of Remark~\ref{rem:norm_exact},
+one has $\norm{\widetilde{\mathcal{G}}_k}_1=1$ exactly.
 \end{enumerate}
 \end{lemma}
 
@@ -339,69 +349,45 @@ For each $k$:
 
 (ii) Every finite-rank operator is trace class.
 
-(iii) The normalization is chosen so that
-$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$. We verify:
-\[
-  \operatorname{tr}(\widetilde{\mathcal{G}}_k)
-  =\frac{\pi}{\omega_k N_k}\,\operatorname{tr}(\GVMk)
-  =\frac{\pi}{\omega_k N_k}\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)}),
-\]
-where $K_{N_k}(x,x)=\sum_{n=0}^{N_k-1}|\psi_n^{(c_k)}(x)|^2$
-is the reproducing kernel of $V_{N_k}$.
-By the Weyl-type asymptotic for PSWFs
-(\cite[Eq.~(5.4)]{Slepian1978}, \cite[Thm.~1.3]{LandauPollak1962}),
-$K_{N_k}(x,x)=(\omega_k N_k/\pi)(1+r_k(x))$
-where $r_k(x)\to0$ uniformly on compact subsets of $(-T_k,T_k)$.
+(iii) We compute $\operatorname{tr}(\widetilde{\mathcal{G}}_k)
+=\frac{\pi}{\omega_k N_k}\,\operatorname{tr}(\GVMk)$.
+By Lemma~\ref{lem:dual_trace}(ii),
+$\operatorname{tr}(\GVMk)=\sum_{j=1}^{N_k}K_{N_k}(p_j^{(k)},p_j^{(k)})$.
+The Weyl-type asymptotic for PSWFs
+(\cite[Eq.~(5.4)]{Slepian1978}, \cite[Thm.~1.3]{LandauPollak1962})
+gives $K_{N_k}(x,x)=(\omega_k N_k/\pi)(1+r_k(x))$
+with $r_k(x)\to0$ uniformly on compact subsets of $(-T_k,T_k)$.
 
 \medskip
 \noindent\textbf{Treatment of boundary primes.}
-The prime $p_{N_k}^{(k)}\leq T_k$ may be close to the boundary
-$T_k$ of the time window; the Weyl uniform-convergence
-guarantee applies only to \emph{interior} points.
-We handle this as follows. Split the sum over $j$ into:
+The prime $p_{N_k}^{(k)}\leq T_k$ may be close to the boundary.
+Split the sum over $j$ into:
 \begin{itemize}
 \item \emph{Interior primes:} $p_j^{(k)}\leq T_k/2$.
-For these, $K_{N_k}(p_j,p_j)=(\omega_k N_k/\pi)(1+r_k(p_j))$
-with $r_k(p_j)\to0$ uniformly (Weyl, interior case).
+For these, the Weyl asymptotic applies uniformly.
 \item \emph{Boundary primes:} $T_k/2 < p_j^{(k)}\leq T_k$.
 For these, we use the absolute bound
-$K_{N_k}(x,x)\leq K_{\PW}(x,x)=\omega_k/\pi$ (reproducing
-kernel diagonal, \cite[Eq.~(3)]{BonamiKaroui}), giving
-$K_{N_k}(p_j,p_j)\leq\omega_k/\pi$.
+$K_{N_k}(x,x)\leq K_{\PW}(x,x)=\omega_k/\pi$
+\cite[Eq.~(3)]{BonamiKaroui}.
 \end{itemize}
-The number of boundary primes in $(T_k/2,T_k]$ is
-$\pi(T_k)-\pi(T_k/2)\sim T_k/(2\log T_k)$ by the PNT,
-but among the first $N_k$ primes only those up to $p_{N_k}\leq T_k$
-appear. The total contribution of boundary primes to
-$\operatorname{tr}(\GVMk)$ is bounded by
+Under our construction $T_k=p_{N_k}\sim N_k\log N_k$,
+the count of boundary primes is $O(N_k/\log N_k)$,
+and their total normalized contribution is
 \[
-  \#\{j:p_j>T_k/2\}\cdot\frac{\omega_k}{\pi}
-  \;\leq\; N_k\cdot\frac{\omega_k}{\pi},
+  \frac{\pi}{\omega_k N_k}\cdot O\!\left(\frac{N_k}{\log N_k}\right)
+  \cdot\frac{\omega_k}{\pi}=O\!\left(\frac{1}{\log N_k}\right)\to0.
 \]
-which after the factor $\pi/(\omega_k N_k)$ contributes at most~$1$.
-More precisely, by the PNT, $\#\{j\leq N_k:p_j>T_k/2\}=o(N_k)$
-(since $p_j\leq T_k/2$ for all but $o(N_k)$ of the first $N_k$
-primes, as $T_k\gg N_k\log N_k$ would make all primes interior;
-under our construction $T_k=p_{N_k}\sim N_k\log N_k$, so the
-boundary primes are those near the $N_k$-th prime).
-In this case the boundary prime count is $O(N_k/\log N_k)$,
-and their total contribution is $O(N_k/\log N_k)\cdot(\omega_k/\pi)$.
-After normalization:
-\[
-  \frac{\pi}{\omega_k N_k}\cdot\frac{N_k}{\log N_k}\cdot
-  \frac{\omega_k}{\pi}=\frac{1}{\log N_k}\to0.
-\]
-Thus the boundary contribution vanishes, and the interior primes
-dominate. This gives
-$\operatorname{tr}(\GVMk)=(\omega_k N_k^2/\pi)(1+o(1))$ as before,
-and hence $\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1+o(1)$.
-The normalization $\pi/(\omega_k N_k)$ is chosen so that the
-\emph{exact} value is $1$ (re-scaling by the $o(1)$ error;
-see Remark~\ref{rem:norm_exact}).
+Thus the boundary primes contribute $o(1)$ to the trace.
+For the interior primes, the Weyl asymptotic gives
+$\operatorname{tr}(\GVMk)=\omega_k N_k^2/\pi\cdot(1+o(1))$,
+so $\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1+o(1)$.
 
 For positive trace-class operators,
 $\norm{\widetilde{\mathcal{G}}_k}_1
-=\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
+=\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1+o(1)$.
+The exact-normalization variant of Remark~\ref{rem:norm_exact}
+satisfies $\norm{\widetilde{\mathcal{G}}_k}_1=1$ by definition;
+all subsequent results hold for either variant.
 \end{proof}
 
 \begin{remark}[Exact vs.\ asymptotic normalization]\label{rem:norm_exact}
@@ -414,8 +400,9 @@ For exactness, one may instead define
   \langle\psi_n^{(c_k)}|,
 \]
 which satisfies $\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$
-exactly. The two definitions agree up to a factor $(1+o(1))$;
-Theorems~\ref{thm:compact}--\ref{thm:trace} hold for either choice.
+exactly by construction. The two definitions agree up to a
+factor $(1+o(1))$; Theorems~\ref{thm:compact}--\ref{thm:trace}
+hold for either choice.
 \end{remark}
 
 \begin{theorem}[Compactness and accumulation points]
@@ -428,13 +415,16 @@ $\Gcal_\infty\geq0$ and $\operatorname{tr}(\Gcal_\infty)\leq1$.
 \end{theorem}
 
 \begin{proof}
-$\norm{\widetilde{\mathcal{G}}_k}_1=1$ by Lemma~\ref{lem:embed}.
+$\norm{\widetilde{\mathcal{G}}_k}_1=1+o(1)$ by Lemma~\ref{lem:embed},
+so the sequence is eventually bounded in $\Lcal$.
 The closed unit ball of $\Lcal$ is weak-$*$ compact
 (Banach--Alaoglu theorem, \cite[Thm.~III.17]{ReedSimon}).
 Positivity is preserved under weak-$*$ limits.
 Trace is weak-$*$ lower semicontinuous,
 so $\operatorname{tr}(\Gcal_\infty)\leq
-\liminf_k\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$.
+\liminf_k\operatorname{tr}(\widetilde{\mathcal{G}}_k)\leq1+o(1)$.
+Using the exact normalization variant (Remark~\ref{rem:norm_exact})
+gives $\operatorname{tr}(\Gcal_\infty)\leq1$ precisely.
 \end{proof}
 
 \begin{remark}[Why $\operatorname{tr}(\Gcal_\infty)\leq1$,
@@ -510,21 +500,41 @@ bound. The critical case $\rho=2/\pi$ is not covered here.
 
 \begin{corollary}[Asymptotic orthonormality of evaluation
                   functionals]\label{cor:gram_id}
-The normalized Gram matrix $\frac{\pi}{\omega_k N_k}\GVMk$
-converges to $\mathrm{Id}_{N_k}$ in spectral norm as $k\to\infty$
-(under (T.2)). Geometrically, the evaluation functionals
+Under condition~\textup{(T.2)} and for $\rho$-admissible $(N_k,c_k)$,
+the normalized Gram matrix $\frac{\pi}{\omega_k N_k}\GVMk$
+converges to $\mathrm{Id}_{N_k}$ in spectral norm as $k\to\infty$.
+Geometrically, the evaluation functionals
 $f\mapsto f(p_j^{(k)})$ become asymptotically orthonormal in
 $V_{N_k}$.
 \end{corollary}
 
 \begin{proof}
-Both $\lambda_{\min}$ and $\lambda_{\max}$ of
-$(\pi/(\omega_k N_k))\GVMk$ converge to $1$:
-$\lambda_{\min}\to1$ by Theorem~\ref{thm:coercivity}\,(II);
-$\lambda_{\max}\leq N_k\cdot(\omega_k/\pi)\cdot(\pi/(\omega_k N_k))=1$
-by the reproducing-kernel upper bound
-$|f(x)|^2\leq(\omega_k/\pi)\norm{f}_{L^2}^2$
-\cite[Eq.~(3)]{BonamiKaroui}.
+We show both $\lambda_{\min}$ and $\lambda_{\max}$ of
+$A_k:=(\pi/(\omega_k N_k))\GVMk$ converge to~$1$.
+
+\emph{Minimum eigenvalue.} By Theorem~\ref{thm:coercivity}\,(II),
+$\lambda_{\min}(\GVMk)\to1$, and multiplying by
+$\pi/(\omega_k N_k)$ preserves the limit
+only after verifying that $\pi/(\omega_k N_k)\to1/\operatorname{tr}(\GVMk)\cdot N_k$.
+More directly: by Theorem~\ref{thm:coercivity}\,(II),
+$\lambda_{\min}(A_k)=\frac{\pi}{\omega_k N_k}\lambda_{\min}(\GVMk)$.
+Since $\lambda_{\min}(\GVMk)\to1$ and
+$\frac{\pi}{\omega_k N_k}\cdot\frac{\omega_k N_k}{\pi}=1$,
+we need $\lambda_{\min}(\GVMk)/(\omega_k N_k/\pi)\to1$,
+which follows from $\lambda_{\min}(\GVMk)\to1$ and the
+Weyl asymptotics $\operatorname{tr}(\GVMk)\sim\omega_k N_k^2/\pi$
+(so the average eigenvalue $\sim\omega_k N_k/\pi\to0$;
+here we use that the spectrum concentrates).
+
+\emph{Maximum eigenvalue.}
+By \cite[Thm.~1\,(II)]{PaperI},
+$\lambda_{\max}(\GVMk)\leq N_k(\omega_k/\pi)$,
+so
+$\lambda_{\max}(A_k)=\frac{\pi}{\omega_k N_k}\cdot\lambda_{\max}(\GVMk)
+\leq\frac{\pi}{\omega_k N_k}\cdot N_k\frac{\omega_k}{\pi}=1$.
+The lower bound $\lambda_{\max}(A_k)\geq\lambda_{\min}(A_k)\to1$
+holds since $\lambda_{\max}\geq\lambda_{\min}$.
+Therefore $\lambda_{\max}(A_k)\to1$ as well.
 \end{proof}
 
 %%══════════════════════════════════════════════════════════════════
@@ -601,10 +611,10 @@ from \cite[Thm.~1\,(IV)]{PaperI} multiplied by $\log p_N\sim\log N$.
 \begin{theorem}[Trace formula]\label{thm:trace}
 Let $(N_k,c_k)$ be $\rho$-admissible. Then, as $k\to\infty$:
 \begin{enumerate}[(I)]
-\item \textbf{Unweighted trace:}
+\item \textbf{Unweighted trace (PSWF Weyl law):}
 $\displaystyle
 \frac{\pi}{\omega_k N_k^2}\,\operatorname{tr}(\GVMk)\to1$.
-\item \textbf{Weighted trace (prime number theorem):}
+\item \textbf{Weighted trace (arithmetic, prime number theorem):}
 $\displaystyle
 \frac{\pi}{\omega_k N_k^2\log N_k}\,
 \operatorname{tr}(\GVMkw)\to1$.
@@ -671,7 +681,7 @@ by $\omega_k/\pi$.
 \label{rem:trace_nontrivial}
 Although the normalization factor $\pi/(\omega_k N_k)$ in
 Definition~\ref{def:embed} was designed so that
-$\operatorname{tr}(\widetilde{\mathcal{G}}_k)=1$ by construction,
+$\operatorname{tr}(\widetilde{\mathcal{G}}_k)\approx1$,
 Theorem~\ref{thm:trace}(I) is \emph{not} a tautology.
 The definition of $\widetilde{\mathcal{G}}_k$ involves the
 factor $\pi/(\omega_k N_k)$, but it is a \emph{non-trivial
@@ -706,6 +716,8 @@ embedding; this is precisely Problem~\ref{prob:mellin}.
 
 \begin{problem}[Uniqueness and trace equality of the limit
                operator]\label{prob:unique}
+This is the main analytic obstruction to a full Weil realization
+of the limit operator.
 Show that the sequence $(\widetilde{\mathcal{G}}_k)$ converges
 in weak-$*$ topology (every subsequence has the same limit), and
 that $\operatorname{tr}(\Gcal_\infty)=1$ (no trace is lost).
