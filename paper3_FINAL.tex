@@ -426,7 +426,9 @@ distinguishable from $S$ evaluated at nearby non-zero points
 zeros is observed at $c = 10$.} This is the expected behavior:
 any alignment, if present in the scaling limit $c \to \infty$,
 is invisible at finite bandwidth. See Experiment~4 for the phase
-analysis.
+analysis. The behavior of $S(t)$ at larger bandwidths $c \geq 50$
+is not investigated here; its scaling with $c$ remains an open
+question complementary to Problem~\ref{prob:Rc-scaling}.
 
 %% ---------------------------------------------------------
 \subsection{Experiment 4: Phase Analysis and the Scaling Question}
@@ -437,12 +439,16 @@ The choice of $\lambda_n(c)$ as weights is motivated by the
 spectral theory of the concentration operator $\Gc$: the natural
 inner product on the space of bandlimited functions is the one
 induced by $\Gc$ itself, in which each mode $\psi_n^{(c)}$
-contributes with weight $\lambda_n(c)$. The sum $F_N(t)$ therefore
-represents the $\Gc$-weighted superposition of Mellin transforms.
-Alternative weightings (e.g., $\sqrt{\lambda_n}$ or uniform) are
-possible; we use $\lambda_n$ as it arises directly from the operator
-structure and reduces to the orthogonal projection onto the
-concentrated subspace as $c \to \infty$.
+contributes with weight $\lambda_n(c)$. More precisely,
+$\lambda_n(c) = \|\pi_n f\|^2_{\mathrm{PW}_c} / \|f\|^2_{L^2}$
+is the energy fraction of the $n$-th eigenmode retained within
+the bandwidth $[-c,c]$; it is therefore the canonical spectral
+energy weight in this framework. Alternative weightings
+(e.g., $\sqrt{\lambda_n(c)}$ or uniform truncation) are possible
+but do not arise naturally from the operator structure of $\Gc$.
+The sum $F_N(t)$ therefore represents the $\Gc$-weighted
+superposition of Mellin transforms, and reduces to the orthogonal
+projection onto the concentrated subspace as $c \to \infty$.
 
 For $c \in \{10, 20\}$ we define the \emph{$\lambda$-weighted
 interference sum}
@@ -468,6 +474,16 @@ We compare $\arg F_N(t)$ with the Riemann--Siegel theta function
 \vartheta'(t)
 \;=\; \tfrac{1}{2}\log\!\tfrac{t}{2\pi} + O(t^{-2}).
 \end{equation}
+
+\paragraph{Phase unwrapping and robustness.}
+The phase $\arg F_N(t)$ is computed via standard continuous branch
+selection (\texttt{numpy.unwrap} with threshold $\pi$), applied after
+evaluating $F_N(t)$ on a uniform grid with spacing
+$\Delta t \approx 0.29$. Robustness of $R(c)$ with respect to the
+fitting window is assessed via $\sigma_R^{\rm win}$ in
+Table~\ref{tab:Rc}, computed over three windows $[17,43]$,
+$[15,40]$, and $[20,45]$.
+
 The normalized phase-growth rate is defined as
 \begin{equation}
 \label{eq:R-def}
@@ -529,9 +545,11 @@ $c$ & $2c/\pi$ & $N_{\rm modes}$ & $|R(c)|$ & $\sigma_R^{\rm win}$
 \end{tabular}
 \caption{Normalized phase-winding rate $|R(c)|$ and window standard
 deviation $\sigma_R^{\rm win}$ (computed over three fitting windows
-$[17,43]$, $[15,40]$, $[20,45]$). The apparent plateau at
-$c \in \{50, 100\}$ is based on only two data points and should
-be treated with caution; see the discussion below.}
+$[17,43]$, $[15,40]$, $[20,45]$). Two data points do not establish
+a plateau; the apparent saturation at $c \in \{50, 100\}$ may
+reflect a transient crossover rather than asymptotic behavior.
+Computations at $c \geq 200$ are required to distinguish
+saturation from continued growth.}
 \label{tab:Rc}
 \end{table}
 
@@ -738,7 +756,7 @@ of the primes $p_1 < \cdots < p_N$.
 $\widetilde{G}^{(N)}$ depend only on the bulk density of
 primes (i.e., on the PNT), or does it detect finer
 arithmetic structure such as the pair correlation of primes
-\cite{GoldstronMontgomery1973}?
+\cite{GoldstonMontgomery1987}?
 \item Is the limiting operator $\Gcinf$ (if it exists)
 \emph{unique}, or does it depend on the specific sequence
 $\{p_k\}$?
@@ -836,7 +854,7 @@ spectral interpretation of $\zeta$.
 Problems~6.2 and~6.5 are the most significant from a
 number-theoretic perspective. Problem~6.3 is particularly timely
 given recent progress on prime pair correlations
-\cite{GoldstronMontgomery1973} and Montgomery's conjecture on
+\cite{GoldstonMontgomery1987} and Montgomery's conjecture on
 GUE statistics of zeros.
 
 %%% ============================================================
@@ -894,7 +912,7 @@ A.~Weil, \textit{Sur les formules explicites de la th\'eorie
 des nombres premiers},
 Comm.\ Sem.\ Math.\ Univ.\ Lund, Tome Suppl.\ 1952, 252--265.
 
-\bibitem{GoldstronMontgomery1973}
+\bibitem{GoldstonMontgomery1987}
 D.~A.~Goldston and H.~L.~Montgomery, \textit{Pair correlation of
 zeros and primes in short intervals}, in \textit{Analytic Number
 Theory and Diophantine Problems}, Birkh\"auser, 1987, pp.~183--203.
