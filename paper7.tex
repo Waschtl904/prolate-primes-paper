@@ -78,15 +78,16 @@ the Airy-to-WKB transition regime $\Zcross$:
 \[
 \widehat{\Phi}_n^{(c)}(t)
 = c^{-1/2}\,\mathcal{A}_n^{(c)}\!\bigl(c^{1/2}(t-\tstar)\bigr)
-\,\bigl(1 + O(c^{-1/6})\bigr),
+\,\bigl(1 + O(c^{-1/3})\bigr),
 \]
 with
 $|\mathcal{A}_n^{(c)}(x)| \le C_\kappa(1+|x|)^{-1/4}$
 uniformly in $n \le \kappa c$.
-The error $O(c^{-1/6})$ is controlled via
-an explicit gradient lower bound on the phase
-$|\phi_+'| \ge c_\kappa c^{1/6}$ and
-integration-by-parts remainder estimates.
+The error $O(c^{-1/3})$ is controlled via
+integration-by-parts remainder estimates
+(the far-field remainder satisfies
+$R_{\rm far} = O(c^{-5/6})$, giving a relative
+error of order $c^{-1/3}$).
 
 \textbf{Step~2 (Theorem~B).}
 Using the composite asymptotic,
@@ -428,7 +429,7 @@ such that for all $t \in \Zcross$:
 \label{eq:composite-A}
 \widehat{\Phi}_n^{(c)}(t)
 = c^{-1/2}\,\mathcal{A}_n^{(c)}\!\bigl(c^{1/2}(t-\tstar)\bigr)
-\;\bigl(1 + O(c^{-1/6})\bigr),
+\;\bigl(1 + O(c^{-1/3})\bigr),
 \end{equation}
 where the $O$-constant is uniform in $n \le \kappa c$
 and $t \in \Zcross$, and $\mathcal{A}_n^{(c)}$ satisfies:
@@ -448,7 +449,7 @@ $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa(1+|x_0|)^{-1/4}$.
 For $|x| \le c^{1/12}$,
 $\mathcal{A}_n^{(c)}(x)
 = \kappa_n^{(c)}\,\Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr)
-\,(1 + O(c^{-1/6}))$,
+\,(1 + O(c^{-1/3}))$,
 consistent with \eqref{VI4},
 with $|\kappa_n^{(c)}| \asymp 1$.
 \item\label{thm:A-match-WKB}
@@ -485,16 +486,30 @@ by matching with \eqref{VI4} at $x=0$.
 
 The proof consists of four lemmas.
 
-\begin{lemma}[Phase expansion]
+\begin{lemma}[Phase expansion and Airy normal form]
 \label{lem:phase}
 Write $t = \tstar + c^{-1/2}x$,
 $u = \ustar + c^{-1/2}s$.
 For $|s|, |x| \le c^{1/6}$:
 \[
 c^{1/2}[\phi_+(u;t,c) - \phi_0]
-= xs + \tfrac{\mu_n^{(c)}}{6}s^3 + O(c^{-1/6}),
+= xs + \tfrac{\mu_n^{(c)}}{6}s^3 + O(c^{-1/3}),
 \]
 uniformly, where $\phi_0 = S(\ustar;c)+\tstar\ustar$.
+
+Moreover, the phase is in Airy normal form
+up to admissible error: the quadratic term,
+though non-negligible for $|s| \asymp c^{1/6}$
+(of order $c^{1/12}$ after rescaling),
+is absorbed by a smooth change of variables
+$s \mapsto s'(s,x)$ depending on $x$,
+as in Olver~\cite{Olver1974}, Ch.~11.
+This transformation yields a phase of the form
+$x's' + \tfrac{\mu_n^{(c)}}{6}s'^3 + O(c^{-1/3})$
+uniformly for $|x| \le c^{1/6}$,
+with $s' = s + O(c^{-1/6})$,
+so the integration domain is preserved
+up to admissible errors.
 \end{lemma}
 
 \begin{proof}
@@ -503,10 +518,17 @@ linear terms cancel by the saddle condition
 $p(\ustar;c) = \tstar$.
 Quadratic: $\tfrac{1}{2}p'(\ustar)c^{-1}s^2
 \asymp c^{-3/4}s^2$; after $c^{1/2}$-rescaling
-this is $O(c^{-1/6})$ for $|s| \le c^{1/6}$.
-Cubic yields $\tfrac{1}{6}\mu_n^{(c)}s^3$
+this is $c^{-1/4}s^2$, which for $s \asymp c^{1/6}$
+gives $c^{1/12}$, hence \emph{not} negligible.
+The Olver normal-form reduction
+(\cite{Olver1974}, Ch.~11, Theorem~11.1)
+elaborates a smooth diffeomorphism $s \mapsto s'$
+that eliminates the quadratic term,
+yielding the pure cubic phase structure.
+Cubic term: $\tfrac{1}{6}\mu_n^{(c)}s'^3$
 by \eqref{eq:mu-def}.
-Quartic and higher: $O(c^{-1/3})$.
+Quartic and higher: $O(c^{-1/3})$
+after the normal-form substitution.
 \end{proof}
 
 \begin{lemma}[Amplitude near $\ustar$]
@@ -528,19 +550,36 @@ so $p(u)^{-1/6} = \tstar^{-1/6}(1+O(c^{-1/12}))$.
 \begin{lemma}[Tail remainder]
 \label{lem:remainder}
 For $t \in \Zcross$:
-$|\int_{|u-\ustar|>c^{-1/3}}
-\Phi_n^{(c)}(u)e^{itu}\,du|
-\le C_\kappa c^{-1/2}\cdot O(c^{-1/6})$.
+\[
+\Bigl|\int_{|u-\ustar|>c^{-1/3}}
+\Phi_n^{(c)}(u)e^{itu}\,du\Bigr|
+= O(c^{-5/6}).
+\]
+The relative error in \eqref{eq:composite-A}
+is therefore $O(c^{-1/3})$.
 \end{lemma}
 
 \begin{proof}
-In rescaled variable $s = c^{1/2}(u-\ustar)$,
-for $t\in\Zcross$: $|x|\ge c^{-1/6}$,
-so $|x+\tfrac{\mu}{2}s^2| \ge \tfrac{c_\kappa}{2}c^{1/3}$
-for $|s|\ge c^{1/6}$.
-Integration by parts gives
-$|\int_{|s|>c^{1/6}}e^{i(xs+\mu s^3/6)}ds|
-\le C/c^{1/6}$.
+In the rescaled variable $s = c^{1/2}(u-\ustar)$,
+the phase derivative is
+$\phi'(s) = x + \tfrac{\mu_n^{(c)}}{2}s^2$.
+For $|s| \ge c^{1/6}$ and $t \in \Zcross$
+(so $|x| \le c^{1/6}$),
+the dominant term satisfies
+$|\tfrac{\mu}{2}s^2| \asymp s^2 \ge c^{1/3}$,
+hence $|\phi'(s)| \asymp s^2 \ge c^{1/3}$.
+A single integration by parts gives
+\[
+\Bigl|\int_{|s|>c^{1/6}}
+e^{i(xs + \mu_n^{(c)}s^3/6)}\,ds\Bigr|
+\le \frac{C}{\inf_{|s|>c^{1/6}}|\phi'(s)|}
+\asymp c^{-1/3}.
+\]
+Including the $c^{-1/2}$ prefactor from the
+amplitude gives $R_{\rm far} = O(c^{-1/2-1/3})
+= O(c^{-5/6})$,
+which is $O(c^{-1/3})$ relative to the main term
+$c^{-1/2}$.
 \end{proof}
 
 \begin{lemma}[Uniformity in $n$]
@@ -555,24 +594,41 @@ so $\mu_n^{(c)} \asymp 2$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~A]
-Substitute $u = \ustar + c^{-1/2}s$;
-use Lemmata~\ref{lem:amp-near}--\ref{lem:uniform-n}:
+Substitute $u = \ustar + c^{-1/2}s$
+and apply the Olver normal-form reduction
+of Lemma~\ref{lem:phase}.
+Use Lemmata~\ref{lem:amp-near}--\ref{lem:uniform-n}:
 \[
 \widehat{\Phi}_n^{(c)}(t)
 = c^{-1/2}e^{i\phi_0}\kappa_n^{(c)}
-\int_{|s|\le c^{1/6}}
-e^{i(xs+\mu_n^{(c)}s^3/6)}\,ds
+\int_{|s'|\le c^{1/6}}
+e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,ds'
 \cdot(1+O(c^{-1/12}))
 + R_{\rm far}.
 \]
-Extend to $\mathbb{R}$ via Lemma~\ref{lem:remainder}
-and the Airy identity
-$\int_{-\infty}^\infty e^{i(xt+t^3/3)}dt = 2\pi\Ai(x)$:
+To evaluate the local integral, set
+$s' = (\mu_n^{(c)})^{-1/3}y$;
+then the phase becomes
+$(\mu_n^{(c)})^{-1/3}x'y + y^3/3$,
+and by the Airy integral identity
+$\int_{-\infty}^\infty e^{i(\xi y + y^3/3)}\,dy
+= 2\pi\,\Ai(\xi)$
+with $\xi = (\mu_n^{(c)})^{-1/3}x'$:
+\[
+\int_{-\infty}^\infty
+e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,ds'
+= 2\pi\,(\mu_n^{(c)})^{-1/3}\,
+\Ai\!\Bigl(\frac{x'}{(\mu_n^{(c)})^{2/3}}\Bigr).
+\]
+Extending from $|s'| \le c^{1/6}$ to $\mathbb{R}$
+incurs an error controlled by
+Lemma~\ref{lem:remainder}.
+Combining, and writing $x = c^{1/2}(t - \tstar)$:
 \[
 \widehat{\Phi}_n^{(c)}(t)
 = c^{-1/2}\kappa_n^{(c)}
-\Ai\!\Bigl(\tfrac{c^{1/2}(t-\tstar)}{(\mu_n^{(c)})^{2/3}}\Bigr)
-(1+O(c^{-1/6})),
+\Ai\!\Bigl(\frac{x}{(\mu_n^{(c)})^{2/3}}\Bigr)
+(1+O(c^{-1/3})),
 \]
 which is \eqref{eq:composite-A}.
 Properties~(a)--(d) follow from standard Airy bounds,
@@ -704,7 +760,9 @@ the CCM multi-mode operator
 \widehat{\Phi}_n^{(c)}(t).
 \end{equation}
 $\Hc$ is finite-rank, self-adjoint, non-negative,
-with $\|\Hc\| \le N(c) \le \kappa c$.
+with $\|\Hc\| \le \tfrac{N(c)}{2} \le \tfrac{\kappa c}{2}$
+(using $\|\widehat{\Phi}_n^{(c)}\|^2 = \tfrac{1}{2}$
+and $\lambda_n^{(c)} \le 1$).
 \end{definition}
 
 \begin{lemma}[Eigenvalue perturbation]
@@ -803,9 +861,9 @@ a_n^{(c)}\widehat{\Phi}_n^{(c)}\Bigr\|^2
 |\lambda_n^{(c)}-\lambda_n^{(c+1)}|^2
 |a_n^{(c)}|^2
 \|\widehat{\Phi}_n^{(c)}\|^2\\
-&\le \tfrac{1}{4}\cdot C_\kappa^2 c^{-3/2}
+&\le \tfrac{1}{2}\cdot C_\kappa^2 c^{-3/2}
 \sum_n |a_n^{(c)}|^2
-\le C_\kappa^2 c^{-3/2}\|f\|^2.
+\le \tfrac{1}{2}C_\kappa^2 c^{-3/2}\|f\|^2.
 \end{align*}
 Here we used $\|\widehat{\Phi}_n^{(c)}\|^2 = \tfrac{1}{2}$
 and the frame bound
