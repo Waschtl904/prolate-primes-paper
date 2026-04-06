@@ -1,4 +1,3 @@
-
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -297,6 +296,39 @@ $p(u;c) = \sqrt{-V_c(u)}$ in the forbidden zone.
 \label{sec:pointwise}
 %%═══════════════════════════════════════════════════════════════════
 
+\begin{lemma}[Saddle-point geometry]
+\label{lem:amplitude-saddle}
+Let $u^*(t,c)$ be defined by the stationary phase condition
+$p(u^*(t,c)) = t$
+for the phase $\phi_+(u) = -S(u;c) + tu$, where $S'(u) = p(u;c)$.
+For $1 \le t \le c^{1/2-\kappa}$:
+\begin{enumerate}[\rm(i)]
+\item \textbf{(Saddle location)}
+$u^*(t,c) = -\tfrac{1}{2}\log(c/t^2) + O(1)$,
+so $e^{u^*} \asymp t\,c^{-1/2}$.
+\item \textbf{(Phase curvature)}
+$\phi_+''(u^*(t,c)) \asymp t\,c^{-1/2}$.
+\item \textbf{(WKB amplitude and local bound)}
+The Langer--Olver amplitude satisfies
+$|A_n^{(c)}(u^*(t,c))| \asymp D_n^{(c)}\,t^{-1/2}$
+with $D_n^{(c)} \asymp c^{-1/4}$ from $L^2$-normalisation,
+yielding the local WKB bound
+\[
+|I_+(t,c)| \;\lesssim\;
+\bigl(\phi_+''(u^*)\bigr)^{-1/2}\cdot|A_n^{(c)}(u^*)|
+\;\asymp\; (t\,c^{-1/2})^{-1/2}\cdot c^{-1/4}\,t^{-1/2}
+\;=\; c^{-1/4}\,t^{-1}.
+\]
+\end{enumerate}
+The loss from $t^{-1}$ to the sharper $t^{-1/4}$ (see
+Theorem~\ref{thm:pointwise}) reflects the degeneracy of the
+phase near the turning point, where standard stationary phase
+no longer captures the correct scaling.
+The improved bound $|I_+(t,c)| \lesssim c^{-1/4}t^{-1/4}$
+follows from the Airy--WKB transition
+and is established rigorously in Paper~{\rm VII}~\cite{PaperVII}.
+\end{lemma}
+
 \begin{theorem}[Pointwise Fourier decay]
 \label{thm:pointwise}
 For $\kappa \in (0,1)$ fixed and $1 \le t \le c^{1/2-\kappa}$:
@@ -308,16 +340,19 @@ For $\kappa \in (0,1)$ fixed and $1 \le t \le c^{1/2-\kappa}$:
 \begin{proof}[Proof sketch]
 Decompose the integral as $I_+(t,c) + I_-(t,c) + R(t,c)$ using the
 WKB representation of Lemma~\ref{lem:Langer}.
-The remainder $R$ is exponentially small by the barrier estimate.
-For $I_+$: the phase $\phi_+(u;t,c) = S(u;c) + tu$ has
-$\phi_+'' = p'(u;c) = 2ce^{2u}$, giving a non-degenerate saddle at
-$u^*(t,c)$ with $\phi_+''(u^*) \asymp t$.
-Van der Corput (Lemma~\ref{lem:vdC}) with $\lambda \asymp t$ gives
-$|I_+(t,c)| \lesssim t^{-1/2} \cdot \sup|A_n^{(c)}|$.
-Amplitude collapse at the saddle:
-$|A_n^{(c)}(u^*(t,c))| \asymp c^{-1/4}t^{1/4}$
-(from $L^2$-normalisation and the drift $u^* \asymp -\tfrac12\log c$).
-Combining: $|I_+(t,c)| \lesssim c^{-1/4}t^{-1/4}$.
+The remainder $R$ is exponentially small by the barrier estimate
+(Paper~V, Theorem~3.1).
+For $I_+$: Lemma~\ref{lem:amplitude-saddle} establishes the saddle
+location, phase curvature $\phi_+''(u^*) \asymp tc^{-1/2}$,
+and the local WKB bound $|I_+(t,c)| \lesssim c^{-1/4}t^{-1}$.
+The strategy is to apply the Langer--Olver Airy approximation
+(Lemma~\ref{lem:Langer}) near the turning point: the uniform
+Airy profile converts the degenerate saddle into a non-degenerate
+oscillatory integral with the Airy kernel, recovering the sharp
+exponent $t^{-1/4}$ via the known Fourier decay of $\Ai$.
+The full uniform argument is carried out in
+Paper~{\rm VII}~\cite{PaperVII}, Theorem~A.
+Combining: $|\widehat\Phi_n^{(c)}(t)| \lesssim c^{-1/4}t^{-1/4}$.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -359,6 +394,9 @@ the Airy approximation:
 \;\approx\; c^{-1/2}\kappa_n^{(c)}\,\Ai(x),
 \end{equation}
 where $\kappa_n^{(c)} = O(1)$ is a mode-dependent constant.
+This follows from the Fourier transform of the Langer-type Airy
+approximation (Lemma~\ref{lem:Langer}) combined with stationary
+phase near the turning point (see Olver~\cite{Olver1974}, Ch.~11).
 The $L^2$-mass of the Airy function is concentrated on
 $|x| = O(1)$, i.e.\ $|t - t_*| = O(c^{-2/3})$.
 
