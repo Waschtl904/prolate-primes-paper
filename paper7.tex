@@ -561,25 +561,60 @@ is therefore $O(c^{-1/3})$.
 
 \begin{proof}
 In the rescaled variable $s = c^{1/2}(u-\ustar)$,
-the phase derivative is
-$\phi'(s) = x + \tfrac{\mu_n^{(c)}}{2}s^2$.
+the phase is $\varphi(s) = xs + \tfrac{\mu_n^{(c)}}{6}s^3$
+with derivative $\varphi'(s) = x + \tfrac{\mu_n^{(c)}}{2}s^2$.
 For $|s| \ge c^{1/6}$ and $t \in \Zcross$
-(so $|x| \le c^{1/6}$),
-the dominant term satisfies
+(so $|x| \le c^{1/6}$), the dominant term satisfies
 $|\tfrac{\mu}{2}s^2| \asymp s^2 \ge c^{1/3}$,
-hence $|\phi'(s)| \asymp s^2 \ge c^{1/3}$.
-A single integration by parts gives
+hence $|\varphi'(s)| \asymp s^2 \ge c^{1/3}$.
+Moreover, $|\varphi''(s)| = |\mu_n^{(c)} s| \asymp |s|$,
+so
 \[
-\Bigl|\int_{|s|>c^{1/6}}
-e^{i(xs + \mu_n^{(c)}s^3/6)}\,ds\Bigr|
-\le \frac{C}{\inf_{|s|>c^{1/6}}|\phi'(s)|}
-\asymp c^{-1/3}.
+\frac{|\varphi''(s)|}{|\varphi'(s)|^2}
+\lesssim \frac{|s|}{s^4} = s^{-3}.
 \]
-Including the $c^{-1/2}$ prefactor from the
-amplitude gives $R_{\rm far} = O(c^{-1/2-1/3})
-= O(c^{-5/6})$,
-which is $O(c^{-1/3})$ relative to the main term
-$c^{-1/2}$.
+
+Let $a(s)$ denote the (smooth, bounded) amplitude
+arising from $\Phi_n^{(c)}$ after the substitution.
+Integration by parts yields
+\[
+\int_{|s|\ge c^{1/6}} e^{i\varphi(s)} a(s)\,ds
+=
+\left[\frac{e^{i\varphi(s)}a(s)}{i\varphi'(s)}\right]_{|s|=c^{1/6}}
+-
+\int_{|s|\ge c^{1/6}} e^{i\varphi(s)}
+\frac{d}{ds}\!\left(\frac{a(s)}{\varphi'(s)}\right)\,ds.
+\]
+
+\noindent\textit{Boundary term.}
+At $|s| = c^{1/6}$ we have $|\varphi'(s)| \gtrsim c^{1/3}$
+and $|a(s)| = O(1)$, so
+\[
+\left|\frac{a(s)}{\varphi'(s)}\right|_{|s|=c^{1/6}}
+\lesssim c^{-1/3}.
+\]
+
+\noindent\textit{Remainder integral.}
+Since $|a'(s)| = O(1)$ and $|\varphi'(s)| \gtrsim s^2$,
+\[
+\left|\frac{d}{ds}\left(\frac{a(s)}{\varphi'(s)}\right)\right|
+\lesssim \frac{|a'(s)|}{|\varphi'(s)|}
++ |a(s)| \frac{|\varphi''(s)|}{|\varphi'(s)|^2}
+\lesssim s^{-2} + s^{-3} \lesssim s^{-2}.
+\]
+Hence
+\[
+\int_{|s|\ge c^{1/6}}
+\left|\frac{d}{ds}\!\left(\frac{a(s)}{\varphi'(s)}\right)\right|ds
+\lesssim \int_{c^{1/6}}^{\infty} s^{-2}\,ds
+\lesssim c^{-1/6}.
+\]
+
+Both contributions are $O(c^{-1/6})$ in the rescaled
+variable. Including the $c^{-1/2}$ prefactor from the
+amplitude gives $R_{\rm far} = O(c^{-1/2} \cdot c^{-1/3})
+= O(c^{-5/6})$, which is $O(c^{-1/3})$ relative
+to the main term $c^{-1/2}$.
 \end{proof}
 
 \begin{lemma}[Uniformity in $n$]
@@ -589,8 +624,32 @@ uniformly in $n \le \kappa c$, $c \ge c_0$.
 \end{lemma}
 
 \begin{proof}
-$p''(\ustar;c) = 2p(\ustar;c) \asymp 2c^{1/2}$,
-so $\mu_n^{(c)} \asymp 2$.
+At the turning point $\ustar$ we have $V_c(\ustar) = 0$,
+so $p(u) = \sqrt{V_c(u)}$ satisfies
+\[
+p'(u) = \frac{V_c'(u)}{2p(u)}.
+\]
+Although $p'(u)$ is singular at $\ustar$,
+the singularity is removable.
+Applying L'H\^opital's rule as $u \to \ustar$ gives
+\[
+p'(\ustar)^2 = \tfrac{1}{2}V_c''(\ustar),
+\]
+and differentiating once more yields
+\[
+p''(\ustar) \asymp \bigl(V_c''(\ustar)\bigr)^{1/2}.
+\]
+Since $V_c(u) = c^2 e^{4u} - \chi_n^{(c)} e^{2u} + \tfrac{1}{4}$,
+a direct computation gives
+$V_c''(\ustar) = 16c^2 e^{4\ustar} - 4\chi_n^{(c)} e^{2\ustar}
+= 4e^{2\ustar}(4c^2 e^{2\ustar} - \chi_n^{(c)})$.
+Using $V_c(\ustar)=0$ to substitute
+$\chi_n^{(c)} e^{2\ustar} = c^2 e^{4\ustar} + \tfrac{1}{4}$
+one obtains $V_c''(\ustar) \asymp c^2 e^{4\ustar} \asymp c$
+(since $e^{2\ustar} \asymp c^{-1/2}$ at the turning point).
+Hence $p''(\ustar) \asymp c^{1/2}$,
+so $\mu_n^{(c)} = p''(\ustar)\,c^{-1/2} \in [c_\kappa, C_\kappa]$
+uniformly in $n \le \kappa c$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~A]
