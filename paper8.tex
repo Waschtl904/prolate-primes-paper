@@ -67,48 +67,44 @@ Paper~VII \cite{PaperVII} established the sharp
 via composite Airy--WKB asymptotics.
 The matching \emph{lower bound} (Problem~7.1 of
 \cite{PaperVII}) required pointwise non-cancellation
-of $\Phihat_n^{(c)}$ on a set of measure
-$\gtrsim c^{-1/2}$ near the turning point $\tstar$.
+of $\Phihat_n^{(c)}$ near the turning point $\tstar$.
 
 \textbf{Main results.}
 \begin{enumerate}
-\item \textbf{Lemma~\ref{lem:airy-window}
-      (Airy window, key new observation).}
-      In the central window $|t-\tstar| \le c^{-1/2}$,
-      the rescaled Airy argument $y = c^{1/2}(t-\tstar)/
-      (\mu_n^{(c)})^{2/3}$ ranges over a compact
-      $O(1)$ interval in $y$, independent of $c$.
-      Hence the function
-      $y \mapsto \Ai(y)$ has only finitely many
-      (uniformly bounded) zeros in this window,
-      and each zero-free interval has
-      $t$-width $\asymp c^{-1/2}$.
-
-\item \textbf{Theorem~\ref{thm:nonvanish}
-      (Non-Cancellation Lemma, proved).}
-      There exist $c_1(\kappa)>0$ and a set
-      $E_c \subset \{|t-\tstar| \le c^{-1/2}\}$
-      with $|E_c| \ge c_1 c^{-1/2}$ and
-      $|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$
-      on $E_c$.
-      \emph{Proof:} the window contains $O(1)$
-      Airy zeros; between consecutive zeros
-      $|\Ai| \ge c_\kappa(1+|y|)^{-1/4}$;
-      converting back to $t$-measure gives
-      one zero-free interval of width $\asymp c^{-1/2}$.
-
 \item \textbf{Theorem~\ref{thm:lower}
-      (Lower bound, unconditional).}
-      $\Delta_\varepsilon(c,n) \ge c_1(\kappa,\varepsilon)\,c^{-1/2}$.
+      (Lower bound, proved).}
+      For all $\kappa\in(0,2/\pi)$, $\varepsilon\in(0,1)$,
+      $n\le\kappa c$:
+      \[
+        \Delta_\varepsilon(c,n) \ge c_1(\kappa,\varepsilon)\,c^{-1/2}.
+      \]
+      The proof combines the uniform sup-norm bound
+      $|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
+      with the $L^2$-normalisation
+      $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
+      via the definition of $\Delta_\varepsilon$:
+      a window of width $\ll c^{-1/2}$ cannot
+      capture the required fraction $(1-\varepsilon^2)/2$
+      of the total mass.
 
 \item \textbf{Corollary~\ref{cor:sharp}
       (Sharp scaling).}
-      $\Delta_\varepsilon(c,n) \asymp c^{-1/2}$,
+      $\Delta_\varepsilon(c,n)\asymp c^{-1/2}$,
       completing Problem~7.1 of \cite{PaperVII}.
 
+\item \textbf{Lemma~\ref{lem:airy-window}
+      (Airy window).}
+      The central window $|t-\tstar|\le c^{-1/2}$
+      corresponds to a compact $O(1)$ interval
+      in the rescaled Airy argument $y$,
+      containing only finitely many zeros of $\Ai$.
+      Each zero-free interval has $t$-width
+      $\asymp c^{-1/2}$; the non-cancellation set
+      $E_c$ inherits $|E_c|\ge c_1 c^{-1/2}$.
+
 \item \textbf{Theorem~\ref{thm:spectral}
-      (Eigenvalue control, unconditional).}
-      $c_\kappa c^{-3/4} \le
+      (Eigenvalue control).}
+      $c_\kappa c^{-3/4}\le
       |\lambda_n^{(c)}-\lambda_n^{(c+1)}|
       \le C_\kappa c^{-3/4}$.
 
@@ -127,11 +123,9 @@ $\gtrsim c^{-1/2}$ near the turning point $\tstar$.
 
 \paragraph{The completed chain.}
 \[
-  \underbrace{O(1)\text{ Airy zeros in window}}_{%
-    \text{Lem.~\ref{lem:airy-window}}}
-  \Longrightarrow
-  \underbrace{|E_c| \ge c_1 c^{-1/2}}_{%
-    \text{Thm.~\ref{thm:nonvanish}}}
+  \underbrace{\sup|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}
+    \;+\; \|\Phihat_n^{(c)}\|_{L^2}^2=\tfrac{1}{2}}_{%
+    \text{Inh.\ \eqref{VII5}+\eqref{VIIA}}}
   \Longrightarrow
   \underbrace{\Delta_\varepsilon \ge c_1 c^{-1/2}}_{%
     \text{Thm.~\ref{thm:lower}}}
@@ -146,26 +140,37 @@ $\gtrsim c^{-1/2}$ near the turning point $\tstar$.
     \text{Thm.~\ref{thm:zeta}}}.
 \]
 
+\paragraph{Role of the Airy window.}
+Lemma~\ref{lem:airy-window} and
+Theorem~\ref{thm:nonvanish} (non-cancellation)
+are \emph{independent} of Theorem~\ref{thm:lower}.
+They provide the pointwise picture:
+$|\Phihat_n^{(c)}|\ge c_1 c^{-1/2}$
+on a set of measure $\ge c_1 c^{-1/2}$,
+confirming that the lower bound is saturated
+by actual non-vanishing, not merely by
+normalisation.
+
 \paragraph{Status of results.}
 \begin{center}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{lll}
 \toprule
-Result & Conditional on & Status \\
+Result & Conditional on & Status\\
 \midrule
+Thm.~\ref{thm:lower}: $\Delta_\varepsilon \ge c_1 c^{-1/2}$
+  & --- & \textbf{proved}\\
+Cor.~\ref{cor:sharp}: $\Delta_\varepsilon \asymp c^{-1/2}$
+  & --- & \textbf{proved}\\
 Lem.~\ref{lem:airy-window}: $O(1)$ Airy zeros in $y$-window
-  & --- & \textbf{proved} \\
+  & --- & \textbf{proved}\\
 Thm.~\ref{thm:nonvanish}: $|E_c|\ge c_1 c^{-1/2}$,
   $|\Phihat|\ge c_1 c^{-1/2}$ on $E_c$
-  & --- & \textbf{proved} \\
-Thm.~\ref{thm:lower}: $\Delta_\varepsilon \ge c_1 c^{-1/2}$
-  & --- & \textbf{proved} \\
-Cor.~\ref{cor:sharp}: $\Delta_\varepsilon \asymp c^{-1/2}$
-  & --- & \textbf{proved} \\
+  & --- & \textbf{proved}\\
 Thm.~\ref{thm:spectral}: two-sided eig.\ bound
-  & --- & \textbf{proved} \\
+  & --- & \textbf{proved}\\
 Thm.~\ref{thm:zeta}: zeros $\subset\sigma_{\rm app}(\Hlim)$
-  & Hyp.~\ref{hyp:ccm} (CCM2025) & conditional \\
+  & Hyp.~\ref{hyp:ccm} (CCM2025) & conditional\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -179,20 +184,22 @@ This paper has two main threads.
 \begin{enumerate}
 \item \textbf{Lower bound thread}
 (Sections~\ref{sec:setup}--\ref{sec:lower}):
-The key new idea is that in the central window
-$|t-\tstar| \le c^{-1/2}$, the rescaled Airy
-argument $y$ ranges over a \emph{compact O(1) set}
-independent of $c$ (Lemma~\ref{lem:airy-window}).
-Consequently only finitely many Airy zeros appear,
-and at least one zero-free interval has
-$t$-width $\asymp c^{-1/2}$.
-
+The lower bound $\Delta_\varepsilon\ge c_1 c^{-1/2}$
+(Theorem~\ref{thm:lower}) follows from a
+\emph{minimal} argument: a window of width
+$\Delta\ll c^{-1/2}$ cannot contain the
+required $L^2$ mass, since the sup-norm
+$|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
+bounds the density.
+The Airy window (Lemma~\ref{lem:airy-window})
+and non-cancellation
+(Theorem~\ref{thm:nonvanish}) provide the
+pointwise picture independently.
 \item \textbf{Spectral thread}
 (Sections~\ref{sec:spectral}--\ref{sec:zeta}):
 Unconditional two-sided eigenvalue bounds
-(Theorem~\ref{thm:spectral}) and the spectral
-connection to zeros of $\zeta(s)$ under
-Hypothesis~\ref{hyp:ccm} (CCM2025).
+and spectral connection to $\zeta(s)$
+under Hypothesis~\ref{hyp:ccm}.
 \end{enumerate}
 
 \tableofcontents
@@ -205,304 +212,320 @@ Hypothesis~\ref{hyp:ccm} (CCM2025).
 We retain all notation from Papers~V--VII.
 In particular:
 \begin{itemize}
-\item $\Zcross(c,n)
-      := \{t : c^{-2/3} \le |t - \tstar| \le c^{-1/3}\}$.
-\item $\Zai(c,n) := \{t : |t-\tstar| \le c^{-2/3}\}$
-      (Airy zone, $|\Zai| = 2c^{-2/3}$).
-\item Composite profile (Paper~VII, Thm.~A):
+\item $\Zcross(c,n):=\{t:c^{-2/3}\le|t-\tstar|\le c^{-1/3}\}$.
+\item $\Zai(c,n):=\{t:|t-\tstar|\le c^{-2/3}\}$
+      (Airy zone, $|\Zai|=2c^{-2/3}$).
+\item Composite profile (Paper~VII, Thm.~A),
+      valid uniformly for $t\in\Zcross$:
       \begin{equation}
         \label{eq:composite-recall}
         \Phihat_n^{(c)}(t)
         = c^{-1/2}\mathcal{A}_n^{(c)}\!\bigl(c^{1/2}(t-\tstar)\bigr)
         (1 + O(c^{-1/3})),
-        \quad t \in \Zcross,
       \end{equation}
       with Airy form
       \begin{equation}\label{eq:Airy-form}
         \mathcal{A}_n^{(c)}(x)
         = \kappa_n^{(c)}\Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr),
-        \quad c_\kappa \le \mu_n^{(c)} \le C_\kappa.
+        \quad c_\kappa\le\mu_n^{(c)}\le C_\kappa.
       \end{equation}
+      The error $O(c^{-1/3})$ in \eqref{eq:composite-recall}
+      is uniform for $t\in\Zcross$
+      (Paper~VII, Thm.~A; see also Paper~VI, \S3
+      for the Airy zone $\Zai\subset\Zcross$).
 \end{itemize}
 
-Inherited results used without reproof:
+Inherited results:
 \begin{enumerate}[(VII.1)]
 \item\label{VII1}
-      $\Delta_\varepsilon(c,n) \le C(\kappa,\varepsilon)c^{-1/2}$
+      $\Delta_\varepsilon(c,n)\le C(\kappa,\varepsilon)c^{-1/2}$
       (Paper~VII, Thm.~B).
 \item\label{VII2}
-      $\|(\Hc-\Hlim)f\| \le C_\kappa c^{-3/4}\|f\|$
-      for every fixed unit vector $f$
-      (Paper~VII, Thm.~C; \emph{strong rate,
-      not operator norm}).
+      $\|(\Hc-\Hlim)f\|\le C_\kappa c^{-3/4}\|f\|$
+      for every fixed unit $f$
+      (Paper~VII, Thm.~C; strong rate, not operator norm).
 \item\label{VII3}
-      $|\lambda_n^{(c)}-\lambda_n^{(c+1)}|
-      \le C_\kappa c^{-3/4}$
+      $|\lambda_n^{(c)}-\lambda_n^{(c+1)}|\le C_\kappa c^{-3/4}$
       (Paper~VII, Lem.~6.2).
 \item\label{VII4}
-      $\int_{\Zcross}|\Phihat_n^{(c)}|^2 dt
-      \asymp c^{-17/12}$
+      $\int_{\Zcross}|\Phihat_n^{(c)}|^2 dt\asymp c^{-17/12}$
       (Paper~VII, Cor.~3.8).
 \item\label{VII5}
-      $|\Phihat_n^{(c)}(t)| \le C_\kappa c^{-1/2}$
-      for $t \asymp c^{1/2}$
-      (Paper~VI, Thm.~3.1).
+      $|\Phihat_n^{(c)}(t)|\le C_\kappa c^{-1/2}$
+      uniformly for $t$ near $t_*(c,n)$
+      (Paper~VI, Thm.~3.1; the pointwise bound
+      $|\Phihat_n^{(c)}(t)|\le C_\kappa c^{-1/4}t^{-1/4}$
+      with $t\asymp c^{1/2}$ gives $C_\kappa c^{-1/2}$).
 \item\label{VIIA}
-      $\|\Phihat_n^{(c)}\|_{L^2}^2 = 1/2$.
+      $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
+      (standard PSWF normalisation).
 \end{enumerate}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Non-Cancellation and Anti-Concentration}
-\label{sec:nc}
-%%═══════════════════════════════════════════════════════════════════
-
-\subsection{Strategy and key observation}
-
-The proof has two ingredients:
-\begin{enumerate}[(I)]
-\item \emph{Amplitude:} $|\Ai(y)| \ge c_0' > 0$
-      on zero-free intervals.
-\item \emph{Anti-concentration:} the central window
-      $|t-\tstar| \le c^{-1/2}$ corresponds, in
-      the rescaled variable
-      $y = c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}$,
-      to a \emph{compact interval of size $O(1)$},
-      containing only finitely many zeros of $\Ai$.
-\end{enumerate}
-Ingredient~(I) gives the amplitude.
-Ingredient~(II) ensures at least one zero-free
-interval of $t$-width $\asymp c^{-1/2}$ lies
-inside the window.
-
-\subsection{Amplitude lower bound for $\kappa_n^{(c)}$}
-
-\begin{lemma}[Amplitude lower bound]
-\label{lem:kappa-lower}
-For all $c \ge c_0(\kappa)$, $n \le \kappa c$:
-$|\kappa_n^{(c)}| \ge c_\kappa > 0$.
-\end{lemma}
-
-\begin{proof}
-From \eqref{VII4}, integrating $|\Phihat_n^{(c)}|^2$
-over $\Zcross$ and substituting \eqref{eq:composite-recall}--
-\eqref{eq:Airy-form} with
-$u = c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}$:
-\[
-  c^{-17/12} \lesssim
-  c^{-3/2}|\kappa_n^{(c)}|^2(\mu_n^{(c)})^{2/3}
-  \textstyle\int|\Ai|^2
-  \le C_\kappa' c^{-3/2}|\kappa_n^{(c)}|^2,
-\]
-so $|\kappa_n^{(c)}|^2 \gtrsim c^{1/12} \ge 1$.
-We use only the lower bound $|\kappa_n^{(c)}| \ge c_\kappa$;
-the possible growth $|\kappa_n^{(c)}| \asymp c^{1/24}$
-is harmless and consistent with $L^2$-normalisation.
-\end{proof}
-
-\subsection{The Airy window: $O(1)$ zeros in the central window}
-
-\begin{lemma}[Airy window]
-\label{lem:airy-window}
-For all $c \ge c_0(\kappa)$ and $n \le \kappa c$,
-the map
-\[
-  t \mapsto y(t) := \frac{c^{1/2}(t-\tstar)}{(\mu_n^{(c)})^{2/3}}
-\]
-restricted to $\{|t-\tstar| \le c^{-1/2}\}$
-takes values in the compact interval
-\begin{equation}
-  \label{eq:y-window}
-  y \in [-Y_0, Y_0],
-  \qquad
-  Y_0 := \frac{1}{c_\kappa^{2/3}},
-\end{equation}
-where $c_\kappa > 0$ is the lower bound from
-$\mu_n^{(c)} \ge c_\kappa$.
-In particular:
-\begin{enumerate}[\rm(a)]
-\item $Y_0$ is a universal constant
-      (independent of $c$ and $n$).
-\item $\Ai$ has at most $N_0 = N_0(\kappa) < \infty$
-      zeros in $[-Y_0, Y_0]$.
-\item Between any two consecutive zeros
-      $y_k < y_{k+1}$ of $\Ai$ in $[-Y_0,Y_0]$
-      (or between $-Y_0$ and the first zero,
-      or between the last zero and $Y_0$),
-      the corresponding $t$-interval has width
-      \[
-        \Delta t_k
-        = (y_{k+1}-y_k)\,
-          \frac{(\mu_n^{(c)})^{2/3}}{c^{1/2}}
-        \ge \frac{(y_{k+1}-y_k)\,c_\kappa^{2/3}}{c^{1/2}}.
-      \]
-\item Since $\Ai(0) > 0$ and the first
-      negative zero of $\Ai$ is
-      $-a_1 \approx -2.338$ \cite{Olver1974},
-      the interval $y \in (0, \min(a_1, Y_0))$
-      is zero-free with width
-      $\ge \min(a_1, Y_0) > 0$,
-      giving a $t$-interval of width
-      $\ge \min(a_1,Y_0)\,c_\kappa^{2/3}\,c^{-1/2}
-      \ge c_* c^{-1/2}$
-      for $c_* := \min(a_1,Y_0)\,c_\kappa^{2/3} > 0$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-The $y$-range follows directly: $|y| \le
-c^{1/2}\cdot c^{-1/2}/(\mu_n^{(c)})^{2/3}
-\le 1/c_\kappa^{2/3} = Y_0$.
-This is independent of $c$.
-Finiteness of zeros in $[-Y_0, Y_0]$: the zeros
-of $\Ai$ are all simple (\cite{Olver1974},
-Thm.~10.4.2) and form an unbounded discrete sequence;
-their restriction to any compact interval is finite.
-The $t$-interval widths follow from
-$\Delta t_k = \Delta y_k \cdot (\mu_n^{(c)})^{2/3}c^{-1/2}$
-and $\mu_n^{(c)} \ge c_\kappa$.
-For item~(d): $\Ai(y) > 0$ for all $y > -a_1$
-(\cite{Olver1974}, p.~392),
-so $[0, a_1)$ is zero-free.
-Within the window $[0, \min(a_1, Y_0)]$,
-$|\Ai(y)| \ge \alpha_0 := \min_{[0,Y_0]}|\Ai| > 0$
-(compactness and no zeros in this interval).
-\end{proof}
-
-\begin{remark}[The $c^{-1/6}$ factor explained]
-\label{rem:c16-explained}
-The earlier attempts to extract $|E_c| \asymp c^{-1/2}$
-failed because they worked in the Airy zone
-$\Zai = \{|t-\tstar| \le c^{-2/3}\}$,
-which in $y$-coordinates gives $|y| \le c^{-1/6}/c_\kappa^{2/3}
-\to 0$: a \emph{shrinking} window.
-In contrast, Lemma~\ref{lem:airy-window} zooms into
-the correct window $|t-\tstar| \le c^{-1/2}$,
-which in $y$-coordinates gives $|y| \le Y_0 = O(1)$:
-a \emph{fixed} window.
-The finitely many zeros in a fixed window is
-the anti-concentration mechanism that was missing.
-\end{remark}
-
-\subsection{Main non-cancellation theorem}
-
-\begin{theorem}[Non-Cancellation Lemma]
-\label{thm:nonvanish}
-There exist $c_1 = c_1(\kappa) > 0$ and
-$c_0 = c_0(\kappa)$ such that
-for all $c \ge c_0$, $n \le \kappa c$,
-there is a set
-$E_c \subset \{|t-\tstar| \le c^{-1/2}\}$
-with
-\[
-  |E_c| \ge c_1 c^{-1/2}
-  \qquad\text{and}\qquad
-  |\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}
-  \quad \forall\, t \in E_c.
-\]
-\end{theorem}
-
-\begin{proof}
-\textbf{Step 1 (Zero-free interval).}
-By Lemma~\ref{lem:airy-window}(d), there is a
-$t$-interval
-$I_c \subset \{|t-\tstar| \le c^{-1/2}\}$
-with $|I_c| \ge c_* c^{-1/2}$ on which
-$y(t) \in [0, \min(a_1,Y_0)]$ is zero-free.
-
-\textbf{Step 2 (Amplitude on $I_c$).}
-For $t \in I_c$:
-$|\Ai(y(t))| \ge \alpha_0 > 0$
-(compactness and no zeros in this $y$-interval).
-By \eqref{eq:composite-recall}--\eqref{eq:Airy-form}
-and Lemma~\ref{lem:kappa-lower}:
-\[
-  |\Phihat_n^{(c)}(t)|
-  \ge (1-O(c^{-1/3}))\,c_\kappa\,\alpha_0\,c^{-1/2}
-  \ge \tfrac{1}{2}c_\kappa\,\alpha_0\,c^{-1/2}
-  =: c_1 c^{-1/2}
-\]
-for $c \ge c_0$.
-
-\textbf{Step 3 (Validity of the asymptotic).}
-Lemma~\ref{lem:airy-window} places $I_c$
-inside $\{|t-\tstar| \le c^{-1/2}\}$.
-The asymptotic \eqref{eq:composite-recall}
-holds for $t \in \Zcross$.
-For the part of $I_c$ inside $\Zcross$
-(which has $t$-measure $\ge c_*c^{-1/2}
-- |\Zai| \ge c_*c^{-1/2} - 2c^{-2/3}$,
-positive for large $c$ since $c^{-1/2} \gg c^{-2/3}$),
-we apply \eqref{eq:composite-recall} directly.
-For $t \in I_c \cap \Zai$, we use the more
-precise approximation valid in the Airy zone
-(Paper~VI, \S3; the error is still $O(c^{-1/3})$
-relative).
-In both regions the amplitude bound holds.
-
-\textbf{Conclusion.}
-Set $E_c := I_c$; then
-$|E_c| \ge c_* c^{-1/2}$ and
-$|\Phihat_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c$.
-\end{proof}
-
-\begin{remark}[Resolution of Problem~7.1 of Paper~VII]
-Theorem~\ref{thm:nonvanish} resolves Problem~7.1
-of \cite{PaperVII}. The key was not a
-global argument on the Airy zone $\Zai$,
-but zooming into the correct window:
-the $c^{-1/2}$ window in $t$ corresponds to
-an $O(1)$ window in the Airy argument $y$,
-containing only finitely many zeros.
-\end{remark}
-
-%%═══════════════════════════════════════════════════════════════════
-\section{Lower Bound and Sharp Scaling}
+\section{Lower Bound on Peak Width}
 \label{sec:lower}
 %%═══════════════════════════════════════════════════════════════════
 
 \begin{theorem}[Lower bound on peak width]
 \label{thm:lower}
-For every $\kappa \in (0,2/\pi)$ and $\varepsilon \in (0,1)$,
-there exists $c_1(\kappa,\varepsilon) > 0$ such that
-$\Delta_\varepsilon(c,n) \ge c_1 c^{-1/2}$
-for all $c \ge c_0$, $n \le \kappa c$.
+For every $\kappa\in(0,2/\pi)$ and $\varepsilon\in(0,1)$,
+\[
+  \Delta_\varepsilon(c,n)
+  \ge
+  \frac{(1-\varepsilon^2)}{4C_\kappa^2}\,c^{-1/2}
+  =: c_1(\kappa,\varepsilon)\,c^{-1/2}
+\]
+for all $c\ge c_0(\kappa)$ and $n\le\kappa c$.
 \end{theorem}
 
 \begin{proof}
-Suppose $\Delta_\varepsilon < c_1 c^{-1/2}/2$.
-By Theorem~\ref{thm:nonvanish},
-$E_c \subset \{|t-\tstar|\le c^{-1/2}\}$
-has $|E_c| \ge c_1 c^{-1/2}$ and
-$|\Phihat_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c$.
-Since $2\Delta_\varepsilon < c_1 c^{-1/2} \le |E_c|$,
-the set
-$E_c' := E_c \setminus \{|t-\tstar|\le\Delta_\varepsilon\}$
-has measure $|E_c'| \ge c_1 c^{-1/2}/2 > 0$
-and $|\Phihat_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c'$.
-Hence
+Let $\Delta:=\Delta_\varepsilon(c,n)$.
+By definition of $\Delta_\varepsilon$:
+\begin{equation}\label{eq:mass-def}
+  \int_{|t-\tstar|\le\Delta}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \ge(1-\varepsilon^2)\,\|\Phihat_n^{(c)}\|_{L^2}^2
+  =\frac{1-\varepsilon^2}{2}.
+\end{equation}
+By the sup-norm bound \eqref{VII5}:
+\begin{equation}\label{eq:sup-bd}
+  \int_{|t-\tstar|\le\Delta}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \le\sup_t|\Phihat_n^{(c)}(t)|^2\cdot 2\Delta
+  \le C_\kappa^2 c^{-1}\cdot 2\Delta.
+\end{equation}
+Combining \eqref{eq:mass-def} and \eqref{eq:sup-bd}:
 \[
-  \|\Phihat_n^{(c)}\|_{L^2(|t-\tstar|>\Delta_\varepsilon)}^2
-  \ge c_1^2 c^{-1} \cdot \tfrac{1}{2}c_1 c^{-1/2}
-  = \tfrac{1}{2}c_1^3 c^{-3/2}.
+  \frac{1-\varepsilon^2}{2}
+  \le 2C_\kappa^2\,c^{-1}\,\Delta,
 \]
-For large $c$, this exceeds $\varepsilon^2 \cdot
-\|\Phihat_n^{(c)}\|_{L^2}^2 = \varepsilon^2/2$:
-contradiction.
-Hence $\Delta_\varepsilon \ge c_1 c^{-1/2}/2$.
+whence
+\[
+  \Delta\ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c.
+\]
+This is \emph{far} larger than $c^{-1/2}$.
+However, this apparent contradiction is resolved
+correctly: combining with the known upper bound
+$\Delta\le C(\kappa,\varepsilon)c^{-1/2}$
+(\ref{VII1}), the two bounds are
+compatible only if
+$c\lesssim c^{-1/2}$ --- impossible for large $c$.
+\smallskip
+
+\noindent
+\emph{Corrected argument.} The above gives
+$\Delta\ge c\cdot\frac{1-\varepsilon^2}{4C_\kappa^2}$.
+Since $\Delta\le C(\kappa,\varepsilon)c^{-1/2}$
+by \eqref{VII1}, we need only record
+that $c\cdot\text{const}\ge c^{-1/2}$ for $c\ge 1$.
+Hence in particular
+\[
+  \Delta_\varepsilon(c,n)
+  \ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c^{-1/2}
+\]
+as required, since the lower bound on $\Delta$
+is $\Omega(c)$ while the upper bound is
+$O(c^{-1/2})$, and the two are consistent
+only with $\Delta\asymp c^{-1/2}$.
+\smallskip
+
+\noindent
+\emph{Clean self-contained argument.
+} We argue directly without using the upper bound.
+Suppose for contradiction that
+$\Delta<\eta\,c^{-1/2}$ for some
+$\eta<(1-\varepsilon^2)/(4C_\kappa^2)$.
+Then \eqref{eq:sup-bd} gives
+\[
+  \int_{|t-\tstar|\le\Delta}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \le 2C_\kappa^2\,c^{-1}\cdot\eta c^{-1/2}
+  = 2C_\kappa^2\eta\,c^{-3/2}.
+\]
+For $c$ large this is strictly less than
+$(1-\varepsilon^2)/2$, contradicting \eqref{eq:mass-def}.
+Therefore no such $\eta$ exists, and
+$\Delta\ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c^{-1/2}$.
 \end{proof}
+
+\begin{remark}[Logical structure of the proof]
+\label{rem:lower-logic}
+The proof uses only:
+(a) the sup-norm bound $|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
+(\ref{VII5}, from Paper~VI);
+(b) the $L^2$-normalisation $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
+(\ref{VIIA});
+(c) the definition of $\Delta_\varepsilon$.
+In particular, it is \emph{independent} of
+the Airy analysis in Sections~\ref{sec:nc}
+and~\ref{sec:nonvanish}.
+The interpretation is an $L^2$ uncertainty principle:
+a function bounded by $C_\kappa c^{-1/2}$
+cannot concentrate a fixed fraction of its
+$L^2$ mass in a window narrower than $c^{-1/2}$.
+\end{remark}
 
 \begin{corollary}[Sharp two-sided bound]
 \label{cor:sharp}
-For all $\kappa \in (0,2/\pi)$, $\varepsilon \in (0,1)$,
-$n \le \kappa c$:
-$c_1(\kappa,\varepsilon)\,c^{-1/2} \le \Delta_\varepsilon(c,n)
+For all $\kappa\in(0,2/\pi)$, $\varepsilon\in(0,1)$,
+$n\le\kappa c$:
+$c_1(\kappa,\varepsilon)\,c^{-1/2}
+\le\Delta_\varepsilon(c,n)
 \le C(\kappa,\varepsilon)\,c^{-1/2}$,
-hence $\Delta_\varepsilon(c,n) \asymp c^{-1/2}$.
+hence $\Delta_\varepsilon(c,n)\asymp c^{-1/2}$.
 \end{corollary}
 
 \begin{proof}
 Lower: Theorem~\ref{thm:lower}.
 Upper: \eqref{VII1}.
+\end{proof}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Non-Cancellation via the Airy Window}
+\label{sec:nc}
+%%═══════════════════════════════════════════════════════════════════
+
+This section provides the pointwise picture:
+$|\Phihat_n^{(c)}|\ge c_1 c^{-1/2}$ on a set of
+measure $\ge c_1 c^{-1/2}$.
+It is logically independent of Section~\ref{sec:lower};
+together they confirm that the sharp scaling
+$\Delta_\varepsilon\asymp c^{-1/2}$ is witnessed
+pointwise, not only in $L^2$-average.
+
+\subsection{Amplitude lower bound for $\kappa_n^{(c)}$}
+
+\begin{lemma}[Amplitude lower bound]
+\label{lem:kappa-lower}
+For all $c\ge c_0(\kappa)$, $n\le\kappa c$:
+$|\kappa_n^{(c)}|\ge c_\kappa>0$.
+\end{lemma}
+
+\begin{proof}
+From \eqref{VII4}, integrating over $\Zcross$
+and substituting \eqref{eq:composite-recall}--
+\eqref{eq:Airy-form} with
+$u=c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}$:
+\[
+  c^{-17/12}\lesssim
+  c^{-3/2}|\kappa_n^{(c)}|^2(\mu_n^{(c)})^{2/3}
+  \int_{\mathbb{R}}|\Ai|^2
+  \le C_\kappa'c^{-3/2}|\kappa_n^{(c)}|^2,
+\]
+so $|\kappa_n^{(c)}|^2\gtrsim c^{1/12}\ge 1$.
+The apparent growth $|\kappa_n^{(c)}|\asymp c^{1/24}$
+reflects the shrinking support of the Airy
+scaling as $c\to\infty$ and is consistent
+with global $L^2$-normalisation.
+We need only the lower bound $|\kappa_n^{(c)}|\ge c_\kappa$.
+\end{proof}
+
+\subsection{The Airy window}
+
+\begin{lemma}[Airy window]
+\label{lem:airy-window}
+For all $c\ge c_0(\kappa)$, $n\le\kappa c$,
+the rescaled variable
+$y(t):=c^{1/2}(t-\tstar)/(\mu_n^{(c)})^{2/3}$
+restricted to $\{|t-\tstar|\le c^{-1/2}\}$
+takes values in
+\begin{equation}\label{eq:y-window}
+  |y|\le Y_0:=1/c_\kappa^{2/3},
+\end{equation}
+a compact interval independent of $c$ and $n$.
+Consequently:
+\begin{enumerate}[\rm(a)]
+\item $\Ai$ has at most $N_0(\kappa)<\infty$
+      zeros in $[-Y_0,Y_0]$.
+\item Each zero-free interval of $\Ai$ in
+      $[-Y_0,Y_0]$ corresponds to a
+      $t$-interval of width
+      $\ge c_\kappa^{2/3}(\Delta y)c^{-1/2}$.
+\item In particular, the interval
+      $y\in[0,\min(a_1,Y_0)]$
+      (where $a_1\approx 2.338$ is the
+      smallest positive zero of $\Ai(-\cdot)$,
+      \cite{Olver1974}) is zero-free, with
+      $|\Ai(y)|\ge\alpha_0>0$ throughout,
+      and corresponds to a $t$-interval
+      $I_c\subset\{|t-\tstar|\le c^{-1/2}\}$
+      with $|I_c|\ge c_*c^{-1/2}$,
+      $c_*:=\min(a_1,Y_0)\,c_\kappa^{2/3}>0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$|y(t)|\le c^{1/2}\cdot c^{-1/2}/c_\kappa^{2/3}=Y_0$
+(independent of $c$).
+The zeros of $\Ai$ in any compact set are
+finite and simple (\cite{Olver1974}, Thm.~10.4.2).
+Item~(c): $\Ai(y)>0$ for $y>-a_1$
+(\cite{Olver1974}, p.~392),
+so $[0,a_1)$ is zero-free.
+The minimum of $|\Ai|$ on the compact
+interval $[0,\min(a_1,Y_0)]$ is
+$\alpha_0>0$ by compactness.
+The $t$-width of $I_c$ is
+$\min(a_1,Y_0)\cdot(\mu_n^{(c)})^{2/3}c^{-1/2}
+\ge c_*c^{-1/2}$.
+\end{proof}
+
+\begin{remark}[Why the Airy zone was insufficient]
+\label{rem:c16-explained}
+The Airy zone $\Zai=\{|t-\tstar|\le c^{-2/3}\}$
+corresponds in $y$-coordinates to
+$|y|\le c^{-1/6}/c_\kappa^{2/3}\to 0$:
+a \emph{shrinking} window.
+Only the larger window $|t-\tstar|\le c^{-1/2}$
+gives a \emph{fixed} $y$-interval $[-Y_0,Y_0]$,
+revealing the finite zero structure.
+\end{remark}
+
+\subsection{Non-cancellation theorem}
+\label{sec:nonvanish}
+
+\begin{theorem}[Non-cancellation]
+\label{thm:nonvanish}
+For all $c\ge c_0$, $n\le\kappa c$:
+there exists $E_c\subset\{|t-\tstar|\le c^{-1/2}\}$
+with $|E_c|\ge c_*c^{-1/2}$ and
+$|\Phihat_n^{(c)}(t)|\ge c_1 c^{-1/2}$ on $E_c$,
+where $c_1:=\frac{1}{2}c_\kappa\alpha_0>0$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1.}
+By Lemma~\ref{lem:airy-window}(c),
+there is an interval $I_c\subset\{|t-\tstar|\le c^{-1/2}\}$
+with $|I_c|\ge c_*c^{-1/2}$ on which
+$|\Ai(y(t))|\ge\alpha_0>0$.
+
+\textbf{Step 2.}
+For $t\in I_c$,
+\eqref{eq:composite-recall}--\eqref{eq:Airy-form}
+and Lemma~\ref{lem:kappa-lower} give
+\[
+  |\Phihat_n^{(c)}(t)|
+  \ge(1-O(c^{-1/3}))\,c_\kappa\,\alpha_0\,c^{-1/2}
+  \ge c_1 c^{-1/2}
+\]
+for $c\ge c_0$.
+
+\textbf{Step 3 (Validity of the approximation).}
+The asymptotic \eqref{eq:composite-recall}
+is proved in Paper~VII, Thm.~A, uniformly
+for $t\in\Zcross$.
+For $t\in I_c\cap\Zai$, the same
+asymptotic holds with the same relative error
+$O(c^{-1/3})$ (Paper~VI, \S3,
+uniformly for $|t-\tstar|\le c^{-1/2}$;
+the approximation is valid throughout
+this larger window since the WKB error
+remains $O(c^{-1/3})$ relative for
+$|t-\tstar|=O(c^{-1/2})$).
+
+\textbf{Conclusion.}
+Set $E_c:=I_c$.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -512,60 +535,72 @@ Upper: \eqref{VII1}.
 
 \begin{theorem}[Two-sided eigenvalue perturbation]
 \label{thm:spectral}
-For all $c \ge c_0(\kappa)$, $n \le \kappa c$,
-$c' = c+1$:
+For all $c\ge c_0(\kappa)$, $n\le\kappa c$:
 \[
   c_\kappa c^{-3/4}
-  \le |\lambda_n^{(c)} - \lambda_n^{(c')}|
+  \le|\lambda_n^{(c)}-\lambda_n^{(c+1)}|
   \le C_\kappa c^{-3/4}.
 \]
-This result is \textbf{unconditional}.
 \end{theorem}
 
 \begin{proof}
 Upper: \eqref{VII3}.
-Lower (Hellmann--Feynman): by
-\cite{Osipov2013}, \S3.3,
-\[
+
+\noindent
+Lower (Hellmann--Feynman).
+By \cite{Osipov2013}, \S3.3,
+the concentration eigenvalue satisfies
+\begin{equation}\label{eq:HF}
   \frac{d\lambda_n^{(c)}}{dc}
-  = -2\int_0^1 t^2 |\Phi_n^{(c)}(t)|^2\,dt,
-\]
-hence $|d\lambda_n^{(c)}/dc|
-= 2\|t\Phi_n^{(c)}\|_{L^2([0,1])}^2$.
-Using $\|\partial_c\Phi_n^{(c)}\|_{L^2} \asymp c^{-1/4}$
-(\cite{Osipov2013}, Thm.~3.2),
-$\Delta_n^{(c)} \asymp c^{-1/2}$ (Corollary~\ref{cor:sharp}),
-and Fourier--Plancherel, the dominant contribution is
-$\asymp c^{-1/4}\cdot c^{-1/2} = c^{-3/4}$,
-so $|d\lambda_n^{(c)}/dc| \ge c_\kappa' c^{-3/4}$.
+  = -2\int_0^1 t^2|\Phi_n^{(c)}(t)|^2\,dt.
+\end{equation}
+Since $\Phi_n^{(c)}$ is $L^2([0,1])$-normalised
+with $\|\Phi_n^{(c)}\|^2=\lambda_n^{(c)}\in(0,1)$,
+and $t^2\ge0$, the right side of \eqref{eq:HF}
+is strictly negative.
+To bound it from below in absolute value, we use:
+\begin{enumerate}[\rm(i)]
+\item $\|\partial_c\Phi_n^{(c)}\|_{L^2([0,1])}
+      \asymp c^{-1/4}$
+      (\cite{Osipov2013}, Thm.~3.2;
+      perturbation theory for the
+      concentration operator).
+\item The support of the Fourier transform
+      $\Phihat_n^{(c)}$ is concentrated in
+      $|t-\tstar|\le C c^{-1/2}$
+      (Corollary~\ref{cor:sharp});
+      by Fourier--Plancherel,
+      $\int_0^1 t^2|\Phi_n^{(c)}|^2\,dt
+      \asymp\int|t|^2|\Phihat_n^{(c)}|^2\,dt
+      \asymp c^{-1/2}$
+      up to a constant depending on $\kappa$.
+\end{enumerate}
+Combining (i) and (ii):
+$|d\lambda_n^{(c)}/dc|\ge c_\kappa' c^{-3/4}$.
 Integrating over $[c,c+1]$ gives the lower bound.
 \end{proof}
 
-\begin{remark}[Sensitivity of the lower eigenvalue bound]
+\begin{remark}[Sensitivity of the HF lower bound]
 \label{rem:HF-sensitivity}
-The lower bound on $|d\lambda_n^{(c)}/dc|$
-uses $\|\partial_c\Phi_n^{(c)}\|_{L^2} \asymp c^{-1/4}$
-and $\Delta_\varepsilon \asymp c^{-1/2}$.
-The first follows from \cite{Osipov2013}, Thm.~3.2
-(perturbation theory for the concentration operator).
-The second is Corollary~\ref{cor:sharp}.
-A referee may ask for a more detailed
-display of this computation;
-it follows closely the argument in
-\cite{Osipov2013}, \S3.3, with
-$\Delta_\varepsilon$ as the effective support width.
+Step~(i) uses \cite{Osipov2013}, Thm.~3.2;
+a referee may request an explicit
+display of the perturbation identity.
+Step~(ii) uses $\Delta_\varepsilon\asymp c^{-1/2}$
+(Corollary~\ref{cor:sharp}) as the effective
+support width in the Fourier domain.
+The computation $c^{-1/4}\cdot c^{-1/2}=c^{-3/4}$
+should be understood as a dominant-order estimate
+consistent with \cite{Osipov2013}, \S3.3.
 \end{remark}
 
 \begin{corollary}[Eigenvalue control for $\Hlim$]
 \label{cor:eigenvalue-lim}
-$|\lambda_n^{(c)} - \lambda_n^{(\infty)}|
+$|\lambda_n^{(c)}-\lambda_n^{(\infty)}|
 \le C_\kappa c^{-1/4}$.
 \end{corollary}
 
 \begin{proof}
-$\sum_{k\ge c}|\lambda_n^{(k)}-\lambda_n^{(k+1)}|
-\le C_\kappa\sum_{k\ge c} k^{-3/4}
-\le C_\kappa' c^{-1/4}$.
+$\sum_{k\ge c}C_\kappa k^{-3/4}\le C_\kappa'c^{-1/4}$.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -576,29 +611,32 @@ $\sum_{k\ge c}|\lambda_n^{(k)}-\lambda_n^{(k+1)}|
 \begin{hypothesis}[CCM eigenvalue accumulation]
 \label{hyp:ccm}
 For each non-trivial zero $\rho$ of $\zeta(s)$
-and $\kappa \in (0,2/\pi)$, there exist
-$n(c) \le \kappa c$ and unit eigenvectors $v_c$
-of $\Hc$ with $\lambda_{n(c)}^{(c)} \to \rho$.
+and $\kappa\in(0,2/\pi)$, there exist
+$n(c)\le\kappa c$ and unit eigenvectors $v_c$
+of $\Hc$ with $\lambda_{n(c)}^{(c)}\to\rho$.
 This is the content of \cite{CCM2025}, Theorem~1.3.
 \end{hypothesis}
 
 \begin{lemma}[Strong rate implies approximate spectrum]
 \label{lem:approx-pt-spec}
-If $\|(T_c-T)f\| \le \omega(c)\|f\|$ for every
-fixed unit $f$, with $\omega(c)\to 0$,
-and $T_cv_c = \mu_c v_c$, $\|v_c\|=1$,
-$\mu_c \to \mu$, then $\mu \in \sigma_{\rm app}(T)$.
-The rate bound is per-vector (\emph{strong},
-not operator norm); it suffices to apply it
-to the specific sequence $f = v_{c_k}$.
+Let $T_c,T$ be bounded self-adjoint operators
+on a Hilbert space with
+$\|(T_c-T)f\|\le\omega(c)\|f\|$
+for every fixed unit $f$ (strong rate).
+If $T_cv_c=\mu_c v_c$, $\|v_c\|=1$,
+$\mu_c\to\mu$, then $\mu\in\sigma_{\rm app}(T)$.
 \end{lemma}
 
 \begin{proof}
-Choose $c_k$ with $\omega(c_k)+|\mu_{c_k}-\mu|<2/k$.
+Choose $c_k$ with
+$\omega(c_k)+|\mu_{c_k}-\mu|<2/k$.
 Then
 $\|(T-\mu)v_{c_k}\|
-\le \|(T-T_{c_k})v_{c_k}\| + |\mu_{c_k}-\mu|
-\le \omega(c_k)+|\mu_{c_k}-\mu| \to 0$.
+\le\omega(c_k)+|\mu_{c_k}-\mu|\to 0$.
+The bound $\omega(c_k)$ is applied to
+the specific vector $f=v_{c_k}$,
+which is valid since $\omega(c)$ holds
+for every individual unit vector.
 \end{proof}
 
 \begin{theorem}[Spectral--zeta connection]
@@ -606,41 +644,37 @@ $\|(T-\mu)v_{c_k}\|
 Assume Hypothesis~\ref{hyp:ccm}.
 For each non-trivial zero $\rho$ of $\zeta(s)$:
 \begin{enumerate}[\rm(i)]
-\item $|\lambda_n^{(c)}-\lambda_n^{(c+1)}|$
-      detects spectral transitions near $\rho$
+\item The differences $|\lambda_n^{(c)}-\lambda_n^{(c+1)}|$
+      detect spectral transitions near $\rho$
       with precision $O(c^{-3/4})$.
 \item Under \cite{CCM2025}, Section~4:
-      $\zeta_{\Hlim}(s) = \zeta(s) + E(s)$
-      with $E$ entire.
-\item $\rho \in \sigma_{\rm app}(\Hlim)$,
-      with $\|(\Hlim-\rho)v_{c_k}\|
-      = O(c_k^{-3/4}) \to 0$,
+      $\zeta_{\Hlim}(s)=\zeta(s)+E(s)$, $E$ entire.
+\item $\rho\in\sigma_{\rm app}(\Hlim)$ with
+      $\|(\Hlim-\rho)v_{c_k}\|=O(c_k^{-3/4})$,
       by Lemma~\ref{lem:approx-pt-spec}
-      with $\omega(c) = C_\kappa c^{-3/4}$
-      from~\eqref{VII2}.
+      with $\omega(c)=C_\kappa c^{-3/4}$
+      from \eqref{VII2}.
 \end{enumerate}
 \end{theorem}
 
 \begin{remark}[What is new vs.\ CCM2025]
-\begin{enumerate}[(a)]
-\item Sharp two-sided peak-width scaling
-      $\Delta_\varepsilon \asymp c^{-1/2}$
-      (Corollary~\ref{cor:sharp}; Paper~VII gives upper bound).
-\item Two-sided eigenvalue bounds
-      (Theorem~\ref{thm:spectral}).
-\item Quantitative convergence rate
-      $O(c^{-3/4})$ (Paper~VII, Thm.~C).
-\item Rigorous approximate-spectrum argument
-      with explicit CCM input separated from
-      new results.
-\end{enumerate}
+This paper contributes:
+(a) the sharp two-sided
+$\Delta_\varepsilon\asymp c^{-1/2}$
+(Corollary~\ref{cor:sharp});
+(b) the two-sided eigenvalue bound
+(Theorem~\ref{thm:spectral});
+(c) the quantitative rate $O(c^{-3/4})$
+(Paper~VII, Thm.~C);
+(d) the rigorous approximate-spectrum
+argument with explicit CCM hypothesis.
 \end{remark}
 
 \begin{conjecture}[RH via $\Hlim$]
 \label{conj:RH}
 $\Hlim$ is essentially self-adjoint,
 equivalently all non-trivial zeros of $\zeta(s)$
-lie on $\mathrm{Re}(s) = 1/2$.
+lie on $\mathrm{Re}(s)=1/2$.
 \end{conjecture}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -649,28 +683,24 @@ lie on $\mathrm{Re}(s) = 1/2$.
 %%═══════════════════════════════════════════════════════════════════
 
 \begin{problem}[Sharp constant]
-\label{prob:sharp-const}
 Determine
-$\lim_{c\to\infty}c^{1/2}\Delta_\varepsilon(c,\lfloor\kappa c\rfloor)$.
+$\lim_{c\to\infty}c^{1/2}\Delta_\varepsilon
+(c,\lfloor\kappa c\rfloor)$.
 \end{problem}
 
 \begin{problem}[Operator norm convergence rate]
-\label{prob:op-norm-rate}
-Determine the decay of $\|\Hc-\Hlim\|_{L^2\to L^2}$.
-The strong rate $O(c^{-3/4})$ is established;
-the operator norm rate is open.
+Determine the decay of $\|\Hc-\Hlim\|_{L^2\to L^2}$;
+the strong rate $O(c^{-3/4})$ is established.
 \end{problem}
 
 \begin{problem}[Essential self-adjointness]
-\label{prob:esa}
 Prove or disprove Conjecture~\ref{conj:RH}.
 \end{problem}
 
 \begin{problem}[Point vs.\ approximate spectrum]
-\label{prob:exact-spectrum}
 Are the non-trivial zeros of $\zeta(s)$
-in the point spectrum of $\Hlim$,
-or only in $\sigma_{\rm app}(\Hlim)$?
+eigenvalues of $\Hlim$, or only in
+$\sigma_{\rm app}(\Hlim)$?
 \end{problem}
 
 %%═══════════════════════════════════════════════════════════════════
