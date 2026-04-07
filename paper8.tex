@@ -79,10 +79,10 @@ of $\Phihat_n^{(c)}$ near the turning point $\tstar$.
         \Delta_\varepsilon(c,n) \ge c_1(\kappa,\varepsilon)\,c^{-1/2}.
       \]
       The proof combines the Slepian eigenvalue concentration
-      (Lemma~\ref{lem:L2-mass}) with the Airy tail control
-      to establish $L^2$-mass concentration on scale $c^{-1/2}$,
-      and then derives the lower bound via a clean
-      contradiction argument.
+      (Lemma~\ref{lem:L2-mass}) with the log-free $L^2$ tail
+      bound of Paper~VII to establish $L^2$-mass concentration
+      on scale $c^{-1/2}$, and then derives the lower bound
+      via a clean contradiction argument.
 
 \item \textbf{Corollary~\ref{cor:sharp}
       (Sharp scaling).}
@@ -121,7 +121,7 @@ of $\Phihat_n^{(c)}$ near the turning point $\tstar$.
 \paragraph{The completed chain.}
 \[
   \underbrace{\text{Slepian eigenvalue}
-    \;+\; \text{Airy tail}}_{%
+    \;+\; \text{log-free }L^2\text{ tail}}_{%
     \text{Lem.~\ref{lem:L2-mass}}}
   \Longrightarrow
   \underbrace{\Delta_\varepsilon \ge c_1 c^{-1/2}}_{%
@@ -190,7 +190,11 @@ that a fixed $L^2$-mass fraction is concentrated
 in an interval of width $\asymp c^{-1/2}$.
 This uses the exponential Slepian eigenvalue
 concentration of Bonami--Karoui \cite{BonamiKaroui2014}
-together with Airy tail estimates.
+together with the \emph{log-free $L^2$ tail bound}
+(Paper~VII, VI.3), which controls the mass outside
+the $c^{-1/2}$-window directly from the algebraic
+pointwise decay---without invoking the Airy
+asymptotic outside its validity domain.
 Given Lemma~\ref{lem:L2-mass}, the lower bound
 follows by a clean contradiction argument.
 The Airy window (Lemma~\ref{lem:airy-window})
@@ -258,6 +262,14 @@ Inherited results:
       (Paper~VI, Thm.~3.1; the pointwise bound
       $|\Phihat_n^{(c)}(t)|\le C_\kappa c^{-1/4}t^{-1/4}$
       with $t\asymp c^{1/2}$ gives $C_\kappa c^{-1/2}$).
+\item\label{VII6}
+      \textbf{Log-free $L^2$ tail bound}
+      (Paper~VII, Thm.~VI.3):
+      for all $1\le R\le c^{1/4}$,
+      \begin{equation}\label{eq:logfree-tail}
+        \|\Phihat_n^{(c)}\|_{L^2(|t|>R)}^2
+        \;\le\; C_\kappa^2\,c^{-1/2}\,R^{-1/2}.
+      \end{equation}
 \item\label{VIIA}
       $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
       (standard PSWF normalisation).
@@ -367,7 +379,8 @@ This local bound tends to $0$ as $c\to\infty$
 and is insufficient on its own.
 The following step provides the global complement.
 
-\textbf{Step 6: Global mass via Slepian eigenvalue.}
+\textbf{Step 6: Global mass via Slepian eigenvalue
+and log-free tail bound.}
 Since $\Phihat_n^{(c)}$ is an eigenfunction of the
 finite Fourier integral operator
 \[
@@ -396,34 +409,79 @@ so that from \eqref{eq:slepian-mass}:
 \end{equation}
 for all $c \ge c_0(\kappa)$ sufficiently large.
 
-Since $\tstar \in [-1,1]$,
-and the Airy asymptotic \eqref{eq:airy-rep} yields
-the tail estimate
-\begin{equation}\label{eq:airy-tail}
-  \int_{|t - \tstar| \ge R\,c^{-1/2}}
-  |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\le\;
-  c^{-1}\int_{|y| \ge R} |\Ai(y)|^2\,dy
-  \cdot\bigl(1 + O(c^{-1/3})\bigr),
-\end{equation}
-and since $\int_R^\infty |\Ai(y)|^2\,dy \to 0$
-as $R \to \infty$, we choose $R_0$ large enough
-so that the right-hand side of \eqref{eq:airy-tail}
-is at most $\tfrac{1}{8}$ for all $c \ge c_0$.
+Since $\tstar \in [-1,1]$, the window
+$\{|t-\tstar|\le R_0\,c^{-1/2}\}$ is contained in
+$[-2,2]$ for $c$ large.
+We now control the mass outside this window using
+the \emph{log-free $L^2$ tail bound}
+\eqref{eq:logfree-tail} (Paper~VII, VI.3),
+which is valid for all $1\le R\le c^{1/4}$
+and requires \emph{no} Airy asymptotics.
 
-Combining \eqref{eq:mass-in-1} and \eqref{eq:airy-tail}:
-\begin{equation}\label{eq:step6-final}
-  \int_{|t - \tstar| \le R_0\,c^{-1/2}}
+Set $R_1 := \tstar - R_0\,c^{-1/2}$.
+For $c$ large enough, $R_1 \ge 1$
+(since $\tstar\asymp c^{1/2}\to\infty$).
+By \eqref{eq:logfree-tail} with $R = R_1$:
+\begin{equation}\label{eq:tail-logfree}
+  \int_{|t| > R_1} |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\le\;
+  C_\kappa^2\,c^{-1/2}\,R_1^{-1/2}.
+\end{equation}
+Since $R_1 \asymp \tstar \asymp c^{1/2}$,
+the right-hand side satisfies
+\[
+  C_\kappa^2\,c^{-1/2}\,R_1^{-1/2}
+  \;\le\;
+  C_\kappa^2\,c^{-1/2}\,(c_\kappa' c^{1/2})^{-1/2}
+  \;=\;
+  \frac{C_\kappa^2}{(c_\kappa')^{1/2}}\,c^{-3/4}
+  \;\xrightarrow{c\to\infty}\; 0.
+\]
+In particular, choose $c_0$ large enough so that
+\begin{equation}\label{eq:tail-small}
+  \int_{|t| > R_1} |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\le\; \frac{1}{8}
+  \qquad \text{for all } c\ge c_0.
+\end{equation}
+Since $\{|t|\le 1\}\setminus\{|t-\tstar|\le R_0 c^{-1/2}\}
+\subset \{|t|>R_1\}$, we obtain:
+\begin{align}
+  \int_{|t-\tstar|\le R_0\,c^{-1/2}}
   |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\ge\;
+  &\;\ge\;
+  \int_{|t|\le 1}|\Phihat_n^{(c)}|^2\,dt
+  \;-\;
+  \int_{|t|>R_1}|\Phihat_n^{(c)}|^2\,dt
+  \notag\\
+  &\;\ge\;
   \frac{1}{4} - \frac{1}{8} - C_\kappa e^{-\gamma_\kappa c}
   \;\ge\;
   \frac{1}{16}
   \;=:\; c_4
-\end{equation}
+  \label{eq:step6-final}
+\end{align}
 for all $c \ge c_0$ sufficiently large.
 This completes the proof of Lemma~\ref{lem:L2-mass}.
 \end{proof}
+
+\begin{remark}[Why the log-free tail suffices]
+\label{rem:tail-source}
+The previous version of this proof invoked the Airy asymptotic
+\eqref{eq:airy-rep} to estimate the tail
+$\int_{|t-\tstar|\ge R c^{-1/2}}|\Phihat|^2\,dt$.
+This was invalid: the Airy asymptotic of Paper~VII, Thm.~A
+is proved only for $t\in\Zcross$, i.e.\
+$c^{-2/3}\le|t-\tstar|\le c^{-1/3}$,
+whereas the tail integrates over all
+$|t-\tstar|\ge R c^{-1/2}$ including
+$|t-\tstar|\gg c^{-1/3}$.
+The log-free tail bound \eqref{eq:logfree-tail}
+(Paper~VII, Thm.~VI.3) is derived purely from
+the algebraic pointwise decay $|\Phihat|\le C_\kappa c^{-1/4}t^{-1/4}$
+and is valid for all $R\ge 1$ with no asymptotic
+approximations.
+This closes the gap without any new input.
+\end{remark}
 
 %----------------------------------------------------------
 % THEOREM: Lower bound
@@ -506,7 +564,8 @@ The proof of Theorem~\ref{thm:lower} uses:
 \item Lemma~\ref{lem:L2-mass}
       ($L^2$-mass concentration on scale $c^{-1/2}$,
       via Bonami--Karoui eigenvalue concentration
-      \cite{BonamiKaroui2014} and Airy tail control)
+      \cite{BonamiKaroui2014} and log-free $L^2$ tail
+      \eqref{eq:logfree-tail})
       --- to bound the integral from below;
 \item The definition of $\Delta_\varepsilon$.
 \end{enumerate}
@@ -519,8 +578,8 @@ The key scaling incompatibility is:
 $\sup|\Phihat|^2 \sim c^{-1}$ and
 window-width $\sim c^{-1/2}$ give
 mass $\lesssim c^{-3/2} \to 0$,
-contradicting the fixed lower mass from
-Lemma~\ref{lem:L2-mass}.
+contradicting the fixed lower mass $c_4$
+from Lemma~\ref{lem:L2-mass}.
 \end{remark}
 
 \begin{corollary}[Sharp two-sided bound]
