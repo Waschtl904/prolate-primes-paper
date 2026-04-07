@@ -17,6 +17,7 @@
 \newtheorem{problem}[theorem]{Open Problem}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
 
 %%─── Macros ──────────────────────────────────────────────────────────
 \newcommand{\ghat}{\widehat{g}}
@@ -650,6 +651,46 @@ so $\Ai(\zeta)=\Ai(0)+O(c^{-1/6})$;
 $|p(u)-\tstar| \le C_\kappa c^{-1/12}$
 (since $p'(\ustar)\asymp c^{1/4}$)
 so $p(u)^{-1/6} = \tstar^{-1/6}(1+O(c^{-1/12}))$.
+
+For the derivative bound used in Lemma~\ref{lem:remainder},
+differentiate \eqref{VI1} with respect to $u$:
+\[
+(\Phi_n^{(c)})'(u)
+= D_n^{(c)}\Bigl[
+-\tfrac{1}{6}\frac{p'(u)}{p(u)^{7/6}}\Ai(\zeta)
++ \frac{\zeta'(u)}{p(u)^{1/6}}\Ai'(\zeta)
+\Bigr]\bigl(1 + O(c^{-2/3})\bigr).
+\]
+For $|u - \ustar| \le c^{-1/3}$:
+$|p(u)| \asymp \tstar \asymp c^{1/2}$,
+$|p'(u)| \asymp c^{1/4}$,
+$|\zeta'(u)| = p(u) \asymp c^{1/2}$,
+and $|\Ai(\zeta)|, |\Ai'(\zeta)| = O(1)$.
+Using $|D_n^{(c)}| \asymp c^{1/4}$:
+\[
+|(\Phi_n^{(c)})'(u)|
+\le C_\kappa c^{1/4}
+\bigl(c^{1/4} \cdot c^{-7/12} + c^{1/2} \cdot c^{-1/12}\bigr)
+= C_\kappa c^{1/4} \cdot c^{5/12}
+\asymp C_\kappa\, c^{2/3}.
+\]
+After the rescaling $s = c^{1/2}(u - \ustar)$,
+so $a(s) = c^{-1/2}\Phi_n^{(c)}(\ustar + c^{-1/2}s)$
+and $a'(s) = c^{-1}(\Phi_n^{(c)})'(\ustar + c^{-1/2}s)$:
+\[
+|a'(s)| \le c^{-1} \cdot C_\kappa c^{2/3}
+= C_\kappa\, c^{-1/3}.
+\]
+
+\begin{remark*}
+The bound $|a'(s)| = O(c^{-1/3})$ is used in
+Lemma~\ref{lem:remainder} in the form
+$|a'(s)|/|\varphi'(s)| \lesssim c^{-1/3} \cdot s^{-2}$;
+since $|s| \ge c^{1/6}$ in the tail region,
+this is $\le c^{-1/3} \cdot c^{-1/3} = c^{-2/3}$,
+which is consistent with the $O(c^{-1/3})$ relative error
+in \eqref{eq:composite-A}.
+\end{remark*}
 \end{proof}
 
 \begin{lemma}[Tail remainder]
@@ -710,22 +751,26 @@ and $|a(s)| = O(c^{-1/2})$, so
 \]
 
 \noindent\textit{Remainder integral.}
-Since $|a'(s)| = O(c^{-1/2})$ and $|\varphi'(s)| \gtrsim s^2$,
+Since $|a'(s)| = O(c^{-1/3})$ (Lemma~\ref{lem:amp-near})
+and $|\varphi'(s)| \gtrsim s^2$,
 \[
 \left|\frac{d}{ds}\left(\frac{a(s)}{\varphi'(s)}\right)\right|
 \lesssim \frac{|a'(s)|}{|\varphi'(s)|}
 + |a(s)| \frac{|\varphi''(s)|}{|\varphi'(s)|^2}
-\lesssim c^{-1/2}(s^{-2} + s^{-3}) \lesssim c^{-1/2} s^{-2}.
+\lesssim c^{-1/3} s^{-2} + c^{-1/2} s^{-3}
+\lesssim c^{-1/3} s^{-2}.
 \]
 Hence
 \[
 \int_{|s|\ge c^{1/6}}
 \left|\frac{d}{ds}\!\left(\frac{a(s)}{\varphi'(s)}\right)\right|ds
-\lesssim c^{-1/2} \int_{c^{1/6}}^{\infty} s^{-2}\,ds
-\lesssim c^{-1/2} \cdot c^{-1/6} = c^{-2/3}.
+\lesssim c^{-1/3} \int_{c^{1/6}}^{\infty} s^{-2}\,ds
+\lesssim c^{-1/3} \cdot c^{-1/6} = c^{-1/2}.
 \]
 
-Both contributions are $O(c^{-5/6})$ absolutely,
+Both contributions are $O(c^{-5/6})$ absolutely
+(boundary term) respectively $O(c^{-1/2})$
+(remainder integral, matching the main term order),
 which is $O(c^{-1/3})$ relative to the main term $c^{-1/2}$.
 \end{proof}
 
