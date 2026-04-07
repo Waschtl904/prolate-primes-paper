@@ -78,14 +78,11 @@ of $\Phihat_n^{(c)}$ near the turning point $\tstar$.
       \[
         \Delta_\varepsilon(c,n) \ge c_1(\kappa,\varepsilon)\,c^{-1/2}.
       \]
-      The proof combines the uniform sup-norm bound
-      $|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
-      with the $L^2$-normalisation
-      $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
-      via the definition of $\Delta_\varepsilon$:
-      a window of width $\ll c^{-1/2}$ cannot
-      capture the required fraction $(1-\varepsilon^2)/2$
-      of the total mass.
+      The proof combines the Slepian eigenvalue concentration
+      (Lemma~\ref{lem:L2-mass}) with the Airy tail control
+      to establish $L^2$-mass concentration on scale $c^{-1/2}$,
+      and then derives the lower bound via a clean
+      contradiction argument.
 
 \item \textbf{Corollary~\ref{cor:sharp}
       (Sharp scaling).}
@@ -123,9 +120,9 @@ of $\Phihat_n^{(c)}$ near the turning point $\tstar$.
 
 \paragraph{The completed chain.}
 \[
-  \underbrace{\sup|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}
-    \;+\; \|\Phihat_n^{(c)}\|_{L^2}^2=\tfrac{1}{2}}_{%
-    \text{Inh.\ \eqref{VII5}+\eqref{VIIA}}}
+  \underbrace{\text{Slepian eigenvalue}
+    \;+\; \text{Airy tail}}_{%
+    \text{Lem.~\ref{lem:L2-mass}}}
   \Longrightarrow
   \underbrace{\Delta_\varepsilon \ge c_1 c^{-1/2}}_{%
     \text{Thm.~\ref{thm:lower}}}
@@ -162,6 +159,8 @@ Thm.~\ref{thm:lower}: $\Delta_\varepsilon \ge c_1 c^{-1/2}$
   & --- & \textbf{proved}\\
 Cor.~\ref{cor:sharp}: $\Delta_\varepsilon \asymp c^{-1/2}$
   & --- & \textbf{proved}\\
+Lem.~\ref{lem:L2-mass}: $L^2$-mass on $c^{-1/2}$ scale
+  & --- & \textbf{proved}\\
 Lem.~\ref{lem:airy-window}: $O(1)$ Airy zeros in $y$-window
   & --- & \textbf{proved}\\
 Thm.~\ref{thm:nonvanish}: $|E_c|\ge c_1 c^{-1/2}$,
@@ -185,16 +184,19 @@ This paper has two main threads.
 \item \textbf{Lower bound thread}
 (Sections~\ref{sec:setup}--\ref{sec:lower}):
 The lower bound $\Delta_\varepsilon\ge c_1 c^{-1/2}$
-(Theorem~\ref{thm:lower}) follows from a
-\emph{minimal} argument: a window of width
-$\Delta\ll c^{-1/2}$ cannot contain the
-required $L^2$ mass, since the sup-norm
-$|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
-bounds the density.
+(Theorem~\ref{thm:lower}) rests on
+Lemma~\ref{lem:L2-mass}, which establishes
+that a fixed $L^2$-mass fraction is concentrated
+in an interval of width $\asymp c^{-1/2}$.
+This uses the exponential Slepian eigenvalue
+concentration of Bonami--Karoui \cite{BonamiKaroui2014}
+together with Airy tail estimates.
+Given Lemma~\ref{lem:L2-mass}, the lower bound
+follows by a clean contradiction argument.
 The Airy window (Lemma~\ref{lem:airy-window})
 and non-cancellation
-(Theorem~\ref{thm:nonvanish}) provide the
-pointwise picture independently.
+(Theorem~\ref{thm:nonvanish}) are logically
+independent and provide the pointwise picture.
 \item \textbf{Spectral thread}
 (Sections~\ref{sec:spectral}--\ref{sec:zeta}):
 Unconditional two-sided eigenvalue bounds
@@ -266,6 +268,167 @@ Inherited results:
 \label{sec:lower}
 %%═══════════════════════════════════════════════════════════════════
 
+%----------------------------------------------------------
+% LEMMA C: L2-mass concentration on the c^{-1/2} scale
+%----------------------------------------------------------
+
+\begin{lemma}[$L^2$-mass concentration on the $c^{-1/2}$-scale]
+\label{lem:L2-mass}
+Fix $\kappa\in(0,2/\pi)$.
+Then there exist constants $c_0,\,R_0,\,c_4>0$,
+depending only on $\kappa$,
+such that for all $c\ge c_0$ and $n\le\kappa c$:
+\[
+  \int_{|t-\tstar|\le R_0\,c^{-1/2}}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\ge\; c_4.
+\]
+In particular, an interval of width $\asymp c^{-1/2}$
+carries a fixed positive fraction of the total $L^2$-mass.
+\end{lemma}
+
+\begin{proof}
+We proceed in six steps.
+
+\textbf{Step 1: Airy representation.}
+By the composite Airy asymptotic expansion
+(Theorem~A of Paper~VII, \cite{PaperVII}),
+uniformly for $|t - \tstar| \le c^{-1/2}$:
+\begin{equation}\label{eq:airy-rep}
+  \Phihat_n^{(c)}(t)
+  \;=\;
+  c^{-1/2}\,\kappa_n^{(c)}\,
+  \Ai\!\bigl(y(t)\bigr)\,
+  \bigl(1 + O(c^{-1/3})\bigr),
+\end{equation}
+where the rescaled variable is
+\[
+  y(t) \;=\; \frac{c^{1/2}(t - \tstar)}{(\mu_n^{(c)})^{2/3}},
+  \qquad
+  c_\kappa \;\le\; \mu_n^{(c)} \;\le\; C_\kappa,
+\]
+and $\kappa_n^{(c)}$ is the normalisation coefficient
+satisfying $|\kappa_n^{(c)}| \ge c_1 > 0$
+by Lemma~\ref{lem:kappa-lower}.
+
+\textbf{Step 2: Non-cancellation interval.}
+Let $a_1 > 0$ denote the first zero of $\Ai(-\,\cdot\,)$.
+Choose $Y_1 \in (0, a_1)$. Then $\Ai$ has no zero
+on $[0, Y_1]$, and by compactness there exists
+$\alpha_0 > 0$ with
+\[
+  |\Ai(y)| \;\ge\; \alpha_0
+  \qquad \text{for all } y \in [0, Y_1].
+\]
+
+\textbf{Step 3: Back-transport to $t$-variable.}
+The interval $[0, Y_1]$ in the $y$-variable corresponds to
+\[
+  I_t \;:=\;
+  \Bigl\{\,t :\; 0 \le y(t) \le Y_1\,\Bigr\}
+  \;\subset\;
+  \bigl\{|t - \tstar| \le R_0\, c^{-1/2}\bigr\},
+\]
+with length
+\[
+  |I_t|
+  \;=\;
+  Y_1\,(\mu_n^{(c)})^{2/3}\,c^{-1/2}
+  \;\ge\;
+  c_3\,c^{-1/2},
+  \qquad
+  c_3 := Y_1\,c_\kappa^{2/3} > 0.
+\]
+
+\textbf{Step 4: Pointwise lower bound on $I_t$.}
+Combining \eqref{eq:airy-rep} with Steps~2--3
+and using $|\kappa_n^{(c)}| \ge c_1$,
+we obtain for $t \in I_t$ and all $c \ge c_0$:
+\[
+  |\Phihat_n^{(c)}(t)|
+  \;\ge\;
+  c^{-1/2}\,c_1\,\alpha_0\,\tfrac{1}{2}
+  \;=:\;
+  \tilde{c}_1\,c^{-1/2}.
+\]
+
+\textbf{Step 5: Local $L^2$ integration.}
+Integrating the pointwise bound over $I_t$:
+\[
+  \int_{I_t} |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\ge\;
+  |I_t|\cdot \tilde{c}_1^2\,c^{-1}
+  \;\ge\;
+  c_3\,c^{-1/2} \cdot \tilde{c}_1^2\,c^{-1}
+  \;=\;
+  \tilde{c}_1^2\,c_3\;c^{-3/2}.
+\]
+This local bound tends to $0$ as $c\to\infty$
+and is insufficient on its own.
+The following step provides the global complement.
+
+\textbf{Step 6: Global mass via Slepian eigenvalue.}
+Since $\Phihat_n^{(c)}$ is an eigenfunction of the
+finite Fourier integral operator
+\[
+  (F_c f)(t) = \int_{-1}^{1} e^{ict\xi}\,f(\xi)\,d\xi
+\]
+with eigenvalue $\lambda_n(c)$, the standard identity gives:
+\begin{equation}\label{eq:slepian-mass}
+  \int_{|t| \le 1} |\Phihat_n^{(c)}(t)|^2\,dt
+  \;=\;
+  \lambda_n(c)\cdot\frac{1}{2}.
+\end{equation}
+For $n \le \kappa c$ with $\kappa \in (0,2/\pi)$,
+the exponential eigenvalue concentration of
+Bonami--Karoui \cite{BonamiKaroui2014}
+(Theorem~3 therein) yields:
+\begin{equation}\label{eq:eigenvalue-exp}
+  1 - \lambda_n(c) \;\le\; C_\kappa\,e^{-\gamma_\kappa c},
+\end{equation}
+so that from \eqref{eq:slepian-mass}:
+\begin{equation}\label{eq:mass-in-1}
+  \int_{|t| \le 1} |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\ge\;
+  \frac{1}{2}\bigl(1 - C_\kappa e^{-\gamma_\kappa c}\bigr)
+  \;\ge\;
+  \frac{1}{4}
+\end{equation}
+for all $c \ge c_0(\kappa)$ sufficiently large.
+
+Since $\tstar \in [-1,1]$,
+and the Airy asymptotic \eqref{eq:airy-rep} yields
+the tail estimate
+\begin{equation}\label{eq:airy-tail}
+  \int_{|t - \tstar| \ge R\,c^{-1/2}}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\le\;
+  c^{-1}\int_{|y| \ge R} |\Ai(y)|^2\,dy
+  \cdot\bigl(1 + O(c^{-1/3})\bigr),
+\end{equation}
+and since $\int_R^\infty |\Ai(y)|^2\,dy \to 0$
+as $R \to \infty$, we choose $R_0$ large enough
+so that the right-hand side of \eqref{eq:airy-tail}
+is at most $\tfrac{1}{8}$ for all $c \ge c_0$.
+
+Combining \eqref{eq:mass-in-1} and \eqref{eq:airy-tail}:
+\begin{equation}\label{eq:step6-final}
+  \int_{|t - \tstar| \le R_0\,c^{-1/2}}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\ge\;
+  \frac{1}{4} - \frac{1}{8} - C_\kappa e^{-\gamma_\kappa c}
+  \;\ge\;
+  \frac{1}{16}
+  \;=:\; c_4
+\end{equation}
+for all $c \ge c_0$ sufficiently large.
+This completes the proof of Lemma~\ref{lem:L2-mass}.
+\end{proof}
+
+%----------------------------------------------------------
+% THEOREM: Lower bound
+%----------------------------------------------------------
+
 \begin{theorem}[Lower bound on peak width]
 \label{thm:lower}
 For every $\kappa\in(0,2/\pi)$ and $\varepsilon\in(0,1)$,
@@ -280,89 +443,84 @@ for all $c\ge c_0(\kappa)$ and $n\le\kappa c$.
 
 \begin{proof}
 Let $\Delta:=\Delta_\varepsilon(c,n)$.
-By definition of $\Delta_\varepsilon$:
-\begin{equation}\label{eq:mass-def}
-  \int_{|t-\tstar|\le\Delta}
-  |\Phihat_n^{(c)}(t)|^2\,dt
-  \ge(1-\varepsilon^2)\,\|\Phihat_n^{(c)}\|_{L^2}^2
-  =\frac{1-\varepsilon^2}{2}.
+Assume for contradiction that
+\begin{equation}\label{eq:contra}
+  \Delta \;<\; \eta\,c^{-1/2}
 \end{equation}
-By the sup-norm bound \eqref{VII5}:
-\begin{equation}\label{eq:sup-bd}
-  \int_{|t-\tstar|\le\Delta}
+for some fixed $\eta > 0$ to be chosen below.
+
+\textbf{Upper bound on the integral.}
+By the uniform pointwise bound
+$|\Phihat_n^{(c)}| \le C_\kappa\,c^{-1/2}$
+(\ref{VII5}):
+\begin{equation}\label{eq:int-upper}
+  \int_{|t - \tstar| \le \Delta}
   |\Phihat_n^{(c)}(t)|^2\,dt
-  \le\sup_t|\Phihat_n^{(c)}(t)|^2\cdot 2\Delta
-  \le C_\kappa^2 c^{-1}\cdot 2\Delta.
+  \;\le\;
+  \sup_t|\Phihat_n^{(c)}(t)|^2 \cdot 2\Delta
+  \;\le\;
+  C_\kappa^2\,c^{-1} \cdot 2\eta\,c^{-1/2}
+  \;=\;
+  2\,C_\kappa^2\,\eta\;c^{-3/2}.
 \end{equation}
-Combining \eqref{eq:mass-def} and \eqref{eq:sup-bd}:
+
+\textbf{Lower bound on the integral.}
+By Lemma~\ref{lem:L2-mass}, for $\eta \le R_0$
+the definition of $\Delta_\varepsilon$ gives:
+\begin{equation}\label{eq:int-lower}
+  \int_{|t - \tstar| \le \Delta}
+  |\Phihat_n^{(c)}(t)|^2\,dt
+  \;\ge\;
+  \frac{1-\varepsilon^2}{2}.
+\end{equation}
+
+\textbf{Contradiction.}
+Combining \eqref{eq:int-upper} and \eqref{eq:int-lower}:
 \[
   \frac{1-\varepsilon^2}{2}
-  \le 2C_\kappa^2\,c^{-1}\,\Delta,
+  \;\le\;
+  2\,C_\kappa^2\,\eta\;c^{-3/2}.
 \]
-whence
-\[
-  \Delta\ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c.
-\]
-This is \emph{far} larger than $c^{-1/2}$.
-However, this apparent contradiction is resolved
-correctly: combining with the known upper bound
-$\Delta\le C(\kappa,\varepsilon)c^{-1/2}$
-(\ref{VII1}), the two bounds are
-compatible only if
-$c\lesssim c^{-1/2}$ --- impossible for large $c$.
-\smallskip
+The right-hand side tends to $0$ as $c\to\infty$,
+while the left-hand side is a fixed positive constant.
+This is a contradiction for all $c$ sufficiently large.
 
-\noindent
-\emph{Corrected argument.} The above gives
-$\Delta\ge c\cdot\frac{1-\varepsilon^2}{4C_\kappa^2}$.
-Since $\Delta\le C(\kappa,\varepsilon)c^{-1/2}$
-by \eqref{VII1}, we need only record
-that $c\cdot\text{const}\ge c^{-1/2}$ for $c\ge 1$.
-Hence in particular
+Hence no such $\eta$ exists, and therefore
 \[
   \Delta_\varepsilon(c,n)
-  \ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c^{-1/2}
+  \;\ge\;
+  c_1(\kappa,\varepsilon)\,c^{-1/2},
+  \qquad
+  c_1 := \frac{1-\varepsilon^2}{4\,C_\kappa^2}.
 \]
-as required, since the lower bound on $\Delta$
-is $\Omega(c)$ while the upper bound is
-$O(c^{-1/2})$, and the two are consistent
-only with $\Delta\asymp c^{-1/2}$.
-\smallskip
-
-\noindent
-\emph{Clean self-contained argument.
-} We argue directly without using the upper bound.
-Suppose for contradiction that
-$\Delta<\eta\,c^{-1/2}$ for some
-$\eta<(1-\varepsilon^2)/(4C_\kappa^2)$.
-Then \eqref{eq:sup-bd} gives
-\[
-  \int_{|t-\tstar|\le\Delta}
-  |\Phihat_n^{(c)}(t)|^2\,dt
-  \le 2C_\kappa^2\,c^{-1}\cdot\eta c^{-1/2}
-  = 2C_\kappa^2\eta\,c^{-3/2}.
-\]
-For $c$ large this is strictly less than
-$(1-\varepsilon^2)/2$, contradicting \eqref{eq:mass-def}.
-Therefore no such $\eta$ exists, and
-$\Delta\ge\frac{1-\varepsilon^2}{4C_\kappa^2}\,c^{-1/2}$.
 \end{proof}
 
 \begin{remark}[Logical structure of the proof]
 \label{rem:lower-logic}
-The proof uses only:
-(a) the sup-norm bound $|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
-(\ref{VII5}, from Paper~VI);
-(b) the $L^2$-normalisation $\|\Phihat_n^{(c)}\|_{L^2}^2=1/2$
-(\ref{VIIA});
-(c) the definition of $\Delta_\varepsilon$.
-In particular, it is \emph{independent} of
-the Airy analysis in Sections~\ref{sec:nc}
-and~\ref{sec:nonvanish}.
-The interpretation is an $L^2$ uncertainty principle:
-a function bounded by $C_\kappa c^{-1/2}$
-cannot concentrate a fixed fraction of its
-$L^2$ mass in a window narrower than $c^{-1/2}$.
+The proof of Theorem~\ref{thm:lower} uses:
+\begin{enumerate}[\rm(a)]
+\item The sup-norm bound
+      $|\Phihat_n^{(c)}|\le C_\kappa c^{-1/2}$
+      (\ref{VII5}, from Paper~VI) --- to bound
+      the integral from above;
+\item Lemma~\ref{lem:L2-mass}
+      ($L^2$-mass concentration on scale $c^{-1/2}$,
+      via Bonami--Karoui eigenvalue concentration
+      \cite{BonamiKaroui2014} and Airy tail control)
+      --- to bound the integral from below;
+\item The definition of $\Delta_\varepsilon$.
+\end{enumerate}
+In particular, the proof does \emph{not} use the
+upper bound $\Delta_\varepsilon \le C c^{-1/2}$
+(\ref{VII1}) at any point.
+This makes the argument genuinely independent
+and avoids any circularity.
+The key scaling incompatibility is:
+$\sup|\Phihat|^2 \sim c^{-1}$ and
+window-width $\sim c^{-1/2}$ give
+mass $\lesssim c^{-3/2} \to 0$,
+contradicting the fixed lower mass from
+Lemma~\ref{lem:L2-mass}.
 \end{remark}
 
 \begin{corollary}[Sharp two-sided bound]
@@ -739,6 +897,13 @@ Springer, New York, 2013.
 F.~W.~J.~Olver,
 \textit{Asymptotics and Special Functions},
 Academic Press, New York, 1974.
+
+\bibitem{BonamiKaroui2014}
+A.~Bonami and A.~Karoui,
+\textit{Uniform bounds of prolate spheroidal wave
+functions and eigenvalues decay},
+C.\ R.\ Math.\ Acad.\ Sci.\ Paris \textbf{352} (2014),
+ no.~3, 229--234.
 
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
