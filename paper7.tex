@@ -318,6 +318,36 @@ Neither approximation applies, and a
 \emph{composite} treatment is necessary.
 \end{remark}
 
+\begin{remark}[Three scales and the composite bridge]
+\label{rem:scales}
+Three natural rescalings appear in the analysis:
+\begin{itemize}
+\item \textbf{Airy scale:} $\xi = c^{2/3}(t - \tstar)$,
+  natural for $|t - \tstar| \lesssim c^{-2/3}$
+  (Airy profile \eqref{VI4}).
+\item \textbf{WKB scale:} $y = c^{1/2}(t - \tstar)$,
+  natural for $|t - \tstar| \gg c^{-1/2}$
+  (algebraic decay \eqref{VI2}).
+\item \textbf{Composite/Langer scale:}
+  $x = c^{1/2}(t - \tstar)$ (the same scaling as the WKB variable),
+  but with profile function $\mathcal{A}_n^{(c)}(x)$
+  that reduces to the Airy function for
+  $|x| \ll c^{1/6}$ via
+  $\xi = c^{-1/6}\, x\,/\,(\mu_n^{(c)})^{2/3}$.
+\end{itemize}
+The Langer--Olver map (Lemma~\ref{lem:phase})
+provides the explicit bridge:
+$\mathcal{A}_n^{(c)}(x)
+= \kappa_n^{(c)}\,\Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr)$
+interpolates between the Airy regime
+($|x| \ll c^{1/6}$, Airy variable $\xi = c^{2/3}(t-\tstar)$)
+and the WKB regime
+($|x| \gg 1$, where $|\mathcal{A}| \lesssim |x|^{-1/4}$).
+The composite variable $x$ is not ad hoc:
+it is precisely the output of the Langer substitution
+applied to the phase in Lemma~\ref{lem:phase}.
+\end{remark}
+
 %%═══════════════════════════════════════════════════════════════════
 \section{Corrected Mass Upper Bound in $\Zcross$}
 \label{sec:mass}
@@ -560,8 +590,20 @@ is therefore $O(c^{-1/3})$.
 \end{lemma}
 
 \begin{proof}
-In the rescaled variable $s = c^{1/2}(u-\ustar)$,
-the phase is $\varphi(s) = xs + \tfrac{\mu_n^{(c)}}{6}s^3$
+All estimates below are performed entirely in the
+rescaled variable $s = c^{1/2}(u-\ustar)$;
+the Jacobian $du = c^{-1/2}\,ds$ is absorbed into
+the amplitude $a(s)$, which satisfies
+$\|a\|_{L^\infty} \le C_\kappa c^{-1/2}$
+(combining the $c^{-1/2}$ from the substitution with
+the $O(1)$ amplitude of $\Phi_n^{(c)}$ near $\ustar$,
+uniformly in the rescaled regime near the turning point,
+cf.\ Lemma~\ref{lem:amp-near}).
+The main term is therefore $O(c^{-1/2})$,
+and all error bounds below are stated as
+fractions of this main term.
+
+The phase is $\varphi(s) = xs + \tfrac{\mu_n^{(c)}}{6}s^3$
 with derivative $\varphi'(s) = x + \tfrac{\mu_n^{(c)}}{2}s^2$.
 For $|s| \ge c^{1/6}$ and $t \in \Zcross$
 (so $|x| \le c^{1/6}$), the dominant term satisfies
@@ -574,8 +616,6 @@ so
 \lesssim \frac{|s|}{s^4} = s^{-3}.
 \]
 
-Let $a(s)$ denote the (smooth, bounded) amplitude
-arising from $\Phi_n^{(c)}$ after the substitution.
 Integration by parts yields
 \[
 \int_{|s|\ge c^{1/6}} e^{i\varphi(s)} a(s)\,ds
@@ -588,33 +628,30 @@ Integration by parts yields
 
 \noindent\textit{Boundary term.}
 At $|s| = c^{1/6}$ we have $|\varphi'(s)| \gtrsim c^{1/3}$
-and $|a(s)| = O(1)$, so
+and $|a(s)| = O(c^{-1/2})$, so
 \[
 \left|\frac{a(s)}{\varphi'(s)}\right|_{|s|=c^{1/6}}
-\lesssim c^{-1/3}.
+\lesssim c^{-1/2} \cdot c^{-1/3} = c^{-5/6}.
 \]
 
 \noindent\textit{Remainder integral.}
-Since $|a'(s)| = O(1)$ and $|\varphi'(s)| \gtrsim s^2$,
+Since $|a'(s)| = O(c^{-1/2})$ and $|\varphi'(s)| \gtrsim s^2$,
 \[
 \left|\frac{d}{ds}\left(\frac{a(s)}{\varphi'(s)}\right)\right|
 \lesssim \frac{|a'(s)|}{|\varphi'(s)|}
 + |a(s)| \frac{|\varphi''(s)|}{|\varphi'(s)|^2}
-\lesssim s^{-2} + s^{-3} \lesssim s^{-2}.
+\lesssim c^{-1/2}(s^{-2} + s^{-3}) \lesssim c^{-1/2} s^{-2}.
 \]
 Hence
 \[
 \int_{|s|\ge c^{1/6}}
 \left|\frac{d}{ds}\!\left(\frac{a(s)}{\varphi'(s)}\right)\right|ds
-\lesssim \int_{c^{1/6}}^{\infty} s^{-2}\,ds
-\lesssim c^{-1/6}.
+\lesssim c^{-1/2} \int_{c^{1/6}}^{\infty} s^{-2}\,ds
+\lesssim c^{-1/2} \cdot c^{-1/6} = c^{-2/3}.
 \]
 
-Both contributions are $O(c^{-1/6})$ in the rescaled
-variable. Including the $c^{-1/2}$ prefactor from the
-amplitude gives $R_{\rm far} = O(c^{-1/2} \cdot c^{-1/3})
-= O(c^{-5/6})$, which is $O(c^{-1/3})$ relative
-to the main term $c^{-1/2}$.
+Both contributions are $O(c^{-5/6})$ absolutely,
+which is $O(c^{-1/3})$ relative to the main term $c^{-1/2}$.
 \end{proof}
 
 \begin{lemma}[Uniformity in $n$]
