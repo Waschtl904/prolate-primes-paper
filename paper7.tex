@@ -34,15 +34,12 @@
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\Zcross}{\mathcal{Z}_{\mathrm{cross}}}
 \newcommand{\tstar}{t_*(c,n)}
-\newcommand{\CCM}{\mathrm{CCM}}
-\newcommand{\Hc}{\mathcal{H}_c}
 
 %%─── AMS metadata ────────────────────────────────────────────────────
 \subjclass[2020]{42C05, 34E20, 33E10, 47B06, 11M06}
 \keywords{Prolate spheroidal wave functions, Mellin transform,
 effective bandwidth, crossover zone, composite asymptotic,
-Langer--Olver, stationary phase, spectral convergence,
-Connes--Consani--Moscovici}
+Langer--Olver, stationary phase}
 
 \begin{document}
 
@@ -115,17 +112,6 @@ $\gtrsim c^{-1/2}$ near $t_*$;
 this is formulated precisely as
 Problem~\ref{prob:nonvanish}
 and is the central open problem for Paper~VIII.
-
-As an application, we prove that the CCM
-multi-mode operator $\Hc$ converges in the
-strong operator topology on $L^2(\mathbb{R})$,
-in the sense of \cite{CCM2025}.
-The convergence rate per unit step $|c'-c|=1$
-is $O(c^{-3/4})$ in the strong sense
-(see Remark~\ref{rem:rate-caveat}).
-Fine spectral statements (connection to zeros
-of $\zeta(s)$) require the lower bound and
-are deferred to Paper~VIII.
 \end{abstract}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -182,10 +168,7 @@ _{\text{Thm.~A}}
 _{\text{Cor.~\ref{cor:uniform-decay}}}
 \;\Longrightarrow\;
 \underbrace{\Delta_\varepsilon \le C(\kappa,\varepsilon)\,c^{-1/2}}
-_{\text{Thm.~B}}
-\;\Longrightarrow\;
-\underbrace{\Hc \xrightarrow{\mathrm{SOT}} \mathcal{H}}
-_{\text{Thm.~C}}.
+_{\text{Thm.~B}}.
 \]
 
 \maketitle
@@ -222,9 +205,6 @@ $c^{-1/2}$ upper bound (Theorem~B).
 \item Section~\ref{sec:barrier}: structural
 analysis showing why the lower bound is
 a different problem (Proposition~\ref{prop:lower-barrier}).
-\item Section~\ref{sec:CCM}: CCM operator
-convergence (Theorem~C) and the eigenvalue
-perturbation lemma (Lemma~\ref{lem:eigenvalue-pert}).
 \item Section~\ref{sec:problems}: open problems.
 \end{enumerate}
 
@@ -1005,149 +985,6 @@ see Problem~\ref{prob:nonvanish}.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{CCM Operator Convergence}
-\label{sec:CCM}
-%%═══════════════════════════════════════════════════════════════════
-
-\begin{definition}[CCM multi-mode operator]
-\label{def:CCM-op}
-For $c \ge 1$, $N(c) = \lfloor\kappa c\rfloor$,
-the CCM multi-mode operator
-(in the sense of \cite{CCM2025}) is defined by
-\begin{equation}
-\label{eq:Hc-def}
-(\Hc f)(t)
-:= \sum_{n=0}^{N(c)}
-\lambda_n^{(c)}\,
-\ip{f}{\widehat{\Phi}_n^{(c)}}_{L^2}\,
-\widehat{\Phi}_n^{(c)}(t).
-\end{equation}
-$\Hc$ is finite-rank, self-adjoint, non-negative,
-with $\|\Hc\| \le \tfrac{N(c)}{2} \le \tfrac{\kappa c}{2}$
-(using $\|\widehat{\Phi}_n^{(c)}\|^2 = \tfrac{1}{2}$
-and $\lambda_n^{(c)} \le 1$).
-\end{definition}
-
-\begin{lemma}[Eigenvalue perturbation]
-\label{lem:eigenvalue-pert}
-For $n \le \kappa c$ and $c' = c+1$:
-\begin{equation}
-\label{eq:eig-pert}
-|\lambda_n^{(c)} - \lambda_n^{(c')}|
-\;\le\; C_\kappa\,c^{-3/4}.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-The eigenvalues $\lambda_n^{(c)}$ are the
-PSWF concentration eigenvalues
-$\lambda_n^{(c)}
-= \|\widehat{\Phi}_n^{(c)}\|_{L^2(-\Delta,\Delta)}^2$
-where $\Delta = \Delta_\varepsilon(c,n)
-\le C_\kappa c^{-1/2}$ by Theorem~B.
-By \cite{Osipov2013}, Theorem~3.1,
-the eigenvalue sensitivity satisfies
-$|d\lambda_n^{(c)}/dc| \le C_\kappa c^{-3/4}$
-for $n \le \kappa c$, $c \ge c_0(\kappa)$.
-(This uses the fact that $\lambda_n^{(c)}$
-depends smoothly on $c$ and that
-the derivative is controlled by
-the bandwidth $\Delta \asymp c^{-1/2}$
-via an integration-by-parts identity.)
-Integrating over a unit interval gives \eqref{eq:eig-pert}.
-\end{proof}
-
-\begin{remark}[Operator norm vs.\ strong rate]
-\label{rem:rate-caveat}
-The \emph{operator norm} $\|\Hc - \mathcal{H}_{c+1}\|$
-is \emph{not} $O(c^{-3/4})$:
-there are $N(c) \asymp \kappa c$ non-zero eigenvalue
-differences each of size $C_\kappa c^{-3/4}$,
-so a naive sum gives $\kappa c \cdot c^{-3/4}
-= O(c^{1/4})$, which grows.
-What decays is the \emph{per-mode contribution}
-to the action on a fixed $f$.
-For $\|f\|=1$:
-\[
-\|(\Hc - \mathcal{H}_{c+1})f\|^2
-\le \sum_{n=0}^{N(c)}
-|\lambda_n^{(c)}-\lambda_n^{(c+1)}|^2
-|\ip{f}{\widehat{\Phi}_n^{(c)}}|^2
-\le C_\kappa^2 c^{-3/2}
-\sum_n |a_n^{(c)}|^2
-\le C_\kappa^2 c^{-3/2}\|f\|^2,
-\]
-hence $\|(\Hc-\mathcal{H}_{c+1})f\| \le C_\kappa c^{-3/4}$
-for each fixed $f$ with $\|f\|=1$.
-This is a \emph{strong} rate, not an operator
-norm rate.
-A sharp operator norm bound for
-$\|\Hc - \mathcal{H}\|$ is open
-(see Problem~\ref{prob:op-norm-rate}).
-\end{remark}
-
-\begin{theorem}[CCM convergence, Theorem~C]
-\label{thm:C}
-\begin{enumerate}[\rm(i)]
-\item\label{thm:C-rate}
-\textbf{Strong rate per unit step:}
-For all $c \ge c_0(\kappa)$ and $\|f\|_{L^2}=1$:
-\begin{equation}
-\label{eq:rate-strong}
-\|(\Hc - \mathcal{H}_{c+1})f\|
-\;\le\; C_\kappa\,c^{-3/4}.
-\end{equation}
-\item\label{thm:C-SOT}
-\textbf{Strong convergence:}
-$\Hc \xrightarrow{\mathrm{SOT}} \mathcal{H}$
-as $c \to \infty$.
-\item\label{thm:C-limit}
-\textbf{Limit operator:}
-$\mathcal{H} = \lim_{c\to\infty}\Hc$
-is bounded, self-adjoint, non-negative on $L^2(\mathbb{R})$.
-The spectral connection to $\zeta(s)$
-(in the sense of \cite{CCM2025})
-is the subject of Paper~VIII.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-\textbf{Part~\eqref{thm:C-rate}.}
-By Lemma~\ref{lem:eigenvalue-pert}
-and the Parseval frame bound:
-\begin{align*}
-\|(\Hc-\mathcal{H}_{c+1})f\|^2
-&= \Bigl\|\sum_n
-(\lambda_n^{(c)}-\lambda_n^{(c+1)})
-a_n^{(c)}\widehat{\Phi}_n^{(c)}\Bigr\|^2
-\le \sum_n
-|\lambda_n^{(c)}-\lambda_n^{(c+1)}|^2
-|a_n^{(c)}|^2
-\|\widehat{\Phi}_n^{(c)}\|^2\\
-&\le \tfrac{1}{2}\cdot C_\kappa^2 c^{-3/2}
-\sum_n |a_n^{(c)}|^2
-\le \tfrac{1}{2}C_\kappa^2 c^{-3/2}\|f\|^2.
-\end{align*}
-Here we used $\|\widehat{\Phi}_n^{(c)}\|^2 = \tfrac{1}{2}$
-and the frame bound
-$\sum_n|a_n^{(c)}|^2 \le \|f\|^2$.
-Taking square roots gives \eqref{eq:rate-strong}.
-
-\textbf{Part~\eqref{thm:C-SOT}.}
-For fixed $f$:
-$\|(\Hc-\mathcal{H}_{c'})f\|
-\le \sum_{k=c}^{c'-1}\|(\mathcal{H}_k-\mathcal{H}_{k+1})f\|
-\le C_\kappa\sum_{k=c}^{\infty} k^{-3/4} \to 0$
-as $c\to\infty$, so $\Hc f$ is Cauchy in $L^2$.
-
-\textbf{Part~\eqref{thm:C-limit}.}
-Self-adjointness and non-negativity pass to
-the limit by Part~\eqref{thm:C-SOT};
-boundedness follows from
-$\|\Hc\| \le \tfrac{\kappa}{2}$ uniformly.
-\end{proof}
-
-%%═══════════════════════════════════════════════════════════════════
 \section{Open Problems}
 \label{sec:problems}
 %%═══════════════════════════════════════════════════════════════════
@@ -1170,25 +1007,6 @@ Determine
 $C^*(\kappa,\varepsilon)
 := \limsup_{c\to\infty}
 c^{1/2}\Delta_\varepsilon(c,\lfloor\kappa c\rfloor)$.
-\end{problem}
-
-\begin{problem}[Operator norm convergence rate]
-\label{prob:op-norm-rate}
-Determine whether
-$\|\Hc - \mathcal{H}_{c'}\|_{L^2\to L^2}$
-is bounded or decays as $c \to \infty$,
-and if it decays, find the optimal rate.
-(See Remark~\ref{rem:rate-caveat}.)
-\end{problem}
-
-\begin{problem}[Spectral connection to $\zeta(s)$]
-\label{prob:zeta}
-Assuming Problem~\ref{prob:nonvanish} is resolved,
-establish a precise spectral correspondence
-between the eigenvalues of $\mathcal{H}$
-and the non-trivial zeros of $\zeta(s)$
-in the sense of \cite{CCM2025}.
-This is the main goal of Paper~VIII.
 \end{problem}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1229,15 +1047,6 @@ Springer, New York, 2013.
 F.~W.~J.~Olver,
 \textit{Asymptotics and Special Functions},
 Academic Press, New York, 1974.
-
-\bibitem{CCM2025}
-A.~Connes, C.~Consani, and H.~Moscovici,
-\textit{Zeta Spectral Triples},
-arXiv:2511.22755 [math.NT], preprint, 2025.
-To appear in: \textit{Applications of Noncommutative
-Geometry to Gauge Theories, Field Theories,
-and Quantum Space-Time},
-EMS Lecture Notes in Mathematics.
 
 \end{thebibliography}
 
