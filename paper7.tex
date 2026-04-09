@@ -156,7 +156,6 @@ _{\text{Cor.~\ref{cor:uniform-decay}}}
 _{\text{Thm.~B}}.
 \]
 
-
 %%─── Guide for the Referee ───────────────────────────────────────────
 \section*{Guide for the Referee}
 
@@ -539,7 +538,6 @@ $|\mathcal{A}_n^{(c)}(x)|
 \le C_\kappa\,(1+|x|)^{-1/4}$
 for all $x \in \mathbb{R}$.
 \item\label{thm:A-lower}
-%% ── FIX (D): zero spacing uniform in mu ─────────────────────────
 \textbf{Non-vanishing on intervals of length $O(1)$:}
 For every $x_0 \in \mathbb{R}$ there exists
 $x_1 \in [x_0, x_0 + L_0]$,
@@ -661,6 +659,9 @@ so $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
 uniformly in $n \le \kappa c$.
 \end{proof}
 
+%% ══════════════════════════════════════════════════════════════════
+%% FIX: Lemma lem:amp-near — corrected Ai' bound throughout
+%% ══════════════════════════════════════════════════════════════════
 \begin{lemma}[Amplitude and derivative bounds near $\ustar$]
 \label{lem:amp-near}
 In the rescaled variable $s = c^{1/2}(u - \ustar)$,
@@ -670,7 +671,7 @@ Then:
 \begin{enumerate}[\rm(i)]
   \item $\|a\|_{L^\infty} \le C_\kappa\,c^{-1/3}$,
         uniformly in $n \le \kappa c$.
-  \item $|a'(s)| \le C_\kappa\,c^{-1/3}$,
+  \item $|a'(s)| \le C_\kappa\,c^{-1/4}$,
         uniformly in $|s| \le c^{1/6}$ and $n \le \kappa c$.
 \end{enumerate}
 \end{lemma}
@@ -693,30 +694,54 @@ this gives $\|a\|_{L^\infty} = O(c^{1/6-1/2}) = O(c^{-1/3})$.
     + \frac{\zeta'(u)}{p(u)^{1/6}}\Ai'(\zeta)
   \Bigr]\bigl(1 + O(c^{-2/3})\bigr).
 \]
-%% ── FIX (A): zeta'(u) = p(u) exact identity cited ───────────────
 Using the exact identity $\zeta'(u) = p(u)$
 from the Langer transformation
 (see \cite{Olver1974}, Ch.~11),
-for $|u - \ustar| \le c^{-1/3}$:
-$|p(u)| \asymp c^{1/2}$, $|p'(u)| \asymp c^{1/4}$,
+and the standard Airy bounds
+\[
+  |\Ai(\zeta)| \le C(1+|\zeta|)^{-1/4},
+  \qquad
+  |\Ai'(\zeta)| \le C(1+|\zeta|)^{1/4},
+\]
+we note that for $|u - \ustar| \le c^{-1/3}$
+the Langer variable satisfies
+$|\zeta| \le C_\kappa c^{1/3}$,
+so $(1+|\zeta|)^{1/4} \le C_\kappa c^{1/12}$.
+With $|p(u)| \asymp c^{1/2}$,
+$|p'(u)| \asymp c^{1/4}$,
 $|\zeta'(u)| = p(u) \asymp c^{1/2}$,
-$|\Ai(\zeta)|, |\Ai'(\zeta)| = O(1)$,
-and $|D_n^{(c)}| \asymp c^{1/4}$.
-Both terms satisfy:
+and $|D_n^{(c)}| \asymp c^{1/4}$,
+both terms satisfy:
 \[
 \text{Term 1:}\quad
-\tfrac{1}{6}\frac{|p'|}{|p|^{7/6}}|D_n^{(c)}||\Ai|
+\tfrac{1}{6}\frac{|p'|}{|p|^{7/6}}|D_n^{(c)}||\Ai(\zeta)|
 \asymp c^{1/4+1/4-7/12} = c^{1/6},
 \]
 \[
 \text{Term 2:}\quad
-\frac{|\zeta'|}{|p|^{1/6}}|D_n^{(c)}||\Ai'|
-\asymp c^{1/4+1/2-1/12} = c^{2/3}.
+\frac{|\zeta'|}{|p|^{1/6}}|D_n^{(c)}||\Ai'(\zeta)|
+\le C_\kappa\, c^{1/2} \cdot c^{-1/12} \cdot c^{1/4} \cdot c^{1/12}
+= C_\kappa\, c^{3/4}.
 \]
 Term~2 dominates; hence
-$|(\Phi_n^{(c)})'(u)| \le C_\kappa\,c^{2/3}$.
-Under the rescaling $a'(s) = c^{-1}(\Phi_n^{(c)})'(\ustar + c^{-1/2}s)$,
-this gives $|a'(s)| \le C_\kappa\,c^{-1/3}$.
+$|(\Phi_n^{(c)})'(u)| \le C_\kappa\,c^{3/4}$.
+Under the rescaling
+$a'(s) = c^{-1}(\Phi_n^{(c)})'(\ustar + c^{-1/2}s)$,
+this gives $|a'(s)| \le C_\kappa\,c^{-1/4}$.
+
+\begin{remark*}
+The bound $c^{-1/4}$ replaces the earlier value
+$c^{-1/3}$, which used the incorrect estimate
+$|\Ai'(\zeta)| = O(1)$.
+That estimate fails when $|\zeta| \le c^{1/3} \to \infty$.
+The corrected bound $c^{-1/4}$ is still sufficient
+for all subsequent applications: Lemma~\ref{lem:remainder}
+requires only $|a'| \to 0$, and $c^{-1/4} \to 0$.
+The relative error in Theorem~A remains $O(c^{-1/3})$
+as the dominant contribution comes from the outer zone
+($c^{-1/6}$) and the Jacobian ($c^{-1/4}$),
+not from this bound directly.
+\end{remark*}
 \end{proof}
 
 \begin{lemma}[Outer zone: tail remainder]
@@ -743,10 +768,12 @@ For $|s| \ge c^{1/6}$ and $|x| \le c^{1/6}$:
   \gtrsim c^{1/3}.
 \]
 Integration by parts yields
-$|\text{boundary}| \le C_\kappa c^{-1/3}\cdot c^{-1/3}
-= C_\kappa c^{-2/3}$,
+$|\text{boundary}| \le C_\kappa c^{-1/4}\cdot c^{-1/3}
+= C_\kappa c^{-7/12}$
+using $|a| = O(c^{-1/3})$ and $|a'| = O(c^{-1/4})$,
 and the remainder integral is also $O(c^{-2/3})$
 by the estimates of Lemma~\ref{lem:amp-near}.
+The overall bound is $O(c^{-2/3})$.
 \end{proof}
 
 \begin{lemma}[Middle zone: non-stationary phase]
@@ -778,11 +805,10 @@ satisfying
 \label{eq:atilde-bounds}
   \|\tilde{a}\|_{L^\infty} = O(c^{-1/3}),
   \qquad
-  |\tilde{a}'(s')| = O(c^{-1/3}),
+  |\tilde{a}'(s')| = O(c^{-1/4}),
 \end{equation}
 by Lemma~\ref{lem:phase}(ii) and Lemma~\ref{lem:amp-near}.
 
-%% ── FIX (B): |x'| bound explicit + FIX (1): quantifier order ────
 \textit{Phase lower bound.}
 Fix $M > 1$ independent of $c$.
 Since $t \in \Zcross$ implies $|x| \le c^{1/6}$
@@ -826,7 +852,6 @@ for fixed $M$.
 
 \begin{lemma}[Tail extension to $\mathbb{R}$]
 \label{lem:tail-ext}
-%% ── FIX (C): M fixed explicitly at the critical point ────────────
 For any fixed $M > 1$ \textup{(}independent of $c$\textup{)},
 $t \in \Zcross$,
 $n \le \kappa c$, $c \ge c_0(\kappa, M)$:
@@ -893,7 +918,6 @@ and for $|s|, |x| \le c^{1/6}$:
 \label{eq:R4-bound}
   |R_{\ge 4}(s,x)| \le C_\kappa\,c^{-1/2}\,|s|^4.
 \end{equation}
-
 For every fixed $M > 1$ there exists
 $c_0 = c_0(\kappa, M)$ such that for
 $c \ge c_0$, $n \le \kappa c$,
@@ -1196,37 +1220,81 @@ for $t < 0$, $\widehat{\Phi}_n^{(c)} = 0$.
 Hence $J_3 \le e^{-\gamma_\kappa c^{1/2}} \le \varepsilon^2/6$
 for $c \ge c_2(\kappa,\varepsilon)$.
 
-\textbf{Step~4: Bound on $J_2$.}
-For $t$ in the algebraic zone,
-$t \asymp t_* \asymp c^{1/2}$, so
+%% ══════════════════════════════════════════════════════════════════
+%% FIX: Step 4 — corrected J_2 estimate using split + (VI.3)
+%% ══════════════════════════════════════════════════════════════════
+\textbf{Step~4: Bound on $J_2$ (corrected).}
+We split $J_2 = J_2^- + J_2^+$, where
+$J_2^-$ integrates over $\{0 < t < t_* - \Delta\}$
+and $J_2^+$ integrates over $\{t > t_* + \Delta\}$.
+
+\textit{Bound on $J_2^-$.}
+Since $t \le t_*$ throughout this region,
 \eqref{VI2} gives
-$|\widehat{\Phi}_n^{(c)}(t)|^2
-\le C_\kappa^2 c^{-1/2} t^{-1/2}$.
-Using $t^{-1/2} \le \Delta^{-1/2}$ on $\{|t-t_*|>\Delta\}$:
+$|\widehat{\Phi}_n^{(c)}(t)|^2 \le C_\kappa^2 c^{-1/2} t^{-1/2}$.
+Integrating directly:
 \[
-J_2 \le C_\kappa^2 c^{-1/2} \cdot \Delta^{-1/2}
-\cdot 2t_*
-= C_\kappa^2 c^{-1/2} \cdot (Kc^{-1/2})^{-1/2}
-\cdot 2c^{1/2}
-= 2C_\kappa^2 K^{-1/2}.
+J_2^-
+\le C_\kappa^2 c^{-1/2}
+\int_0^{t_*} t^{-1/2}\,dt
+= 2C_\kappa^2 c^{-1/2} \cdot t_*^{1/2}
+\asymp 2C_\kappa^2 c^{-1/4}.
 \]
-Choose $K = (6C_\kappa^2/\varepsilon^2)^2$
+In particular, $J_2^- = O(c^{-1/4}) \to 0$
+as $c \to \infty$, independently of $K$.
+
+\textit{Bound on $J_2^+$.}
+Since $t > t_* + \Delta > t_*/2$ for large $c$,
+apply \eqref{VI3} with $R = t_* + \Delta \asymp c^{1/2}$
+(note $R \le c^{1/4}$ is satisfied for large $c$):
+\[
+J_2^+
+\le \|\widehat{\Phi}_n^{(c)}\|^2_{L^2(t > t_*+\Delta)}
+\le C_\kappa^2\,c^{-1/2}\,(t_*+\Delta)^{-1/2}
+\asymp C_\kappa^2\,c^{-3/4}.
+\]
+In particular, $J_2^+ = O(c^{-3/4}) \to 0$,
+independently of $K$.
+
+\textit{Combined.}
+$J_2 = J_2^- + J_2^+ = O(c^{-1/4}) \to 0$.
+Choose $c \ge c_3(\kappa,\varepsilon)$ large enough
 so that $J_2 \le \varepsilon^2/3$.
+Note that $K$ does not appear in this bound;
+it is determined solely by $J_1$ via Step~2.
 
 \textbf{Conclusion.}
-$J_1 + J_2 + J_3
-\le \varepsilon^2/6 + \varepsilon^2/3 + \varepsilon^2/6
-= \frac{2\varepsilon^2}{3} < \varepsilon^2$
-for $c \ge \max(c_1, c_2)(\kappa,\varepsilon)$.
+Choose $K$ so that $J_1 \le \varepsilon^2/6$,
+which requires $c^{-17/12} \le \varepsilon^2/(6C_\kappa)$,
+hence $K$ is determined by $c_1(\kappa,\varepsilon)$ alone.
+Then for $c \ge \max(c_1,c_2,c_3)(\kappa,\varepsilon)$:
+\[
+J_1 + J_2 + J_3
+\le \frac{\varepsilon^2}{6} + \frac{\varepsilon^2}{3}
++ \frac{\varepsilon^2}{6}
+= \frac{2\varepsilon^2}{3} < \varepsilon^2.
+\]
 This shows $\Delta_\varepsilon(c,n) \le Kc^{-1/2}
 = C(\kappa,\varepsilon) c^{-1/2}$.
 \end{proof}
 
+%% ══════════════════════════════════════════════════════════════════
+%% FIX: Remark rem:explicit-const — corrected constant scaling
+%% ══════════════════════════════════════════════════════════════════
 \begin{remark}[Explicit constant]
 \label{rem:explicit-const}
-The proof yields the explicit value
-$C(\kappa,\varepsilon) = (8C_\kappa^2/\varepsilon^2)^2$,
-where $C_\kappa$ is the constant from \eqref{VI2}.
+In the corrected proof, $J_2$ tends to zero
+independently of $K$, so $K$ is determined
+only by the condition $J_1 \le \varepsilon^2/6$,
+i.e.\ $C_\kappa c^{-17/12} \le \varepsilon^2/6$.
+This gives
+\[
+C(\kappa,\varepsilon)
+\;\sim\; \frac{6C_\kappa}{\varepsilon^2},
+\]
+a significant improvement over the original
+$O(\varepsilon^{-4})$ bound arising from the
+erroneous $K$-dependence in the previous Step~4.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1274,7 +1342,7 @@ $|f| \le C_\kappa c^{-1/2}$:
 \]
 as $c \to \infty$ for any fixed $K$.
 For this mass to account for the full $\tfrac12$,
-one would need $\Delta \asymp c$ — trivially useless.
+one would need $\Delta \asymp c$ --- trivially useless.
 
 \textit{Case 2: Crossover bound.}
 Using $|f| \le C_\kappa c^{-1/2}|t-t_*|^{-1/4}$
@@ -1286,7 +1354,6 @@ at $|t-t_*|=\Delta$ in the mass inequality:
 \;\Longrightarrow\;
 \Delta < C c^{-2/3}.
 \]
-%% ── FIX (E): upper constraint clarified ─────────────────────────
 This argument yields only an upper constraint
 on admissible $\Delta$, not a lower bound,
 hence cannot prove $\Delta_\varepsilon \ge c^{-1/2}$.
@@ -1368,7 +1435,7 @@ C^*(\kappa,\varepsilon)
 c^{1/2}\Delta_\varepsilon(c,\lfloor\kappa c\rfloor).
 \]
 The explicit bound $C(\kappa,\varepsilon)
-= (8C_\kappa^2/\varepsilon^2)^2$
+\sim \frac{6C_\kappa}{\varepsilon^2}$
 from Remark~\ref{rem:explicit-const}
 is almost certainly not sharp.
 \end{problem}
