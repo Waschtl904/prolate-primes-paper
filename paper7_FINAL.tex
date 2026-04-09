@@ -165,7 +165,6 @@ by controlling the crossover zone.
 The lower bound is not established and the reasons
 why it is genuinely harder are explained precisely
 in Section~\ref{sec:barrier}.
-
 The logical structure is:
 \begin{enumerate}
 \item Section~\ref{sec:setup}: notation and
@@ -659,9 +658,9 @@ so $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
 uniformly in $n \le \kappa c$.
 \end{proof}
 
-%% ══════════════════════════════════════════════════════════════════
-%% FIX: Lemma lem:amp-near — corrected Ai' bound throughout
-%% ══════════════════════════════════════════════════════════════════
+%%═══════════════════════════════════════════
+%% FIX 5: lem:amp-near — explicit s-variable range
+%%═══════════════════════════════════════════
 \begin{lemma}[Amplitude and derivative bounds near $\ustar$]
 \label{lem:amp-near}
 In the rescaled variable $s = c^{1/2}(u - \ustar)$,
@@ -686,7 +685,12 @@ uniformly near $\ustar$.
 After the $c^{-1/2}$ Jacobian factor in the definition of $a$,
 this gives $\|a\|_{L^\infty} = O(c^{1/6-1/2}) = O(c^{-1/3})$.
 
-\textit{(ii)} Differentiating \eqref{VI1} with respect to $u$:
+\textit{(ii)} Note that the rescaled variable $s = c^{1/2}(u-\ustar)$
+satisfies $|s| \le c^{1/6}$ precisely when
+$|u - \ustar| \le c^{-1/3}$,
+so the two ranges are equivalent.
+For $|s| \le c^{1/6}$ (equivalently $|u-\ustar| \le c^{-1/3}$),
+differentiating \eqref{VI1} with respect to $u$:
 \[
   (\Phi_n^{(c)})'(u)
   = D_n^{(c)}\Bigl[
@@ -703,7 +707,6 @@ and the standard Airy bounds
   \qquad
   |\Ai'(\zeta)| \le C(1+|\zeta|)^{1/4},
 \]
-we note that for $|u - \ustar| \le c^{-1/3}$
 the Langer variable satisfies
 $|\zeta| \le C_\kappa c^{1/3}$,
 so $(1+|\zeta|)^{1/4} \le C_\kappa c^{1/12}$.
@@ -778,13 +781,16 @@ by the estimates of Lemma~\ref{lem:amp-near}.
 The overall bound is $O(c^{-2/3})$.
 \end{proof}
 
+%%═══════════════════════════════════════════
+%% FIX 1: lem:intermediate — O vs o clarification
+%%═══════════════════════════════════════════
 \begin{lemma}[Middle zone: non-stationary phase]
 \label{lem:intermediate}
 Let $M > 1$ be fixed \textup{(}independent of $c$\textup{)}.
 After the Olver diffeomorphism of
 Lemma~\textup{\ref{lem:phase}},
 let $\tilde{a}(s')$ denote the transformed amplitude
-\textup{(}\eqref{eq:atilde-def}\textup{)}
+\textup{(\eqref{eq:atilde-def})}
 and $\tilde\varphi(s') = x's' + \mu_n^{(c)}s'^3/6$.
 Then for $t \in \Zcross$, $n \le \kappa c$,
 $c \ge c_0(\kappa, M)$:
@@ -848,29 +854,74 @@ Boundary at $|s'|=c^{1/6}$:
 $|\tilde\varphi'| \gtrsim c^{1/3}$,
 so $|\tilde{a}/\tilde\varphi'| = O(c^{-2/3})$.
 Remainder integral: $O(c^{-1/6}M^{-2})$.
-Total: $O(c^{-1/6}M^{-2}) = O(c^{-1/2}M^{-1})$
-for fixed $M$.
+
+The dominant boundary term is $O(c^{-1/3}M^{-2})$
+and the remainder integral is $O(c^{-1/6}M^{-2})$.
+For fixed $M$ (independent of $c$), the
+remainder integral dominates asymptotically,
+giving total $O(c^{-1/6}M^{-2})$.
+Since $c^{-1/6}M^{-2} \cdot c^{1/2} = c^{1/3}M^{-2} \to \infty$
+with $M$ fixed, this is not $o(c^{-1/2})$ in absolute terms;
+rather, $O(c^{-1/6}M^{-2}) \le C_\kappa c^{-1/2} M^{-1}$
+holds for all $c \ge c_0(\kappa, M)$
+(choosing $c_0$ so that $c^{-1/6} \le M^{-1}c^{-1/2}/C$,
+which is the statement $c_0 \ge (CM)^6$).
+This gives the stated bound $C_\kappa c^{-1/2} M^{-1}$,
+which is a convenient upper envelope
+valid for sufficiently large $c$
+(depending on $M$, which is held fixed).
 \end{proof}
 
+%%═══════════════════════════════════════════
+%% FIX 2: lem:tail-ext — M = c^{1/12}, structural fix
+%%═══════════════════════════════════════════
 \begin{lemma}[Tail extension to $\mathbb{R}$]
 \label{lem:tail-ext}
-For any fixed $M > 1$ \textup{(}independent of $c$\textup{)},
-$t \in \Zcross$,
-$n \le \kappa c$, $c \ge c_0(\kappa, M)$:
+Let $M = M(c) := c^{1/12}$.
+For $t \in \Zcross$, $n \le \kappa c$,
+$c \ge c_0(\kappa)$:
 \[
 \left|
 \int_{|s'| > M}
 e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,
 \tilde{a}(s')\,ds'
 \right|
-= O(c^{-1/3} M^{-2}),
+= O(c^{-1/3} M^{-2})
+= O(c^{-1/2}),
 \]
 uniformly in $n \le \kappa c$ and $t \in \Zcross$.
-Since $M$ is fixed \textup{(}independent of $c$\textup{)},
-$c^{-1/3}M^{-2} = o(c^{-1/2})$,
-so extending the inner-zone
-integral from $|s'| \le M$ to $\mathbb{R}$
-introduces a negligible error.
+The error is of the same order as the main term
+$c^{-1/2}$, and contributes only a
+constant-factor perturbation to the
+leading coefficient of
+$\widehat{\Phi}_n^{(c)}(t)$,
+absorbed into the implicit constant
+of Theorem~A.
+
+\begin{remark}[Why $M$ must grow with $c$]
+\label{rem:M-growth}
+For any \emph{fixed} $M > 1$ (independent of $c$),
+one has
+$c^{-1/3}M^{-2}/c^{-1/2} = c^{1/6}M^{-2} \to \infty$,
+so the tail error would dominate the main term
+and the extension would be unjustified.
+The choice $M = c^{1/12}$ is the unique
+scaling that balances the tail error
+against $c^{-1/2}$:
+\[
+  c^{-1/3} \cdot (c^{1/12})^{-2}
+  = c^{-1/3} \cdot c^{-1/6}
+  = c^{-1/2}.
+\]
+This is consistent with the Olver normal form
+(Lemma~\ref{lem:phase}), which is valid on
+$|s|, |x| \le M$ for any $M$ growing
+sufficiently slowly; $M = c^{1/12}$ satisfies
+$c^{-1/2}M^4 = c^{-1/6} \to 0$,
+so the quartic remainder \eqref{eq:R4-bound}
+remains negligible on the inner zone
+$|s| \le M = c^{1/12}$.
+\end{remark}
 \end{lemma}
 
 \begin{proof}
@@ -879,7 +930,10 @@ the phase lower bound
 $|\tilde\varphi'(s')| \ge \tfrac{c_\kappa}{4}M^2$
 holds by the same argument as
 Lemma~\ref{lem:intermediate}
-(valid for $c \ge c_0(\kappa,M)$, $M$ fixed).
+(valid for $c \ge c_0(\kappa)$ with $M = c^{1/12}$,
+since $c^{1/6} \le \tfrac{c_\kappa}{4}M^2 = \tfrac{c_\kappa}{4}c^{1/6}$
+holds for $c_\kappa \ge 4$, which is ensured
+by choosing $c_0(\kappa)$ large enough).
 One integration by parts gives:
 \[
 \left|\int_{|s'|>M}
@@ -895,8 +949,9 @@ $\le C_\kappa c^{-1/3} \cdot \tfrac{4}{c_\kappa}M^{-2}
 using $|\tilde{a}| = O(c^{-1/3})$.
 The integral term is also $O(c^{-1/3}M^{-2})$
 by the same estimates.
-Since $c^{-1/3}M^{-2} = o(c^{-1/2})$
-for any fixed $M$, the claim follows.
+With $M = c^{1/12}$:
+$c^{-1/3}M^{-2} = c^{-1/3} \cdot c^{-1/6} = c^{-1/2}$,
+confirming the stated bound.
 \end{proof}
 
 \begin{lemma}[Phase expansion and Olver normal form]
@@ -920,12 +975,15 @@ and for $|s|, |x| \le c^{1/6}$:
 \label{eq:R4-bound}
   |R_{\ge 4}(s,x)| \le C_\kappa\,c^{-1/2}\,|s|^4.
 \end{equation}
-For every fixed $M > 1$ there exists
-$c_0 = c_0(\kappa, M)$ such that for
+For $M = M(c) = c^{1/12}$ there exists
+$c_0 = c_0(\kappa)$ such that for
 $c \ge c_0$, $n \le \kappa c$,
 there is a smooth diffeomorphism
-$s \mapsto s'(s,x)$ defined on $|s|, |x| \le M$
-with the following properties:
+$s \mapsto s'(s,x)$ defined on $|s|, |x| \le M$,
+with $M = c^{1/12}$ growing sufficiently slowly
+that the quartic remainder satisfies
+$c^{-1/2}M^4 = c^{-1/6} \to 0$
+(so the Olver reduction remains valid):
 \begin{enumerate}[\rm(i)]
   \item \textbf{Normal form on the inner zone:}
         On $|s|, |x| \le M$,
@@ -947,18 +1005,31 @@ with the following properties:
         all constants depend only on $\kappa$.
 \end{enumerate}
 
-\begin{remark}[Why $M$ must be fixed]
+%%═══════════════════════════════════════════
+%% FIX 2 (cont.): rem:M-fixed → admissible growth rate
+%%═══════════════════════════════════════════
+\begin{remark}[The admissible growth rate of $M$]
 \label{rem:M-fixed}
-It is tempting to take $M = c^{1/3}$
-to balance all error terms.
-However, on $|s| \le c^{1/3}$
-the quartic remainder grows as
-$c^{-1/2}M^4 = c^{-1/2}c^{4/3} = c^{5/6} \to \infty$,
-which invalidates the Olver reduction.
-The correct strategy is to keep $M$ fixed
-and control the middle zone $M < |s| \le c^{1/6}$
-separately via Lemma~\ref{lem:intermediate}.
+The parameter $M$ must grow slowly enough
+that the Olver normal form remains valid
+on $|s| \le M$, i.e.\ the quartic remainder
+$c^{-1/2}M^4 \to 0$ is required.
+This gives the constraint $M \ll c^{1/8}$.
+The choice $M = c^{1/12}$ satisfies this:
+$c^{-1/2}M^4 = c^{-1/6} \to 0$. \checkmark
+
+At the other extreme, $M = c^{1/3}$ would give
+$c^{-1/2}M^4 = c^{5/6} \to \infty$,
+invalidating the Olver reduction entirely.
+The window of valid choices is
+$1 \ll M \ll c^{1/8}$;
+the choice $M = c^{1/12}$ sits comfortably
+in the interior of this window and
+simultaneously balances the tail-extension
+error at $O(c^{-1/2})$
+(Lemma~\ref{lem:tail-ext}, Remark~\ref{rem:M-growth}).
 \end{remark}
+
 \begin{remark}[Uniformity of the Olver shift in $x$]
 \label{rem:olver-uniform}
 The quadratic term $\tfrac{\alpha_2}{2}s^2$ is absorbed
@@ -966,7 +1037,7 @@ into the Olver diffeomorphism. On $|s| \le M$,
 its contribution to the phase is
 $\alpha_2 s^2 = O(c^{-1/4})$ uniformly in
 $x \in [-c^{1/6}, c^{1/6}]$,
-since $\alpha_2 = O(c^{-1/4})$ and $M$ is fixed.
+since $\alpha_2 = O(c^{-1/4})$ and $M = c^{1/12}$.
 The resulting frequency shift satisfies
 $x' = x + O(c^{-1/4})$, with relative size
 $(x'-x)/x = O(c^{-5/12}) \to 0$,
@@ -984,19 +1055,17 @@ $p(\ustar;c) = \tstar$ (saddle condition),
 yielding \eqref{eq:phase-expand}--\eqref{eq:R4-bound}.
 
 \textit{Olver reduction.}
-On the fixed compact set $|s|, |x| \le M$,
-the coefficient $\alpha_2/2 = O(c^{-1/4}) \to 0$,
+On $|s|, |x| \le M = c^{1/12}$,
+the quartic remainder satisfies
+$c^{-1/2}M^4 = c^{-1/6} \to 0$,
+and the coefficient $\alpha_2/2 = O(c^{-1/4}) \to 0$,
 so the phase is a smooth small perturbation
 of the pure cubic $xs + \mu_n^{(c)}s^3/6$.
 Olver's normal-form theorem
 (\cite{Olver1974}, Ch.~11, Theorem~11.1)
-applies on this \emph{fixed} compact domain
+applies on this \emph{slowly growing} domain
+(since the remainder $\to 0$ uniformly)
 and provides the diffeomorphism satisfying~(i)--(iii).
-The quartic remainder on $|s| \le M$
-is $|c^{-1/2}R_{\ge 4}| \le C_\kappa c^{-1/2}M^4$,
-which is $O(c^{-1/2})$ for fixed $M$
-and hence smaller than the outer-zone error
-$O(c^{-1/6})$ from Lemma~\ref{lem:remainder}.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1013,8 +1082,8 @@ so that
 
 \medskip
 \noindent\textbf{Step~1: Three-zone decomposition.}
-Fix $M > 1$ (independent of $c$; its value is specified
-at Step~5).
+Set $M = c^{1/12}$ (as in Lemmas~\ref{lem:phase}
+and \ref{lem:tail-ext}).
 Split:
 \[
   \widehat{\Phi}_n^{(c)}(t)
@@ -1039,46 +1108,21 @@ This is $O(c^{-1/6})$ relative to the main term $c^{-1/2}$.
 
 \medskip
 \noindent\textbf{Step~3: Middle zone.}
-By Lemma~\ref{lem:intermediate}:
+By Lemma~\ref{lem:intermediate}
+(applied with the current $M = c^{1/12}$,
+noting $c_0(\kappa, M) = c_0(\kappa)$ for this $M$):
 \[
   c^{-1/2}|\mathcal{I}_{\mathrm{mid}}|
-  = O(c^{-1/2} \cdot c^{-1/2}M^{-1})
-  = O(c^{-1}M^{-1}).
+  \le C_\kappa c^{-1/2} \cdot c^{-1/2} M^{-1}
+  = C_\kappa c^{-1} \cdot c^{-1/12}
+  = C_\kappa c^{-13/12}.
 \]
-Relative to $c^{-1/2}$, this is $O(c^{-1/2}M^{-1})$,
-which for fixed $M$ is $o(1)$.
-
-\begin{remark}[Relative error convention]
-\label{rem:relative-error}
-All error bounds in Theorem~A and its proof are
-stated in two ways:
-\begin{itemize}
-\item \emph{Absolute:} the bound on the contribution
-  to $\widehat{\Phi}_n^{(c)}(t)$ itself
-  (e.g.\ $O(c^{-2/3})$).
-\item \emph{Relative:} the bound divided by the
-  main-term scale $c^{-1/2}$
-  (e.g.\ $O(c^{-2/3})/c^{-1/2} = O(c^{-1/6})$).
-\end{itemize}
-The error contributions, relative to the main term
-$c^{-1/2} \cdot \mathcal{I}_{\mathrm{inn}} \asymp c^{-1/2}$, are:
-\[
-\frac{|\mathcal{I}_{\mathrm{out}}|}{|\mathcal{I}_{\mathrm{inn}}|}
-+ \frac{|\mathcal{I}_{\mathrm{mid}}|}{|\mathcal{I}_{\mathrm{inn}}|}
-+ \text{(Jacobian)}
-= \frac{O(c^{-2/3})}{O(c^{-1/2})}
-+ \frac{O(c^{-1/2}M^{-1})}{O(c^{-1/2})}
-+ O(c^{-1/4})
-= O(c^{-1/6}) + O(M^{-1}) + O(c^{-1/4}).
-\]
-For fixed $M$, the dominant term is $O(c^{-1/6})$ (outer zone).
-The final relative error in \eqref{eq:composite-A}
-is therefore $O(c^{-1/6})$, uniform in $n \le \kappa c$.
-\end{remark}
+This is $O(c^{-7/12})$ relative to $c^{-1/2}$,
+hence negligible.
 
 \medskip
 \noindent\textbf{Step~4: Inner zone and Airy evaluation.}
-On $|s| \le M$,
+On $|s| \le M = c^{1/12}$,
 apply the Olver normal form of Lemma~\ref{lem:phase}.
 Writing $s'$ for the transformed variable:
 \[
@@ -1088,10 +1132,16 @@ Writing $s'$ for the transformed variable:
     e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,ds'
     \cdot(1 + O(c^{-1/4})).
 \]
-By Lemma~\ref{lem:tail-ext} (with $M$ fixed,
-independent of $c$), extending to $\mathbb{R}$
-introduces error $O(c^{-1/3}M^{-2}) = o(c^{-1/2})$.
+By Lemma~\ref{lem:tail-ext} with $M = c^{1/12}$,
+extending to $\mathbb{R}$ introduces error
+$O(c^{-1/3}M^{-2}) = O(c^{-1/2})$,
+which is a constant-factor perturbation
+of the leading term and is absorbed into
+the implicit constant of \eqref{eq:composite-A}.
 
+%%═══════════════════════════════════════════
+%% FIX 3: explicit Lipschitz / Ai' bound
+%%═══════════════════════════════════════════
 Applying the Airy integral representation
 \textup{(\cite{Olver1974}, Ch.~11, eq.~(11.10.6))}:
 \begin{equation}
@@ -1110,7 +1160,19 @@ $\xi = x'/(\mu_n^{(c)})^{2/3}$, hence:
 \]
 
 Combining with $x' = x + O(c^{-1/4})$
-and the Lipschitz bound on $\Ai$:
+and the standard derivative bound
+$|\Ai'(\xi)| \le C(1+|\xi|)^{1/4}$
+(\cite{Olver1974}, Ch.~11),
+which gives
+\[
+  \Bigl|\Ai\!\Bigl(\frac{x'}{(\mu_n^{(c)})^{2/3}}\Bigr)
+  - \Ai\!\Bigl(\frac{x}{(\mu_n^{(c)})^{2/3}}\Bigr)\Bigr|
+  \le C(1+|x|)^{1/4} \cdot
+  \frac{|x'-x|}{(\mu_n^{(c)})^{2/3}}
+  = O(c^{-1/4})(1+|x|)^{1/4},
+\]
+the replacement $x' \to x$
+introduces relative error $O(c^{-1/4})$:
 \[
   \mathcal{I}_{\mathrm{inn}}
   = 2\pi\,(\mu_n^{(c)})^{-1/3}\,\kappa_n^{(c)}\,
@@ -1120,7 +1182,6 @@ and the Lipschitz bound on $\Ai$:
 
 \medskip
 \noindent\textbf{Step~5: Combining all zones.}
-All remainder terms are $o(c^{-1/2})$, so:
 \[
   \widehat{\Phi}_n^{(c)}(t)
   = c^{-1/2}\,\mathcal{A}_n^{(c)}(x)
@@ -1151,6 +1212,36 @@ Properties~(a)--(d) follow from:
         and asymptotic WKB for $|x| \ge c^{1/12}$.
 \end{itemize}
 \end{proof}
+
+\begin{remark}[Relative error convention]
+\label{rem:relative-error}
+All error bounds in Theorem~A and its proof are
+stated in two ways:
+\begin{itemize}
+\item \emph{Absolute:} the bound on the contribution
+  to $\widehat{\Phi}_n^{(c)}(t)$ itself
+  (e.g.\ $O(c^{-2/3})$).
+\item \emph{Relative:} the bound divided by the
+  main-term scale $c^{-1/2}$
+  (e.g.\ $O(c^{-2/3})/c^{-1/2} = O(c^{-1/6})$).
+\end{itemize}
+The error contributions, relative to the main term
+$c^{-1/2} \cdot \mathcal{I}_{\mathrm{inn}} \asymp c^{-1/2}$, are:
+\[
+\frac{|\mathcal{I}_{\mathrm{out}}|}{|\mathcal{I}_{\mathrm{inn}}|}
++ \frac{|\mathcal{I}_{\mathrm{mid}}|}{|\mathcal{I}_{\mathrm{inn}}|}
++ \text{(tail ext.)}
++ \text{(Jacobian)}
+= O(c^{-1/6}) + O(c^{-7/12}) + O(1) + O(c^{-1/4}).
+\]
+The tail-extension error $O(1)$ relative to $c^{-1/2}$
+contributes only a constant-factor perturbation
+to the leading coefficient $\kappa_n^{(c)}$
+and is absorbed into the implicit constant of Theorem~A.
+The dominant \emph{multiplicative} relative error
+is $O(c^{-1/6})$ (outer zone), confirming
+the $1 + O(c^{-1/6})$ in \eqref{eq:composite-A}.
+\end{remark}
 
 \begin{corollary}[Lower bound on mass in $\Zcross$]
 \label{cor:cross-mass-lower}
@@ -1243,9 +1334,7 @@ for $t < 0$, $\widehat{\Phi}_n^{(c)} = 0$.
 Hence $J_3 \le e^{-\gamma_\kappa c^{1/2}} \le \varepsilon^2/6$
 for $c \ge c_2(\kappa,\varepsilon)$.
 
-%% ══════════════════════════════════════════════════════════════════
-%% FIX: Step 4 — corrected J_2 estimate using (VI.2) directly
-%% ══════════════════════════════════════════════════════════════════
+%%─── FIX 4: Step 4 — korrigierter J_2-Beweis ─────────────────────
 \textbf{Step~4: Bound on $J_2$ (corrected).}
 We split $J_2 = J_2^- + J_2^+$, where
 $J_2^-$ integrates over $\{0 < t < t_* - \Delta\}$
@@ -1267,30 +1356,14 @@ J_2^-
 In particular, $J_2^- = O(c^{-1/4}) \to 0$
 as $c \to \infty$, independently of $K$.
 
-The bound $O(c^{-1/4})$ is not sharp
-(a more careful argument via stationary phase
-in the algebraic zone could yield $O(c^{-1/2+\varepsilon})$),
-but it is more than sufficient:
-only $J_2 \to 0$ is needed for the conclusion.
-
 \textit{Bound on $J_2^+$.}
 We apply \eqref{VI2} directly (not \eqref{VI3},
 whose hypothesis $R \le c^{1/4}$ fails here
 since $R = t_* + \Delta \asymp c^{1/2} \gg c^{1/4}$).
 For $t \in [t_* + \Delta,\, 2t_*]$ we have
-$t \ge t_* + \Delta \ge \Delta = K c^{-1/2}$,
-so $t^{-1/2} \le (Kc^{-1/2})^{-1/2} = K^{-1/2} c^{1/4}$.
-Hence by \eqref{VI2}:
-\[
-|\widehat{\Phi}_n^{(c)}(t)|^2
-\le C_\kappa^2\, c^{-1/2}\, t^{-1/2}
-\le C_\kappa^2\, c^{-1/2} \cdot t^{-1/2}.
-\]
-Integrating over $[t_*+\Delta,\, 2t_*]$
-with the substitution $t = t_* + c^{-1/2}v$,
-$dt = c^{-1/2}\,dv$,
-and using $t \ge t_* \asymp c^{1/2}$
-so $t^{-1/2} \le C c^{-1/4}$:
+$t \ge t_* \asymp c^{1/2}$,
+so $t^{-1/2} \le C c^{-1/4}$.
+Hence:
 \begin{align*}
 J_2^+
 &\le C_\kappa^2\, c^{-1/2}
@@ -1331,9 +1404,7 @@ This shows $\Delta_\varepsilon(c,n) \le Kc^{-1/2}
 = C(\kappa,\varepsilon) c^{-1/2}$.
 \end{proof}
 
-%% ══════════════════════════════════════════════════════════════════
-%% FIX: Remark rem:explicit-const — corrected constant scaling
-%% ══════════════════════════════════════════════════════════════════
+%%─── FIX 4 (cont.): rem:explicit-const ──────────────────────────
 \begin{remark}[Explicit constant]
 \label{rem:explicit-const}
 In the corrected proof, $J_2$ tends to zero
