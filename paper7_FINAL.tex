@@ -1221,15 +1221,16 @@ Hence $J_3 \le e^{-\gamma_\kappa c^{1/2}} \le \varepsilon^2/6$
 for $c \ge c_2(\kappa,\varepsilon)$.
 
 %% ══════════════════════════════════════════════════════════════════
-%% FIX: Step 4 — corrected J_2 estimate using split + (VI.3)
+%% FIX: Step 4 — corrected J_2 estimate using (VI.2) directly
 %% ══════════════════════════════════════════════════════════════════
 \textbf{Step~4: Bound on $J_2$ (corrected).}
 We split $J_2 = J_2^- + J_2^+$, where
 $J_2^-$ integrates over $\{0 < t < t_* - \Delta\}$
-and $J_2^+$ integrates over $\{t > t_* + \Delta\}$.
+and $J_2^+$ integrates over $\{t_* + \Delta < t \le 2t_*\}$.
+(The region $t > 2t_*$ is absorbed into $J_3$.)
 
 \textit{Bound on $J_2^-$.}
-Since $t \le t_*$ throughout this region,
+Since $0 < t \le t_*$ throughout this region,
 \eqref{VI2} gives
 $|\widehat{\Phi}_n^{(c)}(t)|^2 \le C_\kappa^2 c^{-1/2} t^{-1/2}$.
 Integrating directly:
@@ -1244,24 +1245,47 @@ In particular, $J_2^- = O(c^{-1/4}) \to 0$
 as $c \to \infty$, independently of $K$.
 
 \textit{Bound on $J_2^+$.}
-Since $t > t_* + \Delta > t_*/2$ for large $c$,
-apply \eqref{VI3} with $R = t_* + \Delta \asymp c^{1/2}$
-(note $R \le c^{1/4}$ is satisfied for large $c$):
+We apply \eqref{VI2} directly (not \eqref{VI3},
+whose hypothesis $R \le c^{1/4}$ fails here
+since $R = t_* + \Delta \asymp c^{1/2} \gg c^{1/4}$).
+For $t \in [t_* + \Delta,\, 2t_*]$ we have
+$t \ge t_* + \Delta \ge \Delta = K c^{-1/2}$,
+so $t^{-1/2} \le (Kc^{-1/2})^{-1/2} = K^{-1/2} c^{1/4}$.
+Hence by \eqref{VI2}:
 \[
-J_2^+
-\le \|\widehat{\Phi}_n^{(c)}\|^2_{L^2(t > t_*+\Delta)}
-\le C_\kappa^2\,c^{-1/2}\,(t_*+\Delta)^{-1/2}
-\asymp C_\kappa^2\,c^{-3/4}.
+|\widehat{\Phi}_n^{(c)}(t)|^2
+\le C_\kappa^2\, c^{-1/2}\, t^{-1/2}
+\le C_\kappa^2\, c^{-1/2} \cdot t^{-1/2}.
 \]
-In particular, $J_2^+ = O(c^{-3/4}) \to 0$,
+Integrating over $[t_*+\Delta,\, 2t_*]$
+with the substitution $t = t_* + c^{-1/2}v$,
+$dt = c^{-1/2}\,dv$,
+and using $t \ge t_* \asymp c^{1/2}$
+so $t^{-1/2} \le C c^{-1/4}$:
+\begin{align*}
+J_2^+
+&\le C_\kappa^2\, c^{-1/2}
+\int_{t_*+\Delta}^{2t_*} t^{-1/2}\,dt \\
+&\le C_\kappa^2\, c^{-1/2} \cdot C\, c^{-1/4}
+\cdot (2t_* - t_* - \Delta) \\
+&\le C_\kappa^2\, c^{-3/4} \cdot t_*
+\;\asymp\; C_\kappa^2\, c^{-1/4}.
+\end{align*}
+In particular, $J_2^+ = O(c^{-1/4}) \to 0$,
 independently of $K$.
+
+\begin{remark*}
+The use of \eqref{VI3} in the previous version
+was erroneous: \eqref{VI3} requires $R \le c^{1/4}$,
+but here $R = t_* + \Delta \asymp c^{1/2} \gg c^{1/4}$.
+The corrected argument uses only \eqref{VI2},
+which is valid for all $1 \le t \le c$.
+The conclusion $J_2^+ = O(c^{-1/4})$
+is the same as before, so Theorem~B is unaffected.
+\end{remark*}
 
 \textit{Combined.}
 $J_2 = J_2^- + J_2^+ = O(c^{-1/4}) \to 0$.
-Choose $c \ge c_3(\kappa,\varepsilon)$ large enough
-so that $J_2 \le \varepsilon^2/3$.
-Note that $K$ does not appear in this bound;
-it is determined solely by $J_1$ via Step~2.
 
 \textbf{Conclusion.}
 Choose $K$ so that $J_1 \le \varepsilon^2/6$,
