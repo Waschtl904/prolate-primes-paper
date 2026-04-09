@@ -736,7 +736,10 @@ $|\Ai'(\zeta)| = O(1)$.
 That estimate fails when $|\zeta| \le c^{1/3} \to \infty$.
 The corrected bound $c^{-1/4}$ is still sufficient
 for all subsequent applications: Lemma~\ref{lem:remainder}
-requires only $|a'| \to 0$, and $c^{-1/4} \to 0$.
+requires $|a'/\varphi'| \to 0$; since
+$|a'(s)| \le C_\kappa c^{-1/4}$ and
+$|\varphi'(s)| \gtrsim c^{1/3}$ for $|s| \ge c^{1/6}$,
+one has $|a'/\varphi'| = O(c^{-7/12}) \to 0$. \checkmark
 The relative error in Theorem~A is $O(c^{-1/6})$,
 dominated by the outer zone (Step~2 of the proof),
 not by this bound directly.
@@ -956,6 +959,19 @@ The correct strategy is to keep $M$ fixed
 and control the middle zone $M < |s| \le c^{1/6}$
 separately via Lemma~\ref{lem:intermediate}.
 \end{remark}
+\begin{remark}[Uniformity of the Olver shift in $x$]
+\label{rem:olver-uniform}
+The quadratic term $\tfrac{\alpha_2}{2}s^2$ is absorbed
+into the Olver diffeomorphism. On $|s| \le M$,
+its contribution to the phase is
+$\alpha_2 s^2 = O(c^{-1/4})$ uniformly in
+$x \in [-c^{1/6}, c^{1/6}]$,
+since $\alpha_2 = O(c^{-1/4})$ and $M$ is fixed.
+The resulting frequency shift satisfies
+$x' = x + O(c^{-1/4})$, with relative size
+$(x'-x)/x = O(c^{-5/12}) \to 0$,
+confirming that the Olver reduction is uniform in $x$.
+\end{remark}
 \end{lemma}
 
 \begin{proof}
@@ -1044,13 +1060,20 @@ stated in two ways:
   main-term scale $c^{-1/2}$
   (e.g.\ $O(c^{-2/3})/c^{-1/2} = O(c^{-1/6})$).
 \end{itemize}
+The error contributions, relative to the main term
+$c^{-1/2} \cdot \mathcal{I}_{\mathrm{inn}} \asymp c^{-1/2}$, are:
+\[
+\frac{|\mathcal{I}_{\mathrm{out}}|}{|\mathcal{I}_{\mathrm{inn}}|}
++ \frac{|\mathcal{I}_{\mathrm{mid}}|}{|\mathcal{I}_{\mathrm{inn}}|}
++ \text{(Jacobian)}
+= \frac{O(c^{-2/3})}{O(c^{-1/2})}
++ \frac{O(c^{-1/2}M^{-1})}{O(c^{-1/2})}
++ O(c^{-1/4})
+= O(c^{-1/6}) + O(M^{-1}) + O(c^{-1/4}).
+\]
+For fixed $M$, the dominant term is $O(c^{-1/6})$ (outer zone).
 The final relative error in \eqref{eq:composite-A}
-is $O(c^{-1/6})$, dominated by the outer zone (Step~2).
-The remaining contributions are
-$c^{-1/4}$ (inner zone Jacobian, Step~4)
-and $c^{-1/2}M^{-1}$ (middle zone, Step~3, for fixed $M$),
-both of smaller order.
-All $O(\cdot)$ constants are uniform in $n \le \kappa c$.
+is therefore $O(c^{-1/6})$, uniform in $n \le \kappa c$.
 \end{remark}
 
 \medskip
@@ -1243,6 +1266,12 @@ J_2^-
 \]
 In particular, $J_2^- = O(c^{-1/4}) \to 0$
 as $c \to \infty$, independently of $K$.
+
+The bound $O(c^{-1/4})$ is not sharp
+(a more careful argument via stationary phase
+in the algebraic zone could yield $O(c^{-1/2+\varepsilon})$),
+but it is more than sufficient:
+only $J_2 \to 0$ is needed for the conclusion.
 
 \textit{Bound on $J_2^+$.}
 We apply \eqref{VI2} directly (not \eqref{VI3},
