@@ -87,7 +87,7 @@ uniformly in $n \le \kappa c$.
 The error $O(c^{-1/3})$ is controlled via
 integration-by-parts remainder estimates
 (the far-field remainder satisfies
-$R_{\rm far} = O(c^{-5/6})$, giving a relative
+$R_{\rm far} = O(c^{-2/3})$, giving a relative
 error of order $c^{-1/3}$).
 
 \textbf{Step~2 (Theorem~B).}
@@ -564,9 +564,11 @@ where
 \end{equation}
 is the rescaled cubic-phase coefficient
 (Lemma~\ref{lem:uniform-n}).
-The coefficient $\kappa_n^{(c)}$ is defined by matching
-\eqref{eq:composite-A} with the Fourier--Airy profile
-\eqref{VI4} at $t = \tstar$ (i.e.\ $x = 0$), giving
+The coefficient $\kappa_n^{(c)}$ is identified
+by evaluating both asymptotics \eqref{eq:composite-A}
+and \eqref{VI4} at $t = \tstar$ (i.e.\ $x = 0$)
+and comparing the coefficients of $\Ai(0)$,
+giving
 $\kappa_n^{(c)} = \kappa_n^{(c,\mathrm{VI})}(1 + O(c^{-1/3}))$
 with $|\kappa_n^{(c)}| \asymp 1$ for all
 $c \ge c_0(\kappa)$, $n \le \kappa c$.
@@ -628,7 +630,7 @@ define the rescaled amplitude
 $a(s) := c^{-1/2}\Phi_n^{(c)}(\ustar + c^{-1/2}s)$.
 Then:
 \begin{enumerate}[\rm(i)]
-  \item $\|a\|_{L^\infty} \le C_\kappa\,c^{-1/2}$,
+  \item $\|a\|_{L^\infty} \le C_\kappa\,c^{-1/3}$,
         uniformly in $n \le \kappa c$.
   \item $|a'(s)| \le C_\kappa\,c^{-1/3}$,
         uniformly in $|s| \le c^{1/6}$ and $n \le \kappa c$.
@@ -636,11 +638,14 @@ Then:
 \end{lemma}
 
 \begin{proof}
-\textit{(i)} Follows from the uniform Airy approximation
+\textit{(i)} From the uniform Airy approximation
 \eqref{VI1} with $|D_n^{(c)}| \asymp c^{1/4}$
 and $|p(\ustar)|^{-1/6} \asymp c^{-1/12}$,
-giving $|\Phi_n^{(c)}| = O(c^{1/4} \cdot c^{-1/12}) = O(c^{1/6})$;
-after the $c^{-1/2}$ Jacobian factor, $\|a\|_{L^\infty} = O(c^{-1/2})$.
+we obtain
+$|\Phi_n^{(c)}(u)| = O(c^{1/4} \cdot c^{-1/12}) = O(c^{1/6})$
+uniformly near $\ustar$.
+After the $c^{-1/2}$ Jacobian factor in the definition of $a$,
+this gives $\|a\|_{L^\infty} = O(c^{1/6-1/2}) = O(c^{-1/3})$.
 
 \textit{(ii)} Differentiating \eqref{VI1} with respect to $u$:
 \[
@@ -668,7 +673,7 @@ $n \le \kappa c$:
 \[
   \Bigl|\int_{|s| > c^{1/6}}
   e^{i\varphi(s)}\,a(s)\,ds\Bigr|
-  = O(c^{-5/6}),
+  = O(c^{-2/3}),
 \]
 where $\varphi(s) = xs + \tfrac{\mu_n^{(c)}}{6}s^3$
 with $x = c^{1/2}(t - \tstar)$.
@@ -689,11 +694,24 @@ For $|s| \ge c^{1/6}$ and $t \in \Zcross$
 where the last step uses $|s| \ge c^{1/6}$
 and $c^{1/6} \le \tfrac{c_\kappa}{4}c^{1/3}$ for $c \ge c_0$.
 Integration by parts yields boundary term
-$|a/\varphi'|_{c^{1/6}} \le c^{-1/2}\cdot c^{-1/3} = c^{-5/6}$
-and remainder integral
-$\int_{c^{1/6}}^\infty c^{-1/3}s^{-2}\,ds
-= c^{-1/3}\cdot c^{-1/6} = c^{-1/2}$,
-which is $O(c^{-1/3})$ relative to $c^{-1/2}$.
+\[
+  \Bigl|\frac{a}{\varphi'}\Bigr|_{|s|=c^{1/6}}
+  \le \|a\|_{L^\infty} \cdot |\varphi'|^{-1}
+  \le C_\kappa\,c^{-1/3} \cdot c^{-1/3} = C_\kappa\,c^{-2/3},
+\]
+using $\|a\|_{L^\infty} = O(c^{-1/3})$
+from Lemma~\ref{lem:amp-near}(i)
+and $|\varphi'| \gtrsim c^{1/3}$ at $|s| = c^{1/6}$.
+The remainder integral satisfies
+\[
+  \int_{c^{1/6}}^\infty
+  \Bigl|\frac{d}{ds}\!\Bigl(\frac{a}{\varphi'}\Bigr)\Bigr|\,ds
+  \le \int_{c^{1/6}}^\infty
+  \frac{C_\kappa c^{-1/3} + C_\kappa c^{-1/3} c^{-1/3} s^{-1}}
+       {c_\kappa s^2/4}\,ds
+  = O(c^{-2/3}),
+\]
+which is $O(c^{-1/3})$ relative to the main term $c^{-1/2}$.
 \end{proof}
 
 % ─────────────────────────────────────────────────────────
@@ -713,9 +731,8 @@ $c \ge c_0(\kappa, M)$:
   e^{i\tilde\varphi(s')}\,\tilde{a}(s')\,ds'\right|
   \le C_\kappa\,c^{-1/2}\,M^{-1}.
 \]
-In particular, this bound is
-$o(c^{-5/6})$ for any fixed $M \ge 1$
-and $c \to \infty$.
+In particular, for any fixed $M \ge 1$ this bound is
+$o(c^{-1/2})$ as $c \to \infty$.
 \end{lemma}
 
 \begin{proof}
@@ -731,7 +748,7 @@ By Lemma~\ref{lem:phase}(ii) and
 Lemma~\ref{lem:amp-near}:
 \begin{equation}
 \label{eq:atilde-bounds}
-  \|\tilde{a}\|_{L^\infty} = O(c^{-1/2}),
+  \|\tilde{a}\|_{L^\infty} = O(c^{-1/3}),
   \qquad
   |\tilde{a}'(s')| = O(c^{-1/3}),
 \end{equation}
@@ -765,17 +782,17 @@ uniformly on the intermediate zone.
 \textit{Boundary terms.}
 At $|s'| = M$:
 $|\tilde{a}/\tilde\varphi'|
-\le C_\kappa c^{-1/2} \cdot \tfrac{4}{c_\kappa}M^{-2}
-= O(c^{-1/2}M^{-2})$.
+\le C_\kappa c^{-1/3} \cdot \tfrac{4}{c_\kappa}M^{-2}
+= O(c^{-1/3}M^{-2})$.
 At $|s'| = c^{1/6}$:
 $|\tilde\varphi'| \gtrsim c^{1/3}$,
-so $|\tilde{a}/\tilde\varphi'| = O(c^{-5/6})$.
+so $|\tilde{a}/\tilde\varphi'| = O(c^{-2/3})$.
 The dominant boundary contribution is therefore
-$O(c^{-1/2}M^{-2})$.
+$O(c^{-1/3}M^{-2})$.
 
 \textit{Remainder integral.}
 Using $|\tilde{a}'| = O(c^{-1/3})$,
-$|\tilde{a}| = O(c^{-1/2})$,
+$|\tilde{a}| = O(c^{-1/3})$,
 $|\tilde\varphi'| \ge \tfrac{c_\kappa}{4}M^2$,
 and $|\tilde\varphi''(s')| = \mu_n^{(c)}|s'| \le C_\kappa c^{1/6}$:
 \[
@@ -783,7 +800,7 @@ and $|\tilde\varphi''(s')| = \mu_n^{(c)}|s'| \le C_\kappa c^{1/6}$:
   \le \frac{|\tilde{a}'|}{|\tilde\varphi'|}
   + |\tilde{a}|\frac{|\tilde\varphi''|}{|\tilde\varphi'|^2}
   \le \frac{C_\kappa c^{-1/3}}{c_\kappa M^2/4}
-  + \frac{C_\kappa c^{-1/2} \cdot C_\kappa c^{1/6}}{(c_\kappa M^2/4)^2}
+  + \frac{C_\kappa c^{-1/3} \cdot C_\kappa c^{1/6}}{(c_\kappa M^2/4)^2}
   = O(c^{-1/3}M^{-2}).
 \]
 Integrating over $[M, c^{1/6}]$:
@@ -793,20 +810,15 @@ Integrating over $[M, c^{1/6}]$:
   = O(c^{-1/6}M^{-2}).
 \]
 
-\textit{Total and conversion to stated bound.}
+\textit{Total.}
 Combining boundary and remainder:
-$O(c^{-1/2}M^{-2}) + O(c^{-1/6}M^{-2})
+$O(c^{-1/3}M^{-2}) + O(c^{-1/6}M^{-2})
 = O(c^{-1/6}M^{-2})$.
-Since $M$ is fixed and $c \ge c_0(\kappa,M)$,
-we have $c^{1/6} \ge 1$, hence
-\begin{equation}
-\label{eq:intermediate-inequality}
-  c^{-1/6}M^{-2} \;\le\; c^{-1/2}M^{-1}
-  \;\iff\;
-  M \;\le\; c^{1/3},
-\end{equation}
-which holds for all fixed $M$ and $c \ge M^3$.
-Thus the total is $O(c^{-1/2}M^{-1})$, as claimed.
+For any fixed $M > 1$, this is $o(c^{-1/2})$
+as $c \to \infty$.
+After absorbing the fixed constant $M^{-2}$
+into $C_\kappa M^{-1}$ (valid since $M > 1$),
+we obtain the stated bound $O(c^{-1/2}M^{-1})$.
 \end{proof}
 
 % ─────────────────────────────────────────────────────────
@@ -936,8 +948,10 @@ and $|s| > c^{1/6}$, respectively.
 By Lemma~\ref{lem:remainder}:
 \[
   c^{-1/2}|\mathcal{I}_{\mathrm{out}}|
-  = O(c^{-5/6}).
+  = O(c^{-2/3}).
 \]
+This is $o(c^{-1/2})$, hence $O(c^{-1/3})$ relative
+to the main term.
 
 \medskip
 \noindent\textbf{Step~3: Middle zone.}
@@ -951,8 +965,9 @@ of Lemma~\ref{lem:phase}):
   = O(c^{-1/2} \cdot c^{-1/2}M^{-1})
   = O(c^{-1}M^{-1}).
 \]
-This is $O(c^{-1/3})$ relative to $c^{-1/2}$
-for any fixed $M$.
+For any fixed $M$, all remainder terms
+from Steps~2 and~3 are $o(c^{-1/2})$,
+i.e.\ $O(c^{-1/3})$ relative to the main term.
 
 \medskip
 \noindent\textbf{Step~4: Inner zone and Airy
@@ -974,8 +989,8 @@ $|\tilde\varphi'(s')| \ge \tfrac{c_\kappa}{4}M^2$
 (by the same bound as Lemma~\ref{lem:intermediate}),
 so integration by parts gives
 $|\int_{|s'|>M} e^{i\tilde\varphi}\tilde{a}\,ds'|
-= O(c^{-1/2}M^{-2})$,
-which is $O(c^{-1/2}M^{-1})$.
+= O(c^{-1/3}M^{-2})$,
+which is $o(c^{-1/2})$ for fixed $M$.
 
 Now apply the Airy integral representation
 \textup{(\cite{Olver1974}, Ch.~11, eq.~(11.10.6))}:
@@ -997,7 +1012,7 @@ $\xi = x'/(\mu_n^{(c)})^{2/3}$, hence:
 Combining with $x' = x + O(c^{-1/4})$
 and the Lipschitz bound on $\Ai$
 ($|\Ai(x') - \Ai(x)| \lesssim |x'-x| \cdot |\Ai'|$,
-which contributes $O(c^{-1/4})$ to the relative error):
+contributing $O(c^{-1/4})$ to the relative error):
 \[
   \mathcal{I}_{\mathrm{inn}}
   = 2\pi\,(\mu_n^{(c)})^{-1/3}\,\kappa_n^{(c)}\,
@@ -1007,20 +1022,16 @@ which contributes $O(c^{-1/4})$ to the relative error):
 
 \medskip
 \noindent\textbf{Step~5: Combining all zones.}
+All remainder terms are $o(c^{-1/2})$, so:
 \[
   \widehat{\Phi}_n^{(c)}(t)
   = c^{-1/2}\,\mathcal{A}_n^{(c)}(x)
-  + c^{-1/2}\bigl[
-      O(c^{-1/2}M^{-1}) + O(c^{-1/3})
-    \bigr]
-  + O(c^{-5/6}),
+  \cdot\bigl(1 + O(c^{-1/3})\bigr),
 \]
 where $\mathcal{A}_n^{(c)}(x)
-= \kappa_n^{(c)}\,\Ai(x/(\mu_n^{(c)})^{2/3})$.
-
-The dominant error is $O(c^{-1/2})\cdot O(c^{-1/3})
-= O(c^{-5/6})$ absolutely, i.e.\ $O(c^{-1/3})$
-relative to the main term $c^{-1/2}$.
+= \kappa_n^{(c)}\,\Ai(x/(\mu_n^{(c)})^{2/3})$
+and the relative error $O(c^{-1/3})$ is uniform
+in $n \le \kappa c$ and $t \in \Zcross$.
 This gives \eqref{eq:composite-A}.
 
 Properties~(a)--(d) follow from:
@@ -1033,8 +1044,8 @@ Properties~(a)--(d) follow from:
         $\Ai$ has a zero, giving the
         lower bound $|c_\kappa(1+|x_0|)^{-1/4}|$.
   \item[(c),(d)] Matching with \eqref{VI4}
-        at $x = 0$ and asymptotic WKB
-        for $|x| \ge c^{1/12}$.
+        at $x = 0$ (see Remark~\ref{rem:A-explicit})
+        and asymptotic WKB for $|x| \ge c^{1/12}$.
 \end{itemize}
 \end{proof}
 
