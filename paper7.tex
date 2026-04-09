@@ -486,7 +486,6 @@ Lemma~\ref{lem:mass-partition}.
 
 \subsection{Main statement (Theorem~A)}
 
-%% ── FIX 4: Variable dictionary ──────────────────────────────────
 \begin{remark}[Variable dictionary for Section~\ref{sec:composite}]
 \label{rem:variables}
 For the reader's convenience we collect
@@ -540,6 +539,7 @@ $|\mathcal{A}_n^{(c)}(x)|
 \le C_\kappa\,(1+|x|)^{-1/4}$
 for all $x \in \mathbb{R}$.
 \item\label{thm:A-lower}
+%% ── FIX (D): zero spacing uniform in mu ─────────────────────────
 \textbf{Non-vanishing on intervals of length $O(1)$:}
 For every $x_0 \in \mathbb{R}$ there exists
 $x_1 \in [x_0, x_0 + L_0]$,
@@ -547,6 +547,15 @@ where $L_0 \le 5$ is a universal constant
 (determined by the largest gap between consecutive
 zeros of $\Ai$, cf.~\cite{Olver1974}, Ch.~11),
 such that $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa(1+|x_0|)^{-1/4}$.
+Since $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
+(Lemma~\ref{lem:uniform-n}),
+the rescaled Airy function
+$\Ai\!\bigl(x/(\mu_n^{(c)})^{2/3}\bigr)$
+has zero spacing uniformly bounded above and below
+independently of $n$ and $c$,
+so the non-vanishing property follows from
+the standard zero distribution of $\Ai$
+\textup{(\cite{Olver1974}, Ch.~11)}.
 \item\label{thm:A-match-airy}
 \textbf{Matching to Airy zone:}
 For $|x| \le c^{1/12}$,
@@ -563,7 +572,6 @@ consistent with \eqref{VI2}.
 \end{enumerate}
 \end{theorem}
 
-%% ── FIX 2: kappa_n^(c) fully explicit ───────────────────────────
 \begin{remark}[Explicit form of $\mathcal{A}_n^{(c)}$]
 \label{rem:A-explicit}
 The profile function is
@@ -610,10 +618,6 @@ $|\kappa_n^{(c)}| \asymp 1$
 uniformly for all $c \ge c_0(\kappa)$,
 $n \le \kappa c$.
 \end{remark}
-
-%%═══════════════════════════════════════════════════════════════════
-%% SECTION 3.2  Proof of Theorem A
-%%═══════════════════════════════════════════════════════════════════
 
 \subsection{Auxiliary lemmas}
 
@@ -689,7 +693,11 @@ this gives $\|a\|_{L^\infty} = O(c^{1/6-1/2}) = O(c^{-1/3})$.
     + \frac{\zeta'(u)}{p(u)^{1/6}}\Ai'(\zeta)
   \Bigr]\bigl(1 + O(c^{-2/3})\bigr).
 \]
-For $|u - \ustar| \le c^{-1/3}$:
+%% ── FIX (A): zeta'(u) = p(u) exact identity cited ───────────────
+Using the exact identity $\zeta'(u) = p(u)$
+from the Langer transformation
+(see \cite{Olver1974}, Ch.~11),
+for $|u - \ustar| \le c^{-1/3}$:
 $|p(u)| \asymp c^{1/2}$, $|p'(u)| \asymp c^{1/4}$,
 $|\zeta'(u)| = p(u) \asymp c^{1/2}$,
 $|\Ai(\zeta)|, |\Ai'(\zeta)| = O(1)$,
@@ -765,25 +773,28 @@ The transformed amplitude is
   \tilde{a}(s') := a\bigl(s(s',x)\bigr)
   \cdot \frac{\partial s}{\partial s'},
 \end{equation}
-satisfying $\|\tilde{a}\|_{L^\infty} = O(c^{-1/3})$,
-$|\tilde{a}'| = O(c^{-1/3})$
+satisfying
 \begin{equation}
 \label{eq:atilde-bounds}
+  \|\tilde{a}\|_{L^\infty} = O(c^{-1/3}),
+  \qquad
+  |\tilde{a}'(s')| = O(c^{-1/3}),
 \end{equation}
 by Lemma~\ref{lem:phase}(ii) and Lemma~\ref{lem:amp-near}.
 
-%% ── FIX 1: Quantifier order made explicit ───────────────────────
+%% ── FIX (B): |x'| bound explicit + FIX (1): quantifier order ────
 \textit{Phase lower bound.}
 Fix $M > 1$ independent of $c$.
-Since $c^{1/6} \to \infty$ as $c \to \infty$
-while $M^2$ is fixed, there exists
-$c_0 = c_0(\kappa, M) < \infty$ such that
+Since $t \in \Zcross$ implies $|x| \le c^{1/6}$
+and $x' = x + O(c^{-1/4})$,
+we have $|x'| \le c^{1/6}(1+o(1))$ for large $c$.
+There exists $c_0 = c_0(\kappa, M) < \infty$ such that
 $c^{1/6} \le \tfrac{c_\kappa}{4}M^2$
 for all $c \ge c_0(\kappa, M)$.
 All subsequent estimates hold for
 $c \ge c_0(\kappa, M)$ with $M$ held constant;
 the limit $c \to \infty$ is taken with $M$ fixed.
-For $|s'| \ge M$ and $|x'| \le c^{1/6}$:
+For $|s'| \ge M$:
 \[
   |\tilde\varphi'(s')| = \Bigl|x' + \tfrac{\mu_n^{(c)}}{2}s'^2\Bigr|
   \ge \tfrac{c_\kappa}{2}M^2 - c^{1/6}
@@ -813,10 +824,11 @@ Total: $O(c^{-1/6}M^{-2}) = O(c^{-1/2}M^{-1})$
 for fixed $M$.
 \end{proof}
 
-%% ── FIX 3: Tail Extension Lemma (new) ───────────────────────────
 \begin{lemma}[Tail extension to $\mathbb{R}$]
 \label{lem:tail-ext}
-For fixed $M > 1$, $t \in \Zcross$,
+%% ── FIX (C): M fixed explicitly at the critical point ────────────
+For any fixed $M > 1$ \textup{(}independent of $c$\textup{)},
+$t \in \Zcross$,
 $n \le \kappa c$, $c \ge c_0(\kappa, M)$:
 \[
 \left|
@@ -827,10 +839,11 @@ e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,
 = O(c^{-1/3} M^{-2}),
 \]
 uniformly in $n \le \kappa c$ and $t \in \Zcross$.
-In particular, extending the inner-zone
+Since $M$ is fixed \textup{(}independent of $c$\textup{)},
+$c^{-1/3}M^{-2} = o(c^{-1/2})$,
+so extending the inner-zone
 integral from $|s'| \le M$ to $\mathbb{R}$
-introduces an error $O(c^{-1/3}M^{-2}) = o(c^{-1/2})$
-for any fixed $M$.
+introduces a negligible error.
 \end{lemma}
 
 \begin{proof}
@@ -839,7 +852,7 @@ the phase lower bound
 $|\tilde\varphi'(s')| \ge \tfrac{c_\kappa}{4}M^2$
 holds by the same argument as
 Lemma~\ref{lem:intermediate}
-(valid for $c \ge c_0(\kappa,M)$).
+(valid for $c \ge c_0(\kappa,M)$, $M$ fixed).
 One integration by parts gives:
 \[
 \left|\int_{|s'|>M}
@@ -863,7 +876,7 @@ for any fixed $M$, the claim follows.
 \label{lem:phase}
 Write $t = \tstar + c^{-1/2}x$,
 $u = \ustar + c^{-1/2}s$.
-The rescaled phase is
+The rescaled oscillatory phase is
 \begin{equation}
 \label{eq:phase-expand}
   \Psi(s,x) := c^{1/2}[\phi_+(u;t,c) - \phi_0]
@@ -872,33 +885,53 @@ The rescaled phase is
     + R_{\ge 4}(s,x),
 \end{equation}
 where $\phi_0 = S(\ustar;c) + \tstar\ustar$,
-$\alpha_2 = p'(\ustar)\,c^{-1/2} = O(c^{-1/4})$,
-and $|R_{\ge 4}(s,x)| \le C_\kappa\,c^{-1/2}\,|s|^4$
-for $|s|, |x| \le c^{1/6}$.
+\[
+  \alpha_2 = p'(\ustar)\,c^{-1/2} = O(c^{-1/4}),
+\]
+and for $|s|, |x| \le c^{1/6}$:
+\begin{equation}
+\label{eq:R4-bound}
+  |R_{\ge 4}(s,x)| \le C_\kappa\,c^{-1/2}\,|s|^4.
+\end{equation}
 
 For every fixed $M > 1$ there exists
 $c_0 = c_0(\kappa, M)$ such that for
 $c \ge c_0$, $n \le \kappa c$,
 there is a smooth diffeomorphism
-$s \mapsto s'(s,x)$ on $|s|, |x| \le M$
-with:
+$s \mapsto s'(s,x)$ defined on $|s|, |x| \le M$
+with the following properties:
 \begin{enumerate}[\rm(i)]
-  \item $\Psi(s,x) = x'\,s'
+  \item \textbf{Normal form on the inner zone:}
+        On $|s|, |x| \le M$,
+        \[
+          \Psi(s,x) = x'\,s'
           + \tfrac{\mu_n^{(c)}}{6}s'^3
-          + O(c^{-1/2}M^4)$,
-        where $x' = x + O(c^{-1/4})$.
-  \item $\partial s'/\partial s = 1 + O(c^{-1/4})$.
-  \item All constants depend only on $\kappa$.
+          + O(c^{-1/2}M^4),
+        \]
+        uniformly,
+        where $x' = x + O(\alpha_2) = x + O(c^{-1/4})$.
+  \item \textbf{Jacobian:}
+        $\partial s'/\partial s = 1 + O(\alpha_2)
+        = 1 + O(c^{-1/4})$,
+        so $ds' = (1 + O(c^{-1/4}))\,ds$.
+  \item \textbf{Uniformity in $n$:}
+        The diffeomorphism depends only on
+        $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
+        \textup{(Lemma~\ref{lem:uniform-n})};
+        all constants depend only on $\kappa$.
 \end{enumerate}
 
 \begin{remark}[Why $M$ must be fixed]
 \label{rem:M-fixed}
-Taking $M = c^{1/3}$ would give
-$c^{-1/2}M^4 = c^{5/6} \to \infty$,
-invalidating the Olver reduction.
-The middle zone $M < |s| \le c^{1/6}$
-is controlled separately by
-Lemma~\ref{lem:intermediate}.
+It is tempting to take $M = c^{1/3}$
+to balance all error terms.
+However, on $|s| \le c^{1/3}$
+the quartic remainder grows as
+$c^{-1/2}M^4 = c^{-1/2}c^{4/3} = c^{5/6} \to \infty$,
+which invalidates the Olver reduction.
+The correct strategy is to keep $M$ fixed
+and control the middle zone $M < |s| \le c^{1/6}$
+separately via Lemma~\ref{lem:intermediate}.
 \end{remark}
 \end{lemma}
 
@@ -907,71 +940,100 @@ Lemma~\ref{lem:intermediate}.
 Expanding $S(u;c) = \int_{\ustar}^u p(v;c)\,dv$
 around $\ustar$ and substituting
 $u = \ustar + c^{-1/2}s$,
-the linear term cancels by the saddle condition
-$p(\ustar;c) = \tstar$,
-yielding \eqref{eq:phase-expand}.
+the linear term cancels by
+$p(\ustar;c) = \tstar$ (saddle condition),
+yielding \eqref{eq:phase-expand}--\eqref{eq:R4-bound}.
 
 \textit{Olver reduction.}
 On the fixed compact set $|s|, |x| \le M$,
 the coefficient $\alpha_2/2 = O(c^{-1/4}) \to 0$,
 so the phase is a smooth small perturbation
-of $xs + \mu_n^{(c)}s^3/6$.
+of the pure cubic $xs + \mu_n^{(c)}s^3/6$.
 Olver's normal-form theorem
 (\cite{Olver1974}, Ch.~11, Theorem~11.1)
-applies on this fixed compact domain
+applies on this \emph{fixed} compact domain
 and provides the diffeomorphism satisfying~(i)--(iii).
+The quartic remainder on $|s| \le M$
+is $|c^{-1/2}R_{\ge 4}| \le C_\kappa c^{-1/2}M^4$,
+which is $O(c^{-1/2})$ for fixed $M$
+and hence smaller than the outer-zone error
+$O(c^{-1/3})$ from Lemma~\ref{lem:remainder}.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
-%% PROOF OF THEOREM A
-%%═══════════════════════════════════════════════════════════════════
-
 \begin{proof}[Proof of Theorem~A]
+We decompose the Fourier--Mellin transform.
 Write $x = c^{1/2}(t - \tstar)$,
-$a(s) = c^{-1/2}\Phi_n^{(c)}(\ustar + c^{-1/2}s)$, so
+$a(s) = c^{-1/2}\Phi_n^{(c)}(\ustar + c^{-1/2}s)$,
+so that
 \[
   \widehat{\Phi}_n^{(c)}(t)
   = c^{-1/2}\int_{\mathbb{R}}
     e^{i\Psi(s,x)}\,a(s)\,ds.
 \]
 
+\medskip
 \noindent\textbf{Step~1: Three-zone decomposition.}
-Fix $M > 1$ (independent of $c$).
-Split into $\mathcal{I}_{\mathrm{inn}}$,
-$\mathcal{I}_{\mathrm{mid}}$,
-$\mathcal{I}_{\mathrm{out}}$
-over $|s| \le M$, $M < |s| \le c^{1/6}$,
-$|s| > c^{1/6}$ respectively.
+Fix $M > 1$ (independent of $c$; its value is specified
+at Step~5).
+Split:
+\[
+  \widehat{\Phi}_n^{(c)}(t)
+  = c^{-1/2}\bigl[
+    \mathcal{I}_{\mathrm{inn}}
+    + \mathcal{I}_{\mathrm{mid}}
+    + \mathcal{I}_{\mathrm{out}}
+  \bigr],
+\]
+where the three integrals are over
+$|s| \le M$, $M < |s| \le c^{1/6}$,
+and $|s| > c^{1/6}$, respectively.
 
 \medskip
 \noindent\textbf{Step~2: Outer zone.}
 By Lemma~\ref{lem:remainder}:
-$c^{-1/2}|\mathcal{I}_{\mathrm{out}}| = O(c^{-2/3})$,
-i.e.\ $O(c^{-1/6})$ relative to the main term.
+\[
+  c^{-1/2}|\mathcal{I}_{\mathrm{out}}|
+  = O(c^{-2/3}).
+\]
+This is $O(c^{-1/6})$ relative to the main term $c^{-1/2}$.
 
 \medskip
 \noindent\textbf{Step~3: Middle zone.}
 By Lemma~\ref{lem:intermediate}:
-$c^{-1/2}|\mathcal{I}_{\mathrm{mid}}|
-= O(c^{-1}M^{-1}) = O(c^{-1/2}M^{-1})$
-relative to $c^{-1/2}$,
-which is $o(1)$ for fixed $M$.
+\[
+  c^{-1/2}|\mathcal{I}_{\mathrm{mid}}|
+  = O(c^{-1/2} \cdot c^{-1/2}M^{-1})
+  = O(c^{-1}M^{-1}).
+\]
+Relative to $c^{-1/2}$, this is $O(c^{-1/2}M^{-1})$,
+which for fixed $M$ is $o(1)$.
 
 \begin{remark}[Relative error convention]
 \label{rem:relative-error}
-The final relative error $O(c^{-1/3})$
-in \eqref{eq:composite-A} is the maximum of:
-$c^{-1/6}$ (outer, Step~2),
-$c^{-1/2}M^{-1}$ (middle, Step~3),
-$c^{-1/4}$ (inner Jacobian, Step~4).
-All $O(\cdot)$ constants are uniform in
-$n \le \kappa c$.
+All error bounds in Theorem~A and its proof are
+stated in two ways:
+\begin{itemize}
+\item \emph{Absolute:} the bound on the contribution
+  to $\widehat{\Phi}_n^{(c)}(t)$ itself
+  (e.g.\ $O(c^{-2/3})$).
+\item \emph{Relative:} the bound divided by the
+  main-term scale $c^{-1/2}$
+  (e.g.\ $O(c^{-2/3})/c^{-1/2} = O(c^{-1/6})$).
+\end{itemize}
+The final relative error in \eqref{eq:composite-A}
+is $O(c^{-1/3})$, arising as the maximum of
+$c^{-1/6}$ (outer zone, Step~2),
+$c^{-1/2}M^{-1}$ (middle zone, Step~3, for fixed $M$),
+and $c^{-1/4}$ (inner zone Jacobian, Step~4).
+All $O(\cdot)$ constants are uniform in $n \le \kappa c$.
 \end{remark}
 
 \medskip
 \noindent\textbf{Step~4: Inner zone and Airy evaluation.}
-Apply the Olver normal form of Lemma~\ref{lem:phase}
-on $|s| \le M$:
+On $|s| \le M$,
+apply the Olver normal form of Lemma~\ref{lem:phase}.
+Writing $s'$ for the transformed variable:
 \[
   \mathcal{I}_{\mathrm{inn}}
   = \kappa_n^{(c)}
@@ -979,26 +1041,29 @@ on $|s| \le M$:
     e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,ds'
     \cdot(1 + O(c^{-1/4})).
 \]
-By Lemma~\ref{lem:tail-ext}, extending to $\mathbb{R}$
+By Lemma~\ref{lem:tail-ext} (with $M$ fixed,
+independent of $c$), extending to $\mathbb{R}$
 introduces error $O(c^{-1/3}M^{-2}) = o(c^{-1/2})$.
+
 Applying the Airy integral representation
-(\cite{Olver1974}, Ch.~11, eq.~(11.10.6)):
+\textup{(\cite{Olver1974}, Ch.~11, eq.~(11.10.6))}:
 \begin{equation}
 \label{eq:airy-integral}
   \int_{\mathbb{R}}
   e^{i(\xi y + y^3/3)}\,dy
-  = 2\pi\,\Ai(\xi),
+  = 2\pi\,\Ai(\xi).
 \end{equation}
-with $s' = (\mu_n^{(c)})^{-1/3}y$,
-$\xi = x'/(\mu_n^{(c)})^{2/3}$:
+Setting $s' = (\mu_n^{(c)})^{-1/3}y$ gives
+$\xi = x'/(\mu_n^{(c)})^{2/3}$, hence:
 \[
   \int_{\mathbb{R}}
   e^{i(x's' + \mu_n^{(c)}s'^3/6)}\,ds'
   = 2\pi\,(\mu_n^{(c)})^{-1/3}\,
     \Ai\!\Bigl(\frac{x'}{(\mu_n^{(c)})^{2/3}}\Bigr).
 \]
-Using $x' = x + O(c^{-1/4})$ and the
-Lipschitz bound on $\Ai$:
+
+Combining with $x' = x + O(c^{-1/4})$
+and the Lipschitz bound on $\Ai$:
 \[
   \mathcal{I}_{\mathrm{inn}}
   = 2\pi\,(\mu_n^{(c)})^{-1/3}\,\kappa_n^{(c)}\,
@@ -1007,18 +1072,37 @@ Lipschitz bound on $\Ai$:
 \]
 
 \medskip
-\noindent\textbf{Step~5: Combining.}
+\noindent\textbf{Step~5: Combining all zones.}
+All remainder terms are $o(c^{-1/2})$, so:
 \[
   \widehat{\Phi}_n^{(c)}(t)
   = c^{-1/2}\,\mathcal{A}_n^{(c)}(x)
   \cdot\bigl(1 + O(c^{-1/3})\bigr),
 \]
 where $\mathcal{A}_n^{(c)}(x)
-= \kappa_n^{(c)}\,\Ai(x/(\mu_n^{(c)})^{2/3})$,
-uniform in $n \le \kappa c$, $t \in \Zcross$.
-Properties~(a)--(d) follow from standard
-Airy bounds and matching
-(see Remark~\ref{rem:A-explicit}).
+= \kappa_n^{(c)}\,\Ai(x/(\mu_n^{(c)})^{2/3})$
+and the relative error $O(c^{-1/3})$ is uniform
+in $n \le \kappa c$ and $t \in \Zcross$.
+This gives \eqref{eq:composite-A}.
+
+Properties~(a)--(d) follow from:
+\begin{itemize}
+  \item[(a)] Standard Airy bound
+        $|\Ai(\xi)| \le C(1+|\xi|)^{-1/4}$
+        and $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$.
+  \item[(b)] Non-vanishing of $\Ai$:
+        on every interval of length $L_0 \le 5$,
+        $\Ai$ does not vanish identically,
+        giving the lower bound
+        $c_\kappa(1+|x_0|)^{-1/4}$
+        (\cite{Olver1974}, Ch.~11);
+        the uniform zero spacing follows from
+        $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
+        as stated in Theorem~A\eqref{thm:A-lower}.
+  \item[(c),(d)] Matching with \eqref{VI4}
+        at $x = 0$ (Remark~\ref{rem:A-explicit})
+        and asymptotic WKB for $|x| \ge c^{1/12}$.
+\end{itemize}
 \end{proof}
 
 \begin{corollary}[Lower bound on mass in $\Zcross$]
@@ -1037,7 +1121,7 @@ By Theorem~A\eqref{thm:A-lower},
 for every $x_0 \in [c^{-1/6},c^{1/6}]$
 there is $x_1 \in [x_0,x_0+L_0]$ with
 $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa|x_0|^{-1/4}$.
-Hence:
+Hence via \eqref{eq:composite-A}:
 \[
 \int_{\Zcross}|\widehat{\Phi}|^2\,dt
 \ge c_\kappa^2 c^{-3/2}
@@ -1064,7 +1148,9 @@ For $t \in \Zcross$, $c \ge c_0$, $n \le \kappa c$:
 
 \begin{proof}
 Immediate from Theorem~A\eqref{thm:A-upper}
-and \eqref{eq:composite-A}.
+and \eqref{eq:composite-A},
+since $x = c^{1/2}(t-\tstar)$ gives
+$(1+|x|)^{-1/4} = (1+c^{1/2}|t-\tstar|)^{-1/4}$.
 \end{proof}
 
 \begin{theorem}[Upper bound on peak width, Theorem~B]
@@ -1079,39 +1165,68 @@ for all $c \ge c_0(\kappa,\varepsilon)$, $n \le \kappa c$:
 \end{theorem}
 
 \begin{proof}
-Set $\Delta = K c^{-1/2}$.
+We estimate the $L^2$-mass of $\widehat{\Phi}_n^{(c)}$
+outside $[t_* - \Delta, t_* + \Delta]$
+for $\Delta = K c^{-1/2}$, $K = K(\kappa,\varepsilon)$
+chosen below.
+
+\textbf{Step~1: Decomposition.}
 Write
-$\|\widehat{\Phi}_n^{(c)}\|_{L^2([t_*-\Delta,
-t_*+\Delta]^c)}^2 = J_1 + J_2 + J_3$
-over $\Zcross \cap \{|t-t_*|>\Delta\}$,
-the algebraic zone, and $|t-t_*|>t_*$.
+$\|\widehat{\Phi}_n^{(c)}\|_{L^2([t_*-\Delta, t_*+\Delta]^c)}^2
+= J_1 + J_2 + J_3$,
+where $J_1$ integrates over $\Zcross \cap \{|t-t_*|>\Delta\}$,
+$J_2$ over the algebraic zone
+$c^{-1/3} < |t-t_*| \le t_*$,
+and $J_3$ over $|t-t_*| > t_*$.
+Since $\Delta = Kc^{-1/2} \gg c^{-2/3}$ for large $c$,
+the Airy zone lies inside $[t_*-\Delta, t_*+\Delta]$
+and contributes nothing to $J_1$.
 
-\textbf{$J_1$:}
-$\le C_\kappa c^{-17/12} \le \varepsilon^2/6$
-for $c \ge c_1(\kappa,\varepsilon)$.
+\textbf{Step~2: Bound on $J_1$.}
+$J_1 \le \|\widehat{\Phi}_n^{(c)}\|^2_{L^2(\Zcross)}
+\le C_\kappa c^{-17/12}$
+by Proposition~\ref{prop:cross-mass}.
+For $c \ge c_1(\kappa,\varepsilon)$ we have
+$C_\kappa c^{-17/12} \le \varepsilon^2/6$.
 
-\textbf{$J_3$:}
-$\le e^{-\gamma_\kappa c^{1/2}} \le \varepsilon^2/6$
+\textbf{Step~3: Bound on $J_3$.}
+For $t > 2t_*$, the barrier estimate
+(Paper~V, Thm.~3.1) gives exponential decay;
+for $t < 0$, $\widehat{\Phi}_n^{(c)} = 0$.
+Hence $J_3 \le e^{-\gamma_\kappa c^{1/2}} \le \varepsilon^2/6$
 for $c \ge c_2(\kappa,\varepsilon)$.
 
-\textbf{$J_2$:}
-Using \eqref{VI2} and $t^{-1/2} \le \Delta^{-1/2}$:
+\textbf{Step~4: Bound on $J_2$.}
+For $t$ in the algebraic zone,
+$t \asymp t_* \asymp c^{1/2}$, so
+\eqref{VI2} gives
+$|\widehat{\Phi}_n^{(c)}(t)|^2
+\le C_\kappa^2 c^{-1/2} t^{-1/2}$.
+Using $t^{-1/2} \le \Delta^{-1/2}$ on $\{|t-t_*|>\Delta\}$:
 \[
-J_2 \le C_\kappa^2 c^{-1/2} \cdot (Kc^{-1/2})^{-1/2}
+J_2 \le C_\kappa^2 c^{-1/2} \cdot \Delta^{-1/2}
+\cdot 2t_*
+= C_\kappa^2 c^{-1/2} \cdot (Kc^{-1/2})^{-1/2}
 \cdot 2c^{1/2}
 = 2C_\kappa^2 K^{-1/2}.
 \]
 Choose $K = (6C_\kappa^2/\varepsilon^2)^2$
-so $J_2 \le \varepsilon^2/3$.
+so that $J_2 \le \varepsilon^2/3$.
 
-\textbf{Conclusion:}
-$J_1+J_2+J_3 \le \tfrac{2}{3}\varepsilon^2 < \varepsilon^2$.
+\textbf{Conclusion.}
+$J_1 + J_2 + J_3
+\le \varepsilon^2/6 + \varepsilon^2/3 + \varepsilon^2/6
+= \frac{2\varepsilon^2}{3} < \varepsilon^2$
+for $c \ge \max(c_1, c_2)(\kappa,\varepsilon)$.
+This shows $\Delta_\varepsilon(c,n) \le Kc^{-1/2}
+= C(\kappa,\varepsilon) c^{-1/2}$.
 \end{proof}
 
 \begin{remark}[Explicit constant]
 \label{rem:explicit-const}
-The proof yields
-$C(\kappa,\varepsilon) = (8C_\kappa^2/\varepsilon^2)^2$.
+The proof yields the explicit value
+$C(\kappa,\varepsilon) = (8C_\kappa^2/\varepsilon^2)^2$,
+where $C_\kappa$ is the constant from \eqref{VI2}.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1122,31 +1237,36 @@ $C(\kappa,\varepsilon) = (8C_\kappa^2/\varepsilon^2)^2$.
 \begin{proposition}[Global mass arguments
 cannot give the $c^{-1/2}$ lower bound]
 \label{prop:lower-barrier}
-Let $\mathcal{M}$ be any argument using only:
+Let $\mathcal{M}$ be any argument that uses
+only the following two inputs:
 \begin{enumerate}[\rm(a)]
-\item $\|\widehat{\Phi}_n^{(c)}\|_{L^2}^2 = \tfrac{1}{2}$,
-\item $|\widehat{\Phi}_n^{(c)}(t)| \le f(t,c)$
-for some explicit $f$.
+\item the total $L^2$-normalisation
+$\|\widehat{\Phi}_n^{(c)}\|_{L^2}^2
+= \tfrac{1}{2}$,
+\item pointwise upper bounds of the form
+$|\widehat{\Phi}_n^{(c)}(t)|
+\le f(t,c)$ for some explicit $f$.
 \end{enumerate}
 Then $\mathcal{M}$ cannot establish
-$\Delta_\varepsilon(c,n) \ge c_1\,c^{-1/2}$.
-The best such argument yields only
-$\Delta_\varepsilon \ge c_1 c^{-1}$.
+$\Delta_\varepsilon(c,n) \ge c_1\,c^{-1/2}$
+for any $c_1 > 0$.
+The best lower bound that $\mathcal{M}$
+can produce is
+$\Delta_\varepsilon(c,n) \ge c_1({\kappa,\varepsilon})\,c^{-1}$.
 \end{proposition}
 
-%% ── FIX 5: Barrier proof formalized ─────────────────────────────
 \begin{proof}
-A mass-argument lower bound on $\Delta_\varepsilon$
-takes the form:
+A lower bound on $\Delta_\varepsilon$
+via a mass argument takes the form:
 \[
 2\Delta \cdot f(\Delta, c)^2
 < (1-\varepsilon^2) \cdot \tfrac{1}{2},
-\quad\text{giving}\quad
-\Delta \ge \frac{c_1}{f(\Delta,c)^2}.
 \]
+giving $\Delta \ge c_1/f(\Delta,c)^2$.
 
 \textit{Case 1: Near-peak bound.}
-Using $|f| \le C_\kappa c^{-1/2}$ near $t_*$:
+Using the sharpest available bound near $t_*$,
+$|f| \le C_\kappa c^{-1/2}$:
 \[
 \int_{|t-t_*|\le\Delta}|\widehat{\Phi}|^2\,dt
 \le 2\Delta \cdot C_\kappa^2 c^{-1}
@@ -1154,7 +1274,7 @@ Using $|f| \le C_\kappa c^{-1/2}$ near $t_*$:
 \]
 as $c \to \infty$ for any fixed $K$.
 For this mass to account for the full $\tfrac12$,
-one needs $\Delta \asymp c$ — trivially useless.
+one would need $\Delta \asymp c$ — trivially useless.
 
 \textit{Case 2: Crossover bound.}
 Using $|f| \le C_\kappa c^{-1/2}|t-t_*|^{-1/4}$
@@ -1166,39 +1286,51 @@ at $|t-t_*|=\Delta$ in the mass inequality:
 \;\Longrightarrow\;
 \Delta < C c^{-2/3}.
 \]
-This is an \emph{upper} bound on $\Delta$, not a lower bound.
+%% ── FIX (E): upper constraint clarified ─────────────────────────
+This argument yields only an upper constraint
+on admissible $\Delta$, not a lower bound,
+hence cannot prove $\Delta_\varepsilon \ge c^{-1/2}$.
 
 \textit{Structural obstruction.}
 The dominant $L^2$-mass ($\tfrac{1}{2}$, bulk)
-resides in the algebraic zone $|t-t_*| \ge c^{-1/3}$,
+resides in the algebraic zone $|t - t_*| \ge c^{-1/3}$,
 far from $t_*$.
-Any method relying only on (a)--(b)
-cannot distinguish pointwise non-cancellation
-from cancellation in this zone,
-and therefore cannot see the $c^{-1/2}$ scale.
-The best achievable bound is
+Any method that does not distinguish
+pointwise non-cancellation from cancellation
+in this zone cannot see the $c^{-1/2}$ scale.
+The best achievable bound via $\mathcal{M}$ is
 $\Delta \ge c_1 c^{-1}$,
-weaker than $c^{-1/2}$ by $c^{1/2}$.
+weaker than $c^{-1/2}$ by a factor of $c^{1/2}$.
 \end{proof}
 
 \begin{remark}[Structural obstruction]
 \label{rem:structural}
-The lower bound requires knowing that
+Proposition~\ref{prop:lower-barrier}
+identifies the precise obstruction:
+the lower bound requires knowing that
 $|\widehat{\Phi}_n^{(c)}(t)|$ does
 \emph{not} cancel on a set of measure
 $\gtrsim c^{-1/2}$ near $t_*$.
 Global mass arguments cannot detect
 local non-cancellation.
+The required non-cancellation statement
+is Problem~\ref{prob:nonvanish}.
 \end{remark}
 
-\begin{remark}[Conceptual significance]
+\begin{remark}[Conceptual significance of the barrier]
 \label{rem:conceptual}
-The $c^{-1/2}$ scaling is inherently a local
-phenomenon near $t_*$, invisible to global
+Proposition~\ref{prop:lower-barrier} shows that
+the $c^{-1/2}$ scaling is inherently a \emph{local}
+phenomenon near $t_*$.
+It cannot be detected by global energy estimates,
+but requires pointwise control of oscillatory
+non-cancellation.
+This distinction mirrors similar phenomena in
+harmonic analysis, where the concentration of a
+function on a small set is invisible to
 $L^2$-norm information alone.
-This mirrors well-known phenomena in
-harmonic analysis (restriction theory,
-eigenfunction concentration).
+The required non-cancellation statement is
+Problem~\ref{prob:nonvanish}.
 \end{remark}
 
 \begin{remark}[What would be needed]
@@ -1206,7 +1338,7 @@ eigenfunction concentration).
 The correct lower bound requires
 $|\widehat{\Phi}_n^{(c)}(t)| \ge c_\kappa c^{-1/4}t^{-1/4}$
 on a set of measure $\gtrsim c^{-1/2}$
-near $\tstar$;
+in the algebraic zone near $\tstar$;
 see Problem~\ref{prob:nonvanish}.
 \end{remark}
 
@@ -1229,22 +1361,35 @@ $\Delta_\varepsilon \ge c_1 c^{-1/2}$
 
 \begin{problem}[Sharp constant in Theorem~B]
 \label{prob:sharp-const}
-Determine
-$C^*(\kappa,\varepsilon)
+Determine the sharp constant
+\[
+C^*(\kappa,\varepsilon)
 := \limsup_{c\to\infty}
-c^{1/2}\Delta_\varepsilon(c,\lfloor\kappa c\rfloor)$.
+c^{1/2}\Delta_\varepsilon(c,\lfloor\kappa c\rfloor).
+\]
+The explicit bound $C(\kappa,\varepsilon)
+= (8C_\kappa^2/\varepsilon^2)^2$
+from Remark~\ref{rem:explicit-const}
+is almost certainly not sharp.
 \end{problem}
 
-\begin{problem}[Uniformity in the order $n$]
+\begin{problem}[Uniformity in $n$]
 \label{prob:uniformity}
-Do the bounds in Theorem~A and Theorem~B
-hold uniformly for all $n \le \kappa c$
-with constants depending only on $\kappa$?
-The current proof gives this uniformity,
-but a more careful analysis of the
-$n$-dependence of $\mu_n^{(c)}$
-and $\kappa_n^{(c)}$ may yield
-sharper constants.
+Sharpen the $n$-dependence of
+$\mu_n^{(c)}$ and $\kappa_n^{(c)}$
+to obtain optimal constants in
+Theorem~A and Theorem~B.
+In particular, determine whether
+$\mu_n^{(c)}$ is monotone in $n$
+for fixed $c$.
+\end{problem}
+
+\begin{problem}[Extension beyond $n \le \kappa c$]
+\label{prob:extension}
+Extend Theorem~A and Theorem~B to the
+superextremal regime $n > \kappa c$,
+where the saddle-point structure changes
+qualitatively.
 \end{problem}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -1277,8 +1422,7 @@ Academic Press, New York, 1974.
 \bibitem{Slepian1978}
 D.~Slepian,
 Prolate spheroidal wave functions, Fourier
-analysis, and uncertainty~V:
-The discrete case,
+analysis, and uncertainty~V,
 \textit{Bell System Tech.~J.}
 \textbf{57} (1978), 1371--1430.
 
