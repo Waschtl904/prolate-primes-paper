@@ -392,7 +392,7 @@ $\{|t - \tstar| \le R_0\,c^{-1/2}\}$ into two tails:
 \textit{Right tail $T_+$.}
 For $t > \tstar + R_0\,c^{-1/2}$, we have $t > t_*$,
 and the barrier estimate
-(Paper~V, Thm.~3.1) gives exponential decay:
+(Paper~V, Thm.~\ref{thm:boundary-decay}) gives exponential decay:
 \begin{equation}\label{eq:right-tail}
   T_+ \;\le\; C_\kappa\,e^{-\gamma_\kappa c^{1/2}}.
 \end{equation}
@@ -401,18 +401,29 @@ and the barrier estimate
 Set $R_L := \tstar - R_0\,c^{-1/2}$.
 Since $\tstar \asymp c^{1/2}$, for $c$ sufficiently large
 we have $R_L \ge 1$.
-Moreover $R_L \le \tstar \asymp c^{1/2} \le c^{1/4}$
-is satisfied for all large $c$,
+Since $\tstar \asymp c^{1/2}$ and $R_0 c^{-1/2} \ll \tstar$,
+we have $R_L \asymp c^{1/2}$, so $R_L > c^{1/4}$ for large $c$.
+The log-free bound~\eqref{eq:logfree-tail} does not apply directly.
+Instead, we use Paper~VI, Thm.~3.1 directly:
+$|\Phihat_n^{(c)}(t)| \le C_\kappa c^{-1/4} t^{-1/4}$
+for $1 \le t \le c^{1/2-\kappa}$. Since $R_L \le c^{1/2-\kappa}$
+for any fixed $\kappa > 0$ and large $c$:
 so the log-free tail bound \eqref{eq:logfree-tail}
 applies with $R = R_L$:
 \begin{equation}\label{eq:left-tail}
   T_- \;=\;
-  \int_{t < R_L} |\Phihat_n^{(c)}|^2\,dt
+  \int_1^{R_L} |\Phihat_n^{(c)}(t)|^2\,dt
   \;\le\;
-  \|\Phihat_n^{(c)}\|_{L^2(|t|>R_L)}^2
+  \int_1^{R_L} C_\kappa^2\,c^{-1/2}\,t^{-1/2}\,dt
+  \;=\;
+  2C_\kappa^2\,c^{-1/2}\bigl(R_L^{1/2} - 1\bigr)
   \;\le\;
-  C_\kappa^2\,c^{-1/2}\,R_L^{-1/2}.
+  2C_\kappa^2\,c^{-1/2}\cdot C_\kappa' c^{1/4}
+  \;=\;
+  2C_\kappa^2 C_\kappa'\,c^{-1/4}.
 \end{equation}
+Since $c^{-1/4} \to 0$ as $c \to \infty$,
+$T_- \to 0$ as $c \to \infty$.
 Since $R_L \asymp c^{1/2}$:
 \[
   T_- \;\le\; C_\kappa^2\,c^{-1/2}\,(c_\kappa' c^{1/2})^{-1/2}
