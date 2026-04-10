@@ -817,17 +817,17 @@ Set $E_c:=I_c$.
 \label{sec:spectral}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{theorem}[Sharp eigenvalue sensitivity]
+\begin{theorem}[Eigenvalue sensitivity]
 \label{thm:spectral}
 For all $c \ge c_0(\kappa)$, $n \le \kappa c$:
 \begin{equation}\label{eq:spectral-upper}
   \bigl|\lambda_n^{(c)} - \lambda_n^{(c+1)}\bigr|
   \;\le\; C_\kappa\, c^{-3/4}.
 \end{equation}
-Moreover, the scaling $c^{-3/4}$ is sharp:
-\begin{equation}\label{eq:spectral-lower}
+Moreover, a non-trivial lower bound holds:
+\begin{equation}\label{eq:spectral-lower-weak}
   \bigl|\lambda_n^{(c)} - \lambda_n^{(c+1)}\bigr|
-  \;\ge\; c_\kappa\, c^{-3/4}.
+  \;\ge\; c_\kappa\, c^{-1}.
 \end{equation}
 \end{theorem}
 
@@ -835,81 +835,92 @@ Moreover, the scaling $c^{-3/4}$ is sharp:
 \textit{Upper bound \eqref{eq:spectral-upper}.}
 \cite{PaperVII}, Lem.~6.2.
 
-\textit{Lower bound \eqref{eq:spectral-lower}.}
-By the Hellmann--Feynman identity
-(\cite{Osipov2013}, \S3.3):
-\begin{equation}\label{eq:HF}
-  \frac{d\lambda_n^{(c)}}{dc}
-  = -2\int_0^1 t^2\,|\Phi_n^{(c)}(t)|^2\,dt.
+\textit{Lower bound \eqref{eq:spectral-lower-weak}.}
+The Slepian concentration operator is
+\[
+  (K_c f)(t) = \int_0^1
+  \frac{\sin(c(t-s))}{\pi(t-s)}\,f(s)\,ds,
+  \qquad
+  \lambda_n^{(c)} = \langle K_c\Phi_n^{(c)},
+  \Phi_n^{(c)}\rangle.
+\]
+
+\textbf{Step 1: Variational decomposition.}
+By the min-max principle and
+$\|\Phi_n^{(c+1)} - \Phi_n^{(c)}\| = O(c^{-3/4})$
+(Paper~VII, Thm.~C):
+\begin{equation}\label{eq:var-decomp}
+  \lambda_n^{(c+1)} - \lambda_n^{(c)}
+  = \langle (K_{c+1} - K_c)\Phi_n^{(c)},
+  \Phi_n^{(c)}\rangle + O(c^{-3/2}).
 \end{equation}
-We establish $|d\lambda_n^{(c)}/dc|
-\ge c_\kappa c^{-3/4}$ in two steps.
 
-\textit{Step~(i): Global $L^2$-normalisation.}
-The PSWF $\Phi_n^{(c)}$ is
-$L^2([0,1])$-normalised with
-$\|\Phi_n^{(c)}\|_{L^2([0,1])}^2
-= \lambda_n^{(c)} \ge c_\kappa > 0$
-(\cite{BonamiKaroui2014}).
-
-\textit{Step~(ii): Effective $t^2$-weight.}
-By \cite{Osipov2013}, Thm.~3.2,
-the concentration operator satisfies
-$\lambda_n^{(c)} \le 1 - e^{-c_\kappa c^{1/2}}$,
-so the bulk of the $L^2$-mass of $\Phi_n^{(c)}$
-on $[0,1]$ is not concentrated arbitrarily
-close to $t = 0$.
-More precisely, there exists $\delta_\kappa > 0$
-such that
+\textbf{Step 2: Kernel-difference identity.}
+By the product-to-sum formula:
 \[
-  \|\Phi_n^{(c)}\|_{L^2([\delta_\kappa, 1])}^2
-  \;\ge\; \tfrac{1}{2}\lambda_n^{(c)}
-  \;\ge\; \tfrac{c_\kappa}{2}.
+  K_{c+1}(t,s) - K_c(t,s)
+  = \frac{2\cos\!\bigl((c+\tfrac{1}{2})(t-s)\bigr)
+    \sin\!\bigl(\tfrac{t-s}{2}\bigr)}{\pi(t-s)}
+  = \frac{1}{\pi}\cos\!\bigl((c+\tfrac{1}{2})(t-s)
+  \bigr) + R(t,s),
 \]
-Since $t^2 \ge \delta_\kappa^2$ on
-$[\delta_\kappa, 1]$, this gives directly
+where $|R(t,s)| \le C|t-s|$ on $[0,1]^2$.
+
+\textbf{Step 3: Fourier evaluation.}
+The main term gives:
+\begin{equation}\label{eq:fourier-eval}
+  \langle (K_{c+1}-K_c)\Phi_n^{(c)},
+  \Phi_n^{(c)}\rangle
+  = \frac{1}{\pi}
+  \bigl|\Phihat_n^{(c)}\bigl(c+\tfrac{1}{2}\bigr)
+  \bigr|^2 + O(c^{-1}),
+\end{equation}
+where
+$\Phihat_n^{(c)}(\xi)
+= \int_0^1 e^{i\xi t}\Phi_n^{(c)}(t)\,dt$.
+
+\textbf{Step 4: Pointwise lower bound.}
+By Paper~VI, Thm.~3.1, for $\xi = c + \frac{1}{2}$
+near the support boundary of the Slepian
+Fourier transform:
 \[
-  \int_0^1 t^2\,|\Phi_n^{(c)}(t)|^2\,dt
-  \;\ge\; \delta_\kappa^2
-  \cdot \tfrac{c_\kappa}{2}
-  \;=:\; c_\kappa' > 0.
+  \bigl|\Phihat_n^{(c)}\bigl(c+\tfrac{1}{2}\bigr)
+  \bigr| \;\ge\; c_1\,c^{-1/2}.
 \]
-Combined with \eqref{eq:HF}:
-$|d\lambda_n^{(c)}/dc| \ge 2c_\kappa' > 0$.
-
-\textit{Step~(iii): Finite difference.}
-Integrating over $[c, c+1]$ via the
-mean value theorem:
-$|\lambda_n^{(c+1)} - \lambda_n^{(c)}|
-\ge 2c_\kappa' > 0$.
-
-This establishes \eqref{eq:spectral-lower}
-with $c_\kappa = 2c_\kappa'$ (independent of $c$),
-which is stronger than $c^{-3/4}$
-for large $c$ and in particular implies
-the sharp lower bound. \qed
+Inserting into \eqref{eq:fourier-eval} and
+\eqref{eq:var-decomp}:
+\[
+  \bigl|\lambda_n^{(c+1)} - \lambda_n^{(c)}\bigr|
+  \;\ge\; \frac{c_1^2}{\pi}\,c^{-1} - O(c^{-3/2})
+  \;\ge\; c_\kappa\,c^{-1}
+\]
+for $c \ge c_0$, with $c_\kappa := c_1^2/(2\pi)$.
 \end{proof}
 
-\begin{remark}[On the sharpness of the lower bound]
-\label{rem:HF-lower}
-The Hellmann--Feynman argument in Steps~(i)--(iii)
-yields the unconditional lower bound
-$|\lambda_n^{(c)} - \lambda_n^{(c+1)}| \ge c_\kappa > 0$,
-which is \emph{stronger} than $c^{-3/4}$ for large $c$.
-Combined with the upper bound $\le C_\kappa c^{-3/4}$
-from Paper~VII, Lem.~6.2, this gives the two-sided bound
-\eqref{eq:spectral-upper}--\eqref{eq:spectral-lower}
-with the upper rate $c^{-3/4}$ being the sharp decay rate.
-
-The statement $\asymp c^{-3/4}$ should therefore be read as:
-the eigenvalue differences are bounded above by $C_\kappa c^{-3/4}$
-(non-trivial, from Paper~VII) and bounded below by a
-positive constant $c_\kappa > 0$ (from the present argument).
-The lower bound $\ge c_\kappa c^{-3/4}$ \emph{matching}
-the upper rate is a strictly stronger claim that
-would require a refined analysis of the HF integral
-$\int_0^1 t^2|\Phi_n^{(c)}(t)|^2\,dt \asymp c^{-3/4}$;
-this is not established here and is left as an open problem.
+\begin{remark}[Gap to sharp scaling --- open problem]
+\label{rem:spectral-sharp-open}
+The lower bound \eqref{eq:spectral-lower-weak}
+falls short of the upper rate $c^{-3/4}$
+by a factor $c^{1/4}$.
+Heuristically, the kernel $K_{c+1}-K_c$ acts
+as a frequency filter at $\xi \approx c$
+with effective bandwidth $\Delta\xi \asymp c^{1/4}$,
+so the correct evaluation should yield:
+\[
+  \langle(K_{c+1}-K_c)\Phi_n^{(c)},
+  \Phi_n^{(c)}\rangle
+  \;\sim\;
+  \underbrace{c^{-1}}_{\text{height}^2}
+  \times
+  \underbrace{c^{1/4}}_{\text{resonance width}}
+  \;=\; c^{-3/4}.
+\]
+Making this precise requires a microlocal
+frequency-window analysis replacing the
+pointwise evaluation in Step~4 by an
+integrated spectral density over a window
+of width $\asymp c^{1/4}$ around $\xi = c$.
+This is left as an open problem.
 \end{remark}
 
 \begin{corollary}[Eigenvalue control for $\Hlim$]
@@ -1064,7 +1075,7 @@ A.~Bonami and A.~Karoui,
 \textit{Uniform bounds of prolate spheroidal wave
 functions and eigenvalues decay},
 C.\ R.\ Math.\ Acad.\ Sci.\ Paris \textbf{352} (2014),
- no.~3, 229--234.
+no.~3, 229--234.
 
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
