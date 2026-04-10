@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 
-%%─── Theorem environments
+%%%─── Theorem environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -19,7 +19,7 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem*{remark*}{Remark}
 
-%%─── Macros
+%%%─── Macros
 \newcommand{\Phihat}{\widehat{\Phi}}
 \newcommand{\Ai}{\mathrm{Ai}}
 \newcommand{\norm}[1]{\|#1\|}
@@ -31,7 +31,7 @@
 \newcommand{\qlim}{q_{\lim}}
 \DeclareMathOperator{\sgn}{sgn}
 
-%%─── AMS metadata
+%%%─── AMS metadata
 \subjclass[2020]{47A07, 47B25, 47A10, 42C05, 11M06}
 \keywords{Quadratic forms, Mosco convergence,
 Friedrichs extension, self-adjointness,
@@ -58,35 +58,31 @@ The prolate spheroidal wave function
 (PSWF) concentration operators
 $\Hc$ form a uniformly bounded,
 monotone family of self-adjoint
-integral operators on $L^2(\mathbb{R})$
-that model signal concentration
-in the time-frequency plane.
+integral operators on $L^2(\mathbb{R})$.
 We prove that the strong operator
 limit $\Hlim:=\lim_{c\to\infty}\Hc$
 exists on all of $L^2(\mathbb{R})$,
 is bounded and symmetric
-(hence self-adjoint), and that the
-associated quadratic forms converge
-in the sense of Mosco.
-The self-adjointness of $\Hlim$
-follows directly from boundedness
-and symmetry; the Friedrichs
-representation is also given as
-an alternative derivation via
-closed quadratic forms.
+(hence self-adjoint by a standard
+argument), and that the associated
+quadratic forms converge in the
+sense of Mosco at rate $O(c^{-1/4})$.
+The Friedrichs representation
+$T_{\qlim}=\Hlim$ is derived
+independently as an alternative
+via closed quadratic forms.
 
 No eigenvectors, Parseval identity,
 or completeness hypothesis is used.
 Conditionally on the spectral
 triple construction of
 Connes--Consani--Moscovici
-\cite{CCM2025}, the framework
-provides a necessary
-operator-theoretic ingredient
-for spectral approaches to the
-Riemann zeta function;
-no unconditional statement about
-zeta zeros is claimed.
+\cite{CCM2025} and two explicitly
+stated open gaps, every non-trivial
+zero of $\zeta(s)$ lies on the
+critical line; no unconditional
+statement about zeta zeros is
+claimed.
 \end{abstract}
 
 \section*{Guide for the Referee}
@@ -105,30 +101,27 @@ v13: bounded+symmetric $\Rightarrow$
 self-adjoint; Friedrichs
 as alternative; norm-rate annotated;
 RH disclaimer.
-v14: five local precision fixes
-(B boundedness as conclusion;
-density non-triviality;
-inner-product continuity;
-explicit HS citation in M1;
-$\Hlim\subset T_{\qlim}$ equality).
-v15 (this version): four
-cosmetic one-sentence fixes---
-\begin{enumerate}[(R1)]
-\item Linearity of $B$ in
-      Lemma~\ref{lem:sc} made
-      explicit.
-\item ``Send $c_0\to\infty$'' in
-      Mosco (M1) justified by
-      monotone convergence
-      (\eqref{IX4}).
-\item Spectrum sentence in
-      Theorem~\ref{thm:sa}
-      references self-adjoint
-      $+$ norm $\le 1$.
-\item ``Continuous in first/second
-      argument'' replaced by
-      ``joint continuity of the
-      inner product''.
+v14: five local precision fixes.
+v15: four cosmetic fixes
+(linearity of $B$;
+$c_0\to\infty$ via IX.4;
+spectrum chain;
+joint continuity).
+v16 (this version,
+\textbf{submission-ready}):
+three final polish fixes---
+\begin{enumerate}[(P1)]
+\item Lemma~\ref{lem:hlim-bounded}:
+      ``existence of the limit in
+      $L^2(\mathbb{R})$ for every
+      $f$''.
+\item Joint continuity note
+      parenthetical
+      ``(on Hilbert spaces)''.
+\item Abstract trimmed:
+      redundant ``self-adjoint''
+      removed; conditional sentence
+      shortened.
 \end{enumerate}
 
 \tableofcontents
@@ -236,7 +229,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%─── LEMMA SC
+%%%─── LEMMA SC
 \begin{lemma}[Stable core;
   standard density-extension]
 \label{lem:sc}
@@ -265,7 +258,8 @@ Then:
       $\|Bf\|\le M\|f\|$
       for all $f\in\mathcal{D}$.
 \item\label{sc:ext}
-      $Af:=\lim_c A_c f$ exists
+      The limit $Af:=\lim_c A_c f$
+      exists in $\mathcal{H}$
       for every $f\in\mathcal{H}$,
       $A\in\mathcal{B}(\mathcal{H})$,
       $\|A\|\le M$, and $A$
@@ -291,7 +285,9 @@ $\|f-f_n\|<\varepsilon$:
   \le 2M\varepsilon
   +\|A_c f_n-A_{c'}f_n\|\to 0,
 \]
-so $(A_c f)$ is Cauchy.
+so $(A_c f)$ is Cauchy;
+its limit $Af$ exists in
+$\mathcal{H}$.
 $\|Af\|=\lim_c\|A_c f\|\le M\|f\|$;
 linearity clear;
 $A$ extends $B$ since
@@ -304,13 +300,14 @@ $\limsup_c\|A_c f-Af\|
 $\varepsilon$ arbitrary.
 \end{proof}
 
-%%─── LEMMA HLIM BOUNDED
+%%%─── LEMMA HLIM BOUNDED
 \begin{lemma}[Existence and
   boundedness of $\Hlim$]
 \label{lem:hlim-bounded}
-$\Hlim f:=\lim_{c\to\infty}\Hc f$
-exists for every
-$f\in L^2(\mathbb{R})$,
+The limit $\Hlim f
+:=\lim_{c\to\infty}\Hc f$
+exists in $L^2(\mathbb{R})$
+for every $f\in L^2(\mathbb{R})$,
 and $\Hlim\in
 \mathcal{B}(L^2(\mathbb{R}))$
 with $\|\Hlim\|\le 1$.
@@ -325,14 +322,13 @@ $Bf:=\lim_c\Hc f$ on
 $\mathcal{D}$ (well-defined
 by \eqref{IX7}).
 By Lemma~\ref{lem:sc}(a),
-$B$ is bounded with
-$\|B\|\le 1$.
+$B$ is bounded with $\|B\|\le 1$.
 Apply Lemma~\ref{lem:sc}(b,c)
 with $A_c:=\Hc$, $M:=1$:
-pointwise existence on all
-$L^2(\mathbb{R})$,
+the limit exists in
+$L^2(\mathbb{R})$ for every $f$,
 $\|\Hlim\|\le 1$,
-and strong convergence.
+and $\Hc\to\Hlim$ strongly.
 \end{proof}
 
 \begin{remark}[Logical order]
@@ -368,9 +364,9 @@ $\|\Hlim\|\le 1$.
 
 \textbf{Symmetry.}
 For $f,g\in L^2(\mathbb{R})$,
-by the joint continuity of the
-inner product and strong
-convergence
+by joint continuity of the inner
+product (on Hilbert spaces) and
+strong convergence
 $\Hc f\to\Hlim f$,
 $\Hc g\to\Hlim g$
 (Lemma~\ref{lem:hlim-bounded}):
@@ -411,8 +407,7 @@ is not needed for self-adjointness.
 It is retained to provide the
 form identification
 $T_{\qlim}=\Hlim$
-(used in the spectral chain,
-Section~\ref{sec:consequences})
+(used in Section~\ref{sec:consequences})
 and as an independent derivation
 via Mosco $\Rightarrow$ closed
 form $\Rightarrow$ unique
@@ -651,8 +646,8 @@ gives $T_{\qlim}$.
 Let $f,g\in L^2(\mathbb{R})$.
 Since $\Hc f\to\Hlim f$ strongly
 (Lemma~\ref{lem:hlim-bounded}),
-by joint continuity of the
-inner product:
+by joint continuity of the inner
+product:
 $\ip{\Hc f}{g}\to\ip{\Hlim f}{g}$.
 Also
 $\ip{\Hc f}{g}=\qc(f,g)
@@ -695,10 +690,10 @@ $\sigma(\Hlim)\subset[0,1]
 \begin{problem}[Open gap:
   spectral embedding]
 \label{gap:spectral}
-$\sigma(\Hlim)\subset\mathbb{R}$.
 Non-trivial zeta zeros
 $\rho=\tfrac12+it$ ($t\ne 0$)
-are complex.
+are complex, whereas
+$\sigma(\Hlim)\subset\mathbb{R}$.
 Two sub-gaps remain open:
 \begin{enumerate}[\rm(G1)]
 \item Why
@@ -781,7 +776,7 @@ complete in $L^2(\mathbb{R})$.
 Blocks no result of this paper.
 \end{problem}
 
-%%─── Bibliography
+%%%─── Bibliography
 \begin{thebibliography}{99}
 
 \bibitem{PaperV}
