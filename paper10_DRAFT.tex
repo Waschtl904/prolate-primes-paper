@@ -34,7 +34,7 @@
 %%─── AMS metadata
 \subjclass[2020]{47A07, 47B25, 47A10, 42C05, 11M06}
 \keywords{Quadratic forms, Mosco convergence,
-Friedrichs extension, essential self-adjointness,
+Friedrichs extension, self-adjointness,
 prolate spheroidal wave functions,
 Riemann zeta function}
 
@@ -105,28 +105,30 @@ v13: bounded+symmetric $\Rightarrow$
 self-adjoint; Friedrichs
 as alternative; norm-rate annotated;
 RH disclaimer.
-v14 (this version): five local
-precision fixes---
-\begin{enumerate}[(P1)]
-\item Lemma~\ref{lem:sc}:
-      boundedness of $B$ is now
-      a \emph{conclusion}, not
-      a hypothesis.
-\item \eqref{IX5}: explicit
-      non-triviality sentence
-      for $\Dom(\Hlim)$.
-\item Theorem~\ref{thm:sa},
-      symmetry step: explicit
-      inner-product continuity
-      sentence.
-\item Mosco (M1): explicit
-      Lemma~\ref{lem:hs}(b)
-      citation at the inequality.
-\item Theorem~\ref{thm:friedrichs},
-      Step~1: explicit
-      $f\in\Dom(T_{\qlim})$
-      and $\Hlim\subset T_{\qlim}$,
-      then equality by boundedness.
+v14: five local precision fixes
+(B boundedness as conclusion;
+density non-triviality;
+inner-product continuity;
+explicit HS citation in M1;
+$\Hlim\subset T_{\qlim}$ equality).
+v15 (this version): four
+cosmetic one-sentence fixes---
+\begin{enumerate}[(R1)]
+\item Linearity of $B$ in
+      Lemma~\ref{lem:sc} made
+      explicit.
+\item ``Send $c_0\to\infty$'' in
+      Mosco (M1) justified by
+      monotone convergence
+      (\eqref{IX4}).
+\item Spectrum sentence in
+      Theorem~\ref{thm:sa}
+      references self-adjoint
+      $+$ norm $\le 1$.
+\item ``Continuous in first/second
+      argument'' replaced by
+      ``joint continuity of the
+      inner product''.
 \end{enumerate}
 
 \tableofcontents
@@ -162,8 +164,12 @@ and $0\le\Hc\le I$.
 
 \item\label{IX4}
       $c\mapsto\ip{\Hc f}{f}$
-      non-decreasing
-      (Paper~V, Prop.~2.2).
+      is non-decreasing and,
+      for every $f$, increases to
+      $\qlim(f,f)=\ip{\Hlim f}{f}$
+      as $c\to\infty$
+      (Paper~V, Prop.~2.2;
+      Lemma~\ref{lem:hlim-bounded}).
 
 \item\label{IX5}
       $\Dom(\Hlim)$ is a dense
@@ -193,8 +199,7 @@ and $0\le\Hc\le I$.
       L^2(\mathbb{R})\}$.
       This is a linear subspace
       (limits of linear maps
-      are linear where they
-      exist).
+      are linear where they exist).
       Paper~VII, Thm.~C:
       the map
       $f\mapsto\lim_c\Hc f$
@@ -250,12 +255,13 @@ subspace.
 Suppose $A_c f\to Bf$ pointwise
 for all $f\in\mathcal{D}$,
 where $B:\mathcal{D}\to\mathcal{H}$
-is a (not yet assumed bounded)
-linear map.
+is a linear map
+(linearity follows from
+pointwise limits of linear maps).
 Then:
 \begin{enumerate}[\rm(a)]
-\item\label{sc:cauchy}
-      $B$ is bounded with
+\item\label{sc:bdd}
+      $B$ is bounded:
       $\|Bf\|\le M\|f\|$
       for all $f\in\mathcal{D}$.
 \item\label{sc:ext}
@@ -289,7 +295,8 @@ so $(A_c f)$ is Cauchy.
 $\|Af\|=\lim_c\|A_c f\|\le M\|f\|$;
 linearity clear;
 $A$ extends $B$ since
-$A_c f\to Bf$ for $f\in\mathcal{D}$.
+$A_c f\to Bf$ for
+$f\in\mathcal{D}$.
 
 \textit{(c).}
 $\limsup_c\|A_c f-Af\|
@@ -311,10 +318,11 @@ with $\|\Hlim\|\le 1$.
 
 \begin{proof}
 Let $\mathcal{D}:=\Dom(\Hlim)$
-(dense and non-trivial, \eqref{IX5})
-and let $B$ be the pointwise
-limit $Bf:=\lim_c\Hc f$
-on $\mathcal{D}$ (well-defined
+(dense and non-trivial,
+\eqref{IX5}) and let $B$ be
+the pointwise limit
+$Bf:=\lim_c\Hc f$ on
+$\mathcal{D}$ (well-defined
 by \eqref{IX7}).
 By Lemma~\ref{lem:sc}(a),
 $B$ is bounded with
@@ -323,7 +331,7 @@ Apply Lemma~\ref{lem:sc}(b,c)
 with $A_c:=\Hc$, $M:=1$:
 pointwise existence on all
 $L^2(\mathbb{R})$,
-boundedness $\|\Hlim\|\le 1$,
+$\|\Hlim\|\le 1$,
 and strong convergence.
 \end{proof}
 
@@ -360,10 +368,12 @@ $\|\Hlim\|\le 1$.
 
 \textbf{Symmetry.}
 For $f,g\in L^2(\mathbb{R})$,
-since $\Hc f\to\Hlim f$ strongly
-(Lemma~\ref{lem:hlim-bounded})
-and the inner product is
-continuous in the first argument:
+by the joint continuity of the
+inner product and strong
+convergence
+$\Hc f\to\Hlim f$,
+$\Hc g\to\Hlim g$
+(Lemma~\ref{lem:hlim-bounded}):
 \[
   \ip{\Hlim f}{g}
   = \lim_c\ip{\Hc f}{g}
@@ -371,9 +381,7 @@ continuous in the first argument:
   = \ip{f}{\Hlim g},
 \]
 using self-adjointness of each
-$\Hc$ (\eqref{IX6}) and,
-for the last equality,
-continuity in the second argument.
+$\Hc$ (\eqref{IX6}).
 
 \textbf{Self-adjointness.}
 A bounded symmetric operator
@@ -383,10 +391,15 @@ self-adjoint
 Hence $\Hlim=\Hlim^*$.
 
 \textbf{Spectrum.}
-$0\le\ip{\Hlim f}{f}\le\|f\|^2$
-(\eqref{IX3},
+Since $\Hlim$ is self-adjoint,
+$\sigma(\Hlim)\subset\mathbb{R}$.
+Since $\|\Hlim\|\le 1$,
+$\sigma(\Hlim)\subset[-1,1]$.
+Since $\ip{\Hlim f}{f}\ge 0$
+for all $f$ (\eqref{IX3},
 Lemma~\ref{lem:hlim-bounded}),
-so $\sigma(\Hlim)\subset[0,1]$.
+$\Hlim\ge 0$, so
+$\sigma(\Hlim)\subset[0,1]$.
 \end{proof}
 
 \begin{remark}[R\^ole of Friedrichs]
@@ -397,9 +410,9 @@ the Friedrichs construction
 is not needed for self-adjointness.
 It is retained to provide the
 form identification
-$T_{\qlim}=\Hlim$,
-used in the spectral chain
-(Section~\ref{sec:consequences}),
+$T_{\qlim}=\Hlim$
+(used in the spectral chain,
+Section~\ref{sec:consequences})
 and as an independent derivation
 via Mosco $\Rightarrow$ closed
 form $\Rightarrow$ unique
@@ -515,8 +528,7 @@ Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
 Fix $c_0>0$;
 since $c_n\to\infty$,
-we have $c_n\ge c_0$
-for all large $n$,
+$c_n\ge c_0$ for all large $n$,
 hence by monotonicity \eqref{IX4}:
 \[
   q_{c_n}(f_n,f_n)
@@ -534,6 +546,10 @@ By Lemma~\ref{lem:hs}(b)
 \]
 Since $c_0>0$ is arbitrary,
 send $c_0\to\infty$:
+since $q_{c_0}(f,f)$ increases
+to $\qlim(f,f)$ by monotone
+convergence \eqref{IX4},
+we conclude
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
@@ -634,9 +650,9 @@ gives $T_{\qlim}$.
 \textbf{Step~1.}
 Let $f,g\in L^2(\mathbb{R})$.
 Since $\Hc f\to\Hlim f$ strongly
-(Lemma~\ref{lem:hlim-bounded})
-and the inner product is
-continuous:
+(Lemma~\ref{lem:hlim-bounded}),
+by joint continuity of the
+inner product:
 $\ip{\Hc f}{g}\to\ip{\Hlim f}{g}$.
 Also
 $\ip{\Hc f}{g}=\qc(f,g)
@@ -651,7 +667,7 @@ Since both $\Hlim$ and $T_{\qlim}$
 are bounded self-adjoint operators
 on all of $L^2(\mathbb{R})$,
 $\Hlim\subset T_{\qlim}$ implies
-$\Hlim = T_{\qlim}$.
+$\Hlim=T_{\qlim}$.
 \end{proof}
 
 \begin{remark}[Audit]
@@ -711,8 +727,7 @@ setting---existence and
 self-adjointness of $\Hlim$,
 Mosco convergence of $(\qc)$---that
 is a necessary ingredient of
-spectral approaches to
-$\zeta(s)$.
+spectral approaches to $\zeta(s)$.
 
 Conditionally on
 Hypothesis~CCM
@@ -725,8 +740,7 @@ of $\zeta(s)$ satisfies
 $\operatorname{Re}(\rho)=\tfrac12$.
 \end{corollary}
 
-\begin{remark}[Unconditional
-  results]
+\begin{remark}[Unconditional results]
 Self-adjointness of $\Hlim$
 with $\|\Hlim\|\le 1$,
 $\sigma(\Hlim)\subset[0,1]$,
