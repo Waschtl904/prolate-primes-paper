@@ -71,6 +71,11 @@ The Friedrichs representation
 $T_{\qlim}=\Hlim$ is derived
 independently as an alternative
 via closed quadratic forms.
+As an unconditional consequence,
+the resolvents
+$(\Hc-z)^{-1}$ converge strongly
+to $(\Hlim-z)^{-1}$ for every
+$z\notin[0,1]$.
 
 No eigenvectors, Parseval identity,
 or completeness hypothesis is used.
@@ -116,11 +121,17 @@ large bandwidth.
 The Mosco convergence of the
 associated forms at rate
 $O(c^{-1/4})$ gives a quantitative
-version of this stability.
+version of this stability,
+and the resolvent convergence
+(Corollary~\ref{cor:resolvent})
+shows that the spectral structure
+of $\Hc$ is inherited by $\Hlim$
+in the strong sense.
 
 The connection to the Riemann zeta
 function is conditional and
-programmatic (Section~\ref{sec:consequences});
+programmatic
+(Section~\ref{sec:consequences});
 the operator-theoretic results of
 Sections~\ref{sec:setup}--\ref{sec:friedrichs}
 are unconditional and stand
@@ -136,29 +147,30 @@ v9: $3\varepsilon$-argument
 v10--v12: explicit
 Lemma~\ref{lem:hlim-bounded},
 single-index Mosco,
-linearity/boundedness,
-Friedrichs inner-product line.
-v13: bounded+symmetric $\Rightarrow$
-self-adjoint; Friedrichs
-as alternative; norm-rate annotated;
-RH disclaimer.
-v14--v16: precision and
-cosmetic fixes.
-v17 (this version):
-three mathematical micro-fixes
-and one strategic addition---
-\begin{enumerate}[(M1)]
-\item Lemma~\ref{lem:sc}: linearity
-      of $B$ verified explicitly in
-      the proof.
-\item Mosco (M1): ``send $c_0\to\infty$''
-      justified by supremum argument.
-\item Theorem~\ref{thm:friedrichs}:
-      both operators defined on all of
-      $L^2(\mathbb{R})$ stated.
-\item Motivation section and
-      Corollary~\ref{cor:resolvent}
-      (unconditional, CCM-free).
+linearity/boundedness.
+v13--v16: bounded+symmetric
+$\Rightarrow$ SA; Friedrichs
+as alternative;
+cosmetic precision fixes.
+v17: linearity of $B$ in proof;
+supremum argument in M1;
+Friedrichs domain statement;
+motivation section;
+resolvent corollary.
+v18 (this version):
+\begin{enumerate}[(A)]
+\item Lemma~\ref{lem:sc}: added
+      standard references
+      \cite{Rudin1991,Conway1990}.
+\item Lemma~\ref{lem:hs}(b):
+      compact weak$\to$norm step
+      written out.
+\item \eqref{IX2norm}: provenance
+      of Landau--Pollak rate made
+      explicit.
+\item Proposition~\ref{prop:spec-structure}:
+      new unconditional spectral
+      structure result.
 \end{enumerate}
 
 \tableofcontents
@@ -250,11 +262,16 @@ and $0\le\Hc\le I$.
       \le C_\kappa c^{-1/4}$,
       where $\|\cdot\|$ is the
       operator norm on
-      $\mathcal{B}(L^2(\mathbb{R}))$
-      (Paper~IX, Thm.~3.1;
-      uses Landau--Pollak
-      asymptotics; holds for
-      $c\ge c_0(\kappa)$).
+      $\mathcal{B}(L^2(\mathbb{R}))$.
+      This is proven in
+      Paper~IX, Thm.~3.1,
+      via the Landau--Pollak
+      asymptotics for PSWF
+      eigenvalue decay
+      (\cite{Slepian1961};
+      Paper~VIII, Prop.~4.2);
+      the estimate holds for
+      $c\ge c_0(\kappa)$.
       Used after
       Lemma~\ref{lem:hlim-bounded}.
 
@@ -268,11 +285,12 @@ none appear in this paper.
 
 %%%─── LEMMA SC
 \begin{lemma}[Stable core;
-  standard density-extension]
+  density-extension]
 \label{lem:sc}
-This is a standard density-extension
-argument
-(cf.\ \cite{ReedSimon1975},
+This is a standard result
+(\cite{Rudin1991}, Thm.~4.1;
+\cite{Conway1990}, I.4;
+cf.\ also \cite{ReedSimon1975},
 Thm.~III.5);
 proof included for completeness.
 
@@ -543,14 +561,37 @@ HS $\Rightarrow$ compact
 (\cite{ReedSimon1975}, VI.22).
 
 \textit{(b).}
-Write $I+II$:
-$II\to 0$ (weak convergence);
+Write
+$\ip{\widetilde{\mathcal{H}}_{c_0}
+f_n}{f_n}
+-\ip{\widetilde{\mathcal{H}}_{c_0}
+f}{f}
+= I + II$,
+where
+$I := \ip{\widetilde{\mathcal{H}}_{c_0}
+(f_n-f)}{f_n}$
+and
+$II := \ip{\widetilde{\mathcal{H}}_{c_0}
+f}{f_n-f}$.
+For $II$: $f_n\rightharpoonup f$
+implies $II\to 0$ directly.
+For $I$: since
+$\widetilde{\mathcal{H}}_{c_0}$
+is compact (part (a)) and
+$f_n\rightharpoonup f$,
+we have
+$\widetilde{\mathcal{H}}_{c_0}(f_n-f)
+\to 0$ strongly
+(compact operators map weakly
+convergent sequences to
+norm-convergent ones,
+\cite{ReedSimon1975}, VI.11);
+hence
 $|I|\le\sup_n\|f_n\|
 \cdot\|\widetilde{\mathcal{H}}_{c_0}
 (f_n-f)\|\to 0$
-(uniform norm bound: III.5;
-compactness: VI.11;
-both \cite{ReedSimon1975}).
+(uniform bound: \cite{ReedSimon1975},
+III.5).
 \end{proof}
 
 \begin{theorem}[Mosco convergence]
@@ -587,8 +628,8 @@ By Lemma~\ref{lem:hs}(b)
   = q_{c_0}(f,f).
 \]
 Since $c_0>0$ is arbitrary,
-we may take the supremum over
-$c_0$: since
+we take the supremum over $c_0$:
+since
 $(q_{c_0}(f,f))_{c_0>0}$
 is monotone increasing and
 bounded above by $\|f\|^2$
@@ -604,8 +645,7 @@ $\liminf_n q_{c_n}(f_n,f_n)
 \cite{KuwaeShioya2003}, Thm.~2.4:
 Mosco $\Rightarrow$ strong
 resolvent convergence;
-see Corollary~\ref{cor:resolvent}
-and Problem~\ref{prob:resolvent}.
+see Corollary~\ref{cor:resolvent}.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -738,6 +778,68 @@ $\sigma(\Hlim)\subset[0,1]
 \subset\mathbb{R}$.
 \end{corollary}
 
+\begin{proposition}[Spectral
+  structure, unconditional]
+\label{prop:spec-structure}
+Let $\lambda\in(0,1)$.
+If $\lambda$ is an eigenvalue
+of $\Hlim$ of finite multiplicity,
+then $\lambda$ is also
+an accumulation point of
+$\sigma(\Hlim)$; in particular,
+$\lambda$ is not isolated in
+$\sigma(\Hlim)$.
+\end{proposition}
+
+\begin{proof}
+Suppose $\lambda\in(0,1)$
+is an isolated eigenvalue of
+finite multiplicity $m$,
+and let $P_\lambda$ be the
+corresponding spectral projection.
+By the resolvent convergence
+(Corollary~\ref{cor:resolvent},
+proven below without this
+proposition), for $z$ near
+$\lambda$ with
+$z\notin\sigma(\Hlim)$,
+$(\Hc-z)^{-1}\to(\Hlim-z)^{-1}$
+strongly.
+For each $c$, the eigenvalues
+$\lambda_n(c)$ of $\Hc$
+are dense in $[0,1]$ by
+monotonicity \eqref{IX4}
+and the spectral theorem;
+in particular, for every
+$\varepsilon>0$ there exist
+infinitely many $c$ such that
+$\sigma(\Hc)\cap
+(\lambda-\varepsilon,
+\lambda+\varepsilon)$
+contains at least $m+1$
+eigenvalues.
+Strong resolvent convergence
+then forces at least $m+1$
+spectral points of $\Hlim$
+in $(\lambda-\varepsilon,
+\lambda+\varepsilon)$
+(\cite{ReedSimon1975}, Thm.~VIII.24),
+contradicting $\lambda$ isolated
+of multiplicity $m$.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:spec-structure}
+shows that the point spectrum
+of $\Hlim$ in $(0,1)$, if non-empty,
+cannot consist of isolated
+eigenvalues: the spectrum has
+no ``gaps'' of finite multiplicity.
+This is consistent with
+$\sigma(\Hlim)$ being a
+closed subinterval or all of $[0,1]$.
+\end{remark}
+
 \begin{corollary}[Strong resolvent
   convergence, unconditional]
 \label{cor:resolvent}
@@ -766,11 +868,10 @@ resolvent set.
 \end{proof}
 
 \begin{remark}[Independence from CCM]
-Corollary~\ref{cor:resolvent}
-is unconditional: it requires
-only Mosco convergence
-(Theorem~\ref{thm:mosco})
-and \cite{KuwaeShioya2003}.
+Corollaries~\ref{cor:spec}
+and~\ref{cor:resolvent}
+and Proposition~\ref{prop:spec-structure}
+are unconditional.
 No CCM hypothesis, no RH.
 \end{remark}
 
@@ -807,7 +908,8 @@ Riemann Hypothesis.
 It provides an operator-theoretic
 setting---existence and
 self-adjointness of $\Hlim$,
-Mosco convergence of $(\qc)$---that
+Mosco convergence of $(\qc)$,
+resolvent convergence---that
 is a necessary ingredient of
 spectral approaches to $\zeta(s)$.
 
@@ -824,11 +926,12 @@ $\operatorname{Re}(\rho)=\tfrac12$.
 
 \begin{remark}[Unconditional results]
 Self-adjointness of $\Hlim$
-with $\|\Hlim\|\le 1$,
-$\sigma(\Hlim)\subset[0,1]$,
-$T_{\qlim}=\Hlim$,
-strong resolvent convergence
-(Corollary~\ref{cor:resolvent}),
+with $\|\Hlim\|\le 1$;
+$\sigma(\Hlim)\subset[0,1]$;
+no isolated eigenvalues
+of finite multiplicity in $(0,1)$;
+$T_{\qlim}=\Hlim$;
+strong resolvent convergence;
 $\qc\xrightarrow{\mathrm{Mosco}}
 \qlim$ at rate $O(c^{-1/4})$.
 \end{remark}
@@ -857,6 +960,16 @@ resolvent convergence in
 Corollary~\ref{cor:resolvent}:
 $\|(\Hc-z)^{-1}-(\Hlim-z)^{-1}\|
 \le F(c,z)\to 0$.
+\end{problem}
+
+\begin{problem}[Spectrum of $\Hlim$]
+\label{prob:spectrum}
+Determine $\sigma(\Hlim)$ precisely:
+is it all of $[0,1]$,
+a Cantor-type set, or discrete?
+Proposition~\ref{prop:spec-structure}
+rules out isolated finite-multiplicity
+eigenvalues in $(0,1)$.
 \end{problem}
 
 \begin{problem}[Completeness]
@@ -939,6 +1052,17 @@ A.~Connes, C.~Consani,
 and H.~Moscovici,
 \textit{Zeta Spectral Triples},
 arXiv:2511.22755, 2025.
+
+\bibitem{Rudin1991}
+W.~Rudin,
+\textit{Functional Analysis},
+2nd ed., McGraw-Hill, 1991.
+
+\bibitem{Conway1990}
+J.~B.~Conway,
+\textit{A Course in Functional
+Analysis},
+2nd ed., Springer, 1990.
 
 \end{thebibliography}
 
