@@ -85,6 +85,47 @@ statement about zeta zeros is
 claimed.
 \end{abstract}
 
+\section*{Motivation and Context}
+
+The prolate spheroidal wave functions
+(PSWFs) arise as the eigenfunctions
+of the time-frequency concentration
+operator: given a bandwidth $c>0$,
+the operator $\Hc$ measures how well
+a signal is simultaneously
+concentrated in time $[-1,1]$ and
+frequency $[-c,c]$
+(\cite{Slepian1961}).
+As $c\to\infty$, perfect concentration
+becomes possible for more and more
+functions, and the limit operator
+$\Hlim$ captures this asymptotic
+regime.
+
+Understanding $\Hlim$ as a
+self-adjoint operator is of
+independent interest in
+time-frequency analysis,
+approximation theory, and
+signal processing:
+the spectral theory of $\Hlim$
+governs the limiting behaviour of
+PSWF expansions and the stability
+of bandlimited approximations at
+large bandwidth.
+The Mosco convergence of the
+associated forms at rate
+$O(c^{-1/4})$ gives a quantitative
+version of this stability.
+
+The connection to the Riemann zeta
+function is conditional and
+programmatic (Section~\ref{sec:consequences});
+the operator-theoretic results of
+Sections~\ref{sec:setup}--\ref{sec:friedrichs}
+are unconditional and stand
+independently.
+
 \section*{Guide for the Referee}
 
 \textbf{Version history.}
@@ -101,27 +142,23 @@ v13: bounded+symmetric $\Rightarrow$
 self-adjoint; Friedrichs
 as alternative; norm-rate annotated;
 RH disclaimer.
-v14: five local precision fixes.
-v15: four cosmetic fixes
-(linearity of $B$;
-$c_0\to\infty$ via IX.4;
-spectrum chain;
-joint continuity).
-v16 (this version,
-\textbf{submission-ready}):
-three final polish fixes---
-\begin{enumerate}[(P1)]
-\item Lemma~\ref{lem:hlim-bounded}:
-      ``existence of the limit in
-      $L^2(\mathbb{R})$ for every
-      $f$''.
-\item Joint continuity note
-      parenthetical
-      ``(on Hilbert spaces)''.
-\item Abstract trimmed:
-      redundant ``self-adjoint''
-      removed; conditional sentence
-      shortened.
+v14--v16: precision and
+cosmetic fixes.
+v17 (this version):
+three mathematical micro-fixes
+and one strategic addition---
+\begin{enumerate}[(M1)]
+\item Lemma~\ref{lem:sc}: linearity
+      of $B$ verified explicitly in
+      the proof.
+\item Mosco (M1): ``send $c_0\to\infty$''
+      justified by supremum argument.
+\item Theorem~\ref{thm:friedrichs}:
+      both operators defined on all of
+      $L^2(\mathbb{R})$ stated.
+\item Motivation section and
+      Corollary~\ref{cor:resolvent}
+      (unconditional, CCM-free).
 \end{enumerate}
 
 \tableofcontents
@@ -274,6 +311,17 @@ Then:
 \textit{(a).}
 $\|Bf\|=\lim_c\|A_c f\|
 \le M\|f\|$.
+Linearity: for
+$f,g\in\mathcal{D}$ and scalars
+$\alpha,\beta$,
+\[
+  A_c(\alpha f+\beta g)
+  = \alpha A_c f+\beta A_c g
+  \;\to\;
+  \alpha Bf+\beta Bg,
+\]
+so $B(\alpha f+\beta g)
+=\alpha Bf+\beta Bg$.
 
 \textit{(b).}
 For $f\in\mathcal{H}$,
@@ -289,7 +337,6 @@ so $(A_c f)$ is Cauchy;
 its limit $Af$ exists in
 $\mathcal{H}$.
 $\|Af\|=\lim_c\|A_c f\|\le M\|f\|$;
-linearity clear;
 $A$ extends $B$ since
 $A_c f\to Bf$ for
 $f\in\mathcal{D}$.
@@ -540,11 +587,14 @@ By Lemma~\ref{lem:hs}(b)
   = q_{c_0}(f,f).
 \]
 Since $c_0>0$ is arbitrary,
-send $c_0\to\infty$:
-since $q_{c_0}(f,f)$ increases
-to $\qlim(f,f)$ by monotone
-convergence \eqref{IX4},
-we conclude
+we may take the supremum over
+$c_0$: since
+$(q_{c_0}(f,f))_{c_0>0}$
+is monotone increasing and
+bounded above by $\|f\|^2$
+(\eqref{IX3}--\eqref{IX4}),
+its supremum equals $\qlim(f,f)$,
+and we conclude
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
@@ -554,7 +604,8 @@ $\liminf_n q_{c_n}(f_n,f_n)
 \cite{KuwaeShioya2003}, Thm.~2.4:
 Mosco $\Rightarrow$ strong
 resolvent convergence;
-see Problem~\ref{prob:resolvent}.
+see Corollary~\ref{cor:resolvent}
+and Problem~\ref{prob:resolvent}.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -660,9 +711,9 @@ $T_{\qlim}f=\Hlim f$.
 Thus $\Hlim\subset T_{\qlim}$.
 Since both $\Hlim$ and $T_{\qlim}$
 are bounded self-adjoint operators
-on all of $L^2(\mathbb{R})$,
-$\Hlim\subset T_{\qlim}$ implies
-$\Hlim=T_{\qlim}$.
+defined on all of $L^2(\mathbb{R})$,
+the inclusion $\Hlim\subset T_{\qlim}$
+implies $\Hlim=T_{\qlim}$.
 \end{proof}
 
 \begin{remark}[Audit]
@@ -686,6 +737,42 @@ or completeness is used.
 $\sigma(\Hlim)\subset[0,1]
 \subset\mathbb{R}$.
 \end{corollary}
+
+\begin{corollary}[Strong resolvent
+  convergence, unconditional]
+\label{cor:resolvent}
+For every $z\in\mathbb{C}
+\setminus[0,1]$,
+\[
+  (\Hc-z)^{-1}
+  \;\xrightarrow{\mathrm{s}}\;
+  (\Hlim-z)^{-1}
+  \quad\text{as }c\to\infty.
+\]
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:mosco},
+$\qc\to\qlim$ in Mosco sense.
+By \cite{KuwaeShioya2003},
+Thm.~2.4, Mosco convergence of
+bounded forms on a fixed Hilbert
+space implies strong convergence
+of the associated resolvents.
+Since $\sigma(\Hlim)\subset[0,1]$
+(Corollary~\ref{cor:spec}),
+every $z\notin[0,1]$ is in the
+resolvent set.
+\end{proof}
+
+\begin{remark}[Independence from CCM]
+Corollary~\ref{cor:resolvent}
+is unconditional: it requires
+only Mosco convergence
+(Theorem~\ref{thm:mosco})
+and \cite{KuwaeShioya2003}.
+No CCM hypothesis, no RH.
+\end{remark}
 
 \begin{problem}[Open gap:
   spectral embedding]
@@ -740,6 +827,8 @@ Self-adjointness of $\Hlim$
 with $\|\Hlim\|\le 1$,
 $\sigma(\Hlim)\subset[0,1]$,
 $T_{\qlim}=\Hlim$,
+strong resolvent convergence
+(Corollary~\ref{cor:resolvent}),
 $\qc\xrightarrow{\mathrm{Mosco}}
 \qlim$ at rate $O(c^{-1/4})$.
 \end{remark}
@@ -761,12 +850,13 @@ Is $c^{-1/4}$ sharp in
 Theorem~\ref{thm:form-convergence}?
 \end{problem}
 
-\begin{problem}[Strong resolvent]
+\begin{problem}[Quantitative resolvent]
 \label{prob:resolvent}
-Verify \cite{KuwaeShioya2003}
-for the PSWF family:
-$(\Hc-z)^{-1}\to(\Hlim-z)^{-1}$
-strongly.
+Obtain a rate for the
+resolvent convergence in
+Corollary~\ref{cor:resolvent}:
+$\|(\Hc-z)^{-1}-(\Hlim-z)^{-1}\|
+\le F(c,z)\to 0$.
 \end{problem}
 
 \begin{problem}[Completeness]
