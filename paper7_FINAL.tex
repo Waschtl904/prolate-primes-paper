@@ -589,7 +589,13 @@ $x_1 \in [x_0, x_0 + L_0]$,
 where $L_0 \le 5$ is a universal constant
 (determined by the largest gap between consecutive
 zeros of $\Ai$, cf.~\cite{Olver1974}, Ch.~11),
-such that $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa(1+|x_0|)^{-1/4}$.
+such that $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa(1+|x_1|)^{-1/4}$.
+This follows from the standard lower envelope of $|\Ai|$ between its zeros
+(\cite{Olver1974}, Ch.~11): between consecutive zeros $|\Ai|$ satisfies
+$|\Ai(\xi)| \ge c(1+|\xi|)^{-1/4}$ on a set of positive measure.
+Moreover, $L_0$ can be chosen uniformly as
+$L_0 = C_\kappa^{2/3}\,L_{\Ai}$,
+where $L_{\Ai}$ is the maximal spacing between consecutive zeros of $\Ai$.
 Since $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
 (Lemma~\ref{lem:uniform-n}),
 the rescaled Airy function
@@ -1147,6 +1153,8 @@ and provides the diffeomorphism satisfying~(i)--(iii).
 %%═══════════════════════════════════════════════════════════════════
 \begin{proof}[Proof of Theorem~A]
 We decompose the Fourier--Mellin transform.
+All estimates below are uniform for $n \le \kappa c$
+and $c \ge c_0(\kappa)$, unless stated otherwise.
 Write $x = c^{1/2}(t - \tstar)$,
 $a(s) = c^{-1/2}\Phi_n^{(c)}(\ustar + c^{-1/2}s)$,
 so that
@@ -1169,18 +1177,29 @@ Split:
     + \mathcal{I}_{\mathrm{out}}
   \bigr],
 \]
-where the three integrals are over
-$|s| \le M$, $M < |s| \le c^{1/6}$,
-and $|s| > c^{1/6}$, respectively.
+where the three integrals are over the disjoint regions
+$\mathcal{Z}_{\mathrm{inn}} := \{|s| \le M\}$,
+$\mathcal{Z}_{\mathrm{mid}} := \{M < |s| \le c^{1/6}\}$,
+and $\mathcal{Z}_{\mathrm{out}} := \{|s| > c^{1/6}\}$,
+which partition $\mathbb{R}$.
+The threshold $M = c^{1/12}$ satisfies $M \ll c^{1/6}$ for all large $c$.
 
 \medskip
 \noindent\textbf{Step~2: Outer zone.}
-By Lemma~\ref{lem:remainder}:
+On $\mathcal{Z}_{\mathrm{out}} := \{|s| > c^{1/6}\}$,
+the phase derivative satisfies
+\[
+  |\varphi'(s)| = \bigl|x + \tfrac{\mu_n^{(c)}}{2}s^2\bigr|
+  \ge \tfrac{c_\kappa}{4}s^2 \ge \tfrac{c_\kappa}{4}c^{1/3},
+\]
+uniformly for $|x| \le c^{1/6}$ and $n \le \kappa c$
+(Lemma~\ref{lem:remainder}).
+Integration by parts yields
 \[
   c^{-1/2}|\mathcal{I}_{\mathrm{out}}|
-  = O(c^{-2/3}).
+  = O(c^{-2/3}),
 \]
-This is $O(c^{-1/6})$ relative to the main term $c^{-1/2}$.
+which is $O(c^{-1/6})$ relative to the main term $c^{-1/2}$.
 
 \medskip
 \noindent\textbf{Step~3: Middle zone.}
@@ -1209,11 +1228,13 @@ Writing $s'$ for the transformed variable:
     \cdot(1 + O(c^{-1/4})).
 \]
 By Lemma~\ref{lem:tail-ext} with $M = c^{1/12}$,
-extending to $\mathbb{R}$ introduces error
-$O(c^{-1/3}M^{-2}) = O(c^{-1/2})$,
-which is a constant-factor perturbation
-of the leading term and is absorbed into
-the implicit constant of \eqref{eq:composite-A}.
+extending the inner integral to $\mathbb{R}$ introduces error
+$O(c^{-1/3}M^{-2}) = O(c^{-1/2})$.
+This is of the same order as the principal term,
+and prevents identification of the leading coefficient at scale $c^{-1/2}$.
+The coefficient $\kappa_n^{(c)}$ is therefore determined only up to an
+$O(1)$ factor; this is recorded in Remark~\ref{rem:A-explicit}
+and is all that Theorem~A and Theorem~B require.
 
 %%═══════════════════════════════════════════
 %% FIX 3: explicit Lipschitz / Ai' bound
@@ -1274,15 +1295,16 @@ Properties~(a)--(d) follow from:
   \item[(a)] Standard Airy bound
         $|\Ai(\xi)| \le C(1+|\xi|)^{-1/4}$
         and $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$.
-  \item[(b)] Non-vanishing of $\Ai$:
-        on every interval of length $L_0 \le 5$,
-        $\Ai$ does not vanish identically,
-        giving the lower bound
-        $c_\kappa(1+|x_0|)^{-1/4}$
-        (\cite{Olver1974}, Ch.~11);
-        the uniform zero spacing follows from
-        $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
-        as stated in Theorem~A\eqref{thm:A-lower}.
+  \item[(b)] Between consecutive zeros of $\Ai$,
+        the standard lower envelope gives
+        $|\Ai(\xi)| \ge c_0 (1+|\xi|)^{-1/4}$
+        on a set of positive measure
+        (\cite{Olver1974}, Ch.~11, eq.~(11.11.1)).
+        Scaling by $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
+        (Lemma~\ref{lem:uniform-n})
+        yields $|\mathcal{A}_n^{(c)}(x_1)| \ge c_\kappa(1+|x_1|)^{-1/4}$.
+        The uniform zero spacing bound $L_0 = C_\kappa^{2/3}L_{\Ai}$
+        follows from Lemma~\ref{lem:zero-spacing}.
   \item[(c),(d)] Matching with \eqref{VI4}
         at $x = 0$ (Remark~\ref{rem:A-explicit})
         and asymptotic WKB for $|x| \ge c^{1/12}$.
