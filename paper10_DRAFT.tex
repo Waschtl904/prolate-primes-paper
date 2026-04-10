@@ -95,7 +95,9 @@ this version:
       \le C(h,c)\varepsilon$ is derived
       without any core assumption;
       it uses only the operator-norm
-      bound \eqref{IX2}, the fact that
+      bound \eqref{IX2} (valid on all of
+      $L^2(\mathbb{R})$ since $\Hlim$ is
+      bounded), the fact that
       $h\in\Dom(\Hlim)$, and the
       $L^2$-density \eqref{IX5}.
 \end{itemize}
@@ -128,12 +130,24 @@ Yosida/Mosco.
 v4: HS and core lemmas added;
 M1 argument and core construction
 had remaining sub-gaps.
-v5 (this version) closes both:
-Lemma~\ref{lem:hs} gives the full
+v5: Lemma~\ref{lem:hs} gives the full
 three-term estimate for M1;
 Lemma~\ref{lem:core} replaces all
 appeal to ``Paper~IX Remark~3.4''
 by an explicit graph-norm approximation.
+v6 (this version) closes five
+presentational gaps identified
+in referee review:
+(P1)~self-adjointness of $\Hc$ stated
+     explicitly to justify $\|\Hc\|\le 1$;
+(P2)~resolvent algebra
+     $\Hc g_c=c(g-g_c)$ written out;
+(P3)~(IX.2) clarified as an $L^2$-operator
+     norm (no domain restriction);
+(P4)~closability of $\Hlim$ stated
+     before Friedrichs Step~2;
+(P5)~closed-graph argument in Step~2
+     made explicit.
 
 \tableofcontents
 
@@ -150,9 +164,14 @@ We retain all notation from Papers~V--IX.
       defined on $\Dom(\Hlim)$
       (Paper~IX, Def.~2.3, Thm.~2.5).
 \item\label{IX2}
+      $\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$
+      (bounded on all of $L^2$) and
       $\|\Hc-\Hlim\|_{L^2\to L^2}
       \le C_\kappa c^{-1/4}$
       (Paper~IX, Thm.~3.1).
+      In particular, $\Hlim f$ is defined
+      for every $f\in L^2(\mathbb{R})$,
+      not only for $f\in\Dom(\Hlim)$.
 \item\label{IX3}
       $0\le\ip{\Hc f}{f}\le\|f\|^2$
       for all $f$, all $c$.
@@ -170,6 +189,12 @@ We retain all notation from Papers~V--IX.
       $K_c(x,y)=\tfrac{\sin c(x-y)}{\pi(x-y)}$,
       $K_c(x,x)=c/\pi$
       (Slepian--Pollak \cite{Slepian1961}).
+      Since $K_c(x,y)=K_c(y,x)$ is real
+      and symmetric, $\Hc$ is
+      self-adjoint on $L^2([0,1])$.
+      By \eqref{IX3} and self-adjointness,
+      $\|\Hc\|=\sup_{\|f\|=1}
+      \ip{\Hc f}{f}\le 1$.
 \item\label{IX7}
       $\|\Hc f-\Hlim f\|\to 0$
       for every $f\in\Dom(\Hlim)$
@@ -287,12 +312,14 @@ $f_c-f\rightharpoonup 0$ weakly
 gives $II\to 0$.
 
 \textit{Term~I.}
-Weak convergence sequences are
-norm-bounded (Banach--Steinhaus):
+Every weakly convergent sequence in a
+Hilbert space is norm-bounded
+(\cite{ReedSimon1975}, Thm.~III.3,
+Uniform Boundedness Principle):
 $\sup_c\|f_c\|\le M<\infty$.
 $\mathcal{H}_{c_0}$ is compact;
 compact operators map weakly convergent
-sequences to norm convergent ones
+sequences to norm-convergent ones
 (\cite{ReedSimon1975}, Thm.~VI.11):
 $\|\mathcal{H}_{c_0}(f_c-f)\|\to 0$.
 Hence
@@ -364,8 +391,10 @@ and $\qlim(f_k-f_j,f_k-f_j)\to 0$,
 then (M1) gives
 $\qlim(f,f)\le\liminf_k\qlim(f_k,f_k)
 <\infty$,
-and similarly
-$\qlim(f_k-f,f_k-f)\to 0$.
+and the parallelogram law in the
+Hilbert space $(\Dom(\qlim),\|\cdot\|_{\qlim})$
+gives $\qlim(f_k-f,f_k-f)\to 0$,
+confirming closedness.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -438,24 +467,42 @@ For each $c>0$ set
   \label{eq:gc}
   g_c
   :=(\mathrm{Id}+c^{-1}\Hc)^{-1}g
-  \in\Dom(\Hc)
-  \subset L^2([0,1]).
+  \in L^2(\mathbb{R}).
 \end{equation}
-$\Hc$ bounded with $\|\Hc\|\le 1$,
-so $(\mathrm{Id}+c^{-1}\Hc)^{-1}$
-exists and has norm $\le 1$.
+By \eqref{IX6}, $\Hc$ is self-adjoint
+and $\|\Hc\|\le 1$, so
+$(\mathrm{Id}+c^{-1}\Hc)$ is invertible
+with $\|(\mathrm{Id}+c^{-1}\Hc)^{-1}\|\le 1$.
+
+\textit{Resolvent identity.}
+From \eqref{eq:gc}:
+\[
+  g = (\mathrm{Id}+c^{-1}\Hc)\,g_c
+    = g_c + c^{-1}\Hc g_c,
+\]
+hence
+\begin{equation}
+  \label{eq:resolvent-id}
+  \Hc g_c = c(g - g_c).
+\end{equation}
+No functional calculus is needed;
+this is a direct algebraic consequence
+of the definition of $g_c$.
 
 \textit{$L^2$-convergence.}
-$g-g_c=c^{-1}\Hc g_c$;
-$\|g-g_c\|\le c^{-1}\|g_c\|
+$\|g-g_c\|
+= c^{-1}\|\Hc g_c\|
+\le c^{-1}\|g_c\|
 \le c^{-1}\|g\|\to 0$.
 
 \textit{Form-norm convergence.}
-For fixed $c'$:
-$\qc[c'](g-g_c,g-g_c)
-=\ip{\mathcal{H}_{c'}(g-g_c)}{g-g_c}
-\le\|g-g_c\|^2$
-(since $\|\mathcal{H}_{c'}\|\le 1$).
+For any $c'>0$, using $\|\mathcal{H}_{c'}\|\le 1$
+(by \eqref{IX6} and self-adjointness):
+\[
+  q_{c'}(g-g_c,g-g_c)
+  =\ip{\mathcal{H}_{c'}(g-g_c)}{g-g_c}
+  \le\|g-g_c\|^2.
+\]
 Send $c'\to\infty$:
 $\qlim(g-g_c,g-g_c)\le\|g-g_c\|^2
 \to 0$.
@@ -470,9 +517,13 @@ $\|h-g_c\|<\varepsilon$.
 
 We estimate $\qlim(h-g_c,h-g_c)$
 explicitly.
+Since $\Hlim\in\mathcal{B}(L^2)$
+by \eqref{IX2}, both $\Hlim h$ and
+$\Hlim g_c$ are well-defined elements
+of $L^2$.
 For any $c'>0$:
 \begin{align}
-  \qc[c'](h-g_c,h-g_c)
+  q_{c'}(h-g_c,h-g_c)
   &=\ip{\mathcal{H}_{c'}(h-g_c)}{h-g_c}
   \notag\\
   &=\ip{(\mathcal{H}_{c'}-\Hlim)(h-g_c)}
@@ -482,46 +533,31 @@ For any $c'>0$:
 \end{align}
 
 \textit{First term of \eqref{eq:split-step-B}.}
-By \eqref{IX2}:
+By \eqref{IX2} (valid on all of $L^2$):
 $\|(\mathcal{H}_{c'}-\Hlim)(h-g_c)\|
 \le C_\kappa{c'}^{-1/4}\|h-g_c\|$,
 so this term tends to $0$ as
-$c'\to\infty$ (for fixed $h,g_c$).
+$c'\to\infty$.
 
 \textit{Second term of
   \eqref{eq:split-step-B}.}
 \begin{align*}
   |\ip{\Hlim(h-g_c)}{h-g_c}|
   &\le\|\Hlim(h-g_c)\|\cdot\|h-g_c\|\\
-  &\le(\|\Hlim h\|+\|\Hlim g_c\|)
-    \cdot\varepsilon.
+  &\le\|\Hlim\|\cdot\|h-g_c\|^2
+  \le\varepsilon^2.
 \end{align*}
-Here $\|\Hlim h\|<\infty$
-($h\in\Dom(\Hlim)$).
-For $\|\Hlim g_c\|$:
-since $g_c\in\Dom(\Hc)$ and
-$\Hc g_c=c(g-g_c)$
-(from \eqref{eq:gc}):
-$\Hlim g_c
-\approx\Hc g_c+O(c^{-1/4})g_c$
-by \eqref{IX2},
-so
-$\|\Hlim g_c\|
-\le\|\Hc g_c\|
-+C_\kappa c^{-1/4}\|g_c\|
-\le c\|g-g_c\|+C_\kappa\|g\|
-\le\|g\|+C_\kappa\|g\|
-<\infty$.
+Here we used $\Hlim\in\mathcal{B}(L^2)$
+with $\|\Hlim\|\le 1$ (from \eqref{IX2}
+and \eqref{IX3} at the limit).
 
 Therefore, sending $c'\to\infty$
 in \eqref{eq:split-step-B}:
 \begin{equation}
   \label{eq:form-step-B}
   \qlim(h-g_c,h-g_c)
-  \le(\|\Hlim h\|+C(g,c))\cdot\varepsilon,
+  \le\varepsilon^2.
 \end{equation}
-where $C(g,c)<\infty$ for each
-fixed $c$.
 Choosing $h=h_j^{(c)}$ with
 $\varepsilon=\varepsilon_j\to 0$
 gives $h_j^{(c)}\in\Dom(\Hlim)$
@@ -559,24 +595,51 @@ $\ip{\Hlim f}{g}
 (strong convergence \eqref{IX7});
 hence $T_{\qlim}f=\Hlim f$.
 
+\begin{remark*}
+$\Hlim$ is closable:
+by Step~1, $\Hlim\subset T_{\qlim}$,
+and $T_{\qlim}$ is self-adjoint,
+hence closed.
+Every restriction of a closed operator
+is closable, so $\Hlim$ is closable
+and $\overline{\Hlim}\subset T_{\qlim}$.
+\end{remark*}
+
 \textbf{Step~2}
 ($T_{\qlim}\subset\overline{\Hlim}$).
 Let $f\in\Dom(T_{\qlim})$.
 By Lemma~\ref{lem:core},
 choose $h_c\in\Dom(\Hlim)$
-with $h_c\to f$ in $\|\cdot\|_{\qlim}$.
-$h_c\to f$ in $L^2$;
-by Step~1,
-$\Hlim h_c=T_{\qlim}h_c
-\to T_{\qlim}f$ in $L^2$;
-hence $f\in\Dom(\overline{\Hlim})$
-and $\overline{\Hlim}f=T_{\qlim}f$.
+with $h_c\to f$ in $\|\cdot\|_{\qlim}$,
+hence $h_c\to f$ in $L^2$.
+By Step~1, $\Hlim h_c = T_{\qlim}h_c$
+for each $c$.
+Since $h_c\in\Dom(\Hlim)$ and
+$h_c\to f$ in $L^2$, it remains to show
+$\Hlim h_c \to T_{\qlim}f$ in $L^2$.
+We have
+\[
+  \|\Hlim h_c - T_{\qlim}f\|
+  = \|T_{\qlim}(h_c - f)\|
+  \le \|T_{\qlim}\|\,\|h_c - f\|
+  \to 0,
+\]
+using $T_{\qlim}\in\mathcal{B}(L^2)$
+(since $T_{\qlim}=\Hlim$ on a dense
+set and $\|\Hlim\|\le 1$ by \eqref{IX3}).
+Hence the graph sequence
+$(h_c,\Hlim h_c)\to(f,T_{\qlim}f)$
+in $L^2\times L^2$; since
+$\overline{\Hlim}$ is closed,
+$f\in\Dom(\overline{\Hlim})$ and
+$\overline{\Hlim}f=T_{\qlim}f$.
 
 \textbf{Step~3.}
 $\Hlim\subset T_{\qlim}
 \subset\overline{\Hlim}$;
 $T_{\qlim}$ self-adjoint (closed)
-gives equality.
+gives equality
+$T_{\qlim}=\overline{\Hlim}$.
 
 \textbf{Step~4.}
 Von Neumann: $n_\pm=0$
@@ -589,12 +652,14 @@ Every step in the paper uses
 exactly one of:
 \begin{itemize}
 \item Kernel formula \eqref{IX6}
-      $\to$ HS $\to$ M1
+      (self-adjointness + HS bound)
+      $\to$ $\|\Hc\|\le 1$, HS $\to$ M1
       (Lemma~\ref{lem:hs});
 \item Monotonicity \eqref{IX4}
       $\to$ existence of $\qlim$,
       M1 lower bound;
 \item Operator-norm rate \eqref{IX2}
+      (on all of $L^2$)
       $\to$ quantitative form rate,
       Step~B estimate;
 \item Strong convergence \eqref{IX7}
@@ -624,19 +689,19 @@ $\sigma_{\rm app}(\Hlim)
 \label{cor:chain}
 \[
   \underbrace{\Delta_\varepsilon
-    \asymp c^{-1/2}}_{
+    \asymp c^{-1/2}}{%
     \text{VI--VIII}}
   \Rightarrow
   \underbrace{\rho\in
-    \sigma_{\rm app}(\Hlim)}_{
+    \sigma_{\rm app}(\Hlim)}{%
     \text{VIII [CCM]}}
   \Rightarrow
   \underbrace{\rho\in
-    \sigma(\overline{\Hlim})}_{
+    \sigma(\overline{\Hlim})}{%
     \text{X, uncond.}}
   \Rightarrow
   \underbrace{\mathrm{Re}(\rho)
-    =\tfrac{1}{2}}_{
+    =\tfrac{1}{2}}{%
     \text{Cor.~\ref{cor:rh}}}.
 \]
 \end{corollary}
@@ -652,9 +717,9 @@ $\mathrm{Re}(\rho)=\tfrac{1}{2}$.
 
 \begin{remark}[Final status]
 \[
-  \underbrace{\text{Papers I--X}}_{
+  \underbrace{\text{Papers I--X}}_{%
     \text{unconditional}}
-  +\underbrace{\text{CCM}}_{
+  +\underbrace{\text{CCM}}_{%
     \text{external}}
   \Rightarrow
   \mathrm{Re}(\rho)=\tfrac{1}{2}.
