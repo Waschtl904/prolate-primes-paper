@@ -654,6 +654,19 @@ where
 \end{equation}
 is the rescaled cubic-phase coefficient
 (Lemma~\ref{lem:uniform-n}).
+\begin{remark*}
+Here $p''(\ustar;c)$ denotes the coefficient
+of $\tfrac{1}{6}s^3$ in the Taylor expansion
+of the rescaled phase
+$\Psi(s,x) = xs + \tfrac{\alpha_2}{2}s^2
++ \tfrac{\mu_n^{(c)}}{6}s^3 + O(c^{-1/2}s^4)$
+(Lemma~\ref{lem:phase}, eq.~\eqref{eq:phase-expand}),
+\emph{not} the classical pointwise second
+derivative of $\sqrt{-V_c}$,
+which diverges at $\ustar$.
+The identification $p''(\ustar) \asymp c^{1/2}$
+is established in Lemma~\ref{lem:uniform-n}.
+\end{remark*}
 The coefficient $\kappa_n^{(c)}$ collects
 three explicit factors:
 \begin{equation}
@@ -725,17 +738,35 @@ uniformly for all $n \le \kappa c$ and $c \ge c_0(\kappa)$.
 \end{lemma}
 
 \begin{proof}
-At the turning point $V_c(\ustar) = 0$, so
-$p(u) = \sqrt{-V_c(u)}$ satisfies
-$p'(\ustar)^2 = \tfrac{1}{2}V_c''(\ustar)$
-by L'H\^opital.
+At the turning point $V_c(\ustar) = 0$,
+so $p(u) = \sqrt{-V_c(u)}$ satisfies
+$p'(u)^2 = V_c'(u)^2 / (4(-V_c(u)))$.
+L'H\^opital's rule applied as $u \to \ustar$ gives
+\[
+  \lim_{u \to \ustar} p'(u)^2
+  = \lim_{u \to \ustar}
+    \frac{(V_c'(u))^2}{-4\,V_c(u)}
+  = \frac{2\,V_c'(\ustar)^2}{-4\,V_c'(\ustar)}
+  = -\tfrac{1}{2}V_c'(\ustar).
+\]
+Since $V_c'(\ustar) < 0$
+(the potential crosses zero from below),
+this gives $p'(\ustar)^2 = \tfrac{1}{2}|V_c'(\ustar)|$.
 A direct computation using
 $V_c(u) = c^2 e^{4u} - \chi_n^{(c)} e^{2u} + \tfrac{1}{4}$
 and the turning-point identity
 $\chi_n^{(c)} e^{2\ustar} = c^2 e^{4\ustar} + \tfrac{1}{4}$
-gives $V_c''(\ustar) \asymp c^2 e^{4\ustar} \asymp c$
-(since $e^{2\ustar} \asymp c^{-1/2}$ at the turning point).
-Hence $p''(\ustar) \asymp c^{1/2}$,
+gives
+\[
+  V_c'(\ustar)
+  = 4c^2 e^{4\ustar} - 2\chi_n^{(c)} e^{2\ustar}
+  = 2e^{2\ustar}(2c^2 e^{2\ustar} - \chi_n^{(c)})
+  \asymp -c^{1/2},
+\]
+(since $e^{2\ustar} \asymp c^{-1/2}$),
+hence $p'(\ustar) \asymp c^{1/4}$
+and $p''(\ustar) \asymp c^{1/2}$
+(cubic coefficient in the sense of~\eqref{eq:mu-def}),
 so $\mu_n^{(c)} \in [c_\kappa, C_\kappa]$
 uniformly in $n \le \kappa c$.
 \end{proof}
