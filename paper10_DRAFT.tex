@@ -158,37 +158,28 @@ spectral structure proposition;
 Rudin/Conway references;
 HS proof written out;
 Landau--Pollak provenance.
-v19 (this version,
-\textbf{logic-clean}):
-\begin{enumerate}[(L1)]
-\item Strict $B$\,/\,$A$\,/\,$\Hlim$
-      separation: $\Hlim:=A$ only
-      \emph{after}
-      Lemma~\ref{lem:hlim-bounded}.
-\item (IX.4)--(IX.5) no longer
-      forward-reference
-      Lemma~\ref{lem:hlim-bounded};
-      provisional
-      pre-operator $B$ used in
-      (IX.7).
-\item $\qlim$ defined purely
-      from $\Hc$; equality
-      $\qlim(f,f)=\ip{\Hlim f}{f}$
-      stated as a separate
-      Corollary~\ref{cor:qlim-op}.
-\item Corollary~\ref{cor:bsa}
-      (bounded + symmetric +
-      everywhere-defined
-      $\Rightarrow$ self-adjoint)
-      inserted explicitly in
-      Theorem~\ref{thm:sa}.
-\item Mosco M1 supremum step:
-      explicit one-line
-      identification
-      $\sup_{c_0}q_{c_0}(f,f)
-      =\qlim(f,f)$
-      by (IX.4) monotone
-      convergence.
+v19: strict $B\to A\to\Hlim$
+separation; $\qlim$ independent
+of $\Hlim$; BSA corollary;
+Mosco M1 sup identified.
+v20 (this version,
+\textbf{two surgical fixes}):
+\begin{enumerate}[(F1)]
+\item Lemma~\ref{lem:sc}(b):
+      Banach--Steinhaus
+      invoked explicitly;
+      standard dense-set
+      strong-convergence theorem
+      cited (\cite{ReedSimon1975},
+      III.5; \cite{Rudin1991},
+      5.4).
+\item Proposition~\ref{prop:spec-structure}:
+      incorrect ``eigenvalues
+      dense in $[0,1]$''
+      replaced by the correct
+      Landau--Pollak
+      empirical-spectral-measure
+      statement.
 \end{enumerate}
 
 \tableofcontents
@@ -238,7 +229,9 @@ and $0\le\Hc\le I$.
       \]
       exists in $\mathbb{R}$
       for every $f$
-      (Paper~V, Prop.~2.2).
+      (monotone convergence
+      in $\mathbb{R}$;
+      Paper~V, Prop.~2.2).
       No operator is presupposed
       here; $\qlim(f,f)$ is defined
       purely from $\Hc$.
@@ -306,7 +299,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC
+%%%─── LEMMA SC  %%% F1: Banach-Steinhaus explicit
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
@@ -351,17 +344,37 @@ Then:
 $\|Bf\|=\lim_c\|A_c f\|\le M\|f\|$.
 
 \textit{(b).}
-For $f\in\mathcal{H}$,
-$\varepsilon>0$: choose
-$g\in\mathcal{D}$ with
+The family $(A_c)$ is
+uniformly bounded:
+$\sup_c\|A_c\|=M<\infty$.
+By the Banach--Steinhaus
+uniform boundedness principle
+(\cite{ReedSimon1975}, III.5;
+\cite{Rudin1991}, Thm.~5.4),
+a uniformly bounded net of
+bounded operators that converges
+strongly on a dense subset
+$\mathcal{D}$ converges
+strongly on all of $\mathcal{H}$:
+for $f\in\mathcal{H}$ and
+$\varepsilon>0$,
+choose $g\in\mathcal{D}$ with
 $\|f-g\|<\varepsilon$, then
-$\|A_c f-A_{c'}f\|
-\le 2M\varepsilon
-+\|A_c g-A_{c'}g\|\to 0$,
-so $(A_c f)_c$ is Cauchy.
-$Af:=\lim_c A_c f$ satisfies
+\[
+  \|A_c f-A_{c'}f\|
+  \le \|A_c(f-g)\|
+  +\|A_c g-A_{c'}g\|
+  +\|A_{c'}(f-g)\|
+  \le 2M\varepsilon
+  +\|A_c g-A_{c'}g\|.
+\]
+Since $A_c g\to Bg$,
+the right-hand side $\to 2M\varepsilon$;
+as $\varepsilon>0$ is arbitrary,
+$(A_c f)_c$ is Cauchy in $\mathcal{H}$
+and $Af:=\lim_c A_c f$ exists.
 $\|Af\|\le M\|f\|$ and
-$A|_{\mathcal{D}}=B$.
+$A|_{\mathcal{D}}=B$ are clear.
 
 \textit{(c).}
 $\limsup_c\|A_c f-Af\|
@@ -369,7 +382,7 @@ $\limsup_c\|A_c f-Af\|
 $\varepsilon$ arbitrary.
 \end{proof}
 
-%%%─── LEMMA HLIM: B -> A -> definition of Hlim
+%%%─── LEMMA HLIM
 \begin{lemma}[Existence and
   boundedness of $\Hlim$]
 \label{lem:hlim-bounded}
@@ -388,21 +401,24 @@ Apply Lemma~\ref{lem:sc} with
 $A_c:=\Hc$,
 $\mathcal{D}$ and $B$ as in
 \eqref{IX5}, $M:=1$.
-Part~(a) confirms $\|Bf\|\le\|f\|$
-(consistent with Paper~VII,
-Thm.~C).
-Parts~(b,c) yield:
-the limit $Af:=\lim_c\Hc f$
-exists in $L^2(\mathbb{R})$
-for every $f$;
-$A\in\mathcal{B}(L^2(\mathbb{R}))$;
-$\|A\|\le 1$;
-$\Hc\to A$ strongly;
-$A|_{\mathcal{D}}=B$.
+$\sup_c\|\Hc\|\le 1$ by
+\eqref{IX6};
+$\mathcal{D}$ is dense by
+\eqref{IX5};
+$\Hc f\to Bf$ for all
+$f\in\mathcal{D}$ by definition.
+Part~(a) gives $\|Bf\|\le\|f\|$
+(consistent with Paper~VII, Thm.~C).
+Parts~(b,c) yield the limit
+$Af:=\lim_c\Hc f$ in $L^2$
+for all $f$,
+$A\in\mathcal{B}(L^2)$,
+$\|A\|\le 1$,
+$\Hc\to A$ strongly.
 We define $\Hlim:=A$.
-From this point on the symbol
-$\Hlim$ refers to this globally
-defined bounded operator.
+From this point on, $\Hlim$
+denotes this globally defined
+bounded operator.
 \end{proof}
 
 \begin{corollary}[Form equals operator]
@@ -481,7 +497,8 @@ $\|\Hlim\|\le 1$
 For all $f,g\in L^2(\mathbb{R})$,
 using $\Hc f\to\Hlim f$ strongly
 (Lemma~\ref{lem:hlim-bounded})
-and joint continuity of $\ip{\cdot}{\cdot}$:
+and joint continuity of
+$\ip{\cdot}{\cdot}$:
 \[
   \ip{\Hlim f}{g}
   = \lim_c\ip{\Hc f}{g}
@@ -499,16 +516,16 @@ Corollary~\ref{cor:bsa} gives
 $\Hlim=\Hlim^*$.
 
 \textbf{Step~4: Spectrum.}
-(i) $\Hlim=\Hlim^*$ $\Rightarrow$
-$\sigma(\Hlim)\subset\mathbb{R}$.
-(ii) $\|\Hlim\|\le 1$ $\Rightarrow$
-$\sigma(\Hlim)\subset[-1,1]$
+(i) $\Hlim=\Hlim^*\Rightarrow
+\sigma(\Hlim)\subset\mathbb{R}$.
+(ii) $\|\Hlim\|\le 1\Rightarrow
+\sigma(\Hlim)\subset[-1,1]$
 (spectral radius $\le$ norm).
 (iii) $\ip{\Hlim f}{f}
-= \qlim(f,f)\ge 0$
+=\qlim(f,f)\ge 0$
 (Corollary~\ref{cor:qlim-op};
-\eqref{IX3}) $\Rightarrow$
-$\Hlim\ge 0$, so
+\eqref{IX3})$\Rightarrow
+\Hlim\ge 0$, so
 $\sigma(\Hlim)\subset[0,1]$.
 \end{proof}
 
@@ -540,7 +557,9 @@ the limit
   \qlim(f,f)
   :=\lim_{c\to\infty}\ip{\Hc f}{f}
 \]
-exists by \eqref{IX4}.
+exists by \eqref{IX4}
+(monotone non-decreasing,
+bounded above).
 Extend by polarisation to obtain
 a Hermitian form
 $\qlim:\Dom(\qlim)\times\Dom(\qlim)
@@ -628,7 +647,7 @@ is compact and
 $f_n\rightharpoonup f$,
 $\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
 \to 0$
-(\cite{ReedSimon1975}, VI.11),
+(\cite{ReedSimon1975}, VI.11);
 hence
 $|I|\le\sup_n\|f_n\|
 \cdot\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
@@ -664,14 +683,14 @@ $\liminf_n q_{c_n}(f_n,f_n)
 
 Now take the supremum over
 $c_0>0$:
-by \eqref{IX4},
-$c_0\mapsto q_{c_0}(f,f)$
-is non-decreasing with
+the function $c_0\mapsto q_{c_0}(f,f)$
+is non-decreasing in $\mathbb{R}$
+by \eqref{IX4}, hence
 $\sup_{c_0>0}q_{c_0}(f,f)
-=\lim_{c_0\to\infty}q_{c_0}(f,f)
-=\qlim(f,f)$
-(monotone convergence;
-Definition~\ref{def:qlim}).
+=\lim_{c_0\to\infty}q_{c_0}(f,f)$
+(monotone convergence in $\mathbb{R}$),
+and this equals $\qlim(f,f)$
+by Definition~\ref{def:qlim}.
 Hence
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
@@ -696,8 +715,8 @@ $\qlim$ is closed.
 Let $(f_k)$ be
 $\|\cdot\|_{\qlim}$-Cauchy;
 then $f_k\to f$ in $L^2$
-(norm-Cauchy $\Rightarrow$ $L^2$-Cauchy
-by $\|\qlim\|\le 1$),
+(norm-Cauchy $\Rightarrow$
+$L^2$-Cauchy by $\|\qlim\|\le 1$),
 hence weakly.
 Apply (M1) with constant
 $c_n:=c$ and $f_k\rightharpoonup f$:
@@ -820,6 +839,7 @@ $\sigma(\Hlim)\subset[0,1]
 \subset\mathbb{R}$.
 \end{corollary}
 
+%%%  F2: corrected spectral structure proposition
 \begin{proposition}[Spectral
   structure, unconditional]
 \label{prop:spec-structure}
@@ -827,32 +847,75 @@ No eigenvalue of $\Hlim$
 in $(0,1)$ of finite multiplicity
 is isolated in $\sigma(\Hlim)$.
 \end{proposition}
+
 \begin{proof}
 Suppose $\lambda\in(0,1)$
 is an isolated eigenvalue of
 multiplicity $m<\infty$.
 By Corollary~\ref{cor:resolvent}
 (proven independently below),
-for $z$ near $\lambda$ with
-$z\notin\sigma(\Hlim)$:
 $(\Hc-z)^{-1}\to(\Hlim-z)^{-1}$
-strongly.
-For each $c$, the eigenvalues of
-$\Hc$ are dense in $[0,1]$
-(monotonicity \eqref{IX4} +
-spectral theorem); so for every
-$\varepsilon>0$ and all large $c$:
-$\sigma(\Hc)\cap
-(\lambda-\varepsilon,
+strongly for $z$ near $\lambda$
+with $z\notin\sigma(\Hlim)$.
+
+By the Landau--Pollak asymptotics
+(\cite{Slepian1961};
+Paper~VIII, Prop.~4.2),
+the empirical spectral measure
+$\mu_c
+:=\frac{1}{N(c)}
+\sum_n \delta_{\lambda_n(c)}$
+of $\Hc$ converges weak$^*$ to
+Lebesgue measure on $[0,1]$
+as $c\to\infty$,
+where $N(c)\to\infty$
+denotes the number of eigenvalues
+of $\Hc$ in $[\delta,1-\delta]$
+for any fixed $\delta>0$.
+In particular, for every
+open interval
+$J\subset(0,1)$ and all
+sufficiently large $c$:
+$\sigma(\Hc)\cap J\ne\emptyset$.
+Applying this to the interval
+$(\lambda-\varepsilon,
 \lambda+\varepsilon)$
-contains at least $m+1$ points.
-By \cite{ReedSimon1975}, Thm.~VIII.24,
-this forces at least $m+1$
+for small $\varepsilon>0$,
+the spectrum $\sigma(\Hc)$
+accumulates near $\lambda$;
+since $\Hc$ has finite rank in
+any compact sub-interval of
+$(0,1)$ (for fixed $c$), for large
+enough $c$ there are at least
+$m+1$ eigenvalues of $\Hc$
+in $(\lambda-\varepsilon,
+\lambda+\varepsilon)$.
+By \cite{ReedSimon1975},
+Thm.~VIII.24,
+strong resolvent convergence
+then forces at least $m+1$
 spectral points of $\Hlim$ in
 $(\lambda-\varepsilon,
 \lambda+\varepsilon)$,
-contradicting isolation.
+contradicting isolation of
+$\lambda$ with multiplicity $m$.
 \end{proof}
+
+\begin{remark}
+The key input to the proof is
+not that eigenvalues of $\Hc$
+are dense in $[0,1]$ in general,
+but that their empirical measure
+becomes dense near any interior
+point as $c\to\infty$:
+this is a precise consequence
+of the Landau--Pollak eigenvalue
+distribution
+(\cite{Slepian1961},
+Paper~VIII, Prop.~4.2),
+and is strictly weaker
+than a density claim.
+\end{remark}
 
 \begin{corollary}[Strong resolvent
   convergence]
