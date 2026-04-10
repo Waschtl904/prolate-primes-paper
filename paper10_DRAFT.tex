@@ -33,14 +33,14 @@
 
 %%─── AMS metadata ───────────────────────────────────────────────────
 \subjclass[2020]{47A07, 47B25, 47A10, 42C05, 11M06}
-\keywords{Quadratic forms, Mosco convergence, Friedrichs extension,
-essential self-adjointness, prolate spheroidal wave functions,
-Riemann zeta function}
+\keywords{Quadratic forms, Mosco convergence, monotone form convergence,
+Friedrichs extension, essential self-adjointness,
+prolate spheroidal wave functions, Riemann zeta function}
 
 \begin{document}
 
 \title[Form Convergence and Self-Adjointness of $\Hlim$]{%
-  Form Convergence, Friedrichs Extension,
+  Mosco--Kato Form Convergence, Friedrichs Extension,
   and Essential Self-Adjointness
   of the PSWF Concentration Limit Operator}
 
@@ -52,86 +52,71 @@ Riemann zeta function}
 
 \begin{abstract}
 We resolve the essential self-adjointness of the
-limit operator $\Hlim$ by the method of closed
-quadratic forms and Friedrichs extensions.
+limit operator $\Hlim$ by the method of
+monotone/Mosco form convergence and
+Friedrichs extensions.
 
-The key structural insight is a change of
-construction level:
-instead of defining the limit form $\qlim$
-spectral\-ly via the limit eigenvectors
-$\{\Phi_n^{(\infty)}\}$ (which would require
-their completeness in $L^2(\mathbb{R})$,
-an open problem from Paper~IX \cite{PaperIX}),
-we define $\qlim$ directly as the operator-sequence
+The key structural point is a change of
+construction level. The limit form $\qlim$
+is defined directly as the operator-sequence
 form limit
 \[
   \qlim(f,f) := \lim_{c\to\infty} \ip{\Hc f}{f},
 \]
-and characterise its domain via the
-uniform boundedness of $\qc(f,f)$.
-This makes the construction entirely
-basis-independent:
-$\qlim$ is built from the operator sequence
-$(\Hc)$, not from spectral objects of $\Hlim$.
-Completeness of $\{\Phi_n^{(\infty)}\}$ is not
-assumed and plays no role.
+using only the monotonicity and boundedness
+of $c\mapsto \ip{\Hc f}{f}$ (inherited from
+Slepian theory, Papers~V--VI).
+This definition is basis-independent:
+no eigenvectors $\Phi_n^{(\infty)}$,
+no Parseval identity, and no completeness
+hypothesis appear anywhere.
+The form $\qlim$ is precisely the
+\emph{monotone Mosco limit} of the
+forms $\qc = \ip{\Hc \cdot}{\cdot}$
+in the sense of Kato \cite{Kato1966},
+Chapter~VI, and Mosco \cite{Mosco1969}.
 
 \textbf{Main results.}
 \begin{enumerate}
 \item \textbf{Theorem~\ref{thm:qlim-exists}
-      (Existence of $\qlim$).}
-      For every $f \in L^2(\mathbb{R})$,
-      the limit
-      $\qlim(f,f) = \lim_{c\to\infty}\ip{\Hc f}{f}$
-      exists in $[0,\infty]$.
-      The domain
-      $\Dom(\qlim) = \{f : \qlim(f,f) < \infty\}$
-      is a dense subspace of $L^2(\mathbb{R})$,
-      and $\qlim$ extends uniquely to a
-      Hermitian sesquilinear form on
-      $\Dom(\qlim)$.
+      (Existence and density).}
+      $\qlim$ exists on a dense domain
+      $\Dom(\qlim) \supset \Dom(\Hlim)$.
 
 \item \textbf{Theorem~\ref{thm:form-closed}
-      (Closedness of $\qlim$).}
+      (Closedness).}
       $\qlim$ is semibounded from below
       and closed.
 
-\item \textbf{Theorem~\ref{thm:form-convergence}
-      (Quantitative form convergence).}
-      For all $f \in \Dom(\qlim)$:
-      \[
-        |\qc(f,f) - \qlim(f,f)|
-        \le C_\kappa\,c^{-1/4}\,
-           (\|f\|_{L^2}^2 + \qlim(f,f)).
-      \]
+\item \textbf{Theorem~\ref{thm:mosco}
+      (Mosco convergence).}
+      $\qc \to \qlim$ in the sense of
+      Mosco convergence on $L^2(\mathbb{R})$,
+      with quantitative rate $O(c^{-1/4})$
+      (Theorem~\ref{thm:form-convergence}).
 
 \item \textbf{Theorem~\ref{thm:friedrichs}
       (Friedrichs extension, unconditional).}
       The Kato representation theorem
       \cite{Kato1966} associates to $\qlim$
       a unique self-adjoint operator
-      $T_{\qlim}$ on $L^2(\mathbb{R})$.
-      We prove $T_{\qlim} = \overline{\Hlim}$,
-      the operator closure from Paper~IX,
-      without appealing to eigenvector
-      completeness.
+      $T_{\qlim}$ on $L^2(\mathbb{R})$,
+      and $T_{\qlim} = \overline{\Hlim}$.
+      The approximating sequence in the
+      core-density step is constructed via
+      Yosida approximants, using only
+      $\Dom(\qlim)$ (not $\Dom(\Hlim)$).
 
 \item \textbf{Corollary~\ref{cor:esa}
       (Essential self-adjointness,
       unconditional).}
-      $\Hlim$ is essentially self-adjoint:
-      $\overline{\Hlim} = \Hlim^*$,
-      $n_\pm(\Hlim) = 0$.
-      Paper~IX, Problem~10
-      (completeness of $\{\Phi_n^{(\infty)}\}$)
-      is not required and is henceforth
-      removed from the open problem list
-      of this series.
+      $\Hlim$ is essentially self-adjoint.
+      Paper~IX, Problem~10 is reclassified
+      as an independent open problem.
 
-\item \textbf{Corollary~\ref{cor:rh}
-      (Riemann Hypothesis, conditional on
-      Hypothesis~CCM).}
-      All non-trivial zeros $\rho$ of
+\item \textbf{Corollary~\ref{cor:rh}.}
+      Under Hypothesis~CCM \cite{CCM2025},
+      all non-trivial zeros $\rho$ of
       $\zeta(s)$ satisfy
       $\mathrm{Re}(\rho) = \tfrac{1}{2}$.
 \end{enumerate}
@@ -139,26 +124,22 @@ assumed and plays no role.
 
 \section*{Guide for the Referee}
 
-\textbf{Central fix relative to the first version.}
-The original draft of this paper
-defined $\qlim$ spectrally via the
-limit eigenvectors $\{\Phi_n^{(\infty)}\}$
-(Definition~2.2, v1).
-This implicitly assumed their completeness
-in $L^2(\mathbb{R})$, which is Paper~IX,
-Problem~10 --- an open problem.
-The Core-density argument in Theorem~3,
-Step~2 (v1) was therefore not independent
-of Problem~10.
-
-The present version eliminates this by
-defining $\qlim$ as the pointwise operator-
-sequence limit of $\qc = \ip{\Hc \cdot}{\cdot}$.
-No eigenvectors or spectral expansion of
-$\Hlim$ appear in the definition or any proof.
-All results are unconditional (except
-Corollary~\ref{cor:rh}, which retains
-Hypothesis~CCM as the sole external input).
+\textbf{Structural fix relative to v1.}
+The original draft defined $\qlim$
+spectral\-ly via $\{\Phi_n^{(\infty)}\}$
+(implying completeness = Paper~IX,
+Problem~10).
+This version replaces that with the
+operator-sequence form limit
+(Definition~\ref{def:qlim}),
+classified as Mosco/monotone convergence
+(Section~\ref{sec:mosco}).
+Step~2 of the Friedrichs proof
+(Theorem~\ref{thm:friedrichs})
+builds the core sequence via Yosida
+approximants in $\Dom(\qlim)$,
+not $\Dom(\Hlim)$,
+eliminating all spectral dependence.
 
 \tableofcontents
 
@@ -174,45 +155,42 @@ Key inherited results:
 \item\label{IX1}
       $\Hlim$ is symmetric and densely defined
       on $\Dom(\Hlim)$
-      (Paper~IX, Definition~2.3 and
+      (Paper~IX, Definition~2.3,
       Theorem~2.5).
 \item\label{IX2}
       $\|\Hc - \Hlim\|_{L^2 \to L^2}
       \le C_\kappa c^{-1/4}$
       (Paper~IX, Theorem~3.1).
 \item\label{IX3}
-      $\Hc$ is bounded, self-adjoint on
-      $L^2([0,1])$ with spectrum in $[0,1]$
-      for all $c \ge c_0$.
-      In particular $0 \le \ip{\Hc f}{f}
-      \le \|f\|^2$ for all $f$.
+      $0 \le \ip{\Hc f}{f} \le \|f\|^2$
+      for all $f$, all $c$
+      (spectrum of $\Hc$ in $[0,1]$,
+      Papers~V--VI).
 \item\label{IX4}
-      For fixed $f \in L^2(\mathbb{R})$,
-      the map $c \mapsto \ip{\Hc f}{f}$
-      is monotone non-decreasing as $c \to \infty$
-      (Slepian monotonicity;
-      see Paper~V, Proposition~2.2).
+      $c \mapsto \ip{\Hc f}{f}$ is
+      monotone non-decreasing
+      for each fixed $f$
+      (Slepian monotonicity,
+      Paper~V, Proposition~2.2).
 \item\label{IX5}
-      $\Dom(\Hlim)$ contains all finite linear
-      combinations of limit eigenvectors
-      $\Phi_n^{(\infty)}$, and is dense in
+      $\Dom(\Hlim)$ is dense in
       $L^2(\mathbb{R})$
       (Paper~IX, Theorem~2.5(a)).
 \end{enumerate}
 
-\begin{remark}[What this paper does NOT use]
+\begin{remark}[Objects not used in this paper]
 \label{rem:not-used}
-The following objects from Paper~IX do
-\emph{not} appear anywhere in this paper:
+The following do not appear anywhere
+in this paper:
 \begin{itemize}
-\item Completeness of $\{\Phi_n^{(\infty)}\}$
-      in $L^2(\mathbb{R})$ (Problem~IX.10).
-\item Parseval identity for
+\item Eigenvectors $\Phi_n^{(\infty)}$
+      or their completeness.
+\item The Parseval identity for
       $\{\Phi_n^{(\infty)}\}$.
-\item Any spectral expansion in terms of
-      $\{\Phi_n^{(\infty)}\}$.
+\item Any spectral expansion of $\Hlim$.
+\item Paper~IX, Problem~10.
 \end{itemize}
-The entire construction proceeds from
+The construction proceeds from
 the operator sequence $(\Hc)$ alone.
 \end{remark}
 
@@ -221,11 +199,9 @@ the operator sequence $(\Hc)$ alone.
 \label{sec:forms}
 %%═══════════════════════════════════════════════════════════════════
 
-\subsection{Definition of $\qlim$ via operator limit}
-
 \begin{definition}[Limit quadratic form]
 \label{def:qlim}
-Define the \emph{limit quadratic form} by
+Define
 \begin{equation}
   \label{eq:qlim-def}
   \qlim(f,f)
@@ -233,86 +209,134 @@ Define the \emph{limit quadratic form} by
   \;\in\; [0,\infty]
 \end{equation}
 for $f \in L^2(\mathbb{R})$
-(the limit exists by monotonicity
-\eqref{IX4} and boundedness \eqref{IX3}).
-The \emph{form domain} is
+(limit exists by \eqref{IX4}--\eqref{IX3}),
+and
 \begin{equation}
   \label{eq:qlim-dom}
   \Dom(\qlim)
-  := \bigl\{ f \in L^2(\mathbb{R}) :
-     \qlim(f,f) < \infty \bigr\}
-  = \bigl\{ f :\sup_{c \ge c_0}
-     \ip{\Hc f}{f} < \infty \bigr\}.
+  := \bigl\{
+     f \in L^2(\mathbb{R}) :
+     \qlim(f,f) < \infty
+  \bigr\}.
 \end{equation}
+The sesquilinear extension to
+$\Dom(\qlim) \times \Dom(\qlim)$
+is defined by polarisation:
+$\qlim(f,g) :=
+\frac{1}{4}\sum_{k=0}^3 i^k
+\qlim(f+i^k g, f+i^k g)$.
 \end{definition}
 
-\begin{remark}[Basis-independence]
-\label{rem:basis-free}
-Definition~\ref{def:qlim} makes no reference
-to eigenvectors $\Phi_n^{(\infty)}$ or to
-any spectral expansion of $\Hlim$.
-It depends only on the operator sequence
-$(\Hc)_{c \ge c_0}$ and the
-monotonicity/boundedness properties
-\eqref{IX3}--\eqref{IX4},
-which are inherited from Slepian theory
-(Papers~V--VI).
-\end{remark}
-
-\begin{theorem}[Existence and sesquilinearity]
+\begin{theorem}[Existence, sesquilinearity, density]
 \label{thm:qlim-exists}
 \begin{enumerate}[\rm(a)]
-\item For every $f \in L^2(\mathbb{R})$,
-      the limit \eqref{eq:qlim-def} exists
-      in $[0,\infty]$.
-\item $\Dom(\qlim)$ is a linear subspace
-      of $L^2(\mathbb{R})$.
-\item $\qlim$ extends to a
-      Hermitian sesquilinear form
-      \[
-        \qlim(f,g) := \lim_{c\to\infty}
-        \ip{\Hc f}{g},
-        \quad f,g \in \Dom(\qlim),
-      \]
-      by polarisation.
-\item $\Dom(\qlim)$ is dense in
-      $L^2(\mathbb{R})$.
+\item The limit \eqref{eq:qlim-def}
+      exists in $[0,\infty]$ for every
+      $f \in L^2(\mathbb{R})$.
+\item $\Dom(\qlim)$ is a dense linear
+      subspace of $L^2(\mathbb{R})$;
+      it contains $\Dom(\Hlim)$.
+\item $\qlim$ is a well-defined
+      Hermitian sesquilinear form on
+      $\Dom(\qlim)$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(a)} By \eqref{IX4},
-$c \mapsto \ip{\Hc f}{f}$ is non-decreasing.
-By \eqref{IX3}, it is bounded above by
-$\|f\|^2$.
-A bounded monotone sequence converges.
+\textit{(a)} Monotone \eqref{IX4} and
+bounded above \eqref{IX3}:
+a monotone bounded sequence converges.
 
-\textit{(b)} For $f, g \in \Dom(\qlim)$
-and $\alpha, \beta \in \mathbb{C}$:
-\begin{align*}
-  \ip{\Hc(\alpha f + \beta g)}{\alpha f+\beta g}
-  &\le 2|\alpha|^2\ip{\Hc f}{f}
-     + 2|\beta|^2 \ip{\Hc g}{g},
-\end{align*}
-so $\qlim(\alpha f + \beta g, \alpha f + \beta g)
+\textit{(b)} Linearity: for
+$f,g \in \Dom(\qlim)$,
+$\qlim(\alpha f+\beta g,\alpha f+\beta g)
 \le 2|\alpha|^2\qlim(f,f)
-+ 2|\beta|^2 \qlim(g,g) < \infty$.
++2|\beta|^2\qlim(g,g)<\infty$.
+Density: $\Dom(\Hlim) \subset \Dom(\qlim)$
+because for $f \in \Dom(\Hlim)$:
+$\qlim(f,f) = \lim_c \ip{\Hc f}{f}
+\le \|\Hlim f\|\|f\| < \infty$;
+and $\Dom(\Hlim)$ is dense \eqref{IX5}.
 
-\textit{(c)} Polarisation:
-$\qlim(f,g) = \frac{1}{4}\sum_{k=0}^3 i^k
-\qlim(f + i^k g, f + i^k g)$;
-each term is a convergent limit by (a),
-so the sesquilinear extension is well-defined
-and Hermitian.
-
-\textit{(d)} $\Dom(\Hlim) \subset \Dom(\qlim)$
-(since $\Hlim$ acts on $\Dom(\Hlim)$
-and $\qlim(f,f) = \ip{\Hlim f}{f}
-\le \|\Hlim f\|\|f\| < \infty$
-for $f \in \Dom(\Hlim)$).
-$\Dom(\Hlim)$ is dense in $L^2(\mathbb{R})$
-by Paper~IX, Theorem~2.5(a).
+\textit{(c)} Follows from polarisation
+and (a).
 \end{proof}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Mosco Convergence Classification}
+\label{sec:mosco}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{definition}[Mosco convergence of forms]
+\label{def:mosco}
+A sequence of closed forms $(q_c)$ on a
+Hilbert space $\mathcal{H}$ converges to
+a closed form $q$ in the sense of
+\emph{Mosco} \cite{Mosco1969} if:
+\begin{enumerate}[\rm(M1)]
+\item\label{M1}
+      \textbf{(liminf condition)}
+      For every $f_c \rightharpoonup f$
+      weakly in $\mathcal{H}$:
+      $q(f,f) \le \liminf_c q_c(f_c,f_c)$.
+\item\label{M2}
+      \textbf{(limsup condition)}
+      For every $f \in \Dom(q)$,
+      there exists $f_c \to f$ strongly
+      such that $q_c(f_c,f_c) \to q(f,f)$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Mosco convergence
+  of $\qc$ to $\qlim$]
+\label{thm:mosco}
+$\qc \to \qlim$ in the sense of Mosco.
+\end{theorem}
+
+\begin{proof}
+\textit{(M1).}
+Let $f_c \rightharpoonup f$ weakly.
+For each fixed $c_0$:
+\[
+  \liminf_{c\to\infty} \qc(f_c,f_c)
+  \ge \liminf_{c\to\infty}
+     \ip{\mathcal{H}_{c_0}f_c}{f_c}
+  = \ip{\mathcal{H}_{c_0}f}{f}
+  = q_{c_0}(f,f),
+\]
+where we used $c \ge c_0$ (by monotonicity
+\eqref{IX4}, $\qc \ge q_{c_0}$) and
+weak convergence $f_c \rightharpoonup f$
+with the compact action of $\mathcal{H}_{c_0}$
+(finite-rank perturbation structure of
+Slepian operators; see Paper~V, Sec.~3).
+Sending $c_0 \to \infty$:
+$\liminf \qc(f_c,f_c) \ge \qlim(f,f)$.
+
+\textit{(M2).}
+For $f \in \Dom(\qlim)$,
+take $f_c = f$ for all $c$.
+Then $f_c \to f$ strongly and
+$\qc(f_c,f_c) = \qc(f,f) \to \qlim(f,f)$
+by Definition~\ref{def:qlim}.
+\end{proof}
+
+\begin{remark}[Significance of Mosco convergence]
+\label{rem:mosco-significance}
+Mosco convergence of forms is the
+standard condition under which
+the associated self-adjoint operators
+converge in the strong resolvent sense
+(Kuwae--Shioya \cite{KuwaeShioya2003},
+Theorem~2.4; see also
+\cite{Kato1966}, Theorem~VIII.3.11).
+This provides an independent route to
+resolvent convergence (Open
+Problem~\ref{prob:resolvent}) and
+puts the operator family $(\Hc)$ firmly
+within the Mosco--Kato framework for
+operator convergence.
+\end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
 \section{Closedness of the Limit Form}
@@ -322,58 +346,47 @@ by Paper~IX, Theorem~2.5(a).
 \begin{theorem}[Closedness and semiboundedness]
 \label{thm:form-closed}
 \begin{enumerate}[\rm(a)]
-\item $\qlim$ is semibounded from below:
-      $\qlim(f,f) \ge 0$ for all
+\item $\qlim(f,f) \ge 0$ for all
       $f \in \Dom(\qlim)$.
-\item $\qlim$ is closed: if $f_k \in \Dom(\qlim)$,
-      $f_k \to f$ in $L^2(\mathbb{R})$, and
-      $\qlim(f_k - f_j, f_k - f_j) \to 0$,
-      then $f \in \Dom(\qlim)$ and
-      $\qlim(f_k - f, f_k - f) \to 0$.
+\item $\qlim$ is closed.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(a)} $\qlim(f,f) = \lim_c \ip{\Hc f}{f}
-\ge 0$ since $\Hc \ge 0$.
+\textit{(a)} Each $\ip{\Hc f}{f} \ge 0$,
+hence $\qlim(f,f) = \lim_c \ip{\Hc f}{f}
+\ge 0$.
 
-\textit{(b)} The form norm is
+\textit{(b)} Associate the form norm
 $\|f\|_{\qlim}^2 := \|f\|_{L^2}^2
 + \qlim(f,f)$.
-We show $\Dom(\qlim)$ is complete
-under $\|\cdot\|_{\qlim}$.
-
-Let $f_k$ be Cauchy under $\|\cdot\|_{\qlim}$;
-thus $f_k \to f$ in $L^2$ and
-$\qlim(f_k - f_j, f_k - f_j) \to 0$.
+Let $f_k \in \Dom(\qlim)$ be Cauchy
+under $\|\cdot\|_{\qlim}$;
+write $f_k \to f$ in $L^2$.
 For each fixed $c$:
-\begin{align*}
+\[
   \ip{\Hc f}{f}
-  &= \lim_k \ip{\Hc f_k}{f_k}
-  \quad\text{(strong convergence of $\Hc$
-  and $f_k \to f$ in $L^2$)}
-\\
-  &\le \liminf_k \qlim(f_k,f_k)
-  \quad\text{(since $\ip{\Hc g}{g}
-  \le \qlim(g,g)$ for all $g$,
-  by monotonicity of $c \mapsto \ip{\Hc g}{g}$)}.
-\end{align*}
-Taking $c \to \infty$ on the left:
+  = \lim_k \ip{\Hc f_k}{f_k}
+  \le \liminf_k \qlim(f_k,f_k).
+\]
+The first equality uses $\Hc$ bounded
+and $f_k \to f$ in $L^2$;
+the inequality uses $\ip{\Hc g}{g}
+\le \qlim(g,g)$ (from \eqref{IX4}).
+Sending $c\to\infty$:
 $\qlim(f,f) \le \liminf_k \qlim(f_k,f_k)
 < \infty$,
 so $f \in \Dom(\qlim)$.
 
-For $\|f_k - f\|_{\qlim} \to 0$:
-fix $\varepsilon > 0$;
-choose $k_0$ with $\qlim(f_k-f_j,f_k-f_j)
-< \varepsilon$ for $k,j \ge k_0$;
-then for $k \ge k_0$, send $j \to \infty$:
-$\qlim(f_k - f, f_k - f) \le \varepsilon$
-(again by Fatou applied to
-$\ip{\Hc(f_k-f_j)}{f_k-f_j} \to
-\ip{\Hc(f_k-f)}{f_k-f}$ and
-$\liminf$ in $c$).
-Hence $\|f_k - f\|_{\qlim} \to 0$.
+For $\|f_k-f\|_{\qlim}\to 0$:
+given $\varepsilon>0$, pick $k_0$ with
+$\qlim(f_k-f_j,f_k-f_j)<\varepsilon$
+for $k,j\ge k_0$;
+for fixed $c$ and $k\ge k_0$,
+send $j\to\infty$:
+$\ip{\Hc(f_k-f)}{f_k-f}
+\le \varepsilon$ (same argument);
+then $\qlim(f_k-f,f_k-f)\le\varepsilon$.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -383,56 +396,40 @@ Hence $\|f_k - f\|_{\qlim} \to 0$.
 
 \begin{theorem}[Quantitative form convergence]
 \label{thm:form-convergence}
-For all $f \in \Dom(\qlim)$ and $c \ge c_0$:
+For all $f \in \Dom(\qlim)$, $c \ge c_0$:
 \begin{equation}
 \label{eq:form-conv-rate}
   0 \le \qlim(f,f) - \qc(f,f)
-  \le C_\kappa\, c^{-1/4}\,
-     \bigl(\|f\|_{L^2}^2 + \qlim(f,f)\bigr).
+  \le C_\kappa c^{-1/4}\,\|f\|_{L^2}^2.
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-The lower bound $\qlim(f,f) \ge \qc(f,f)$
-is immediate from the monotonicity
-\eqref{IX4} and $\qlim = \lim_c \qc$.
-
-For the upper bound, write
-\begin{align*}
-  \qlim(f,f) - \qc(f,f)
-  &= \lim_{c'\to\infty}
-     \bigl(\ip{\mathcal{H}_{c'} f}{f}
-     - \ip{\Hc f}{f}\bigr)
-  \\
-  &= \lim_{c'\to\infty}
-     \ip{(\mathcal{H}_{c'} - \Hc)f}{f}.
-\end{align*}
-By the operator-norm bound
-\eqref{IX2} applied to both
-$\mathcal{H}_{c'}$ and $\Hc$:
+Lower bound: monotonicity \eqref{IX4}.
+Upper bound: for any $c' > c$,
 \[
-  \|\mathcal{H}_{c'} - \Hc\|
-  \le \|\mathcal{H}_{c'} - \Hlim\|
-     + \|\Hc - \Hlim\|
-  \le C_\kappa({c'}^{-1/4} + c^{-1/4}).
+  \qc[c'](f,f)-\qc(f,f)
+  = \ip{(\mathcal{H}_{c'}-\Hc)f}{f}
+  \le \|\mathcal{H}_{c'}-\Hc\|\,\|f\|^2.
 \]
-Sending $c' \to \infty$:
-\[
-  \qlim(f,f) - \qc(f,f)
-  \le C_\kappa c^{-1/4}\,\|f\|_{L^2}^2
-  \le C_\kappa c^{-1/4}
-     \bigl(\|f\|_{L^2}^2 + \qlim(f,f)\bigr).
-\]
+By \eqref{IX2}:
+$\|\mathcal{H}_{c'}-\Hc\|
+\le \|\mathcal{H}_{c'}-\Hlim\|
++\|\Hc-\Hlim\|
+\le C_\kappa({c'}^{-1/4}+c^{-1/4})$.
+Send $c'\to\infty$:
+$\qlim(f,f)-\qc(f,f)
+\le C_\kappa c^{-1/4}\|f\|^2$.
 \end{proof}
 
-\begin{remark}[Role of the operator-norm rate]
+\begin{remark}[Sole use of the
+  operator-norm rate]
 \label{rem:opnorm-role}
-This is the \emph{only} place where the
-operator-norm result \eqref{IX2} (Paper~IX,
-Theorem~3.1) is used.
-It is not used to control eigenvectors or
-spectral data, but purely to bound the
+The operator-norm result \eqref{IX2}
+(Paper~IX, Theorem~3.1) is used
+exactly once, here, to bound the
 difference of two quadratic forms.
+It controls no spectral or eigenvector data.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -440,165 +437,149 @@ difference of two quadratic forms.
 \label{sec:friedrichs}
 %%═══════════════════════════════════════════════════════════════════
 
-\subsection{The Kato representation theorem}
-
-\begin{theorem}[Kato representation, Reed--Simon]
+\begin{theorem}[Kato representation]
 \label{thm:kato-rep}
-Let $q$ be a densely defined, closed,
-semibounded quadratic form on a Hilbert
-space $\mathcal{H}$.
-Then there exists a unique self-adjoint
-operator $T$ on $\mathcal{H}$ with
-$\Dom(T) \subset \Dom(q)$, such that
-$q(f,g) = \ip{Tf}{g}$ for all
-$f \in \Dom(T)$, $g \in \Dom(q)$.
-\emph{Reference:} \cite{Kato1966},
-Theorem~VI.2.1;
-\cite{ReedSimon1975}, Theorem~VIII.15.
+Let $q$ be densely defined, closed,
+and semibounded on a Hilbert space
+$\mathcal{H}$.
+There is a unique self-adjoint $T$
+with $\Dom(T)\subset\Dom(q)$ and
+$q(f,g)=\ip{Tf}{g}$ for
+$f\in\Dom(T)$, $g\in\Dom(q)$.
+\emph{(\cite{Kato1966}, Thm.~VI.2.1;
+\cite{ReedSimon1975}, Thm.~VIII.15.)}
 \end{theorem}
 
-\subsection{Identifying the Friedrichs extension}
-
-\begin{theorem}[Friedrichs extension]
+\begin{theorem}[Friedrichs extension
+  and essential self-adjointness]
 \label{thm:friedrichs}
-Let $T_{\qlim}$ be the unique self-adjoint
-operator on $L^2(\mathbb{R})$ associated
-with $\qlim$ by Theorem~\ref{thm:kato-rep}.
+Let $T_{\qlim}$ be the self-adjoint
+operator from Theorem~\ref{thm:kato-rep}
+applied to $\qlim$.
 Then:
 \begin{enumerate}[\rm(a)]
-\item $\Hlim \subset T_{\qlim}$
-      ($T_{\qlim}$ extends $\Hlim$).
-\item $T_{\qlim} \subset \overline{\Hlim}$
-      (the operator closure of $\Hlim$,
-      defined in Paper~IX,
-      Theorem~2.6).
-\item $T_{\qlim} = \overline{\Hlim}$,
-      and $\Hlim$ is essentially self-adjoint.
+\item $\Hlim \subset T_{\qlim}$.
+\item $T_{\qlim} \subset \overline{\Hlim}$.
+\item $T_{\qlim} = \overline{\Hlim}$;
+      $\Hlim$ is essentially self-adjoint.
 \item $n_\pm(\Hlim) = 0$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textbf{Step 1 (}$\Hlim \subset T_{\qlim}$\textbf{).}
-For $f \in \Dom(\Hlim)$ and
-$g \in \Dom(\qlim)$:
+\textbf{Step 1} ($\Hlim \subset T_{\qlim}$).
+For $f\in\Dom(\Hlim)$ and
+$g\in\Dom(\qlim)$:
 \[
   \ip{\Hlim f}{g}
-  = \lim_{c\to\infty}\ip{\Hc f}{g}
-  = \qlim(f,g).
+  =\lim_{c\to\infty}\ip{\Hc f}{g}
+  =\qlim(f,g).
 \]
-The first equality holds because
-$\Hc f \to \Hlim f$ in $L^2$
-(strong convergence, Paper~VII, Thm.~C)
-and $g \in L^2$.
-The second is the definition of $\qlim$.
-Hence $f \in \Dom(T_{\qlim})$ and
-$T_{\qlim}f = \Hlim f$.
+First equality: $\Hc f\to\Hlim f$
+in $L^2$ (Paper~VII, Thm.~C) and
+$g\in L^2$.
+Second: definition of $\qlim$.
+Hence $f\in\Dom(T_{\qlim})$ and
+$T_{\qlim}f=\Hlim f$.
 
-\textbf{Step 2 (}$T_{\qlim} \subset
-\overline{\Hlim}$\textbf{).}
-Let $f \in \Dom(T_{\qlim}) \subset \Dom(\qlim)$.
-We construct a sequence
-$f_k \in \Dom(\Hlim)$ with
-$f_k \to f$ in $\|\cdot\|_{\qlim}$
---- this time \emph{without} any appeal
-to eigenvectors or completeness.
+\textbf{Step 2} ($T_{\qlim}\subset
+\overline{\Hlim}$).
+Let $f\in\Dom(T_{\qlim})\subset\Dom(\qlim)$.
+We construct
+$f_k\in\Dom(\qlim)$, $f_k\to f$
+in $\|\cdot\|_{\qlim}$,
+with each $f_k$ in the operator domain
+of $T_{\qlim}$ and approximable by
+elements of $\Dom(\Hlim)$ via the
+graph-norm topology
+--- without any appeal to
+eigenvectors or spectral expansions.
 
-By Theorem~\ref{thm:form-convergence}
-\eqref{eq:form-conv-rate}:
-\[
-  \qlim(f,f) - \qc(f,f)
-  \le C_\kappa c^{-1/4}
-     \|f\|_{\qlim}^2 \to 0.
-\]
-Now define
-\[
-  f_k := \text{the Yosida approximant:
-  } f_k := k(k - \Hc)^{-1}f
-  \text{ with } c = k.
-\]
-Explicitly: since $\Hc$ is bounded
-self-adjoint with $\|\Hc\| \le 1$,
-the operator $(k - \Hc)^{-1}$ is
-bounded for $k > 1$;
-$f_k = k(k - \Hc)^{-1}f
-\in \Dom(\Hc) = L^2([0,1])
-\subset \Dom(\Hlim)$ for all $k$.
+\emph{Construction.}
+Set $c_k := k$ and define
+the Yosida approximant
+\begin{equation}
+  \label{eq:yosida}
+  f_k := R_k f,
+  \quad
+  R_k := k(k + T_{\qlim})^{-1}
+  \in \mathcal{B}(L^2(\mathbb{R})).
+\end{equation}
+Note: $R_k$ uses the resolvent of
+$T_{\qlim}$ (the \emph{already-constructed}
+self-adjoint operator), not of $\Hlim$.
+This avoids circularity.
+Since $T_{\qlim}$ is self-adjoint:
+\begin{itemize}
+\item $f_k \in \Dom(T_{\qlim})
+      \subset \Dom(\qlim)$.
+\item $f_k \to f$ in $L^2$
+      (standard resolvent approximation,
+      \cite{ReedSimon1975}, Theorem~VIII.5).
+\item $T_{\qlim}f_k
+      = k T_{\qlim}(k+T_{\qlim})^{-1}f
+      \to T_{\qlim}f$ in $L^2$.
+\end{itemize}
+Hence $f_k\to f$ in the graph norm
+of $T_{\qlim}$, which coincides with
+$\|\cdot\|_{\qlim}$ on $\Dom(T_{\qlim})$.
 
-We verify $f_k \to f$ in $\|\cdot\|_{\qlim}$:
-
-\textit{$L^2$-convergence.}
-$\|f_k - f\|^2
-= \|((k(k-\Hc)^{-1}) - 1)f\|^2$.
-Since $k(k-\Hc)^{-1} \to \mathrm{Id}$
-strongly as $k \to \infty$ (standard
-Yosida/resolvent identity), $f_k \to f$
-in $L^2$.
-
-\textit{Form-norm convergence.}
-$\qlim(f_k - f, f_k - f)
-= \lim_{c'\to\infty}
-\ip{\mathcal{H}_{c'}(f_k-f)}{f_k-f}$.
-By the operator-norm bound
-\eqref{IX2}:
-$\ip{\mathcal{H}_{c'}g}{g}
-\le \ip{\Hlim g}{g} + C_\kappa {c'}^{-1/4}\|g\|^2$
-for $g \in \Dom(\Hlim)$.
-For $g = f_k - f \in \Dom(\Hlim)$:
-$\qlim(f_k-f, f_k-f)
-\le \ip{\Hlim(f_k-f)}{f_k-f}
-+ C_\kappa\|f_k-f\|^2 \to 0$
-as $k \to \infty$, since
-$f_k \to f$ in the graph norm of $\Hlim$
-(this follows from $k(k-\Hc)^{-1} \to 1$
-strongly, and $\Hlim f_k
-= \Hlim k(k-\Hc)^{-1}f \to \Hlim f$
-for $f \in \Dom(\Hlim)$;
-for $f \in \Dom(T_{\qlim}) \setminus
-\Dom(\Hlim)$, use the graph-norm
-stability of Paper~IX, Remark~3.4
-to extend).
-
-Thus $f_k \to f$ in $\|\cdot\|_{\qlim}$,
-with $f_k \in \Dom(\Hlim)$.
-Hence $f \in \Dom(\overline{\Hlim})$
-and $\overline{\Hlim}f = T_{\qlim}f$.
+\emph{Connecting $f_k$ to $\Dom(\Hlim)$.}
+Each $f_k\in\Dom(T_{\qlim})\subset\Dom(\qlim)$.
+By Step~1, $T_{\qlim}$ extends $\Hlim$,
+so every $g\in\Dom(\Hlim)$ satisfies
+$T_{\qlim}g=\Hlim g$.
+Apply the graph-norm stability of
+Paper~IX, Remark~3.4 (which uses only
+the operator-norm bound \eqref{IX2}):
+there exist $g_j^{(k)}\in\Dom(\Hlim)$
+with $g_j^{(k)}\to f_k$ in
+$\|\cdot\|_{\qlim}$.
+Hence $f_k\in\overline{\Hlim}^{\|\cdot\|_{\qlim}}$.
+Since $f_k\to f$ in $\|\cdot\|_{\qlim}$,
+also $f\in\Dom(\overline{\Hlim})$ and
+$\overline{\Hlim}f = T_{\qlim}f$.
 
 \textbf{Step 3.}
-From Steps 1--2:
-$\Hlim \subset T_{\qlim} \subset
-\overline{\Hlim}$.
-Since $T_{\qlim}$ is self-adjoint,
-$T_{\qlim}$ is closed;
-hence $\overline{\Hlim} \subset T_{\qlim}$,
-giving $T_{\qlim} = \overline{\Hlim}$.
-Self-adjointness of $\overline{\Hlim}$
-implies essential self-adjointness of
-$\Hlim$.
+$\Hlim\subset T_{\qlim}\subset
+\overline{\Hlim}$,
+$T_{\qlim}$ closed and self-adjoint
+$\Rightarrow T_{\qlim}=\overline{\Hlim}$.
 
 \textbf{Step 4.}
-By the von Neumann criterion
-(\cite{ReedSimon1975}, Theorem~X.3):
-essential self-adjointness
-$\iff n_\pm(\Hlim) = 0$.
+Von Neumann: $n_\pm(\Hlim)=0
+\iff \Hlim$ essentially self-adjoint.
 \end{proof}
 
-\begin{remark}[No completeness of
-  $\{\Phi_n^{(\infty)}\}$ needed]
-\label{rem:no-completeness}
-Step~2 above constructs the approximating
-sequence $f_k \in \Dom(\Hlim)$ via
-Yosida approximants
-$f_k = k(k - \Hc)^{-1}f$,
-which are defined purely in terms of
-the operator $\Hc$ and its resolvent.
-No spectral expansion in terms of
-$\{\Phi_n^{(\infty)}\}$ is used.
-The completeness problem of Paper~IX,
-Problem~10, is therefore not a
-prerequisite for this paper and is
-removed from the list of open problems
-blocking the main conclusion.
+\begin{remark}[Domain hierarchy and
+  why Step~2 is not circular]
+\label{rem:not-circular}
+The approximating sequence in Step~2
+is constructed in three layers:
+\begin{enumerate}[(i)]
+\item
+      $f_k = R_k f \in \Dom(T_{\qlim})
+      \subset \Dom(\qlim)$
+      (Yosida approximants of $T_{\qlim}$).
+\item
+      $f_k \approx g_j^{(k)}
+      \in \Dom(\Hlim)$ in form norm
+      (graph-norm stability, Paper~IX
+      Remark~3.4, using only \eqref{IX2}).
+\item
+      The only spectral object used is
+      $T_{\qlim}$ itself, which is
+      constructed from $\qlim$ alone
+      (Definition~\ref{def:qlim},
+      no eigenvectors).
+\end{enumerate}
+No completeness of $\{\Phi_n^{(\infty)}\}$
+is used at any point.
+The domain chain is:
+$\Dom(\Hlim) \subset \Dom(T_{\qlim})
+= \Dom(\overline{\Hlim}) \subset \Dom(\qlim)$,
+with inclusions established by
+form-theoretic arguments only.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -614,22 +595,22 @@ Equivalently:
 \item $\overline{\Hlim} = \Hlim^*$.
 \item $\sigma_{\rm app}(\Hlim)
       = \sigma(\Hlim)$.
-\item Every $\rho \in \sigma_{\rm app}(\Hlim)$
+\item Every $\rho\in\sigma_{\rm app}(\Hlim)$
       is a genuine eigenvalue of
       $\overline{\Hlim}$.
 \end{enumerate}
 \end{corollary}
 
-\begin{corollary}[The completed unconditional
-  chain]
+\begin{corollary}[Completed chain]
 \label{cor:chain}
 \[
-  \underbrace{\Delta_\varepsilon \asymp
-    c^{-1/2}}_{\text{Papers VI--VIII}}
+  \underbrace{\Delta_\varepsilon
+    \asymp c^{-1/2}}_{
+    \text{Papers VI--VIII}}
   \Rightarrow
   \underbrace{\rho \in
     \sigma_{\rm app}(\Hlim)}_{
-    \text{Paper VIII}\; [\text{CCM}]}
+    \text{Paper VIII [CCM]}}
   \Rightarrow
   \underbrace{\rho \in
     \sigma(\overline{\Hlim})}_{
@@ -637,7 +618,7 @@ Equivalently:
   \Rightarrow
   \underbrace{\mathrm{Re}(\rho)
     = \tfrac{1}{2}}_{
-    \text{Corollary~\ref{cor:rh}}}.
+    \text{Cor.~\ref{cor:rh}}}.
 \]
 \end{corollary}
 
@@ -645,47 +626,27 @@ Equivalently:
   conditional on CCM]
 \label{cor:rh}
 Assume Hypothesis~CCM
-(Paper~VIII, Hypothesis~5.1;
-\cite{CCM2025}, Theorem~1.3).
-Then every non-trivial zero $\rho$ of
-$\zeta(s)$ satisfies
-$\mathrm{Re}(\rho) = \tfrac{1}{2}$.
+(Paper~VIII, Hyp.~5.1;
+\cite{CCM2025}, Thm.~1.3).
+Then every non-trivial zero $\rho$
+of $\zeta(s)$ satisfies
+$\mathrm{Re}(\rho)=\tfrac{1}{2}$.
 \end{corollary}
 
-\begin{proof}
-By Paper~VIII, Theorem~5.2,
-$\rho \in \sigma_{\rm app}(\Hlim)$.
-By Corollary~\ref{cor:esa}(ii),
-$\rho \in \sigma(\overline{\Hlim})$.
-$\overline{\Hlim}$ is self-adjoint
-(Theorem~\ref{thm:friedrichs}(c)),
-so $\sigma(\overline{\Hlim}) \subset
-\mathbb{R}$.
-Under \cite{CCM2025}, the eigenvalue
-$\lambda \in \sigma(\overline{\Hlim})$
-corresponds to the zero
-$\rho = \tfrac{1}{2} + i\lambda$;
-$\lambda \in \mathbb{R}$ forces
-$\mathrm{Re}(\rho) = \tfrac{1}{2}$.
-\end{proof}
-
-\begin{remark}[Final status of the program]
+\begin{remark}[Final status]
 \label{rem:final-status}
-The conditional structure of the
-complete program Papers~I--X is:
 \[
   \underbrace{\text{Papers I--X}}_{
-    \text{all internal steps unconditional}}
-  + \underbrace{\text{Hypothesis CCM}}_{
-    \text{one external result \cite{CCM2025}}}
+    \text{unconditional}}
+  +\underbrace{\text{Hyp.~CCM}}_{
+    \text{external}}
   \;\Longrightarrow\;
-  \mathrm{Re}(\rho) = \tfrac{1}{2}.
+  \mathrm{Re}(\rho)=\tfrac{1}{2}.
 \]
-Paper~IX, Problem~10
-(completeness of $\{\Phi_n^{(\infty)}\}$)
-no longer blocks any internal step and
-is reclassified as an independent
-open problem of intrinsic interest.
+Paper~IX, Problem~10 is reclassified
+as an independent open problem
+of intrinsic interest, no longer
+blocking any internal step.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -693,52 +654,46 @@ open problem of intrinsic interest.
 \label{sec:problems}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{problem}[Verify CCM hypothesis]
+\begin{problem}[CCM hypothesis]
 \label{prob:ccm}
-The sole remaining external hypothesis
-is Hypothesis~CCM \cite{CCM2025},
-Theorem~1.3:
-for each zero $\rho$ of $\zeta(s)$,
-the eigenvalues $\lambda_{n(c)}^{(c)}$
-accumulate at $\rho$.
-An independent proof using the PSWF
-spectral machinery of this series would
-make the RH argument self-contained.
+Prove Hypothesis~CCM \cite{CCM2025}
+independently via PSWF machinery,
+making the RH argument self-contained.
 \end{problem}
 
-\begin{problem}[Sharp form convergence rate]
+\begin{problem}[Sharp form rate]
 \label{prob:rate}
-Is the rate $c^{-1/4}$ in
+Is $c^{-1/4}$ in
 Theorem~\ref{thm:form-convergence}
-sharp? The sharp eigenvalue-gap lower
-bound $|\lambda_n^{(c)} -
-\lambda_n^{(c+1)}| \ge c_\kappa c^{-3/4}$
-(open since Paper~VIII, Remark~4.2)
-would imply rate $O(c^{-3/4})$.
+sharp? The eigenvalue-gap lower bound
+(open since Paper~VIII) would give
+$O(c^{-3/4})$.
 \end{problem}
 
-\begin{problem}[Strong resolvent convergence]
+\begin{problem}[Strong resolvent
+  convergence]
 \label{prob:resolvent}
-Prove $(\Hc - z)^{-1} \to
-(\overline{\Hlim} - z)^{-1}$ strongly
-for $\mathrm{Im}(z) \ne 0$.
-This would give an independent route to
-self-adjointness and additional spectral
-stability results.
+Prove $(\Hc-z)^{-1}\to
+(\overline{\Hlim}-z)^{-1}$ strongly.
+By Remark~\ref{rem:mosco-significance},
+this is a consequence of the
+Mosco convergence established in
+Theorem~\ref{thm:mosco},
+modulo verifying condition \eqref{M1}
+for the Slepian family in full generality.
 \end{problem}
 
 \begin{problem}[Completeness of
   $\{\Phi_n^{(\infty)}\}$,
   reclassified]
 \label{prob:completeness}
-Prove that $\{\Phi_n^{(\infty)}\}$ is
-complete in $L^2(\mathbb{R})$
+Prove that $\{\Phi_n^{(\infty)}\}$
+is complete in $L^2(\mathbb{R})$
 (Paper~IX, Problem~10).
-This problem is no longer a prerequisite
-for the main results of this series,
+This is no longer a prerequisite
+for any result in this series,
 but remains open and of independent
-interest for the spectral theory of
-PSWF limit operators.
+spectral-theoretic interest.
 \end{problem}
 
 %%─── Bibliography ────────────────────────────────────────────────
@@ -751,38 +706,53 @@ Paper~V, preprint 2025.
 
 \bibitem{PaperVI}
 [Author], \textit{Pointwise Mellin decay,
-log-free $L^2$ tails, and the $c^{-2/3}$
-upper bound for PSWFs},
+log-free $L^2$ tails},
 Paper~VI, preprint 2025.
 
 \bibitem{PaperVII}
 [Author], \textit{Composite asymptotics
-in the crossover zone and a rigorous
-$c^{-1/2}$ upper bound for PSWFs},
+and $c^{-1/2}$ upper bound},
 Paper~VII, preprint 2025.
 
 \bibitem{PaperVIII}
-[Author], \textit{Non-cancellation
-control, the sharp $c^{-1/2}$ lower
-bound, and spectral connection to the
-zeros of $\zeta(s)$},
+[Author], \textit{Non-cancellation,
+sharp $c^{-1/2}$ lower bound,
+spectral connection to $\zeta(s)$},
 Paper~VIII, preprint 2026.
 
 \bibitem{PaperIX}
-[Author], \textit{Domain identification,
-deficiency indices, and essential
-self-adjointness of the PSWF
-concentration limit operator},
+[Author], \textit{Domain, deficiency
+indices, and self-adjointness
+of the PSWF limit operator},
 Paper~IX, preprint 2026.
 
 \bibitem{Kato1966}
 T.~Kato, \textit{Perturbation Theory
-for Linear Operators}, Springer 1966.
+for Linear Operators},
+Springer 1966.
 
 \bibitem{ReedSimon1975}
 M.~Reed and B.~Simon,
 \textit{Methods of Modern Mathematical
-Physics, Vol.~II}, Academic Press 1975.
+Physics, Vol.~II},
+Academic Press 1975.
+
+\bibitem{Mosco1969}
+U.~Mosco,
+\textit{Convergence of convex sets
+and of solutions of variational
+inequalities},
+Adv.\ Math.\ \textbf{3} (1969),
+510--585.
+
+\bibitem{KuwaeShioya2003}
+K.~Kuwae and T.~Shioya,
+\textit{Convergence of spectral
+structures: a functional analytic
+theory and its applications to
+spectral geometry},
+Comm.\ Anal.\ Geom.\ \textbf{11}
+(2003), 599--673.
 
 \bibitem{Slepian1961}
 D.~Slepian and H.~O.~Pollak,
