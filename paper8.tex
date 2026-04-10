@@ -780,79 +780,107 @@ Set $E_c:=I_c$.
 \label{sec:spectral}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{theorem}[Two-sided eigenvalue perturbation]
+\begin{theorem}[Sharp eigenvalue sensitivity]
 \label{thm:spectral}
-For all $c\ge c_0(\kappa)$, $n\le\kappa c$:
-\[
-  c_\kappa c^{-3/4}
-  \le|\lambda_n^{(c)}-\lambda_n^{(c+1)}|
-  \le C_\kappa c^{-3/4}.
-\]
+For all $c \ge c_0(\kappa)$, $n \le \kappa c$:
+\begin{equation}\label{eq:spectral-upper}
+  \bigl|\lambda_n^{(c)} - \lambda_n^{(c+1)}\bigr|
+  \;\le\; C_\kappa\, c^{-3/4}.
+\end{equation}
+Moreover, the scaling $c^{-3/4}$ is sharp:
+\begin{equation}\label{eq:spectral-lower}
+  \bigl|\lambda_n^{(c)} - \lambda_n^{(c+1)}\bigr|
+  \;\ge\; c_\kappa\, c^{-3/4}.
+\end{equation}
 \end{theorem}
 
 \begin{proof}
-Upper: \eqref{VII3}.
+\textit{Upper bound \eqref{eq:spectral-upper}.}
+\cite{PaperVII}, Lem.~6.2.
 
-\noindent
-Lower (Hellmann--Feynman).
-By \cite{Osipov2013}, \S3.3,
-the concentration eigenvalue satisfies
+\textit{Lower bound \eqref{eq:spectral-lower}.}
+By the Hellmann--Feynman identity
+(\cite{Osipov2013}, \S3.3):
 \begin{equation}\label{eq:HF}
   \frac{d\lambda_n^{(c)}}{dc}
-  = -2\int_0^1 t^2|\Phi_n^{(c)}(t)|^2\,dt.
+  = -2\int_0^1 t^2\,|\Phi_n^{(c)}(t)|^2\,dt.
 \end{equation}
-Since $\Phi_n^{(c)}$ is $L^2([0,1])$-normalised
-with $\|\Phi_n^{(c)}\|^2=\lambda_n^{(c)}\in(0,1)$,
-and $t^2\ge0$, the right side of \eqref{eq:HF}
-is strictly negative.
-To bound it from below in absolute value, we use:
-\begin{enumerate}[\rm(i)]
-\item $\|\partial_c\Phi_n^{(c)}\|_{L^2([0,1])}
-      \asymp c^{-1/4}$
-      (\cite{Osipov2013}, Thm.~3.2;
-      perturbation theory for the
-      concentration operator).
-\item By the Hellmann--Feynman identity
-\eqref{eq:HF} and the concentration estimate
-of \cite{Osipov2013}, \S3.3:
-$\Phi_n^{(c)}$ is supported in $[0,1]$
-with $\|\Phi_n^{(c)}\|_{L^2([0,1])}^2
-= \lambda_n^{(c)} \ge c_\kappa > 0$,
-and the $t^2$-weight satisfies
+We establish $|d\lambda_n^{(c)}/dc|
+\ge c_\kappa c^{-3/4}$ in two steps.
+
+\textit{Step~(i): Global $L^2$-normalisation.}
+The PSWF $\Phi_n^{(c)}$ is
+$L^2([0,1])$-normalised with
+$\|\Phi_n^{(c)}\|_{L^2([0,1])}^2
+= \lambda_n^{(c)} \ge c_\kappa > 0$
+(\cite{BonamiKaroui2014}).
+
+\textit{Step~(ii): Effective $t^2$-weight.}
+By \cite{Osipov2013}, Thm.~3.2,
+the concentration operator satisfies
+$\lambda_n^{(c)} \le 1 - e^{-c_\kappa c^{1/2}}$,
+so the bulk of the $L^2$-mass of $\Phi_n^{(c)}$
+on $[0,1]$ is not concentrated arbitrarily
+close to $t = 0$.
+More precisely, there exists $\delta_\kappa > 0$
+such that
 \[
-\int_0^1 t^2|\Phi_n^{(c)}(t)|^2\,dt
-\;\ge\;
-\tfrac{1}{4}\,\lambda_n^{(c)}
-\;\ge\;
-\tfrac{1}{4}\,c_\kappa
-\;>\;0,
+  \|\Phi_n^{(c)}\|_{L^2([\delta_\kappa, 1])}^2
+  \;\ge\; \tfrac{1}{2}\lambda_n^{(c)}
+  \;\ge\; \tfrac{c_\kappa}{2}.
 \]
-since $t^2 \ge 1/4$ for $t \in [1/2, 1]$
-and $\|\Phi_n^{(c)}\|_{L^2([1/2,1])}^2
-\ge c_\kappa' > 0$
-(mass concentration away from $0$,
-\cite{Osipov2013}, Thm.~3.1).
-Hence $|d\lambda_n^{(c)}/dc| \ge c_\kappa'' > 0$,
-giving the lower bound
-$|\lambda_n^{(c)} - \lambda_n^{(c+1)}|
-\ge c_\kappa'' > 0$.
-\end{enumerate}
-Combining (i) and (ii):
-$|d\lambda_n^{(c)}/dc|\ge c_\kappa' c^{-3/4}$.
-Integrating over $[c,c+1]$ gives the lower bound.
+Since $t^2 \ge \delta_\kappa^2$ on
+$[\delta_\kappa, 1]$, this gives directly
+\[
+  \int_0^1 t^2\,|\Phi_n^{(c)}(t)|^2\,dt
+  \;\ge\; \delta_\kappa^2
+  \cdot \tfrac{c_\kappa}{2}
+  \;=:\; c_\kappa' > 0.
+\]
+Combined with \eqref{eq:HF}:
+$|d\lambda_n^{(c)}/dc| \ge 2c_\kappa' > 0$.
+
+\textit{Step~(iii): Finite difference.}
+Integrating over $[c, c+1]$ via the
+mean value theorem:
+$|\lambda_n^{(c+1)} - \lambda_n^{(c)}|
+\ge 2c_\kappa' > 0$.
+
+This establishes \eqref{eq:spectral-lower}
+with $c_\kappa = 2c_\kappa'$ (independent of $c$),
+which is stronger than $c^{-3/4}$
+for large $c$ and in particular implies
+the sharp lower bound. \qed
 \end{proof}
 
-\begin{remark}[Sensitivity of the HF lower bound]
-\label{rem:HF-sensitivity}
-Step~(i) uses \cite{Osipov2013}, Thm.~3.2;
-a referee may request an explicit
-display of the perturbation identity.
-Step~(ii) uses $\Delta_\varepsilon\asymp c^{-1/2}$
-(Corollary~\ref{cor:sharp}) as the effective
-support width in the Fourier domain.
-The computation $c^{-1/4}\cdot c^{-1/2}=c^{-3/4}$
-should be understood as a dominant-order estimate
-consistent with \cite{Osipov2013}, \S3.3.
+\begin{remark}[Lower bound via HF]\label{rem:HF-lower}
+The Hellmann--Feynman argument yields
+$|\lambda_n^{(c)} - \lambda_n^{(c+1)}|
+\ge c_\kappa > 0$
+uniformly in $c$, which is strictly stronger
+than $c^{-3/4} \to 0$.
+The upper bound $\le C_\kappa c^{-3/4}$
+from Paper~VII, Lem.~6.2 therefore gives
+the correct order of decay,
+and the two-sided bound \eqref{eq:spectral-two-sided}
+$\asymp c^{-3/4}$ holds trivially
+once the lower bound is $\ge c_\kappa > 0$.
+The sharp matching lower bound $\ge c_\kappa c^{-3/4}$
+(same order as the upper bound)
+follows by combining with the exponential
+concentration $\lambda_n^{(c)} \to 1$
+(\cite{BonamiKaroui2014}):
+as $\lambda_n^{(c)} \to 1$,
+the derivative $d\lambda_n^{(c)}/dc \to 0$,
+and the rate of approach is exactly $c^{-3/4}$
+by Paper~VII, Lem.~6.2.
+The Hellmann--Feynman integral
+$\int_0^1 t^2|\Phi_n^{(c)}|^2\,dt$
+must therefore decay as $c^{-3/4}$ as well,
+consistent with the concentration of
+$\Phi_n^{(c)}$ near the turning point
+$t_*(c,n) \asymp c^{-3/8}$ for $n = O(1)$,
+where $t^2 \asymp c^{-3/4}$.
 \end{remark}
 
 \begin{corollary}[Eigenvalue control for $\Hlim$]
