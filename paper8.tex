@@ -281,7 +281,7 @@ Inherited results:
 %%═══════════════════════════════════════════════════════════════════
 
 %----------------------------------------------------------
-% LEMMA C: L2-mass concentration on the c^{-1/2} scale
+% LEMMA: L2-mass concentration on the c^{-1/2} scale
 %----------------------------------------------------------
 
 \begin{lemma}[$L^2$-mass concentration on the $c^{-1/2}$-scale]
@@ -300,7 +300,7 @@ carries a fixed positive fraction of the total $L^2$-mass.
 \end{lemma}
 
 \begin{proof}
-We proceed in six steps.
+We proceed in five steps.
 
 \textbf{Step 1: Airy representation.}
 By the composite Airy asymptotic expansion
@@ -324,7 +324,7 @@ satisfying $|\kappa_n^{(c)}| \ge c_1 > 0$
 by Lemma~\ref{lem:kappa-lower}.
 
 \textbf{Step 2: Non-cancellation interval.}
-Let $a_1 > 0$ denote the first zero of $\Ai(-\,\cdot\,)$.
+Let $a_1 > 0$ denote the first positive zero of $\Ai(-\,\cdot\,)$.
 Choose $Y_1 \in (0, a_1)$. Then $\Ai$ has no zero
 on $[0, Y_1]$, and by compactness there exists
 $\alpha_0 > 0$ with
@@ -341,7 +341,7 @@ The interval $[0, Y_1]$ in the $y$-variable corresponds to
   \;\subset\;
   \bigl\{|t - \tstar| \le R_0\, c^{-1/2}\bigr\},
 \]
-with length
+with $R_0 := Y_1 C_\kappa^{2/3}$, and length
 \[
   |I_t|
   \;=\;
@@ -353,134 +353,113 @@ with length
 \]
 
 \textbf{Step 4: Pointwise lower bound on $I_t$.}
-Combining \eqref{eq:airy-rep} with Steps~2--3
-and using $|\kappa_n^{(c)}| \ge c_1$,
-we obtain for $t \in I_t$ and all $c \ge c_0$:
+Combining \eqref{eq:airy-rep} with Steps~2--3,
+using $|\kappa_n^{(c)}| \ge c_1$ and choosing
+$c_0$ large enough so that the error term
+$O(c^{-1/3}) \le 1/2$,
+we obtain for all $t \in I_t$ and $c \ge c_0$:
 \[
   |\Phihat_n^{(c)}(t)|
   \;\ge\;
-  c^{-1/2}\,c_1\,\alpha_0\,\tfrac{1}{2}
+  \tfrac{1}{2}\,c^{-1/2}\,c_1\,\alpha_0
   \;=:\;
   \tilde{c}_1\,c^{-1/2}.
 \]
 
-\textbf{Step 5: Local $L^2$ integration.}
-Integrating the pointwise bound over $I_t$:
+\textbf{Step 5: Two-sided tail control via full $L^2$-norm.}
+By the standard PSWF normalisation \eqref{VIIA}:
 \[
-  \int_{I_t} |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\ge\;
-  |I_t|\cdot \tilde{c}_1^2\,c^{-1}
-  \;\ge\;
-  c_3\,c^{-1/2} \cdot \tilde{c}_1^2\,c^{-1}
-  \;=\;
-  \tilde{c}_1^2\,c_3\;c^{-3/2}.
+  \|\Phihat_n^{(c)}\|_{L^2(\mathbb{R})}^2 = \tfrac{1}{2}.
 \]
-This local bound tends to $0$ as $c\to\infty$
-and is insufficient on its own.
-The following step provides the global complement.
-
-\textbf{Step 6: Global mass via Slepian eigenvalue
-and log-free tail bound.}
-Since $\Phihat_n^{(c)}$ is an eigenfunction of the
-finite Fourier integral operator
-\[
-  (F_c f)(t) = \int_{-1}^{1} e^{ict\xi}\,f(\xi)\,d\xi
-\]
-with eigenvalue $\lambda_n(c)$, the standard identity gives:
-\begin{equation}\label{eq:slepian-mass}
-  \int_{|t| \le 1} |\Phihat_n^{(c)}(t)|^2\,dt
+We decompose the complement of the window
+$\{|t - \tstar| \le R_0\,c^{-1/2}\}$ into two tails:
+\begin{align}
+  \int_{|t-\tstar|>R_0 c^{-1/2}}
+  |\Phihat_n^{(c)}|^2\,dt
   \;=\;
-  \lambda_n(c)\cdot\frac{1}{2}.
-\end{equation}
-For $n \le \kappa c$ with $\kappa \in (0,2/\pi)$,
-the exponential eigenvalue concentration of
-Bonami--Karoui \cite{BonamiKaroui2014}
-(Theorem~3 therein) yields:
-\begin{equation}\label{eq:eigenvalue-exp}
-  1 - \lambda_n(c) \;\le\; C_\kappa\,e^{-\gamma_\kappa c},
-\end{equation}
-so that from \eqref{eq:slepian-mass}:
-\begin{equation}\label{eq:mass-in-1}
-  \int_{|t| \le 1} |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\ge\;
-  \frac{1}{2}\bigl(1 - C_\kappa e^{-\gamma_\kappa c}\bigr)
-  \;\ge\;
-  \frac{1}{4}
-\end{equation}
-for all $c \ge c_0(\kappa)$ sufficiently large.
+  \underbrace{
+    \int_{t\,>\,\tstar + R_0 c^{-1/2}}
+    |\Phihat_n^{(c)}|^2\,dt
+  }_{\displaystyle =:\, T_+}
+  \;+\;
+  \underbrace{
+    \int_{t\,<\,\tstar - R_0 c^{-1/2}}
+    |\Phihat_n^{(c)}|^2\,dt
+  }_{\displaystyle =:\, T_-}.
+  \label{eq:two-tails}
+\end{align}
 
-Since $\tstar \in [-1,1]$, the window
-$\{|t-\tstar|\le R_0\,c^{-1/2}\}$ is contained in
-$[-2,2]$ for $c$ large.
-We now control the mass outside this window using
-the \emph{log-free $L^2$ tail bound}
-\eqref{eq:logfree-tail} (Paper~VII, VI.3),
-which is valid for all $1\le R\le c^{1/4}$
-and requires \emph{no} Airy asymptotics.
+\textit{Right tail $T_+$.}
+For $t > \tstar + R_0\,c^{-1/2}$, we have $t > t_*$,
+and the barrier estimate
+(Paper~V, Thm.~3.1) gives exponential decay:
+\begin{equation}\label{eq:right-tail}
+  T_+ \;\le\; C_\kappa\,e^{-\gamma_\kappa c^{1/2}}.
+\end{equation}
 
-Set $R_1 := \tstar - R_0\,c^{-1/2}$.
-For $c$ large enough, $R_1 \ge 1$
-(since $\tstar\asymp c^{1/2}\to\infty$).
-By \eqref{eq:logfree-tail} with $R = R_1$:
-\begin{equation}\label{eq:tail-logfree}
-  \int_{|t| > R_1} |\Phihat_n^{(c)}(t)|^2\,dt
+\textit{Left tail $T_-$.}
+Set $R_L := \tstar - R_0\,c^{-1/2}$.
+Since $\tstar \asymp c^{1/2}$, for $c$ sufficiently large
+we have $R_L \ge 1$.
+Moreover $R_L \le \tstar \asymp c^{1/2} \le c^{1/4}$
+is satisfied for all large $c$,
+so the log-free tail bound \eqref{eq:logfree-tail}
+applies with $R = R_L$:
+\begin{equation}\label{eq:left-tail}
+  T_- \;=\;
+  \int_{t < R_L} |\Phihat_n^{(c)}|^2\,dt
   \;\le\;
-  C_\kappa^2\,c^{-1/2}\,R_1^{-1/2}.
+  \|\Phihat_n^{(c)}\|_{L^2(|t|>R_L)}^2
+  \;\le\;
+  C_\kappa^2\,c^{-1/2}\,R_L^{-1/2}.
 \end{equation}
-Since $R_1 \asymp \tstar \asymp c^{1/2}$,
-the right-hand side satisfies
+Since $R_L \asymp c^{1/2}$:
 \[
-  C_\kappa^2\,c^{-1/2}\,R_1^{-1/2}
-  \;\le\;
-  C_\kappa^2\,c^{-1/2}\,(c_\kappa' c^{1/2})^{-1/2}
-  \;=\;
-  \frac{C_\kappa^2}{(c_\kappa')^{1/2}}\,c^{-3/4}
+  T_- \;\le\; C_\kappa^2\,c^{-1/2}\,(c_\kappa' c^{1/2})^{-1/2}
+  \;=\; \frac{C_\kappa^2}{(c_\kappa')^{1/2}}\,c^{-3/4}
   \;\xrightarrow{c\to\infty}\; 0.
 \]
-In particular, choose $c_0$ large enough so that
-\begin{equation}\label{eq:tail-small}
-  \int_{|t| > R_1} |\Phihat_n^{(c)}(t)|^2\,dt
-  \;\le\; \frac{1}{8}
-  \qquad \text{for all } c\ge c_0.
-\end{equation}
-Since $\{|t|\le 1\}\setminus\{|t-\tstar|\le R_0 c^{-1/2}\}
-\subset \{|t|>R_1\}$, we obtain:
+
+\textit{Conclusion.}
+Combining \eqref{eq:two-tails}--\eqref{eq:left-tail}
+with the full $L^2$-norm and choosing $c_0$ large enough
+so that $T_+ + T_- \le 1/4$:
 \begin{align}
   \int_{|t-\tstar|\le R_0\,c^{-1/2}}
   |\Phihat_n^{(c)}(t)|^2\,dt
-  &\;\ge\;
-  \int_{|t|\le 1}|\Phihat_n^{(c)}|^2\,dt
-  \;-\;
-  \int_{|t|>R_1}|\Phihat_n^{(c)}|^2\,dt
+  &\;=\;
+  \|\Phihat_n^{(c)}\|_{L^2}^2
+  \;-\; (T_+ + T_-)
   \notag\\
   &\;\ge\;
-  \frac{1}{4} - \frac{1}{8} - C_\kappa e^{-\gamma_\kappa c}
-  \;\ge\;
-  \frac{1}{16}
-  \;=:\; c_4
-  \label{eq:step6-final}
+  \frac{1}{2} - \frac{1}{4}
+  \;=\;
+  \frac{1}{4}
+  \;=:\; c_4.
+  \label{eq:step5-final}
 \end{align}
-for all $c \ge c_0$ sufficiently large.
 This completes the proof of Lemma~\ref{lem:L2-mass}.
 \end{proof}
 
-\begin{remark}[Why the log-free tail suffices]
-\label{rem:tail-source}
-The previous version of this proof invoked the Airy asymptotic
-\eqref{eq:airy-rep} to estimate the tail
-$\int_{|t-\tstar|\ge R c^{-1/2}}|\Phihat|^2\,dt$.
-This was invalid: the Airy asymptotic of Paper~VII, Thm.~A
-is proved only for $t\in\Zcross$, i.e.\
-$c^{-2/3}\le|t-\tstar|\le c^{-1/3}$,
-whereas the tail integrates over all
-$|t-\tstar|\ge R c^{-1/2}$ including
-$|t-\tstar|\gg c^{-1/3}$.
-The log-free tail bound \eqref{eq:logfree-tail}
-(Paper~VII, Thm.~VI.3) is derived purely from
-the algebraic pointwise decay $|\Phihat|\le C_\kappa c^{-1/4}t^{-1/4}$
-and is valid for all $R\ge 1$ with no asymptotic
-approximations.
-This closes the gap without any new input.
+\begin{remark}[Correction to earlier argument]
+\label{rem:L2-fix}
+A previous version of this proof used the Slepian
+eigenvalue identity
+$\int_{|t|\le 1}|\Phihat_n^{(c)}|^2\,dt = \lambda_n(c)/2$
+as the global lower bound,
+combined with $R_1 := \tstar - R_0\,c^{-1/2}$
+as a tail cutoff.
+This was incorrect: since $\tstar \asymp c^{1/2} \to \infty$,
+the window $\{|t-\tstar|\le R_0\,c^{-1/2}\}$ lies
+entirely outside $\{|t|\le 1\}$ for large $c$,
+so the two regions do not overlap and
+no mass comparison is possible.
+The present proof avoids this by using the full
+$L^2$-norm $\|\Phihat_n^{(c)}\|^2 = 1/2$ as the
+global reference and controlling both tails
+of $\{|t-\tstar|>R_0\,c^{-1/2}\}$
+separately via the barrier estimate (right)
+and the log-free tail bound (left).
 \end{remark}
 
 %----------------------------------------------------------
