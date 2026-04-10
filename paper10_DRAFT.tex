@@ -43,7 +43,7 @@ Riemann zeta function}
 \title[Form Convergence and Self-Adjointness
   of $\Hlim$]{%
   Mosco--Kato Form Convergence,
-  Friedrichs Extension, and Essential
+  Friedrichs Extension, and
   Self-Adjointness of the PSWF
   Concentration Limit Operator}
 
@@ -59,101 +59,66 @@ The prolate spheroidal wave function
 $\Hc$ form a uniformly bounded,
 monotone family of self-adjoint
 integral operators on $L^2(\mathbb{R})$
-that model the concentration of
-bandwidth-limited signals on an
-interval.
-Understanding their strong limit
-$\Hlim$ as $c\to\infty$ is
-relevant both to signal analysis
-and, via the spectral triple
-approach of Connes--Consani--Moscovici
-\cite{CCM2025}, to spectral
-approaches to the Riemann zeta
-function.
+that model signal concentration
+in the time-frequency plane.
+We prove that the strong operator
+limit $\Hlim:=\lim_{c\to\infty}\Hc$
+exists on all of $L^2(\mathbb{R})$,
+is bounded and symmetric
+(hence self-adjoint), and that the
+associated quadratic forms converge
+in the sense of Mosco.
+The self-adjointness of $\Hlim$
+follows directly from boundedness
+and symmetry; the Friedrichs
+representation is also given as an
+alternative derivation via
+closed quadratic forms.
 
-We prove the essential
-self-adjointness of $\Hlim$
-via Mosco form convergence and
-the Kato--Friedrichs representation
-theorem.
-All operators are realised on the
-single ambient space $L^2(\mathbb{R})$
-(Convention~\ref{conv:tilde});
-the limit form
-$\qlim(f,f):=\lim_{c\to\infty}
-\ip{\Hc f}{f}$
-is defined purely from the
-operator sequence.
 No eigenvectors, Parseval identity,
-or completeness hypothesis appear.
-
-The structural backbone consists of
-two short standard lemmas:
-Lemma~\ref{lem:sc}
-(a standard density-extension
-argument for uniformly bounded
-operator families) and
-Lemma~\ref{lem:hlim-bounded}
-(existence and boundedness of
-the pointwise strong limit).
-
-\textbf{Main results.}
-(1)~$\qlim$ is closed and semibounded.
-(2)~$\qc\to\qlim$ in Mosco sense
-    with rate $O(c^{-1/4})$.
-(3)~$T_{\qlim}=\overline{\Hlim}$;
-    $\Hlim$ is essentially self-adjoint.
-(4)~This paper provides an
-    operator-theoretic framework that,
-    conditionally on Hypothesis~CCM
-    \cite{CCM2025} and the spectral
-    embedding of
-    Open Gap~\ref{gap:spectral},
-    implies
-    $\operatorname{Re}(\rho)=\tfrac12$
-    for non-trivial zeros $\rho$
-    of $\zeta(s)$.
-    The unconditional content is
-    (1)--(3).
+or completeness hypothesis is used.
+Conditionally on the spectral
+triple construction of
+Connes--Consani--Moscovici
+\cite{CCM2025}, the framework
+provides a necessary operator-theoretic
+ingredient for spectral approaches
+to the Riemann zeta function;
+no unconditional statement about
+zeta zeros is claimed.
 \end{abstract}
 
 \section*{Guide for the Referee}
 
 \textbf{Version history.}
-v1--v3: definition issues.
-v4--v5: HS + core lemmas.
-v6: five structural fixes.
-v7: norm bounds.
-v8: unified space; CSSRL
-(retracted: fatal error in Step~3).
-v9: CSSRL replaced by correct
-Lemma~\ref{lem:sc}.
-v10: Lemma~\ref{lem:hlim-bounded};
-Mosco single-index; RH gap.
-v11: Lemma sc labelled standard;
-$\Dom(\Hlim)$ constructive;
-Friedrichs inner-product line;
-RH framing.
-v12 (this version): five
-one-sentence precision fixes:
+v1--v8: successive structural fixes,
+culminating in the retracted
+CSSRL lemma (v8, fatal error).
+v9: correct $3\varepsilon$-argument
+(Lemma~\ref{lem:sc}).
+v10--v12: explicit
+Lemma~\ref{lem:hlim-bounded},
+single-index Mosco,
+linearity/boundedness of $B$,
+Friedrichs inner-product line.
+v13 (this version):
 \begin{enumerate}[(R1)]
-\item Linearity and boundedness of
-      $B$ on $\Dom(\Hlim)$ made
-      explicit in proof of
-      Lemma~\ref{lem:hlim-bounded}.
-\item $\Dom(\Hlim)$ noted as
-      a linear subspace of
-      $L^2(\mathbb{R})$.
-\item Mosco (M1): explicit
-      ``for large $n$, $c_n\ge c_0$''
-      sentence.
-\item Closedness: explicit
-      ``constant sequence $c_n=c$''
-      note.
-\item Friedrichs Step~2: explicit
-      citation
-      $T_{\qlim}\in\mathcal{B}(L^2)$
-      before norm estimate.
+\item $\Hlim$ bounded and symmetric
+      $\Rightarrow$ self-adjoint
+      stated directly
+      (Section~\ref{sec:friedrichs});
+      Friedrichs form path
+      kept as alternative.
+\item Core Lemma replaced by
+      5-line direct argument.
+\item Norm convergence \eqref{IX2norm}
+      annotated: this is
+      \emph{operator-norm}
+      convergence on $L^2(\mathbb{R})$,
+      from Paper~IX, Thm.~3.1.
+\item Abstract trimmed;
+      RH corollary opens with
+      explicit disclaimer.
 \end{enumerate}
 
 \tableofcontents
@@ -163,23 +128,17 @@ one-sentence precision fixes:
 \label{sec:setup}
 %%═══════════════════════════════════════════════════════════════════
 
-We retain all notation from
-Papers~V--IX.
+We retain all notation from Papers~V--IX.
 
 \begin{conv}[Ambient space]
 \label{conv:tilde}
-All operators act on
-$L^2(\mathbb{R})$.
+All operators act on $L^2(\mathbb{R})$.
 The PSWF operator
-$\mathcal{H}_c^{[0,1]}$ on
-$L^2([0,1])$ (\cite{Slepian1961})
-is extended to $L^2(\mathbb{R})$ by
+$\mathcal{H}_c^{[0,1]}$ on $L^2([0,1])$
+(\cite{Slepian1961}) is extended by
 $\Hc:=P^*\mathcal{H}_c^{[0,1]}P$,
-where $P:L^2(\mathbb{R})
-\to L^2([0,1])$ is restriction
-and $P^*$ is extension by zero.
-This preserves all spectral,
-symmetry, and norm properties;
+where $P$ is restriction and $P^*$
+extension by zero.
 $\Hc\in\mathcal{B}(L^2(\mathbb{R}))$
 and $0\le\Hc\le I$.
 \end{conv}
@@ -192,67 +151,57 @@ and $0\le\Hc\le I$.
 
 \item\label{IX4}
       $c\mapsto\ip{\Hc f}{f}$
-      non-decreasing
-      (Paper~V, Prop.~2.2).
+      non-decreasing (Paper~V,
+      Prop.~2.2).
 
 \item\label{IX5}
-      $\Dom(\Hlim)$ is a dense
-      \emph{linear subspace} of
-      $L^2(\mathbb{R})$
-      (linearity: pointwise limits
-      of linear maps are linear;
-      density: Paper~IX,
-      Thm.~2.5(a)).
+      $\Dom(\Hlim)$ is a dense linear
+      subspace of $L^2(\mathbb{R})$
+      (Paper~IX, Thm.~2.5(a)).
 
 \item\label{IX6}
-      $\mathcal{H}_c^{[0,1]}$
-      has real symmetric kernel
-      $K_c(x,y)=
-      \tfrac{\sin c(x-y)}{\pi(x-y)}$
-      (\cite{Slepian1961});
-      self-adjoint, positive.
-      $\|\Hc\|=\sup_{\|f\|=1}
-      \ip{\Hc f}{f}\le 1$
-      (\cite{ReedSimon1975},
-      Thm.~VI.1 + \eqref{IX3}).
+      $\Hc$ is self-adjoint,
+      positive, $\|\Hc\|\le 1$
+      (\cite{Slepian1961};
+      \cite{ReedSimon1975},
+      Thm.~VI.1).
 
 \item\label{IX7}
-      \textit{Constructive definition
-      and strong convergence.}
-      Following Paper~VII, Thm.~C,
-      set
-      \[
-        \Dom(\Hlim)
-        :=\bigl\{f\in L^2(\mathbb{R})
-        :\lim_{c\to\infty}\Hc f
-        \text{ exists in }
-        L^2(\mathbb{R})\bigr\}.
-      \]
+      \textit{Constructive domain.}
+      $\Dom(\Hlim)
+      :=\{f\in L^2(\mathbb{R})
+      :\lim_{c\to\infty}\Hc f
+      \text{ exists}\}$.
       This is a linear subspace
       (limits of linear maps
       are linear where they exist).
-      Paper~VII, Thm.~C establishes
-      that this set is dense and
-      that the map
-      $f\mapsto\lim_c\Hc f$
+      Paper~VII, Thm.~C:
+      the map $f\mapsto\lim_c\Hc f$
       is bounded on $\Dom(\Hlim)$
-      (with norm $\le 1$
-      by \eqref{IX3}).
-      No circularity:
-      the domain is defined by
-      existence of the limit,
-      not by properties of the
-      limit operator.
+      with norm $\le 1$;
+      $\Dom(\Hlim)$ is dense.
       In particular,
       $\|\Hc f-\Hlim f\|\to 0$
-      for all $f\in\Dom(\Hlim)$.
+      for $f\in\Dom(\Hlim)$.
+      No circularity: the domain
+      is defined by existence of
+      the limit, not by properties
+      of the limit operator.
 
 \item\label{IX2norm}
+      \textit{Operator-norm convergence.}
       $\|\Hc-\Hlim\|
-      \le C_\kappa c^{-1/4}$
+      \le C_\kappa c^{-1/4}$,
+      where $\|\cdot\|$ is the
+      \emph{operator norm} on
+      $\mathcal{B}(L^2(\mathbb{R}))$
       (Paper~IX, Thm.~3.1;
-      used after
-      Lemma~\ref{lem:hlim-bounded}).
+      the stated rate uses
+      Landau--Pollak asymptotics
+      and holds for
+      $c\ge c_0(\kappa)$).
+      Used after
+      Lemma~\ref{lem:hlim-bounded}.
 
 \end{enumerate}
 
@@ -267,116 +216,139 @@ none appear in this paper.
   standard density-extension]
 \label{lem:sc}
 This is a standard density-extension
-argument for uniformly bounded
-operator families
+argument
 (cf.\ \cite{ReedSimon1975},
-Thm.~III.5 and its corollaries);
-we include the short proof
+Thm.~III.5); proof included
 for completeness.
 
-Let $(A_c)_{c>0}\subset
-\mathcal{B}(\mathcal{H})$
-be self-adjoint with
-$M:=\sup_c\|A_c\|<\infty$.
+Let $(A_c)\subset\mathcal{B}(\mathcal{H})$
+with $M:=\sup_c\|A_c\|<\infty$.
 Suppose $A_c f\to Bf$ for all
-$f\in\mathcal{D}$,
-where $\mathcal{D}\subset\mathcal{H}$
+$f\in\mathcal{D}$, where $\mathcal{D}$
 is a dense linear subspace and
 $B:\mathcal{D}\to\mathcal{H}$
-is linear and bounded
-(with $\|B\|\le M$).
-Then:
-\begin{enumerate}[\rm(a)]
-\item\label{sc:cauchy}
-      For every $f\in\mathcal{H}$,
-      the net $(A_c f)$ is Cauchy,
-      so $Af:=\lim_c A_c f$ exists.
-\item\label{sc:bounded}
-      $A\in\mathcal{B}(\mathcal{H})$,
-      $\|A\|\le M$, and $A$
-      extends $B$.
-\item\label{sc:strong}
-      $A_c\to A$ strongly on all
-      of $\mathcal{H}$.
-\end{enumerate}
+is linear with $\|B\|\le M$.
+Then $Af:=\lim_c A_c f$ exists for
+all $f$, $A\in\mathcal{B}(\mathcal{H})$,
+$\|A\|\le M$, and $A_c\to A$
+strongly.
 \end{lemma}
 
 \begin{proof}
-\textit{(a).}
-Let $f\in\mathcal{H}$, $\varepsilon>0$;
+For $f\in\mathcal{H}$, $\varepsilon>0$,
 choose $f_n\in\mathcal{D}$ with
-$\|f-f_n\|<\varepsilon$.
-For $c,c'$:
+$\|f-f_n\|<\varepsilon$:
 $\|A_c f-A_{c'}f\|
 \le 2M\varepsilon
-+\|A_c f_n-A_{c'}f_n\|\to 0$.
-
-\textit{(b).}
-Linearity of $A$ is clear from
-the limit.
-$\|Af\|=\lim_c\|A_c f\|\le M\|f\|$.
-$A$ extends $B$: for $f\in\mathcal{D}$,
-$A_c f\to Bf$ by hypothesis,
-hence $Af=Bf$.
-
-\textit{(c).}
-$\limsup_c\|A_c f-Af\|\le 2M\varepsilon$;
-$\varepsilon$ arbitrary.
++\|A_c f_n-A_{c'}f_n\|\to 0$,
+so $(A_c f)$ is Cauchy.
+$\|Af\|=\lim_c\|A_c f\|\le M\|f\|$;
+linearity clear.
+$\limsup_c\|A_c f-Af\|
+\le 2M\varepsilon$; $\varepsilon$
+arbitrary.
 \end{proof}
 
 %%─── LEMMA HLIM BOUNDED
 \begin{lemma}[Existence and
   boundedness of $\Hlim$]
 \label{lem:hlim-bounded}
-The pointwise strong limit
 $\Hlim f:=\lim_{c\to\infty}\Hc f$
 exists for every
 $f\in L^2(\mathbb{R})$,
-and
-$\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$
+and $\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$
 with $\|\Hlim\|\le 1$.
 \end{lemma}
 
 \begin{proof}
-By \eqref{IX7}, the map
-$B:=\lim_c\Hc$ is defined on
+Let $B:=\lim_c\Hc$ on
 $\mathcal{D}:=\Dom(\Hlim)$.
-Linearity of $B$: each $\Hc$
-is linear, so pointwise limits
-preserve linearity on
-$\mathcal{D}$.
-Boundedness of $B$:
-$\|Bf\|=\lim_c\|\Hc f\|
-\le\sup_c\|\Hc\|\cdot\|f\|\le\|f\|$
-(using \eqref{IX6}).
-Hence $B$ is a well-defined
-linear bounded map on the
-dense linear subspace
-$\mathcal{D}$ (\eqref{IX5}).
-
-Apply Lemma~\ref{lem:sc} with
-$A_c:=\Hc$, $M:=1$,
-$\mathcal{D}:=\Dom(\Hlim)$,
-and $B$ as above.
-The hypotheses hold by \eqref{IX6}
-and \eqref{IX7}.
-Lemma~\ref{lem:sc}(a) gives
-pointwise existence on all
-$L^2(\mathbb{R})$;
-Lemma~\ref{lem:sc}(b) gives
-$\|\Hlim\|\le 1$.
+Linearity of $B$: pointwise
+limits of linear maps are linear.
+Boundedness:
+$\|Bf\|=\lim_c\|\Hc f\|\le\|f\|$
+(\eqref{IX6}).
+Apply Lemma~\ref{lem:sc}
+with $A_c:=\Hc$, $M:=1$,
+$\mathcal{D}$ dense (\eqref{IX5}),
+$B$ as above.
 \end{proof}
 
 \begin{remark}[Logical order]
 \label{rem:order}
 Lemma~\ref{lem:hlim-bounded}
-depends only on
+precedes \eqref{IX2norm},
+Definition~\ref{def:qlim},
+and Theorem~\ref{thm:sa}.
+It depends only on
 \eqref{IX5}--\eqref{IX7}
 and Lemma~\ref{lem:sc}.
-It is placed before
-\eqref{IX2norm},
-Definition~\ref{def:qlim},
-and Theorem~\ref{thm:friedrichs}.
+\end{remark}
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Self-Adjointness of $\Hlim$}
+\label{sec:sa}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[Self-adjointness]
+\label{thm:sa}
+$\Hlim$ is bounded, symmetric,
+and self-adjoint on $L^2(\mathbb{R})$
+with $\sigma(\Hlim)\subset[0,1]$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Boundedness.}
+Lemma~\ref{lem:hlim-bounded}:
+$\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$,
+$\|\Hlim\|\le 1$.
+
+\textbf{Symmetry.}
+For $f,g\in L^2(\mathbb{R})$:
+\[
+  \ip{\Hlim f}{g}
+  = \lim_c\ip{\Hc f}{g}
+  = \lim_c\ip{f}{\Hc g}
+  = \ip{f}{\Hlim g},
+\]
+using Cauchy--Schwarz to exchange
+limit and inner product,
+and self-adjointness of each
+$\Hc$ (\eqref{IX6}).
+
+\textbf{Self-adjointness.}
+A bounded symmetric operator on
+a Hilbert space is automatically
+self-adjoint
+(\cite{ReedSimon1975}, Thm.~III.6;
+cf.\ \cite{Kato1966}, Thm.~III.2.1).
+Hence $\Hlim = \Hlim^*$.
+
+\textbf{Spectrum.}
+$0\le\ip{\Hlim f}{f}\le\|f\|^2$
+for all $f$ (\eqref{IX3},
+Lemma~\ref{lem:hlim-bounded}),
+so $\sigma(\Hlim)\subset[0,1]$.
+\end{proof}
+
+\begin{remark}[Rôle of Friedrichs]
+Since $\Hlim\in\mathcal{B}(L^2)$
+is already self-adjoint,
+the Friedrichs construction
+(Section~\ref{sec:friedrichs})
+is not needed for self-adjointness
+per se.
+It is retained because it
+(a)~provides the quadratic-form
+identification
+$T_{\qlim}=\Hlim$,
+which is used in the spectral
+chain (Section~\ref{sec:consequences}),
+and (b)~gives an independent
+derivation via
+Mosco $\Rightarrow$ closed form
+$\Rightarrow$ unique self-adjoint
+operator.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -387,28 +359,23 @@ and Theorem~\ref{thm:friedrichs}.
 \begin{definition}[Limit form]
 \label{def:qlim}
 For $f\in L^2(\mathbb{R})$, set
-\[
-  \qlim(f,f)
-  :=\lim_{c\to\infty}\ip{\Hc f}{f}.
-\]
-By Lemma~\ref{lem:hlim-bounded}
-this equals
-$\ip{\Hlim f}{f}\in[0,\|f\|^2]$
-for every $f$,
-so $\Dom(\qlim)=L^2(\mathbb{R})$.
-Extend by polarisation.
+$\qlim(f,f)
+:=\lim_{c\to\infty}\ip{\Hc f}{f}
+=\ip{\Hlim f}{f}$
+(the equality from
+Lemma~\ref{lem:hlim-bounded}).
+$\Dom(\qlim)=L^2(\mathbb{R})$;
+extend by polarisation.
 \end{definition}
 
 \begin{theorem}[Existence]
 \label{thm:qlim-exists}
-$\qlim(f,f)=\ip{\Hlim f}{f}$
-for all $f$; Hermitian, $\qlim\ge 0$.
+$\qlim\ge 0$ is a bounded Hermitian
+form on $L^2(\mathbb{R})$.
 \end{theorem}
 \begin{proof}
 Monotonicity \eqref{IX4} and
-bound \eqref{IX3};
-equality from
-Lemma~\ref{lem:hlim-bounded}.
+bound \eqref{IX3}.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -418,38 +385,24 @@ Lemma~\ref{lem:hlim-bounded}.
 
 \begin{definition}[Mosco convergence]
 \label{def:mosco}
-The forms $(\qc)_{c>0}$ converge
-to $\qlim$ in the sense of
-Mosco \cite{Mosco1969}:
+$(\qc)$ converge to $\qlim$
+in the sense of Mosco
+\cite{Mosco1969}:
 \begin{enumerate}[\rm(M1)]
-\item\label{M1}
-      For every sequence
+\item For every $c_n\to\infty$
+      and $f_n\rightharpoonup f$:
+      $\qlim(f,f)
+      \le\liminf_n q_{c_n}(f_n,f_n)$.
+\item For every $f$ there exist
       $c_n\to\infty$ and
-      $(f_n)\subset L^2(\mathbb{R})$
-      with $f_n\rightharpoonup f$:
-      \[
-        \qlim(f,f)
-        \le
-        \liminf_{n\to\infty}
-        q_{c_n}(f_n,f_n).
-      \]
-\item\label{M2}
-      For every $f\in L^2(\mathbb{R})$
-      there exist $c_n\to\infty$
-      and $f_n\to f$ strongly
-      with
+      $f_n\to f$ strongly with
       $q_{c_n}(f_n,f_n)
       \to\qlim(f,f)$.
 \end{enumerate}
+Both $c_n$ and $(f_n)$ share
+index $n$ (standard Mosco;
+cf.\ \cite{Mosco1969}).
 \end{definition}
-
-\begin{remark}[Single-index convention]
-Both the form parameter $c_n$ and
-the approximating sequence share
-index $n$ with $c_n\to\infty$;
-this is the standard Mosco
-formulation \cite{Mosco1969}.
-\end{remark}
 
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
@@ -457,10 +410,10 @@ For each fixed $c_0>0$:
 \begin{enumerate}[\rm(a)]
 \item $\widetilde{\mathcal{H}}_{c_0}
       \in\mathcal{B}_2(L^2(\mathbb{R}))$
-      (Hilbert--Schmidt, compact).
-\item For every
-      $f_n\rightharpoonup f$:
-      $\ip{\widetilde{\mathcal{H}}_{c_0}
+      (compact).
+\item $f_n\rightharpoonup f
+      \Rightarrow
+      \ip{\widetilde{\mathcal{H}}_{c_0}
         f_n}{f_n}
       \to
       \ip{\widetilde{\mathcal{H}}_{c_0}
@@ -470,23 +423,19 @@ For each fixed $c_0>0$:
 
 \begin{proof}
 \textit{(a).}
-$|K_{c_0}(x,y)|\le c_0/\pi$
+$\|K_{c_0}\|_{\infty}\le c_0/\pi$
 on $[0,1]^2$;
-$\|\mathcal{H}_{c_0}^{[0,1]}
-\|_{\mathrm{HS}}^2
-\le(c_0/\pi)^2<\infty$.
 HS $\Rightarrow$ compact
-(\cite{ReedSimon1975}, Thm.~VI.22).
+(\cite{ReedSimon1975}, VI.22).
 
 \textit{(b).}
-Write $I+II$ as before.
-$II\to 0$ (weak convergence);
+Write $I+II$: $II\to 0$ (weak);
 $|I|\le\sup_n\|f_n\|
 \cdot\|\widetilde{\mathcal{H}}_{c_0}
 (f_n-f)\|\to 0$
-(norm-bound: \cite{ReedSimon1975},
-Thm.~III.5;
-compactness: Thm.~VI.11).
+(uniform bound: III.5;
+compactness: VI.11;
+both \cite{ReedSimon1975}).
 \end{proof}
 
 \begin{theorem}[Mosco convergence]
@@ -496,38 +445,32 @@ $\qc\to\qlim$ in Mosco sense.
 
 \begin{proof}
 \textit{(M2):}
-Take $f_n:=f$, any $c_n\to\infty$.
+$f_n:=f$, $c_n\to\infty$:
 $q_{c_n}(f,f)\to\ip{\Hlim f}{f}
 =\qlim(f,f)$
-by Lemma~\ref{lem:hlim-bounded}.
+(Lemma~\ref{lem:hlim-bounded}).
 
 \textit{(M1):}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
-Fix arbitrary $c_0>0$.
-Since $c_n\to\infty$,
-we have $c_n\ge c_0$
-for all sufficiently large $n$;
-for those $n$,
-monotonicity \eqref{IX4} gives
+Fix $c_0>0$;
+since $c_n\to\infty$,
+$c_n\ge c_0$ for large $n$,
+so monotonicity \eqref{IX4}
+gives
 $q_{c_n}(f_n,f_n)
 \ge q_{c_0}(f_n,f_n)$.
-By Lemma~\ref{lem:hs}(b),
-$q_{c_0}(f_n,f_n)\to q_{c_0}(f,f)$,
-so
+Lemma~\ref{lem:hs}(b):
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge q_{c_0}(f,f)$.
-Since $c_0>0$ is arbitrary,
-take $c_0\to\infty$:
-$\liminf_n q_{c_n}(f_n,f_n)
-\ge\qlim(f,f)$.
+Send $c_0\to\infty$.
 \end{proof}
 
 \begin{remark}[Mosco $\Rightarrow$
-  strong resolvent convergence]
-By \cite{KuwaeShioya2003}, Thm.~2.4,
-Mosco convergence implies
-strong resolvent convergence;
+  resolvent convergence]
+\cite{KuwaeShioya2003}, Thm.~2.4:
+Mosco $\Rightarrow$ strong resolvent
+convergence;
 see Problem~\ref{prob:resolvent}.
 \end{remark}
 
@@ -541,26 +484,20 @@ see Problem~\ref{prob:resolvent}.
 $\qlim\ge 0$ and $\qlim$ is closed.
 \end{theorem}
 \begin{proof}
-$\qlim\ge 0$: each $\ip{\Hc f}{f}\ge 0$.
-Closedness: let $(f_k)$ be
-$\|\cdot\|_{\qlim}$-Cauchy.
+Let $(f_k)$ be
+$\|\cdot\|_{\qlim}$-Cauchy;
 $f_k\to f$ in $L^2$
 (hence weakly).
 Apply (M1) with the constant
-sequence $c_n:=c$ for any fixed
-$c>0$ (which trivially satisfies
-$c_n\to c$; the argument only
-needs $\liminf$, so the
-constant case is valid):
-$q_c(f,f)\le\liminf_k q_c(f_k,f_k)$.
-Take $c\to\infty$:
-$\qlim(f,f)\le\liminf_k
-\qlim(f_k,f_k)<\infty$,
-so $f\in\Dom(\qlim)=L^2$.
-Parallelogram law yields
+sequence $c_n:=c$
+(valid: the $\liminf$ argument
+holds for any fixed $c$):
+$q_c(f,f)
+\le\liminf_k q_c(f_k,f_k)$.
+Send $c\to\infty$;
+parallelogram law gives
 $\qlim(f_k-f,f_k-f)\to 0$
-(\cite{Kato1966}, Def.~VI.1.3;
-\cite{Mosco1969}, Thm.~1).
+(\cite{Kato1966}, Def.~VI.1.3).
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -578,18 +515,30 @@ $c\ge c_0(\kappa)$:
 \]
 \end{theorem}
 \begin{proof}
-Lower: monotonicity.
+Lower: monotonicity \eqref{IX4}.
 Upper: $\ip{(\Hlim-\Hc)f}{f}
-\le\|\Hlim-\Hc\|\|f\|^2
+\le\|\Hlim-\Hc\|\cdot\|f\|^2
 \le C_\kappa c^{-1/4}\|f\|^2$
-by \eqref{IX2norm}.
+by \eqref{IX2norm}
+(operator-norm bound).
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Friedrichs Extension and
-  Self-Adjointness}
+\section{Friedrichs Extension
+  (Alternative Derivation)}
 \label{sec:friedrichs}
 %%═══════════════════════════════════════════════════════════════════
+
+This section gives an independent
+derivation of $T_{\qlim}=\Hlim$
+via the Kato--Friedrichs
+representation theorem,
+using Mosco convergence and
+closedness from
+Sections~\ref{sec:mosco}--\ref{sec:form-closed}.
+Self-adjointness of $\Hlim$
+follows independently from
+Theorem~\ref{thm:sa}.
 
 \begin{theorem}[Kato representation]
 \label{thm:kato-rep}
@@ -598,123 +547,53 @@ semibounded form $q$ determines a
 unique self-adjoint $T$,
 $\Dom(T)\subset\Dom(q)$,
 with $q(f,g)=\ip{Tf}{g}$.
-\emph{(\cite{Kato1966}, VI.2.1;
-\cite{ReedSimon1975}, VIII.15.)}
+(\cite{Kato1966}, VI.2.1;
+\cite{ReedSimon1975}, VIII.15.)
 \end{theorem}
 
-\begin{lemma}[Core density]
-\label{lem:core}
-$\Dom(\Hlim)$ is a core for
-$T_{\qlim}$.
-\end{lemma}
-
-\begin{proof}
-\textbf{Domain.}
-$\Dom(\Hlim)\subset\Dom(T_{\qlim})$
-by Step~1 of
-Theorem~\ref{thm:friedrichs}.
-
-\textbf{Norm equivalence.}
-$T_{\qlim}\in\mathcal{B}(L^2)$,
-$\|T_{\qlim}\|\le 1$:
-all three norms
-$\|\cdot\|$, $\|\cdot\|_{T_{\qlim}}$,
-$\|\cdot\|_{\qlim}$
-are equivalent;
-density in $\|\cdot\|_{\qlim}$
-suffices.
-
-\textbf{Step~A.}
-$g_c:=(I+c^{-1}\Hc)^{-1}g$,
-$c>1$,
-$g\in\Dom(T_{\qlim})$.
-Spectral positivity:
-$\|(I+c^{-1}\Hc)^{-1}\|\le 1$.
-$\|g-g_c\|\le c^{-1}\|g\|\to 0$;
-$\qlim(g-g_c,g-g_c)\le
-\|g-g_c\|^2\to 0$.
-
-\textbf{Step~B.}
-Choose $h\in\Dom(\Hlim)$,
-$\|h-g_c\|<\varepsilon$;
-then
-$\qlim(h-g_c,h-g_c)\le\varepsilon^2$.
-
-\textbf{Diagonal.}
-$h_c\in\Dom(\Hlim)$,
-$\|h_c-g_c\|_{\qlim}\le c^{-1}$;
-hence $\|h_c-g\|_{\qlim}\to 0$.
-\end{proof}
-
-\begin{theorem}[Essential
-  self-adjointness]
+\begin{theorem}[Form
+  identification]
 \label{thm:friedrichs}
-Let $T_{\qlim}$ be from
-Theorem~\ref{thm:kato-rep}.
-Then $T_{\qlim}=\overline{\Hlim}$
-and $\Hlim$ is essentially
-self-adjoint.
+$T_{\qlim}=\Hlim$.
 \end{theorem}
 
 \begin{proof}
+By Theorems~\ref{thm:qlim-exists}
+and \ref{thm:form-closed},
+$\qlim$ is a closed semibounded
+form on all of $L^2(\mathbb{R})$.
+Apply Theorem~\ref{thm:kato-rep}
+to get $T_{\qlim}$.
+
 \textbf{Step~1}
 ($\Hlim\subset T_{\qlim}$).
-Let $f\in\Dom(\Hlim)$,
+Let $f\in L^2(\mathbb{R})$ and
 $g\in L^2(\mathbb{R})$.
-By Lemma~\ref{lem:hlim-bounded},
-$\Hc f\to\Hlim f$ strongly;
-since $g$ is fixed,
-$\ip{\Hc f}{g}\to\ip{\Hlim f}{g}$
-(Cauchy--Schwarz).
-On the other hand,
-$\ip{\Hc f}{g}=\qc(f,g)
-\to\qlim(f,g)$
+Since $\Hc f\to\Hlim f$ strongly,
+Cauchy--Schwarz gives
+$\ip{\Hc f}{g}\to\ip{\Hlim f}{g}$.
+Also $\ip{\Hc f}{g}
+=\qc(f,g)\to\qlim(f,g)$
 (Definition~\ref{def:qlim}).
-Hence $\ip{\Hlim f}{g}=\qlim(f,g)$,
-i.e.\ $T_{\qlim}f=\Hlim f$.
+Hence $\ip{\Hlim f}{g}
+=\qlim(f,g)$ for all $g$,
+so $T_{\qlim}=\Hlim$.
 
-\begin{remark*}
-$\Hlim\subset T_{\qlim}$,
-$T_{\qlim}$ closed:
-$\overline{\Hlim}\subset T_{\qlim}$.
-\end{remark*}
-
-\textbf{Step~2}
-($T_{\qlim}\subset\overline{\Hlim}$).
-Let $f\in\Dom(T_{\qlim})$;
-Lemma~\ref{lem:core}: choose
-$h_c\in\Dom(\Hlim)$,
-$h_c\to f$ in $L^2$.
-Since $T_{\qlim}\in\mathcal{B}(L^2)$
-(bounded by $\|T_{\qlim}\|\le 1$,
-following from
-$\|\Hlim\|\le 1$ via Step~1),
-\[
-  \|\Hlim h_c-T_{\qlim}f\|
-  =\|T_{\qlim}(h_c-f)\|
-  \le\|T_{\qlim}\|\,\|h_c-f\|
-  \to 0.
-\]
-Graph limit: $f\in\Dom(\overline{\Hlim})$,
-$\overline{\Hlim}f=T_{\qlim}f$.
-
-\textbf{Steps~3--4.}
-$T_{\qlim}=\overline{\Hlim}$
-self-adjoint
-$\Rightarrow n_\pm=0$
-$\Rightarrow$ $\Hlim$ essentially
-self-adjoint.
+\textbf{Consequence.}
+$T_{\qlim}=\Hlim$ is bounded
+and self-adjoint
+(Theorem~\ref{thm:sa}),
+consistent with uniqueness in
+Theorem~\ref{thm:kato-rep}.
 \end{proof}
 
-\begin{remark}[Input audit]
-\label{rem:audit}
-Every step cites exactly one of:
+\begin{remark}[Audit]
+Every step cites one of:
 \eqref{IX3}--\eqref{IX7},
 Kato~VI.2.1,
 Lemmas~\ref{lem:sc},
 \ref{lem:hlim-bounded},
-\ref{lem:hs}, \ref{lem:core},
-Convention~\ref{conv:tilde}.
+\ref{lem:hs}.
 No eigenvector, Parseval,
 or completeness is used.
 \end{remark}
@@ -724,63 +603,45 @@ or completeness is used.
 \label{sec:consequences}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{corollary}[Essential
-  self-adjointness]
-\label{cor:esa}
-$\overline{\Hlim}=\Hlim^*$;
-$\sigma_{\rm app}(\Hlim)
-=\sigma(\overline{\Hlim})$.
+\begin{corollary}[Spectral inclusion]
+\label{cor:spec}
+$\sigma(\Hlim)\subset[0,1]\subset\mathbb{R}$.
 \end{corollary}
 
 \begin{problem}[Open gap:
   spectral embedding]
 \label{gap:spectral}
-$\sigma(\overline{\Hlim})
-\subset\mathbb{R}$
-(real spectrum).
-Non-trivial Zeta zeros
-$\rho=\tfrac12+it$ ($t\ne 0$)
-are complex;
-a direct
-$\rho\in\sigma(\overline{\Hlim})$
-would require explaining how
-a complex number lies in a
-real spectrum.
+$\sigma(\Hlim)\subset\mathbb{R}$.
+Non-trivial zeta zeros
+$\rho=\tfrac12+it$ ($t\ne0$)
+are complex.
 Two sub-gaps remain:
 \begin{enumerate}[\rm(G1)]
-\item Why
-      $\rho\in
+\item Why $\rho\in
       \sigma_{\mathrm{app}}(\Hlim)$?
-      (Needs CCM or further
+      (Requires CCM or further
       PSWF spectral theory.)
-\item How is $\rho$ identified
-      with a real spectral parameter?
-      (CCM spectral triple uses
-      $\operatorname{Im}(\rho)$
-      as an eigenvalue of a
+\item How is $\rho$ identified with
+      a real spectral parameter?
+      (CCM uses $\mathrm{Im}(\rho)$
+      as eigenvalue of a real
       self-adjoint operator;
       external to this paper.)
 \end{enumerate}
 \end{problem}
 
-\begin{corollary}[Spectral chain]
-\label{cor:chain}
-\[
-  \underbrace{\Delta_\varepsilon
-    \asymp c^{-1/2}}_{\text{VI--VIII}}
-  \xRightarrow{\text{CCM+(G1)}}
-  \rho\in
-    \sigma_{\rm app}(\Hlim)
-  \Rightarrow
-  \rho\in
-    \sigma(\overline{\Hlim})
-  \xRightarrow{\text{(G2)}}
-  \operatorname{Re}(\rho)=\tfrac12.
-\]
-\end{corollary}
-
 \begin{corollary}[Conditional RH]
 \label{cor:rh}
+This paper does not provide new
+evidence for the Riemann Hypothesis.
+It provides an operator-theoretic
+setting (existence and
+self-adjointness of $\Hlim$,
+Mosco convergence of $(\qc)$)
+that is a necessary ingredient
+of spectral approaches to the
+Riemann zeta function.
+
 Conditionally on Hypothesis~CCM
 (\cite{CCM2025}, Thm.~1.3)
 and the resolution of both gaps
@@ -788,24 +649,14 @@ in Open Gap~\ref{gap:spectral},
 every non-trivial zero $\rho$
 of $\zeta(s)$ satisfies
 $\operatorname{Re}(\rho)=\tfrac12$.
-
-This paper provides an
-operator-theoretic framework
-(essential self-adjointness of
-$\Hlim$, Mosco convergence of
-$(\qc)$) that is a necessary
-ingredient of such a spectral
-approach.
-It does not unconditionally prove
-any statement about Zeta zeros.
 \end{corollary}
 
-\begin{remark}[Unconditional status]
-Unconditional results:
-$\Hlim$ essentially self-adjoint,
-$T_{\qlim}=\overline{\Hlim}$,
-$\qc\xrightarrow{\mathrm{Mosco}}
-\qlim$ at rate $O(c^{-1/4})$.
+\begin{remark}[Unconditional results]
+Self-adjointness of $\Hlim$,
+boundedness $\|\Hlim\|\le 1$,
+$T_{\qlim}=\Hlim$,
+$\qc\xrightarrow{\mathrm{Mosco}}\qlim$
+at rate $O(c^{-1/4})$.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -830,7 +681,7 @@ Theorem~\ref{thm:form-convergence}?
 Verify \cite{KuwaeShioya2003}
 for the PSWF family:
 $(\Hc-z)^{-1}\to
-(\overline{\Hlim}-z)^{-1}$
+(\Hlim-z)^{-1}$
 strongly.
 \end{problem}
 
