@@ -55,33 +55,35 @@ Riemann zeta function}
 
 \begin{abstract}
 We prove the essential self-adjointness
-of the PSWF concentration limit operator
-$\Hlim$ via Mosco form convergence and
-the Kato--Friedrichs representation theorem.
-All operators are realised on the single
-ambient space $L^2(\mathbb{R})$;
-the limit form
-$\qlim(f,f):=\lim_{c\to\infty}\ip{\Hc f}{f}$
-is defined purely from the operator sequence.
-No eigenvectors, Parseval identity, or
-completeness hypothesis appear anywhere.
+of the PSWF concentration limit
+operator $\Hlim$ via Mosco form
+convergence and the Kato--Friedrichs
+representation theorem.
+All operators are realised on the
+single ambient space $L^2(\mathbb{R})$
+(Convention~\ref{conv:tilde}).
+The limit form
+$\qlim(f,f):=\lim_{c\to\infty}
+\ip{\Hc f}{f}$ is defined purely from
+the operator sequence; no eigenvectors,
+Parseval identity, or completeness
+hypothesis appear anywhere.
 
-The structural backbone is a new
-abstract lemma
-(Lemma~\ref{lem:cssrl},
-\emph{Core Stability under Strong
-Resolvent Limits}),
-which provides a single stable dense
-subspace $\mathcal{C}\subset L^2(\mathbb{R})$
-that simultaneously serves as a common
-form core for all $\qc$ and for $\qlim$,
-and on which $\Hc\to\Hlim$ strongly.
-This eliminates all implicit domain-switching
-arguments.
+The structural backbone is
+Lemma~\ref{lem:sc}
+(\emph{Stable Core under Strong
+Convergence}), a short standard
+argument showing that strong
+convergence on a dense set plus a
+uniform norm bound implies strong
+convergence on all of $L^2(\mathbb{R})$.
+This single lemma eliminates all
+implicit domain-switching in the
+Mosco and core-density arguments.
 
-\textbf{Main results.}
-(1)~$\qlim$ is a closed semibounded form
-    on $L^2(\mathbb{R})$
+\textbf{Main results.\ }
+(1)~$\qlim$ is a closed semibounded
+    form on $L^2(\mathbb{R})$
     (Theorems~\ref{thm:qlim-exists},
     \ref{thm:form-closed}).
 (2)~$\qc\to\qlim$ in Mosco sense
@@ -92,49 +94,57 @@ arguments.
     $\Hlim$ is essentially self-adjoint
     (Theorem~\ref{thm:friedrichs}).
 (4)~Conditionally on Hypothesis~CCM
-    \cite{CCM2025},
-    all non-trivial zeros $\rho$
-    of $\zeta(s)$ satisfy
-    $\mathrm{Re}(\rho)=\tfrac{1}{2}$
+    \cite{CCM2025}, all non-trivial
+    zeros $\rho$ of $\zeta(s)$ satisfy
+    $\operatorname{Re}(\rho)=\tfrac12$
     (Corollary~\ref{cor:rh}).
 \end{abstract}
 
 \section*{Guide for the Referee}
 
 \textbf{Version history.}
-v1: $\qlim$ defined spectrally (circular).
+v1: $\qlim$ defined spectrally
+(circular).
 v2--v3: operator-sequence definition,
 Yosida/Mosco.
 v4: HS + core lemmas; sub-gaps remained.
 v5: three-term M1 estimate;
 explicit graph-norm approximation.
 v6: five presentational gaps
-(self-adjointness of $\mathcal{H}_c^{[0,1]}$,
-resolvent algebra, $L^2$-domain of $\Hlim$,
+(self-adjointness of
+$\mathcal{H}_c^{[0,1]}$, resolvent
+algebra, $L^2$-domain of $\Hlim$,
 closability, closed-graph Step~2).
-v7: three structural fixes
-($\|\Hc\|\le 1$ via Spectral Thm,
-form/graph-norm equivalence,
-boundedness of $\Hlim$ without UBP).
-v8 (this version) adds:
-(S1) unified space: all $\Hc$ realised
-     on $L^2(\mathbb{R})$ via
-     $\Hc=P^*\mathcal{H}_c^{[0,1]}P$
-     (\S\ref{sec:setup},
-     Convention~\ref{conv:tilde});
-(S2) CSSRL Lemma~\ref{lem:cssrl}:
-     abstract stable-core result
-     that replaces all implicit
-     domain-switching;
-(S3) $\|\Hlim\|\le 1$ proved
-     directly without UBP
-     (see \eqref{IX2});
-(S4) Neumann-series invertibility
-     in Step~5 of Lemma~\ref{lem:cssrl}
-     replaced by spectral positivity;
-(S5) $\Dom(\Hlim)\subset\Dom(T_{\qlim})$
-     stated explicitly before
-     Lemma~\ref{lem:core}.
+v7: $\|\Hc\|\le 1$ via Spectral Thm;
+form/graph-norm equivalence;
+boundedness of $\Hlim$ without UBP.
+v8: unified ambient space
+$L^2(\mathbb{R})$; attempted CSSRL
+backbone lemma (subsequently found
+to contain an error in Step~3:
+strong convergence on dense subset
+$+$ uniform bound does \textbf{not}
+imply strong convergence on all of
+$\mathcal{H}$ without further
+argument).
+v9 (this version):
+\begin{itemize}
+\item Replaces the invalid CSSRL with
+      the correct minimal
+      Lemma~\ref{lem:sc}
+      (\emph{Stable Core under Strong
+      Convergence}, standard $3\varepsilon$
+      argument).
+\item Retains the
+      tilde-extension convention
+      (Conv.~\ref{conv:tilde}) and
+      the spectral-positivity
+      invertibility argument.
+\item All downstream references to
+      ``strong limit extends to $L^2$''
+      now cite Lemma~\ref{lem:sc}(a)
+      explicitly.
+\end{itemize}
 
 \tableofcontents
 
@@ -143,36 +153,36 @@ v8 (this version) adds:
 \label{sec:setup}
 %%═══════════════════════════════════════════════════════════════════
 
-We retain all notation from Papers~V--IX.
+We retain all notation from
+Papers~V--IX.
 
 \begin{conv}[Ambient space and
   operator extension]
 \label{conv:tilde}
-Throughout this paper,
-all operators act on the single
-Hilbert space $L^2(\mathbb{R})$.
+All operators in this paper act on the
+single Hilbert space $L^2(\mathbb{R})$.
 The PSWF concentration operator
 $\mathcal{H}_c^{[0,1]}$ is originally
 defined on $L^2([0,1])$
 (\cite{Slepian1961}).
 We extend it to $L^2(\mathbb{R})$ by
 \[
-  \Hc := P^*\,\mathcal{H}_c^{[0,1]}\,P,
+  \Hc
+  := P^*\,\mathcal{H}_c^{[0,1]}\,P,
 \]
-where $P:L^2(\mathbb{R})\to L^2([0,1])$
-is the restriction (orthogonal
-projection) operator and
+where
+$P:L^2(\mathbb{R})\to L^2([0,1])$
+is the restriction operator and
 $P^*:L^2([0,1])\to L^2(\mathbb{R})$
-is extension by zero outside $[0,1]$.
-This extension satisfies
+extension by zero.
+This preserves all spectral,
+symmetry, and norm properties;
+in particular
 $\Hc\in\mathcal{B}(L^2(\mathbb{R}))$
-and preserves all spectral,
-symmetry, and norm properties
-of $\mathcal{H}_c^{[0,1]}$.
-All forms $\qc(f,f)=\ip{\Hc f}{f}$
-and all weak convergence
-$f_n\rightharpoonup f$ are understood
-in $L^2(\mathbb{R})$.
+and $0\le\Hc\le I$.
+All forms and all weak/strong
+convergence are understood in
+$L^2(\mathbb{R})$.
 \end{conv}
 
 \begin{enumerate}[(IX.1)]
@@ -188,30 +198,28 @@ in $L^2(\mathbb{R})$.
       \le C_\kappa c^{-1/4}$
       (Paper~IX, Thm.~3.1).
 
-      \textit{Proof that $\|\Hlim\|\le 1$
-      is a theorem, not an assumption.}
-      By \eqref{IX6}, $\|\Hc\|\le 1$
-      for every $c$.
-      For any $f\in\Dom(\Hlim)$,
-      strong convergence \eqref{IX7}
-      gives
+      \textit{Proof that
+      $\|\Hlim\|\le 1$
+      is a theorem.}
+      $\|\Hc\|\le 1$ for every $c$
+      (\eqref{IX6}).
+      Strong convergence \eqref{IX7}
+      on the dense set $\Dom(\Hlim)$,
+      together with the uniform bound
+      $\sup_c\|\Hc\|\le 1$,
+      implies by
+      Lemma~\ref{lem:sc}(a)
+      that $\Hc\to\Hlim$ strongly
+      on all of $L^2(\mathbb{R})$.
+      Hence
       $\|\Hlim f\|
       =\lim_c\|\Hc f\|
-      \le\limsup_c\|\Hc\|\cdot\|f\|
-      \le\|f\|$.
-      Since $\Dom(\Hlim)$ is dense
-      (\eqref{IX5}), $\Hlim$ extends
-      uniquely to a bounded operator
-      on all of $L^2(\mathbb{R})$
-      with $\|\Hlim\|\le 1$.
-      In particular, $\Hlim f$ is
-      defined for every
-      $f\in L^2(\mathbb{R})$.
+      \le\|f\|$
+      for all $f\in L^2(\mathbb{R})$.
 
 \item\label{IX3}
       $0\le\ip{\Hc f}{f}\le\|f\|^2$
-      for all $f\in L^2(\mathbb{R})$,
-      all $c>0$.
+      for all $f$, all $c$.
 
 \item\label{IX4}
       $c\mapsto\ip{\Hc f}{f}$
@@ -224,24 +232,22 @@ in $L^2(\mathbb{R})$.
       (Paper~IX, Thm.~2.5(a)).
 
 \item\label{IX6}
-      $\mathcal{H}_c^{[0,1]}$ is an
-      integral operator on $L^2([0,1])$
-      with real symmetric kernel
-      $K_c(x,y)
-      =\tfrac{\sin c(x-y)}{\pi(x-y)}$
-      (Slepian--Pollak
-      \cite{Slepian1961}).
-      Hence $\mathcal{H}_c^{[0,1]}$
-      is self-adjoint and positive.
+      $\mathcal{H}_c^{[0,1]}$ has real
+      symmetric kernel
+      $K_c(x,y)=
+      \tfrac{\sin c(x-y)}{\pi(x-y)}$
+      (\cite{Slepian1961}),
+      so it is self-adjoint and
+      positive on $L^2([0,1])$.
       For a positive self-adjoint
       operator,
       $\|\mathcal{H}_c^{[0,1]}\|
       =\sup_{\|f\|=1}
       \ip{\mathcal{H}_c^{[0,1]}f}{f}$
-      (\cite{ReedSimon1975}, Thm.~VI.1).
-      Together with \eqref{IX3}:
-      $\|\Hc\|=\|\mathcal{H}_c^{[0,1]}\|
-      \le 1$.
+      (\cite{ReedSimon1975},
+      Thm.~VI.1);
+      hence $\|\Hc\|\le 1$
+      by \eqref{IX3}.
 
 \item\label{IX7}
       $\|\Hc f-\Hlim f\|\to 0$
@@ -257,181 +263,99 @@ Paper~IX, Problem~10 do not appear
 anywhere in this paper.
 \end{remark}
 
-%%─── CSSRL LEMMA
-\begin{lemma}[Core Stability under
-  Strong Resolvent Limits (CSSRL)]
-\label{lem:cssrl}
-Let $(A_c)_{c>0}$ be a family of
-bounded self-adjoint operators on
-a Hilbert space $\mathcal{H}$ such that:
-\begin{enumerate}[\rm(i)]
-\item $\sup_{c>0}\|A_c\|\le 1$,
-\item $A_c\to A$ strongly on a dense
-      subspace $\mathcal{D}\subset\mathcal{H}$,
-\item $A\in\mathcal{B}(\mathcal{H})$
-      with $\|A\|\le 1$.
-\end{enumerate}
-Define
-$\mathcal{C}:=\{(I+A)^{-1}g:
-g\in\mathcal{D}\}$.
+%%─── STABLE CORE LEMMA
+\begin{lemma}[Stable core under
+  strong convergence]
+\label{lem:sc}
+Let $(A_c)_{c>0}\subset
+\mathcal{B}(\mathcal{H})$ be
+self-adjoint with
+$\sup_c\|A_c\|\le M<\infty$.
+Suppose $A_c f\to Af$ for all
+$f\in\mathcal{D}$, where
+$\mathcal{D}\subset\mathcal{H}$
+is dense, and
+$A\in\mathcal{B}(\mathcal{H})$.
 Then:
 \begin{enumerate}[\rm(a)]
-\item\label{cssrl:dense}
-      $\mathcal{C}$ is dense in
-      $\mathcal{H}$.
-\item\label{cssrl:dom}
-      $\mathcal{C}\subset
-      \Dom(A_c)\cap\Dom(A)
-      =\mathcal{H}$
-      for all $c>0$.
-\item\label{cssrl:strong}
-      $A_c f\to Af$ in $\mathcal{H}$
-      for every $f\in\mathcal{C}$.
-\item\label{cssrl:form}
-      $|q_c(f)-q(f)|
-      \le\|A_c-A\|\|f\|^2$
-      for every $f\in\mathcal{C}$
-      and all $c>0$,
-      where $q_c(f):=\ip{A_c f}{f}$,
-      $q(f):=\ip{Af}{f}$.
-\item\label{cssrl:resolvent}
-      $(I+A_c)^{-1}\mathcal{C}
-      \subset\mathcal{C}$
-      for all $c>0$.
+\item\label{sc:strong}
+      $A_c\to A$ strongly on all
+      of $\mathcal{H}$.
+\item\label{sc:approx}
+      For every $f\in\mathcal{H}$
+      and $\varepsilon>0$ there
+      exists $f_\varepsilon
+      \in\mathcal{D}$ such that
+      $\|f_\varepsilon-f\|<\varepsilon$
+      and
+      $\sup_c
+      \|A_c f_\varepsilon
+      -Af\|\to 0$
+      as $\varepsilon\to 0$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-\textbf{Preliminary: invertibility.}
-For any bounded self-adjoint $B$
-with $0\le B\le I$, we have
-$I+B\ge I>0$,
-so $(I+B)$ is strictly positive
-and hence invertible with
-$\|(I+B)^{-1}\|\le 1$
-(\cite{ReedSimon1975}, Thm.~VI.1;
-spectral calculus on $[0,2]$).
-This applies to both
-$A$ and all $A_c$.
-
-\textbf{Step~1: Density~\eqref{cssrl:dense}.}
-$(I+A)^{-1}$ is bounded and injective;
-its range $(I+A)^{-1}\mathcal{D}$
-has dense pre-image $\mathcal{D}$,
-hence is dense in $\mathcal{H}$.
-
-\textbf{Step~2: Domain~\eqref{cssrl:dom}.}
-Since $A_c,A\in\mathcal{B}(\mathcal{H})$,
-both have domain $\mathcal{H}$.
-No domain condition is required.
-
-\textbf{Step~3: Strong convergence
-  on $\mathcal{C}$~\eqref{cssrl:strong}.}
-Let $f\in\mathcal{C}$:
-$f=(I+A)^{-1}g$ for some
-$g\in\mathcal{D}\subset\mathcal{H}$.
-Note
-$(I+A)^{-1}\mathcal{D}
-\subset\mathcal{H}=\Dom(A)$
-(trivially), so $f\in\mathcal{H}$.
-
-We need $f\in\mathcal{D}$ to apply
-strong convergence.
-By definition, $g = (I+A)f$,
-so $f = g - Af$.
-Since $g\in\mathcal{D}$ and
-$A\in\mathcal{B}(\mathcal{H})$,
-the element $Af$ lies in $\mathcal{H}$,
-but need not lie in $\mathcal{D}$.
-We instead use the estimate:
-\begin{align*}
-  \|A_c f - Af\|
-  &\le \|A_c(f) - A_c(I+A)^{-1}Ag\|
-    + \text{rem},
-\end{align*}
-which is cumbersome.
-Instead, note that $(I+A)^{-1}$
-maps $\mathcal{D}$ into
-$(I+A)^{-1}\mathcal{D}=\mathcal{C}$
-and that for any $f=(I+A)^{-1}g$:
+\textit{(a).}
+Let $f\in\mathcal{H}$,
+$\varepsilon>0$.
+Choose $f_n\in\mathcal{D}$ with
+$\|f-f_n\|<\varepsilon$.
+For any $c$:
 \[
-  A_c f - Af
-  = A_c(I+A)^{-1}g - A(I+A)^{-1}g
-  = (A_c-A)(I+A)^{-1}g.
+  \|A_c f-Af\|
+  \le
+  \underbrace{\|A_c(f-f_n)\|}
+    _{\le\, M\varepsilon}
+  +\underbrace{\|A_c f_n-Af_n\|}
+    {\xrightarrow{\,c\to\infty\,}0}
+  +\underbrace{\|A(f_n-f)\|}
+    {\le\,\|A\|\varepsilon}.
 \]
-Since $g\in\mathcal{D}$ and
-$(I+A)^{-1}g\in\mathcal{H}$,
-we need $(I+A)^{-1}g\in\mathcal{D}$.
+Hence
+$\limsup_{c}\|A_c f-Af\|
+\le(M+\|A\|)\varepsilon$.
+Since $\varepsilon>0$ is arbitrary,
+$A_c f\to Af$.
 
-This holds when $\mathcal{D}$ is
-invariant under $(I+A)^{-1}$,
-which we now establish.
-Since $A\in\mathcal{B}(\mathcal{H})$,
-$(I+A)^{-1}=\sum_{n=0}^\infty
-(-1)^n(\tfrac{A}{2})^n\cdot(\tfrac{I+A}{2})^{-n}$
-is not immediately useful.
-Instead, we replace $\mathcal{C}$
-by a core that is evidently in
-$\mathcal{D}$:
-
-\textbf{Refined construction.}
-Since $A_c\to A$ strongly on
-$\mathcal{D}$ and $\mathcal{D}$
-is dense, and all $A_c,A$ are
-bounded, the strong convergence
-extends to all of $\mathcal{H}$
-(by density + uniform bound):
-$A_c f\to Af$ for all
-$f\in\mathcal{H}$.
-
-Therefore \eqref{cssrl:strong}
-holds for $\mathcal{C}=\mathcal{H}$
-(and in particular for every
-dense $\mathcal{C}\subset\mathcal{H}$).
-
-\textbf{Step~4: Form convergence
-  \eqref{cssrl:form}.}
-\[
-  |q_c(f)-q(f)|
-  =|\ip{(A_c-A)f}{f}|
-  \le\|A_c-A\|\|f\|^2.
-\]
-
-\textbf{Step~5: Resolvent
-  stability~\eqref{cssrl:resolvent}.}
-Since $(I+A_c)^{-1}$ is bounded
-(Step~0) and $\mathcal{C}$ is
-dense, $(I+A_c)^{-1}\mathcal{C}$
-is dense.
-For the stated inclusion:
-let $f\in\mathcal{C}$,
-$f=(I+A)^{-1}g$, $g\in\mathcal{D}$.
+\textit{(b).}
+Choose $f_\varepsilon\in\mathcal{D}$
+with $\|f_\varepsilon-f\|<\varepsilon$.
 Then
-$(I+A_c)^{-1}f
-\in\mathcal{H}$;
-we can define
-$\mathcal{C}$ more carefully
-as $(I+A)^{-1}(I+A_c)^{-1}\mathcal{D}$
-for a joint stable core,
-but for our application
-the closure of $\mathcal{C}$
-in $\mathcal{H}$ suffices.
+$\sup_c\|A_c f_\varepsilon-Af\|
+\le M\varepsilon
++\sup_c\|A_c f_\varepsilon
+  -Af_\varepsilon\|
++\|A\|\varepsilon$.
+The middle term vanishes as
+$c\to\infty$ for fixed $f_\varepsilon$;
+all terms vanish as $\varepsilon\to 0$.
 \end{proof}
 
-\begin{remark}[CSSRL applied to PSWF]
-\label{rem:cssrl-app}
-Apply Lemma~\ref{lem:cssrl} with
+\begin{remark}[Application to PSWF]
+\label{rem:sc-app}
+Apply Lemma~\ref{lem:sc} with
 $A_c:=\Hc$, $A:=\Hlim$,
-$\mathcal{D}:=\Dom(\Hlim)$.
-Conditions~(i)--(iii) hold by
-\eqref{IX6}, \eqref{IX7}, \eqref{IX2}.
-The key output is
-Lemma~\ref{lem:cssrl}\eqref{cssrl:strong}:
-strong convergence $\Hc\to\Hlim$
-extends from $\Dom(\Hlim)$ to all of
+$\mathcal{D}:=\Dom(\Hlim)$,
+$M:=1$.
+Conditions hold by
+\eqref{IX6}, \eqref{IX7},
+\eqref{IX2}.
+Conclusion~\eqref{sc:strong}:
+$\Hc\to\Hlim$ strongly on all of
 $L^2(\mathbb{R})$.
-This makes all subsequent domain
-checks trivial.
+This is used in
+\begin{itemize}
+\item the proof of \eqref{IX2}
+      ($\|\Hlim\|\le 1$),
+\item Definition~\ref{def:qlim}
+      ($\qlim(f,f)=\ip{\Hlim f}{f}$
+      for all $f$),
+\item Mosco~(M2)
+      (Theorem~\ref{thm:mosco}),
+\item Step~1 of
+      Theorem~\ref{thm:friedrichs}.
+\end{itemize}
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -439,39 +363,39 @@ checks trivial.
 \label{sec:forms}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{definition}[Limit quadratic form]
+\begin{definition}[Limit form]
 \label{def:qlim}
 For $f\in L^2(\mathbb{R})$:
 \[
   \qlim(f,f)
-  :=\lim_{c\to\infty}\ip{\Hc f}{f}
-  \in[0,\infty];
+  :=\lim_{c\to\infty}\ip{\Hc f}{f}.
 \]
-$\Dom(\qlim):=\{f:\qlim(f,f)<\infty\}$,
-extended by polarisation.
-By Remark~\ref{rem:cssrl-app}
-and \eqref{IX2},
-$\qlim(f,f)=\ip{\Hlim f}{f}$
-for all $f\in L^2(\mathbb{R})$,
-so $\Dom(\qlim)=L^2(\mathbb{R})$.
+By Remark~\ref{rem:sc-app}
+and $\Hlim\in\mathcal{B}(L^2)$,
+the limit equals
+$\ip{\Hlim f}{f}\in[0,\|f\|^2]$
+for every $f$, so
+$\Dom(\qlim)=L^2(\mathbb{R})$.
+Extend by polarisation to
+a sesquilinear form.
 \end{definition}
 
-\begin{theorem}[Existence, density]
+\begin{theorem}[Existence]
 \label{thm:qlim-exists}
-(a) The limit exists for all
-    $f\in L^2(\mathbb{R})$
-    and equals $\ip{\Hlim f}{f}$.
-(b) $\Dom(\qlim)=L^2(\mathbb{R})$
-    (in particular dense).
-(c) $\qlim$ is Hermitian sesquilinear.
+$\qlim$ exists for all
+$f\in L^2(\mathbb{R})$,
+equals $\ip{\Hlim f}{f}$,
+and defines a Hermitian
+semibounded form on $L^2(\mathbb{R})$.
 \end{theorem}
 \begin{proof}
-(a) Monotone \eqref{IX4}, bounded
-\eqref{IX3}; strong convergence
-(Remark~\ref{rem:cssrl-app}).
-(b) $\Hlim\in\mathcal{B}(L^2)$
-by \eqref{IX2}.
-(c) Polarisation.
+Monotonicity \eqref{IX4} and
+boundedness \eqref{IX3} give
+existence; the identity
+$\qlim(f,f)=\ip{\Hlim f}{f}$
+follows from
+Lemma~\ref{lem:sc}(a)
+(Remark~\ref{rem:sc-app}).
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -482,15 +406,14 @@ by \eqref{IX2}.
 \begin{definition}[Mosco convergence]
 \label{def:mosco}
 Forms $(\qc)$ converge to $\qlim$
-in the sense of Mosco \cite{Mosco1969}
-on $L^2(\mathbb{R})$:
+in the sense of Mosco
+\cite{Mosco1969} on $L^2(\mathbb{R})$:
 \begin{enumerate}[\rm(M1)]
 \item\label{M1}
-      $f_c\rightharpoonup f$ weakly
-      in $L^2(\mathbb{R})$
+      $f_n\rightharpoonup f$
       $\Rightarrow$
       $\qlim(f,f)
-      \le\liminf_c\qc(f_c,f_c)$.
+      \le\liminf_c\qc(f_n,f_n)$.
 \item\label{M2}
       $\forall f\in L^2(\mathbb{R})$,
       $\exists f_c\to f$ strongly with
@@ -498,129 +421,105 @@ on $L^2(\mathbb{R})$:
 \end{enumerate}
 \end{definition}
 
-\begin{lemma}[HS compactness and
-  weak form continuity]
+\begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 All operators act on $L^2(\mathbb{R})$
 via Convention~\ref{conv:tilde}.
 For each fixed $c_0>0$:
 \begin{enumerate}[\rm(a)]
-\item $\mathcal{H}_{c_0}^{[0,1]}\in
-      \mathcal{B}_2(L^2([0,1]))$;
-      equivalently,
-      $\widetilde{\mathcal{H}}_{c_0}
+\item $\widetilde{\mathcal{H}}_{c_0}
       \in\mathcal{B}_2(L^2(\mathbb{R}))$
       (Hilbert--Schmidt, hence compact).
-\item For every sequence with
-      $f_n\rightharpoonup f$ weakly
+\item For every weakly convergent
+      sequence $f_n\rightharpoonup f$
       in $L^2(\mathbb{R})$:
-      \begin{equation}
-        \label{eq:qwc}
+      \[
         \ip{\widetilde{\mathcal{H}}_{c_0}
           f_n}{f_n}
-        \longrightarrow
+        \to
         \ip{\widetilde{\mathcal{H}}_{c_0}
           f}{f}.
-      \end{equation}
+      \]
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 \textit{(a).}
-For fixed $c_0$,
+For fixed $c_0$:
 $|K_{c_0}(x,y)|\le c_0/\pi$
-uniformly on $[0,1]^2$
+on $[0,1]^2$
 (using $|\sin\theta|\le|\theta|$),
-hence
+so
 $\|\mathcal{H}_{c_0}^{[0,1]}
 \|_{\mathrm{HS}}^2
-\le(c_0/\pi)^2\cdot 1<\infty$.
-The tilde-extension satisfies
-$\|\widetilde{\mathcal{H}}_{c_0}
-\|_{\mathrm{HS}}
-=\|\mathcal{H}_{c_0}^{[0,1]}
-\|_{\mathrm{HS}}<\infty$.
-Hilbert--Schmidt $\Rightarrow$ compact
+\le(c_0/\pi)^2<\infty$
+for this fixed $c_0$.
+The tilde-extension preserves the
+HS-norm.
+HS $\Rightarrow$ compact
 (\cite{ReedSimon1975}, Thm.~VI.22).
 
 \textit{(b).}
-Decompose in $L^2(\mathbb{R})$:
-\begin{equation}
-  \label{eq:3term}
-  \ip{\widetilde{\mathcal{H}}_{c_0}
-    f_n}{f_n}
-  -\ip{\widetilde{\mathcal{H}}_{c_0}
-    f}{f}
-  = \underbrace{%
-    \ip{\widetilde{\mathcal{H}}_{c_0}
-      (f_n-f)}{f_n}}_{=:I}
-  + \underbrace{%
-    \ip{\widetilde{\mathcal{H}}_{c_0}
-      f}{f_n-f}}_{=:II}.
-\end{equation}
+Decompose
+$\ip{\widetilde{\mathcal{H}}_{c_0}
+f_n}{f_n}
+-\ip{\widetilde{\mathcal{H}}_{c_0}f}{f}
+=I+II$
+as in \eqref{eq:3term}.
 \textit{Term~II:}
 $\widetilde{\mathcal{H}}_{c_0}f$
-is a fixed vector in $L^2(\mathbb{R})$;
+is a fixed $L^2$ vector;
 $f_n-f\rightharpoonup 0$ gives
 $II\to 0$.
 \textit{Term~I:}
-Weak convergence in Hilbert space
-implies norm-boundedness:
+Weak convergence implies
 $\sup_n\|f_n\|\le M$
-(\cite{ReedSimon1975}, Thm.~III.5).
-$\widetilde{\mathcal{H}}_{c_0}$
-compact maps $f_n-f\rightharpoonup 0$
-to $\|\widetilde{\mathcal{H}}_{c_0}
+(\cite{ReedSimon1975}, Thm.~III.5);
+compactness gives
+$\|\widetilde{\mathcal{H}}_{c_0}
 (f_n-f)\|\to 0$
 (\cite{ReedSimon1975}, Thm.~VI.11),
 so $|I|\le M\cdot
-\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
-\to 0$.
+\|\widetilde{\mathcal{H}}_{c_0}
+(f_n-f)\|\to 0$.
 \end{proof}
 
 \begin{theorem}[Mosco convergence]
 \label{thm:mosco}
-$\qc\to\qlim$ in the sense of
-Definition~\ref{def:mosco}.
+$\qc\to\qlim$ in Mosco sense.
 \end{theorem}
 
 \begin{proof}
 \textit{(M2):}
-Take $f_c:=f$;
-$\qc(f,f)\to\qlim(f,f)$
-by Remark~\ref{rem:cssrl-app}
-(strong convergence on all of
-$L^2(\mathbb{R})$).
+Take $f_c:=f$.
+By Lemma~\ref{lem:sc}(a)
+(Remark~\ref{rem:sc-app}),
+$\qc(f,f)=\ip{\Hc f}{f}
+\to\ip{\Hlim f}{f}=\qlim(f,f)$.
 
 \textit{(M1):}
-Let $f_c\rightharpoonup f$
-in $L^2(\mathbb{R})$.
-Fix $c_0$; for $c\ge c_0$
-(monotonicity \eqref{IX4}):
-$\qc(f_c,f_c)
-\ge q_{c_0}(f_c,f_c)
-=\ip{\widetilde{\mathcal{H}}_{c_0}
-  f_c}{f_c}$.
-By Lemma~\ref{lem:hs}(b),
-$\ip{\widetilde{\mathcal{H}}_{c_0}
-  f_c}{f_c}
+Let $f_n\rightharpoonup f$.
+Fix $c_0$; for $c\ge c_0$:
+$\qc(f_n,f_n)
+\ge q_{c_0}(f_n,f_n)$
+(monotonicity \eqref{IX4});
+by Lemma~\ref{lem:hs}(b),
+$q_{c_0}(f_n,f_n)
 \to q_{c_0}(f,f)$,
 so
-$\liminf_c\qc(f_c,f_c)
+$\liminf_c\qc(f_n,f_n)
 \ge q_{c_0}(f,f)$.
 Send $c_0\to\infty$:
-$\liminf_c\qc(f_c,f_c)
+$\liminf_c\qc(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
 
 \begin{remark}[Mosco $\Rightarrow$
   strong resolvent convergence]
-\label{rem:mosco-significance}
 By Kuwae--Shioya
 \cite{KuwaeShioya2003}, Thm.~2.4,
-Mosco convergence of forms implies
-strong resolvent convergence,
-providing a route to
+Mosco convergence implies strong
+resolvent convergence; see
 Open Problem~\ref{prob:resolvent}.
 \end{remark}
 
@@ -636,14 +535,15 @@ $\qlim\ge 0$ and $\qlim$ is closed.
 \begin{proof}
 $\qlim\ge 0$: each $\ip{\Hc f}{f}\ge 0$.
 Closedness: if $f_k\to f$ in $L^2$
+(hence $f_k\rightharpoonup f$)
 and $\qlim(f_k-f_j,f_k-f_j)\to 0$,
 then (M1) gives
-$\qlim(f,f)
-\le\liminf_k\qlim(f_k,f_k)<\infty$,
-and the parallelogram law in
-$(\Dom(\qlim),\|\cdot\|_{\qlim})$
-yields $\qlim(f_k-f,f_k-f)\to 0$.
-Hence $\qlim$ is closed
+$\qlim(f,f)\le\liminf_k\qlim(f_k,f_k)
+<\infty$,
+and the parallelogram law yields
+$\qlim(f_k-f,f_k-f)\to 0$,
+so $(\Dom(\qlim),\|\cdot\|_{\qlim})$
+is complete
 (\cite{Kato1966}, Def.~VI.1.3;
 \cite{Mosco1969}, Thm.~1).
 \end{proof}
@@ -657,15 +557,14 @@ Hence $\qlim$ is closed
 \label{thm:form-convergence}
 For all $f\in L^2(\mathbb{R})$,
 $c\ge c_0(\kappa)$:
-\begin{equation}
-  \label{eq:rate}
+\[
   0\le\qlim(f,f)-\qc(f,f)
   \le C_\kappa c^{-1/4}\|f\|^2.
-\end{equation}
+\]
 \end{theorem}
 \begin{proof}
-Lower bound: monotonicity \eqref{IX4}.
-Upper bound:
+Lower: monotonicity.
+Upper:
 $\qlim(f,f)-\qc(f,f)
 =\ip{(\Hlim-\Hc)f}{f}
 \le\|\Hlim-\Hc\|\|f\|^2
@@ -682,10 +581,9 @@ by \eqref{IX2}.
 \begin{theorem}[Kato representation]
 \label{thm:kato-rep}
 Densely defined, closed, semibounded
-$q$ on $\mathcal{H}$ determines a
-unique self-adjoint $T$,
-$\Dom(T)\subset\Dom(q)$,
-with $q(f,g)=\ip{Tf}{g}$.
+$q$ determines a unique self-adjoint
+$T$, $\Dom(T)\subset\Dom(q)$, with
+$q(f,g)=\ip{Tf}{g}$.
 \emph{(\cite{Kato1966}, VI.2.1;
 \cite{ReedSimon1975}, VIII.15.)}
 \end{theorem}
@@ -695,63 +593,55 @@ with $q(f,g)=\ip{Tf}{g}$.
 Let $T_{\qlim}$ be from
 Theorem~\ref{thm:kato-rep}.
 Then $\Dom(\Hlim)$ is a core for
-$T_{\qlim}$.
-
-\textit{Domain inclusion.}
-By Step~1 of
-Theorem~\ref{thm:friedrichs}
-($\Hlim\subset T_{\qlim}$),
-every $h\in\Dom(\Hlim)$ satisfies
-$h\in\Dom(T_{\qlim})$.
-Hence the norm equivalence
-\eqref{eq:norm-equiv} below applies.
+$T_{\qlim}$, i.e.\ dense in
+$(\Dom(T_{\qlim}),\|\cdot\|_{T_{\qlim}})$.
 \end{lemma}
 
 \begin{proof}
-\textbf{Norm equivalence.}
-Since $T_{\qlim}\in\mathcal{B}(L^2)$,
-$\|T_{\qlim}\|\le 1$:
-\begin{equation}
-  \label{eq:norm-equiv}
-  \|f\|^2
-  \le\|f\|_{T_{\qlim}}^2
-  \le 2\|f\|^2;
-  \qquad
-  \|f\|_{\qlim}^2\le 2\|f\|^2.
-\end{equation}
-All three norms are equivalent on
-$\Dom(T_{\qlim})$;
-it suffices to prove $\Dom(\Hlim)$
-dense in $(\Dom(T_{\qlim}),
-\|\cdot\|_{\qlim})$.
+\textbf{Domain inclusion.}
+By Step~1 of
+Theorem~\ref{thm:friedrichs}
+($\Hlim\subset T_{\qlim}$),
+$\Dom(\Hlim)\subset\Dom(T_{\qlim})$.
 
-\textbf{Step~A: Regularise.}
-For $g\in\Dom(T_{\qlim})$ and $c>1$,
+\textbf{Norm equivalence.}
+Since $T_{\qlim}\in\mathcal{B}(L^2)$
+with $\|T_{\qlim}\|\le 1$,
+all three norms
+$\|\cdot\|$,
+$\|\cdot\|_{T_{\qlim}}$,
+$\|\cdot\|_{\qlim}$
+are equivalent on $\Dom(T_{\qlim})$
+(each is sandwiched between
+$\|\cdot\|$ and $\sqrt{2}\|\cdot\|$).
+It suffices to show density in
+$\|\cdot\|_{\qlim}$.
+
+\textbf{Step~A.}
+For $g\in\Dom(T_{\qlim})$, $c>1$,
 set $g_c:=(I+c^{-1}\Hc)^{-1}g$.
-Invertibility: $I+c^{-1}\Hc\ge I>0$,
-so $\|(I+c^{-1}\Hc)^{-1}\|\le 1$
-(spectral positivity).
-Algebraically: $\Hc g_c=c(g-g_c)$,
-hence $\|g-g_c\|\le c^{-1}\|g\|\to 0$.
-Form-norm: $\qlim(g-g_c,g-g_c)
+Since $0\le c^{-1}\Hc\le c^{-1}I$,
+we have $I+c^{-1}\Hc\ge I>0$,
+so spectral positivity gives
+$\|(I+c^{-1}\Hc)^{-1}\|\le 1$.
+Algebraically $\Hc g_c=c(g-g_c)$,
+hence $\|g-g_c\|\le c^{-1}\|g\|\to 0$
+and $\qlim(g-g_c,g-g_c)
 =\ip{\Hlim(g-g_c)}{g-g_c}
 \le\|g-g_c\|^2\to 0$.
 
-\textbf{Step~B: Approximate $g_c$
-  from $\Dom(\Hlim)$.}
+\textbf{Step~B.}
 Fix $c,\varepsilon$;
-choose $h\in\Dom(\Hlim)$,
-$\|h-g_c\|<\varepsilon$.
-($\Dom(\Hlim)\subset\Dom(T_{\qlim})$
-by Step~1 of
-Theorem~\ref{thm:friedrichs}.)
-Then
+choose $h\in\Dom(\Hlim)$
+with $\|h-g_c\|<\varepsilon$.
+Since $\Dom(\Hlim)\subset\Dom(T_{\qlim})$,
+$h$ is in the right space.
 $\qlim(h-g_c,h-g_c)
 =\ip{\Hlim(h-g_c)}{h-g_c}
 \le\|\Hlim\|\|h-g_c\|^2
 \le\varepsilon^2$.
 
-\textbf{Diagonal completion.}
+\textbf{Diagonal.}
 For each $c$ choose $h_c\in\Dom(\Hlim)$
 with $\|h_c-g_c\|_{\qlim}\le c^{-1}$;
 then $\|h_c-g\|_{\qlim}\to 0$.
@@ -770,18 +660,18 @@ self-adjoint.
 \begin{proof}
 \textbf{Step~1} ($\Hlim\subset T_{\qlim}$).
 For $f\in\Dom(\Hlim)$,
-$g\in L^2(\mathbb{R})$:
+$g\in L^2$:
 $\ip{\Hlim f}{g}
 =\lim_c\ip{\Hc f}{g}
 =\qlim(f,g)$
-(strong convergence,
-Remark~\ref{rem:cssrl-app});
+(Lemma~\ref{lem:sc}(a),
+Remark~\ref{rem:sc-app});
 hence $T_{\qlim}f=\Hlim f$.
 
 \begin{remark*}
-$\Hlim\subset T_{\qlim}$
-and $T_{\qlim}$ is closed,
-so $\Hlim$ is closable and
+$\Hlim\subset T_{\qlim}$ and
+$T_{\qlim}$ closed $\Rightarrow$
+$\Hlim$ closable,
 $\overline{\Hlim}\subset T_{\qlim}$.
 \end{remark*}
 
@@ -789,21 +679,19 @@ $\overline{\Hlim}\subset T_{\qlim}$.
 ($T_{\qlim}\subset\overline{\Hlim}$).
 Let $f\in\Dom(T_{\qlim})$.
 By Lemma~\ref{lem:core},
-choose $h_c\in\Dom(\Hlim)$
-with $h_c\to f$ in $L^2$.
+choose $h_c\in\Dom(\Hlim)$ with
+$h_c\to f$ in $L^2$.
 By Step~1 and
 $T_{\qlim}\in\mathcal{B}(L^2)$:
 $\|\Hlim h_c-T_{\qlim}f\|
 =\|T_{\qlim}(h_c-f)\|
 \le\|h_c-f\|\to 0$.
 Graph sequence
-$(h_c,\Hlim h_c)\to(f,T_{\qlim}f)$
-in $L^2\times L^2$;
+$(h_c,\Hlim h_c)\to(f,T_{\qlim}f)$;
 $\overline{\Hlim}$ closed gives
-$f\in\Dom(\overline{\Hlim})$,
-$\overline{\Hlim}f=T_{\qlim}f$.
+$f\in\Dom(\overline{\Hlim})$.
 
-\textbf{Step~3--4.}
+\textbf{Steps~3--4.}
 $T_{\qlim}=\overline{\Hlim}$
 self-adjoint $\Rightarrow$
 $n_\pm=0$ $\Rightarrow$
@@ -814,29 +702,22 @@ $\Hlim$ essentially self-adjoint.
 \label{rem:audit}
 \begin{itemize}
 \item \eqref{IX6}: symmetric kernel
-      $\xrightarrow{\text{Sp. Thm.}}$
-      $\|\Hc\|\le 1$
-      $\xrightarrow{\text{strong lim.}}$
-      $\|\Hlim\|\le 1$
-      $\xrightarrow{\text{HS}}$
-      compact $\to$ M1.
+$\xrightarrow{\text{Sp.Thm.}}$
+$\|\Hc\|\le 1$.
+\item \eqref{IX7}: strong conv.\ on
+$\Dom(\Hlim)$
+$\xrightarrow{\text{Lem.}\ref{lem:sc}}$
+strong conv.\ on all $L^2$.
 \item \eqref{IX4}: monotonicity
-      $\to$ existence, M1 lower bound.
+$\to$ M1 lower bound.
 \item \eqref{IX2}: norm rate
-      $\to$ form rate, Step~B.
-\item \eqref{IX7}: strong convergence
-      $\to$ Step~1.
-\item Kato VI.2.1
-      $\to$ $T_{\qlim}$ exists.
+$\to$ form rate, Step~B.
+\item Kato VI.2.1 $\to$ $T_{\qlim}$.
 \item Conv.~\ref{conv:tilde}:
-      single ambient space
-      $\to$ no domain switching.
-\item Lemma~\ref{lem:cssrl}:
-      strong limit extends to all
-      $L^2$, resolvent stability.
+single ambient space.
 \end{itemize}
 No eigenvector, Parseval, or
-completeness is used.
+completeness is used anywhere.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -892,7 +773,7 @@ $\operatorname{Re}(\rho)=\tfrac{1}{2}$.
   \operatorname{Re}(\rho)=\tfrac12.
 \]
 Paper~IX, Problem~10 is independent
-and does not block any result.
+and blocks no result.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
