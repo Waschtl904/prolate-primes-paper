@@ -136,17 +136,21 @@ eigenvalues $\lambda_0^{(\infty)}>\lambda_1^{(\infty)}
 $\{\Phi_n^{(\infty)}\}$.
 \end{hypothesis}
 
-\begin{remark}[Why Hyp.~\ref{hyp:HSOT-discrete} is nontrivial]
+\begin{remark}[Spectral decomposition instability under SOT convergence]
 \label{rem:HSOT-discrete-hard}
 SOT convergence of $\Hc$ to $\HSOT$ does not in general
 imply stability of the point spectrum.
 Even for uniformly bounded self-adjoint families,
 eigenvalues can dissolve into continuous spectrum
 in the limit (\cite{ReedSimon1975}, Ex.~VIII.3.4).
+We refer to this phenomenon as
+\emph{spectral decomposition instability under SOT convergence}.
 That the Slepian ordering $\lambda_n^{(\infty)}
 >\lambda_{n+1}^{(\infty)}>0$ persists follows from
-\eqref{P2} and the finite-$c$ gap,
+\hyperref[P2]{(P2)} and the finite-$c$ gap,
 but this does not address completeness of the eigensystem.
+The problem of restoring stability is central in this work
+and is formalized as Hyp.~\ref{hyp:HSOT-discrete}.
 Hyp.~\ref{hyp:HSOT-discrete} is the central
 ``black box'' of the conditional theory.
 \end{remark}
@@ -161,7 +165,7 @@ $\|(\Hc-z)^{-1}-(\HSOT-z)^{-1}\|_{\mathcal{B}(H)}
 
 \begin{remark}[SOT $\not\Rightarrow$ norm-resolvent]
 \label{rem:SOT-not-enough}
-SOT convergence \eqref{P3} does not imply
+SOT convergence \hyperref[P3]{(P3)} does not imply
 norm-resolvent convergence;
 see \cite{ReedSimon1975}, Ex.~VIII.7.14.
 \end{remark}
@@ -281,8 +285,15 @@ the sum converges absolutely by
 Cauchy--Schwarz and the $\ell^2$-membership condition.
 
 \textit{Closability:}
+Let $U\colon L^2(\mathbb{R})\to\ell^2(\mathbb{N})$,
+$Uf:=(\ip{f}{\Phi_n^{(\infty)}})_n$,
+be the unitary map (isometric embedding) associated
+with the fixed orthonormal system $\{\Phi_n^{(\infty)}\}$.
 Let $f_k\to 0$ in $L^2$ and $\Hspec f_k\to g$.
-For each $n$:
+Since $U$ is an isometry,
+$f_k\to 0$ in $L^2$ implies
+$Uf_k\to 0$ in $\ell^2$,
+i.e.\ for each $n$:
 $a_n^{(k)}:=\ip{f_k}{\Phi_n^{(\infty)}}\to 0$.
 For any $\phi\in L^2$:
 \[
@@ -292,17 +303,15 @@ For any $\phi\in L^2$:
 \]
 The interchange of limit and sum is justified by
 dominated convergence in $\ell^2$:
-$|\lambda_n^{(\infty)} a_n^{(k)}
-\ip{\Phi_n^{(\infty)}}{\phi}|
-\le \lambda_n^{(\infty)}
-|\ip{\Phi_n^{(\infty)}}{\phi}|\cdot|a_n^{(k)}|$,
-and $\sum_n(\lambda_n^{(\infty)})^2
-|\ip{\Phi_n^{(\infty)}}{\phi}|^2<\infty$
-(since $\phi\in L^2$ and $\{\lambda_n^{(\infty)}\}$
-is bounded).
-As $k\to\infty$, $a_n^{(k)}\to 0$ for each~$n$,
-so the sum $\to 0$ for all $\phi$.
-Hence $g=0$.
+the dominating sequence
+$\bigl(\lambda_n^{(\infty)}|\ip{\Phi_n^{(\infty)}}{\phi}|\bigr)_n$
+lies in $\ell^2$
+(since $\{\lambda_n^{(\infty)}\}$ is bounded and
+$\phi\in L^2$ gives $(\ip{\Phi_n^{(\infty)}}{\phi})_n\in\ell^2$
+by Bessel's inequality),
+and $a_n^{(k)}\to 0$ for each $n$.
+Hence $\ip{\Hspec f_k}{\phi}\to 0$ for all $\phi$,
+so $g=0$.
 \end{proof}
 
 %=============================================================
@@ -358,13 +367,13 @@ Decompose:
   = \underbrace{\Hc\Phi_n^{(c)}}_{=\,\lambda_n^{(c)}\Phi_n^{(c)}}
   + \underbrace{(\HSOT-\Hc)\Phi_n^{(c)}}_{=:\,r_c}.
 \end{equation}
-For the remainder: by \eqref{P1} with $f=\Phi_n^{(c)}$
+For the remainder: by \hyperref[P1]{(P1)} with $f=\Phi_n^{(c)}$
 and $\|\Phi_n^{(c)}\|=1$:
 \begin{equation}\label{eq:remainder}
   \|r_c\| = \|(\HSOT-\Hc)\Phi_n^{(c)}\|
   \le C_\kappa c^{-3/4} \to 0.
 \end{equation}
-\eqref{P1} applies here because it holds
+\hyperref[P1]{(P1)} applies here because it holds
 \emph{for each fixed unit vector};
 applied to the specific unit vector $\Phi_n^{(c)}$,
 it gives a bound uniform in the fixed-$n$ sense
@@ -380,7 +389,7 @@ $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$, so:
   \lambda_n^{(c)}\Phi_n^{(c)}&\to
   \lambda_n^{(\infty)}\Phi_n^{(\infty)}
   \label{eq:eigenvec-limit}
-  && (\eqref{P2}\text{ and Thm.~\ref{thm:phi-conv}}).
+  && (\hyperref[P2]{(P2)}\text{ and Thm.~\ref{thm:phi-conv}}).
 \end{align}
 Combining \eqref{eq:decompose}--\eqref{eq:eigenvec-limit}:
 $\HSOT\Phi_n^{(\infty)}
@@ -393,8 +402,8 @@ $\|(\HSOT-\Hc)\Phi_n^{(c)}\|$ by $C_\kappa c^{-3/4}$
 using $\|\Phi_n^{(c)}\|=1$.
 This is the only place where $\Phi_n^{(c)}$ (not
 $\Phi_n^{(\infty)}$) appears inside a limit;
-it is fully justified by \eqref{P1}
-because \eqref{P1} holds for all unit vectors,
+it is fully justified by \hyperref[P1]{(P1)}
+because \hyperref[P1]{(P1)} holds for all unit vectors,
 and $\Phi_n^{(c)}$ is a unit vector for each~$c$.
 No interchange of operator and vector limits
 beyond \eqref{eq:HSOT-norm} is used,
@@ -404,7 +413,7 @@ boundedness of $\HSOT$ alone.
 
 \begin{remark}[The one genuine approximation]
 \label{rem:genuine-approx}
-The bound \eqref{eq:remainder} uses \eqref{P1},
+The bound \eqref{eq:remainder} uses \hyperref[P1]{(P1)},
 which is a pointwise-in-$f$ estimate.
 Applied to $f=\Phi_n^{(c)}$ (which varies with~$c$),
 it gives a $c$-dependent bound.
@@ -454,10 +463,16 @@ $\overline{\Hspec}=\Hspec^*$.
 \label{sec:opnorm}
 %=============================================================
 
-\begin{theorem}
+\begin{theorem}[Partial spectral truncation estimate]
 \label{thm:opnorm}
 \emph{Conditional on Hyp.~\ref{hyp:uniform-alignment}.}
 $\|\Hc-\Hspec\|\le C_\kappa c^{-1/4}$.
+
+\noindent
+This estimate controls the spectral truncation error
+for $n\le\kappa c$ only and does \emph{not} imply
+norm convergence of $\Hc$ to $\HSOT$
+in $\mathcal{B}(L^2)$.
 \end{theorem}
 
 \begin{remark}[Missing bridge to norm-resolvent]
@@ -477,8 +492,9 @@ would further require:
   see Prob.~\ref{prob:riesz}).
 \end{enumerate}
 Neither (i) nor (ii) is established here.
-Thm.~\ref{thm:opnorm} is therefore an operator-norm
-rate for $\|\Hc-\Hspec\|$, not for $\|\Hc-\HSOT\|$,
+Thm.~\ref{thm:opnorm} is therefore a partial
+spectral truncation estimate for $\|\Hc-\Hspec\|$,
+not for $\|\Hc-\HSOT\|$,
 and does not close the bridge to
 Hyp.~\ref{hyp:norm-resolvent}.
 \end{remark}
@@ -501,7 +517,7 @@ nontrivial zeros of $\zeta$ would need, at minimum:
   an approximate-spectrum inclusion).
 \item A Weil-type explicit formula;
   CCM~\cite{CCM2025} does not supply this in a
-  form applicable here.
+  form directly applicable here.
 \end{enumerate}
 None of (a)--(d) is provided in this paper.
 The present work identifies the framework and the gaps;
