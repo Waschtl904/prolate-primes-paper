@@ -162,24 +162,45 @@ v19: strict $B\to A\to\Hlim$
 separation; $\qlim$ independent
 of $\Hlim$; BSA corollary;
 Mosco M1 sup identified.
-v20 (this version,
-\textbf{two surgical fixes}):
-\begin{enumerate}[(F1)]
+v20: two surgical fixes:
+Banach--Steinhaus explicit in
+Lemma~\ref{lem:sc}(b);
+Landau--Pollak empirical-spectral-measure
+statement in
+Proposition~\ref{prop:spec-structure}.
+v21 (this version,
+\textbf{four surgical fixes}):
+\begin{enumerate}[(R1)]
 \item Lemma~\ref{lem:sc}(b):
-      Banach--Steinhaus
-      invoked explicitly;
-      standard dense-set
-      strong-convergence theorem
+      explicit sentence that
+      $(A_c f)_c$ is Cauchy
+      for every $f\in\mathcal{H}$;
+      standard ``dense core +
+      uniform bound'' argument
+      clarified.
+\item Lemma~\ref{lem:hs}(b):
+      explicit chain
+      $f_n - f \rightharpoonup 0
+      \Rightarrow
+      \widetilde{\mathcal{H}}_{c_0}(f_n-f)
+      \to 0$ strongly
+      (\cite{ReedSimon1975}, VI.11);
+      $\sup_n\|f_n\|<\infty$
       cited (\cite{ReedSimon1975},
-      III.5; \cite{Rudin1991},
-      5.4).
-\item Proposition~\ref{prop:spec-structure}:
-      incorrect ``eigenvalues
-      dense in $[0,1]$''
-      replaced by the correct
-      Landau--Pollak
-      empirical-spectral-measure
-      statement.
+      III.5).
+\item Mosco (M1): explicit
+      sentence that the form
+      monotonicity is applied
+      pointwise for each fixed $n$
+      with $h:=f_n$
+      (Inherited Result~\eqref{IX4}).
+\item Proposition~\ref{prop:spec-structure}
+      (spectral structure):
+      removed entirely;
+      replaced by
+      Open Problem~\ref{prob:spec-structure}
+      (spectral structure of $\Hlim$
+      is open).
 \end{enumerate}
 
 \tableofcontents
@@ -299,7 +320,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC  %%% F1: Banach-Steinhaus explicit
+%%%─── LEMMA SC  %%% R1: Cauchy sentence explicit
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
@@ -369,9 +390,16 @@ $\|f-g\|<\varepsilon$, then
   +\|A_c g-A_{c'}g\|.
 \]
 Since $A_c g\to Bg$,
-the right-hand side $\to 2M\varepsilon$;
-as $\varepsilon>0$ is arbitrary,
-$(A_c f)_c$ is Cauchy in $\mathcal{H}$
+the right-hand side $\to 2M\varepsilon$.
+As $\varepsilon>0$ is arbitrary,
+$(A_c f)_c$ is a Cauchy net in
+$\mathcal{H}$ for every fixed
+$f\in\mathcal{H}$
+(this is the standard
+``dense core + uniform bound''
+argument;
+cf.\ \cite{Rudin1991}, Thm.~5.4;
+\cite{ReedSimon1975}, III.5),
 and $Af:=\lim_c A_c f$ exists.
 $\|Af\|\le M\|f\|$ and
 $A|_{\mathcal{D}}=B$ are clear.
@@ -614,6 +642,7 @@ $f_n$ share index $n$
 \cite{Mosco1969}.)
 \end{definition}
 
+%%%─── LEMMA HS  %%% R2: explicit compactness chain
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 For each fixed $c_0>0$:
@@ -642,17 +671,23 @@ Write the difference as $I+II$:
 $II:=\ip{\widetilde{\mathcal{H}}_{c_0}f}{f_n-f}\to 0$
 by weak convergence.
 $I:=\ip{\widetilde{\mathcal{H}}_{c_0}(f_n-f)}{f_n}$:
-since $\widetilde{\mathcal{H}}_{c_0}$
+since $f_n\rightharpoonup f$,
+we have $f_n - f \rightharpoonup 0$.
+Since $\widetilde{\mathcal{H}}_{c_0}$
 is compact and
-$f_n\rightharpoonup f$,
-$\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
-\to 0$
-(\cite{ReedSimon1975}, VI.11);
-hence
+$f_n - f \rightharpoonup 0$,
+it follows that
+$\widetilde{\mathcal{H}}_{c_0}(f_n-f)
+\to 0$ \emph{strongly}
+(\cite{ReedSimon1975}, VI.11).
+Moreover, $\sup_n\|f_n\|<\infty$
+by weak convergence
+(\cite{ReedSimon1975}, III.5,
+Banach--Steinhaus).
+Hence
 $|I|\le\sup_n\|f_n\|
 \cdot\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
-\to 0$
-(\cite{ReedSimon1975}, III.5).
+\to 0$.
 \end{proof}
 
 \begin{theorem}[Mosco convergence]
@@ -668,14 +703,21 @@ $q_{c_n}(f,f)
 =\qlim(f,f)$
 by Corollary~\ref{cor:qlim-op}.
 
+%%% R3: explicit monotonicity sentence for varying f_n
 \textit{(M1).}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
-Fix $c_0>0$; for large $n$,
-$c_n\ge c_0$, so by
-monotonicity \eqref{IX4}:
-$q_{c_n}(f_n,f_n)
-\ge q_{c_0}(f_n,f_n)$.
+Fix $c_0>0$.
+For each fixed $n$ with $c_n\ge c_0$,
+the form monotonicity
+(Inherited Result~\eqref{IX4})
+states that $q_c(h,h)$ is
+non-decreasing in $c$ for every
+fixed $h\in L^2(\mathbb{R})$.
+Applying this pointwise with
+$h:=f_n$ and $c:=c_n\ge c_0$,
+we obtain
+$q_{c_n}(f_n,f_n)\ge q_{c_0}(f_n,f_n)$.
 By Lemma~\ref{lem:hs}(b):
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\lim_n q_{c_0}(f_n,f_n)
@@ -839,84 +881,6 @@ $\sigma(\Hlim)\subset[0,1]
 \subset\mathbb{R}$.
 \end{corollary}
 
-%%%  F2: corrected spectral structure proposition
-\begin{proposition}[Spectral
-  structure, unconditional]
-\label{prop:spec-structure}
-No eigenvalue of $\Hlim$
-in $(0,1)$ of finite multiplicity
-is isolated in $\sigma(\Hlim)$.
-\end{proposition}
-
-\begin{proof}
-Suppose $\lambda\in(0,1)$
-is an isolated eigenvalue of
-multiplicity $m<\infty$.
-By Corollary~\ref{cor:resolvent}
-(proven independently below),
-$(\Hc-z)^{-1}\to(\Hlim-z)^{-1}$
-strongly for $z$ near $\lambda$
-with $z\notin\sigma(\Hlim)$.
-
-By the Landau--Pollak asymptotics
-(\cite{Slepian1961};
-Paper~VIII, Prop.~4.2),
-the empirical spectral measure
-$\mu_c
-:=\frac{1}{N(c)}
-\sum_n \delta_{\lambda_n(c)}$
-of $\Hc$ converges weak$^*$ to
-Lebesgue measure on $[0,1]$
-as $c\to\infty$,
-where $N(c)\to\infty$
-denotes the number of eigenvalues
-of $\Hc$ in $[\delta,1-\delta]$
-for any fixed $\delta>0$.
-In particular, for every
-open interval
-$J\subset(0,1)$ and all
-sufficiently large $c$:
-$\sigma(\Hc)\cap J\ne\emptyset$.
-Applying this to the interval
-$(\lambda-\varepsilon,
-\lambda+\varepsilon)$
-for small $\varepsilon>0$,
-the spectrum $\sigma(\Hc)$
-accumulates near $\lambda$;
-since $\Hc$ has finite rank in
-any compact sub-interval of
-$(0,1)$ (for fixed $c$), for large
-enough $c$ there are at least
-$m+1$ eigenvalues of $\Hc$
-in $(\lambda-\varepsilon,
-\lambda+\varepsilon)$.
-By \cite{ReedSimon1975},
-Thm.~VIII.24,
-strong resolvent convergence
-then forces at least $m+1$
-spectral points of $\Hlim$ in
-$(\lambda-\varepsilon,
-\lambda+\varepsilon)$,
-contradicting isolation of
-$\lambda$ with multiplicity $m$.
-\end{proof}
-
-\begin{remark}
-The key input to the proof is
-not that eigenvalues of $\Hc$
-are dense in $[0,1]$ in general,
-but that their empirical measure
-becomes dense near any interior
-point as $c\to\infty$:
-this is a precise consequence
-of the Landau--Pollak eigenvalue
-distribution
-(\cite{Slepian1961},
-Paper~VIII, Prop.~4.2),
-and is strictly weaker
-than a density claim.
-\end{remark}
-
 \begin{corollary}[Strong resolvent
   convergence]
 \label{cor:resolvent}
@@ -939,8 +903,7 @@ $\sigma(\Hlim)\subset[0,1]$
 
 \begin{remark}[All unconditional]
 Corollaries~\ref{cor:spec},
-\ref{cor:resolvent},
-Proposition~\ref{prop:spec-structure}:
+\ref{cor:resolvent}:
 no CCM, no RH.
 \end{remark}
 
@@ -985,9 +948,7 @@ zeta zeros.}
 \item $\Hlim\in\mathcal{B}(L^2)$,
       $\|\Hlim\|\le 1$,
       $\Hlim=\Hlim^*\ge 0$.
-\item $\sigma(\Hlim)\subset[0,1]$;
-      no isolated finite-mult.
-      eigenvalue in $(0,1)$.
+\item $\sigma(\Hlim)\subset[0,1]$.
 \item $T_{\qlim}=\Hlim$.
 \item $(\Hc-z)^{-1}
       \xrightarrow{s}(\Hlim-z)^{-1}$
@@ -1024,9 +985,34 @@ $\|(\Hc-z)^{-1}-(\Hlim-z)^{-1}\|
 \label{prob:spectrum}
 Is $\sigma(\Hlim)=[0,1]$,
 a Cantor set, or discrete?
-(Proposition~\ref{prop:spec-structure}
-rules out isolated
-finite-mult.\ eigenvalues in $(0,1)$.)
+\end{problem}
+
+%%%─── R4: spectral structure → Open Problem
+\begin{problem}[Spectral structure
+  of $\Hlim$]
+\label{prob:spec-structure}
+Does $\sigma(\Hlim)$ have isolated
+points in $(0,1)$?
+
+The Landau--Pollak distribution
+(\cite{Slepian1961};
+cf.\ also Paper~VIII, Prop.~4.2)
+shows that the empirical spectral
+measure of $\Hc$ converges
+weak${}^*$ to Lebesgue measure
+on $[0,1]$ as $c\to\infty$.
+Whether structural conclusions
+about $\sigma(\Hlim)$ can be
+derived from this via strong
+resolvent convergence
+(Corollary~\ref{cor:resolvent})
+is currently open;
+the tools available here
+(strong, not norm, resolvent
+convergence) do not directly
+control multiplicity or
+isolation of spectral points
+in the limit.
 \end{problem}
 
 \begin{problem}[Completeness]
