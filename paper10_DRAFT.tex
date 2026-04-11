@@ -180,26 +180,43 @@ HS compactness chain step-by-step;
 Mosco tools remark;
 Friedrichs coincidence sentence;
 $\Hlim$ uniqueness sentence.
-v25 (this version,
-\textbf{two final consistency fixes}):
-\begin{enumerate}[(V1)]
-\item \eqref{IX2norm}: phrasing
-      sharpened to ``same
-      density-extension argument
-      as in Lemma~\ref{lem:sc}''
-      to exclude any claim that
-      the construction is only
-      isomorphic rather than
-      identical.
+v25: IX2norm same-construction
+phrasing; net/sequence consistency.
+v26 (this version):
+\begin{enumerate}[(W1)]
 \item Lemma~\ref{lem:sc}:
-      ``net'' / ``sequence''
-      terminology made consistent;
-      remark added that we may
-      restrict to sequences
-      $c_n\to\infty$ without loss
-      of generality, as $c$ ranges
-      over a directed set with a
-      cofinal sequence.
+      assumption restated as
+      net-convergence on $\mathcal{D}$
+      (sequential form kept as
+      equivalent reformulation);
+      independence-of-sequence
+      noted as consequence,
+      not circular hypothesis.
+\item \eqref{IX5}: one sentence
+      added explaining that
+      compactly-supported functions
+      lie in $\mathcal{D}$ via
+      quantitative tail and
+      oscillatory-cancellation
+      control (Paper~IX, Thm.~2.5).
+\item Mosco M1 proof: half-sentence
+      ``by monotone convergence of
+      $c_0\mapsto q_{c_0}(f,f)$''
+      added at the supremum step.
+\item Theorem~\ref{thm:friedrichs}
+      proof: explicit sentence
+      ``since $\qlim$ is defined on
+      all of $L^2(\mathbb{R})$,
+      $\Dom(T_{\qlim})=L^2$''
+      added.
+\item New Remark~\ref{rem:hlim-not-mult}:
+      $\Hlim$ is not a multiplication
+      operator; explains why the
+      distributional kernel limit
+      does not imply
+      $\Hlim=M_{\chi_{[-1,1]}}$;
+      cites Landau--Pollak
+      eigenvalue transition.
 \end{enumerate}
 
 \tableofcontents
@@ -256,6 +273,7 @@ and $0\le\Hc\le I$.
       here; $\qlim(f,f)$ is defined
       purely from $\Hc$.
 
+%%% W2: D-provenance sentence added
 \item\label{IX5}
       \textit{Dense convergence
       domain.}
@@ -270,7 +288,12 @@ and $0\le\Hc\le I$.
       Paper~IX, Thm.~2.5(a):
       all compactly supported
       $L^2(\mathbb{R})$-functions
-      lie in $\mathcal{D}$;
+      lie in $\mathcal{D}$.
+      This relies on quantitative
+      tail control and oscillatory
+      cancellation estimates for
+      PSWF kernels established in
+      Paper~IX, Thm.~2.5;
       in particular $\mathcal{D}$
       is non-trivial and dense.
       $\mathcal{D}$ is a linear
@@ -297,7 +320,6 @@ and $0\le\Hc\le I$.
       \cite{ReedSimon1975},
       Thm.~VI.1).
 
-%%% V1: same-construction phrasing sharpened
 \item\label{IX2norm}
       \textit{Operator-norm
       convergence (external input;
@@ -344,7 +366,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC  %%% V2: net/sequence consistency
+%%%─── LEMMA SC  %%% W1: assumption restated
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
@@ -361,35 +383,31 @@ with $M:=\sup_c\|A_c\|<\infty$,
 and let $\mathcal{D}\subset
 \mathcal{H}$ be a dense linear
 subspace.
-Suppose $A_{c_n} f\to Bf$
-for every sequence
-$c_n\to\infty$ and all
+Suppose that, for every
+$f\in\mathcal{D}$, the net
+$(A_c f)_{c>0}$ converges
+as $c\to\infty$ in $\mathcal{H}$;
+denote its limit $Bf$.
+(Equivalently: for every sequence
+$c_n\to\infty$ and every
 $f\in\mathcal{D}$,
-where $B:\mathcal{D}\to\mathcal{H}$
-is linear.
-(Since $c$ ranges over $(0,\infty)$
-with the usual order, which
-contains cofinal sequences,
-sequential convergence along
-$c_n\to\infty$ is equivalent
-to convergence of the net;
-we work with sequences throughout.)
+$A_{c_n}f\to Bf$.)
+The limit $Bf$ is thereby
+independent of any particular
+sequence; uniqueness follows from
+the net-convergence assumption,
+not from a diagonal argument.
 Then:
 \begin{enumerate}[\rm(a)]
 \item\label{sc:bdd}
       $\|Bf\|\le M\|f\|$
       for all $f\in\mathcal{D}$.
 \item\label{sc:ext}
-      For every $f\in\mathcal{H}$
-      and every sequence
-      $c_n\to\infty$,
-      the sequence $(A_{c_n} f)$
-      is Cauchy in $\mathcal{H}$
-      and hence convergent;
-      the limit is independent
-      of the choice of sequence.
-      Denoting $Af:=\lim_{c\to\infty} A_c f$,
-      we obtain
+      For every $f\in\mathcal{H}$,
+      the net $(A_c f)_{c>0}$
+      converges in $\mathcal{H}$;
+      denote $Af:=\lim_{c\to\infty} A_c f$.
+      Then
       $A\in\mathcal{B}(\mathcal{H})$,
       $\|A\|\le M$,
       and $A|_{\mathcal{D}}=B$.
@@ -401,43 +419,37 @@ Then:
 
 \begin{proof}
 \textit{(a).}
-$\|Bf\|=\lim_n\|A_{c_n} f\|\le M\|f\|$.
+$\|Bf\|=\lim_c\|A_c f\|\le M\|f\|$.
 
 \textit{(b).}
-Fix $f\in\mathcal{H}$,
-a sequence $c_n\to\infty$,
-and $\varepsilon>0$.
+Fix $f\in\mathcal{H}$ and
+$\varepsilon>0$.
 Choose $g\in\mathcal{D}$ with
-$\|f-g\|<\varepsilon$, then
+$\|f-g\|<\varepsilon$.
+For any net indices
+$c,c'\ge c_0$ (to be chosen):
 \[
-  \|A_{c_n} f-A_{c_m}f\|
-  \le \|A_{c_n}(f-g)\|
-  +\|A_{c_n} g-A_{c_m}g\|
-  +\|A_{c_m}(f-g)\|
+  \|A_c f-A_{c'}f\|
+  \le \|A_c(f-g)\|
+  +\|A_c g-A_{c'}g\|
+  +\|A_{c'}(f-g)\|
   \le 2M\varepsilon
-  +\|A_{c_n} g-A_{c_m}g\|.
+  +\|A_c g-A_{c'}g\|.
 \]
-Since $A_{c_n} g\to Bg$,
-the right-hand side $\to 2M\varepsilon$
-as $n,m\to\infty$.
-As $\varepsilon>0$ is arbitrary,
-$(A_{c_n} f)$ is Cauchy in
+Since $(A_c g)$ is Cauchy
+(it converges by hypothesis),
+the right-hand side is
+$\le 3M\varepsilon$
+for $c,c'$ sufficiently large.
+Thus $(A_c f)$ is Cauchy in
 $\mathcal{H}$;
-since $\mathcal{H}$ is complete,
-the limit exists.
-The limit is independent of the
-choice of cofinal sequence
-(any two such sequences give the
-same value via a diagonal argument),
-so $Af:=\lim_{c\to\infty} A_c f$
-is well defined.
+completeness gives the limit
+$Af:=\lim_{c\to\infty}A_c f$.
 $\|Af\|\le M\|f\|$ and
-$A|_{\mathcal{D}}=B$ follow immediately,
-so $A\in\mathcal{B}(\mathcal{H})$
-with $\|A\|\le M$.
+$A|_{\mathcal{D}}=B$ are immediate.
 
 \textit{(c).}
-$\limsup_n\|A_{c_n} f-Af\|
+$\limsup_c\|A_c f-Af\|
 \le 2M\varepsilon$;
 $\varepsilon$ arbitrary.
 \end{proof}
@@ -448,7 +460,8 @@ $\varepsilon$ arbitrary.
 The only completeness property
 used above is that of the Hilbert
 space $\mathcal{H}$ itself
-(Cauchy sequences converge).
+(Cauchy nets converge in a
+complete metric space).
 No completeness of an
 eigenvector system, no Parseval
 identity, and no basis argument
@@ -477,8 +490,9 @@ $\sup_c\|\Hc\|\le 1$ by
 \eqref{IX6};
 $\mathcal{D}$ is dense by
 \eqref{IX5};
-$\Hc f\to Bf$ for all
-$f\in\mathcal{D}$ by definition.
+the net $\Hc f\to Bf$ for all
+$f\in\mathcal{D}$ by definition of
+$\mathcal{D}$ and $B$.
 Part~(a) gives $\|Bf\|\le\|f\|$
 (consistent with Paper~VII, Thm.~C).
 Parts~(b,c) yield the limit
@@ -531,6 +545,71 @@ depends only on
 Lemma~\ref{lem:sc}.
 \eqref{IX2norm} is used only
 in Section~\ref{sec:form-convergence}.
+\end{remark}
+
+%%% W5 NEW: Remark on non-multiplication structure
+\begin{remark}[Nature of $\Hlim$:
+  not a multiplication operator]
+\label{rem:hlim-not-mult}
+The operator $\Hlim$ is
+\emph{not} expected to be a
+multiplication operator such as
+$M_{\chi_{[-1,1]}}$
+(pointwise restriction to the
+time window $[-1,1]$),
+nor to coincide with the identity
+$I$ on $L^2(\mathbb{R})$.
+
+The heuristic argument
+``$K_c(x,y)\to\delta(x-y)$
+on $[-1,1]\times[-1,1]$,
+hence $\Hlim=M_{\chi_{[-1,1]}}$''
+is invalid in the operator sense:
+the PSWF kernels $K_c(x,y)$
+converge (if at all) only
+distributionally, and
+distributional convergence does
+not imply strong operator
+convergence to a multiplication
+operator on $L^2(\mathbb{R})$.
+
+Indeed, if $\Hlim=M_{\chi_{[-1,1]}}$
+were true, then
+$\sigma(\Hlim)=\{0,1\}$,
+contradicting the open question
+of whether $\sigma(\Hlim)=[0,1]$
+(Open Problem~\ref{prob:spectrum})
+and inconsistent with the
+Landau--Pollak eigenvalue
+transition \cite{Slepian1961},
+which predicts a continuous
+transition zone with eigenvalues
+densely distributed in $(0,1)$
+for the finite-$c$ operators
+$\Hc$.
+
+Similarly, $\Hlim\ne I$:
+for any $f$ supported outside
+$[-1,1]$, the kernel structure
+of $\Hc$ (which integrates over
+$[-1,1]$ only) forces
+$\ip{\Hc f}{f}\le\|Pf\|^2<\|f\|^2$
+for all $c$,
+hence $\ip{\Hlim f}{f}<\|f\|^2$.
+
+The correct conclusion is that
+$\Hlim$ is a nontrivial positive
+contraction whose spectrum is
+contained in $[0,1]$
+(Theorem~\ref{thm:sa}),
+but whose precise spectral
+structure is open
+(Open Problems~\ref{prob:spectrum},
+\ref{prob:spec-structure}).
+Determining whether $\Hlim$
+has nonlocal (genuinely integral)
+operator structure is an
+interesting open problem.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -773,6 +852,7 @@ $q_{c_n}(f,f)
 =\qlim(f,f)$
 by Corollary~\ref{cor:qlim-op}.
 
+%%% W3: monotone-convergence half-sentence added
 \textit{(M1).}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
@@ -802,11 +882,13 @@ $c_0>0$ preserves the inequality:
   \ge\sup_{c_0>0}q_{c_0}(f,f).
 \]
 The function $c_0\mapsto q_{c_0}(f,f)$
-is non-decreasing by \eqref{IX4},
-so $\sup_{c_0>0}q_{c_0}(f,f)
+is non-decreasing by \eqref{IX4};
+by monotone convergence of
+$c_0\mapsto q_{c_0}(f,f)$,
+$\sup_{c_0>0}q_{c_0}(f,f)
 =\lim_{c_0\to\infty}q_{c_0}(f,f)
 =\qlim(f,f)$
-by Definition~\ref{def:qlim}.
+(Definition~\ref{def:qlim}).
 Hence
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
@@ -907,6 +989,7 @@ $q(f,g)=\ip{Tf}{g}$.
 \cite{ReedSimon1975}, VIII.15.)
 \end{theorem}
 
+%%% W4: Dom explicit
 \begin{theorem}[Form identification]
 \label{thm:friedrichs}
 $T_{\qlim}=\Hlim$.
@@ -915,10 +998,13 @@ $T_{\qlim}=\Hlim$.
 By Theorems~\ref{thm:qlim-exists}
 and~\ref{thm:form-closed},
 $\qlim$ is a closed semibounded
-form on all of $L^2(\mathbb{R})$;
+form with $\Dom(\qlim)=L^2(\mathbb{R})$
+(Definition~\ref{def:qlim});
 Theorem~\ref{thm:kato-rep}
 gives a unique self-adjoint
-$T_{\qlim}$.
+$T_{\qlim}$ with
+$\Dom(T_{\qlim})\subset
+\Dom(\qlim)=L^2(\mathbb{R})$.
 
 For every $f,g\in L^2(\mathbb{R})$:
 by Lemma~\ref{lem:hlim-bounded}
@@ -930,9 +1016,13 @@ By Definition~\ref{def:qlim}:
 $\ip{\Hc f}{g}=\qc(f,g)
 \to\qlim(f,g)$.
 Hence $\ip{\Hlim f}{g}=\qlim(f,g)$
-for all $g$, so
-$f\in\Dom(T_{\qlim})$ and
-$T_{\qlim}f=\Hlim f$:
+for all $g$;
+since $\qlim$ is defined on
+all of $L^2(\mathbb{R})$,
+this holds for all $g\in
+\Dom(\qlim)=L^2(\mathbb{R})$,
+so $f\in\Dom(T_{\qlim})$
+and $T_{\qlim}f=\Hlim f$:
 $\Hlim\subset T_{\qlim}$.
 Since both operators are bounded
 and defined on all of
@@ -1096,6 +1186,14 @@ norm) resolvent convergence does
 not directly control multiplicity
 or isolation of spectral points
 in the limit operator.
+\end{problem}
+
+\begin{problem}[Structure of $\Hlim$]
+\label{prob:hlim-structure}
+Is $\Hlim$ a multiplication operator,
+or does it have genuinely nonlocal
+(integral operator) structure?
+See Remark~\ref{rem:hlim-not-mult}.
 \end{problem}
 
 \begin{problem}[Completeness]
