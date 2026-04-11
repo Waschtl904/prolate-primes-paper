@@ -68,13 +68,12 @@ Paper~VIII states this as Conjecture~8.1.
 \begin{enumerate}
 \item \textbf{Theorem~\ref{thm:domain}
       (Canonical domain).}
-      The operator $\Hlim$ is defined
-      via a spectral series on an explicitly described domain.
-      The domain contains all finite linear combinations
-      of $\{\Phi_n^{(\infty)}\}$ and
-      is \emph{dense} in $L^2(\mathbb{R})$
-      conditionally on Hypothesis~\ref{hyp:decay}.
-      The operator is symmetric on this domain.
+      We define a symmetric operator $\Hlim$
+      via a spectral series on an explicitly described
+      domain containing all finite linear combinations
+      of $\{\Phi_n^{(\infty)}\}$.
+      Its identification with the SOT-limit operator
+      is addressed in Theorem~\ref{thm:closable}.
 
 \item \textbf{Theorem~\ref{thm:closable}
       (Closability).}
@@ -88,28 +87,33 @@ Paper~VIII states this as Conjecture~8.1.
       (Operator norm rate).}
       $\|\Hc - \Hlim\|_{L^2 \to L^2}
       \le C_\kappa\, c^{-1/4}$,
-      conditional on uniform eigenfunction alignment
-      (Hypothesis~\ref{hyp:uniform-alignment}).
-      The main eigenvalue-sum term is
-      unconditionally $O(c^{-1/4})$ by \eqref{VIII3};
-      the cross-term estimate requires uniformity
-      in $n \le \kappa c$.
+      conditional on Hypothesis~\ref{hyp:uniform-alignment}
+      (uniform eigenfunction alignment).
+      The eigenvalue-sum term is unconditionally
+      $O(c^{-1/4})$.
 
-\item \textbf{Theorem~\ref{thm:deficiency}
-      (Deficiency index control).}
-      Every $f \in \ker(\Hlim^* \pm i)$
-      is orthogonal to all $\Phi_n^{(\infty)}$.
-      Under Hypothesis~\ref{hyp:decay},
-      this yields $n_\pm(\Hlim) = 0$.
+\item \textbf{Remark~\ref{rem:deficiency-orthogonal}
+      (Central reduction, unconditional).}
+      We prove:
+      $\ker(\Hlim^* \pm i) = \{0\}$
+      if and only if
+      $\{\Phi_n^{(\infty)}\}$ is complete in $L^2(\mathbb{R})$.
+      This reduces essential self-adjointness
+      of $\Hlim$ precisely to the completeness
+      of the limit eigenvectors.
+      This equivalence is unconditional.
 
 \item \textbf{Corollary~\ref{cor:esa}
-      (Essential self-adjointness, conditional).}
-      Under Hypothesis~\ref{hyp:decay},
-      $\Hlim$ is essentially self-adjoint,
-      $\sigma_{\rm app}(\Hlim) = \sigma(\Hlim)$,
-      and --- combined with Hypothesis~CCM ---
+      (Conditional conclusion).}
+      Under Hypothesis~\ref{hyp:decay}
+      (completeness of $\{\Phi_n^{(\infty)}\}$,
+      currently open)
+      and Hypothesis~CCM
+      (\cite{CCM2025}, currently conjectural),
       all non-trivial zeros $\rho$ of $\zeta(s)$
       satisfy $\mathrm{Re}(\rho) = 1/2$.
+      This is a conditional reduction,
+      not a proof of the Riemann hypothesis.
 \end{enumerate}
 \end{abstract}
 
@@ -122,22 +126,28 @@ This paper has three main threads:
       (Sections~\ref{sec:domain}--\ref{sec:closable}):
       $\Hlim$ is well-defined and symmetric on
       the span of $\{\Phi_n^{(\infty)}\}$.
+      The spectral definition defines a symmetric operator;
+      its identification with the SOT-limit is
+      established unconditionally via closability.
       Density of the domain is conditional
       on Hypothesis~\ref{hyp:decay}.
-      Closability is unconditional.
 \item \textbf{Operator-norm thread}
       (Section~\ref{sec:opnorm}):
       Unconditional: eigenvalue-sum term $O(c^{-1/4})$.
       Conditional on Hypothesis~\ref{hyp:uniform-alignment}:
       cross-term estimate and full $O(c^{-1/4})$ rate.
+      Hypothesis~\ref{hyp:uniform-alignment} is a
+      non-trivial global spectral assumption
+      discussed in Remark~\ref{rem:uniform-alignment-status}.
 \item \textbf{Deficiency thread}
       (Sections~\ref{sec:deficiency}--\ref{sec:esa}):
-      The central result is the equivalence
+      The central result is the unconditional equivalence
       ESSA $\iff$ Completeness
-      (Remark~\ref{rem:deficiency-orthogonal}),
-      which is proved unconditionally.
-      The conclusion $n_\pm = 0$ is conditional
-      on Hypothesis~\ref{hyp:decay}.
+      (Remark~\ref{rem:deficiency-orthogonal}).
+      The conclusion $n_\pm = 0$ and
+      the RH reduction are conditional
+      on Hypothesis~\ref{hyp:decay} and
+      Hypothesis~CCM (see Remark~\ref{rem:ccm-status}).
 \end{enumerate}
 
 \tableofcontents
@@ -254,6 +264,27 @@ $\Hlim f :=
 \ip{f}{\Phi_n^{(\infty)}}
 \Phi_n^{(\infty)}$.
 \end{definition}
+
+\begin{remark}[Definition vs.\ SOT-limit]
+\label{rem:domain-vs-SOT}
+Definition~\ref{def:domain} introduces a
+\emph{symmetric operator} acting on functions
+with sufficient spectral decay.
+A priori it is not automatic that this
+coincides with the operator obtained as
+SOT-limit of $\Hc$: the spectral definition
+could in principle miss components of $f$
+orthogonal to all $\Phi_n^{(\infty)}$
+(i.e.\ components in the potential
+null-space of $\Hlim$).
+This subtlety is resolved by
+Theorem~\ref{thm:closable}:
+closability of the spectrally-defined
+$\Hlim$ — proved independently of
+completeness — establishes that its
+closure is compatible with
+the SOT-limit.
+\end{remark}
 
 \begin{theorem}[Properties of the canonical domain]
 \label{thm:domain}
@@ -456,7 +487,7 @@ For all $c \ge c_0(\kappa)$ and all $n \le \kappa c$:
 \]
 \end{hypothesis}
 
-\begin{remark}[Status of Hypothesis~\ref{hyp:uniform-alignment}]
+\begin{remark}[Depth of Hypothesis~\ref{hyp:uniform-alignment}]
 \label{rem:uniform-alignment-status}
 Hypothesis~\ref{hyp:uniform-alignment} is
 stronger than the pointwise statement of
@@ -464,14 +495,24 @@ Lemma~\ref{lem:eigenvector-alignment}:
 it requires the $c^{-1/4}$ bound uniformly
 over all $n \le \kappa c$,
 not just for each fixed $n$.
-For fixed $n$ the estimate holds heuristically;
-the uniform version would follow from a
+This is a \emph{global spectral problem}:
+controlling the alignment of eigenvectors
+uniformly across the entire sub-threshold
+regime is in depth comparable to
+semiclassical completeness problems,
+and is not expected to follow from
+simple perturbation-theoretic arguments.
+The uniform version would follow from a
 uniform eigenvalue-gap lower bound
 $\lambda_n^{(c)} - \lambda_{n+1}^{(c)} \ge \delta_\kappa c^{-1/2}$
 for all $n \le \kappa c$ (open since Paper~VIII,
-Rem.~4.2).
-Alternatively, if Paper~X provides a uniform
-resolvent bound, this would suffice.
+Rem.~4.2),
+or from a uniform resolvent bound from Paper~X.
+In the absence of such a bound,
+Hypothesis~\ref{hyp:uniform-alignment}
+should be regarded as a non-trivial
+open assumption, explicitly flagged as such
+(Problem~\ref{prob:uniform-alignment}).
 \end{remark}
 
 \begin{theorem}[Operator norm rate]
@@ -524,19 +565,11 @@ Combining: $\|\Hc - \Hlim\|_{L^2 \to L^2}
 \label{rem:opnorm-unconditional-partial}
 Without Hypothesis~\ref{hyp:uniform-alignment},
 the eigenvalue-sum term alone gives:
-\[
-  \|\Hc - \Hlim\|_{L^2 \to L^2}
-  \le C_\kappa c^{-1/4} + R(c),
-\]
-where $R(c)$ is the cross-term contribution.
-The eigenvalue-sum part is unconditional
-and $O(c^{-1/4})$.
-The cross-term remainder $R(c) \to 0$
-follows from SOT-convergence,
-but the rate of $R(c)$ is unknown without
-Hypothesis~\ref{hyp:uniform-alignment}.
-In particular, the full operator-norm rate
-$O(c^{-1/4})$ depends on this hypothesis.
+$\|\Hc - \Hlim\|_{L^2 \to L^2}
+\le C_\kappa c^{-1/4} + R(c)$,
+where $R(c) \to 0$ (from SOT-convergence)
+but whose rate is unknown.
+The full $O(c^{-1/4})$ rate is conditional.
 \end{remark}
 
 \begin{remark}[Domain stability]
@@ -600,6 +633,8 @@ the unconditional equivalence:
 Essential self-adjointness of $\Hlim$
 reduces precisely to the completeness
 of the limit eigenvectors.
+This is the central result of this paper
+and is proved without any hypothesis.
 \end{remark}
 
 \subsection{The completeness hypothesis}
@@ -681,12 +716,46 @@ self-adjointness forces the spectrum real,
 hence $\mathrm{Re}(\rho) = 1/2$.
 \end{proof}
 
-\begin{remark}[Conditions]
+\begin{remark}[Status of the RH reduction]
 \label{rem:conditional}
 Theorem~\ref{thm:sigma-identity}(iii)
 depends on:
-(1) Hypothesis~\ref{hyp:decay} (open);
+(1) Hypothesis~\ref{hyp:decay} (completeness;
+currently open, see Problem~\ref{prob:completeness});
 (2) Hypothesis~CCM (\cite{CCM2025}).
+The result is therefore a
+\emph{conditional reduction},
+not a proof of the Riemann hypothesis.
+\end{remark}
+
+\begin{remark}[Status of Hypothesis~CCM]
+\label{rem:ccm-status}
+Hypothesis~CCM (\cite{CCM2025}) posits
+a spectral embedding of the non-trivial
+zeros of $\zeta(s)$ into the spectrum of
+$\Hlim$ via the Connes--Consani--Moscovici
+construction.
+This hypothesis is currently
+\emph{conjectural} and is not known to be
+equivalent to the Riemann hypothesis.
+In particular:
+\begin{itemize}
+\item the spectral assignment
+      $\rho \mapsto \sigma_{\rm app}(\Hlim)$
+      depends on the precise formulation
+      of the CCM spectral triple and
+      on the identification of zeros
+      with spectral parameters;
+\item it is not established that the converse
+      holds: elements of $\sigma(\Hlim)$
+      need not correspond to zeros of $\zeta$
+      without further input.
+\end{itemize}
+The conclusions of
+Theorem~\ref{thm:sigma-identity} are
+therefore contingent on both
+Hypothesis~\ref{hyp:decay} and
+Hypothesis~CCM in an essential way.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
