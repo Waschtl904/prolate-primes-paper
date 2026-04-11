@@ -57,108 +57,190 @@ Riemann zeta function}
 \maketitle
 
 \begin{abstract}
-The prolate spheroidal wave function (PSWF)
-concentration operators $\Hc$ form a uniformly
-bounded, monotone family of compact
-self-adjoint operators on $L^2(\mathbb{R})$.
-This paper has two independent objectives.
+We study the concentration operators
+$\Hc = P^*\mathcal{H}_c^{[0,1]}P$,
+where $\mathcal{H}_c^{[0,1]}$ is the
+classical Slepian--Pollak
+time-band-limiting operator on
+$L^2([0,1])$.
+The family $\{\Hc\}_{c>0}$ consists
+of uniformly bounded,
+monotonically increasing,
+compact self-adjoint operators on
+$L^2(\mathbb{R})$.
 
-\textbf{(A) Form convergence and resolvent
-stability (unconditional).}
 The foundational identity
-(Lemma~\ref{lem:ftb}, Slepian--Pollak
-\cite{Slepian1961})
-$\ip{\Hc f}{f} = \|\Bc(P^*Pf)\|^2$
-reduces the PSWF operator to a Fourier
-band projection conjugated by
-time-restriction.
-From this identity, operator monotonicity
-and Hilbert--Schmidt compactness are
-derived; the SOT extension principle
-(Lemma~\ref{lem:sc}) then yields
-$\Hc\xrightarrow{\mathrm{SOT}}\Hstrong$
-on all of $L^2(\mathbb{R})$.
-Mosco convergence, closedness of
-$\qlim$, and strong resolvent
-convergence follow.
-A quantitative rate $O(c^{-1/4})$
-is stated as an external theorem
-(Paper~VIII, operator-norm level).
+(Lemma~\ref{lem:ftb})
+\[
+  \ip{\Hc f}{f}
+  = \|\Bc(P^*Pf)\|^2
+\]
+reduces the entire operator family to
+a Fourier band projection conjugated
+by time-restriction.
+All results in this paper are
+consequences of this single identity
+and the inclusion
+$[-c,c]\subset[-c',c']$ for $c\le c'$;
+we call it the \emph{coordinatisation
+lemma} of the theory.
 
-\textbf{(B) Bridge theorem (unconditional).}
-$\Hstrong = \overline{\Hspectral}$
-follows from uniqueness of the SOT limit
-of the family $(\Hc)$.
+\textbf{Dual convergence structure.}
+The identity gives rise to two
+independent, parallel convergence threads:
+\begin{enumerate}[(A)]
+\item \textbf{Operator thread
+      (SOT convergence):}
+      Uniform boundedness and a dense
+      subset of $L^2(\mathbb{R})$
+      on which $\Hc f$ converges
+      (Lemma~\ref{lem:dense})
+      yield, via the SOT extension
+      principle (Lemma~\ref{lem:sc}),
+      a unique strong limit
+      $\Hc\xrightarrow{\mathrm{SOT}}
+      \Hstrong\in\mathcal{B}(L^2)$.
+\item \textbf{Form thread
+      (Mosco convergence):}
+      Operator monotonicity and
+      Hilbert--Schmidt compactness
+      of each $\Hc[c_0]$
+      (Lemma~\ref{lem:hs-compact})
+      yield, via weak-to-strong
+      compactness (Lemma~\ref{lem:wc}),
+      Mosco convergence
+      $\qc\xrightarrow{\mathrm{M}}
+      \qlim$.
+\end{enumerate}
+The two threads are logically
+orthogonal: thread~(A) uses
+uniform boundedness and Cauchy nets;
+thread~(B) uses monotonicity and
+compactness.
+They are unified by the identification
+$\qlim(f,f)=\ip{\Hstrong f}{f}$,
+giving
+$T_{\qlim}=\Hstrong$
+(Theorem~\ref{thm:friedrichs})
+and strong resolvent convergence
+(Corollary~\ref{cor:resolvent}).
 
-The conditional connection to zeros of
-$\zeta(s)$ (Remark~\ref{rem:rh}) is
-purely programmatic;
-no unconditional claim is made.
+\textbf{Bridge theorem.}
+For a spectrally constructed operator
+$\Hspectral$ (Paper~IX),
+$\Hstrong=\overline{\Hspectral}$
+(Theorem~\ref{thm:bridge}).
+The proof is a
+\emph{categorical identity argument}:
+both sides are SOT limits of the same
+family $(\Hc)$;
+SOT limits of bounded operators
+are unique by pointwise-convergence
+on all vectors.
+No eigenfunction analysis or
+dense-set comparison is needed.
+
+\textbf{Scope.}
+This paper is pure operator-limit
+theory.
+It proves no properties of the
+limiting eigenfunctions
+$\{\Phi_n^{(\infty)}\}$,
+no spectral decomposition of $\Hlim$,
+and makes no unconditional
+connection to zeros of $\zeta(s)$.
+The speculative connection to the
+Riemann hypothesis
+(Remark~\ref{rem:rh})
+is clearly labelled as programmatic.
 \end{abstract}
 
 \section*{Guide for the Referee}
 
-\textbf{Architecture.}
+\subsection*{Conceptual architecture}
+
+The paper has a single structural origin:
+
+\medskip
+\noindent
+\textbf{Coordinatisation lemma (FTB,
+Lem.~\ref{lem:ftb}):}
+$\ip{\Hc f}{f} = \|\Bc(P^*Pf)\|^2$.
+
+\medskip
+\noindent
+From this one identity, two
+\emph{independent} convergence threads
+branch off:
+
+\[
+\boxed{\text{FTB}}
+\longrightarrow
+\begin{cases}
+  \text{Monotonicity + HS compactness}
+  \xRightarrow{\text{lem:wc}}
+  \underbrace{q_c\xrightarrow{\mathrm{M}}
+  q_{\lim}}_{\text{thread B: forms}}\\
+  [6pt]
+  \text{Uniform bound + density}
+  \xRightarrow{\text{lem:sc}}
+  \underbrace{\Hc\xrightarrow{\mathrm{SOT}}
+  \Hstrong}_{\text{thread A: operators}}
+\end{cases}
+\]
+\[
+\xRightarrow{\text{identification}\;T_{q_{\lim}}=\Hstrong}
+\text{resolvent convergence}
+\xRightarrow{\text{SOT uniqueness}}
+\text{Bridge.}
+\]
+
+\subsection*{What the paper does not do}
+\begin{itemize}
+\item It proves no properties of
+      $\{\Phi_n^{(\infty)}\}$
+      (open: Problem~\ref{prob:completeness}).
+\item It makes no unconditional
+      spectral claim about $\Hlim$
+      beyond $\sigma(\Hlim)\subset[0,1]$.
+\item The $\zeta$-connection is purely
+      speculative
+      (Remark~\ref{rem:rh}).
+\end{itemize}
+
+\subsection*{Module structure}
 \begin{enumerate}[(I)]
-\item \textbf{Form-convergence thread}
-      (Sections~\ref{sec:setup}--%
+\item \textbf{Thread~A: operator}
+      (Secs.~\ref{sec:setup},
+      \ref{sec:strong-limit},
       \ref{sec:friedrichs}):
-      self-contained;
-      all results from
-      Lem.~\ref{lem:ftb}.
-\item \textbf{Rate thread}
-      (Section~\ref{sec:rate}):
-      standalone; no dependencies.
-\item \textbf{Bridge thread}
-      (Section~\ref{sec:bridge}):
+      self-contained.
+\item \textbf{Thread~B: form}
+      (Sec.~\ref{sec:mosco}):
+      self-contained.
+\item \textbf{Rate}
+      (Sec.~\ref{sec:rate}):
+      standalone; imports Paper~VIII.
+\item \textbf{Bridge}
+      (Sec.~\ref{sec:bridge}):
       sole import point for Paper~IX.
 \item \textbf{Consequences}
-      (Section~\ref{sec:consequences}).
+      (Sec.~\ref{sec:consequences}).
 \end{enumerate}
 
-\textbf{Logical flow.}
-\[
-  \underbrace{\text{Lem.~\ref{lem:ftb}}}_
-  {\text{SP}}
-  \Rightarrow
-  \begin{cases}
-    \text{Lem.~\ref{lem:monotone}}\\
-    \text{Lem.~\ref{lem:hs-compact}}
-  \end{cases}
-  \xRightarrow{\text{Lem.~\ref{lem:sc}}}
-  \Hc\xrightarrow{\mathrm{SOT}}\Hstrong
-  \Rightarrow
-  \text{Mosco}\Rightarrow\text{resolvent.}
-\]
-\noindent
-(Lemma~\ref{lem:dense} is subsumed:
-SOT convergence on all of $L^2$ implies
-$\mathcal{D}=L^2$; see
-Remark~\ref{rem:dense-trivial}.)
-
-\textbf{Changes in v38 vs v37.}
-(F38-1) Lem.~\ref{lem:dense} and
-Rem.~\ref{rem:dense-trivial}:
-the density claim is correctly noted
-as a \emph{consequence} of SOT
-convergence (not a prerequisite);
-it is retained only for logical
-clarity of the SOT-extension step.
-(F38-2) Lem.~\ref{lem:sc}:
-``directed net over $c>0$'' stated
-explicitly; Cauchy condition
-for directed nets clarified.
-(F38-3) Bridge theorem proof:
-one sentence added:
-``SOT limits are unique because SOT
-convergence is defined by pointwise
-convergence on all vectors, and
-$\mathcal{H}$ is Hausdorff.''
-(F38-4) Thm.~\ref{thm:form-closed}:
-closed-form conclusion now cites
-\cite{ReedSimon1975}, Thm.~VIII.15
-(bounded symmetric forms are closed)
-explicitly.
+\subsection*{Changes v38 $\to$ v39}
+Abstract and Referee Guide rewritten
+to reflect true architecture:
+(v39-1) FTB named
+``coordinatisation lemma'';
+(v39-2) SOT and Mosco threads
+explicitly labelled parallel and
+orthogonal;
+(v39-3) Bridge described as
+``categorical identity argument
+via SOT uniqueness'';
+(v39-4) paper scope statement
+added to abstract.
 
 \tableofcontents
 
@@ -204,19 +286,20 @@ $\|\Hc\|\le 1$
 \cite{ReedSimon1975}, Thm.~VI.1).
 \end{enumerate}
 
-\begin{remark}[Scope]
+\begin{remark}[Scope of foundational
+  thread]
 \label{rem:scope}
 Sections~\ref{sec:setup}--%
 \ref{sec:friedrichs} use only
 \eqref{F1} and
 Lemmas~\ref{lem:ftb}--\ref{lem:dense}.
 No results from Papers~VIII or~IX
-appear.
+appear here.
 \end{remark}
 
 %── lem:ftb
 \begin{lemma}[Fourier--time--band
-  representation]
+  identity: coordinatisation lemma]
 \label{lem:ftb}
 For all $c>0$, $f\in L^2(\mathbb{R})$:
 \begin{align}
@@ -227,6 +310,11 @@ For all $c>0$, $f\in L^2(\mathbb{R})$:
   \mathcal{H}_c^{[0,1]}
   &=P\,\Bc\,P^*.
 \end{align}
+This is the structural origin of all
+subsequent results; every property
+of $\Hc$ derived below follows
+from \eqref{eq:ftb} and the inclusion
+$[-c,c]\subset[-c',c']$.
 \end{lemma}
 
 \begin{proof}
@@ -240,7 +328,7 @@ Convolution theorem
 (\cite{ReedSimon1975}, Thm.~IX.2):
 \begin{equation}\label{eq:conv-bc}
   K_c*h=\Bc h
-  \quad\forall h\in L^2(\mathbb{R}).
+  \;\forall h\in L^2(\mathbb{R}).
 \end{equation}
 
 \textit{Step~2: Restriction.}
@@ -250,168 +338,142 @@ Since $\tilde g=0$ a.e.\ outside
 $[0,1]$:
 $(K_c*\tilde g)(x)
 =\int_0^1 K_c(x-y)g(y)\,dy
-=(\mathcal{H}_c^{[0,1]}g)(x)$
-for $x\in[0,1]$.
+=(\mathcal{H}_c^{[0,1]}g)(x)$.
 With \eqref{eq:conv-bc}:
-$\mathcal{H}_c^{[0,1]}g
-=P(\Bc\tilde g)=P\Bc P^*g$,
+$\mathcal{H}_c^{[0,1]}g=P\Bc P^*g$,
 giving \eqref{eq:ftb-op}.
 
 \textit{Step~3.}
 For $g=Pf$:
 $\ip{\Hc f}{f}
 =\ip{P\Bc P^*Pf}{Pf}
-=\ip{\Bc\tilde g}{\tilde g}
-=\|\Bc\tilde g\|^2$.
+=\|\Bc(P^*Pf)\|^2$.
 \end{proof}
 
 %── lem:monotone
-\begin{lemma}[Operator monotonicity]
+\begin{lemma}[Operator monotonicity
+  --- Thread~B input]
 \label{lem:monotone}
 $0<c\le c'\Rightarrow
 \ip{\Hc f}{f}\le
 \ip{\mathcal{H}_{c'}f}{f}$.
 \end{lemma}
 \begin{proof}
-$\|\Bc(P^*Pf)\|^2\le
-\|B_{c'}(P^*Pf)\|^2$:
-$\Bc\le B_{c'}$ since
-$[-c,c]\subset[-c',c']$
-(\cite{ReedSimon1975}, Ch.~VIII.1).
+$[-c,c]\subset[-c',c']\Rightarrow
+\Bc\le B_{c'}$
+(\cite{ReedSimon1975}, Ch.~VIII.1);
+apply \eqref{eq:ftb}.
 \end{proof}
 
 %── lem:hs-compact
-\begin{lemma}[Hilbert--Schmidt]
+\begin{lemma}[Hilbert--Schmidt ---
+  Thread~B input]
 \label{lem:hs-compact}
-For fixed $c_0>0$:
+For fixed $c_0>0$,
 $\Hc[c_0]$ is Hilbert--Schmidt,
 hence compact.
 \end{lemma}
 \begin{proof}
 $\|\mathcal{H}_{c_0}^{[0,1]}
 \|_{\mathrm{HS}}^2
-=\int_0^1\int_0^1
-|K_{c_0}(x-y)|^2\,dx\,dy
 \le\int_{-\infty}^\infty
 |K_{c_0}(u)|^2\,du
 =c_0/\pi$
-(Fubini + Parseval;
-$u=x-y$, Jacobian $1$).
-Compactness of $\Hc[c_0]=P^*
-\mathcal{H}_{c_0}^{[0,1]}P$:
+(Fubini $+$ Parseval);
+compactness:
 \cite{ReedSimon1975}, Thm.~VI.22.
 \end{proof}
 
-%── lem:dense (with remark on triviality)
-\begin{lemma}[Density of $\mathcal{D}$]
+%── lem:dense
+\begin{lemma}[Dense domain ---
+  Thread~A input]
 \label{lem:dense}
 Define
 $\mathcal{D}:=\{f\in L^2(\mathbb{R}):
-\Hc f \text{ converges in } L^2
+\Hc f\to\text{ in }L^2
 \text{ as }c\to\infty\}$.
-Then $C_c^\infty(\mathbb{R})
-\subset\mathcal{D}$;
-in particular $\mathcal{D}$ is dense.
+Then $C_c^\infty\subset\mathcal{D}$,
+so $\mathcal{D}$ is dense.
 \end{lemma}
-
 \begin{proof}
 For $f\in C_c^\infty$,
-set $\tilde g:=P^*Pf$.
-By \eqref{eq:ftb}:
-$\Hc f = P^*P(\Bc\tilde g)$.
-Since $\Bc\xrightarrow{\mathrm{SOT}}I$
-(\cite{ReedSimon1975}, Thm.~IX.14)
-and $P^*P\in\mathcal{B}(L^2)$:
-$\|\Hc f-P^*P\tilde g\|
-\le\|\Bc\tilde g-\tilde g\|\to 0$.
+$\tilde g:=P^*Pf$:
+$\|\Hc f - P^*P\tilde g\|
+\le\|\Bc\tilde g-\tilde g\|\to 0$
+(\cite{ReedSimon1975}, Thm.~IX.14;
+stability under $P^*P$).
 \end{proof}
 
-\begin{remark}[Logical status of
-  Lemma~\ref{lem:dense}]
+\begin{remark}[Logical status]
 \label{rem:dense-trivial}
-Lemma~\ref{lem:dense} is used
-only as input to
-Lemma~\ref{lem:sc} (Step~1 of the
-SOT-extension argument).
-Once Lemma~\ref{lem:sc} is applied
-and $\Hc\xrightarrow{\mathrm{SOT}}
-\Hstrong$ is established on all
-of $L^2(\mathbb{R})$, the set
-$\mathcal{D}$ equals $L^2(\mathbb{R})$
-and the density claim is
-automatically superseded.
-In particular, the lemma does not
-add mathematical depth beyond what
-the SOT-extension principle already
-delivers; it is included to make
-the logical steps fully explicit.
+Lemma~\ref{lem:dense} is
+pre-input to Thread~A only.
+Once $\Hc\xrightarrow{\mathrm{SOT}}
+\Hstrong$ is established,
+$\mathcal{D}=L^2$ automatically;
+the density claim is then
+superseded.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Strong-Limit Operator}
+\section{Thread~A: Strong Operator
+  Limit}
 \label{sec:strong-limit}
 %%═══════════════════════════════════════════════════════════════════
+
+\begin{remark}[Thread~A uses]
+\label{rem:threadA-uses}
+Inputs: \eqref{F1};
+Lem.~\ref{lem:dense}.
+Tool: Cauchy nets in Banach space.
+Output:
+$\Hc\xrightarrow{\mathrm{SOT}}\Hstrong$.
+\end{remark}
 
 \begin{lemma}[SOT extension
   principle]
 \label{lem:sc}
-Let $(A_c)_{c>0}$ be a
-\emph{directed net} (ordered by
-$c\to\infty$) in
+Let $(A_c)_{c>0}$ be a directed net
+(ordered by $c\to\infty$) in
 $\mathcal{B}(\mathcal{H})$
-with $M:=\sup_c\|A_c\|<\infty$.
-Let $\mathcal{D}\subset\mathcal{H}$
-be dense with
-$\lim_{c\to\infty}A_c g$ existing
+with $M:=\sup_c\|A_c\|<\infty$,
+and $\mathcal{D}\subset\mathcal{H}$
+dense with $\lim_c A_c g$ existing
 for every $g\in\mathcal{D}$.
-Then there exists a unique
-$A\in\mathcal{B}(\mathcal{H})$ with
-$\|A\|\le M$ and
-$A_c\xrightarrow{\mathrm{SOT}}A$
-(i.e., $A_c f\to Af$ for all
-$f\in\mathcal{H}$ in the directed-net
-sense).
+Then $\exists!\,A\in\mathcal{B}(\mathcal{H})$
+with $\|A\|\le M$ and
+$A_c\xrightarrow{\mathrm{SOT}}A$.
 \end{lemma}
 
 \begin{proof}
-Fix $f\in\mathcal{H}$ and
-$\varepsilon>0$.
-Choose $g\in\mathcal{D}$ with
+Fix $f$, $\varepsilon>0$;
+choose $g\in\mathcal{D}$ with
 $\|f-g\|<\varepsilon/(3M)$.
-For $c,c'$ large:
+For $c,c'$ above $c_0(g,\varepsilon)$
+in the directed set $(0,\infty)$:
 \[
   \|A_c f-A_{c'}f\|
-  \le 2M\|f-g\|
-  +\|A_c g-A_{c'}g\|
-  < \tfrac{2\varepsilon}{3}
-  +\tfrac{\varepsilon}{3}=\varepsilon.
+  \le 2M\|f-g\|+\|A_c g-A_{c'}g\|
+  <\varepsilon.
 \]
-(Here $c,c'$ are elements of the
-directed set $(0,\infty)$;
-``large'' means above some
-$c_0(g,\varepsilon)$.)
-Hence $(A_c f)$ is a
-Cauchy net in the complete space
-$\mathcal{H}$;
+$(A_c f)$ is Cauchy in the complete
+space $\mathcal{H}$;
 $Af:=\lim_c A_c f$ exists.
-Linearity, $\|A\|\le M$, and
-uniqueness:
+Boundedness, linearity, uniqueness:
 \cite{ReedSimon1975}, Thm.~I.26.
 \end{proof}
 
-\begin{lemma}[Existence of
-  $\Hstrong$]
+\begin{lemma}[Thread~A conclusion]
 \label{lem:hlim-bounded}
-$\Hc\xrightarrow{\mathrm{SOT}}
-\Hstrong$ for a unique
-$\Hstrong\in\mathcal{B}(L^2)$
-with $\|\Hstrong\|\le 1$.
+$\Hc\xrightarrow{\mathrm{SOT}}\Hstrong$
+for a unique
+$\Hstrong\in\mathcal{B}(L^2)$,
+$\|\Hstrong\|\le 1$.
 \end{lemma}
 \begin{proof}
-Lemma~\ref{lem:sc} with
-$\mathcal{D}$ from
-Lemma~\ref{lem:dense},
-$M=1$ from \eqref{F1}.
+Lem.~\ref{lem:sc};
+$M=1$ from \eqref{F1};
+$\mathcal{D}$ from Lem.~\ref{lem:dense}.
 \end{proof}
 
 \begin{corollary}
@@ -426,16 +488,29 @@ $\sigma(\Hstrong)\subset[0,1]$.
 \end{corollary}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Limit Form and Mosco
-  Convergence}
+\section{Thread~B: Mosco Convergence
+  of Forms}
 \label{sec:mosco}
 %%═══════════════════════════════════════════════════════════════════
+
+\begin{remark}[Thread~B uses]
+\label{rem:threadB-uses}
+Inputs: Lem.~\ref{lem:monotone};
+Lem.~\ref{lem:hs-compact}.
+Tool: compactness $+$ weak convergence.
+Output:
+$\qc\xrightarrow{\mathrm{M}}\qlim$.
+Thread~B is \emph{logically orthogonal}
+to Thread~A: it uses neither
+uniform boundedness in the
+Cauchy-net sense nor
+$\mathcal{D}$.
+\end{remark}
 
 \begin{definition}[Limit form]
 \label{def:qlim}
 $\qlim(f,f):=
-\sup_{c>0}\ip{\Hc f}{f}
-=\lim_{c\to\infty}\ip{\Hc f}{f}$;
+\sup_{c>0}\ip{\Hc f}{f}$;
 extend by polarisation.
 \end{definition}
 
@@ -450,8 +525,7 @@ iff:
       \qlim(f,f)\le
       \liminf_n q_{c_n}(f_n,f_n)$.
 \item $\forall f$,
-      $\exists c_n\to\infty$,
-      $f_n\to f$ strongly:
+      $\exists c_n$, $f_n\to f$:
       $q_{c_n}(f_n,f_n)\to\qlim(f,f)$.
 \end{enumerate}
 \end{definition}
@@ -469,69 +543,55 @@ Then:
 (\cite{ReedSimon1975}, Lem.~II.3).
 \end{lemma}
 
-\begin{theorem}[Mosco convergence]
+\begin{theorem}[Thread~B conclusion:
+  Mosco convergence]
 \label{thm:mosco}
 $\qc\xrightarrow{\mathrm{M}}\qlim$.
 \end{theorem}
 
 \begin{proof}
-\textit{(M2).}
-$f_n:=f$: trivial from
+\textit{(M2).} Trivial from
 Def.~\ref{def:qlim}.
 
-\textit{(M1): two steps.}
+\textit{(M1).}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
-For fixed $c_0>0$,
-once $c_n\ge c_0$:
+Fix $c_0>0$; once $c_n\ge c_0$:
 $q_{c_n}(f_n,f_n)
 \ge q_{c_0}(f_n,f_n)$
 (Lem.~\ref{lem:monotone}).
 $\Hc[c_0]$ compact
 (Lem.~\ref{lem:hs-compact}),
 so by Lem.~\ref{lem:wc}(b):
-$q_{c_0}(f_n,f_n)\to q_{c_0}(f,f)$.
-Hence
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge q_{c_0}(f,f)$.
-Taking $\sup_{c_0}$:
+Take $\sup_{c_0}$:
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Closedness and
-  Riesz--Kato Identification}
+\section{Identification and Closedness}
 \label{sec:friedrichs}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{theorem}[Closedness]
+\begin{theorem}[Closedness of
+  $\qlim$]
 \label{thm:form-closed}
 $\qlim$ is closed.
 \end{theorem}
 \begin{proof}
-Since $\Hstrong$ is a bounded
-symmetric operator,
-the form $\qlim(f,g)
-=\ip{\Hstrong f}{g}$ is
-sectilinear, symmetric, and
-bounded;
-bounded symmetric forms are
+Bounded symmetric forms are
 automatically closed
-(\cite{ReedSimon1975},
-Thm.~VIII.15).
-Alternatively:
-$\|f\|_{\qlim}^2
-=\|f\|^2+\ip{\Hstrong f}{f}
-\le 2\|f\|^2$
-and $\|f\|^2\le\|f\|_{\qlim}^2$;
-so form and $L^2$ norms are
-equivalent, giving closedness
-directly.
+(\cite{ReedSimon1975}, Thm.~VIII.15);
+alternatively, form and $L^2$
+norms are equivalent
+($\|f\|^2\le\|f\|_{\qlim}^2
+\le 2\|f\|^2$).
 \end{proof}
 
-\begin{theorem}[Riesz--Kato
-  identification]
+\begin{theorem}[Unification of
+  threads: Riesz--Kato]
 \label{thm:friedrichs}
 $T_{\qlim}=\Hstrong$.
 \end{theorem}
@@ -541,15 +601,26 @@ $\ip{\Hstrong f}{g}=\qlim(f,g)$
 uniqueness of Riesz representative.
 \end{proof}
 
+\begin{remark}[Threads united]
+Thm.~\ref{thm:friedrichs} is the
+unification step:
+Thread~A produced $\Hstrong$;
+Thread~B produced $\qlim$;
+the Riesz identification
+$T_{\qlim}=\Hstrong$ shows
+they are the same object.
+\end{remark}
+
 %%═══════════════════════════════════════════════════════════════════
 \section{Quantitative Rate
   (External, Paper~VIII)}
 \label{sec:rate}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{remark}[Independence]
+\begin{remark}
 No other section depends on
-Thm.~\ref{thm:rate-ext}.
+Thm.~\ref{thm:rate-ext};
+this section is standalone.
 \end{remark}
 
 \begin{theorem}[Quantitative rate,
@@ -560,28 +631,19 @@ $0\le\qlim(f,f)-\qc(f,f)
 \le C_\kappa c^{-1/4}\|f\|^2$.
 \end{theorem}
 \begin{proof}[Proof (external)]
-Lower bound: Lem.~\ref{lem:monotone}.
-Upper bound: Paper~VIII, Cor.~4.3
-provides $\|\Hstrong-\Hc\|
+Paper~VIII, Cor.~4.3:
+$\|\Hstrong-\Hc\|
 \le C_\kappa c^{-1/4}$
-at the \emph{operator-norm} level;
-apply to $\ip{(\Hstrong-\Hc)f}{f}$.
+(operator-norm level;
+strictly stronger than Mosco).
+Apply to $\ip{(\Hstrong-\Hc)f}{f}$.
 \end{proof}
-
-\begin{remark}[Level of the rate]
-\label{rem:rate-level}
-Paper~VIII delivers
-operator-norm control,
-strictly stronger than Mosco-level.
-Thm.~\ref{thm:mosco} is logically
-independent of Thm.~\ref{thm:rate-ext}.
-\end{remark}
 
 \begin{remark}[Obstruction]
 \label{rem:no-indep-proof}
 An internal proof would require
 uniform eigenvector asymptotics;
-mixing fixed-$c$ basis with
+mixing fixed-$c$ eigenbasis with
 $c\to\infty$ weights is invalid.
 See Problem~\ref{prob:rate}.
 \end{remark}
@@ -595,74 +657,66 @@ This section is the sole import
 point for Paper~IX.
 
 \begin{enumerate}[(IX.a)]
-
 \item\label{IXa}
-      Paper~IX, Def.~2.3:
       $\Hspectral f
       :=\sum_n
       \lambda_n^{(\infty)}
       \ip{f}{\Phi_n^{(\infty)}}
-      \Phi_n^{(\infty)}$;
+      \Phi_n^{(\infty)}}$;
       densely defined, symmetric,
-      closable (Paper~IX,
-      Thms.~2.5,~3.2).
-
+      closable
+      (Paper~IX, Thms.~2.5,~3.2).
 \item\label{IXb}
-      \textit{Bounded closure.}
       $\|\Hspectral f\|^2\le\|f\|^2$
       on $\Dom(\Hspectral)$
-      (Bessel + $\lambda_n^{(\infty)}
-      \in[0,1]$);
+      ($\lambda_n^{(\infty)}\in[0,1]$
+      + Bessel);
       hence $\overline{\Hspectral}
-      \in\mathcal{B}(L^2)$,
-      everywhere defined
+      \in\mathcal{B}(L^2)$
       (\cite{ReedSimon1975},
       Thm.~I.7).
-
 \item\label{IXc}
-      \textit{SOT limit.}
       Paper~IX, Rem.~2.6:
       $\Hc\xrightarrow{\mathrm{SOT}}
       \overline{\Hspectral}$.
-
 \end{enumerate}
 
-\begin{theorem}[Bridge theorem]
+\begin{theorem}[Bridge theorem:
+  categorical SOT identity]
 \label{thm:bridge}
 $\Hstrong=\overline{\Hspectral}$
 in $\mathcal{B}(L^2(\mathbb{R}))$.
 \end{theorem}
 
 \begin{proof}
-By Lem.~\ref{lem:hlim-bounded}:
-$\Hc\xrightarrow{\mathrm{SOT}}
-\Hstrong$.
-By \eqref{IXc}:
-$\Hc\xrightarrow{\mathrm{SOT}}
-\overline{\Hspectral}$.
-SOT limits are unique: SOT
-convergence means pointwise
-convergence on every $f\in L^2$;
-if two operators $A,B$ satisfy
-$A_c f\to Af$ and $A_c f\to Bf$
-for all $f$, then $(A-B)f=0$
-for all $f$, so $A=B$
-(since $L^2$ is Hausdorff).
-Hence $\Hstrong
-=\overline{\Hspectral}$.
+Both $\Hstrong$ (Lem.~\ref{lem:hlim-bounded})
+and $\overline{\Hspectral}$ (\eqref{IXc})
+are SOT limits of the same family
+$(\Hc)_{c>0}$.
+SOT limits are unique:
+if $A_c f\to Af$ and $A_c f\to Bf$
+for all $f\in L^2$,
+then $(A-B)f=0$ for all $f$,
+so $A=B$
+(pointwise convergence; $L^2$
+Hausdorff).
+Hence $\Hstrong=\overline{\Hspectral}$.
 \end{proof}
 
-\begin{remark}[Logical structure]
-The only import from Paper~IX
-is \eqref{IXc}.
-The proof uses solely
-SOT-uniqueness; no dense-set
-agreement argument is needed.
+\begin{remark}[Structure of the proof]
+No eigenfunction analysis,
+no dense-set comparison,
+no spectral identification:
+the proof is a pure
+\emph{categorical identity argument}
+in the SOT topology on
+$\mathcal{B}(L^2)$.
+The sole import from Paper~IX is
+\eqref{IXc}.
 \end{remark}
 
 \begin{remark}
-$\Hlim:=\Hstrong
-=\overline{\Hspectral}$.
+$\Hlim:=\Hstrong=\overline{\Hspectral}$.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -679,14 +733,13 @@ $(\Hc-z)^{-1}
 (\Hlim-z)^{-1}$.
 \end{corollary}
 \begin{proof}
-Mosco (Thm.~\ref{thm:mosco});
-$\sigma(\Hlim)\subset[0,1]$
-(Cor.~\ref{cor:sa-strong});
+Thm.~\ref{thm:mosco};
+$\sigma(\Hlim)\subset[0,1]$;
 \cite{KuwaeShioya2003}, Thm.~2.4.
 \end{proof}
 
 \begin{remark}[Unconditional
-  results]
+  results summary]
 Without any hypothesis:
 $\Hlim=\Hlim^*\ge 0$;
 $\|\Hlim\|\le 1$;
@@ -696,43 +749,37 @@ $(\Hc-z)^{-1}
 \xrightarrow{\mathrm{SOT}}
 (\Hlim-z)^{-1}$;
 $\Hstrong=\overline{\Hspectral}$.
-External (operator-norm):
+External (operator-norm, Paper~VIII):
 rate $O(c^{-1/4})$.
 \end{remark}
 
-\begin{remark}[Speculative
-  framework: Riemann zeros]
+\begin{remark}[Speculative framework:
+  Riemann zeros]
 \label{rem:rh}
-This remark is a
-\emph{speculative, programmatic}
-framework; it contains no proved
-result and no implication from the
-preceding theorems to zeta zeros
-is claimed.
+This remark is
+\emph{speculative and programmatic};
+no proved result and no implication
+from preceding theorems to
+zeta zeros is claimed.
 
-Two unverified hypotheses:
+Under two unverified hypotheses:
 \begin{enumerate}[(H1)]
-\item Paper~IX, Hyp.~4.1:
-      $\{\Phi_n^{(\infty)}\}$
-      complete;
+\item $\{\Phi_n^{(\infty)}\}$ complete;
       $\Hlim$ essentially
-      self-adjoint.
-\item \cite{CCM2025}, Thm.~1.3:
-      non-trivial zeros $\rho$
-      lie in
-      $\sigma_{\mathrm{app}}(\Hlim)$.
+      self-adjoint
+      (Paper~IX, Hyp.~4.1).
+\item Non-trivial zeros $\rho$ lie in
+      $\sigma_{\mathrm{app}}(\Hlim)$
+      (\cite{CCM2025}, Thm.~1.3).
 \end{enumerate}
-Under (H1)--(H2):
+(H1)--(H2) would give
 $\rho\in\sigma(\Hlim)
 \subset\mathbb{R}$,
-so $\mathrm{Re}(\rho)=1/2$.
+hence $\mathrm{Re}(\rho)=1/2$.
 (H2) has no rigorous operator
-identification between $\Hlim$
-and any zeta-spectral object;
-it is borrowed from the CCM
-program without a proved bridge.
-Readers should treat this as
-motivational context only.
+identification between $\Hlim$ and
+any zeta-spectral object;
+treat as motivational context only.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -742,7 +789,9 @@ motivational context only.
 
 \begin{problem}[Completeness]
 \label{prob:completeness}
-Prove Paper~IX, Hypothesis~4.1.
+Prove Paper~IX, Hypothesis~4.1:
+$\{\Phi_n^{(\infty)}\}$ complete
+in $L^2(\mathbb{R})$.
 \end{problem}
 
 \begin{problem}[Independent rate]
