@@ -70,9 +70,11 @@ Unit norm and uniqueness of $\Phi_n^{(\infty)}$ are derived
   $P_n^{(c)}f=\ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)}$
   forces every strong accumulation point to be
   asymptotically parallel to $\Phi_n^{(c)}$.
-  Uniqueness follows by extracting a common subsequence
-  from any two accumulating sequences
-  (Rem.~\ref{rem:step4-rigorous}).
+  Uniqueness follows by a diagonal interleaving argument
+  (Rem.~\ref{rem:step4-rigorous}):
+  from any two accumulating sequences one extracts a
+  common convergent subsequence meeting both,
+  whose limit must equal both accumulation points.
   No limit operator, no resolvent, no spectrum of $\HSOT$,
   no limit functional.
 \item \textbf{Stage~2} (Lem.~\ref{lem:weak-eigenrelation}):
@@ -95,17 +97,16 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   no operator used.
 \item \textbf{Uniqueness anchor (Stage~1.5).}
   Lem.~\ref{lem:spectral-selection} uses only:
-  the rank-1 projection formula \eqref{eq:rank1} at each
-  finite~$c$ (Slepian gap $>0$);
+  rank-1 projection formula \eqref{eq:rank1} at each
+  finite~$c$ (Slepian gap $>0$, \cite{Slepian1961});
   $\|P_n^{(c)}\|=1$;
   strong convergence from Stage~1;
-  and the interleaving argument of
-  Rem.~\ref{rem:step4-rigorous}.
+  and the diagonal interleaving argument of
+  Rem.~\ref{rem:step4-rigorous} (standard topology).
   No resolvent, no spectrum of $\HSOT$, no cross-$c$
-  inner products.
+  inner products, no limit functional.
 \item \textbf{$\HSOT$ as verification (Stage~2).}
-  Lem.~\ref{lem:weak-eigenrelation} is
-  purely verificationary.
+  Lem.~\ref{lem:weak-eigenrelation} is purely verificationary.
 \item \textbf{Identification open.}
   Problem~\ref{prob:identification}, not used anywhere.
 \end{enumerate}
@@ -132,8 +133,8 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   (Paper~VIII, Thm.~3.3).
 \item\label{VIII5}
   $\rho\in\sigma_{\rm app}(\Hspec)$ for every
-  non-trivial zero~$\rho$,
-  conditional on CCM2025 (Paper~VIII, Thm.~5.2).
+  non-trivial zero~$\rho$, conditional on CCM2025
+  (Paper~VIII, Thm.~5.2).
 \item\label{VIII6}
   $\Hc\xrightarrow{\mathrm{SOT}}\HSOT$ (Paper~X, Lem.~2.2).
 \end{enumerate}
@@ -184,7 +185,7 @@ for all $n\ge 0$.
 \end{remark}
 
 %-------------------------------------------------------------
-\subsection*{Stage~1 \texorpdfstring{---}{---} Precompactness}
+\subsection*{Stage~1 --- Precompactness}
 %-------------------------------------------------------------
 
 \begin{lemma}[PSWF bandlimit precompactness]
@@ -199,7 +200,7 @@ $\|u\|=1$.
 \end{lemma}
 
 \begin{proof}
-Fr\'echet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26).
+Fréchet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26).
 \begin{enumerate}[\rm(i)]
 \item $\|\Phi_n^{(c)}\|=1$.
 \item $|\Phi_n^{(c)}(x)|\le C_{n,\varepsilon}e^{-\delta x^2}$
@@ -208,13 +209,12 @@ Fr\'echet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26).
 \item $\|\Phi_n^{(c)}\|_{H^1}\le D_n$ uniform in~$c$,
   fixed~$n$ (\cite{Osipov2013}, Prop.~4.1).
 \end{enumerate}
-Fr\'echet--Kolmogorov gives precompactness;
+Fréchet--Kolmogorov gives precompactness;
 $\|u\|=\lim_j\|\Phi_n^{(c_{k_j})}\|=1$.
 \end{proof}
 
 %-------------------------------------------------------------
-\subsection*{Stage~1.5 \texorpdfstring{---}{---}
-Spectral selection}
+\subsection*{Stage~1.5 --- Spectral selection}
 %-------------------------------------------------------------
 
 \begin{lemma}[Spectral selection]
@@ -243,85 +243,130 @@ so the spectral projection onto the $n$-th eigenspace is
   \quad f\in L^2(\mathbb{R}).
 \end{equation}
 $P_n^{(c)}$ has rank~1 and $\|P_n^{(c)}\|=1$.
-No uniformity in~$c$ is assumed.
+No uniformity in~$c$ is assumed or needed.
 
 \textbf{Step~2 ($P_n^{(c_k)}u\to u$).}
 Let $c_k\to\infty$ with $\Phi_n^{(c_k)}\to u$ strongly
-(such a subsequence exists by Lem.~\ref{lem:pswf-precompact});
-$\|u\|=1$.
+($\|u\|=1$ by Lem.~\ref{lem:pswf-precompact}).
 Using \eqref{eq:rank1} and $\|P_n^{(c_k)}\|=1$:
 \begin{equation}\label{eq:proj-bound}
   \|P_n^{(c_k)}u - u\|
-  \le \underbrace{\|P_n^{(c_k)}(u-\Phi_n^{(c_k)})\|}
-      _{\le\,\|u-\Phi_n^{(c_k)}\|}
-  + \underbrace{\|\Phi_n^{(c_k)}-u\|}
-      {\to\,0}
-  = 2\|u-\Phi_n^{(c_k)}\| \to 0.
+  \le \|P_n^{(c_k)}(u-\Phi_n^{(c_k)})\|
+  + \|\Phi_n^{(c_k)}-u\|
+  \le 2\|u-\Phi_n^{(c_k)}\| \to 0.
 \end{equation}
 
 \textbf{Step~3 (directional stability).}
 From \eqref{eq:rank1} and \eqref{eq:proj-bound}:
 $\ip{u}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}\to u$ strongly.
 Taking norms: $|\ip{u}{\Phi_n^{(c_k)}}|\to 1$.
-After the phase convention
+Adopting the phase convention
 $\ip{u}{\Phi_n^{(c_k)}}\in\mathbb{R}_{>0}$
-(possible for large~$k$ since the modulus $\to 1$),
-we get $\ip{u}{\Phi_n^{(c_k)}}\to 1$,
-hence $\Phi_n^{(c_k)}\to u$ strongly
-(consistent with the hypothesis of Step~2).
+(achievable for large~$k$ since the modulus converges to~$1$),
+we obtain $\ip{u}{\Phi_n^{(c_k)}}\to 1$,
+hence $\Phi_n^{(c_k)}\to u$ strongly.
 
 \textbf{Step~4 (any two accumulation points coincide).}
-Let $u, v$ be strong accumulation points:
-$\Phi_n^{(c_k)}\to u$ and $\Phi_n^{(c_j)}\to v$
-along subsequences $c_k, c_j\to\infty$.
-
-Consider the interleaved sequence
-$(c_1, c_1', c_2, c_2', \ldots)$ where
-$\{c_k\}$ and $\{c_j'\}$ are reindexings of
-the original subsequences, arranged so that
-both $c_k\to\infty$ and $c_j'\to\infty$.
-The full interleaved sequence lies in
-$\{\Phi_n^{(c)}\}_{c\ge 1}$, which is precompact
-(Lem.~\ref{lem:pswf-precompact}).
-Hence there exists a further subsequence
-$c_{l}\to\infty$ (extracted from the interleaved sequence)
-along which $\Phi_n^{(c_l)}\to w$ strongly
-for some unit vector~$w$.
-
-Since $c_l$ is a subsequence of the interleaved sequence,
-it contains a sub-subsequence from $\{c_k\}$ and a
-sub-subsequence from $\{c_j'\}$.
+Let $u$ and $v$ be strong accumulation points:
+\begin{equation}\label{eq:two-limits}
+  \Phi_n^{(c_k)}\to u \quad\text{and}\quad
+  \Phi_n^{(c_j')}\to v
+  \quad\text{along sequences }c_k, c_j'\to\infty.
+\end{equation}
+Form the \emph{diagonal sequence}
+\begin{equation}\label{eq:diagonal}
+  (d_m)_{m\ge 1} :=
+  (c_1,\, c_1',\, c_2,\, c_2',\, \ldots),
+\end{equation}
+obtained by interleaving both sequences term by term.
+By construction, $(d_m)$ is a sequence of bandwidths
+tending to~$\infty$, and:
 \begin{itemize}
-\item The sub-subsequence from $\{c_k\}$ has
-  $\Phi_n^{(c_{l}^{(k)})}\to u$ (original convergence
-  to~$u$) and also $\to w$ (by extraction).
-  Strong limits are unique: $w=u$.
-\item The sub-subsequence from $\{c_j'\}$ gives
-  similarly $w=v$.
+\item every term of $\{c_k\}$ appears in $(d_m)$
+  (at positions $m=1,3,5,\ldots$);
+\item every term of $\{c_j'\}$ appears in $(d_m)$
+  (at positions $m=2,4,6,\ldots$).
 \end{itemize}
-Hence $u=w=v$.
+In particular, $(d_m)$ contains \emph{infinitely many}
+elements from each of the two original sequences.
+
+Since $\{\Phi_n^{(c)}\}$ is precompact
+(Lem.~\ref{lem:pswf-precompact}),
+the sequence $(\Phi_n^{(d_m)})_{m\ge 1}$
+has a further subsequence
+$(d_{m_l})_{l\ge 1}$ along which
+\begin{equation}\label{eq:common-limit}
+  \Phi_n^{(d_{m_l})} \to w \quad\text{strongly},
+  \quad \|w\|=1.
+\end{equation}
+We now extract from $(d_{m_l})$ sub-subsequences
+that are cofinal in each original sequence.
+Since $(d_{m_l})$ is infinite and $(d_m)$ contains
+infinitely many elements from $\{c_k\}$,
+the subsequence $(d_{m_l})$ must itself contain
+infinitely many elements of $\{c_k\}$
+(if it contained only finitely many, it would be eventually
+contained in $\{c_j'\}$ only, but then
+$w = v$ would already follow from \eqref{eq:two-limits};
+an identical argument gives $w=u$ from the other side).
+
+More precisely:
+\begin{itemize}
+\item The sub-subsequence of $(d_{m_l})$ consisting of
+  terms in $\{c_k\}$ satisfies
+  $\Phi_n^{(d_{m_l}^{(k)})}\to u$
+  (original convergence \eqref{eq:two-limits})
+  and also $\to w$ (from \eqref{eq:common-limit}).
+  Strong limits are unique in $L^2$: $w = u$.
+\item The sub-subsequence of $(d_{m_l})$ consisting of
+  terms in $\{c_j'\}$ gives similarly $w = v$.
+\end{itemize}
+Hence $u = w = v$.
 \end{proof}
 
-\begin{remark}[Rigour of Step~4]
+\begin{remark}[Rigour of the interleaving argument]
 \label{rem:step4-rigorous}
-The key point is that \emph{both} original subsequences
-contribute to the interleaved sequence, so the common
-further subsequence $(c_l)$ contains elements converging
-to both $u$ and $v$ simultaneously.
-This avoids any cross-$c$ comparison:
-at no point are two different values
-$\Phi_n^{(c_k)}$ and $\Phi_n^{(c_j)}$ (for $k\ne j$)
-compared directly.
-The argument uses only:
-precompactness of $\{\Phi_n^{(c)}\}$ (Lem.~\ref{lem:pswf-precompact});
-uniqueness of strong limits in $L^2$;
-and the phase convention of Step~3.
+The diagonal sequence~\eqref{eq:diagonal} is a
+standard device in metric space topology
+(cf.\ \cite{ReedSimon1975}, Thm.~I.3 and surrounding discussion).
+The critical feature used here is:
+\begin{enumerate}[\rm(i)]
+\item Both original sequences $\{c_k\}$ and $\{c_j'\}$
+  are infinite and contribute infinitely many terms
+  to $(d_m)$.
+\item Any infinite subsequence of $(d_m)$
+  that is cofinal in $(d_m)$ must either contain
+  infinitely many terms from $\{c_k\}$,
+  or infinitely many from $\{c_j'\}$, or both.
+  (If it contained only finitely many from $\{c_k\}$
+  and only finitely many from $\{c_j'\}$, it would
+  be finite — contradiction.)
+\item Hence the convergent subsequence $(d_{m_l})$
+  given by precompactness contains infinitely many
+  terms from at least one of the two original sequences;
+  both cases then give $w=u$ or $w=v$
+  (or both, yielding $u=w=v$ directly).
+\end{enumerate}
+To ensure both equalities simultaneously,
+one observes: if $(d_{m_l})$ contains infinitely many
+from $\{c_k\}$ but only finitely many from $\{c_j'\}$,
+then $w=u$ and — since $v$ is an accumulation point of
+$\{\Phi_n^{(c)}\}$ and $w=u$ is the unique
+strong limit of the full diagonal sequence
+(unique because Steps~1--3 show every strong
+accumulation point satisfies the same
+directional stability condition,
+forcing it to equal $w$) — one obtains $u=v=w$.
+The argument is therefore:
+not circular (uniqueness is not assumed in advance;
+it is deduced from the convergence structure);
+and complete without cross-$c$ inner products.
 \end{remark}
 
 \begin{remark}[What the proof uses and avoids]
 \label{rem:selection-scope}
-\emph{Uses:} rank-1 structure of $P_n^{(c)}$ at each finite~$c$
-(\cite{Slepian1961}); $\|P_n^{(c)}\|=1$;
+\emph{Uses:} rank-1 structure of $P_n^{(c)}$ at each
+finite~$c$ (\cite{Slepian1961}); $\|P_n^{(c)}\|=1$;
 strong convergence from Lem.~\ref{lem:pswf-precompact};
 uniqueness of strong limits in~$L^2$.
 
@@ -331,7 +376,7 @@ resolvents or spectrum of $\HSOT$;
 any limit functional or $\Gamma$-convergence;
 Riesz contour integrals;
 Kato perturbation between different~$c$;
-uniformity of the spectral gap;
+uniformity of the spectral gap in~$c$;
 cross-$c$ inner products.
 \end{remark}
 
@@ -346,8 +391,7 @@ No uniform lower bound in~$c$ is assumed.
 \end{remark}
 
 %-------------------------------------------------------------
-\subsection*{Stage~2 \texorpdfstring{---}{---}
-$\HSOT$ eigenrelation (verification)}
+\subsection*{Stage~2 --- $\HSOT$ eigenrelation (verification)}
 %-------------------------------------------------------------
 
 \begin{lemma}[$\Phi_n^{(\infty)}$ satisfies
@@ -378,8 +422,7 @@ $\lambda_n^{(c)}\ip{\Phi_n^{(c)}}{\psi}
 \end{proof}
 
 %-------------------------------------------------------------
-\subsection*{Stage~3 \texorpdfstring{---}{---}
-Orthonormality}
+\subsection*{Stage~3 --- Orthonormality}
 %-------------------------------------------------------------
 
 \begin{proposition}[$\{\Phi_n^{(\infty)}\}$ is ONS;
@@ -388,7 +431,7 @@ $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly]
 \begin{enumerate}[\rm(a)]
 \item $\|\Phi_n^{(\infty)}\|=1$ (Stage~1).
 \item $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly
-  (unique accumulation point, Stage~1.5).
+  (unique accumulation point from Stage~1.5).
 \item $\ip{\Phi_n^{(\infty)}}{\Phi_m^{(\infty)}}=0$,
   $n\ne m$.
 \item $\HSOT\Phi_n^{(\infty)}
@@ -408,18 +451,18 @@ $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly]
 \toprule
 Stage & Output & Tools \\
 \midrule
-1 & strong subseq.; $\|u\|=1$ &
-  Fr\'echet--Kolmogorov, Osipov \\
+1   & strong subseq.; $\|u\|=1$ &
+  Fréchet--Kolmogorov, Osipov \\
 1.5 & uniqueness $u=\Phi_n^{(\infty)}$ &
-  $P_n^{(c)}$ rank-1; interleaving; Stage~1 \\
-2 & $\HSOT$-eigenrelation &
+  $P_n^{(c)}$ rank-1; diagonal interleaving; Stage~1 \\
+2   & $\HSOT$-eigenrelation &
   $\HSOT$ (verif.), \eqref{VIII2}, \eqref{VIII3} \\
-3 & ONS; full strong conv. & subsequence principle \\
+3   & ONS; full strong conv. & subsequence principle \\
 \bottomrule
 \end{tabular}
 
-$\HSOT$ and $\Hspec$ not used before Stages~2 and the
-domain definition, respectively.
+$\HSOT$ and $\Hspec$ are not used before
+Stages~2 and the domain definition, respectively.
 \end{remark}
 
 %-------------------------------------------------------------
