@@ -90,7 +90,8 @@ This paper has four modules, each self-contained:
 \item \textbf{Spectral inclusion}
       (Section~\ref{sec:spectral-inclusion}):
       Eigenvalue status of $\lambda_n^{(\infty)}$ without
-      completeness; uses Papers~VIII--IX only.
+      completeness; uses Papers~VIII and~X only
+      (no spectral definition from Paper~IX).
 \item \textbf{Weyl asymptotics}
       (Section~\ref{sec:weyl}):
       Counting law via finite-$c$ Slepian asymptotics
@@ -132,8 +133,11 @@ The key inherited results used in this paper:
   $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$ weakly in $L^2(\mathbb{R})$,
   and $\{\Phi_n^{(\infty)}\}_{n \ge 0}$ is an orthonormal system.
 \item\label{XI3}
-  \textbf{Operator norm rate} (Paper~IX, Thm.~3.1):
-  $\|\Hc - \Hlim\|_{L^2 \to L^2} \le C_\kappa\, c^{-1/4}$.
+  \textbf{SOT-convergence of $\Hc$ to $\Hlim$} (Paper~X, Lem.~2.2):
+  $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ in $\mathcal{B}(L^2(\mathbb{R}))$.
+  In particular, $\Hlim$ is a bounded operator on $L^2(\mathbb{R})$,
+  defined as the SOT-limit without any spectral-series representation.
+  This definition of $\Hlim$ is the one used throughout this paper.
 \item\label{XI4}
   \textbf{Non-cancellation} (Paper~VIII, Thm.~3.3):
   For all $n \le \kappa c$, there exists a set $E_c$
@@ -141,8 +145,13 @@ The key inherited results used in this paper:
   $|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$.
   In particular, $\Phi_n^{(\infty)} \not\equiv 0$.
 \item\label{XI5}
-  \textbf{Strong convergence to $\Hlim$} (Paper~X, Lem.~2.2):
-  $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ in $\mathcal{B}(L^2)$.
+  \textbf{Operator norm rate} (Paper~X, Thm.~3.1,
+  conditional on Paper~IX~Thm.~4.1):
+  $\|\Hc - \Hlim\|_{L^2 \to L^2} \le C_\kappa\, c^{-1/4}$.
+  \emph{This result is not used in
+  Sections~\ref{sec:spectral-inclusion}--\ref{sec:density};
+  it appears only in Sections~\ref{sec:weyl}
+  and~\ref{sec:density-question} for rate estimates.}
 \item\label{XI6}
   \textbf{Slepian counting law} \cite{Slepian1961,Osipov2013}:
   For fixed $c$, exactly $\lfloor 2c/\pi \rfloor + O(1)$
@@ -152,6 +161,29 @@ The key inherited results used in this paper:
   $\lambda_n^{(c)} \to 1$, and for
   $n \ge (2c/\pi)(1 + \delta)$, $\lambda_n^{(c)} \to 0$.
 \end{enumerate}
+
+\begin{remark}[How $\Hlim$ is defined in this paper]
+\label{rem:operator-definition}
+Throughout Paper~XI, $\Hlim$ denotes the
+\emph{strong operator topology (SOT) limit}
+$\Hlim := \mathrm{SOT}\text{-}\lim_{c \to \infty} \Hc$,
+as constructed in Paper~X, Lemma~2.2.
+This is a bounded, self-adjoint operator on $L^2(\mathbb{R})$
+defined without reference to any spectral series
+or completeness of $\{\Phi_n^{(\infty)}\}$.
+
+In particular, we do \emph{not} use the
+spectral-series definition from Paper~IX,
+Def.~2.3 (which reads
+$\Hlim f = \sum_k \lambda_k^{(\infty)}
+\ip{f}{\Phi_k^{(\infty)}} \Phi_k^{(\infty)}$
+and implicitly requires completeness for density
+of the domain).
+The SOT-definition is logically independent
+of Paper~IX's domain-density argument,
+and requires only the boundedness of $\Hc$
+and the SOT-convergence established in Paper~X.
+\end{remark}
 
 \begin{remark}[What is not assumed in this paper]
 \label{rem:no-completeness}
@@ -171,27 +203,21 @@ are proved without this hypothesis.
 
 \begin{lemma}[Non-vanishing of limit eigenvectors]
 \label{lem:nonvanish-limit}
-For each $n \ge 0$, $\Phi_n^{(\infty)} \ne 0$ in $L^2(\mathbb{R})$.
+For each $n \ge 0$, $\|\Phi_n^{(\infty)}\|_{L^2} = 1$.
+In particular, $\Phi_n^{(\infty)} \ne 0$.
 \end{lemma}
 
 \begin{proof}
-By \eqref{XI4}, for all large $c$ there exists
-$E_c \subset \mathbb{R}$ with $|E_c| \ge c_* c^{-1/2}$ and
-$|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$ on $E_c$.
-Hence $\|\Phi_n^{(c)}\|_{L^2}^2 \ge c_1^2 c^{-1/2} \cdot c_* c^{-1/2} = c_1^2 c_* c^{-1} > 0$
-for all large $c$.
-Since $\|\Phi_n^{(c)}\|_{L^2} = 1$ (unit eigenvectors) and
-$\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$ weakly,
-the weak limit satisfies:
-for any $g \in C_c^\infty(\mathbb{R})$ with
-$\ip{g}{\Phi_n^{(\infty)}} \ne 0$,
-the continuity of the weak limit guarantees existence of
-such $g$, hence $\Phi_n^{(\infty)} \ne 0$.
-
-More directly: $\|\Phi_n^{(\infty)}\| \ge \limsup_{c \to \infty}
-|\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}|$.
-Since $\{\Phi_n^{(\infty)}\}$ is orthonormal
-(Paper~IX, Prop.~2.2), $\|\Phi_n^{(\infty)}\| = 1$.
+By \eqref{XI2}, $\{\Phi_n^{(\infty)}\}_{n \ge 0}$
+is an orthonormal system in $L^2(\mathbb{R})$,
+so $\|\Phi_n^{(\infty)}\| = 1$ by definition.
+The non-vanishing also follows independently from
+\eqref{XI4} (Non-cancellation):
+for all large $c$, $\|\Phi_n^{(c)}\|_{L^2} = 1$
+(unit eigenvectors) and the Fourier mass
+$\|\Phihat_n^{(c)}\|_{L^2(E_c)}^2 \ge c_1^2 c_* c^{-1} > 0$
+is non-trivially supported, preventing
+collapse to zero in any weak limit.
 \end{proof}
 
 \begin{lemma}[Eigenvalue equation for $\Hlim$]
@@ -204,36 +230,121 @@ For each $n \ge 0$:
 \end{lemma}
 
 \begin{proof}
-From Paper~IX, Def.~2.3, the spectral definition of $\Hlim$ is
+We use only \eqref{XI3} (SOT-convergence) and
+\eqref{XI1} (eigenvalue convergence rate).
+No spectral series or completeness is invoked.
+
+\textbf{Step 1.}
+Since $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ \eqref{XI3},
+applying both sides to the fixed vector
+$\Phi_n^{(\infty)} \in L^2(\mathbb{R})$:
+\begin{equation}
+\label{eq:sot-applied}
+  \Hc\, \Phi_n^{(\infty)}
+  \xrightarrow{L^2} \Hlim\, \Phi_n^{(\infty)}
+  \quad \text{as } c \to \infty.
+\end{equation}
+
+\textbf{Step 2.}
+Decompose $\Hc\, \Phi_n^{(\infty)}$ by
+adding and subtracting $\Hc\, \Phi_n^{(c)}$:
+\begin{equation}
+\label{eq:decomp}
+  \Hc\, \Phi_n^{(\infty)}
+  = \Hc(\Phi_n^{(\infty)} - \Phi_n^{(c)})
+    + \Hc\, \Phi_n^{(c)}.
+\end{equation}
+Since $\Hc\, \Phi_n^{(c)} = \lambda_n^{(c)}\, \Phi_n^{(c)}$
+(eigenvalue equation for $\Hc$), the second
+term equals $\lambda_n^{(c)}\, \Phi_n^{(c)}$.
+
+\textbf{Step 3.}
+We show $\lambda_n^{(c)}\, \Phi_n^{(c)}
+\to \lambda_n^{(\infty)}\, \Phi_n^{(\infty)}$ in $L^2$:
+\begin{align}
+  \|\lambda_n^{(c)} \Phi_n^{(c)}
+  - \lambda_n^{(\infty)} \Phi_n^{(\infty)}\|
+  &\le |\lambda_n^{(c)} - \lambda_n^{(\infty)}|\,
+       \|\Phi_n^{(c)}\|
+     + \lambda_n^{(\infty)}\,
+       \|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|.
+\end{align}
+The first term is $\le C_\kappa c^{-1/4} \cdot 1
+\to 0$ by \eqref{XI1}.
+The second term:
+since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
+weakly \eqref{XI2} and $\|\Phi_n^{(c)}\| = 1
+= \|\Phi_n^{(\infty)}\|$ (norms preserved;
+Lemma~\ref{lem:nonvanish-limit}),
+weak convergence with norm convergence
+implies strong convergence:
+$\Phi_n^{(c)} \to \Phi_n^{(\infty)}$
+strongly in $L^2$.
+Hence $\lambda_n^{(\infty)} \|\Phi_n^{(c)}
+- \Phi_n^{(\infty)}\| \to 0$.
+
+\textbf{Step 4.}
+We show the first term of \eqref{eq:decomp}
+vanishes: $\|\Hc(\Phi_n^{(\infty)}
+- \Phi_n^{(c)})\| \to 0$.
+Since $\Hc$ are self-adjoint contractions
+($\|\Hc\|_{L^2 \to L^2} \le 1$, as their
+eigenvalues are in $(0,1)$):
 \[
-  \Hlim f
-  = \sum_{k=0}^\infty \lambda_k^{(\infty)}
-    \ip{f}{\Phi_k^{(\infty)}} \Phi_k^{(\infty)}.
+  \|\Hc(\Phi_n^{(\infty)} - \Phi_n^{(c)})\|
+  \le \|\Phi_n^{(\infty)} - \Phi_n^{(c)}\|
+  \to 0
 \]
-Since $\{\Phi_n^{(\infty)}\}$ is orthonormal,
-$\ip{\Phi_n^{(\infty)}}{\Phi_k^{(\infty)}} = \delta_{nk}$.
-Therefore:
+by Step~3.
+
+\textbf{Conclusion.}
+Combining Steps~1--4:
 \[
   \Hlim\, \Phi_n^{(\infty)}
-  = \sum_{k=0}^\infty \lambda_k^{(\infty)} \delta_{nk}\, \Phi_k^{(\infty)}
+  = \lim_{c \to \infty} \Hc\, \Phi_n^{(\infty)}
+  = \lim_{c \to \infty} \lambda_n^{(c)}\, \Phi_n^{(c)}
   = \lambda_n^{(\infty)}\, \Phi_n^{(\infty)}.
 \]
-Since $\Phi_n^{(\infty)}$ is a unit vector
-(Lemma~\ref{lem:nonvanish-limit}) and
-$\lambda_n^{(\infty)} \in (0,1)$ (limit of
-$\lambda_n^{(c)} \in (0,1)$),
-this is a genuine eigenvalue equation with
-non-zero eigenfunction.
+Since $\Phi_n^{(\infty)} \ne 0$
+(Lemma~\ref{lem:nonvanish-limit}),
+this is a genuine eigenvalue equation.
 \end{proof}
+
+\begin{remark}[Independence from Paper~IX Def.~2.3]
+\label{rem:no-specdef}
+The proof of Lemma~\ref{lem:eigenvalue-eq} uses:
+\begin{itemize}
+\item \eqref{XI3}: SOT-convergence $\Hc \to \Hlim$
+      (Paper~X, Lem.~2.2)
+\item \eqref{XI1}: eigenvalue rate $c^{-1/4}$
+      (Paper~VIII, Cor.~4.3)
+\item \eqref{XI2}: weak $\to$ strong convergence
+      of $\Phi_n^{(c)}$ via norm-preservation
+      (Paper~IX, Prop.~2.2 + Lem.~\ref{lem:nonvanish-limit})
+\item $\|\Hc\| \le 1$: contractivity of $\Hc$
+      (standard Slepian, Papers~V--VI)
+\end{itemize}
+It does \emph{not} use:
+\begin{itemize}
+\item Paper~IX Def.~2.3 (spectral series for $\Hlim$)
+\item Completeness of $\{\Phi_n^{(\infty)}\}$
+\item Paper~IX Thm.~4.1 (operator norm rate)
+\end{itemize}
+The logical chain of Paper~XI's
+Section~\ref{sec:spectral-inclusion}
+therefore bypasses all completeness-dependent
+results of Paper~IX entirely.
+\end{remark}
 
 \begin{remark}[No completeness needed]
 \label{rem:no-completeness-lem}
 Lemmas~\ref{lem:nonvanish-limit}--\ref{lem:eigenvalue-eq}
 use only the orthonormality of $\{\Phi_n^{(\infty)}\}$
-(which holds for any subsequential weak limit;
-Paper~IX, Prop.~2.2), not completeness.
-The completeness hypothesis \texttt{hyp:decay} from
-Paper~IX is \emph{not} invoked here.
+(Paper~IX, Prop.~2.2), SOT-convergence
+(Paper~X, Lem.~2.2), and eigenvalue rates
+(Paper~VIII, Cor.~4.3).
+The completeness hypothesis \texttt{hyp:decay}
+from Paper~IX is not invoked.
 \end{remark}
 
 \subsection{Main spectral inclusion theorem}
@@ -269,7 +380,8 @@ of $\{\Phi_n^{(\infty)}\}$ (via essential self-adjointness).
 Theorem~\ref{thm:spectral-inclusion} gives the spectral
 \emph{lower bound} $\overline{\{\lambda_n^{(\infty)}\}}
 \subset \sigma(\Hlim)$ \emph{unconditionally},
-using only eigenvalue equations, which require no completeness.
+using only the SOT-limit route which requires
+no completeness.
 The upper bound $\sigma(\Hlim) \subset [0,1]$
 was already established unconditionally in
 Paper~X, Cor.~\ref{cor:qlim-op}.
@@ -562,7 +674,7 @@ is well-established numerically
 (see \cite{Slepian1961,Osipov2013,LandauPollak1962}
 for tables and plots).
 The convergence $\lambda_n^{(c)} \to \lambda_n^{(\infty)}$
-with rate $c^{-1/4}$ (Cor.~\eqref{XI1}) implies that
+with rate $c^{-1/4}$ (\eqref{XI1}) implies that
 the numerical distribution of $\lambda_n^{(c)}$
 for large $c$ is a reliable approximation to
 the distribution of $\lambda_n^{(\infty)}$.
@@ -591,7 +703,7 @@ estimates than currently available.
 \begin{problem}[Sharpness of the operator-norm rate]
 \label{prob:rate-sharp}
 Is $\|\Hc - \Hlim\|_{L^2 \to L^2} \asymp c^{-1/4}$?
-The upper bound follows from \eqref{XI3}.
+The upper bound follows from \eqref{XI5}.
 The matching lower bound would follow from
 the sharp eigenvalue-gap estimate
 $|\lambda_n^{(c)} - \lambda_n^{(c+1)}| \ge c_\kappa c^{-3/4}$
