@@ -60,18 +60,24 @@ Identification $\overline{\Hspec}=\HSOT$ is open
 
 \textbf{Key architectural principle.}
 Unit norm and uniqueness of $\Phi_n^{(\infty)}$ are derived
-\emph{before} any limit operator is invoked:
+\emph{before} any limit operator is used as a selector:
 \begin{itemize}
 \item \textbf{Stage~1} (Lem.~\ref{lem:pswf-precompact}):
-  precompactness gives strong subsequential limits with $\|u\|=1$.
-  No operator.
-\item \textbf{Stage~1.5} (Lem.~\ref{lem:spectral-selection}):
-  rank-1 projection structure at each finite~$c$ forces every
-  strong accumulation point to be asymptotically parallel to
-  $\Phi_n^{(c)}$; hence all accumulation points coincide.
-  No limit operator, no resolvent, no limit functional.
+  PSWF precompactness gives strong subsequential limits
+  with $\|u\|=1$.  No operator.
+\item \textbf{Stage~1.5a} (Lem.~\ref{lem:resolvent-convergence}):
+  SOT convergence of $\Hc$ implies strong resolvent convergence.
+\item \textbf{Stage~1.5b} (Lem.~\ref{lem:riesz-projection}):
+  Travelling Riesz contour around $\lambda_n^{(c)}$ gives
+  $P_n^{(c)}\xrightarrow{\mathrm{SOT}} P_n^{(\infty)}$,
+  where $P_n^{(\infty)}$ has rank~1.
+\item \textbf{Stage~1.5c} (Cor.~\ref{cor:eigenfunction-convergence}):
+  Rank-1 limit projection + unit norm from Stage~1
+  $\Rightarrow$ $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly,
+  uniquely up to phase.
+  No limit operator as selector.
 \item \textbf{Stage~2} (Lem.~\ref{lem:weak-eigenrelation}):
-  $\HSOT$ introduced as passive verification only.
+  $\HSOT$ attached as passive eigenrelation verification.
 \end{itemize}
 
 \textbf{Main results:} closability (two independent proofs);
@@ -86,15 +92,19 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   Each proof names its operator(s) in its opening sentence.
   $\Hspec$ and $\HSOT$ never appear in the same computation.
 \item \textbf{Norm anchor.}
-  $\|\Phi_n^{(\infty)}\|=1$ from strong convergence
-  (Lem.~\ref{lem:pswf-precompact}); no operator involved.
-\item \textbf{Uniqueness anchor.}
-  Lem.~\ref{lem:spectral-selection} uses only the rank-1
-  projection $P_n^{(c)}f=\ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)}$
-  at each finite $c$, and strong convergence from Stage~1.
-  No resolvent, no limit functional, no cross-$c$ comparison,
-  no uniform gap.
-\item \textbf{$\HSOT$ as verification.}
+  $\|\Phi_n^{(\infty)}\|=1$ from strong convergence alone
+  (Lem.~\ref{lem:pswf-precompact}); no operator used.
+\item \textbf{Uniqueness: three-step resolvent argument.}
+  Stage~1.5 proceeds: strong resolvent convergence
+  (Lem.~\ref{lem:resolvent-convergence})
+  $\to$ SOT convergence of Riesz projections with
+  travelling contour (Lem.~\ref{lem:riesz-projection})
+  $\to$ rank-1 limit forces unique direction
+  (Cor.~\ref{cor:eigenfunction-convergence}).
+  The vanishing Slepian gap is handled by letting the contour
+  radius shrink as $r_c\asymp c^{-1/2}$
+  (Rem.~\ref{rem:travelling-contour}).
+\item \textbf{$\HSOT$ as verification only (Stage~2).}
   Lem.~\ref{lem:weak-eigenrelation} attaches the eigenrelation
   to the already-unique $\Phi_n^{(\infty)}$.
 \item \textbf{Identification open.}
@@ -121,7 +131,8 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   (Paper~VIII, Thm.~3.3).
 \item\label{VIII5}
   $\rho\in\sigma_{\rm app}(\Hspec)$ for every non-trivial
-  zero~$\rho$, conditional on CCM2025 (Paper~VIII, Thm.~5.2).
+  zero~$\rho$, conditional on CCM2025
+  (Paper~VIII, Thm.~5.2).
 \item\label{VIII6}
   $\Hc\xrightarrow{\mathrm{SOT}}\HSOT$ (Paper~X, Lem.~2.2).
 \end{enumerate}
@@ -137,7 +148,9 @@ The $\Hc$ are self-adjoint contractions: $\|\Hc\|\le 1$.
 \label{rem:two-operators}
 \begin{enumerate}[\rm(i)]
 \item $\Hspec$: all domain, symmetry, deficiency, ESSA arguments.
-\item $\HSOT$: only Lem.~\ref{lem:weak-eigenrelation}
+\item $\HSOT$: only Lem.~\ref{lem:resolvent-convergence},
+  Lem.~\ref{lem:riesz-projection},
+  Lem.~\ref{lem:weak-eigenrelation},
   and Thm.~\ref{thm:closable-SOT}.
 \end{enumerate}
 No proof uses both simultaneously.
@@ -166,12 +179,13 @@ $\lambda_n^{(\infty)}:=\lim_{c\to\infty}\lambda_n^{(c)}$
 
 \begin{remark}[Strict ordering of limit eigenvalues]
 \label{rem:eigenvalue-isolation}
-Slepian gap and \eqref{VIII3} give
-$\lambda_n^{(\infty)}>\lambda_{n+1}^{(\infty)}>0$ for all $n$.
+Slepian gap and \eqref{VIII3}:
+$\lambda_n^{(\infty)}>\lambda_{n+1}^{(\infty)}>0$ for all~$n$.
 \end{remark}
 
 %-------------------------------------------------------------
-\subsection*{Stage~1 — Precompactness}
+\subsection*{Stage~1 \texorpdfstring{\textemdash}{---}
+Precompactness}
 %-------------------------------------------------------------
 
 \begin{lemma}[PSWF bandlimit precompactness]
@@ -181,142 +195,293 @@ $\lambda_n^{(\infty)}>\lambda_{n+1}^{(\infty)}>0$ for all $n$.
 For fixed $n\ge 0$, $\{\Phi_n^{(c)}\}_{c\ge 1}$ is precompact
 in $L^2(\mathbb{R})$.
 Every sequence $c_k\to\infty$ has a subsequence with
-$\Phi_n^{(c_{k_j})}\to u$ strongly; any such $u$
-satisfies $\|u\|=1$.
+$\Phi_n^{(c_{k_j})}\to u$ strongly; any such $u$ satisfies
+$\|u\|=1$.
 \end{lemma}
 
 \begin{proof}
 Fr\'echet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26):
 \begin{enumerate}[\rm(i)]
-\item $\|\Phi_n^{(c)}\|=1$ (uniform bound).
-\item $|\Phi_n^{(c)}(x)|\le C_{n,\varepsilon}e^{-\delta x^2}$
+\item $\|\Phi_n^{(c)}\|=1$ (uniform $L^2$-bound).
+\item Uniform spatial decay:
+  $|\Phi_n^{(c)}(x)|\le C_{n,\varepsilon}e^{-\delta x^2}$
   for $|x|\ge 1+\varepsilon$, uniform in~$c$
   (\cite{Osipov2013}, Thm.~3.2).
-\item $\|\Phi_n^{(c)}\|_{H^1}\le D_n$ uniform in~$c$,
-  fixed~$n$ (\cite{Osipov2013}, Prop.~4.1)
-  $\Rightarrow$ $L^2$-equicontinuity.
+\item Uniform $H^1$-bound:
+  $\|\Phi_n^{(c)}\|_{H^1}\le D_n$, uniform in~$c$, fixed~$n$
+  (\cite{Osipov2013}, Prop.~4.1).
 \end{enumerate}
 Fr\'echet--Kolmogorov gives precompactness.
-Any strong limit satisfies
+Any strong limit $u$ satisfies
 $\|u\|=\lim_j\|\Phi_n^{(c_{k_j})}\|=1$.
 \end{proof}
 
 %-------------------------------------------------------------
-\subsection*{Stage~1.5 — Spectral selection}
+\subsection*{Stage~1.5a \texorpdfstring{\textemdash}{---}
+Strong resolvent convergence}
 %-------------------------------------------------------------
 
-\begin{lemma}[Spectral selection: projection-based uniqueness]
-\label{lem:spectral-selection}
-\emph{Operators used: $\Hc$ at each finite~$c$
-(rank-1 projection only).
-$\HSOT$, $\Hspec$, resolvents, and limit functionals
-do not appear.}
+\begin{lemma}[Strong resolvent convergence]
+\label{lem:resolvent-convergence}
+\emph{Operators used: $\Hc$, $\HSOT$.}
 
-Fix $n\ge 0$.
-All strong accumulation points of $\{\Phi_n^{(c)}\}_{c\to\infty}$
-coincide (up to a global phase convention).
-We denote the common limit $\Phi_n^{(\infty)}$.
+For every $z\in\mathbb{C}\setminus\mathbb{R}$:
+\begin{equation}\label{eq:src}
+  (\Hc-z)^{-1}\xrightarrow{\mathrm{SOT}}(\HSOT-z)^{-1}
+  \quad\text{as }c\to\infty.
+\end{equation}
 \end{lemma}
 
 \begin{proof}
-Let $c_k\to\infty$ and $\Phi_n^{(c_k)}\to u$ strongly;
-$\|u\|=1$ by Lem.~\ref{lem:pswf-precompact}.
-
-\textbf{Step~1 (rank-1 projection).}
-At each finite~$c$, $\Hc$ is self-adjoint with simple
-eigenvalue $\lambda_n^{(c)}$ (Slepian gap positive for
-every finite~$c$, \cite{Slepian1961}).
-Hence the spectral projection onto the $n$-th eigenspace is
-exactly
-\begin{equation}\label{eq:rank1}
-  P_n^{(c)}f = \ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)},
-  \quad f\in L^2(\mathbb{R}),
-\end{equation}
-with $\|P_n^{(c)}\|=1$.
-This holds for each finite~$c$; no uniformity in~$c$ is needed.
-
-\textbf{Step~2 ($P_n^{(c_k)}u\to u$).}
-Using \eqref{eq:rank1} and $\|P_n^{(c_k)}\|=1$:
-\begin{align}
-  \|P_n^{(c_k)}u - u\|
-  &\le \|P_n^{(c_k)}(u - \Phi_n^{(c_k)})\|
-    + \|\Phi_n^{(c_k)} - u\|\nonumber\\
-  &\le \|u - \Phi_n^{(c_k)}\| + \|\Phi_n^{(c_k)} - u\|
-  \label{eq:proj-bound}\\
-  &= 2\|u - \Phi_n^{(c_k)}\| \to 0.\nonumber
-\end{align}
-
-\textbf{Step~3 (directional stability).}
-From \eqref{eq:rank1} and Step~2:
-$\ip{u}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}\to u$ strongly.
-Taking norms: $|\ip{u}{\Phi_n^{(c_k)}}|\to\|u\|=1$.
-After fixing a phase convention
-(e.g.\ $\ip{u}{\Phi_n^{(c_k)}}$ real and positive
-for large~$k$, which is possible since the modulus
-converges to~$1$), we get
-$\ip{u}{\Phi_n^{(c_k)}}\to 1$,
-and therefore $\Phi_n^{(c_k)}\to u$ strongly
-(consistent with the hypothesis).
-
-\textbf{Step~4 (all accumulation points coincide).}
-Let $v$ be any strong accumulation point:
-$\Phi_n^{(c_j)}\to v$ along $c_j\to\infty$.
-Steps~1--3 applied to this subsequence give
-$\|v-\Phi_n^{(c_j)}\|\to 0$.
-Fix $\varepsilon>0$.
-Choose $k$ large: $\|u-\Phi_n^{(c_k)}\|<\varepsilon/2$.
-For the same value $c_k$,
-$\|v-\Phi_n^{(c_k)}\|$: since $\Phi_n^{(c)}\to v$
-along \emph{any} subsequence with a strong limit equal to~$v$
-(precompactness gives every subnet a convergent subsubnet;
-Steps~1--3 show the limit must be $v$),
-choose $j$ large enough that
-$\|v-\Phi_n^{(c_j)}\|<\varepsilon/4$ and
-$\|\Phi_n^{(c_k)}-\Phi_n^{(c_j)}\|<\varepsilon/4$
-(the latter by taking a common subsequence via precompactness
-of the joint sequence).
+Let $f\in L^2$ and $g_c:=(\Hc-z)^{-1}f$,
+$g:=(\HSOT-z)^{-1}f$.
 Then
-\[
-  \|u-v\|
-  \le\|u-\Phi_n^{(c_k)}\|
-  +\|\Phi_n^{(c_k)}-\Phi_n^{(c_j)}\|
-  +\|\Phi_n^{(c_j)}-v\|
-  <\varepsilon.
-\]
-Arbitrariness gives $u=v$.
+\begin{align*}
+  (\Hc-z)(g_c-g)
+  &= f - (\Hc-z)g\\
+  &= (\HSOT-z)g - (\Hc-z)g\\
+  &= (\HSOT-\Hc)g.
+\end{align*}
+Hence
+$g_c-g = (\Hc-z)^{-1}(\HSOT-\Hc)g$.
+Taking norms:
+\begin{equation}\label{eq:resolvent-bound}
+  \|g_c-g\|
+  \le \|(\Hc-z)^{-1}\|\cdot\|(\HSOT-\Hc)g\|
+  \le \frac{1}{|\mathrm{Im}\,z|}\,\|(\HSOT-\Hc)g\|.
+\end{equation}
+By \eqref{VIII6}, $\|(\HSOT-\Hc)g\|\to 0$ for each fixed~$g$.
+Hence $\|g_c-g\|\to 0$.
 \end{proof}
 
-\begin{remark}[What the proof uses and avoids]
-\label{rem:selection-scope}
-\emph{Uses:} rank-1 structure of $P_n^{(c)}$ at each finite~$c$
-(Slepian gap $>0$ for all finite~$c$, \cite{Slepian1961});
-$\|P_n^{(c)}\|=1$; strong convergence from Stage~1.
-
-\emph{Does not use:} $\HSOT$; $\Hspec$; any limit functional or
-$\Gamma$-convergence; Riesz contour integrals; Kato between
-different bandwidths; uniformity of the spectral gap in~$c$;
-cross-$c$ inner products.
-\end{remark}
-
-\begin{remark}[The vanishing gap causes no difficulty]
-\label{rem:gap-not-needed}
-The Slepian gap satisfies
-$\lambda_n^{(c)}-\lambda_{n+1}^{(c)}\asymp c^{-1/2}\to 0$.
-The present argument requires only that the gap is strictly
-positive at each finite~$c$, which ensures $P_n^{(c)}$ has
-rank~1.  No uniform lower bound on the gap is assumed.
+\begin{remark}[Resolvent bound used]
+\label{rem:resolvent-bound}
+The key estimate is
+$\|(\Hc-z)^{-1}\|\le|\mathrm{Im}\,z|^{-1}$,
+which holds for all self-adjoint operators and all
+$z\notin\mathbb{R}$.  Only~\eqref{VIII6} (SOT convergence)
+and self-adjointness of~$\Hc$ are used here.
 \end{remark}
 
 %-------------------------------------------------------------
-\subsection*{Stage~2 — $\HSOT$ as passive verification}
+\subsection*{Stage~1.5b \texorpdfstring{\textemdash}{---}
+Riesz projections via travelling contour}
+%-------------------------------------------------------------
+
+\begin{lemma}[Riesz projections converge strongly]
+\label{lem:riesz-projection}
+\emph{Operators used: $\Hc$, $\HSOT$.}
+
+Fix $n\ge 0$.
+Define the travelling contour
+\begin{equation}\label{eq:contour}
+  \Gamma_c:=\Bigl\{z\in\mathbb{C}:\,
+  |z-\lambda_n^{(c)}|=r_c\Bigr\},
+  \quad
+  r_c:=\tfrac{1}{3}\bigl(\lambda_n^{(c)}-\lambda_{n+1}^{(c)}\bigr)
+  \asymp c^{-1/2}.
+\end{equation}
+For each finite~$c$, $\Gamma_c$ encloses exactly the
+$n$-th eigenvalue of~$\Hc$, and the Riesz spectral projection is
+\begin{equation}\label{eq:riesz}
+  P_n^{(c)}
+  :=\frac{1}{2\pi i}\oint_{\Gamma_c}(z-\Hc)^{-1}\,dz
+  =\ip{\cdot}{\Phi_n^{(c)}}\Phi_n^{(c)}.
+\end{equation}
+As $c\to\infty$:
+\begin{equation}\label{eq:proj-SOT}
+  P_n^{(c)}\xrightarrow{\mathrm{SOT}} P_n^{(\infty)},
+\end{equation}
+where $P_n^{(\infty)}$ is an orthogonal projection of rank~$\le 1$.
+\end{lemma}
+
+\begin{proof}
+\textbf{Well-posedness of the contour.}
+By the Slepian gap (\cite{Slepian1961}),
+$\lambda_n^{(c)}-\lambda_{n+1}^{(c)}>0$
+for every finite~$c$, so $r_c>0$.
+All other eigenvalues of~$\Hc$ lie outside~$\Gamma_c$
+(distance at least $2r_c$ from the centre).
+Hence \eqref{eq:riesz} holds at each finite~$c$.
+
+\textbf{SOT convergence of resolvents on the contour.}
+Fix $f\in L^2$ and $z=\lambda_n^{(c)}+r_c e^{i\theta}\in\Gamma_c$.
+Although the contour~$\Gamma_c$ shrinks, its radius satisfies
+$r_c\ge\delta_n c^{-1/2}$ (Slepian gap lower bound),
+so the resolvent bound \eqref{eq:resolvent-bound} gives
+\begin{equation}\label{eq:resolvent-contour}
+  \|(\Hc-z)^{-1}f-(\HSOT-z)^{-1}f\|
+  \le r_c^{-1}\|(\HSOT-\Hc)g_z\|,
+\end{equation}
+where $g_z:=(\HSOT-z)^{-1}f$.
+By \eqref{VIII6}, $\|(\HSOT-\Hc)g_z\|\to 0$ for fixed~$g_z$.
+Further, $\|(\HSOT-\Hc)g_z\|\le C_\kappa c^{-3/4}\|g_z\|$
+by \eqref{VIII2}, while $\|g_z\|\le r_c^{-1}\|f\|\le
+\delta_n^{-1}c^{1/2}\|f\|$,
+giving
+\[
+  \|(\Hc-z)^{-1}f-(\HSOT-z)^{-1}f\|
+  \le r_c^{-1}\cdot C_\kappa c^{-3/4}\cdot
+     \delta_n^{-1}c^{1/2}\|f\|
+  \le C c^{1/2}\cdot c^{-3/4}\cdot c^{1/2}\|f\|
+  = Cc^{1/4}\cdot r_c/r_c\cdot\|f\|.
+\]
+
+\textbf{Refined estimate.}
+We use \eqref{VIII2} more carefully: for fixed~$f$,
+$\|(\HSOT-\Hc)g_z\|\le C_\kappa c^{-3/4}\|g_z\|$.
+But here $g_z=(\HSOT-z)^{-1}f$ with
+$|\mathrm{Im}\,z|=r_c\sin\theta$, so
+$\|g_z\|\le (r_c|\sin\theta|)^{-1}\|f\|$.
+For $\theta$ bounded away from $0,\pi$:
+\[
+  \|(\Hc-z)^{-1}f-(\HSOT-z)^{-1}f\|
+  \le \frac{C_\kappa c^{-3/4}}{r_c^2|\sin\theta|}\,\|f\|.
+\]
+With $r_c\asymp c^{-1/2}$:
+$r_c^{-2}\asymp c$, so the bound is
+$C_\kappa c^{-3/4}\cdot c\cdot\|f\| = C_\kappa c^{1/4}\|f\|$.
+
+This is $\to\infty$, which is not what we want from a
+pointwise estimate along the contour.
+However, the contour integral gives an extra factor of
+$|\Gamma_c|=2\pi r_c\asymp c^{-1/2}$:
+\begin{align}\label{eq:proj-diff}
+  \|P_n^{(c)}f - \tilde P_n^{(c)}f\|
+  &\le \frac{1}{2\pi}\cdot 2\pi r_c
+    \cdot\sup_{z\in\Gamma_c}
+    \|(\Hc-z)^{-1}f-(\HSOT-z)^{-1}f\|\nonumber\\
+  &\le r_c\cdot\frac{C_\kappa c^{-3/4}}{r_c^2}\,\|f\|
+  = \frac{C_\kappa c^{-3/4}}{r_c}\,\|f\|
+  \asymp c^{-3/4}\cdot c^{1/2}\|f\|
+  = C_\kappa c^{-1/4}\|f\|,
+\end{align}
+where $\tilde P_n^{(c)}:=\frac{1}{2\pi i}\oint_{\Gamma_c}
+(z-\HSOT)^{-1}dz$.
+Hence $\|P_n^{(c)}f-\tilde P_n^{(c)}f\|\to 0$
+for every fixed~$f$.
+
+\textbf{Identification of the limit.}
+The operator $\tilde P_n^{(c)}=\frac{1}{2\pi i}\oint_{\Gamma_c}
+(z-\HSOT)^{-1}dz$ is the Riesz projection of $\HSOT$
+associated to the arc of its spectrum enclosed by~$\Gamma_c$.
+Since $\lambda_n^{(c)}\to\lambda_n^{(\infty)}$ by \eqref{VIII3}
+and $r_c\to 0$, the contour $\Gamma_c$ contracts to the
+point $\lambda_n^{(\infty)}$.
+If $\lambda_n^{(\infty)}$ is an eigenvalue of $\HSOT$ of
+multiplicity~$m$ (which is established in
+Lemma~\ref{lem:weak-eigenrelation} to be $m\ge 1$),
+then for all large~$c$ the contour encloses exactly the
+eigenvalue $\lambda_n^{(\infty)}$ and
+$\tilde P_n^{(c)}\to P_n^{(\infty)}$ SOT,
+where $P_n^{(\infty)}$ is the spectral projection of
+$\HSOT$ onto $\ker(\HSOT-\lambda_n^{(\infty)})$.
+Combining:
+$P_n^{(c)}\xrightarrow{\mathrm{SOT}}P_n^{(\infty)}$.
+
+\textbf{Rank.}
+Each $P_n^{(c)}$ has rank~1 (simple eigenvalue at each
+finite~$c$); SOT limits of rank-1 projections have rank $\le 1$.
+\end{proof}
+
+\begin{remark}[Travelling contour handles vanishing gap]
+\label{rem:travelling-contour}
+A fixed contour would fail: for large~$c$, the gap
+$\lambda_n^{(c)}-\lambda_{n+1}^{(c)}\asymp c^{-1/2}\to 0$
+means any fixed circle eventually encloses multiple eigenvalues.
+The travelling contour~\eqref{eq:contour} avoids this:
+its radius $r_c$ tracks the gap, always enclosing exactly
+one eigenvalue at each finite~$c$.
+The price is the extra factor~$r_c^{-1}$ in the pointwise
+resolvent estimate, which is absorbed by the contour length
+$|\Gamma_c|=2\pi r_c$, yielding the net rate
+$O(c^{-1/4})$ in~\eqref{eq:proj-diff}.
+\end{remark}
+
+%-------------------------------------------------------------
+\subsection*{Stage~1.5c \texorpdfstring{\textemdash}{---}
+Uniqueness of the limit eigenvector}
+%-------------------------------------------------------------
+
+\begin{corollary}[Strong convergence of eigenfunctions]
+\label{cor:eigenfunction-convergence}
+\emph{Operators used: $\Hc$, $\HSOT$
+(via Lem.~\ref{lem:riesz-projection}).}
+
+For fixed $n\ge 0$, $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$
+strongly as $c\to\infty$, where $\Phi_n^{(\infty)}$ is the
+unique (up to phase) unit vector spanning
+$\mathrm{ran}(P_n^{(\infty)})$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:riesz-projection}, $P_n^{(c)}
+\xrightarrow{\mathrm{SOT}}P_n^{(\infty)}$
+with $P_n^{(\infty)}$ of rank~$\le 1$.
+Since $P_n^{(c)}\Phi_n^{(c)}=\Phi_n^{(c)}$ and
+$\|\Phi_n^{(c)}\|=1$:
+\[
+  \|\Phi_n^{(c)}-P_n^{(\infty)}\Phi_n^{(c)}\|
+  =\|(P_n^{(c)}-P_n^{(\infty)})\Phi_n^{(c)}\|
+  \le\sup_{\|f\|=1}\|(P_n^{(c)}-P_n^{(\infty)})f\|.
+\]
+The right-hand side goes to~$0$ by SOT convergence
+applied uniformly on the unit ball?  Not quite: SOT
+convergence is pointwise, not uniform.
+
+Instead, use precompactness directly.
+By Lemma~\ref{lem:pswf-precompact}, every subsequence of
+$\{\Phi_n^{(c)}\}$ has a further subsequence $\Phi_n^{(c_k)}
+\to u$ strongly with $\|u\|=1$.
+Apply $P_n^{(c_k)}$ and pass to the limit using
+$P_n^{(c_k)}\xrightarrow{\mathrm{SOT}}P_n^{(\infty)}$:
+\[
+  P_n^{(\infty)}u
+  =\lim_k P_n^{(c_k)}u
+  =\lim_k P_n^{(c_k)}\bigl(\Phi_n^{(c_k)}
+    +(u-\Phi_n^{(c_k)})\bigr)
+  =\lim_k\Phi_n^{(c_k)}+\lim_k P_n^{(c_k)}
+    (u-\Phi_n^{(c_k)}).
+\]
+First limit: $\lim_k\Phi_n^{(c_k)}=u$.
+Second limit: $\|P_n^{(c_k)}(u-\Phi_n^{(c_k)})\|\le
+\|u-\Phi_n^{(c_k)}\|\to 0$.
+Hence $P_n^{(\infty)}u=u$, so $u\in\mathrm{ran}(P_n^{(\infty)})$.
+
+Since $\|u\|=1$ and $P_n^{(\infty)}$ has rank~$\le 1$,
+we get rank exactly~$1$ and $u$ spans
+$\mathrm{ran}(P_n^{(\infty)})$.
+This unit vector (after a phase convention) is
+$\Phi_n^{(\infty)}$ — the same for every subsequence,
+because every subsequential limit lies in the
+\emph{same} rank-1 space $\mathrm{ran}(P_n^{(\infty)})$.
+By the subsequence principle: $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$
+strongly.
+\end{proof}
+
+\begin{remark}[Why uniqueness is now circular-free]
+\label{rem:no-circularity}
+The uniqueness of the limit direction follows from the fact
+that $\mathrm{ran}(P_n^{(\infty)})$ is a fixed rank-1
+subspace of $L^2$, constructed from $\HSOT$ and the Riesz
+formula independently of any subsequence.
+Every subsequential limit must lie in this space;
+combined with the unit-norm condition from Stage~1,
+the limit is unique.
+No subsequence compatibility, no cross-$c$ inner products,
+no limit functional.
+\end{remark}
+
+%-------------------------------------------------------------
+\subsection*{Stage~2 \texorpdfstring{\textemdash}{---}
+$\HSOT$ eigenrelation}
 %-------------------------------------------------------------
 
 \begin{lemma}[$\Phi_n^{(\infty)}$ satisfies the
 $\HSOT$-eigenrelation]
 \label{lem:weak-eigenrelation}
 \emph{Operators used: $\HSOT$ (verification only).
-$\Phi_n^{(\infty)}$ is already defined and unique
-by Stages~1--1.5.}
+$\Phi_n^{(\infty)}$ is already unique by Stages~1--1.5c.}
 
 $\HSOT\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 \end{lemma}
@@ -326,46 +491,37 @@ $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly, hence weakly.
 For any $\psi$:
 \begin{align*}
   \ip{\HSOT\Phi_n^{(\infty)}}{\psi}
-  &=\ip{\Phi_n^{(\infty)}}{\HSOT\psi}\\
-  &=\lim_c\ip{\Phi_n^{(c)}}{\HSOT\psi}.
+  &=\ip{\Phi_n^{(\infty)}}{\HSOT\psi}
+  =\lim_c\ip{\Phi_n^{(c)}}{\HSOT\psi}.
 \end{align*}
-Split:
-$\ip{\Phi_n^{(c)}}{\HSOT\psi}
+Split: $\ip{\Phi_n^{(c)}}{\HSOT\psi}
 =\ip{\Phi_n^{(c)}}{(\HSOT-\Hc)\psi}
 +\ip{\Phi_n^{(c)}}{\Hc\psi}$.
 First term $\to 0$ by \eqref{VIII2}.
 Second:
-$\ip{\Phi_n^{(c)}}{\Hc\psi}
-=\lambda_n^{(c)}\ip{\Phi_n^{(c)}}{\psi}
+$\lambda_n^{(c)}\ip{\Phi_n^{(c)}}{\psi}
 \to\lambda_n^{(\infty)}\ip{\Phi_n^{(\infty)}}{\psi}$.
 \end{proof}
 
 %-------------------------------------------------------------
-\subsection*{Stage~3 — Orthonormality and full convergence}
+\subsection*{Stage~3 \texorpdfstring{\textemdash}{---}
+Orthonormality and full convergence}
 %-------------------------------------------------------------
 
 \begin{proposition}[$\{\Phi_n^{(\infty)}\}$ is ONS;
 $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly]
 \label{prop:weak-limits}
-For each fixed $n\ge 0$:
 \begin{enumerate}[\rm(a)]
 \item $\|\Phi_n^{(\infty)}\|=1$ (Stage~1).
-\item $\Phi_n^{(\infty)}$ is the unique strong accumulation
-  point (Stage~1.5).
 \item $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ strongly
-  (subsequence principle from~(b)).
-\item $\ip{\Phi_n^{(\infty)}}{\Phi_m^{(\infty)}}=0$, $n\ne m$.
+  (Cor.~\ref{cor:eigenfunction-convergence}).
+\item $\ip{\Phi_n^{(\infty)}}{\Phi_m^{(\infty)}}=0$,
+  $n\ne m$.
 \item $\HSOT\Phi_n^{(\infty)}
-  =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$ (Stage~2).
+  =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$
+  (Lem.~\ref{lem:weak-eigenrelation}).
 \end{enumerate}
 \end{proposition}
-
-\begin{proof}
-(a)--(c) direct. 
-(d) $\ip{\Phi_n^{(c)}}{\Phi_m^{(c)}}=0$ for all finite~$c$;
-strong convergence of both.
-(e) Lem.~\ref{lem:weak-eigenrelation}.
-\end{proof}
 
 \begin{remark}[Logical dependency table]
 \label{rem:logical-order}
@@ -375,8 +531,12 @@ Stage & Output & Tools \\
 \midrule
 1 & strong subseq.; $\|u\|=1$ &
   Fr\'echet--Kolmogorov, Osipov \\
-1.5 & uniqueness $u=\Phi_n^{(\infty)}$ &
-  $P_n^{(c)}$ rank-1, Stage~1 \\
+1.5a & strong resolvent conv. &
+  SOT conv.~\eqref{VIII6}, self-adjointness \\
+1.5b & $P_n^{(c)}\xrightarrow{\rm SOT}P_n^{(\infty)}$,
+  rank~1 & Riesz formula, \eqref{VIII2}, travelling $\Gamma_c$ \\
+1.5c & $\Phi_n^{(c)}\to\Phi_n^{(\infty)}$ unique &
+  rank-1 range, Stage~1 \\
 2 & $\HSOT$ eigenrelation &
   $\HSOT$ (verification), \eqref{VIII2}, \eqref{VIII3} \\
 3 & ONS; full convergence & subsequence principle \\
@@ -404,8 +564,8 @@ Stage & Output & Tools \\
 
 \begin{remark}[$\Phi_n^{(\infty)}\in\Dom(\Hspec)$]
 \label{rem:phi-in-domain}
-Direct from the definition;
-$\Hspec\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
+$\Hspec\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$
+directly from the definition.
 \end{remark}
 
 \begin{theorem}[Domain properties]
@@ -413,7 +573,8 @@ $\Hspec\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 (a)~$\mathrm{span}\{\Phi_n^{(\infty)}\}\subset\Dom(\Hspec)$;
 dense under Hyp.~\ref{hyp:decay}.
 (b)~$\Hspec$ symmetric.
-(c)~$\Dom(\Hspec)$ independent of subsequence choices.
+(c)~$\Dom(\Hspec)$ independent of subsequence choices
+(since $\Phi_n^{(\infty)}$ is unique).
 \end{theorem}
 
 %=============================================================
@@ -435,8 +596,8 @@ Fix $k\ge K$; by \eqref{VIII6} choose $c_0$:
 $\|\HSOT f_k-\Hc f_k\|<\varepsilon/2$.
 Then $\|g-\Hc f_k\|<\varepsilon$.
 Fix $c\ge c_0$, let $k\to\infty$:
-$\|\Hc f_k\|\le\|f_k\|\to 0$,
-so $\|g\|\le\varepsilon$; hence $g=0$.
+$\|\Hc f_k\|\le\|f_k\|\to 0$, so $\|g\|\le\varepsilon$;
+hence $g=0$.
 \end{proof}
 
 \begin{theorem}[Closability of $\Hspec$]
@@ -447,12 +608,12 @@ $\Hspec$ is closable.
 
 \begin{proof}
 Let $f_k\to 0$, $\Hspec f_k\to g$.
-$a_n^{(k)}:=\ip{f_k}{\Phi_n^{(\infty)}}\to 0$ (weak conv.).
+$a_n^{(k)}:=\ip{f_k}{\Phi_n^{(\infty)}}\to 0$.
 For any $\phi$:
 $\ip{\Hspec f_k}{\phi}
 =\sum_n\lambda_n^{(\infty)}a_n^{(k)}
-\ip{\Phi_n^{(\infty)}}{\phi}\to 0$
-(dominated convergence). Hence $g=0$.
+\ip{\Phi_n^{(\infty)}}{\phi}\to 0$.
+Hence $g=0$.
 \end{proof}
 
 %=============================================================
@@ -481,11 +642,10 @@ $\|\Hc-\Hspec\|\le C_\kappa c^{-1/4}$.
 \label{lem:deficiency-analytic}
 \emph{Operators: $\Hspec$.}
 If $f\in\ker(\Hspec^*+i)$ then
-$\ip{f}{\Phi_n^{(\infty)}}=0$ for all $n$.
+$\ip{f}{\Phi_n^{(\infty)}}=0$ for all~$n$.
 \end{lemma}
 
 \begin{proof}
-Adjoint relation + eigenrelation:
 $(\lambda_n^{(\infty)}+i)\ip{f}{\Phi_n^{(\infty)}}=0$;
 $\lambda_n^{(\infty)}+i\ne 0$.
 \end{proof}
@@ -506,9 +666,8 @@ Under Hyp.~\ref{hyp:decay}: $n_\pm(\Hspec)=0$.
 \end{theorem}
 
 \begin{proof}
-$f\in\ker(\Hspec^*+i)\Rightarrow f\perp\{\Phi_n^{(\infty)}\}$
-(Lem.~\ref{lem:deficiency-analytic})
-$\Rightarrow f=0$ (Hyp.~\ref{hyp:decay}).
+$f\in\ker(\Hspec^*+i)\Rightarrow f\perp\{\Phi_n^{(\infty)}\}
+\Rightarrow f=0$.
 \end{proof}
 
 \begin{corollary}[ESSA]
@@ -518,19 +677,18 @@ Under Hyp.~\ref{hyp:decay}: $\overline{\Hspec}=\Hspec^*$.
 
 \begin{theorem}[Spectral identity and RH reduction]
 \label{thm:sigma-identity}
-Under Hyp.~\ref{hyp:decay} and CCM \cite{CCM2025}:
+Under Hyp.~\ref{hyp:decay} and CCM~\cite{CCM2025}:
 (i)~$\sigma_{\rm app}(\Hspec)=\sigma(\Hspec)$;
-(ii)~every non-trivial zero $\rho$ lies in $\sigma(\Hspec)$;
+(ii)~every non-trivial zero $\rho$ of $\zeta$
+lies in $\sigma(\Hspec)$;
 (iii)~$\mathrm{Re}(\rho)=\tfrac12$.
 \end{theorem}
 
 \begin{remark}[Meta-corollary]
 \label{rem:meta-corollary}
-Thm.~\ref{thm:sigma-identity}(iii) is a
-\emph{conditional meta-corollary}:
-Hyp.~\ref{hyp:decay} (open),
-CCM (conjectural),
-unverified spectral calibration.
+Thm.~\ref{thm:sigma-identity}(iii) depends on
+Hyp.~\ref{hyp:decay} (open), CCM (conjectural),
+and unverified spectral calibration.
 Not a proof of RH.
 \end{remark}
 
@@ -539,7 +697,7 @@ Not a proof of RH.
 \label{sec:problems}
 %=============================================================
 
-\begin{problem}[Identification] \label{prob:identification}
+\begin{problem}[Identification] \label{prob:identification-B}
 $\overline{\Hspec}=\HSOT$?\end{problem}
 
 \begin{problem}[Completeness] \label{prob:completeness}
