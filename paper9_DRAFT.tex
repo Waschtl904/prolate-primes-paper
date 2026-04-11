@@ -87,12 +87,13 @@ Paper~VIII states this as Conjecture~8.1.
 \item \textbf{Theorem~\ref{thm:opnorm}
       (Operator norm rate).}
       $\|\Hc - \Hlim\|_{L^2 \to L^2}
-      \le C_\kappa\, c^{-1/4}$.
-      The eigenfunction alignment step uses
-      weak-to-strong convergence
-      (norm-preservation + weak convergence)
-      rather than Kato--Rellich perturbation theory,
-      avoiding any operator-norm circularity.
+      \le C_\kappa\, c^{-1/4}$,
+      conditional on uniform eigenfunction alignment
+      (Hypothesis~\ref{hyp:uniform-alignment}).
+      The main eigenvalue-sum term is
+      unconditionally $O(c^{-1/4})$ by \eqref{VIII3};
+      the cross-term estimate requires uniformity
+      in $n \le \kappa c$.
 
 \item \textbf{Theorem~\ref{thm:deficiency}
       (Deficiency index control).}
@@ -126,9 +127,9 @@ This paper has three main threads:
       Closability is unconditional.
 \item \textbf{Operator-norm thread}
       (Section~\ref{sec:opnorm}):
-      Upgrades strong convergence to
-      operator-norm rate $c^{-1/4}$
-      via weak-to-strong norm argument.
+      Unconditional: eigenvalue-sum term $O(c^{-1/4})$.
+      Conditional on Hypothesis~\ref{hyp:uniform-alignment}:
+      cross-term estimate and full $O(c^{-1/4})$ rate.
 \item \textbf{Deficiency thread}
       (Sections~\ref{sec:deficiency}--\ref{sec:esa}):
       The central result is the equivalence
@@ -173,14 +174,12 @@ Key inherited results:
 \item\label{VIII6}
       SOT-convergence: $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$
       in $\mathcal{B}(L^2(\mathbb{R}))$
-      (Paper~X, Lem.~2.2; cited here for the
-      closability proof in Section~\ref{sec:closable}).
+      (Paper~X, Lem.~2.2).
 \end{enumerate}
 
 The operators $\Hc$ are self-adjoint contractions
-on $L^2(\mathbb{R})$ (Slepian concentration operators;
-$\|\Hc\|_{L^2 \to L^2} \le 1$ since all eigenvalues
-lie in $(0,1)$; see Papers~V--VI).
+on $L^2(\mathbb{R})$ ($\|\Hc\|_{L^2 \to L^2} \le 1$;
+see Papers~V--VI).
 The operator $\Hlim$ is defined in
 Section~\ref{sec:domain}.
 
@@ -199,55 +198,43 @@ $\lambda_n^{(c)} \to \lambda_n^{(\infty)}$ as $c \to \infty$.
 \begin{definition}[Limit eigenvalues]
 \label{def:lim-eigenvalues}
 For $n \ge 0$, define
-\[
-  \lambda_n^{(\infty)}
-  := \lim_{c \to \infty} \lambda_n^{(c)}.
-\]
-Existence follows from \eqref{VIII3} and
-$\sum_{k \ge c} |\lambda_n^{(k+1)} - \lambda_n^{(k)}|
-\le C_\kappa c^{-1/4} < \infty$.
+$\lambda_n^{(\infty)} := \lim_{c \to \infty} \lambda_n^{(c)}$.
+Existence follows from \eqref{VIII3}.
 \end{definition}
 
 \begin{remark}[Values of $\lambda_n^{(\infty)}$]
 \label{rem:lambda-values}
-For $n$ in the sub-threshold regime
-$n \le (1-\delta)2c/\pi$, the Slepian
-counting law gives $\lambda_n^{(c)} \to 1$,
-so $\lambda_n^{(\infty)} \in (0,1]$.
-For $n$ above the threshold,
-$\lambda_n^{(c)} \to 0$ exponentially,
-so $\lambda_n^{(\infty)} = 0$.
-In the closability and deficiency proofs below,
-the case $\lambda_n^{(\infty)} = 0$ is handled
-explicitly (see Remark~\ref{rem:lambda-zero}).
+For $n \le (1-\delta)2c/\pi$:
+$\lambda_n^{(\infty)} \in (0,1]$.
+For $n$ above the threshold:
+$\lambda_n^{(\infty)} = 0$.
+The case $\lambda_n^{(\infty)} = 0$
+is handled explicitly where needed
+(Remarks~\ref{rem:lambda-zero}
+and~\ref{rem:deficiency-zero-eigenvalue}).
 \end{remark}
 
 \begin{proposition}[Weak convergence of eigenvectors]
 \label{prop:weak-limits}
-After passing to a subsequence (if necessary),
+After passing to a subsequence,
 $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
-weakly in $L^2(\mathbb{R})$ as $c \to \infty$,
+weakly in $L^2(\mathbb{R})$,
 where $\{\Phi_n^{(\infty)}\}_{n \ge 0}$ is
-an orthonormal system in $L^2(\mathbb{R})$
-(in particular, $\|\Phi_n^{(\infty)}\| = 1$
-for all $n \ge 0$).
+an orthonormal system
+($\|\Phi_n^{(\infty)}\| = 1$ for all $n$).
 \end{proposition}
 
 \begin{proof}
-Boundedness (unit vectors) gives weakly convergent
-subsequences via Banach--Alaoglu.
+Banach--Alaoglu gives weakly convergent
+subsequences from bounded (unit-vector) sequences.
 Uniform eigenvalue separation
-$\lambda_n^{(c)} - \lambda_{n+1}^{(c)} \ge \delta_n > 0$
-(from \cite{Slepian1961}) ensures the
-subsequential limits are mutually orthogonal.
-For the norm: since $\{\Phi_n^{(\infty)}\}$
-is an orthonormal system, $\|\Phi_n^{(\infty)}\| = 1$
-by definition of orthonormality.
+(\cite{Slepian1961}) ensures mutual orthogonality
+of subsequential limits.
 \end{proof}
 
 \subsection{The canonical domain}
 
-\begin{definition}[Canonical domain of $\Hlim$]
+\begin{definition}[Canonical domain]
 \label{def:domain}
 Define
 \[
@@ -261,96 +248,56 @@ Define
   \Bigr\},
 \]
 and for $f \in \Dom(\Hlim)$:
-\[
-  \Hlim f :=
-  \sum_{n : \lambda_n^{(\infty)} > 0}
-  \lambda_n^{(\infty)}\,
-  \ip{f}{\Phi_n^{(\infty)}}\,
-  \Phi_n^{(\infty)}.
-\]
-The sum runs only over indices with
-$\lambda_n^{(\infty)} > 0$;
-for $\lambda_n^{(\infty)} = 0$ no term is contributed.
+$\Hlim f :=
+\sum_{n : \lambda_n^{(\infty)} > 0}
+\lambda_n^{(\infty)}
+\ip{f}{\Phi_n^{(\infty)}}
+\Phi_n^{(\infty)}$.
 \end{definition}
-
-\begin{remark}[On the sum in Definition~\ref{def:domain}]
-\label{rem:sum-convention}
-Since $\lambda_n^{(\infty)} = 0$ for all
-$n$ above the Slepian threshold
-(Remark~\ref{rem:lambda-values}),
-the sum in the definition of $\Hlim f$
-is effectively finite for each $f$ in
-the finite-span core, and well-defined
-for all $f \in \Dom(\Hlim)$ by the
-domain condition.
-\end{remark}
 
 \begin{theorem}[Properties of the canonical domain]
 \label{thm:domain}
 \begin{enumerate}[\rm(a)]
 \item $\Dom(\Hlim)$ contains all finite
-      linear combinations
-      $\sum_{n=0}^N a_n \Phi_n^{(\infty)}$.
-      In particular, $\Dom(\Hlim)$ is non-trivial.
-      Under Hypothesis~\ref{hyp:decay}
-      (completeness of $\{\Phi_n^{(\infty)}\}$),
+      linear combinations of $\{\Phi_n^{(\infty)}\}$.
+      Under Hypothesis~\ref{hyp:decay},
       $\Dom(\Hlim)$ is dense in $L^2(\mathbb{R})$.
-\item $\Hlim$ is symmetric on $\Dom(\Hlim)$:
-      $\ip{\Hlim f}{g} = \ip{f}{\Hlim g}$
-      for all $f, g \in \Dom(\Hlim)$.
+\item $\Hlim$ is symmetric on $\Dom(\Hlim)$.
 \item $\Dom(\Hlim)$ is independent of
-      the subsequence choice in
-      Proposition~\ref{prop:weak-limits}
-      (up to measure zero), since
-      $\lambda_n^{(\infty)}$ is
-      uniquely determined.
+      the subsequence in Proposition~\ref{prop:weak-limits}.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(a)} For a finite combination
-$f = \sum_{n=0}^N a_n \Phi_n^{(\infty)}$,
-the domain sum
-$\sum_n (\lambda_n^{(\infty)})^2
-|\ip{f}{\Phi_n^{(\infty)}}|^2
-= \sum_{n=0}^N (\lambda_n^{(\infty)})^2 |a_n|^2
-< \infty$
-has finitely many terms.
-Hence the finite linear span of
-$\{\Phi_n^{(\infty)}\}$ lies in $\Dom(\Hlim)$.
-Under Hypothesis~\ref{hyp:decay},
-this span is dense in $L^2(\mathbb{R})$,
-so $\Dom(\Hlim)$ is dense.
+\textit{(a)} Finite combinations have finitely
+many nonzero terms in the domain sum,
+hence lie in $\Dom(\Hlim)$.
+Under Hypothesis~\ref{hyp:decay}, the finite
+span is dense, so $\Dom(\Hlim)$ is dense.
 
-\textit{(b)} For $f, g \in \Dom(\Hlim)$:
-by the domain condition and Cauchy--Schwarz,
-$\sum_n \lambda_n^{(\infty)}
-|\ip{f}{\Phi_n^{(\infty)}}|
-|\ip{g}{\Phi_n^{(\infty)}}| < \infty$,
-so the symmetry identity
-$\ip{\Hlim f}{g} = \ip{f}{\Hlim g}$
-follows by rearranging the absolutely
-convergent series.
+\textit{(b)} Symmetry follows from
+absolute convergence of the series
+(Cauchy--Schwarz + domain condition).
 
-\textit{(c)} Immediate since $\lambda_n^{(\infty)}$
-does not depend on the subsequence.
+\textit{(c)} $\lambda_n^{(\infty)}$ does not
+depend on the subsequence choice.
 \end{proof}
 
 \begin{remark}[What density requires]
 \label{rem:density-requires}
-Part (a) deliberately separates two statements:
+The two statements of Thm.~\ref{thm:domain}(a)
+are logically separate:
 \begin{itemize}
 \item $\Dom(\Hlim) \supset
       \mathrm{span}\{\Phi_n^{(\infty)}\}$
-      (unconditional; proved above).
-\item $\Dom(\Hlim)$ is dense in $L^2(\mathbb{R})$
+      (unconditional).
+\item $\Dom(\Hlim)$ dense in $L^2(\mathbb{R})$
       (conditional on Hypothesis~\ref{hyp:decay}).
 \end{itemize}
-For the closability and deficiency results
-below (Sections~\ref{sec:closable}--\ref{sec:esa}),
-only the unconditional part is needed.
-Density is required for the spectral-identity
-Theorem~\ref{thm:sigma-identity}.
+Closability (Section~\ref{sec:closable})
+and the Deficiency analysis
+(Section~\ref{sec:deficiency})
+use only the unconditional part.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -361,91 +308,64 @@ Theorem~\ref{thm:sigma-identity}.
 \begin{theorem}[Closability of $\Hlim$]
 \label{thm:closable}
 $\Hlim$ is closable.
-No completeness of $\{\Phi_n^{(\infty)}\}$
-is required.
+The proof requires neither completeness of
+$\{\Phi_n^{(\infty)}\}$ nor the spectral
+definition of $\Hlim$.
 \end{theorem}
 
 \begin{proof}
-We use the SOT-convergence \eqref{VIII6}:
-$\Hc \xrightarrow{\mathrm{SOT}} \Hlim$,
-i.e.\ $\Hc f \to \Hlim f$ in $L^2$ for
-every fixed $f \in L^2(\mathbb{R})$.
-
-Let $f_k \to 0$ in $L^2(\mathbb{R})$
-with $\Hlim f_k \to g$.
-We must show $g = 0$.
+Let $f_k \to 0$ in $L^2$ with $\Hlim f_k \to g$.
+We show $g = 0$.
 
 For each $k$ and $c$:
-\[
-  \|g - \Hc f_k\|
-  \le \|g - \Hlim f_k\|
-    + \|\Hlim f_k - \Hc f_k\|.
-\]
+$\|g - \Hc f_k\|
+\le \|g - \Hlim f_k\|
+  + \|\Hlim f_k - \Hc f_k\|$.
+
 Fix $\varepsilon > 0$.
 
 \textit{Step 1.}
-Since $\Hlim f_k \to g$, choose $K$ such that
+$\Hlim f_k \to g$:
+choose $K$ with
 $\|g - \Hlim f_k\| < \varepsilon/2$
-for all $k \ge K$.
+for $k \ge K$.
 
 \textit{Step 2.}
-For fixed $k \ge K$, since
-$\Hc \xrightarrow{\mathrm{SOT}} \Hlim$,
-choose $c_0$ such that
+SOT-convergence \eqref{VIII6}:
+for fixed $k \ge K$, choose $c_0$ with
 $\|\Hlim f_k - \Hc f_k\| < \varepsilon/2$
-for all $c \ge c_0$.
+for $c \ge c_0$.
 
-Then $\|g - \Hc f_k\| < \varepsilon$
-for all $k \ge K$, $c \ge c_0$.
+So $\|g - \Hc f_k\| < \varepsilon$
+for $k \ge K$, $c \ge c_0$.
 
 \textit{Step 3.}
-Since $\Hc$ is bounded ($\|\Hc\| \le 1$)
-and $f_k \to 0$:
-$\|\Hc f_k\| \le \|f_k\| \to 0$.
-Hence $\Hc f_k \to 0$ in $L^2$ for each fixed $c$.
+$\|\Hc\| \le 1$ and $f_k \to 0$:
+$\|\Hc f_k\| \to 0$ for fixed $c$.
 
 \textit{Conclusion.}
-From Step~3: $\|g\| \le \|g - \Hc f_k\|
-+ \|\Hc f_k\| < \varepsilon + \|\Hc f_k\|$.
-Letting $k \to \infty$ with $c$ fixed:
-$\|g\| \le \varepsilon$.
-Since $\varepsilon > 0$ was arbitrary, $g = 0$.
-Hence $\Hlim$ is closable.
+$\|g\| \le \|g - \Hc f_k\| + \|\Hc f_k\|
+< \varepsilon + \|\Hc f_k\|$;
+letting $k \to \infty$: $\|g\| \le \varepsilon$.
+Since $\varepsilon$ was arbitrary, $g = 0$.
 \end{proof}
 
-\begin{remark}[No completeness needed for closability]
+\begin{remark}[Unconditional status]
 \label{rem:closable-unconditional}
-The proof uses only:
-(i) $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$
-(Paper~X, Lem.~2.2; \eqref{VIII6});
-(ii) $\|\Hc\| \le 1$ (standard Slepian).
-In particular, it does not use completeness
-of $\{\Phi_n^{(\infty)}\}$ nor the
-spectral definition of $\Hlim$.
-Closability is therefore an
-\emph{unconditional} result.
+Closability uses only \eqref{VIII6}
+(SOT-convergence, Paper~X)
+and $\|\Hc\| \le 1$.
+No completeness, no spectral definition.
 \end{remark}
 
-\begin{remark}[Uniqueness of the closure]
+\begin{remark}[Uniqueness under completeness]
 \label{rem:closure-unique}
-If additionally Hypothesis~\ref{hyp:decay}
-holds (completeness), then
+Under Hypothesis~\ref{hyp:decay},
 $\overline{\Hlim}$ is the unique self-adjoint
-operator whose eigensystem is
+operator with eigensystem
 $\{(\lambda_n^{(\infty)}, \Phi_n^{(\infty)})\}$
-(spectral theorem for pure-point-spectrum
-self-adjoint operators on a complete ONB;
-see \cite{ReedSimon1975}, Theorem~VIII.5).
-Without Hypothesis~\ref{hyp:decay},
-the closure $\overline{\Hlim}$ still exists
-but may have a more complex structure.
-\end{remark}
-
-\begin{remark}[Compatibility with strong rate]
-\label{rem:strong-rate-compat}
-For $f \in \Dom(\Hlim)$,
-$\Hc f \to \Hlim f$ in $L^2$
-with rate $O(c^{-3/4})$ by \eqref{VIII2}.
+(spectral theorem;
+\cite{ReedSimon1975}, Theorem~VIII.5).
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -457,102 +377,107 @@ with rate $O(c^{-3/4})$ by \eqref{VIII2}.
 \label{lem:eigenvector-strong}
 For each fixed $n \ge 0$:
 $\Phi_n^{(c)} \to \Phi_n^{(\infty)}$
-strongly in $L^2(\mathbb{R})$ as $c \to \infty$.
+strongly in $L^2(\mathbb{R})$.
 \end{lemma}
 
 \begin{proof}
-By Proposition~\ref{prop:weak-limits},
-$\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
-weakly in $L^2(\mathbb{R})$.
-Both sequences are unit vectors:
-$\|\Phi_n^{(c)}\| = 1$ and
-$\|\Phi_n^{(\infty)}\| = 1$.
-In a Hilbert space, weak convergence
-plus norm convergence implies strong convergence
-(see e.g.\ \cite{ReedSimon1975}, Prop.~II.11).
-Since $\|\Phi_n^{(c)}\| = 1 = \|\Phi_n^{(\infty)}\|$,
-norms converge (they are constantly $1$),
-hence $\Phi_n^{(c)} \to \Phi_n^{(\infty)}$ strongly.
+Weak convergence (Proposition~\ref{prop:weak-limits})
+plus norm-preservation
+($\|\Phi_n^{(c)}\| = 1 = \|\Phi_n^{(\infty)}\|$)
+implies strong convergence in a Hilbert space
+(\cite{ReedSimon1975}, Prop.~II.11).
 \end{proof}
 
 \begin{remark}[The $\lambda_n^{(\infty)} = 0$ case]
 \label{rem:lambda-zero}
-For indices $n$ with $\lambda_n^{(\infty)} = 0$:
-the Slepian counting law implies
-$\lambda_n^{(c)} \to 0$ exponentially,
-so $\Phi_n^{(c)}$ contributes terms
-$\lambda_n^{(c)} \Phi_n^{(c)} \to 0$
-in $L^2$.
-Such indices need not be tracked separately
-in eigenvalue or operator-norm estimates
-(their contribution is exponentially small).
+For $\lambda_n^{(\infty)} = 0$:
+the contribution $\lambda_n^{(c)} \Phi_n^{(c)} \to 0$
+exponentially; no separate tracking is needed.
 \end{remark}
 
 \begin{lemma}[Eigenfunction alignment]
 \label{lem:eigenvector-alignment}
-For each fixed $n \ge 0$:
+For each \emph{fixed} $n \ge 0$:
 $\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|_{L^2} \to 0$
 as $c \to \infty$.
-Quantitatively, for $n \le \kappa c$:
-\[
-  \|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|^2
-  = 2 - 2\,\mathrm{Re}\,\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}.
-\]
-Since $\Phi_n^{(c)} \to \Phi_n^{(\infty)}$ strongly
-(Lemma~\ref{lem:eigenvector-strong}),
-this converges to $0$.
-The rate is $O(c^{-1/4})$, consistent with
-the eigenvalue rate \eqref{VIII3},
-and is used only in an $O(\cdot)$ sense
-in Theorem~\ref{thm:opnorm}.
+
+More precisely:
+$\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|^2
+= 2(1 - \mathrm{Re}\,\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}})
+\to 0$.
+
+The rate $O(c^{-1/4})$ is \emph{heuristically
+consistent} with the eigenvalue rate \eqref{VIII3}
+(see Remark~\ref{rem:rate-justification}),
+but has not been proved uniformly over
+$n \le \kappa c$.
+For the operator-norm bound in
+Theorem~\ref{thm:opnorm},
+uniform alignment is listed as a separate
+hypothesis (Hypothesis~\ref{hyp:uniform-alignment}).
 \end{lemma}
 
 \begin{proof}
-The identity $\|u - v\|^2 = \|u\|^2 +
-\|v\|^2 - 2\,\mathrm{Re}\,\ip{u}{v}$
-with $\|\Phi_n^{(c)}\| = \|\Phi_n^{(\infty)}\| = 1$
-gives $\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|^2
-= 2(1 - \mathrm{Re}\,\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}})$.
-Since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$,
+Since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
+(Proposition~\ref{prop:weak-limits}),
 $\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}} \to
 \|\Phi_n^{(\infty)}\|^2 = 1$,
-so $\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\| \to 0$.
-The $O(c^{-1/4})$ rate follows from
-$1 - \mathrm{Re}\,\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}
-\le \tfrac{1}{2}\|\Phi_n^{(c)} -
-\Phi_n^{(\infty)}\|^2$ combined with
-the eigenvalue rate \eqref{VIII3}
-via the eigenfunction-eigenvalue coupling
-(see Remark~\ref{rem:rate-justification}).
+giving $\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\| \to 0$.
 \end{proof}
 
-\begin{remark}[Rate justification]
+\begin{remark}[Rate heuristic]
 \label{rem:rate-justification}
-The $O(c^{-1/4})$ rate for
-$\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|$
-follows from the eigenvalue rate \eqref{VIII3}
-and the Slepian eigenvalue gap
+For fixed $n$, the rate
+$\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|
+= O(c^{-1/4})$ follows heuristically from:
+eigenvalue rate $c^{-1/4}$ (\eqref{VIII3})
+divided by the eigenvalue gap
 $\lambda_n^{(c)} - \lambda_{n+1}^{(c)} \asymp c^{-1/2}$
-(Paper~VIII, Thm.~4.1)
-via the standard inequality for symmetric operators:
+(Paper~VIII, Thm.~4.1),
+yielding $c^{-3/4}/c^{-1/2} = c^{-1/4}$
+from the perturbation-theoretic inequality
+(see \cite{Kato1966}, Thm.~V.4.10).
+This argument uses the \emph{strong}
+rate \eqref{VIII2} (per vector), not
+the operator norm, so it is not circular.
+However, extending this pointwise bound
+uniformly to all $n \le \kappa c$ requires
+additional control
+(Hypothesis~\ref{hyp:uniform-alignment}).
+\end{remark}
+
+\begin{hypothesis}[Uniform eigenfunction alignment]
+\label{hyp:uniform-alignment}
+For all $c \ge c_0(\kappa)$ and all $n \le \kappa c$:
 \[
-  \|\Phi_n^{(c)} - P_n \Phi_n^{(c)}\|
-  \le \frac{\|\Hc - H^{(\infty)}\|_{\rm strong}}
-           {\lambda_n^{(c)} - \lambda_{n+1}^{(c)}},
+  \sup_{n \le \kappa c}
+  \|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|_{L^2}
+  \le C_\kappa\, c^{-1/4}.
 \]
-where $P_n$ is the spectral projection onto
-$\Phi_n^{(\infty)}$,
-and the strong rate is $c^{-3/4}$ (\eqref{VIII2}),
-giving $c^{-3/4}/c^{-1/2} = c^{-1/4}$.
-Note that this step uses the \emph{strong}
-convergence rate (per vector), not
-the operator-norm rate (which is what
-we are proving), so there is no circularity.
+\end{hypothesis}
+
+\begin{remark}[Status of Hypothesis~\ref{hyp:uniform-alignment}]
+\label{rem:uniform-alignment-status}
+Hypothesis~\ref{hyp:uniform-alignment} is
+stronger than the pointwise statement of
+Lemma~\ref{lem:eigenvector-alignment}:
+it requires the $c^{-1/4}$ bound uniformly
+over all $n \le \kappa c$,
+not just for each fixed $n$.
+For fixed $n$ the estimate holds heuristically;
+the uniform version would follow from a
+uniform eigenvalue-gap lower bound
+$\lambda_n^{(c)} - \lambda_{n+1}^{(c)} \ge \delta_\kappa c^{-1/2}$
+for all $n \le \kappa c$ (open since Paper~VIII,
+Rem.~4.2).
+Alternatively, if Paper~X provides a uniform
+resolvent bound, this would suffice.
 \end{remark}
 
 \begin{theorem}[Operator norm rate]
 \label{thm:opnorm}
-For all $c \ge c_0(\kappa)$:
+Assume Hypothesis~\ref{hyp:uniform-alignment}.
+Then for all $c \ge c_0(\kappa)$:
 \begin{equation}
 \label{eq:opnorm-rate}
   \|\Hc - \Hlim\|_{L^2 \to L^2}
@@ -561,50 +486,63 @@ For all $c \ge c_0(\kappa)$:
 \end{theorem}
 
 \begin{proof}
-Let $f \in L^2(\mathbb{R})$ with $\|f\| = 1$.
-Decompose using the eigenbasis of $\Hc$:
-\begin{align}
+Let $\|f\| = 1$.
+Decompose:
+\begin{equation}
+\label{eq:opnorm-decomp}
   \|(\Hc - \Hlim)f\|^2
-  &\le 2\sum_{n \le \kappa c}
-       |\lambda_n^{(c)} - \lambda_n^{(\infty)}|^2
-       |\ip{f}{\Phi_n^{(c)}}|^2
-     + 2 E_\kappa(c,f)
-\end{align}
-where $E_\kappa(c,f)$ collects cross terms
-and the tail $n > \kappa c$.
+  \le 2 A(c,f) + 2 E_\kappa(c,f),
+\end{equation}
+where $A(c,f)$ is the eigenvalue-sum term
+and $E_\kappa(c,f)$ collects cross terms
+and the exponential tail.
 
-For the main sum:
+\textit{Main sum} $A(c,f)$:
 $|\lambda_n^{(c)} - \lambda_n^{(\infty)}|
-\le C_\kappa c^{-1/4}$ uniformly \eqref{VIII3},
+\le C_\kappa c^{-1/4}$ uniformly (\eqref{VIII3})
 and $\sum_n |\ip{f}{\Phi_n^{(c)}}|^2 \le 1$
-(Bessel), so the main sum is
-$\le C_\kappa^2 c^{-1/2}$.
+(Bessel), so $A(c,f) \le C_\kappa^2 c^{-1/2}$.
+This bound is \emph{unconditional}.
 
-For the tail $n > \kappa c$:
+\textit{Tail} $n > \kappa c$:
 eigenvalues $\lambda_n^{(c)} \le e^{-\gamma_\kappa c}$
-are exponentially small.
+are exponentially small; contribution negligible.
 
-For the cross terms (from
-$\Phi_n^{(c)} \ne \Phi_n^{(\infty)}$):
-by Lemma~\ref{lem:eigenvector-alignment},
-$\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|
-= O(c^{-1/4})$ uniformly in $n \le \kappa c$,
-so cross terms are $O(c^{-1/4})$.
+\textit{Cross terms} $E_\kappa(c,f)$:
+These arise from $\Phi_n^{(c)} \ne \Phi_n^{(\infty)}$.
+By Hypothesis~\ref{hyp:uniform-alignment},
+$\sup_{n \le \kappa c}
+\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|
+\le C_\kappa c^{-1/4}$,
+so $E_\kappa(c,f) = O(c^{-1/4})$.
 
-Combining and taking the supremum:
+Combining: $\|\Hc - \Hlim\|_{L^2 \to L^2}
+\le C_\kappa c^{-1/4}$.
+\end{proof}
+
+\begin{remark}[Unconditional partial bound]
+\label{rem:opnorm-unconditional-partial}
+Without Hypothesis~\ref{hyp:uniform-alignment},
+the eigenvalue-sum term alone gives:
 \[
   \|\Hc - \Hlim\|_{L^2 \to L^2}
-  \le C_\kappa c^{-1/4}.
+  \le C_\kappa c^{-1/4} + R(c),
 \]
-\end{proof}
+where $R(c)$ is the cross-term contribution.
+The eigenvalue-sum part is unconditional
+and $O(c^{-1/4})$.
+The cross-term remainder $R(c) \to 0$
+follows from SOT-convergence,
+but the rate of $R(c)$ is unknown without
+Hypothesis~\ref{hyp:uniform-alignment}.
+In particular, the full operator-norm rate
+$O(c^{-1/4})$ depends on this hypothesis.
+\end{remark}
 
 \begin{remark}[Domain stability]
 \label{rem:domain-stability}
-For any sequence $f_c \in L^2(\mathbb{R})$
-with $\|f_c\| + \|\Hc f_c\| \le M$
-(uniform graph-norm bound),
-the limit points of $f_c$ in $L^2$
-lie in $\Dom(\Hlim)$.
+For $f_c$ with $\|f_c\| + \|\Hc f_c\| \le M$,
+the limit points in $L^2$ lie in $\Dom(\Hlim)$.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -617,8 +555,8 @@ lie in $\Dom(\Hlim)$.
 By the von Neumann theory
 (\cite{ReedSimon1975}, Theorem~X.2),
 a symmetric operator is essentially
-self-adjoint iff its deficiency indices
-$n_\pm := \dim\ker(\Hlim^* \mp i)$ vanish.
+self-adjoint iff $n_\pm := \dim\ker(\Hlim^* \mp i)
+= 0$.
 
 \subsection{Properties of deficiency vectors}
 
@@ -630,79 +568,65 @@ for all $n \ge 0$.
 \end{lemma}
 
 \begin{proof}
-From $\Hlim^* f = -if$:
-$\ip{\Hlim^* f}{\Phi_n^{(\infty)}}
-= -i\ip{f}{\Phi_n^{(\infty)}}$.
-Since $\Phi_n^{(\infty)} \in \Dom(\Hlim)$
-and $\Hlim$ is symmetric:
-$\ip{f}{\Hlim \Phi_n^{(\infty)}}
-= \lambda_n^{(\infty)}\ip{f}{\Phi_n^{(\infty)}}$.
-Hence $(\lambda_n^{(\infty)} + i)
+From $\Hlim^* f = -if$ and symmetry of $\Hlim$:
+$(\lambda_n^{(\infty)} + i)
 \ip{f}{\Phi_n^{(\infty)}} = 0$.
 Since $\lambda_n^{(\infty)} \in [0,1] \subset \mathbb{R}$,
-we have $\lambda_n^{(\infty)} + i \ne 0$
-(the imaginary part is $1 \ne 0$),
+$\lambda_n^{(\infty)} + i \ne 0$
+($\mathrm{Im}(\lambda_n^{(\infty)} + i) = 1 \ne 0$),
 so $\ip{f}{\Phi_n^{(\infty)}} = 0$.
-This holds for all $n \ge 0$,
-including those with $\lambda_n^{(\infty)} = 0$.
+This includes the case $\lambda_n^{(\infty)} = 0$.
 \end{proof}
 
 \begin{remark}[The $\lambda_n^{(\infty)} = 0$ case]
 \label{rem:deficiency-zero-eigenvalue}
-In the original draft, the Closability proof
-divided by $\lambda_n^{(\infty)}$, which is
-illegal for $\lambda_n^{(\infty)} = 0$.
-Lemma~\ref{lem:deficiency-analytic}
-circumvents this: the argument
-$(\lambda_n^{(\infty)} + i) \ne 0$
-holds unconditionally since
-$\lambda_n^{(\infty)} \in \mathbb{R}$ and
-$i \notin \mathbb{R}$,
-so no division is needed.
+The argument $(\lambda_n^{(\infty)} + i) \ne 0$
+holds unconditionally for all
+$\lambda_n^{(\infty)} \in \mathbb{R}$,
+including $\lambda_n^{(\infty)} = 0$.
+No division by $\lambda_n^{(\infty)}$ is needed.
 \end{remark}
 
-\begin{remark}[Central reduction]
+\begin{remark}[Central reduction: ESSA $\iff$ Completeness]
 \label{rem:deficiency-orthogonal}
-Lemma~\ref{lem:deficiency-analytic} gives:
+Lemma~\ref{lem:deficiency-analytic} gives
+the unconditional equivalence:
 \[
   \ker(\Hlim^* \pm i) = \{0\}
   \iff
   \{\Phi_n^{(\infty)}\} \text{ is complete
   in } L^2(\mathbb{R}).
 \]
-The question of essential self-adjointness
-of $\Hlim$ reduces precisely to the
-completeness of the limit eigenvectors.
-This equivalence is \emph{unconditional}.
+Essential self-adjointness of $\Hlim$
+reduces precisely to the completeness
+of the limit eigenvectors.
 \end{remark}
 
 \subsection{The completeness hypothesis}
 
-\begin{hypothesis}[Completeness of $\{\Phi_n^{(\infty)}\}$]
+\begin{hypothesis}[Completeness]
 \label{hyp:decay}
-The system $\{\Phi_n^{(\infty)}\}_{n \ge 0}$
+$\{\Phi_n^{(\infty)}\}_{n \ge 0}$
 is complete in $L^2(\mathbb{R})$:
 $\overline{\mathrm{span}\{\Phi_n^{(\infty)}\}}
 = L^2(\mathbb{R})$.
 \end{hypothesis}
 
-\begin{remark}[Evidence for Hypothesis~\ref{hyp:decay}]
+\begin{remark}[Evidence]
 \label{rem:hyp-evidence}
 \begin{enumerate}
 \item Each $\{\Phi_n^{(c)}\}$ is a complete ONB
-      for its finite-dimensional target space
-      (Slepian; see Papers~V--VI).
+      for its target space (Slepian).
 \item $\Phi_n^{(\infty)} \ne 0$ for all $n$
-      (Non-cancellation, \eqref{VIII4}).
-\item Strong convergence
-      $\Phi_n^{(c)} \to \Phi_n^{(\infty)}$
-      (Lemma~\ref{lem:eigenvector-strong})
-      is consistent with completeness being
-      preserved in the limit,
-      though this requires uniform control
-      over all $n$ to prove rigorously.
+      (\eqref{VIII4}).
+\item $\Phi_n^{(c)} \to \Phi_n^{(\infty)}$
+      strongly for each fixed $n$
+      (Lemma~\ref{lem:eigenvector-strong}),
+      consistent with limit completeness,
+      but uniform control over all $n$
+      is still needed.
 \end{enumerate}
-Rigorous proof is open
+Rigorous proof: open
 (Problem~\ref{prob:completeness}).
 \end{remark}
 
@@ -711,75 +635,58 @@ Rigorous proof is open
 \label{sec:esa}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{theorem}[Deficiency indices under completeness]
+\begin{theorem}[Deficiency indices]
 \label{thm:deficiency}
 Assume Hypothesis~\ref{hyp:decay}.
 Then $n_\pm(\Hlim) = 0$.
 \end{theorem}
 
 \begin{proof}
-By Lemma~\ref{lem:deficiency-analytic},
-every $f \in \ker(\Hlim^* + i)$
-satisfies $\ip{f}{\Phi_n^{(\infty)}} = 0$
-for all $n$.
-By Hypothesis~\ref{hyp:decay},
-$\{\Phi_n^{(\infty)}\}$ is complete,
-so $f = 0$.
-Identical for $\ker(\Hlim^* - i)$.
+By Lemma~\ref{lem:deficiency-analytic}
+and Hypothesis~\ref{hyp:decay}:
+every deficiency vector is orthogonal
+to a complete system, hence zero.
 \end{proof}
 
 \begin{corollary}[Essential self-adjointness]
 \label{cor:esa}
 Assume Hypothesis~\ref{hyp:decay}.
-Then $\Hlim$ is essentially self-adjoint:
-$\overline{\Hlim} = \Hlim^*$.
-\end{corollary}
-
-\begin{proof}
-Von Neumann criterion: $n_\pm = 0$
-implies essential self-adjointness
+Then $\overline{\Hlim} = \Hlim^*$
 (\cite{ReedSimon1975}, Theorem~X.3).
-\end{proof}
+\end{corollary}
 
 \begin{theorem}[Spectral identity]
 \label{thm:sigma-identity}
 Assume Hypothesis~\ref{hyp:decay} and
-Hypothesis~CCM (Paper~VIII, Hyp.~5.1).
+Hypothesis~CCM.
 Then:
 \begin{enumerate}[\rm(i)]
 \item $\sigma_{\rm app}(\Hlim) = \sigma(\Hlim)$.
 \item Every non-trivial zero $\rho$ of $\zeta(s)$
       lies in $\sigma(\Hlim)$.
-\item All non-trivial zeros of $\zeta(s)$
-      satisfy $\mathrm{Re}(\rho) = 1/2$.
+\item All non-trivial zeros satisfy
+      $\mathrm{Re}(\rho) = 1/2$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\textit{(i)} For essentially self-adjoint
-operators, $\sigma_{\rm app} = \sigma$
+(i) Essential self-adjointness gives
+$\sigma_{\rm app} = \sigma$
 (\cite{ReedSimon1975}, Thm.~VII.13).
-
-\textit{(ii)} By Paper~VIII, Thm.~5.2,
-$\rho \in \sigma_{\rm app}(\Hlim)$.
-By (i), $\rho \in \sigma(\Hlim)$.
-
-\textit{(iii)} The CCM embedding (Hyp.~CCM)
-identifies the non-trivial zeros of $\zeta(s)$
-with imaginary parts $\mathrm{Im}(\rho)$ of
-eigenvalues of $\overline{\Hlim}$ on the
-critical line.
-Since $\overline{\Hlim}$ is self-adjoint,
-$\sigma(\overline{\Hlim}) \subset \mathbb{R}$,
-forcing $\mathrm{Re}(\rho) = 1/2$.
+(ii) Paper~VIII, Thm.~5.2 gives
+$\rho \in \sigma_{\rm app}(\Hlim)$; use (i).
+(iii) CCM identifies non-trivial zeros
+with $\mathrm{Im}(\rho)$ of eigenvalues;
+self-adjointness forces the spectrum real,
+hence $\mathrm{Re}(\rho) = 1/2$.
 \end{proof}
 
-\begin{remark}[Status]
+\begin{remark}[Conditions]
 \label{rem:conditional}
 Theorem~\ref{thm:sigma-identity}(iii)
-is conditional on Hypothesis~\ref{hyp:decay}
-(completeness; open) and Hypothesis~CCM
-(external result \cite{CCM2025}).
+depends on:
+(1) Hypothesis~\ref{hyp:decay} (open);
+(2) Hypothesis~CCM (\cite{CCM2025}).
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -789,28 +696,39 @@ is conditional on Hypothesis~\ref{hyp:decay}
 
 \begin{problem}[Completeness of $\{\Phi_n^{(\infty)}\}$]
 \label{prob:completeness}
-Prove Hypothesis~\ref{hyp:decay}:
-$\{\Phi_n^{(\infty)}\}_{n \ge 0}$ is complete
-in $L^2(\mathbb{R})$.
+Prove Hypothesis~\ref{hyp:decay}.
 By Remark~\ref{rem:deficiency-orthogonal},
 this is equivalent to essential self-adjointness
 of $\Hlim$.
-\emph{Approach}: show no nonzero
-$f \in L^2$ is orthogonal to all
-$\Phi_n^{(\infty)}$ simultaneously,
+\emph{Approach}: no nonzero $f \in L^2$
+can be orthogonal to all $\Phi_n^{(\infty)}$,
 using non-cancellation \eqref{VIII4}
-and mass-concentration uniformly over $n$.
+uniformly over $n$.
+\end{problem}
+
+\begin{problem}[Uniform eigenfunction alignment]
+\label{prob:uniform-alignment}
+Prove Hypothesis~\ref{hyp:uniform-alignment}:
+$\sup_{n \le \kappa c}
+\|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|
+\le C_\kappa c^{-1/4}$.
+A proof would follow from a uniform
+eigenvalue-gap bound
+$\lambda_n^{(c)} - \lambda_{n+1}^{(c)}
+\ge \delta_\kappa c^{-1/2}$ for all $n \le \kappa c$
+(open since Paper~VIII, Rem.~4.2),
+or from a uniform resolvent bound
+from Paper~X.
 \end{problem}
 
 \begin{problem}[Sharp operator-norm rate]
 \label{prob:opnorm-sharp}
 Is $\|\Hc - \Hlim\|_{L^2 \to L^2}
 \asymp c^{-1/4}$?
-Upper bound: Theorem~\ref{thm:opnorm}.
+Upper bound: Theorem~\ref{thm:opnorm}
+(conditional).
 Lower bound: requires sharp eigenvalue-gap
-estimate $|\lambda_n^{(c)} - \lambda_n^{(c+1)}|
-\ge c_\kappa c^{-3/4}$ (open since
-Paper~VIII, Rem.~4.2).
+estimate (open).
 \end{problem}
 
 \begin{problem}[Density of $\{\lambda_n^{(\infty)}\}$]
@@ -825,8 +743,8 @@ to $\sigma(\Hlim) = [0,1]$.
 \label{prob:esa-unconditional}
 Prove essential self-adjointness of $\Hlim$
 without Hypothesis~\ref{hyp:decay}.
-By Remark~\ref{rem:deficiency-orthogonal},
-this is equivalent to Problem~\ref{prob:completeness}.
+Equivalent to Problem~\ref{prob:completeness}
+(Remark~\ref{rem:deficiency-orthogonal}).
 \end{problem}
 
 %%─── Bibliography
