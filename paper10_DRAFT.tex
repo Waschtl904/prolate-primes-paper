@@ -182,41 +182,40 @@ Friedrichs coincidence sentence;
 $\Hlim$ uniqueness sentence.
 v25: IX2norm same-construction
 phrasing; net/sequence consistency.
-v26 (this version):
-\begin{enumerate}[(W1)]
-\item Lemma~\ref{lem:sc}:
-      assumption restated as
-      net-convergence on $\mathcal{D}$
-      (sequential form kept as
-      equivalent reformulation);
-      independence-of-sequence
-      noted as consequence,
-      not circular hypothesis.
-\item \eqref{IX5}: one sentence
-      added explaining that
-      compactly-supported functions
-      lie in $\mathcal{D}$ via
-      quantitative tail and
-      oscillatory-cancellation
-      control (Paper~IX, Thm.~2.5).
-\item Mosco M1 proof: half-sentence
-      ``by monotone convergence of
-      $c_0\mapsto q_{c_0}(f,f)$''
-      added at the supremum step.
-\item Theorem~\ref{thm:friedrichs}
-      proof: explicit sentence
-      ``since $\qlim$ is defined on
-      all of $L^2(\mathbb{R})$,
-      $\Dom(T_{\qlim})=L^2$''
-      added.
-\item New Remark~\ref{rem:hlim-not-mult}:
-      $\Hlim$ is not a multiplication
-      operator; explains why the
-      distributional kernel limit
-      does not imply
-      $\Hlim=M_{\chi_{[-1,1]}}$;
-      cites Landau--Pollak
-      eigenvalue transition.
+v26: Lemma SC net-convergence;
+IX5 D-provenance; Mosco M1
+monotone-convergence step;
+Friedrichs Dom explicit;
+new Remark rem:hlim-not-mult.
+v27 (this version):
+\begin{enumerate}[(V1)]
+\item \eqref{IX2norm}: explicit
+      cross-paper identification
+      sentence added, stating that
+      the strong-limit operator
+      constructed in
+      Lemma~\ref{lem:hlim-bounded}
+      coincides with the spectral-limit
+      operator of Paper~IX,
+      Theorem~3.2 (closability and
+      uniqueness result).
+      This bridges the functional-analytic
+      construction of this paper with
+      the spectral construction of
+      Paper~IX without invoking
+      eigenvectors here.
+\item Remark~\ref{rem:hlim-not-mult}:
+      the justification for
+      $\Hlim\ne M_{\chi_{[-1,1]}}$
+      is replaced by a direct
+      spectral argument referencing
+      Paper~IX, Definition~2.1
+      (limit eigenvalues
+      $\lambda_n^{(\infty)}\in(0,1)$).
+      The previous distributional-kernel
+      argument is removed as it was
+      both logically unnecessary and
+      potentially circular.
 \end{enumerate}
 
 \tableofcontents
@@ -346,6 +345,27 @@ and $0\le\Hc\le I$.
       and does not presuppose the
       existence of $\Hlim$ as an
       a priori object.
+      \textbf{Cross-paper identification
+      (V1):}
+      The strong-limit operator
+      $\Hlim$ constructed in
+      Lemma~\ref{lem:hlim-bounded}
+      below coincides with the
+      spectral-limit operator
+      defined in Paper~IX,
+      Definition~2.1 and shown to
+      be the unique self-adjoint
+      extension in Paper~IX,
+      Theorem~3.2 (closability and
+      uniqueness).
+      This identification is not
+      circular: Paper~IX establishes
+      it via the same density-extension
+      argument independently of any
+      eigenvector completeness, and
+      the present paper imports only
+      the operator-norm rate as
+      an external input.
       In particular, the operator
       appearing in Paper~IX, Thm.~3.1
       is identical (not merely
@@ -547,69 +567,71 @@ Lemma~\ref{lem:sc}.
 in Section~\ref{sec:form-convergence}.
 \end{remark}
 
-%%% W5 NEW: Remark on non-multiplication structure
+%%% V2: rem:hlim-not-mult — justification replaced;
+%%%     distributional-kernel argument removed;
+%%%     direct spectral argument via Paper IX eigenvalues.
 \begin{remark}[Nature of $\Hlim$:
   not a multiplication operator]
 \label{rem:hlim-not-mult}
 The operator $\Hlim$ is
-\emph{not} expected to be a
-multiplication operator such as
-$M_{\chi_{[-1,1]}}$
+\emph{not} a multiplication operator
+such as $M_{\chi_{[-1,1]}}$
 (pointwise restriction to the
 time window $[-1,1]$),
-nor to coincide with the identity
-$I$ on $L^2(\mathbb{R})$.
+nor does it coincide with the
+identity $I$ on $L^2(\mathbb{R})$.
 
-The heuristic argument
-``$K_c(x,y)\to\delta(x-y)$
-on $[-1,1]\times[-1,1]$,
-hence $\Hlim=M_{\chi_{[-1,1]}}$''
-is invalid in the operator sense:
-the PSWF kernels $K_c(x,y)$
-converge (if at all) only
-distributionally, and
-distributional convergence does
-not imply strong operator
-convergence to a multiplication
-operator on $L^2(\mathbb{R})$.
+\textbf{Spectral argument.}
+Paper~IX, Definition~2.1 defines
+the limit eigenvalues
+$\lambda_n^{(\infty)}
+:= \lim_{c\to\infty}\lambda_n^{(c)}$,
+where $\lambda_n^{(c)}\in(0,1)$
+are the Slepian concentration
+eigenvalues.
+By the Landau--Pollak eigenvalue
+transition (\cite{Slepian1961}),
+the values $\lambda_n^{(\infty)}$
+are not all equal to $0$ or $1$:
+the transition zone accumulates
+eigenvalues densely in $(0,1)$
+for indices $n\approx\frac{2c}{\pi}$.
+Since $\Hlim$ coincides with
+the spectral-limit operator of
+Paper~IX (cross-paper identification,
+\eqref{IX2norm}), whose spectrum
+is $\{\lambda_n^{(\infty)}\}$,
+the spectrum of $\Hlim$ is
+\emph{not} contained in $\{0,1\}$.
+A multiplication operator
+$M_{\chi_{[-1,1]}}$ would have
+$\sigma(M_{\chi_{[-1,1]}})=\{0,1\}$,
+which is incompatible with this
+spectral structure.
+Hence $\Hlim\ne M_{\chi_{[-1,1]}}$.
 
-Indeed, if $\Hlim=M_{\chi_{[-1,1]}}$
-were true, then
-$\sigma(\Hlim)=\{0,1\}$,
-contradicting the open question
-of whether $\sigma(\Hlim)=[0,1]$
-(Open Problem~\ref{prob:spectrum})
-and inconsistent with the
-Landau--Pollak eigenvalue
-transition \cite{Slepian1961},
-which predicts a continuous
-transition zone with eigenvalues
-densely distributed in $(0,1)$
-for the finite-$c$ operators
-$\Hc$.
-
-Similarly, $\Hlim\ne I$:
-for any $f$ supported outside
+\textbf{Non-identity.}
+For any $f$ supported outside
 $[-1,1]$, the kernel structure
 of $\Hc$ (which integrates over
 $[-1,1]$ only) forces
 $\ip{\Hc f}{f}\le\|Pf\|^2<\|f\|^2$
 for all $c$,
-hence $\ip{\Hlim f}{f}<\|f\|^2$.
+hence $\ip{\Hlim f}{f}<\|f\|^2$,
+so $\Hlim\ne I$.
 
-The correct conclusion is that
+The correct picture is that
 $\Hlim$ is a nontrivial positive
-contraction whose spectrum is
-contained in $[0,1]$
+contraction with spectrum in $[0,1]$
 (Theorem~\ref{thm:sa}),
-but whose precise spectral
-structure is open
+whose precise spectral structure
+is open
 (Open Problems~\ref{prob:spectrum},
 \ref{prob:spec-structure}).
-Determining whether $\Hlim$
-has nonlocal (genuinely integral)
-operator structure is an
-interesting open problem.
+Whether $\Hlim$ has genuinely
+nonlocal (integral operator)
+structure is an open problem
+(Open Problem~\ref{prob:hlim-structure}).
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
