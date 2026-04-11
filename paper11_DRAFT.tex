@@ -1,4 +1,3 @@
-
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -27,6 +26,8 @@
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
 \newcommand{\Hc}{\mathcal{H}_c}
 \newcommand{\Hlim}{\mathcal{H}_{\lim}}
+\newcommand{\HSOT}{\mathcal{H}^{\mathrm{SOT}}}
+\newcommand{\Hspectral}{H_{\lim}^{(\mathrm{sp})}}
 \newcommand{\Dom}{\mathrm{Dom}}
 \newcommand{\sigapp}{\sigma_{\mathrm{app}}}
 \DeclareMathOperator{\sgn}{sgn}
@@ -79,6 +80,10 @@ $\{\lambda_n^{(\infty)}\}$.
 Whether this density holds is isolated as
 Conjecture~\ref{conj:density} and supported by
 numerical and semi-classical evidence.
+The Riesz-basis stability question for
+$\{\Phi_n^{(\infty)}\}$ and the operator
+identification $\HSOT = \overline{\Hspectral}$
+(Paper~IX, Open Problem~7) are deferred to Paper~XII.
 No unconditional connection to $\zeta(s)$-zeros is made.
 \end{abstract}
 
@@ -95,7 +100,8 @@ This paper has four modules, each self-contained:
 \item \textbf{Weyl asymptotics}
       (Section~\ref{sec:weyl}):
       Counting law via finite-$c$ Slepian asymptotics
-      and eigenvalue convergence rate; uses Paper~VIII~Cor.~4.3.
+      and eigenvalue convergence rate;
+      uses Paper~VIII~Cor.~4.3 (unconditional external rate).
 \item \textbf{Density criterion}
       (Section~\ref{sec:density}):
       Structure of $\sigma(\Hlim)$ from
@@ -107,6 +113,7 @@ This paper has four modules, each self-contained:
       Conjecture~\ref{conj:density}; explicitly open.
 \end{enumerate}
 No eigenfunction completeness is assumed.
+Frame-stability and Riesz-basis analysis deferred to Paper~XII.
 No unconditional spectral identification with $\zeta$-zeros.
 
 \tableofcontents
@@ -145,13 +152,17 @@ The key inherited results used in this paper:
   $|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$.
   In particular, $\Phi_n^{(\infty)} \not\equiv 0$.
 \item\label{XI5}
-  \textbf{Operator norm rate} (Paper~X, Thm.~3.1,
-  conditional on Paper~IX~Thm.~4.1):
-  $\|\Hc - \Hlim\|_{L^2 \to L^2} \le C_\kappa\, c^{-1/4}$.
-  \emph{This result is not used in
-  Sections~\ref{sec:spectral-inclusion}--\ref{sec:density};
-  it appears only in Sections~\ref{sec:weyl}
-  and~\ref{sec:density-question} for rate estimates.}
+  \textbf{Quantitative form rate} (Paper~VIII, Cor.~4.3;
+  also Paper~X, Thm.~5.1 which imports it externally):
+  \[
+    0 \le q_{\lim}(f,f) - q_c(f,f)
+    \le C_\kappa\, c^{-1/4}\|f\|^2.
+  \]
+  \emph{This result is unconditional.}
+  It does not depend on Paper~IX and is not conditional
+  on any spectral-series or completeness hypothesis.
+  It is used only in Sections~\ref{sec:weyl}
+  and~\ref{sec:density-question} for rate estimates.
 \item\label{XI6}
   \textbf{Slepian counting law} \cite{Slepian1961,Osipov2013}:
   For fixed $c$, exactly $\lfloor 2c/\pi \rfloor + O(1)$
@@ -192,6 +203,8 @@ complete in $L^2(\mathbb{R})$ (this is
 \texttt{prob:completeness} from Papers~IX--X, still open).
 All results in Sections~\ref{sec:spectral-inclusion}--\ref{sec:density}
 are proved without this hypothesis.
+Frame-stability and Riesz-basis properties of
+$\{\Phi_n^{(\infty)}\}$ are deferred to Paper~XII.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -329,6 +342,7 @@ It does \emph{not} use:
 \item Paper~IX Def.~2.3 (spectral series for $\Hlim$)
 \item Completeness of $\{\Phi_n^{(\infty)}\}$
 \item Paper~IX Thm.~4.1 (operator norm rate)
+\item Any conditional result from Paper~IX
 \end{itemize}
 The logical chain of Paper~XI's
 Section~\ref{sec:spectral-inclusion}
@@ -565,8 +579,8 @@ Section~\ref{sec:density-question}.
 \begin{remark}[Structure of $\sigma(\Hlim)$ without density]
 \label{rem:without-density}
 If $\{\lambda_n^{(\infty)}\}$ is \emph{not} dense
-in $[0,1]$ — e.g.\ if it accumulates only on a
-Cantor set — then $\sigma(\Hlim)$ could be a
+in $[0,1]$ --- e.g.\ if it accumulates only on a
+Cantor set --- then $\sigma(\Hlim)$ could be a
 proper closed subset of $[0,1]$ with a more
 intricate structure.
 Theorem~\ref{thm:spectral-inclusion} still
@@ -593,7 +607,7 @@ is dense in $[0,1]$.
 
 \subsubsection{From the Slepian transition window}
 
-The classical Slepian counting law \eqref{eq:slepian-count}
+The classical Slepian--Pollak counting law \eqref{eq:slepian-count}
 states that for each bandwidth $c$, there are
 $O(\log c)$ eigenvalues $\lambda_n^{(c)}$ in any
 fixed subinterval $[\varepsilon, 1-\varepsilon]$.
@@ -657,7 +671,8 @@ non-emptiness but not density.
 The key difficulty for a full proof of
 Conjecture~\ref{conj:density} is showing that,
 as $c$ varies, the \emph{transition eigenvalues}
-$\lambda_n^{(c)}$ (those in $[\varepsilon, 1-\varepsilon]$)
+$\lambda_n^{(c)}$ (those in the $O(\log c)$-wide
+window around $n = 2c/\pi$)
 cover the interval densely, and that this coverage
 survives the limit $c \to \infty$ with
 the $c^{-1/4}$ convergence rate.
@@ -700,16 +715,16 @@ densely. This requires stronger transition-zone
 estimates than currently available.
 \end{problem}
 
-\begin{problem}[Sharpness of the operator-norm rate]
+\begin{problem}[Sharpness of the form rate]
 \label{prob:rate-sharp}
-Is $\|\Hc - \Hlim\|_{L^2 \to L^2} \asymp c^{-1/4}$?
-The upper bound follows from \eqref{XI5}.
+Is $\sup_f (q_{\lim}(f,f) - q_c(f,f)) / \|f\|^2
+\asymp c^{-1/4}$?
+The upper bound $O(c^{-1/4})$ is unconditional
+(Paper~VIII, Cor.~4.3).
 The matching lower bound would follow from
 the sharp eigenvalue-gap estimate
 $|\lambda_n^{(c)} - \lambda_n^{(c+1)}| \ge c_\kappa c^{-3/4}$
-(open since Paper~VIII, Remark~4.2) via
-$\|\Hc - \Hlim\| \ge |\lambda_n^{(c)} - \lambda_n^{(\infty)}|$
-for any single $n$.
+(open since Paper~VIII, Remark~4.2).
 \end{problem}
 
 \begin{problem}[Completeness of $\{\Phi_n^{(\infty)}\}$]
@@ -720,6 +735,22 @@ is complete in $L^2(\mathbb{R})$
 As shown in Paper~IX, Remark~4.2,
 this is equivalent to essential self-adjointness
 of $\Hlim$ and to $\sigapp(\Hlim) = \sigma(\Hlim)$.
+\end{problem}
+
+\begin{problem}[Riesz-basis stability]
+\label{prob:riesz}
+Is $\{\Phi_n^{(\infty)}\}_{n \ge 0}$ a Riesz basis
+for its closed linear span in $L^2(\mathbb{R})$?
+A positive answer would imply completeness
+(Problem~\ref{prob:completeness}),
+provide frame bounds for spectral reconstructions,
+and yield the operator identification
+$\HSOT = \overline{\Hspectral}$
+(Paper~IX, Open Problem~7 / Paper~X, Hyp.~(IX.b)).
+The non-cancellation lower bound
+(Paper~VIII, Thm.~3.3) provides a
+\emph{local frame seed} as starting point.
+This problem is the primary target of Paper~XII.
 \end{problem}
 
 \begin{remark}[Relation between the open problems]
@@ -733,10 +764,13 @@ via this framework:
 completeness closes the $\sigapp = \sigma$ gap;
 density (together with CCM) would give a
 dense set of zeros on the critical line.
+Problem~\ref{prob:riesz} (Riesz-basis stability)
+would resolve both simultaneously and is therefore
+the central target of Paper~XII.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Outlook: Reduction of the Hilbert--Pólya Problem}
+\section{Outlook: Reduction of the Hilbert--P\'olya Problem}
 \label{sec:outlook}
 %%═══════════════════════════════════════════════════════════════════
 
@@ -768,6 +802,24 @@ The two problems are independent of each other
 and of any hypothesis on $\zeta(s)$.
 They are purely operator-theoretic questions
 about the limiting PSWF system.
+
+\medskip
+A third, deeper layer is the operator identification
+problem $\HSOT = \overline{\Hspectral}$
+(Paper~IX, Open Problem~7;
+Paper~X, Hyp.~(IX.b)).
+This identification --- which would simultaneously
+resolve Riesz-basis stability for
+$\{\Phi_n^{(\infty)}\}$, completeness, and the
+Bridge theorem of Paper~X --- is the primary
+target of Paper~XII.
+Paper~XII will analyse frame-theoretic obstructions
+to this identification, using the non-cancellation
+seed from Paper~VIII (Thm.~3.3) as a local
+lower frame bound and isolating the
+uniform-in-$n$ control problem as the key gap.
+
+\medskip\noindent
 This is the precise state of the
 Hilbert--P\'olya programme within the
 present framework as of Paper~XI.
