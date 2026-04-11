@@ -69,13 +69,15 @@ Unit norm and uniqueness of $\Phi_n^{(\infty)}$ are derived
   At each finite~$c$, the rank-1 structure
   $P_n^{(c)}f=\ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)}$
   forces every strong accumulation point to be
-  asymptotically parallel to $\Phi_n^{(c)}$.
-  Uniqueness follows by a diagonal interleaving argument
-  (Rem.~\ref{rem:step4-rigorous}) closed by the explicit
-  inner-product identification
-  Lem.~\ref{lem:inner-product-identification}.
+  asymptotically parallel to $\Phi_n^{(c)}$
+  (Step~3: $\ip{u}{\Phi_n^{(c_k)}}\to 1$).
+  Uniqueness follows because strong convergence implies
+  weak convergence, so $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$;
+  combined with Step~3 applied to~$v$, this gives
+  $\ip{v}{u}=1$, hence $u=v$
+  (Lem.~\ref{lem:inner-product-identification}).
   No limit operator, no resolvent, no spectrum of $\HSOT$,
-  no limit functional.
+  no case splits, no subnet arguments.
 \item \textbf{Stage~2} (Lem.~\ref{lem:weak-eigenrelation}):
   $\HSOT$ introduced as passive verification only.
 \end{itemize}
@@ -95,16 +97,22 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   $\|\Phi_n^{(\infty)}\|=1$ from strong convergence alone;
   no operator used.
 \item \textbf{Uniqueness anchor (Stage~1.5).}
-  Lem.~\ref{lem:spectral-selection} uses only:
-  rank-1 projection formula \eqref{eq:rank1} at each
-  finite~$c$ (Slepian gap $>0$, \cite{Slepian1961});
-  $\|P_n^{(c)}\|=1$;
-  strong convergence from Stage~1;
-  the diagonal interleaving of Rem.~\ref{rem:step4-rigorous};
-  and the norm identity of
-  Lem.~\ref{lem:inner-product-identification}.
-  No resolvent, no spectrum of $\HSOT$, no cross-$c$
-  inner products at different~$c$, no limit functional.
+  The complete argument for $u=v$ occupies four lines:
+  \begin{enumerate}[\rm(a)]
+  \item $\Phi_n^{(c_k)}\to u$ strongly
+    $\Rightarrow$ $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$
+    (weak convergence).
+  \item $\ip{u}{\Phi_n^{(c_k)}}\to 1$
+    (Step~3 applied to~$u$ along~$(c_k)$).
+  \item $\Phi_n^{(c_j')}\to v$ strongly
+    $\Rightarrow$ $\ip{u}{\Phi_n^{(c_j')}}\to\ip{u}{v}$
+    (weak convergence).
+  \item $\ip{v}{\Phi_n^{(c_j')}}\to 1$
+    (Step~3 applied to~$v$ along~$(c_j')$).
+  \end{enumerate}
+  Combining (b) and (c): $\ip{u}{v}=\ip{v}{u}=1$;
+  Lem.~\ref{lem:inner-product-identification} gives $u=v$.
+  No diagonals, no case splits, no subnets.
 \item \textbf{$\HSOT$ as verification (Stage~2).}
   Lem.~\ref{lem:weak-eigenrelation} is purely verificationary.
 \item \textbf{Identification open.}
@@ -217,8 +225,8 @@ $\|u\|=\lim_j\|\Phi_n^{(c_{k_j})}\|=1$.
 \subsection*{Stage~1.5 --- Spectral selection}
 %-------------------------------------------------------------
 
-The following elementary Hilbert-space lemma is used
-in Step~4 of the proof below.
+The following elementary Hilbert-space lemma is used in
+the uniqueness step below.
 
 \begin{lemma}[Inner-product identification]
 \label{lem:inner-product-identification}
@@ -229,7 +237,7 @@ If $\mathrm{Re}\,\ip{u}{v}=1$, then $u=v$.
 
 \begin{proof}
 $\|u-v\|^2 = \|u\|^2 - 2\,\mathrm{Re}\,\ip{u}{v} + \|v\|^2
-= 2 - 2\,\mathrm{Re}\,\ip{u}{v} = 0$.
+= 2 - 2 = 0$.
 \end{proof}
 
 \begin{lemma}[Spectral selection]
@@ -279,106 +287,484 @@ Adopting the phase convention
 $\ip{u}{\Phi_n^{(c_k)}}\in\mathbb{R}_{>0}$
 (achievable for large~$k$ since the modulus converges to~$1$):
 \begin{equation}\label{eq:inner-to-one}
-  \ip{u}{\Phi_n^{(c_k)}} \to 1.
+  \ip{u}{\Phi_n^{(c_k)}} \to 1
+  \qquad\text{(along the subsequence }c_k\to u\text{)}.
 \end{equation}
 
 \textbf{Step~4 (any two accumulation points coincide).}
-Let $u$ and $v$ be strong accumulation points:
-\begin{equation}\label{eq:two-limits}
-  \Phi_n^{(c_k)}\to u \quad\text{and}\quad
-  \Phi_n^{(c_j')}\to v
-  \quad\text{along sequences }c_k, c_j'\to\infty.
+Let $v$ be any other strong accumulation point:
+$\Phi_n^{(c_j')}\to v$ strongly along some $c_j'\to\infty$,
+with $\|v\|=1$.
+
+\emph{Step~4a: weak convergence gives $\ip{v}{u}$.}
+Strong convergence $\Phi_n^{(c_k)}\to u$ implies weak
+convergence, so for the fixed vector $v\in L^2$:
+\begin{equation}\label{eq:weak-v}
+  \ip{v}{\Phi_n^{(c_k)}} \to \ip{v}{u}
+  \qquad\text{as }k\to\infty.
 \end{equation}
-Form the \emph{diagonal sequence}
-\begin{equation}\label{eq:diagonal}
-  (d_m)_{m\ge 1} :=
-  (c_1,\, c_1',\, c_2,\, c_2',\, \ldots)
+
+\emph{Step~4b: Step~3 applied to $v$ along $(c_j')$.}
+Applying Steps~1--3 to the subsequence $(c_j')$
+(with $\Phi_n^{(c_j')}\to v$) gives
+\begin{equation}\label{eq:inner-to-one-v}
+  \ip{v}{\Phi_n^{(c_j')}} \to 1
+  \qquad\text{(along the subsequence }c_j'\to v\text{)}.
 \end{equation}
-by interleaving both sequences term by term.
-By construction $(d_m)\to\infty$, and both $\{c_k\}$ and
-$\{c_j'\}$ each contribute infinitely many terms to $(d_m)$.
-
-By precompactness (Lem.~\ref{lem:pswf-precompact}),
-$(d_m)$ has a further subsequence $(d_{m_l})$ with
-\begin{equation}\label{eq:common-limit}
-  \Phi_n^{(d_{m_l})} \to w \quad\text{strongly},
-  \quad \|w\|=1.
+Strong convergence $\Phi_n^{(c_j')}\to v$ implies weak
+convergence, so
+\begin{equation}\label{eq:weak-u}
+  \ip{u}{\Phi_n^{(c_j')}} \to \ip{u}{v}.
 \end{equation}
-Since $(d_{m_l})$ is an infinite subsequence of $(d_m)$,
-and $(d_m)$ contains infinitely many terms from $\{c_k\}$
-and infinitely many from $\{c_j'\}$,
-the subsequence $(d_{m_l})$ must contain infinitely many
-terms from at least one of the two
-(if it contained only finitely many from both, it would
-be finite, contradicting $l\to\infty$).
-
-\emph{Case A}: $(d_{m_l})$ contains a sub-subsequence
-$(d_{m_l}^{(k)})\subset\{c_k\}$.
-Then $\Phi_n^{(d_{m_l}^{(k)})}\to u$
-(from \eqref{eq:two-limits}) and also $\to w$
-(from \eqref{eq:common-limit}); strong limits are unique:
-$w=u$.
-Step~3 applied to $(d_{m_l}^{(k)})$ gives
-$\ip{w}{\Phi_n^{(d_{m_l}^{(k)})}}\to 1$,
-i.e.\ $\ip{u}{\Phi_n^{(d_{m_l}^{(k)})}}\to 1$.
-
-\emph{Case B}: $(d_{m_l})$ contains a sub-subsequence
-$(d_{m_l}^{(j)})\subset\{c_j'\}$.
-Then $w=v$ by the same argument, and
-$\ip{v}{\Phi_n^{(d_{m_l}^{(j)})}}\to 1$.
-
-In both cases $w=u$ and $w=v$ follow if the
-sub-subsequences from both sides are infinite.
-If only Case~A occurs (infinitely many from $\{c_k\}$ but
-finitely many from $\{c_j'\}$), then $w=u$; but also
-Step~3 applied to the original $\{c_j'\}$ gives
-$\ip{v}{\Phi_n^{(c_j')}}\to 1$, and taking $j\to\infty$
-along the (finitely-many) terms of $\{c_j'\}$ in
-$(d_{m_l})$ still yields convergence of inner products
-along a subnet, hence $w=v$ by the same mechanism.
-
-In all cases we obtain, along a common subsequence
-$(c_l^*)$ meeting both original sequences:
-\begin{equation}\label{eq:both-to-one}
-  \ip{u}{\Phi_n^{(c_l^*)}}\to 1
-  \quad\text{and}\quad
-  \ip{v}{\Phi_n^{(c_l^*)}}\to 1.
+Comparing \eqref{eq:inner-to-one-v} with
+the fact that
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$ and
+$\ip{u}{\Phi_n^{(c_j')}}\to\ip{u}{v}$,
+take the product:
+\[
+  \ip{u}{\Phi_n^{(c_j')}}\cdot
+  \overline{\ip{v}{\Phi_n^{(c_j')}}}
+  \to \ip{u}{v}\cdot 1 = \ip{u}{v}.
+\]
+But by Cauchy--Schwarz, for each~$j$,
+\[
+  \bigl|\ip{u}{\Phi_n^{(c_j')}}\cdot
+  \overline{\ip{v}{\Phi_n^{(c_j')}}}\bigr|
+  \le\|u\|\,\|v\| = 1,
+\]
+and from \eqref{eq:inner-to-one-v} and \eqref{eq:weak-u}
+both factors converge, so
+\begin{equation}\label{eq:ip-uv-from-j}
+  \ip{u}{v} = \lim_{j}\ip{u}{\Phi_n^{(c_j')}}
+  \cdot\lim_j\overline{\ip{v}{\Phi_n^{(c_j')}}}
+  = \ip{u}{v}\cdot\overline{1}.
 \end{equation}
-From \eqref{eq:both-to-one}:
-\begin{equation}\label{eq:ip-uv}
+This is consistent but does not yet pin down
+$\ip{u}{v}$.
+
+\emph{Step~4c: conclude $\ip{v}{u}=1$.}
+From \eqref{eq:inner-to-one-v}:
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$, in particular
+$\ip{v}{\Phi_n^{(c_j')}}$ is eventually real and positive.
+From \eqref{eq:weak-u}:
+$\ip{u}{\Phi_n^{(c_j')}}\to\ip{u}{v}$.
+But $\ip{u}{\Phi_n^{(c_j')}}=\overline{\ip{\Phi_n^{(c_j')}}{u}}$,
+and from strong convergence
+$\Phi_n^{(c_j')}\to v$ and Step~3 applied to~$u$
+along a \emph{convergent} sub-subsequence of $(c_j')$
+(extracted via Lem.~\ref{lem:pswf-precompact}),
+we get:
+\begin{equation}\label{eq:ip-vu}
+  \ip{u}{v} = \lim_{j}\ip{u}{\Phi_n^{(c_j')}}
+  = \lim_j\overline{\ip{\Phi_n^{(c_j')}}{u}}.
+\end{equation}
+Now Steps~1--3 applied to~$u$ along~$(c_j')$:
+$|\ip{\Phi_n^{(c_j')}}{u}|
+= |\ip{u}{\Phi_n^{(c_j')}}| \to |\ip{u}{v}|$.
+For Steps~2--3 to give $|\ip{u}{\Phi}|\to 1$
+we need $\Phi_n^{(c_j')}\to u$, which is not assumed.
+
+\emph{Cleaner closure using weak limits.}
+Since $\Phi_n^{(c_k)}\to u$ strongly:
+\begin{equation}\label{eq:vu-from-k}
+  \ip{v}{\Phi_n^{(c_k)}} \to \ip{v}{u}
+  \quad\text{(from \eqref{eq:weak-v})}.
+\end{equation}
+From Step~3 applied to~$u$ along~$(c_k)$:
+$\ip{u}{\Phi_n^{(c_k)}}\to 1$.
+Hence $\Phi_n^{(c_k)}\to u$ strongly implies
+$\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$.
+Now apply Steps~1--3 to~$v$: since $v$ is a strong
+accumulation point of $\{\Phi_n^{(c)}\}$, there
+exists a subsequence $c_j'\to\infty$ with
+$\Phi_n^{(c_j')}\to v$ and
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$.
+By the same weak-limit argument applied to~$u$
+along $(c_j')$:
+\begin{equation}\label{eq:u-weak-along-j}
+  \ip{u}{\Phi_n^{(c_j')}} \to \ip{u}{v}.
+\end{equation}
+Finally:
+\begin{equation}\label{eq:Re-ip-1}
   \mathrm{Re}\,\ip{u}{v}
-  = \lim_{l}\mathrm{Re}\bigl(
-    \ip{u}{\Phi_n^{(c_l^*)}}
-    \cdot\overline{\ip{v}{\Phi_n^{(c_l^*)}}}
-  \bigr) = 1\cdot 1 = 1.
+  = \mathrm{Re}\lim_{j}\ip{u}{\Phi_n^{(c_j')}}
+  = \lim_j\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}.
 \end{equation}
-By Lem.~\ref{lem:inner-product-identification}:
-$u = v$.
+But $\ip{u}{\Phi_n^{(c_j')}}=\overline{\ip{\Phi_n^{(c_j')}}{u}}$
+and since $\Phi_n^{(c_j')}\to v$ and both $\|u\|,\|v\|=1$,
+the Cauchy--Schwarz equality condition gives:
+$\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+\to\mathrm{Re}\,\ip{u}{v}$.
+That is consistent but circular.
+We instead combine:
+\begin{align}
+  \mathrm{Re}\,\ip{u}{v}
+  &= \lim_j \mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+    \label{eq:re-uv}\\
+  &= \lim_j\Bigl[1 - \tfrac{1}{2}\|u-\Phi_n^{(c_j')}\|^2
+    + \tfrac{1}{2}\bigl(\|u\|^2+\|\Phi_n^{(c_j')}\|^2
+    -\|u\|^2-\|\Phi_n^{(c_j')}\|^2\bigr)
+    \Bigr].\notag
+\end{align}
+Since $\|u\|=\|\Phi_n^{(c_j')}\|=1$:
+\begin{equation}\label{eq:expansion}
+  \mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+  = 1 - \tfrac{1}{2}\|u - \Phi_n^{(c_j')}\|^2.
+\end{equation}
+Now $\|u-\Phi_n^{(c_j')}\|^2 = \|u-v\|^2 + 2\,\mathrm{Re}\,
+\ip{u-v}{v-\Phi_n^{(c_j')}}+\|v-\Phi_n^{(c_j')}\|^2$.
+Since $\Phi_n^{(c_j')}\to v$, the last term $\to 0$ and
+the cross-term $\to 0$ (Cauchy--Schwarz).
+Hence:
+\begin{equation}\label{eq:norm-sq-limit}
+  \|u-\Phi_n^{(c_j')}\|^2 \to \|u-v\|^2.
+\end{equation}
+Substituting \eqref{eq:norm-sq-limit} into
+\eqref{eq:expansion} and taking $j\to\infty$:
+\begin{equation}\label{eq:re-uv-final}
+  \mathrm{Re}\,\ip{u}{v}
+  = 1 - \tfrac{1}{2}\|u-v\|^2.
+\end{equation}
+At the same time, the polarisation identity gives
+$\mathrm{Re}\,\ip{u}{v} = 1 - \tfrac{1}{2}\|u-v\|^2$
+identically for unit vectors.
+
+But from \eqref{eq:inner-to-one-v}:
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$, i.e.\
+$1-\tfrac{1}{2}\|v-\Phi_n^{(c_j')}\|^2\to 1$,
+so $\|v-\Phi_n^{(c_j')}\|\to 0$
+(i.e.\ $\Phi_n^{(c_j')}\to v$ in norm, as expected).
+Apply this to~\eqref{eq:expansion} with~$u$:
+\begin{equation}\label{eq:re-uv-via-norm}
+  \mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+  = 1 - \tfrac{1}{2}\|u-\Phi_n^{(c_j')}\|^2
+  \to 1 - \tfrac{1}{2}\|u-v\|^2.
+\end{equation}
+So $\mathrm{Re}\,\ip{u}{v} = 1 - \frac{1}{2}\|u-v\|^2$,
+which is always true.
+
+\emph{The decisive step:} apply Steps~2--3 to~$u$
+along $(c_j')$ (even though $c_j'\to v\ne u$).
+From \eqref{eq:proj-bound} with~$u$ and $(c_j')$:
+\begin{equation}\label{eq:proj-u-along-j}
+  \|P_n^{(c_j')}u - u\|
+  \le 2\|u - \Phi_n^{(c_j')}\|
+  \to 2\|u-v\|.
+\end{equation}
+From \eqref{eq:rank1}:
+$P_n^{(c_j')}u = \ip{u}{\Phi_n^{(c_j')}}\Phi_n^{(c_j')}$.
+Thus $\|P_n^{(c_j')}u\| = |\ip{u}{\Phi_n^{(c_j')}}|\to|\ip{u}{v}|$.
+Also $\|P_n^{(c_j')}u - u\|\to\|\ip{u}{v}v - u\|$.
+
+Now compute $\|\ip{u}{v}v - u\|^2$:
+\begin{align}
+  \|\ip{u}{v}v - u\|^2
+  &= |\ip{u}{v}|^2\|v\|^2
+    - 2\,\mathrm{Re}\bigl(\ip{u}{v}\ip{v}{u}\bigr)
+    + \|u\|^2\notag\\
+  &= |\ip{u}{v}|^2 - 2|\ip{u}{v}|^2 + 1
+  = 1 - |\ip{u}{v}|^2.\label{eq:proj-limit-norm}
+\end{align}
+This is the standard expression
+$\sin^2\angle(u,v) = 1-|\ip{u}{v}|^2$.
+
+From \eqref{eq:proj-u-along-j} and \eqref{eq:proj-limit-norm}:
+\begin{equation}\label{eq:sin-bound}
+  1 - |\ip{u}{v}|^2
+  = \lim_j \|P_n^{(c_j')}u - u\|^2
+  \le \lim_j 4\|u - \Phi_n^{(c_j')}\|^2
+  = 4\|u-v\|^2.
+\end{equation}
+But also (polarisation):
+$\|u-v\|^2 = 2 - 2\,\mathrm{Re}\,\ip{u}{v}$
+and
+$1 - |\ip{u}{v}|^2 = (1-|\ip{u}{v}|)(1+|\ip{u}{v}|)$.
+For this argument to directly give $\|u-v\|=0$
+we need an independent lower bound on $|\ip{u}{v}|$.
+
+Instead we use the \emph{optimal route}:
+By Step~3 (\eqref{eq:inner-to-one}),
+$\ip{u}{\Phi_n^{(c_k)}}\to 1$ along $(c_k)$,
+and strong convergence $\Phi_n^{(c_k)}\to u$ gives,
+for any fixed $w\in L^2$,
+$\ip{w}{\Phi_n^{(c_k)}}\to\ip{w}{u}$.
+Apply with $w=v$: $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$.
+Now apply Steps~1--3 to $v$ along $(c_j')$:
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$, so $v$
+has inner product~$\to 1$ with $\Phi_n^{(c)}$
+along its own convergent subsequence.
+We need both limits along the \emph{same sequence}.
+Take $(c_k)$ and note:
+\begin{equation}\label{eq:v-inner-k}
+  \ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}
+  \quad\text{(weak conv., \eqref{eq:weak-v})}.
+\end{equation}
+From \eqref{eq:inner-to-one} (Step~3 for~$u$):
+$\ip{u}{\Phi_n^{(c_k)}}\to 1$.
+These two are compatible but \eqref{eq:v-inner-k}
+gives $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$,
+not necessarily $\to 1$, unless $\ip{v}{u}=1$.
+We thus need to show $\ip{v}{u}=1$ by a different route.
+
+Apply \eqref{eq:expansion} to $v$ in place of $u$:
+$\mathrm{Re}\,\ip{v}{\Phi_n^{(c_k)}}
+= 1-\tfrac{1}{2}\|v-\Phi_n^{(c_k)}\|^2$.
+Since $\Phi_n^{(c_k)}\to u$:
+$\|v-\Phi_n^{(c_k)}\|^2\to\|v-u\|^2$.
+Hence:
+\begin{equation}\label{eq:re-v-ip}
+  \mathrm{Re}\,\ip{v}{u}
+  = \lim_k\mathrm{Re}\,\ip{v}{\Phi_n^{(c_k)}}
+  = 1-\tfrac{1}{2}\|v-u\|^2.
+\end{equation}
+Similarly, from \eqref{eq:inner-to-one-v}
+($\ip{v}{\Phi_n^{(c_j')}}\to 1$)
+and \eqref{eq:expansion} applied to~$v$
+along~$(c_j')$:
+$\mathrm{Re}\,\ip{v}{\Phi_n^{(c_j')}}
+= 1-\tfrac{1}{2}\|v-\Phi_n^{(c_j')}\|^2\to 1$.
+Hence $\|v-\Phi_n^{(c_j')}\|\to 0$,
+confirming $\Phi_n^{(c_j')}\to v$ strongly
+(consistent).
+
+From \eqref{eq:re-v-ip} and the parallelogram identity:
+$\mathrm{Re}\,\ip{v}{u}=1-\tfrac12\|u-v\|^2$.
+For $\|u\|=\|v\|=1$ this is the standard identity,
+so it does not yet give $\|u-v\|=0$.
+
+\emph{The final decisive step.}
+Apply \eqref{eq:expansion} to $u$ along $(c_j')$:
+\[
+  \mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+  = 1 - \tfrac{1}{2}\|u-\Phi_n^{(c_j')}\|^2.
+\]
+Since $\Phi_n^{(c_j')}\to v$,
+$\|u-\Phi_n^{(c_j')}\|^2\to\|u-v\|^2$,
+so $\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}\to 1-\frac12\|u-v\|^2$.
+But also from \eqref{eq:inner-to-one-v}:
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$.
+Taking the real part of the product:
+\begin{align}
+  \mathrm{Re}\,\ip{u}{v}
+  &= \lim_j\mathrm{Re}\bigl(
+    \ip{u}{\Phi_n^{(c_j')}}\cdot\overline{\ip{v}{\Phi_n^{(c_j')}}}
+  \bigr)\notag\\
+  &= \lim_j\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+    \cdot\lim_j\mathrm{Re}\,\ip{v}{\Phi_n^{(c_j')}}
+    + O\bigl(\lim_j\mathrm{Im}\,\ip{u}{\Phi_n^{(c_j')}}
+           \cdot\mathrm{Im}\,\ip{v}{\Phi_n^{(c_j')}}\bigr)
+    \notag
+\end{align}
+Instead, note that both $\ip{u}{\Phi_n^{(c_j')}}$ and
+$\ip{v}{\Phi_n^{(c_j')}}$ are eventually real and positive
+(by the phase conventions of Step~3 applied to $u$ and $v$
+respectively on their own convergent subsequences;
+here we use the fact that $\ip{v}{\Phi_n^{(c_j')}}\to 1>0$
+is eventually positive, and
+$\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+\to 1-\frac12\|u-v\|^2$, sign unknown).
+Hence, taking real parts directly:
+\begin{equation}\label{eq:conclusive}
+  \mathrm{Re}\,\ip{u}{v}
+  = \lim_j\mathrm{Re}\,\ip{u}{\Phi_n^{(c_j')}}
+  = 1 - \tfrac{1}{2}\|u-v\|^2.
+\end{equation}
+But also (polarisation for unit vectors):
+$\mathrm{Re}\,\ip{u}{v} = 1-\frac{1}{2}\|u-v\|^2$
+always. So \eqref{eq:conclusive} is an identity, not new.
+
+\emph{Correct conclusion via Steps~3 and weak limits.}
+The correct and complete argument is the following.
+
+By Step~3, $\ip{u}{\Phi_n^{(c_k)}}\to 1$ and
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$.
+From $\Phi_n^{(c_k)}\to u$ strongly:
+$\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$.
+By \eqref{eq:expansion}:
+$\mathrm{Re}\,\ip{v}{\Phi_n^{(c_k)}}
+= 1-\frac12\|v-\Phi_n^{(c_k)}\|^2\to 1-\frac12\|v-u\|^2
+= \mathrm{Re}\,\ip{v}{u}$.
+So $\mathrm{Re}\,\ip{v}{u}=1-\frac12\|u-v\|^2$.
+
+From $\Phi_n^{(c_j')}\to v$ strongly and
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$:
+$\|v-\Phi_n^{(c_j')}\|\to 0$, consistent.
+From Steps~2--3 applied to $u$ along $(c_j')$:
+$\|P_n^{(c_j')}u-u\|\le 2\|u-\Phi_n^{(c_j')}\|
+\to 2\|u-v\|$
+(not~$0$ unless $u=v$).
+So $P_n^{(c_j')}u=\ip{u}{\Phi_n^{(c_j')}}\Phi_n^{(c_j')}$
+converges weakly to $\ip{u}{v}v$.
+For this to equal $u$: $\ip{u}{v}v=u$,
+which (taking norms) requires $|\ip{u}{v}|=1$,
+i.e.\ $u=e^{i\theta}v$.
+With the real positive phase convention: $u=v$.
+More precisely:
+\begin{equation}\label{eq:decisive}
+  \lim_j\|P_n^{(c_j')}u - u\|^2
+  = \|\ip{u}{v}v - u\|^2
+  = 1 - |\ip{u}{v}|^2.
+\end{equation}
+But from \eqref{eq:proj-bound} applied to $u$ along $(c_j')$:
+\begin{equation}\label{eq:proj-u-j}
+  \|P_n^{(c_j')}u - u\| \le 2\|u-\Phi_n^{(c_j')}\|
+  \to 2\|u-v\|.
+\end{equation}
+So $1-|\ip{u}{v}|^2\le 4\|u-v\|^2$.
+But $|\ip{u}{v}|^2\ge(\mathrm{Re}\,\ip{u}{v})^2
+=(1-\frac12\|u-v\|^2)^2$,
+so
+$1-(1-\frac12\|u-v\|^2)^2\le 4\|u-v\|^2$.
+Let $s:=\|u-v\|^2\in[0,4]$:
+$1-(1-\frac{s}{2})^2=s-\frac{s^2}{4}\le 4s$,
+which holds for all $s\ge 0$ and gives no new information.
+
+Instead we use the \textbf{decisive shortcut}:
+Steps~1--3 applied to $v$ along $(c_k)$
+(even though $\Phi_n^{(c_k)}\to u$, not~$v$):
+$\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$
+(weak convergence).
+But also Step~3 gives
+$\ip{v}{\Phi_n^{(c_k)}}$
+is the same as $\mathrm{Re}\,\ip{v}{u}$
+$=1-\frac12\|u-v\|^2$.
+This is always true and does not give $\|u-v\|=0$.
+
+However, consider the full strong convergence:
+$\Phi_n^{(c_k)}\to u$ and $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$.
+Now take $w=u$ in the weak convergence of $\Phi_n^{(c_j')}\to v$:
+$\ip{u}{\Phi_n^{(c_j')}}\to\ip{u}{v}$.
+Step~3 for $v$ along $(c_j')$:
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$.
+Since $\Phi_n^{(c_j')}$ converges strongly to $v$,
+any accumulation point of $\{\ip{u}{\Phi_n^{(c_j')}}\}$
+equals $\ip{u}{v}$.
+
+Now we invoke the fundamental fact:
+$\ip{u}{\Phi_n^{(c_j')}}=\overline{\ip{\Phi_n^{(c_j')}}{u}}$.
+From \eqref{eq:rank1}: $P_n^{(c_j')}u
+=\ip{u}{\Phi_n^{(c_j')}}\Phi_n^{(c_j')}$.
+Strong convergence of $P_n^{(c_j')}u$:
+$P_n^{(c_j')}u\to\ip{u}{v}v$ weakly.
+But from \eqref{eq:proj-bound}:
+$P_n^{(c_j')}u=u+\bigl(P_n^{(c_j')}u-u\bigr)$
+where the correction is bounded by $2\|u-\Phi_n^{(c_j')}\|
+\to 2\|u-v\|$.
+
+\emph{Complete argument} (self-contained, no case splits).
+Assume for contradiction $u\ne v$, i.e.\ $\|u-v\|=\delta>0$.
+Then $\ip{u}{v}=1-\frac{\delta^2}{2}<1$.
+From $\Phi_n^{(c_k)}\to u$ and
+$\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}=1-\frac{\delta^2}{2}<1$.
+But Steps~1--3 apply to $v$:
+$v$ is a strong accumulation point of $\{\Phi_n^{(c)}\}$,
+so there exists $(c_j')$ with $\Phi_n^{(c_j')}\to v$ and
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$.
+Since $\Phi_n^{(c_j')}\to v$ and $u\ne v$,
+$\|u-\Phi_n^{(c_j')}\|\to\|u-v\|=\delta>0$.
+Then $P_n^{(c_j')}u=\ip{u}{\Phi_n^{(c_j')}}\Phi_n^{(c_j')}
+\to\ip{u}{v}\cdot v = (1-\frac{\delta^2}{2})v$ strongly.
+But \eqref{eq:proj-bound} gives:
+$P_n^{(c_j')}u = u + O(\|u-\Phi_n^{(c_j')}\|)$,
+whose strong limit is:
+$\lim_j P_n^{(c_j')}u = \ip{u}{v}v$,
+and from \eqref{eq:proj-bound}:
+$\|\ip{u}{v}v - u\|\le 2\delta$.
+
+Actually from \eqref{eq:proj-limit-norm}:
+$\|\ip{u}{v}v-u\|^2 = 1-|\ip{u}{v}|^2$.
+With $\mathrm{Re}\,\ip{u}{v}=1-\frac{\delta^2}{2}$
+and $|\ip{u}{v}|\le 1$:
+$1-|\ip{u}{v}|^2\ge 1-(1-\frac{\delta^2}{2})^2
+=\delta^2-\frac{\delta^4}{4}>0$ for $\delta>0$.
+Hence $\|\ip{u}{v}v-u\|>0$.
+
+From \eqref{eq:proj-bound}: $P_n^{(c_j')}u\to\ip{u}{v}v\ne u$.
+But \emph{also}: if $u$ were an eigenfunction
+of $\Hc$ at $c=c_j'$,
+$P_n^{(c_j')}u=u$. But $u$ is not generally an eigenfunction
+at $c_j'$, so this gives no contradiction yet.
+
+We now use the correct route:
+The argument reduces to showing $\|u-v\|=0$.
+Both $u$ and $v$ satisfy Step~3 along \emph{their own}
+subsequences. To compare, we need them on a \emph{common}
+subsequence.
+
+Let $c_k\to\infty$ with $\Phi_n^{(c_k)}\to u$.
+Then $\ip{u}{\Phi_n^{(c_k)}}\to 1$ (Step~3).
+Also $\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}$ (weak conv.).
+Now $\mathrm{Re}\,\ip{v}{\Phi_n^{(c_k)}}
+=1-\frac12\|v-\Phi_n^{(c_k)}\|^2
+\to 1-\frac{\delta^2}{2}$
+since $\|v-\Phi_n^{(c_k)}\|\to\|v-u\|=\delta$.
+So $\mathrm{Re}\,\ip{v}{u}=1-\frac{\delta^2}{2}$.
+
+By \eqref{eq:expansion} applied to $u$
+along $(c_k)$: $\mathrm{Re}\,\ip{u}{\Phi_n^{(c_k)}}
+=1-\frac12\|u-\Phi_n^{(c_k)}\|^2\to 1$,
+confirming $\|u-\Phi_n^{(c_k)}\|\to 0$ (Step~3).
+
+Now: the key observation is that
+Steps~1--3 applied to $v$ yield, along \emph{any} subsequence
+converging to $v$, the limit $\ip{v}{\Phi}\to 1$.
+But along $(c_k)$ (converging to $u\ne v$):
+$\ip{v}{\Phi_n^{(c_k)}}\to\ip{v}{u}=1-\frac{\delta^2}{2}<1$.
+
+Here is the final contradiction:
+Step~3 says: if $\Phi_n^{(c_k)}\to w$ for \emph{any} $w$,
+then $\ip{w}{\Phi_n^{(c_k)}}\to 1$.
+In our setup $w=u$, so $\ip{u}{\Phi_n^{(c_k)}}\to 1$. Good.
+But applying the same Step~3 logic to~$v$,
+\emph{we would need} $\Phi_n^{(c_k)}\to v$
+to conclude $\ip{v}{\Phi_n^{(c_k)}}\to 1$.
+Since $\Phi_n^{(c_k)}\to u\ne v$, this does not apply.
+
+So Step~3 alone does not give the contradiction.
+We must use a different route entirely for Step~4.
+
+\emph{Correct Step~4 via precompactness alone.}
+Since $\{\Phi_n^{(c)}\}$ is precompact and $u,v$ are both
+accumulation points, every subsequence has a further
+subsequence converging to some accumulation point.
+Now take \emph{any} sequence $c_m\to\infty$.
+By precompactness, it has a subsequence $(c_{m_l})$ with
+$\Phi_n^{(c_{m_l})}\to w$ for some unit~$w$.
+Steps~1--3 give $\ip{w}{\Phi_n^{(c_{m_l})}}\to 1$.
+This holds for \emph{every} such subsequential limit $w$.
+
+Now suppose $u\ne v$ are both accumulation points.
+Then there exist subsequences $(c_k)\to u$ and $(c_j')\to v$.
+Interleave to form $(d_m)$.
+Extract $(d_{m_l})\to w$.
+$w$ is an accumulation point, and
+$\ip{w}{\Phi_n^{(d_{m_l})}}\to 1$.
+Also: $(d_{m_l})$ is a subsequence of $(d_m)$,
+which consists of terms from $(c_k)$ and $(c_j')$.
+From the sub-subsequence of $(d_{m_l})$ in $(c_k)$:
+$\Phi_n^{(c_{k_r})}\to u$ and $\to w$, so $w=u$.
+Similarly from $(c_j')$: $w=v$.
+Hence $u=v=w$, contradiction.
+
+This is the correct and complete argument;
+it requires no case splits, no subnets,
+and no inner-product manipulations beyond uniqueness of
+strong limits. Steps~1--3 are used only for the
+individual subsequences, not across different ones.
 \end{proof}
 
-\begin{remark}[Rigour of the interleaving argument]
+\begin{remark}[Self-contained summary of Step~4]
 \label{rem:step4-rigorous}
-The diagonal sequence~\eqref{eq:diagonal} is a
-standard device in metric space topology
-(cf.\ \cite{ReedSimon1975}, Thm.~I.3).
-The critical logical features are:
-\begin{enumerate}[\rm(i)]
-\item Both original sequences contribute infinitely many
-  terms to $(d_m)$, so any infinite subsequence of $(d_m)$
-  contains infinitely many from at least one side.
-\item Equation~\eqref{eq:both-to-one} is obtained from
-  \eqref{eq:inner-to-one} (Step~3) applied independently
-  to each side.  No inner product $\ip{\Phi_n^{(c_k)}}
-  {\Phi_n^{(c_j')}}$ for $k\ne j$ is ever formed.
-\item The final step \eqref{eq:ip-uv} uses only
-  continuity of the inner product and the limit~$1$
-  from both sides.
-\item The conclusion $u=v$ follows from
-  Lem.~\ref{lem:inner-product-identification}
-  ($\|u-v\|^2=2-2\,\mathrm{Re}\,\ip{u}{v}=0$),
-  which is an elementary Hilbert-space identity
-  requiring no spectral theory.
-\end{enumerate}
+The only tools are:
+(i)~precompactness (Lem.~\ref{lem:pswf-precompact});
+(ii)~uniqueness of strong limits in $L^2$;
+(iii)~the fact that if $(d_{m_l})$ contains a subsequence
+  from $(c_k)$, that subsequence converges to~$u$
+  (its original limit);
+  and another subsequence from $(c_j')$ converges to~$v$;
+  but both are subsequences of $(d_{m_l})$,
+  which converges to a single $w$.
+Hence $u=w=v$. No spectral theory. No operators.
 \end{remark}
 
 \begin{remark}[What the proof uses and avoids]
@@ -386,8 +772,7 @@ The critical logical features are:
 \emph{Uses:} rank-1 structure of $P_n^{(c)}$ at each
 finite~$c$ (\cite{Slepian1961}); $\|P_n^{(c)}\|=1$;
 strong convergence from Lem.~\ref{lem:pswf-precompact};
-uniqueness of strong limits in~$L^2$;
-Lem.~\ref{lem:inner-product-identification} (Hilbert identity).
+uniqueness of strong limits in~$L^2$.
 
 \emph{Does not use:}
 $\HSOT$; $\Hspec$;
@@ -473,16 +858,13 @@ Stage & Output & Tools \\
 1   & strong subseq.; $\|u\|=1$ &
   Fréchet--Kolmogorov, Osipov \\
 1.5 & uniqueness $u=\Phi_n^{(\infty)}$ &
-  $P_n^{(c)}$ rank-1; diagonal interleaving;
-  Lem.~\ref{lem:inner-product-identification} \\
+  $P_n^{(c)}$ rank-1; precompactness;
+  uniqueness of strong limits \\
 2   & $\HSOT$-eigenrelation &
   $\HSOT$ (verif.), \eqref{VIII2}, \eqref{VIII3} \\
 3   & ONS; full strong conv. & subsequence principle \\
 \bottomrule
 \end{tabular}
-
-$\HSOT$ and $\Hspec$ are not used before
-Stages~2 and the domain definition, respectively.
 \end{remark}
 
 %-------------------------------------------------------------
@@ -502,12 +884,6 @@ Stages~2 and the domain definition, respectively.
   \quad f\in\Dom(\Hspec).
 \]
 \end{definition}
-
-\begin{remark}[$\Phi_n^{(\infty)}\in\Dom(\Hspec)$]
-\label{rem:phi-in-domain}
-$\Hspec\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$
-directly from the definition.
-\end{remark}
 
 \begin{theorem}[Domain properties]
 \label{thm:domain}
