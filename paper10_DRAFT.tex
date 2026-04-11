@@ -124,11 +124,10 @@ imports Paper~VIII only);
 imports Paper~IX only);
 (V)~Consequences (Sec.~\ref{sec:consequences}).
 
-\textit{Changes v41\,$\to$\,v42:}
-global compression pass;
-``bounded increasing function
-on $(0,\infty)$'' in Def.~\ref{def:qlim};
-no mathematical changes.
+\textit{Changes v42\,$\to$\,v43:}
+three surgical reviewer-proofing
+fixes only (see below);
+no structural or mathematical changes.
 
 \tableofcontents
 
@@ -196,8 +195,13 @@ $c\le c'\Rightarrow\ip{\Hc f}{f}
 \le\ip{\mathcal{H}_{c'}f}{f}$.
 \end{lemma}
 \begin{proof}
-$[-c,c]\subset[-c',c']\Rightarrow
-\Bc\le B_{c'}$; apply \eqref{eq:ftb}.
+$\Bc$ and $B_{c'}$ are orthogonal
+projections in Fourier space onto
+$[-c,c]$ and $[-c',c']$ respectively;
+$[-c,c]\subset[-c',c']$ implies
+$\Bc\le B_{c'}$ as operators
+(\cite{ReedSimon1975}, Ch.~VIII.1);
+apply \eqref{eq:ftb}.
 \end{proof}
 
 \begin{lemma}[HS-compactness ---
@@ -220,9 +224,11 @@ $\mathcal{D}:=\{f:\Hc f\text{ converges}
 \text{ in }L^2\}\supset C_c^\infty$.
 \end{lemma}
 \begin{proof}
-$\|\Hc f-P^*P^2f\|
-\le\|\Bc P^*Pf-P^*Pf\|\to 0$
-for $f\in C_c^\infty$
+% Fix F43-1: P*P^2 corrected to P*P
+For $f\in C_c^\infty$,
+$\|\Hc f - P^*Pf\|
+\le\|\Bc P^*Pf - P^*Pf\|\to 0$
+as $c\to\infty$
 (\cite{ReedSimon1975}, Thm.~IX.14;
 $\|P^*P\|\le 1$).
 \end{proof}
@@ -417,10 +423,13 @@ Rem.~2.6):
   $\overline{\Hspectral}\in
   \mathcal{B}(L^2)$.
 \item\label{IXb}
+  The net $(\Hc)_{c\in(0,\infty)}$,
+  ordered by $c\le c'$,
+  satisfies
   $\Hc\xrightarrow{\mathrm{SOT}}
   \overline{\Hspectral}$
-  (same directed family and SOT
-  topology as Lem.~\ref{lem:hlim-bounded}).
+  in the SOT topology on
+  $\mathcal{B}(L^2)$.
 \end{enumerate}
 
 \begin{theorem}[Bridge theorem]
@@ -428,11 +437,17 @@ Rem.~2.6):
 $\Hstrong=\overline{\Hspectral}$.
 \end{theorem}
 \begin{proof}
-Both are SOT limits of $(\Hc)_{c>0}$
-in $\mathcal{B}(L^2)$;
-the SOT topology on $\mathcal{B}(L^2)$
-is Hausdorff, so SOT limits are
-unique.
+% Fix F43-3: net ordered by c<=c' stated explicitly
+Both $\Hstrong$ (Lem.~\ref{lem:hlim-bounded})
+and $\overline{\Hspectral}$
+(\eqref{IXb}) are SOT limits
+of the net $(\Hc)_{c\in(0,\infty)}$
+ordered by $c\le c'$,
+in the SOT topology on
+$\mathcal{B}(L^2)$.
+This topology is Hausdorff, so
+limits are unique;
+hence $\Hstrong=\overline{\Hspectral}$.
 \end{proof}
 
 \begin{remark}
