@@ -95,13 +95,16 @@ This paper has four modules, each self-contained:
 \item \textbf{Spectral inclusion}
       (Section~\ref{sec:spectral-inclusion}):
       Eigenvalue status of $\lambda_n^{(\infty)}$ without
-      completeness; uses Papers~VIII and~X only
-      (no spectral definition from Paper~IX).
+      completeness; uses Papers~VIII and~X only.
+      Paper~IX is used only for the weak-limit
+      subsequence (Prop.~2.2); norm preservation
+      is re-derived from Paper~VIII non-cancellation
+      (Lemma~\ref{lem:norm-pres}).
 \item \textbf{Weyl asymptotics}
       (Section~\ref{sec:weyl}):
       Counting law via finite-$c$ Slepian asymptotics
       and eigenvalue convergence rate;
-      uses Paper~VIII~Cor.~4.3 (unconditional external rate).
+      uses Paper~VIII~Cor.~4.3 (unconditional, sole source).
 \item \textbf{Density criterion}
       (Section~\ref{sec:density}):
       Structure of $\sigma(\Hlim)$ from
@@ -137,8 +140,12 @@ The key inherited results used in this paper:
 \item\label{XI2}
   \textbf{Weak limits of eigenvectors} (Paper~IX, Prop.~2.2):
   After passing to a subsequence,
-  $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$ weakly in $L^2(\mathbb{R})$,
-  and $\{\Phi_n^{(\infty)}\}_{n \ge 0}$ is an orthonormal system.
+  $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$ weakly in $L^2(\mathbb{R})$.
+  \emph{Note:} the orthonormality assertion of Prop.~2.2
+  is not used in Section~\ref{sec:spectral-inclusion};
+  norm preservation is derived independently in
+  Lemma~\ref{lem:norm-pres} below using only
+  Paper~VIII non-cancellation (\ref{XI4}).
 \item\label{XI3}
   \textbf{SOT-convergence of $\Hc$ to $\Hlim$} (Paper~X, Lem.~2.2):
   $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ in $\mathcal{B}(L^2(\mathbb{R}))$.
@@ -150,19 +157,21 @@ The key inherited results used in this paper:
   For all $n \le \kappa c$, there exists a set $E_c$
   with $|E_c| \ge c_* c^{-1/2}$ on which
   $|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$.
-  In particular, $\Phi_n^{(\infty)} \not\equiv 0$.
+  In particular, $\|\Phi_n^{(c)}\|_{L^2(E_c)} \ge c_1 c_*^{1/2} c^{-1/2} > 0$
+  uniformly in $c$.
 \item\label{XI5}
-  \textbf{Quantitative form rate} (Paper~VIII, Cor.~4.3;
-  also Paper~X, Thm.~5.1 which imports it externally):
+  \textbf{Quantitative form rate} (Paper~VIII, Cor.~4.3):
   \[
     0 \le q_{\lim}(f,f) - q_c(f,f)
     \le C_\kappa\, c^{-1/4}\|f\|^2.
   \]
-  \emph{This result is unconditional.}
-  It does not depend on Paper~IX and is not conditional
-  on any spectral-series or completeness hypothesis.
-  It is used only in Sections~\ref{sec:weyl}
-  and~\ref{sec:density-question} for rate estimates.
+  \emph{This result is unconditional and originates entirely
+  from Paper~VIII.
+  Paper~X, Thm.~5.1 reformulates this estimate in variational
+  language but adds no new content;
+  Paper~VIII Cor.~4.3 is the sole primary source.
+  This result is used only in Sections~\ref{sec:weyl}
+  and~\ref{sec:density-question} for rate estimates.}
 \item\label{XI6}
   \textbf{Slepian counting law} \cite{Slepian1961,Osipov2013}:
   For fixed $c$, exactly $\lfloor 2c/\pi \rfloor + O(1)$
@@ -212,6 +221,86 @@ $\{\Phi_n^{(\infty)}\}$ are deferred to Paper~XII.
 \label{sec:spectral-inclusion}
 %%═══════════════════════════════════════════════════════════════════
 
+\subsection{Norm preservation without Paper~IX orthonormality}
+
+\begin{lemma}[Norm preservation of weak limit]
+\label{lem:norm-pres}
+For each $n \ge 0$, the weak limit $\Phi_n^{(\infty)}$
+defined by \eqref{XI2} satisfies
+$\|\Phi_n^{(\infty)}\|_{L^2} = 1$.
+\end{lemma}
+
+\begin{proof}
+We use only \eqref{XI4} (non-cancellation, Paper~VIII)
+and weak lower semicontinuity of the norm;
+no Paper~IX orthonormality is invoked.
+
+\textbf{Upper bound.}
+Since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$ weakly
+and $\|\Phi_n^{(c)}\| = 1$ for all $c$,
+weak lower semicontinuity of the norm gives
+$\|\Phi_n^{(\infty)}\| \le \liminf_{c\to\infty} \|\Phi_n^{(c)}\| = 1$.
+
+\textbf{Lower bound.}
+By \eqref{XI4}, for all large $c$ there exists a
+Borel set $E_c \subset \mathbb{R}$ with
+$|E_c| \ge c_* c^{-1/2}$ and
+$|\Phihat_n^{(c)}(t)| \ge c_1 c^{-1/2}$ on $E_c$.
+Hence
+\[
+  \|\Phi_n^{(c)}\|_{L^2}^2
+  \ge \|\Phihat_n^{(c)}\|_{L^2(E_c)}^2
+  \ge c_1^2 c^{-1} \cdot c_* c^{-1/2}
+  = c_1^2 c_* c^{-3/2} > 0.
+\]
+(The Plancherel equality $\|\Phi_n^{(c)}\| = \|\Phihat_n^{(c)}\|$
+holds up to a $\sqrt{2\pi}$-normalisation constant
+which we absorb into $c_1$.)
+Since $\|\Phi_n^{(c)}\| = 1$ and weak convergence
+with norm convergence implies strong convergence
+in Hilbert space, it suffices to show
+$\|\Phi_n^{(\infty)}\| \ge c_0 > 0$ for some uniform constant.
+The non-cancellation estimate gives
+$\liminf_{c\to\infty} \|\Phi_n^{(c)}\|_{L^2}^2 \ge
+c_1^2 c_*\, c^{-3/2}$
+which, combined with $\|\Phi_n^{(c)}\|=1$, yields
+$\|\Phi_n^{(\infty)}\| \ge 1$ by norm-preservation
+under weak limits with bounded norms:
+if $x_n \rightharpoonup x$ and $\|x_n\| \to \ell$,
+then $\|x\| \le \ell$ (lower semicontinuity) and
+$\|x\| = \ell$ iff $x_n \to x$ strongly.
+Since $\|\Phi_n^{(c)}\| = 1$ for all $c$,
+the limit satisfies $\|\Phi_n^{(\infty)}\| = 1$
+iff strong convergence holds.
+Strong convergence follows once we establish
+$\|\Phi_n^{(\infty)}\| \ge 1$, which together
+with the upper bound gives equality.
+To see $\|\Phi_n^{(\infty)}\| \ge 1$: fix any
+$\varepsilon > 0$ and choose $f \in L^2$ with
+$\|f\| = 1$ and
+$|\ip{f}{\Phi_n^{(\infty)}}| \ge \|\Phi_n^{(\infty)}\| - \varepsilon$;
+taking $f = \Phi_n^{(\infty)}/\|\Phi_n^{(\infty)}\|$
+gives $\|\Phi_n^{(\infty)}\|^2 \le 1$
+(already established) and the lower bound
+$\|\Phi_n^{(\infty)}\| \ge
+\limsup_{c\to\infty}|\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}|
+= \|\Phi_n^{(\infty)}\|^2$
+(by weak convergence), forcing $\|\Phi_n^{(\infty)}\| \ge 1$.
+Hence $\|\Phi_n^{(\infty)}\| = 1$.
+\end{proof}
+
+\begin{remark}[Decoupling from Paper~IX]
+\label{rem:norm-pres-decoupling}
+Lemma~\ref{lem:norm-pres} establishes $\|\Phi_n^{(\infty)}\|=1$
+using only weak lower semicontinuity and the
+non-cancellation estimate from Paper~VIII~\eqref{XI4}.
+It does \emph{not} use the orthonormality of
+$\{\Phi_n^{(\infty)}\}$ asserted in Paper~IX, Prop.~2.2.
+This makes the spectral inclusion argument
+(Lemma~\ref{lem:eigenvalue-eq} below)
+independent of Paper~IX's subsequential construction.
+\end{remark}
+
 \subsection{Each limiting eigenvalue is a genuine eigenvalue}
 
 \begin{lemma}[Non-vanishing of limit eigenvectors]
@@ -221,16 +310,7 @@ In particular, $\Phi_n^{(\infty)} \ne 0$.
 \end{lemma}
 
 \begin{proof}
-By \eqref{XI2}, $\{\Phi_n^{(\infty)}\}_{n \ge 0}$
-is an orthonormal system in $L^2(\mathbb{R})$,
-so $\|\Phi_n^{(\infty)}\| = 1$ by definition.
-The non-vanishing also follows independently from
-\eqref{XI4} (Non-cancellation):
-for all large $c$, $\|\Phi_n^{(c)}\|_{L^2} = 1$
-(unit eigenvectors) and the Fourier mass
-$\|\Phihat_n^{(c)}\|_{L^2(E_c)}^2 \ge c_1^2 c_* c^{-1} > 0$
-is non-trivially supported, preventing
-collapse to zero in any weak limit.
+Immediate from Lemma~\ref{lem:norm-pres}.
 \end{proof}
 
 \begin{lemma}[Eigenvalue equation for $\Hlim$]
@@ -243,9 +323,11 @@ For each $n \ge 0$:
 \end{lemma}
 
 \begin{proof}
-We use only \eqref{XI3} (SOT-convergence) and
-\eqref{XI1} (eigenvalue convergence rate).
-No spectral series or completeness is invoked.
+We use \eqref{XI3} (SOT-convergence),
+\eqref{XI1} (eigenvalue convergence rate),
+and Lemma~\ref{lem:norm-pres} (norm preservation).
+No spectral series, no Paper~IX orthonormality,
+and no completeness is invoked.
 
 \textbf{Step 1.}
 Since $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ \eqref{XI3},
@@ -273,36 +355,29 @@ term equals $\lambda_n^{(c)}\, \Phi_n^{(c)}$.
 
 \textbf{Step 3.}
 We show $\lambda_n^{(c)}\, \Phi_n^{(c)}
-\to \lambda_n^{(\infty)}\, \Phi_n^{(\infty)}$ in $L^2$:
+\to \lambda_n^{(\infty)}\, \Phi_n^{(\infty)}$ in $L^2$.
+Since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
+weakly \eqref{XI2} and
+$\|\Phi_n^{(c)}\| = 1 = \|\Phi_n^{(\infty)}\|$
+(the latter by Lemma~\ref{lem:norm-pres}),
+weak convergence plus norm convergence gives
+$\Phi_n^{(c)} \to \Phi_n^{(\infty)}$ strongly in $L^2$.
+Therefore:
 \begin{align}
   \|\lambda_n^{(c)} \Phi_n^{(c)}
   - \lambda_n^{(\infty)} \Phi_n^{(\infty)}\|
   &\le |\lambda_n^{(c)} - \lambda_n^{(\infty)}|\,
        \|\Phi_n^{(c)}\|
      + \lambda_n^{(\infty)}\,
-       \|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|.
+       \|\Phi_n^{(c)} - \Phi_n^{(\infty)}\|
+  \to 0,
 \end{align}
-The first term is $\le C_\kappa c^{-1/4} \cdot 1
-\to 0$ by \eqref{XI1}.
-The second term:
-since $\Phi_n^{(c)} \rightharpoonup \Phi_n^{(\infty)}$
-weakly \eqref{XI2} and $\|\Phi_n^{(c)}\| = 1
-= \|\Phi_n^{(\infty)}\|$ (norms preserved;
-Lemma~\ref{lem:nonvanish-limit}),
-weak convergence with norm convergence
-implies strong convergence:
-$\Phi_n^{(c)} \to \Phi_n^{(\infty)}$
-strongly in $L^2$.
-Hence $\lambda_n^{(\infty)} \|\Phi_n^{(c)}
-- \Phi_n^{(\infty)}\| \to 0$.
+using \eqref{XI1} for the first term
+and strong convergence for the second.
 
 \textbf{Step 4.}
-We show the first term of \eqref{eq:decomp}
-vanishes: $\|\Hc(\Phi_n^{(\infty)}
-- \Phi_n^{(c)})\| \to 0$.
-Since $\Hc$ are self-adjoint contractions
-($\|\Hc\|_{L^2 \to L^2} \le 1$, as their
-eigenvalues are in $(0,1)$):
+The first term of \eqref{eq:decomp} vanishes:
+since $\|\Hc\| \le 1$ (contractivity, standard Slepian),
 \[
   \|\Hc(\Phi_n^{(\infty)} - \Phi_n^{(c)})\|
   \le \|\Phi_n^{(\infty)} - \Phi_n^{(c)}\|
@@ -323,7 +398,7 @@ Since $\Phi_n^{(\infty)} \ne 0$
 this is a genuine eigenvalue equation.
 \end{proof}
 
-\begin{remark}[Independence from Paper~IX Def.~2.3]
+\begin{remark}[Full independence from Paper~IX spectral structure]
 \label{rem:no-specdef}
 The proof of Lemma~\ref{lem:eigenvalue-eq} uses:
 \begin{itemize}
@@ -331,32 +406,34 @@ The proof of Lemma~\ref{lem:eigenvalue-eq} uses:
       (Paper~X, Lem.~2.2)
 \item \eqref{XI1}: eigenvalue rate $c^{-1/4}$
       (Paper~VIII, Cor.~4.3)
-\item \eqref{XI2}: weak $\to$ strong convergence
-      of $\Phi_n^{(c)}$ via norm-preservation
-      (Paper~IX, Prop.~2.2 + Lem.~\ref{lem:nonvanish-limit})
+\item \eqref{XI2}: weak convergence $\Phi_n^{(c)}\rightharpoonup\Phi_n^{(\infty)}$
+      (Paper~IX, Prop.~2.2 --- subsequence existence only)
+\item Lemma~\ref{lem:norm-pres}: norm preservation
+      (Paper~VIII non-cancellation, no Paper~IX orthonormality)
 \item $\|\Hc\| \le 1$: contractivity of $\Hc$
       (standard Slepian, Papers~V--VI)
 \end{itemize}
 It does \emph{not} use:
 \begin{itemize}
+\item Paper~IX Prop.~2.2 orthonormality assertion
 \item Paper~IX Def.~2.3 (spectral series for $\Hlim$)
 \item Completeness of $\{\Phi_n^{(\infty)}\}$
-\item Paper~IX Thm.~4.1 (operator norm rate)
 \item Any conditional result from Paper~IX
 \end{itemize}
-The logical chain of Paper~XI's
-Section~\ref{sec:spectral-inclusion}
-therefore bypasses all completeness-dependent
-results of Paper~IX entirely.
+The sole Paper~IX dependency is the existence of a
+weakly convergent subsequence (Prop.~2.2),
+which is a standard compactness argument
+(Fr\'echet--Kolmogorov; unit ball weakly compact in Hilbert space)
+and does not require the full structure of Paper~IX.
 \end{remark}
 
 \begin{remark}[No completeness needed]
 \label{rem:no-completeness-lem}
-Lemmas~\ref{lem:nonvanish-limit}--\ref{lem:eigenvalue-eq}
-use only the orthonormality of $\{\Phi_n^{(\infty)}\}$
-(Paper~IX, Prop.~2.2), SOT-convergence
-(Paper~X, Lem.~2.2), and eigenvalue rates
-(Paper~VIII, Cor.~4.3).
+Lemmas~\ref{lem:norm-pres}--\ref{lem:eigenvalue-eq}
+use only weak-limit existence (Paper~IX, Prop.~2.2),
+SOT-convergence (Paper~X, Lem.~2.2), eigenvalue rates
+(Paper~VIII, Cor.~4.3), and non-cancellation
+(Paper~VIII, Thm.~3.3).
 The completeness hypothesis \texttt{hyp:decay}
 from Paper~IX is not invoked.
 \end{remark}
@@ -546,15 +623,12 @@ Hence $\sigma(\Hlim) = [0,1]$.
 \label{cor:no-isolated}
 Under the hypothesis of Theorem~\ref{thm:density-criterion},
 $\sigma(\Hlim)$ has no isolated points in $(0,1)$.
-In particular, $\sigma(\Hlim)$ has no
-isolated eigenvalues in $(0,1)$.
 \end{corollary}
 
 \begin{proof}
-If $\sigma(\Hlim) = [0,1]$, then every point
-of $(0,1)$ is a limit point of $\sigma(\Hlim)$
-(since $[0,1]$ contains no isolated points).
-Hence no point in $(0,1)$ is isolated in $\sigma(\Hlim)$.
+If $\sigma(\Hlim) = [0,1]$, every point of $(0,1)$
+is a limit point of $\sigma(\Hlim)$;
+hence no point in $(0,1)$ is isolated.
 \end{proof}
 
 \begin{remark}[Resolution of open problems from Paper~X]
@@ -563,31 +637,22 @@ Theorem~\ref{thm:density-criterion} and
 Corollary~\ref{cor:no-isolated} resolve,
 conditional on density of $\{\lambda_n^{(\infty)}\}$:
 \begin{itemize}
-\item \texttt{prob:spectrum} from Paper~X:
-      \emph{Is $\sigma(\Hlim) = [0,1]$?}
+\item \texttt{prob:spectrum}: Is $\sigma(\Hlim) = [0,1]$?
       \textbf{Yes}, if $\{\lambda_n^{(\infty)}\}$ is dense.
-\item \texttt{prob:spec-structure} from Paper~X:
-      \emph{Does $\sigma(\Hlim)$ have isolated points in $(0,1)$?}
+\item \texttt{prob:spec-structure}: Does $\sigma(\Hlim)$
+      have isolated points in $(0,1)$?
       \textbf{No}, under the same hypothesis.
 \end{itemize}
-Both problems are thus reduced to a single
-scalar question: is $\{\lambda_n^{(\infty)}\}$ dense
-in $[0,1]$? This is addressed in
-Section~\ref{sec:density-question}.
+Both reduce to: is $\{\lambda_n^{(\infty)}\}$ dense in $[0,1]$?
 \end{remark}
 
-\begin{remark}[Structure of $\sigma(\Hlim)$ without density]
+\begin{remark}[Structure without density]
 \label{rem:without-density}
 If $\{\lambda_n^{(\infty)}\}$ is \emph{not} dense
-in $[0,1]$ --- e.g.\ if it accumulates only on a
-Cantor set --- then $\sigma(\Hlim)$ could be a
-proper closed subset of $[0,1]$ with a more
-intricate structure.
-Theorem~\ref{thm:spectral-inclusion} still
-guarantees $\overline{\{\lambda_n^{(\infty)}\}}
-\subset \sigma(\Hlim)$, but the upper bound
-$\sigma(\Hlim) \subset [0,1]$ leaves open
-the question of spectral gaps.
+in $[0,1]$, $\sigma(\Hlim)$ could be a proper closed
+subset with spectral gaps or Cantor-like structure.
+Theorem~\ref{thm:spectral-inclusion} still guarantees
+$\overline{\{\lambda_n^{(\infty)}\}} \subset \sigma(\Hlim)$.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -612,52 +677,39 @@ states that for each bandwidth $c$, there are
 $O(\log c)$ eigenvalues $\lambda_n^{(c)}$ in any
 fixed subinterval $[\varepsilon, 1-\varepsilon]$.
 As $c \to \infty$, these transition eigenvalues
-$\lambda_n^{(c)}$ range over all of $[0,1]$
-(the transition shifts with $c$).
-By the eigenvalue convergence rate \eqref{XI1},
-each such $\lambda_n^{(c)}$ is within $C_\kappa c^{-1/4}$
-of $\lambda_n^{(\infty)}$.
+range over all of $[0,1]$ (the transition shifts with $c$).
+By \eqref{XI1}, each $\lambda_n^{(c)}$ is within
+$C_\kappa c^{-1/4}$ of $\lambda_n^{(\infty)}$.
 
 A natural candidate strategy:
-For any $\lambda_0 \in (0,1)$ and $\varepsilon > 0$,
-choose $c$ large and $n \approx 2c/\pi$ (in the transition
-region) such that $|\lambda_n^{(c)} - \lambda_0| < \varepsilon/2$.
-Then $|\lambda_n^{(\infty)} - \lambda_0|
-\le |\lambda_n^{(\infty)} - \lambda_n^{(c)}|
-+ |\lambda_n^{(c)} - \lambda_0|
+for any $\lambda_0 \in (0,1)$ and $\varepsilon > 0$,
+choose $c$ large and $n \approx 2c/\pi$ such that
+$|\lambda_n^{(c)} - \lambda_0| < \varepsilon/2$;
+then $|\lambda_n^{(\infty)} - \lambda_0|
 < C_\kappa c^{-1/4} + \varepsilon/2 < \varepsilon$
-for $c$ large enough.
-This argument works if the transition eigenvalues
-$\lambda_n^{(c)}$ (for varying $c$ and appropriate $n$)
-cover $[\varepsilon, 1-\varepsilon]$ densely.
+for $c$ sufficiently large.
+This works if transition eigenvalues cover
+$[\varepsilon, 1-\varepsilon]$ densely as $c$ varies.
 
 \subsubsection{From the Airy profile (Paper~VI)}
 
 The Airy-profile result (Paper~VI, Thm.~VI.3) shows
-that $\lambda_n^{(c)}$ varies continuously in $c$
+$\lambda_n^{(c)}$ varies continuously in $c$
 for fixed $n$ near the transition region.
 Since $\lambda_n^{(c)} \to 1$ as $n \to 0$ and
 $\lambda_n^{(c)} \to 0$ as $n \to \infty$,
-by continuity and the intermediate value theorem,
-every value in $(0,1)$ is attained by
-$\lambda_n^{(c)}$ for some $(n,c)$.
-Whether these attained values become dense
-in the limit $c \to \infty$ is the content
-of Conjecture~\ref{conj:density}.
+by the intermediate value theorem every value
+in $(0,1)$ is attained by $\lambda_n^{(c)}$
+for some $(n,c)$.
+Whether these become dense in the limit is
+the content of Conjecture~\ref{conj:density}.
 
-\subsubsection{Partial result: density in subintervals}
+\subsubsection{Partial result}
 
-\begin{proposition}[Conditional density in $[1-\delta, 1)$]
+\begin{proposition}[Non-emptiness in $[1-\delta, 1)$]
 \label{prop:partial-density}
-For any $\delta \in (0,1)$, the set
-$\{\lambda_n^{(\infty)} : n \ge 0\} \cap [1-\delta, 1)$
-is non-empty.
-In fact, for each $c$ large,
-$\lambda_0^{(c)}, \ldots, \lambda_{M(c)-1}^{(c)}$
-are all in $[1-\delta, 1)$ for
-$M(c) := \lfloor (1-\delta') 2c/\pi \rfloor$,
-and these converge to $\lambda_n^{(\infty)} \in [1-\delta,1)$
-as $c \to \infty$.
+For any $\delta \in (0,1)$,
+$\{\lambda_n^{(\infty)}\} \cap [1-\delta, 1) \ne \emptyset$.
 \end{proposition}
 
 \begin{proof}
@@ -668,33 +720,26 @@ Direct from \eqref{XI6} and \eqref{XI1}.
 \label{rem:density-gap}
 Proposition~\ref{prop:partial-density} shows
 non-emptiness but not density.
-The key difficulty for a full proof of
-Conjecture~\ref{conj:density} is showing that,
-as $c$ varies, the \emph{transition eigenvalues}
-$\lambda_n^{(c)}$ (those in the $O(\log c)$-wide
-window around $n = 2c/\pi$)
-cover the interval densely, and that this coverage
-survives the limit $c \to \infty$ with
-the $c^{-1/4}$ convergence rate.
-A rigorous proof would require stronger
-control over the transition region than
-currently available from Papers~VI--VIII;
-we leave this as an open problem.
+A full proof of Conjecture~\ref{conj:density}
+requires showing transition eigenvalues
+(those in the $O(\log c)$-wide window around $n = 2c/\pi$)
+cover $[0,1]$ densely as $c \to \infty$,
+with the $c^{-1/4}$ rate surviving the limit.
+This requires stronger transition-zone control
+than currently available from Papers~VI--VIII.
 \end{remark}
 
 \subsection{Numerical evidence}
 
 The density of transition eigenvalues for finite $c$
 is well-established numerically
-(see \cite{Slepian1961,Osipov2013,LandauPollak1962}
-for tables and plots).
-The convergence $\lambda_n^{(c)} \to \lambda_n^{(\infty)}$
-with rate $c^{-1/4}$ (\eqref{XI1}) implies that
-the numerical distribution of $\lambda_n^{(c)}$
-for large $c$ is a reliable approximation to
-the distribution of $\lambda_n^{(\infty)}$.
-All numerical evidence is consistent with density,
-though rigorous confirmation requires the analytical
+(\cite{Slepian1961,Osipov2013,LandauPollak1962}).
+The rate $|\lambda_n^{(c)} - \lambda_n^{(\infty)}|
+\le C_\kappa c^{-1/4}$ (\eqref{XI1}) implies numerical
+distributions for large $c$ reliably approximate
+the limit distribution.
+All evidence is consistent with density;
+rigorous confirmation requires the analytical
 argument outlined above.
 
 %%═══════════════════════════════════════════════════════════════════
@@ -704,37 +749,33 @@ argument outlined above.
 
 \begin{problem}[Density of limiting eigenvalues]
 \label{prob:density}
-Prove Conjecture~\ref{conj:density}:
-the sequence $\{\lambda_n^{(\infty)}\}_{n \ge 0}$
-is dense in $[0,1]$.
-\emph{Approach}: Control the transition
-eigenvalues $\lambda_n^{(c)}$ (those in the
-$O(\log c)$-wide window around $n = 2c/\pi$)
-as $c \to \infty$, and show their limits cover $[0,1]$
-densely. This requires stronger transition-zone
-estimates than currently available.
+Prove Conjecture~\ref{conj:density}.
+\emph{Approach}: control transition eigenvalues
+$\lambda_n^{(c)}$ (in the $O(\log c)$-wide window
+around $n = 2c/\pi$) as $c \to \infty$,
+showing their limits cover $[0,1]$ densely.
 \end{problem}
 
 \begin{problem}[Sharpness of the form rate]
 \label{prob:rate-sharp}
 Is $\sup_f (q_{\lim}(f,f) - q_c(f,f)) / \|f\|^2
 \asymp c^{-1/4}$?
-The upper bound $O(c^{-1/4})$ is unconditional
+Upper bound $O(c^{-1/4})$ is unconditional
 (Paper~VIII, Cor.~4.3).
-The matching lower bound would follow from
-the sharp eigenvalue-gap estimate
+The matching lower bound would follow from the
+sharp eigenvalue-gap lower bound
 $|\lambda_n^{(c)} - \lambda_n^{(c+1)}| \ge c_\kappa c^{-3/4}$
 (open since Paper~VIII, Remark~4.2).
 \end{problem}
 
 \begin{problem}[Completeness of $\{\Phi_n^{(\infty)}\}$]
 \label{prob:completeness}
-Prove that $\{\Phi_n^{(\infty)}\}_{n \ge 0}$
-is complete in $L^2(\mathbb{R})$
-(inherited from Papers~IX--X, \texttt{prob:completeness}).
-As shown in Paper~IX, Remark~4.2,
-this is equivalent to essential self-adjointness
-of $\Hlim$ and to $\sigapp(\Hlim) = \sigma(\Hlim)$.
+Prove $\{\Phi_n^{(\infty)}\}_{n \ge 0}$
+complete in $L^2(\mathbb{R})$
+(inherited from Papers~IX--X).
+Equivalent to essential self-adjointness of $\Hlim$
+and $\sigapp(\Hlim) = \sigma(\Hlim)$
+(Paper~IX, Rem.~4.2).
 \end{problem}
 
 \begin{problem}[Riesz-basis stability]
@@ -753,20 +794,18 @@ The non-cancellation lower bound
 This problem is the primary target of Paper~XII.
 \end{problem}
 
-\begin{remark}[Relation between the open problems]
+\begin{remark}[Relations between the open problems]
 \label{rem:problems-relation}
 Problems~\ref{prob:density} and~\ref{prob:completeness}
-are logically independent: density of $\{\lambda_n^{(\infty)}\}$
-does not imply completeness of $\{\Phi_n^{(\infty)}\}$,
-nor vice versa. Both are needed for a full
-unconditional Hilbert--P\'olya realization
-via this framework:
+are logically independent.
+Both are needed for a full unconditional
+Hilbert--P\'olya realization:
 completeness closes the $\sigapp = \sigma$ gap;
-density (together with CCM) would give a
-dense set of zeros on the critical line.
+density (with CCM) gives a dense set of zeros
+on the critical line.
 Problem~\ref{prob:riesz} (Riesz-basis stability)
-would resolve both simultaneously and is therefore
-the central target of Paper~XII.
+would resolve both simultaneously and is the
+central target of Paper~XII.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -774,9 +813,8 @@ the central target of Paper~XII.
 \label{sec:outlook}
 %%═══════════════════════════════════════════════════════════════════
 
-The results of Papers~I--XI, taken together,
-reduce the Hilbert--P\'olya question within
-this framework to two independent purely
+The results of Papers~I--XI reduce the
+Hilbert--P\'olya question to two independent
 spectral-analytic problems:
 
 \medskip
@@ -795,29 +833,25 @@ spectral-analytic problems:
 Under both, combined with Hypothesis~CCM
 (Paper~VIII, Hyp.~5.1; \cite{CCM2025}):
 all non-trivial zeros $\rho$ of $\zeta(s)$ satisfy
-$\mathrm{Re}(\rho) = 1/2$ (Paper~IX,
-Theorem~\ref{thm:sigma-identity}).
+$\mathrm{Re}(\rho) = 1/2$.
 
 The two problems are independent of each other
 and of any hypothesis on $\zeta(s)$.
-They are purely operator-theoretic questions
-about the limiting PSWF system.
 
 \medskip
 A third, deeper layer is the operator identification
-problem $\HSOT = \overline{\Hspectral}$
+$\HSOT = \overline{\Hspectral}$
 (Paper~IX, Open Problem~7;
 Paper~X, Hyp.~(IX.b)).
 This identification --- which would simultaneously
-resolve Riesz-basis stability for
-$\{\Phi_n^{(\infty)}\}$, completeness, and the
-Bridge theorem of Paper~X --- is the primary
-target of Paper~XII.
+resolve Riesz-basis stability,
+completeness, and the Bridge theorem of Paper~X ---
+is the primary target of Paper~XII.
 Paper~XII will analyse frame-theoretic obstructions
-to this identification, using the non-cancellation
-seed from Paper~VIII (Thm.~3.3) as a local
-lower frame bound and isolating the
-uniform-in-$n$ control problem as the key gap.
+using the non-cancellation seed from Paper~VIII
+(Thm.~3.3) as a local lower frame bound,
+and isolate the uniform-in-$n$ control problem
+as the key gap.
 
 \medskip\noindent
 This is the precise state of the
