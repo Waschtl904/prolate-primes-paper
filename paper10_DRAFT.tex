@@ -168,39 +168,29 @@ v21: Cauchy sentence in SC;
 HS compactness chain;
 Mosco M1 pointwise monotonicity;
 spectral proposition $\to$ Open Problem.
-v22 (this version,
-\textbf{five precision fixes}):
-\begin{enumerate}[(S1)]
-\item Lemma~\ref{lem:sc}(b)
-      statement: weakened to
-      ``$(A_c f)_c$ is Cauchy
-      and hence convergent'';
-      no overclaim via
-      Banach--Steinhaus alone.
-\item Lemma~\ref{lem:hs}(b):
-      explicit half-sentence
-      ``compact operators map
-      weakly convergent sequences
-      to strongly convergent ones''
-      added.
-\item Mosco (M1): explicit sentence
-      that $\liminf$ lower bound
-      is independent of $n$,
-      so taking $\sup_{c_0}$
-      preserves the inequality.
-\item Inherited Result~\eqref{IX2norm}:
-      new remark clarifying that
-      the operator-norm estimate
-      holds globally on
-      $L^2(\mathbb{R})$ and is
-      an external input from
-      Paper~IX, used here only
-      for quantitative form
-      convergence.
-\item Open Problem~\ref{prob:spec-structure}:
-      Landau--Pollak motivation
-      trimmed; marked explicitly
-      as heuristic.
+v22: SC statement weakened to Cauchy;
+HS compact-map half-sentence;
+Mosco sup-step made explicit;
+op-norm remark; Landau--Pollak trimmed.
+v23 (this version,
+\textbf{three top-journal polish fixes}):
+\begin{enumerate}[(T1)]
+\item Lemma~\ref{lem:sc}:
+      remark added that no
+      completeness argument
+      beyond Hilbert-space
+      completeness is used.
+\item Theorem~\ref{thm:sa},
+      Step~4: sentence added that
+      positivity is preserved under
+      strong limits of uniformly
+      bounded positive operators.
+\item Lemma~\ref{lem:hlim-bounded}:
+      ``\textbf{This is where
+      $\Hlim$ is defined}'' replaced
+      by the formal statement
+      ``We define $\Hlim:=A$''
+      at the point of construction.
 \end{enumerate}
 
 \tableofcontents
@@ -328,7 +318,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC  %%% S1: statement weakened to Cauchy
+%%%─── LEMMA SC
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
@@ -406,7 +396,21 @@ $\limsup_c\|A_c f-Af\|
 $\varepsilon$ arbitrary.
 \end{proof}
 
-%%%─── LEMMA HLIM
+%%% T1: no-completeness remark
+\begin{remark}[No extra completeness
+  argument]
+\label{rem:sc-complete}
+The only completeness property
+used above is that of the Hilbert
+space $\mathcal{H}$ itself
+(Cauchy nets converge).
+No completeness of an
+eigenvector system, no Parseval
+identity, and no basis argument
+is involved.
+\end{remark}
+
+%%%─── LEMMA HLIM  %%% T3: formal definition statement
 \begin{lemma}[Existence and
   boundedness of $\Hlim$]
 \label{lem:hlim-bounded}
@@ -416,8 +420,6 @@ bounded operator
 $\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$
 with $\|\Hlim\|\le 1$
 and $\Hc\to\Hlim$ strongly.
-\textbf{This is where $\Hlim$
-is defined.}
 \end{lemma}
 
 \begin{proof}
@@ -439,8 +441,8 @@ for all $f$,
 $A\in\mathcal{B}(L^2)$,
 $\|A\|\le 1$,
 $\Hc\to A$ strongly.
-We define $\Hlim:=A$.
-From this point on, $\Hlim$
+We define $\Hlim:=A$;
+from this point on, $\Hlim$
 denotes this globally defined
 bounded operator.
 \end{proof}
@@ -545,11 +547,19 @@ $\Hlim=\Hlim^*$.
 (ii) $\|\Hlim\|\le 1\Rightarrow
 \sigma(\Hlim)\subset[-1,1]$
 (spectral radius $\le$ norm).
-(iii) $\ip{\Hlim f}{f}
-=\qlim(f,f)\ge 0$
-(Corollary~\ref{cor:qlim-op};
-\eqref{IX3})$\Rightarrow
-\Hlim\ge 0$, so
+(iii) Positivity is preserved
+under strong limits of uniformly
+bounded positive operators:
+for all $f\in L^2(\mathbb{R})$,
+$\ip{\Hc f}{f}\ge 0$ for every $c$
+(\eqref{IX6}), and
+$\ip{\Hc f}{f}\to\ip{\Hlim f}{f}$
+(Lemma~\ref{lem:hlim-bounded}),
+hence $\ip{\Hlim f}{f}\ge 0$.
+By Corollary~\ref{cor:qlim-op}
+this equals $\qlim(f,f)\ge 0$
+(\eqref{IX3}), so
+$\Hlim\ge 0$ and
 $\sigma(\Hlim)\subset[0,1]$.
 \end{proof}
 
@@ -638,7 +648,6 @@ $f_n$ share index $n$
 \cite{Mosco1969}.)
 \end{definition}
 
-%%%─── LEMMA HS  %%% S2: compact-map half-sentence
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 For each fixed $c_0>0$:
@@ -701,7 +710,6 @@ $q_{c_n}(f,f)
 =\qlim(f,f)$
 by Corollary~\ref{cor:qlim-op}.
 
-%%% S3: sup-step made explicit
 \textit{(M1).}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
@@ -990,7 +998,6 @@ Is $\sigma(\Hlim)=[0,1]$,
 a Cantor set, or discrete?
 \end{problem}
 
-%%%─── S5: Landau-Pollak motivation trimmed
 \begin{problem}[Spectral structure
   of $\Hlim$]
 \label{prob:spec-structure}
