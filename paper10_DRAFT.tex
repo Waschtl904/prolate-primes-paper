@@ -172,25 +172,41 @@ v22: SC statement weakened to Cauchy;
 HS compact-map half-sentence;
 Mosco sup-step made explicit;
 op-norm remark; Landau--Pollak trimmed.
-v23 (this version,
-\textbf{three top-journal polish fixes}):
-\begin{enumerate}[(T1)]
-\item Lemma~\ref{lem:sc}:
-      remark added that no
-      completeness argument
-      beyond Hilbert-space
-      completeness is used.
-\item Theorem~\ref{thm:sa},
-      Step~4: sentence added that
-      positivity is preserved under
-      strong limits of uniformly
-      bounded positive operators.
+v23: SC no-completeness remark;
+positivity-under-strong-limits sentence;
+$\Hlim$ definition formalized.
+v24 (this version,
+\textbf{five bulletproof fixes}):
+\begin{enumerate}[(U1)]
+\item \eqref{IX2norm}: explicit
+      sentence that Paper~IX proves
+      the estimate against the same
+      operator constructed via
+      Lemma~\ref{lem:sc}, without
+      presupposing $\Hlim$ as an
+      a priori object; no circularity.
+\item Lemma~\ref{lem:hs}(b):
+      compact operator argument
+      written out step by step:
+      relatively compact image,
+      unique weak limit $0$,
+      hence strong convergence to $0$.
+\item Theorem~\ref{thm:mosco}:
+      remark added that (M1) uses
+      only monotonicity and compactness;
+      no spectral decomposition.
+\item Theorem~\ref{thm:friedrichs}:
+      closing sentence added:
+      ``Thus the operator constructed
+      via limits coincides with the
+      one obtained abstractly from
+      the form.''
 \item Lemma~\ref{lem:hlim-bounded}:
-      ``\textbf{This is where
-      $\Hlim$ is defined}'' replaced
-      by the formal statement
-      ``We define $\Hlim:=A$''
-      at the point of construction.
+      uniqueness sentence added:
+      ``By uniqueness of limits in
+      the strong operator topology,
+      $\Hlim$ is uniquely determined
+      by this construction.''
 \end{enumerate}
 
 \tableofcontents
@@ -288,6 +304,7 @@ and $0\le\Hc\le I$.
       \cite{ReedSimon1975},
       Thm.~VI.1).
 
+%%% U1: circularity in IX2norm eliminated
 \item\label{IX2norm}
       \textit{Operator-norm
       convergence (external input;
@@ -305,6 +322,21 @@ and $0\le\Hc\le I$.
       (\cite{Slepian1961};
       Paper~VIII, Prop.~4.2);
       holds for $c\ge c_0(\kappa)$.
+      The estimate is proved in
+      Paper~IX with respect to the
+      strong-limit operator
+      constructed via a uniform-
+      boundedness/density argument
+      (Lemma~\ref{lem:sc}),
+      and does not presuppose the
+      existence of $\Hlim$ as an
+      a priori object.
+      In particular, the proof in
+      Paper~IX establishes the
+      estimate for the same operator
+      that is defined in
+      Lemma~\ref{lem:hlim-bounded},
+      so no circularity arises.
       This estimate is imported
       as an external input;
       no part of its proof is
@@ -396,7 +428,6 @@ $\limsup_c\|A_c f-Af\|
 $\varepsilon$ arbitrary.
 \end{proof}
 
-%%% T1: no-completeness remark
 \begin{remark}[No extra completeness
   argument]
 \label{rem:sc-complete}
@@ -410,7 +441,7 @@ identity, and no basis argument
 is involved.
 \end{remark}
 
-%%%─── LEMMA HLIM  %%% T3: formal definition statement
+%%%─── LEMMA HLIM
 \begin{lemma}[Existence and
   boundedness of $\Hlim$]
 \label{lem:hlim-bounded}
@@ -445,6 +476,11 @@ We define $\Hlim:=A$;
 from this point on, $\Hlim$
 denotes this globally defined
 bounded operator.
+%%% U5: uniqueness sentence
+By uniqueness of limits in the
+strong operator topology,
+$\Hlim$ is uniquely determined
+by this construction.
 \end{proof}
 
 \begin{corollary}[Form equals operator]
@@ -648,6 +684,7 @@ $f_n$ share index $n$
 \cite{Mosco1969}.)
 \end{definition}
 
+%%%─── LEMMA HS  %%% U2: compactness chain written out step by step
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 For each fixed $c_0>0$:
@@ -681,11 +718,24 @@ we have $f_n - f \rightharpoonup 0$.
 Since $\widetilde{\mathcal{H}}_{c_0}$
 is compact and
 $f_n - f \rightharpoonup 0$,
-it follows that
-$\widetilde{\mathcal{H}}_{c_0}(f_n-f)
-\to 0$ \emph{strongly}---compact
-operators map weakly convergent
-sequences to strongly convergent ones
+the sequence
+$\widetilde{\mathcal{H}}_{c_0}(f_n-f)$
+is relatively compact in
+$L^2(\mathbb{R})$.
+Moreover, every weakly convergent
+subsequence of
+$\widetilde{\mathcal{H}}_{c_0}(f_n-f)$
+has weak limit $0$
+(since $\widetilde{\mathcal{H}}_{c_0}$
+is bounded and
+$f_n - f \rightharpoonup 0$),
+hence every norm-convergent
+subsequence converges strongly
+to $0$.
+Since the sequence is relatively
+compact and every accumulation
+point equals $0$, the whole
+sequence converges strongly to $0$
 (\cite{ReedSimon1975}, VI.11).
 Moreover, $\sup_n\|f_n\|<\infty$
 by weak convergence
@@ -748,6 +798,18 @@ Hence
 $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
+
+%%% U3: Mosco remark on tools used
+\begin{remark}[Tools in (M1)]
+\label{rem:mosco-tools}
+We emphasise that (M1) uses
+only monotonicity of
+$c\mapsto q_c(f,f)$ and
+compactness of
+$\widetilde{\mathcal{H}}_{c_0}$;
+no spectral decomposition
+of $\Hc$ or $\Hlim$ is involved.
+\end{remark}
 
 \begin{remark}[Mosco $\Rightarrow$
   resolvent convergence]
@@ -865,6 +927,14 @@ and defined on all of
 $L^2(\mathbb{R})$,
 $\Hlim\subset T_{\qlim}$
 implies $\Hlim=T_{\qlim}$.
+%%% U4: coincidence sentence
+Thus the operator constructed
+via strong limits
+(Lemma~\ref{lem:hlim-bounded})
+coincides with the one obtained
+abstractly from the form
+$\qlim$ via the Kato representation
+(Theorem~\ref{thm:kato-rep}).
 \end{proof}
 
 \begin{remark}[Full audit]
