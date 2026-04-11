@@ -124,15 +124,14 @@ imports Paper~VIII only);
 imports Paper~IX only);
 (V)~Consequences (Sec.~\ref{sec:consequences}).
 
-\textit{Changes v43\,$\to$\,v44:}
-three final referee-proofing
-clarifications (spectral projection
-order in lem:monotone;
-strong convergence of spectral
-projections in lem:dense;
-``SOT-convergent net'' explicit
-in thm:bridge);
-no structural or mathematical changes.
+\textit{Changes v44\,$\to$\,v45:}
+Fix~1: lem:monotone uses
+$E_{M_\xi}([-c,c])\le E_{M_\xi}([-c',c'])$
+via RS~Thm.~VIII.3.
+Fix~3: Bridge proof restated as
+``same net, unique limit in
+Hausdorff space''.
+lem:wc unchanged.
 
 \tableofcontents
 
@@ -200,17 +199,17 @@ $c\le c'\Rightarrow\ip{\Hc f}{f}
 \le\ip{\mathcal{H}_{c'}f}{f}$.
 \end{lemma}
 \begin{proof}
-$\Bc=\Fc^{-1}\chi_{[-c,c]}\Fc$ is the
-orthogonal spectral projection of the
-multiplication operator $M_\xi$ onto
-the invariant subspace
-$\{\hat f:\operatorname{supp}\hat f
-\subseteq[-c,c]\}$.
-Since $[-c,c]\subset[-c',c']$, the
-spectral projection ordering
-$E_A\le E_B\Leftrightarrow A\subset B$
-(\cite{ReedSimon1975}, Thm.~VIII.6)
-gives $\Bc\le B_{c'}$;
+$\Bc = E_{M_\xi}([-c,c])$
+is the spectral projection of the
+multiplication operator $M_\xi$
+associated to $[-c,c]$.
+Since $[-c,c]\subset[-c',c']$,
+the spectral measures satisfy
+$E_{M_\xi}([-c,c])\le
+E_{M_\xi}([-c',c'])$
+as orthogonal projections
+(\cite{ReedSimon1975}, Thm.~VIII.3),
+i.e.\ $\Bc\le B_{c'}$;
 apply \eqref{eq:ftb}.
 \end{proof}
 
@@ -245,8 +244,7 @@ $h:=P^*Pf\in L^2(\mathbb{R})$:
 as $c\to\infty$, by strong convergence
 of the spectral projections
 $\chi_{[-c,c]}(M_\xi)$ to the identity
-as the sets $[-c,c]$ increase to
-$\mathbb{R}$
+as $[-c,c]\nearrow\mathbb{R}$
 (\cite{ReedSimon1975}, Thm.~VIII.5
 and the spectral theorem;
 $\|P^*P\|\le 1$).
@@ -457,22 +455,22 @@ $\Hstrong=\overline{\Hspectral}$.
 \end{theorem}
 \begin{proof}
 The net $(\Hc)_{c\in(0,\infty)}$
-ordered by $c\le c'$ is
-SOT-convergent: it converges to
-$\Hstrong$ by Lem.~\ref{lem:hlim-bounded}
-and to $\overline{\Hspectral}$
-by \eqref{IXb}, both in the SOT
-topology on $\mathcal{B}(L^2)$.
-This topology is Hausdorff, so the
-limit of a convergent net is unique;
-hence $\Hstrong=\overline{\Hspectral}$.
+ordered by $c\le c'$ converges
+in the SOT topology on
+$\mathcal{B}(L^2)$ to both
+$\Hstrong$ (Lem.~\ref{lem:hlim-bounded})
+and $\overline{\Hspectral}$ (\eqref{IXb}).
+Limits of a convergent net in a
+Hausdorff topological space are
+unique; hence
+$\Hstrong=\overline{\Hspectral}$.
 \end{proof}
 
 \begin{remark}
 No eigenfunction analysis:
-equality follows from uniqueness of
-the limit of the SOT-convergent net
-$(\Hc)_{c>0}$ in the Hausdorff SOT
+equality is the uniqueness of the
+limit of the SOT-convergent net
+$(\Hc)_{c>0}$ in the Hausdorff
 topology on $\mathcal{B}(L^2)$.
 $\Hlim:=\Hstrong=\overline{\Hspectral}$.
 \end{remark}
