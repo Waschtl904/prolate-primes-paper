@@ -92,16 +92,19 @@ Paper~VIII states this as Conjecture~8.1.
       The eigenvalue-sum term is unconditionally
       $O(c^{-1/4})$.
 
-\item \textbf{Remark~\ref{rem:deficiency-orthogonal}
-      (Central reduction, unconditional).}
-      We prove:
-      $\ker(\Hlim^* \pm i) = \{0\}$
-      if and only if
-      $\{\Phi_n^{(\infty)}\}$ is complete in $L^2(\mathbb{R})$.
-      This reduces essential self-adjointness
-      of $\Hlim$ precisely to the completeness
-      of the limit eigenvectors.
-      This equivalence is unconditional.
+\item \textbf{Lemma~\ref{lem:deficiency-analytic}
+      (Orthogonality principle, unconditional).}
+      Every $f \in \ker(\Hlim^* \pm i)$ is
+      orthogonal to all $\Phi_n^{(\infty)}$.
+      In particular, completeness of
+      $\{\Phi_n^{(\infty)}\}$ implies
+      $\ker(\Hlim^* \pm i) = \{0\}$,
+      hence essential self-adjointness.
+      The converse direction
+      ($n_\pm = 0$ implying completeness)
+      is not established here
+      and requires additional spectral structure
+      (see Remark~\ref{rem:deficiency-orthogonal}).
 
 \item \textbf{Corollary~\ref{cor:esa}
       (Conditional conclusion).}
@@ -141,13 +144,19 @@ This paper has three main threads:
       discussed in Remark~\ref{rem:uniform-alignment-status}.
 \item \textbf{Deficiency thread}
       (Sections~\ref{sec:deficiency}--\ref{sec:esa}):
-      The central result is the unconditional equivalence
-      ESSA $\iff$ Completeness
-      (Remark~\ref{rem:deficiency-orthogonal}).
-      The conclusion $n_\pm = 0$ and
-      the RH reduction are conditional
-      on Hypothesis~\ref{hyp:decay} and
-      Hypothesis~CCM (see Remark~\ref{rem:ccm-status}).
+      The central unconditional result is the
+      orthogonality principle
+      (Lemma~\ref{lem:deficiency-analytic}):
+      deficiency vectors are orthogonal to all
+      $\Phi_n^{(\infty)}$.
+      This yields the implication
+      Completeness $\Rightarrow$ ESSA,
+      but not in general the converse
+      (see Remark~\ref{rem:deficiency-orthogonal}).
+      The conclusion $n_\pm = 0$ and the RH reduction
+      are conditional on Hypothesis~\ref{hyp:decay}
+      and Hypothesis~CCM
+      (Remark~\ref{rem:ccm-status}).
 \end{enumerate}
 
 \tableofcontents
@@ -280,8 +289,8 @@ null-space of $\Hlim$).
 This subtlety is resolved by
 Theorem~\ref{thm:closable}:
 closability of the spectrally-defined
-$\Hlim$ — proved independently of
-completeness — establishes that its
+$\Hlim$ --- proved independently of
+completeness --- establishes that its
 closure is compatible with
 the SOT-limit.
 \end{remark}
@@ -511,7 +520,7 @@ or from a uniform resolvent bound from Paper~X.
 In the absence of such a bound,
 Hypothesis~\ref{hyp:uniform-alignment}
 should be regarded as a non-trivial
-open assumption, explicitly flagged as such
+open assumption
 (Problem~\ref{prob:uniform-alignment}).
 \end{remark}
 
@@ -620,21 +629,35 @@ including $\lambda_n^{(\infty)} = 0$.
 No division by $\lambda_n^{(\infty)}$ is needed.
 \end{remark}
 
-\begin{remark}[Central reduction: ESSA $\iff$ Completeness]
+\begin{remark}[Central reduction: Completeness $\Rightarrow$ ESSA]
 \label{rem:deficiency-orthogonal}
-Lemma~\ref{lem:deficiency-analytic} gives
-the unconditional equivalence:
+Lemma~\ref{lem:deficiency-analytic} establishes:
 \[
-  \ker(\Hlim^* \pm i) = \{0\}
-  \iff
-  \{\Phi_n^{(\infty)}\} \text{ is complete
-  in } L^2(\mathbb{R}).
+  \ker(\Hlim^* \pm i) \;\subseteq\;
+  \bigl(\mathrm{span}\{\Phi_n^{(\infty)}\}\bigr)^\perp.
 \]
-Essential self-adjointness of $\Hlim$
-reduces precisely to the completeness
-of the limit eigenvectors.
-This is the central result of this paper
-and is proved without any hypothesis.
+This immediately yields the implication:
+\[
+  \{\Phi_n^{(\infty)}\} \text{ complete in }
+  L^2(\mathbb{R})
+  \;\Longrightarrow\;
+  \ker(\Hlim^* \pm i) = \{0\}.
+\]
+The converse implication --- that
+$n_\pm(\Hlim) = 0$ implies completeness of
+$\{\Phi_n^{(\infty)}\}$ --- does \emph{not}
+hold in general for a symmetric operator
+with prescribed orthonormal system.
+Vanishing deficiency indices control only
+the deficiency spaces
+$\ker(\Hlim^* \pm i)$;
+they do not imply cyclicity or completeness
+of a given orthonormal system without an
+additional spectral representation theorem
+(e.g.\ a cyclic vector for $\Hlim$,
+or a spectral measure supported on
+$\{\lambda_n^{(\infty)}\}$).
+Such structure is not established in this paper.
 \end{remark}
 
 \subsection{The completeness hypothesis}
@@ -677,10 +700,13 @@ Then $n_\pm(\Hlim) = 0$.
 \end{theorem}
 
 \begin{proof}
-By Lemma~\ref{lem:deficiency-analytic}
-and Hypothesis~\ref{hyp:decay}:
-every deficiency vector is orthogonal
-to a complete system, hence zero.
+By Lemma~\ref{lem:deficiency-analytic},
+every $f \in \ker(\Hlim^* + i)$ satisfies
+$f \perp \Phi_n^{(\infty)}$ for all $n$.
+By Hypothesis~\ref{hyp:decay},
+$\{\Phi_n^{(\infty)}\}$ is complete,
+so $f = 0$.
+Identical for $\ker(\Hlim^* - i)$.
 \end{proof}
 
 \begin{corollary}[Essential self-adjointness]
@@ -765,14 +791,21 @@ Hypothesis~CCM in an essential way.
 
 \begin{problem}[Completeness of $\{\Phi_n^{(\infty)}\}$]
 \label{prob:completeness}
-Prove Hypothesis~\ref{hyp:decay}.
-By Remark~\ref{rem:deficiency-orthogonal},
-this is equivalent to essential self-adjointness
-of $\Hlim$.
-\emph{Approach}: no nonzero $f \in L^2$
-can be orthogonal to all $\Phi_n^{(\infty)}$,
-using non-cancellation \eqref{VIII4}
-uniformly over $n$.
+Prove Hypothesis~\ref{hyp:decay}:
+$\{\Phi_n^{(\infty)}\}_{n \ge 0}$ is complete
+in $L^2(\mathbb{R})$.
+By Theorem~\ref{thm:deficiency},
+completeness implies $n_\pm(\Hlim) = 0$,
+hence essential self-adjointness.
+The converse (whether ESSA implies completeness
+of the prescribed system $\{\Phi_n^{(\infty)}\}$)
+is not established; it would require
+a cyclic vector or spectral measure argument
+(see Remark~\ref{rem:deficiency-orthogonal}).
+\emph{Direct approach}: show that no nonzero
+$f \in L^2$ is orthogonal to all
+$\Phi_n^{(\infty)}$, using non-cancellation
+\eqref{VIII4} uniformly over $n$.
 \end{problem}
 
 \begin{problem}[Uniform eigenfunction alignment]
@@ -812,8 +845,11 @@ to $\sigma(\Hlim) = [0,1]$.
 \label{prob:esa-unconditional}
 Prove essential self-adjointness of $\Hlim$
 without Hypothesis~\ref{hyp:decay}.
-Equivalent to Problem~\ref{prob:completeness}
-(Remark~\ref{rem:deficiency-orthogonal}).
+Note that this is \emph{not} automatically
+equivalent to completeness of
+$\{\Phi_n^{(\infty)}\}$ (see
+Remark~\ref{rem:deficiency-orthogonal})
+without further spectral structure.
 \end{problem}
 
 %%─── Bibliography
