@@ -124,9 +124,14 @@ imports Paper~VIII only);
 imports Paper~IX only);
 (V)~Consequences (Sec.~\ref{sec:consequences}).
 
-\textit{Changes v42\,$\to$\,v43:}
-three surgical reviewer-proofing
-fixes only (see below);
+\textit{Changes v43\,$\to$\,v44:}
+three final referee-proofing
+clarifications (spectral projection
+order in lem:monotone;
+strong convergence of spectral
+projections in lem:dense;
+``SOT-convergent net'' explicit
+in thm:bridge);
 no structural or mathematical changes.
 
 \tableofcontents
@@ -195,12 +200,17 @@ $c\le c'\Rightarrow\ip{\Hc f}{f}
 \le\ip{\mathcal{H}_{c'}f}{f}$.
 \end{lemma}
 \begin{proof}
-$\Bc$ and $B_{c'}$ are orthogonal
-projections in Fourier space onto
-$[-c,c]$ and $[-c',c']$ respectively;
-$[-c,c]\subset[-c',c']$ implies
-$\Bc\le B_{c'}$ as operators
-(\cite{ReedSimon1975}, Ch.~VIII.1);
+$\Bc=\Fc^{-1}\chi_{[-c,c]}\Fc$ is the
+orthogonal spectral projection of the
+multiplication operator $M_\xi$ onto
+the invariant subspace
+$\{\hat f:\operatorname{supp}\hat f
+\subseteq[-c,c]\}$.
+Since $[-c,c]\subset[-c',c']$, the
+spectral projection ordering
+$E_A\le E_B\Leftrightarrow A\subset B$
+(\cite{ReedSimon1975}, Thm.~VIII.6)
+gives $\Bc\le B_{c'}$;
 apply \eqref{eq:ftb}.
 \end{proof}
 
@@ -224,12 +234,21 @@ $\mathcal{D}:=\{f:\Hc f\text{ converges}
 \text{ in }L^2\}\supset C_c^\infty$.
 \end{lemma}
 \begin{proof}
-% Fix F43-1: P*P^2 corrected to P*P
-For $f\in C_c^\infty$,
-$\|\Hc f - P^*Pf\|
-\le\|\Bc P^*Pf - P^*Pf\|\to 0$
-as $c\to\infty$
-(\cite{ReedSimon1975}, Thm.~IX.14;
+For $f\in C_c^\infty$ and
+$h:=P^*Pf\in L^2(\mathbb{R})$:
+\[
+  \|\Hc f - P^*Pf\|
+  \le \|\Bc h - h\|
+  = \|(\Fc^{-1}\chi_{[-c,c]}\Fc - I)h\|
+  \to 0
+\]
+as $c\to\infty$, by strong convergence
+of the spectral projections
+$\chi_{[-c,c]}(M_\xi)$ to the identity
+as the sets $[-c,c]$ increase to
+$\mathbb{R}$
+(\cite{ReedSimon1975}, Thm.~VIII.5
+and the spectral theorem;
 $\|P^*P\|\le 1$).
 \end{proof}
 
@@ -425,7 +444,7 @@ Rem.~2.6):
 \item\label{IXb}
   The net $(\Hc)_{c\in(0,\infty)}$,
   ordered by $c\le c'$,
-  satisfies
+  is SOT-convergent and satisfies
   $\Hc\xrightarrow{\mathrm{SOT}}
   \overline{\Hspectral}$
   in the SOT topology on
@@ -437,24 +456,24 @@ Rem.~2.6):
 $\Hstrong=\overline{\Hspectral}$.
 \end{theorem}
 \begin{proof}
-% Fix F43-3: net ordered by c<=c' stated explicitly
-Both $\Hstrong$ (Lem.~\ref{lem:hlim-bounded})
-and $\overline{\Hspectral}$
-(\eqref{IXb}) are SOT limits
-of the net $(\Hc)_{c\in(0,\infty)}$
-ordered by $c\le c'$,
-in the SOT topology on
-$\mathcal{B}(L^2)$.
-This topology is Hausdorff, so
-limits are unique;
+The net $(\Hc)_{c\in(0,\infty)}$
+ordered by $c\le c'$ is
+SOT-convergent: it converges to
+$\Hstrong$ by Lem.~\ref{lem:hlim-bounded}
+and to $\overline{\Hspectral}$
+by \eqref{IXb}, both in the SOT
+topology on $\mathcal{B}(L^2)$.
+This topology is Hausdorff, so the
+limit of a convergent net is unique;
 hence $\Hstrong=\overline{\Hspectral}$.
 \end{proof}
 
 \begin{remark}
 No eigenfunction analysis:
-equality follows from categorical
-uniqueness in the Hausdorff SOT
-topology.
+equality follows from uniqueness of
+the limit of the SOT-convergent net
+$(\Hc)_{c>0}$ in the Hausdorff SOT
+topology on $\mathcal{B}(L^2)$.
 $\Hlim:=\Hstrong=\overline{\Hspectral}$.
 \end{remark}
 
