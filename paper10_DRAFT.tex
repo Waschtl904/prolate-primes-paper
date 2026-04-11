@@ -162,45 +162,45 @@ v19: strict $B\to A\to\Hlim$
 separation; $\qlim$ independent
 of $\Hlim$; BSA corollary;
 Mosco M1 sup identified.
-v20: two surgical fixes:
-Banach--Steinhaus explicit in
-Lemma~\ref{lem:sc}(b);
-Landau--Pollak empirical-spectral-measure
-statement in
-Proposition~\ref{prop:spec-structure}.
-v21 (this version,
-\textbf{four surgical fixes}):
-\begin{enumerate}[(R1)]
-\item Lemma~\ref{lem:sc}(b):
-      explicit sentence that
-      $(A_c f)_c$ is Cauchy
-      for every $f\in\mathcal{H}$;
-      standard ``dense core +
-      uniform bound'' argument
-      clarified.
+v20: Banach--Steinhaus explicit;
+Landau--Pollak empirical-measure fix.
+v21: Cauchy sentence in SC;
+HS compactness chain;
+Mosco M1 pointwise monotonicity;
+spectral proposition $\to$ Open Problem.
+v22 (this version,
+\textbf{five precision fixes}):
+\begin{enumerate}[(S1)]
+\item Lemma~\ref{lem:sc}(b)
+      statement: weakened to
+      ``$(A_c f)_c$ is Cauchy
+      and hence convergent'';
+      no overclaim via
+      Banach--Steinhaus alone.
 \item Lemma~\ref{lem:hs}(b):
-      explicit chain
-      $f_n - f \rightharpoonup 0
-      \Rightarrow
-      \widetilde{\mathcal{H}}_{c_0}(f_n-f)
-      \to 0$ strongly
-      (\cite{ReedSimon1975}, VI.11);
-      $\sup_n\|f_n\|<\infty$
-      cited (\cite{ReedSimon1975},
-      III.5).
-\item Mosco (M1): explicit
-      sentence that the form
-      monotonicity is applied
-      pointwise for each fixed $n$
-      with $h:=f_n$
-      (Inherited Result~\eqref{IX4}).
-\item Proposition~\ref{prop:spec-structure}
-      (spectral structure):
-      removed entirely;
-      replaced by
-      Open Problem~\ref{prob:spec-structure}
-      (spectral structure of $\Hlim$
-      is open).
+      explicit half-sentence
+      ``compact operators map
+      weakly convergent sequences
+      to strongly convergent ones''
+      added.
+\item Mosco (M1): explicit sentence
+      that $\liminf$ lower bound
+      is independent of $n$,
+      so taking $\sup_{c_0}$
+      preserves the inequality.
+\item Inherited Result~\eqref{IX2norm}:
+      new remark clarifying that
+      the operator-norm estimate
+      holds globally on
+      $L^2(\mathbb{R})$ and is
+      an external input from
+      Paper~IX, used here only
+      for quantitative form
+      convergence.
+\item Open Problem~\ref{prob:spec-structure}:
+      Landau--Pollak motivation
+      trimmed; marked explicitly
+      as heuristic.
 \end{enumerate}
 
 \tableofcontents
@@ -300,18 +300,26 @@ and $0\le\Hc\le I$.
 
 \item\label{IX2norm}
       \textit{Operator-norm
-      convergence (used only after
-      $\Hlim$ is defined).}
+      convergence (external input;
+      used only in
+      Section~\ref{sec:form-convergence}).}
       $\|\Hc-\Hlim\|
       \le C_\kappa c^{-1/4}$
       (operator norm on
-      $\mathcal{B}(L^2(\mathbb{R}))$).
+      $\mathcal{B}(L^2(\mathbb{R}))$,
+      globally on all of
+      $L^2(\mathbb{R})$).
       Proven in Paper~IX, Thm.~3.1,
       via Landau--Pollak asymptotics
       for PSWF eigenvalue decay
       (\cite{Slepian1961};
       Paper~VIII, Prop.~4.2);
       holds for $c\ge c_0(\kappa)$.
+      This estimate is imported
+      as an external input;
+      no part of its proof is
+      reproduced here.
+
 \end{enumerate}
 
 \begin{remark}[Objects not used]
@@ -320,12 +328,12 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC  %%% R1: Cauchy sentence explicit
+%%%─── LEMMA SC  %%% S1: statement weakened to Cauchy
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
 This is a standard result
-(\cite{Rudin1991}, Thm.~4.1;
+(\cite{Rudin1991}, Thm.~5.4;
 \cite{Conway1990}, I.4;
 cf.\ also \cite{ReedSimon1975},
 Thm.~III.5);
@@ -340,21 +348,22 @@ subspace.
 Suppose $A_c f\to Bf$ for all
 $f\in\mathcal{D}$, where
 $B:\mathcal{D}\to\mathcal{H}$
-is linear
-(linearity: $A_c(\alpha f+\beta g)
-=\alpha A_c f+\beta A_c g
-\to\alpha Bf+\beta Bg$).
+is linear.
 Then:
 \begin{enumerate}[\rm(a)]
 \item\label{sc:bdd}
       $\|Bf\|\le M\|f\|$
       for all $f\in\mathcal{D}$.
 \item\label{sc:ext}
-      $Af:=\lim_c A_c f$ exists
-      in $\mathcal{H}$ for every
-      $f\in\mathcal{H}$,
+      For every $f\in\mathcal{H}$,
+      the net $(A_c f)_c$ is
+      Cauchy in $\mathcal{H}$
+      and hence convergent.
+      Denoting $Af:=\lim_c A_c f$,
+      we obtain
       $A\in\mathcal{B}(\mathcal{H})$,
-      $\|A\|\le M$, $A|_{\mathcal{D}}=B$.
+      $\|A\|\le M$,
+      and $A|_{\mathcal{D}}=B$.
 \item\label{sc:strong}
       $A_c\to A$ strongly.
 \end{enumerate}
@@ -365,19 +374,7 @@ Then:
 $\|Bf\|=\lim_c\|A_c f\|\le M\|f\|$.
 
 \textit{(b).}
-The family $(A_c)$ is
-uniformly bounded:
-$\sup_c\|A_c\|=M<\infty$.
-By the Banach--Steinhaus
-uniform boundedness principle
-(\cite{ReedSimon1975}, III.5;
-\cite{Rudin1991}, Thm.~5.4),
-a uniformly bounded net of
-bounded operators that converges
-strongly on a dense subset
-$\mathcal{D}$ converges
-strongly on all of $\mathcal{H}$:
-for $f\in\mathcal{H}$ and
+For $f\in\mathcal{H}$ and
 $\varepsilon>0$,
 choose $g\in\mathcal{D}$ with
 $\|f-g\|<\varepsilon$, then
@@ -390,19 +387,18 @@ $\|f-g\|<\varepsilon$, then
   +\|A_c g-A_{c'}g\|.
 \]
 Since $A_c g\to Bg$,
-the right-hand side $\to 2M\varepsilon$.
+the right-hand side $\to 2M\varepsilon$
+as $c,c'\to\infty$.
 As $\varepsilon>0$ is arbitrary,
-$(A_c f)_c$ is a Cauchy net in
-$\mathcal{H}$ for every fixed
-$f\in\mathcal{H}$
-(this is the standard
-``dense core + uniform bound''
-argument;
-cf.\ \cite{Rudin1991}, Thm.~5.4;
-\cite{ReedSimon1975}, III.5),
-and $Af:=\lim_c A_c f$ exists.
+$(A_c f)_c$ is a Cauchy net
+in $\mathcal{H}$ for every fixed
+$f\in\mathcal{H}$;
+since $\mathcal{H}$ is complete,
+$Af:=\lim_c A_c f$ exists.
 $\|Af\|\le M\|f\|$ and
-$A|_{\mathcal{D}}=B$ are clear.
+$A|_{\mathcal{D}}=B$ follow immediately,
+so $A\in\mathcal{B}(\mathcal{H})$
+with $\|A\|\le M$.
 
 \textit{(c).}
 $\limsup_c\|A_c f-Af\|
@@ -642,7 +638,7 @@ $f_n$ share index $n$
 \cite{Mosco1969}.)
 \end{definition}
 
-%%%─── LEMMA HS  %%% R2: explicit compactness chain
+%%%─── LEMMA HS  %%% S2: compact-map half-sentence
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 For each fixed $c_0>0$:
@@ -678,12 +674,14 @@ is compact and
 $f_n - f \rightharpoonup 0$,
 it follows that
 $\widetilde{\mathcal{H}}_{c_0}(f_n-f)
-\to 0$ \emph{strongly}
+\to 0$ \emph{strongly}---compact
+operators map weakly convergent
+sequences to strongly convergent ones
 (\cite{ReedSimon1975}, VI.11).
 Moreover, $\sup_n\|f_n\|<\infty$
 by weak convergence
-(\cite{ReedSimon1975}, III.5,
-Banach--Steinhaus).
+(Banach--Steinhaus;
+\cite{ReedSimon1975}, III.5).
 Hence
 $|I|\le\sup_n\|f_n\|
 \cdot\|\widetilde{\mathcal{H}}_{c_0}(f_n-f)\|
@@ -703,7 +701,7 @@ $q_{c_n}(f,f)
 =\qlim(f,f)$
 by Corollary~\ref{cor:qlim-op}.
 
-%%% R3: explicit monotonicity sentence for varying f_n
+%%% S3: sup-step made explicit
 \textit{(M1).}
 Let $c_n\to\infty$,
 $f_n\rightharpoonup f$.
@@ -715,23 +713,28 @@ states that $q_c(h,h)$ is
 non-decreasing in $c$ for every
 fixed $h\in L^2(\mathbb{R})$.
 Applying this pointwise with
-$h:=f_n$ and $c:=c_n\ge c_0$,
-we obtain
+$h:=f_n$ and $c:=c_n\ge c_0$
+yields
 $q_{c_n}(f_n,f_n)\ge q_{c_0}(f_n,f_n)$.
 By Lemma~\ref{lem:hs}(b):
-$\liminf_n q_{c_n}(f_n,f_n)
-\ge\lim_n q_{c_0}(f_n,f_n)
-= q_{c_0}(f,f)$.
-
-Now take the supremum over
-$c_0>0$:
-the function $c_0\mapsto q_{c_0}(f,f)$
-is non-decreasing in $\mathbb{R}$
-by \eqref{IX4}, hence
-$\sup_{c_0>0}q_{c_0}(f,f)
-=\lim_{c_0\to\infty}q_{c_0}(f,f)$
-(monotone convergence in $\mathbb{R}$),
-and this equals $\qlim(f,f)$
+\[
+  \liminf_n q_{c_n}(f_n,f_n)
+  \ge\lim_n q_{c_0}(f_n,f_n)
+  = q_{c_0}(f,f).
+\]
+This lower bound $q_{c_0}(f,f)$
+is independent of $n$,
+so taking the supremum over
+$c_0>0$ preserves the inequality:
+\[
+  \liminf_n q_{c_n}(f_n,f_n)
+  \ge\sup_{c_0>0}q_{c_0}(f,f).
+\]
+The function $c_0\mapsto q_{c_0}(f,f)$
+is non-decreasing by \eqref{IX4},
+so $\sup_{c_0>0}q_{c_0}(f,f)
+=\lim_{c_0\to\infty}q_{c_0}(f,f)
+=\qlim(f,f)$
 by Definition~\ref{def:qlim}.
 Hence
 $\liminf_n q_{c_n}(f_n,f_n)
@@ -987,32 +990,24 @@ Is $\sigma(\Hlim)=[0,1]$,
 a Cantor set, or discrete?
 \end{problem}
 
-%%%─── R4: spectral structure → Open Problem
+%%%─── S5: Landau-Pollak motivation trimmed
 \begin{problem}[Spectral structure
   of $\Hlim$]
 \label{prob:spec-structure}
 Does $\sigma(\Hlim)$ have isolated
 points in $(0,1)$?
-
-The Landau--Pollak distribution
-(\cite{Slepian1961};
-cf.\ also Paper~VIII, Prop.~4.2)
-shows that the empirical spectral
-measure of $\Hc$ converges
-weak${}^*$ to Lebesgue measure
-on $[0,1]$ as $c\to\infty$.
-Whether structural conclusions
-about $\sigma(\Hlim)$ can be
-derived from this via strong
-resolvent convergence
+The Landau--Pollak eigenvalue
+distribution (\cite{Slepian1961})
+suggests a limiting density on
+$[0,1]$, but deriving structural
+properties of $\sigma(\Hlim)$ from
+this via strong resolvent convergence
 (Corollary~\ref{cor:resolvent})
-is currently open;
-the tools available here
-(strong, not norm, resolvent
-convergence) do not directly
-control multiplicity or
-isolation of spectral points
-in the limit.
+remains open: strong (as opposed to
+norm) resolvent convergence does
+not directly control multiplicity
+or isolation of spectral points
+in the limit operator.
 \end{problem}
 
 \begin{problem}[Completeness]
