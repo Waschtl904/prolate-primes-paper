@@ -19,7 +19,6 @@
 \newtheorem*{remark*}{Remark}
 
 %%%--- Macros
-\newcommand{\Phihat}{\widehat{\Phi}}
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
 \newcommand{\Hc}{\mathcal{H}_c}
@@ -29,62 +28,56 @@
 
 \subjclass[2020]{47B25, 47A10, 42C05, 34E20, 11M06}
 \keywords{Prolate spheroidal wave functions, limit operator,
-operator closure, deficiency indices, essential self-adjointness}
+operator closure, essential self-adjointness, open problems}
 
 \begin{document}
 
-\title[PSWF Limit Operator: Domain and Self-Adjointness]{%
+\title[PSWF Limit Operator: A Conditional Framework]{%
   The PSWF Concentration Limit Operator:\\%
-  Domain, Closability, and Conditional Self-Adjointness}
+  A Conditional Framework for Domain,
+  Closability, and Self-Adjointness}
 
 \author{[Author]}
 \address{[Address]}
 \email{[Email]}
 \maketitle
 
-%============================================================
-\section*{Honest Summary for the Referee}
-%============================================================
+\begin{abstract}
+We develop a conditional functional-analytic framework
+for the spectral study of the PSWF concentration
+operator family $\{\Hc\}$ and its two natural
+limit objects:
+the SOT-limit $\HSOT$ (a bounded self-adjoint operator)
+and the spectral operator $\Hspec$ (defined by a
+spectral series over subsequential limit vectors).
 
-This paper establishes the following \emph{unconditional} results:
-\begin{enumerate}[(U1)]
-\item\label{U1}
-  The PSWF family $\{\Phi_n^{(c)}\}$ is precompact in $L^2$;
-  every subsequential limit has unit norm
-  (Fr\'echet--Kolmogorov; no operator).
-\item\label{U2}
-  For each fixed finite $c$, the eigenprojection $P_n^{(c)}$
-  has rank~1 (Slepian gap).
-\item\label{U3}
-  $\Hspec$ (defined by spectral series) is closable and symmetric.
-\item\label{U4}
-  $\HSOT:=\mathrm{SOT}\text{-}\lim_c\Hc$ is a well-defined
-  bounded self-adjoint operator on all of $L^2$
-  (SOT limit of bounded self-adjoint contractions;
-  see Rem.~\ref{rem:HSOT-bounded}).
-\end{enumerate}
+This paper does \emph{not} prove that $\Hspec$
+is essentially self-adjoint, that $\Hspec$
+and $\HSOT$ are unitarily equivalent, or any
+statement about the Riemann zeta function.
+Instead, it identifies precisely which
+hypotheses would be needed for such conclusions
+and what is unconditionally established.
 
-The following results are \emph{conditional}:
-\begin{enumerate}[(C1)]
-\item\label{C1}
-  \textbf{Under Hyp.~\ref{hyp:norm-resolvent}
-  and Hyp.~\ref{hyp:HSOT-discrete}:}
-  $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$
-  (full convergence, no subsequence selection).
-\item\label{C2}
-  \textbf{Under (C1) and Hyp.~\ref{hyp:decay}:}
-  completeness of $\{\Phi_n^{(\infty)}\}$ implies ESSA of
-  $\Hspec$.
-  The converse direction
-  (ESSA $\Rightarrow$ completeness) is \emph{open}
-  (see Rem.~\ref{rem:essa-one-direction}).
-\item\label{C3}
-  \textbf{Under Hyp.~\ref{hyp:uniform-alignment}:}
-  $\|\Hc-\Hspec\|\le C_\kappa c^{-1/4}$;
-  norm-resolvent convergence is then conjectured
-  under an additional Riesz-basis stability condition
-  (see Rem.~\ref{rem:opnorm-bridge}).
-\end{enumerate}
+\textbf{Unconditional results:}
+precompactness of $\{\Phi_n^{(c)}\}$ in $L^2$;
+closability and symmetry of $\Hspec$;
+boundedness and self-adjointness of $\HSOT$.
+
+\textbf{Conditional results} (explicit hypotheses
+listed in Sec.~\ref{sec:hypotheses}):
+norm convergence $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$;
+the eigenrelation $\HSOT\Phi_n^{(\infty)}
+=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$;
+essential self-adjointness of $\Hspec$.
+
+\textbf{Central open problems}
+(Sec.~\ref{sec:problems}):
+norm-resolvent convergence;
+discrete spectrum of $\HSOT$;
+Riesz-basis property of $\{\Phi_n^{(\infty)}\}$;
+completeness.
+\end{abstract}
 
 \tableofcontents
 
@@ -93,75 +86,89 @@ The following results are \emph{conditional}:
 \label{sec:setup}
 %=============================================================
 
-We work in $L^2(\mathbb{R})$.
+We work in $H:=L^2(\mathbb{R})$.
 The PSWF concentration operators $\Hc$ are bounded,
 self-adjoint, $\|\Hc\|\le 1$, with simple positive
 eigenvalues $\lambda_0^{(c)}>\lambda_1^{(c)}>\cdots>0$
-and orthonormal eigenfunctions $\Phi_n^{(c)}$.
+and ONS of eigenfunctions $\{\Phi_n^{(c)}\}_n$.
 
-Inherited results:
-\begin{enumerate}[(VIII.1)]
-\item\label{VIII2}
+Inherited:
+\begin{enumerate}[(P1)]
+\item\label{P1}
   $\|(\Hc-\HSOT)f\|\le C_\kappa c^{-3/4}\|f\|$
-  for fixed unit $f$ (Paper~VII, Thm.~C).
-\item\label{VIII3}
-  $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|\le C_\kappa c^{-1/4}$
+  for each fixed unit vector $f$
+  (Paper~VII, Thm.~C).
+\item\label{P2}
+  $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|\le C_\kappa c^{-1/4}$,
+  $\lambda_n^{(\infty)}:=\lim_c\lambda_n^{(c)}>0$
   (Paper~VIII, Cor.~4.3).
-\item\label{VIII6}
-  $\Hc\xrightarrow{\mathrm{SOT}}\HSOT$
-  (Paper~X, Lem.~2.2).
+\item\label{P3}
+  $\Hc\xrightarrow{\mathrm{SOT}}\HSOT$;
+  $\HSOT$ is bounded self-adjoint, $\|\HSOT\|\le 1$
+  (Paper~X, Lem.~2.2; see also
+  Rem.~\ref{rem:HSOT-bounded}).
 \end{enumerate}
 
-\begin{remark}[$\HSOT$ is bounded self-adjoint; no closability needed]
+\begin{remark}[$\HSOT$ is a bounded self-adjoint operator]
 \label{rem:HSOT-bounded}
-The SOT limit of a net of bounded self-adjoint operators
-$T_\alpha$ with $\sup_\alpha\|T_\alpha\|\le M$ is a bounded
-self-adjoint operator with $\|T\|\le M$
-(\cite{ReedSimon1975}, Thm.~VI.1 and preceding discussion).
-Applied here: each $\Hc$ is self-adjoint and
-$\|\Hc\|\le 1$, so $\HSOT$ is bounded self-adjoint with
-$\|\HSOT\|\le 1$ and $\Dom(\HSOT)=L^2$.
+The SOT-limit of a uniformly bounded net of
+bounded self-adjoint operators is bounded self-adjoint
+(\cite{ReedSimon1975}, Problem II.3).
+With $\|\Hc\|\le 1$ for all~$c$, $\HSOT$ satisfies
+$\Dom(\HSOT)=H$ and $\|\HSOT\|\le 1$.
 Every bounded everywhere-defined operator is closable;
-no separate closability argument for $\HSOT$ is needed.
+no separate closability argument is needed.
 \end{remark}
 
 %=============================================================
-\section{Open Hypotheses}
+\section{Hypotheses}
 \label{sec:hypotheses}
 %=============================================================
 
+We list all assumptions on which conditional results
+depend. None is proved in this paper.
+
 \begin{hypothesis}[Discrete spectrum of $\HSOT$]
 \label{hyp:HSOT-discrete}
-$\HSOT$ has simple eigenvalues
-$\lambda_0^{(\infty)}>\lambda_1^{(\infty)}>\cdots>0$
-(consistent with \eqref{VIII3}),
-and the corresponding eigenvectors $\{\Phi_n^{(\infty)}\}$
-span an eigenspace decomposition of $\HSOT$.
+$\HSOT$ has purely discrete spectrum with simple
+eigenvalues $\lambda_0^{(\infty)}>\lambda_1^{(\infty)}
+>\cdots>0$ and corresponding unit eigenvectors
+$\{\Phi_n^{(\infty)}\}$.
 \end{hypothesis}
+
+\begin{remark}[Why Hyp.~\ref{hyp:HSOT-discrete} is nontrivial]
+\label{rem:HSOT-discrete-hard}
+SOT convergence of $\Hc$ to $\HSOT$ does not in general
+imply stability of the point spectrum.
+Even for uniformly bounded self-adjoint families,
+eigenvalues can dissolve into continuous spectrum
+in the limit (\cite{ReedSimon1975}, Ex.~VIII.3.4).
+That the Slepian ordering $\lambda_n^{(\infty)}
+>\lambda_{n+1}^{(\infty)}>0$ persists follows from
+\eqref{P2} and the finite-$c$ gap,
+but this does not address completeness of the eigensystem.
+Hyp.~\ref{hyp:HSOT-discrete} is the central
+``black box'' of the conditional theory.
+\end{remark}
 
 \begin{hypothesis}[Norm-resolvent convergence]
 \label{hyp:norm-resolvent}
-For some (equivalently every) $z\in\mathbb{C}\setminus\mathbb{R}$:
-\[
-  \|(\Hc-z)^{-1}-(\HSOT-z)^{-1}\|_{\mathcal{B}(L^2)}
-  \to 0.
-\]
+For some (equivalently every)
+$z\in\mathbb{C}\setminus\mathbb{R}$:
+$\|(\Hc-z)^{-1}-(\HSOT-z)^{-1}\|_{\mathcal{B}(H)}
+\to 0$.
 \end{hypothesis}
 
-\begin{remark}[SOT does not imply norm-resolvent]
+\begin{remark}[SOT $\not\Rightarrow$ norm-resolvent]
 \label{rem:SOT-not-enough}
-SOT convergence \eqref{VIII6} does not in general imply
+SOT convergence \eqref{P3} does not imply
 norm-resolvent convergence;
-counterexamples exist among uniformly bounded
-self-adjoint families (\cite{ReedSimon1975}, Ex.~VIII.7.14).
-Hyp.~\ref{hyp:norm-resolvent} is a strictly stronger
-assumption.
+see \cite{ReedSimon1975}, Ex.~VIII.7.14.
 \end{remark}
 
 \begin{hypothesis}[Completeness]
 \label{hyp:decay}
-$\{\Phi_n^{(\infty)}\}_{n\ge 0}$ is complete
-in $L^2(\mathbb{R})$.
+$\{\Phi_n^{(\infty)}\}$ is complete in $L^2(\mathbb{R})$.
 \end{hypothesis}
 
 \begin{hypothesis}[Uniform alignment]
@@ -173,16 +180,20 @@ $\sup_{n\le\kappa c}\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|
 
 \begin{remark}[Dependency diagram]
 \label{rem:dep}
+The conditional results chain as follows:
 \[
-  \text{Hyp.~\ref{hyp:uniform-alignment}}
-  \xRightarrow{(*)}\text{Hyp.~\ref{hyp:norm-resolvent}}
-  \xRightarrow{+\text{Hyp.~\ref{hyp:HSOT-discrete}}}
-  \text{(C1)}
-  \xRightarrow{+\text{Hyp.~\ref{hyp:decay}}}
-  \text{(C2) ESSA}.
+  \underbrace{\text{Hyp.~\ref{hyp:norm-resolvent}}
+    +\text{Hyp.~\ref{hyp:HSOT-discrete}}}
+  _{\text{open}}
+  \Longrightarrow
+  \text{(C1: full conv.)}
+  \xRightarrow{+\,\text{Hyp.~\ref{hyp:decay}}}
+  \text{(C2: ESSA)}.
 \]
-The step $(*)$ is conjectural;
-see Rem.~\ref{rem:opnorm-bridge}.
+Hyp.~\ref{hyp:uniform-alignment} conjecturally implies
+Hyp.~\ref{hyp:norm-resolvent} under an additional
+Riesz-basis stability condition
+(Rem.~\ref{rem:opnorm-bridge}), but this is not proved.
 \end{remark}
 
 %=============================================================
@@ -190,67 +201,69 @@ see Rem.~\ref{rem:opnorm-bridge}.
 \label{sec:unconditional}
 %=============================================================
 
-\subsection{Precompactness}
+\subsection{Precompactness (no operator)}
 
 \begin{lemma}[PSWF precompactness]
 \label{lem:pswf-precompact}
-\emph{No operators.}
 For fixed $n\ge 0$, $\{\Phi_n^{(c)}\}_{c\ge 1}$
 is precompact in $L^2$.
 Every subsequence has a further subsequence converging
-strongly to some unit vector.
+strongly to a unit vector $u\in L^2$.
 \end{lemma}
 
 \begin{proof}
-Fr\'echet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26)
-with: (i)~$\|\Phi_n^{(c)}\|=1$;
-(ii)~uniform exponential decay for fixed~$n$
-(\cite{Osipov2013}, Thm.~3.2);
-(iii)~uniform $H^1$ bound for fixed~$n$
-(\cite{Osipov2013}, Prop.~4.1).
+Fr\'echet--Kolmogorov (\cite{ReedSimon1975}, Thm.~IV.26):
+(i)~$\|\Phi_n^{(c)}\|=1$;
+(ii)~uniform exponential decay (\cite{Osipov2013},
+Thm.~3.2);
+(iii)~uniform $H^1$-bound (\cite{Osipov2013},
+Prop.~4.1).
 \end{proof}
 
-\begin{remark}[Precompactness does not give uniqueness]
-\label{rem:precompact-not-unique}
-A precompact family may have multiple strong
-accumulation points.
-Uniqueness of the limit cannot be established
-from precompactness alone.
+\begin{remark}
+Precompactness guarantees existence of accumulation
+points with unit norm but does \emph{not} imply their
+uniqueness.
 \end{remark}
 
 \subsection{Rank-1 structure at finite $c$}
 
-\begin{lemma}[Rank-1 eigenprojection]
+\begin{lemma}
 \label{lem:rank1}
-\emph{Operator: $\Hc$ at fixed finite $c$.}
 For each finite $c$, the Slepian gap
-$\lambda_n^{(c)}>\lambda_{n+1}^{(c)}$
-(\cite{Slepian1961}) gives:
-\[
-  P_n^{(c)}f=\ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)},
-  \quad \|P_n^{(c)}\|=1.
-\]
+(\cite{Slepian1961}) ensures:
+$P_n^{(c)}f=\ip{f}{\Phi_n^{(c)}}\Phi_n^{(c)}$,
+$\|P_n^{(c)}\|=1$.
 No uniformity in $c$ is claimed.
 \end{lemma}
 
-\subsection{Spectral operator: definition and closability}
+\subsection{The spectral operator $\Hspec$}
 
-\begin{definition}[Canonical domain and $\Hspec$]
+\begin{definition}[$\Hspec$]
 \label{def:domain}
-\[
-  \Dom(\Hspec):=\Bigl\{f\in L^2:\,
+Fix any ONS $\{\Phi_n^{(\infty)}\}\subset L^2$
+(e.g.\ chosen as subsequential limits;
+well-definedness requires the ONS property only).
+\begin{align*}
+  \Dom(\Hspec)&:=\Bigl\{f\in L^2:\,
   {\textstyle\sum_n}(\lambda_n^{(\infty)})^2
-  |\ip{f}{\Phi_n^{(\infty)}}|^2<\infty\Bigr\},
-\]
-\[
-  \Hspec f:=\sum_n\lambda_n^{(\infty)}
+  |\ip{f}{\Phi_n^{(\infty)}}|^2<\infty\Bigr\},\\
+  \Hspec f&:=\sum_n\lambda_n^{(\infty)}
   \ip{f}{\Phi_n^{(\infty)}}\Phi_n^{(\infty)}.
-\]
-Here $\{\Phi_n^{(\infty)}\}$ is any fixed choice of
-unit vectors forming an ONS in $L^2$;
-well-definedness of $\Hspec$ depends only on the ONS
-property, not on how the $\Phi_n^{(\infty)}$ are obtained.
+\end{align*}
 \end{definition}
+
+\begin{remark}[Domain density]
+\label{rem:domain-density}
+$\mathrm{span}\{\Phi_n^{(\infty)}\}\subset\Dom(\Hspec)$
+(direct verification).
+Under Hyp.~\ref{hyp:decay} this span is dense,
+so $\Dom(\Hspec)$ is dense.
+Without Hyp.~\ref{hyp:decay}, density of
+$\Dom(\Hspec)$ is \emph{not guaranteed};
+however, closability and symmetry do not require
+density of the domain in the following proof.
+\end{remark}
 
 \begin{theorem}[Closability and symmetry of $\Hspec$]
 \label{thm:closable-spec}
@@ -258,57 +271,72 @@ $\Hspec$ is closable and symmetric.
 \end{theorem}
 
 \begin{proof}
-\textit{Symmetry:} Direct from definition.
+\textit{Symmetry:}
+$\ip{\Hspec f}{g}
+=\sum_n\lambda_n^{(\infty)}
+\ip{f}{\Phi_n^{(\infty)}}\overline{\ip{g}{\Phi_n^{(\infty)}}}
+=\ip{f}{\Hspec g}$
+for $f,g\in\Dom(\Hspec)$;
+the sum converges absolutely by
+Cauchy--Schwarz and the $\ell^2$-membership condition.
 
 \textit{Closability:}
-Let $f_k\to 0$ in $L^2$, $\Hspec f_k\to g$.
-For each $n$: $\ip{f_k}{\Phi_n^{(\infty)}}\to 0$.
+Let $f_k\to 0$ in $L^2$ and $\Hspec f_k\to g$.
+For each $n$:
+$a_n^{(k)}:=\ip{f_k}{\Phi_n^{(\infty)}}\to 0$.
 For any $\phi\in L^2$:
-$\ip{\Hspec f_k}{\phi}
-=\sum_n\lambda_n^{(\infty)}\ip{f_k}{\Phi_n^{(\infty)}}
-\ip{\Phi_n^{(\infty)}}{\phi}\to 0$.
+\[
+  \ip{\Hspec f_k}{\phi}
+  =\sum_n\lambda_n^{(\infty)}
+  a_n^{(k)}\ip{\Phi_n^{(\infty)}}{\phi}.
+\]
+The interchange of limit and sum is justified by
+dominated convergence in $\ell^2$:
+$|\lambda_n^{(\infty)} a_n^{(k)}
+\ip{\Phi_n^{(\infty)}}{\phi}|
+\le \lambda_n^{(\infty)}
+|\ip{\Phi_n^{(\infty)}}{\phi}|\cdot|a_n^{(k)}|$,
+and $\sum_n(\lambda_n^{(\infty)})^2
+|\ip{\Phi_n^{(\infty)}}{\phi}|^2<\infty$
+(since $\phi\in L^2$ and $\{\lambda_n^{(\infty)}\}$
+is bounded).
+As $k\to\infty$, $a_n^{(k)}\to 0$ for each~$n$,
+so the sum $\to 0$ for all $\phi$.
 Hence $g=0$.
 \end{proof}
 
 %=============================================================
 \section{Conditional: Full Eigenfunction Convergence}
-\label{sec:conditional-convergence}
+\label{sec:phi-conv}
 %=============================================================
 
-\begin{theorem}[Full norm convergence of $\Phi_n^{(c)}$]
+\begin{theorem}[Full norm convergence]
 \label{thm:phi-conv}
 \emph{Conditional on
 Hyp.~\ref{hyp:norm-resolvent} and
 Hyp.~\ref{hyp:HSOT-discrete}.}
-
-$\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$
-as $c\to\infty$.
+$\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$.
 \end{theorem}
 
 \begin{proof}
 \textbf{Step~1.}
-By Hyp.~\ref{hyp:HSOT-discrete},
-$\lambda_n^{(\infty)}$ is a simple isolated eigenvalue
-of $\HSOT$ with eigenprojection $P_n^{(\infty)}$ of rank~1.
+Hyp.~\ref{hyp:HSOT-discrete}: $\lambda_n^{(\infty)}$
+is simple isolated in $\sigma(\HSOT)$;
+eigenprojection $P_n^{(\infty)}$ has rank~1.
 
 \textbf{Step~2.}
-Under Hyp.~\ref{hyp:norm-resolvent},
-Kato (\cite{Kato1966}, Thm.~VIII.1.8) gives:
-\[
-  \|P_n^{(c)}-P_n^{(\infty)}\|_{\mathcal{B}(L^2)}\to 0.
-\]
+Kato (\cite{Kato1966}, Thm.~VIII.1.8) under
+Hyp.~\ref{hyp:norm-resolvent}:
+$\|P_n^{(c)}-P_n^{(\infty)}\|_{\mathcal{B}(H)}\to 0$.
 
 \textbf{Step~3.}
-Since both $P_n^{(c)}$ and $P_n^{(\infty)}$ have rank~1,
-norm convergence of the projections implies norm
-convergence of the unit eigenvectors up to a global phase
-(\cite{Kato1966}, p.~34):
-\[
-  |\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}|^2
-  =\mathrm{tr}(P_n^{(c)}P_n^{(\infty)})\to 1,
-\]
-hence $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|^2
-=2-2\,\mathrm{Re}\,\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}\to 0$
+Both $P_n^{(c)},P_n^{(\infty)}$ have rank~1.
+From projection-norm convergence:
+$|\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}|^2
+=\mathrm{tr}(P_n^{(c)}P_n^{(\infty)})\to
+\mathrm{tr}(P_n^{(\infty)})=1$,
+so $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|^2
+=2-2\,\mathrm{Re}\ip{\Phi_n^{(c)}}{\Phi_n^{(\infty)}}\to 0$
 (positive phase convention).
 \end{proof}
 
@@ -319,65 +347,71 @@ hence $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|^2
 
 \begin{lemma}[$\HSOT$-eigenrelation]
 \label{lem:weak-eigenrelation}
-\emph{Conditional on Thm.~\ref{thm:phi-conv}.
-Uses: boundedness of $\HSOT$, \eqref{VIII2}, \eqref{VIII3}.}
-
+\emph{Conditional on Thm.~\ref{thm:phi-conv}.}
 $\HSOT\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 \end{lemma}
 
 \begin{proof}
-By Thm.~\ref{thm:phi-conv},
-$\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$.
-Since $\HSOT$ is bounded (Rem.~\ref{rem:HSOT-bounded}):
-\begin{equation}\label{eq:HSOT-norm-conv}
-  \|\HSOT\Phi_n^{(c)}-\HSOT\Phi_n^{(\infty)}\|
-  \le\|\HSOT\|\,\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0.
+Decompose:
+\begin{equation}\label{eq:decompose}
+  \HSOT\Phi_n^{(c)}
+  = \underbrace{\Hc\Phi_n^{(c)}}_{=\,\lambda_n^{(c)}\Phi_n^{(c)}}
+  + \underbrace{(\HSOT-\Hc)\Phi_n^{(c)}}_{=:\,r_c}.
 \end{equation}
-Using \eqref{VIII2}:
-$\HSOT\Phi_n^{(c)}
-=\Hc\Phi_n^{(c)}+(\HSOT-\Hc)\Phi_n^{(c)}
-=\lambda_n^{(c)}\Phi_n^{(c)}+r_c$,
-where $\|r_c\|\le C_\kappa c^{-3/4}\to 0$.
-From \eqref{VIII3}: $\lambda_n^{(c)}\Phi_n^{(c)}
-\to\lambda_n^{(\infty)}\Phi_n^{(\infty)}$ in norm.
-Combining with \eqref{eq:HSOT-norm-conv}:
-$\HSOT\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
+For the remainder: by \eqref{P1} with $f=\Phi_n^{(c)}$
+and $\|\Phi_n^{(c)}\|=1$:
+\begin{equation}\label{eq:remainder}
+  \|r_c\| = \|(\HSOT-\Hc)\Phi_n^{(c)}\|
+  \le C_\kappa c^{-3/4} \to 0.
+\end{equation}
+\eqref{P1} applies here because it holds
+\emph{for each fixed unit vector};
+applied to the specific unit vector $\Phi_n^{(c)}$,
+it gives a bound uniform in the fixed-$n$ sense
+(not requiring uniformity over $n$ or $c$ simultaneously).
+
+By Thm.~\ref{thm:phi-conv},
+$\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|\to 0$, so:
+\begin{align}
+  \HSOT\Phi_n^{(c)}&\to\HSOT\Phi_n^{(\infty)}
+  \label{eq:HSOT-norm}
+  && (\text{boundedness of }\HSOT,
+     \text{ Rem.~\ref{rem:HSOT-bounded}}),\\
+  \lambda_n^{(c)}\Phi_n^{(c)}&\to
+  \lambda_n^{(\infty)}\Phi_n^{(\infty)}
+  \label{eq:eigenvec-limit}
+  && (\eqref{P2}\text{ and Thm.~\ref{thm:phi-conv}}).
+\end{align}
+Combining \eqref{eq:decompose}--\eqref{eq:eigenvec-limit}:
+$\HSOT\Phi_n^{(\infty)}
+=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 
 \medskip
-\noindent\textit{Remark on logical order.}
-The step \eqref{eq:HSOT-norm-conv} uses
-\emph{norm convergence} of $\Phi_n^{(c)}$
-(Thm.~\ref{thm:phi-conv}), which is conditional.
-There is no interchange of limits here:
-the limit $c\to\infty$ is taken after
-applying the bounded operator $\HSOT$
-to the norm-convergent sequence.
+\noindent\textit{Note on the mixed error term.}
+The key step \eqref{eq:remainder} bounds
+$\|(\HSOT-\Hc)\Phi_n^{(c)}\|$ by $C_\kappa c^{-3/4}$
+using $\|\Phi_n^{(c)}\|=1$.
+This is the only place where $\Phi_n^{(c)}$ (not
+$\Phi_n^{(\infty)}$) appears inside a limit;
+it is fully justified by \eqref{P1}
+because \eqref{P1} holds for all unit vectors,
+and $\Phi_n^{(c)}$ is a unit vector for each~$c$.
+No interchange of operator and vector limits
+beyond \eqref{eq:HSOT-norm} is used,
+and \eqref{eq:HSOT-norm} is justified by
+boundedness of $\HSOT$ alone.
 \end{proof}
 
-%=============================================================
-\section{Conditional ONS}
-\label{sec:ons}
-%=============================================================
-
-\begin{proposition}[Conditional orthonormal system]
-\label{prop:ons}
-\emph{Conditional on Thm.~\ref{thm:phi-conv}.}
-\begin{enumerate}[\rm(a)]
-\item $\|\Phi_n^{(\infty)}\|=1$.
-\item $\ip{\Phi_n^{(\infty)}}{\Phi_m^{(\infty)}}=0$,
-  $n\ne m$.
-\item $\HSOT\Phi_n^{(\infty)}
-  =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
-\end{enumerate}
-Completeness (making this an ONB) requires
-Hyp.~\ref{hyp:decay}.
-\end{proposition}
-
-\begin{proof}
-(a)~Norm convergence preserves unit norm.
-(b)~$\ip{\Phi_n^{(c)}}{\Phi_m^{(c)}}=0$ and norm conv.
-(c)~Lem.~\ref{lem:weak-eigenrelation}.
-\end{proof}
+\begin{remark}[The one genuine approximation]
+\label{rem:genuine-approx}
+The bound \eqref{eq:remainder} uses \eqref{P1},
+which is a pointwise-in-$f$ estimate.
+Applied to $f=\Phi_n^{(c)}$ (which varies with~$c$),
+it gives a $c$-dependent bound.
+This is valid: for each fixed $c$,
+$\|r_c\|\le C_\kappa c^{-3/4}\to 0$.
+There is no hidden uniformity over $n$ assumed.
+\end{remark}
 
 %=============================================================
 \section{Conditional: Essential Self-Adjointness}
@@ -386,42 +420,32 @@ Hyp.~\ref{hyp:decay}.
 
 \begin{theorem}[Completeness implies ESSA]
 \label{thm:esa}
-\emph{Conditional on Thm.~\ref{thm:phi-conv}
-and Hyp.~\ref{hyp:decay}.}
-
-If $\{\Phi_n^{(\infty)}\}$ is complete in $L^2$
-(Hyp.~\ref{hyp:decay}), then $\Hspec$ is essentially
-self-adjoint.
+\emph{Conditional on
+Thm.~\ref{thm:phi-conv} and Hyp.~\ref{hyp:decay}.}
+If $\{\Phi_n^{(\infty)}\}$ is complete, then $\Hspec$
+is essentially self-adjoint.
 \end{theorem}
 
 \begin{proof}
 Let $f\in\ker(\Hspec^*\pm i)$.
-For each $n$:
+For each $n$, since $\Phi_n^{(\infty)}\in\Dom(\Hspec)$:
 $(\lambda_n^{(\infty)}\pm i)\ip{f}{\Phi_n^{(\infty)}}=0$,
 hence $\ip{f}{\Phi_n^{(\infty)}}=0$.
-By Hyp.~\ref{hyp:decay}: $f=0$.
-So $n_\pm(\Hspec)=0$, i.e.\ $\Hspec$ is essentially
-self-adjoint.
+Hyp.~\ref{hyp:decay} gives $f=0$; so $n_\pm=0$.
 \end{proof}
 
-\begin{remark}[Converse direction is open]
+\begin{remark}[One direction only; converse is open]
 \label{rem:essa-one-direction}
-Thm.~\ref{thm:esa} proves only the implication
-completeness $\Rightarrow$ ESSA.
-The converse, ESSA $\Rightarrow$ completeness,
-would require showing that every vector orthogonal
-to $\{\Phi_n^{(\infty)}\}$ lies in a deficiency space
-$\ker(\Hspec^*\pm i)$, which in turn requires
-an explicit description of $\Dom(\Hspec^*)$
-beyond what is available here.
-The converse is therefore left as an open problem
-(Prob.~\ref{prob:essa-converse}).
+Thm.~\ref{thm:esa} gives only completeness
+$\Rightarrow$ ESSA.
+The converse requires an explicit description
+of $\Dom(\Hspec^*)$, which is not available;
+see Prob.~\ref{prob:essa-converse}.
 \end{remark}
 
-\begin{corollary}[ESSA under completeness]
+\begin{corollary}[Under completeness]
 \label{cor:esa}
-\emph{Conditional on Thm.~\ref{thm:phi-conv}
-and Hyp.~\ref{hyp:decay}.}
+\emph{Conditional as in Thm.~\ref{thm:esa}.}
 $\overline{\Hspec}=\Hspec^*$.
 \end{corollary}
 
@@ -430,64 +454,58 @@ $\overline{\Hspec}=\Hspec^*$.
 \label{sec:opnorm}
 %=============================================================
 
-\begin{theorem}[Operator norm rate]
+\begin{theorem}
 \label{thm:opnorm}
 \emph{Conditional on Hyp.~\ref{hyp:uniform-alignment}.}
 $\|\Hc-\Hspec\|\le C_\kappa c^{-1/4}$.
 \end{theorem}
 
-\begin{remark}[Operator-norm convergence does not
-automatically follow from uniform alignment]
+\begin{remark}[Missing bridge to norm-resolvent]
 \label{rem:opnorm-bridge}
 Hyp.~\ref{hyp:uniform-alignment} controls
 $\|\Phi_n^{(c)}-\Phi_n^{(\infty)}\|$
-on the truncated index range $n\le\kappa c$.
-Operator-norm convergence $\|\Hc-\Hspec\|\to 0$
-would follow if in addition:
+for $n\le\kappa c$ only.
+Operator-norm convergence $\|\Hc-\HSOT\|\to 0$
+(which would imply Hyp.~\ref{hyp:norm-resolvent}
+via \cite{Kato1966}, Thm.~VIII.1.5)
+would further require:
 \begin{enumerate}[\rm(i)]
-\item the contribution from $n>\kappa c$ is negligible
+\item negligibility of the tail $n>\kappa c$
   uniformly in $c$; and
-\item $\{\Phi_n^{(\infty)}\}$ forms a Riesz basis
-  (or has uniform frame bounds) in $L^2$.
+\item uniform frame bounds for $\{\Phi_n^{(\infty)}\}$
+  (e.g.\ Riesz-basis property;
+  see Prob.~\ref{prob:riesz}).
 \end{enumerate}
 Neither (i) nor (ii) is established here.
-Consequently, the implication
-Hyp.~\ref{hyp:uniform-alignment}
-$\Rightarrow$ Hyp.~\ref{hyp:norm-resolvent}
-(Rem.~\ref{rem:dep}) is conjectural,
-not a theorem.
+Thm.~\ref{thm:opnorm} is therefore an operator-norm
+rate for $\|\Hc-\Hspec\|$, not for $\|\Hc-\HSOT\|$,
+and does not close the bridge to
+Hyp.~\ref{hyp:norm-resolvent}.
 \end{remark}
 
 %=============================================================
-\section{Spectral Connection to Zeta: A Meta-Remark}
+\section{Meta-Remark: Zeta Connection}
 \label{sec:rh-remark}
 %=============================================================
 
-\begin{remark}[What would be needed for a zeta theorem]
+\begin{remark}[What a genuine zeta theorem would require]
 \label{rem:rh-meta}
-A genuine spectral theorem connecting $\Hspec$ to
-Riemann zeta zeros would require, at minimum:
+A spectral theorem connecting $\Hspec$ to
+nontrivial zeros of $\zeta$ would need, at minimum:
 \begin{enumerate}[(a)]
-\item Proof of Hyp.~\ref{hyp:decay} (completeness):
-  currently open.
-\item Proof of Hyp.~\ref{hyp:norm-resolvent}:
-  currently open.
-\item A spectral \emph{isomorphism} (not merely
-  approximate-spectrum inclusion) between $\Hspec$
-  and a trace-class operator whose eigenvalues
-  are in bijection with nontrivial zeta zeros.
-\item A Weil-type or explicit-formula trace identity
-  linking spectral data of $\Hspec$ to $\zeta$;
-  this is not provided by CCM~\cite{CCM2025} alone.
+\item Proof of Hyp.~\ref{hyp:decay} (completeness).
+\item Proof of Hyp.~\ref{hyp:norm-resolvent}.
+\item A spectral \emph{isomorphism} between
+  $\Hspec$ and a trace-class operator whose
+  eigenvalues biject with zeta zeros (not just
+  an approximate-spectrum inclusion).
+\item A Weil-type explicit formula;
+  CCM~\cite{CCM2025} does not supply this in a
+  form applicable here.
 \end{enumerate}
-The result of Paper~VIII gives
-$\rho\in\sigma_{\mathrm{app}}(\Hspec)$
-(conditional on CCM); this is an inclusion,
-not a bijection, and does not imply
-$\mathrm{Re}(\rho)=\tfrac12$ without (c) and (d).
-Any claim of the form
-``$\Hspec$ proves the Riemann Hypothesis''
-is not supported by the present paper.
+None of (a)--(d) is provided in this paper.
+The present work identifies the framework and the gaps;
+it does not prove RH or any equivalent statement.
 \end{remark}
 
 %=============================================================
@@ -503,6 +521,8 @@ Prove Hyp.~\ref{hyp:norm-resolvent}.
 \begin{problem}[Discrete spectrum of $\HSOT$]
 \label{prob:HSOT-discrete}
 Prove Hyp.~\ref{hyp:HSOT-discrete}.
+This is the central open problem;
+see Rem.~\ref{rem:HSOT-discrete-hard}.
 \end{problem}
 
 \begin{problem}[Completeness]
@@ -515,24 +535,23 @@ Prove Hyp.~\ref{hyp:decay}.
 Prove Hyp.~\ref{hyp:uniform-alignment}.
 \end{problem}
 
-\begin{problem}[Converse of ESSA]
+\begin{problem}[Riesz-basis property]
+\label{prob:riesz}
+Do the vectors $\{\Phi_n^{(\infty)}\}$ form a Riesz
+basis in $L^2$?
+This would close gap (i)--(ii) in
+Rem.~\ref{rem:opnorm-bridge}.
+\end{problem}
+
+\begin{problem}[Converse ESSA]
 \label{prob:essa-converse}
-Does ESSA of $\Hspec$ imply completeness of
-$\{\Phi_n^{(\infty)}\}$?
-This requires an explicit description of
-$\Dom(\Hspec^*)$.
+Does ESSA imply completeness?
+Requires explicit $\Dom(\Hspec^*)$.
 \end{problem}
 
 \begin{problem}[Operator identification]
 \label{prob:identification}
 Prove $\overline{\Hspec}=\HSOT$.
-\end{problem}
-
-\begin{problem}[Riesz-basis property]
-\label{prob:riesz}
-Do the vectors $\{\Phi_n^{(\infty)}\}$ form a Riesz
-basis in $L^2$?
-This would close the gap in Rem.~\ref{rem:opnorm-bridge}.
 \end{problem}
 
 \begin{thebibliography}{99}
