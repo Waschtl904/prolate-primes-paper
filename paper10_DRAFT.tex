@@ -175,38 +175,31 @@ op-norm remark; Landau--Pollak trimmed.
 v23: SC no-completeness remark;
 positivity-under-strong-limits sentence;
 $\Hlim$ definition formalized.
-v24 (this version,
-\textbf{five bulletproof fixes}):
-\begin{enumerate}[(U1)]
-\item \eqref{IX2norm}: explicit
-      sentence that Paper~IX proves
-      the estimate against the same
-      operator constructed via
-      Lemma~\ref{lem:sc}, without
-      presupposing $\Hlim$ as an
-      a priori object; no circularity.
-\item Lemma~\ref{lem:hs}(b):
-      compact operator argument
-      written out step by step:
-      relatively compact image,
-      unique weak limit $0$,
-      hence strong convergence to $0$.
-\item Theorem~\ref{thm:mosco}:
-      remark added that (M1) uses
-      only monotonicity and compactness;
-      no spectral decomposition.
-\item Theorem~\ref{thm:friedrichs}:
-      closing sentence added:
-      ``Thus the operator constructed
-      via limits coincides with the
-      one obtained abstractly from
-      the form.''
-\item Lemma~\ref{lem:hlim-bounded}:
-      uniqueness sentence added:
-      ``By uniqueness of limits in
-      the strong operator topology,
-      $\Hlim$ is uniquely determined
-      by this construction.''
+v24: IX2norm circularity eliminated;
+HS compactness chain step-by-step;
+Mosco tools remark;
+Friedrichs coincidence sentence;
+$\Hlim$ uniqueness sentence.
+v25 (this version,
+\textbf{two final consistency fixes}):
+\begin{enumerate}[(V1)]
+\item \eqref{IX2norm}: phrasing
+      sharpened to ``same
+      density-extension argument
+      as in Lemma~\ref{lem:sc}''
+      to exclude any claim that
+      the construction is only
+      isomorphic rather than
+      identical.
+\item Lemma~\ref{lem:sc}:
+      ``net'' / ``sequence''
+      terminology made consistent;
+      remark added that we may
+      restrict to sequences
+      $c_n\to\infty$ without loss
+      of generality, as $c$ ranges
+      over a directed set with a
+      cofinal sequence.
 \end{enumerate}
 
 \tableofcontents
@@ -304,7 +297,7 @@ and $0\le\Hc\le I$.
       \cite{ReedSimon1975},
       Thm.~VI.1).
 
-%%% U1: circularity in IX2norm eliminated
+%%% V1: same-construction phrasing sharpened
 \item\label{IX2norm}
       \textit{Operator-norm
       convergence (external input;
@@ -324,17 +317,18 @@ and $0\le\Hc\le I$.
       holds for $c\ge c_0(\kappa)$.
       The estimate is proved in
       Paper~IX with respect to the
-      strong-limit operator
-      constructed via a uniform-
-      boundedness/density argument
-      (Lemma~\ref{lem:sc}),
+      strong-limit operator constructed
+      via the same density-extension
+      argument as in
+      Lemma~\ref{lem:sc},
       and does not presuppose the
       existence of $\Hlim$ as an
       a priori object.
-      In particular, the proof in
-      Paper~IX establishes the
-      estimate for the same operator
-      that is defined in
+      In particular, the operator
+      appearing in Paper~IX, Thm.~3.1
+      is identical (not merely
+      isomorphic) to the operator
+      defined in
       Lemma~\ref{lem:hlim-bounded},
       so no circularity arises.
       This estimate is imported
@@ -350,7 +344,7 @@ Parseval, completeness:
 none appear in this paper.
 \end{remark}
 
-%%%─── LEMMA SC
+%%%─── LEMMA SC  %%% V2: net/sequence consistency
 \begin{lemma}[Stable core;
   density-extension]
 \label{lem:sc}
@@ -361,69 +355,89 @@ cf.\ also \cite{ReedSimon1975},
 Thm.~III.5);
 proof included for completeness.
 
-Let $(A_c)\subset
+Let $(A_c)_{c>0}\subset
 \mathcal{B}(\mathcal{H})$
 with $M:=\sup_c\|A_c\|<\infty$,
 and let $\mathcal{D}\subset
 \mathcal{H}$ be a dense linear
 subspace.
-Suppose $A_c f\to Bf$ for all
-$f\in\mathcal{D}$, where
-$B:\mathcal{D}\to\mathcal{H}$
+Suppose $A_{c_n} f\to Bf$
+for every sequence
+$c_n\to\infty$ and all
+$f\in\mathcal{D}$,
+where $B:\mathcal{D}\to\mathcal{H}$
 is linear.
+(Since $c$ ranges over $(0,\infty)$
+with the usual order, which
+contains cofinal sequences,
+sequential convergence along
+$c_n\to\infty$ is equivalent
+to convergence of the net;
+we work with sequences throughout.)
 Then:
 \begin{enumerate}[\rm(a)]
 \item\label{sc:bdd}
       $\|Bf\|\le M\|f\|$
       for all $f\in\mathcal{D}$.
 \item\label{sc:ext}
-      For every $f\in\mathcal{H}$,
-      the net $(A_c f)_c$ is
-      Cauchy in $\mathcal{H}$
-      and hence convergent.
-      Denoting $Af:=\lim_c A_c f$,
+      For every $f\in\mathcal{H}$
+      and every sequence
+      $c_n\to\infty$,
+      the sequence $(A_{c_n} f)$
+      is Cauchy in $\mathcal{H}$
+      and hence convergent;
+      the limit is independent
+      of the choice of sequence.
+      Denoting $Af:=\lim_{c\to\infty} A_c f$,
       we obtain
       $A\in\mathcal{B}(\mathcal{H})$,
       $\|A\|\le M$,
       and $A|_{\mathcal{D}}=B$.
 \item\label{sc:strong}
-      $A_c\to A$ strongly.
+      $A_c\to A$ strongly
+      as $c\to\infty$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 \textit{(a).}
-$\|Bf\|=\lim_c\|A_c f\|\le M\|f\|$.
+$\|Bf\|=\lim_n\|A_{c_n} f\|\le M\|f\|$.
 
 \textit{(b).}
-For $f\in\mathcal{H}$ and
-$\varepsilon>0$,
-choose $g\in\mathcal{D}$ with
+Fix $f\in\mathcal{H}$,
+a sequence $c_n\to\infty$,
+and $\varepsilon>0$.
+Choose $g\in\mathcal{D}$ with
 $\|f-g\|<\varepsilon$, then
 \[
-  \|A_c f-A_{c'}f\|
-  \le \|A_c(f-g)\|
-  +\|A_c g-A_{c'}g\|
-  +\|A_{c'}(f-g)\|
+  \|A_{c_n} f-A_{c_m}f\|
+  \le \|A_{c_n}(f-g)\|
+  +\|A_{c_n} g-A_{c_m}g\|
+  +\|A_{c_m}(f-g)\|
   \le 2M\varepsilon
-  +\|A_c g-A_{c'}g\|.
+  +\|A_{c_n} g-A_{c_m}g\|.
 \]
-Since $A_c g\to Bg$,
+Since $A_{c_n} g\to Bg$,
 the right-hand side $\to 2M\varepsilon$
-as $c,c'\to\infty$.
+as $n,m\to\infty$.
 As $\varepsilon>0$ is arbitrary,
-$(A_c f)_c$ is a Cauchy net
-in $\mathcal{H}$ for every fixed
-$f\in\mathcal{H}$;
+$(A_{c_n} f)$ is Cauchy in
+$\mathcal{H}$;
 since $\mathcal{H}$ is complete,
-$Af:=\lim_c A_c f$ exists.
+the limit exists.
+The limit is independent of the
+choice of cofinal sequence
+(any two such sequences give the
+same value via a diagonal argument),
+so $Af:=\lim_{c\to\infty} A_c f$
+is well defined.
 $\|Af\|\le M\|f\|$ and
 $A|_{\mathcal{D}}=B$ follow immediately,
 so $A\in\mathcal{B}(\mathcal{H})$
 with $\|A\|\le M$.
 
 \textit{(c).}
-$\limsup_c\|A_c f-Af\|
+$\limsup_n\|A_{c_n} f-Af\|
 \le 2M\varepsilon$;
 $\varepsilon$ arbitrary.
 \end{proof}
@@ -434,7 +448,7 @@ $\varepsilon$ arbitrary.
 The only completeness property
 used above is that of the Hilbert
 space $\mathcal{H}$ itself
-(Cauchy nets converge).
+(Cauchy sequences converge).
 No completeness of an
 eigenvector system, no Parseval
 identity, and no basis argument
@@ -450,7 +464,8 @@ The pre-operator $B$ of
 bounded operator
 $\Hlim\in\mathcal{B}(L^2(\mathbb{R}))$
 with $\|\Hlim\|\le 1$
-and $\Hc\to\Hlim$ strongly.
+and $\Hc\to\Hlim$ strongly
+as $c\to\infty$.
 \end{lemma}
 
 \begin{proof}
@@ -467,8 +482,8 @@ $f\in\mathcal{D}$ by definition.
 Part~(a) gives $\|Bf\|\le\|f\|$
 (consistent with Paper~VII, Thm.~C).
 Parts~(b,c) yield the limit
-$Af:=\lim_c\Hc f$ in $L^2$
-for all $f$,
+$Af:=\lim_{c\to\infty}\Hc f$
+in $L^2$ for all $f$,
 $A\in\mathcal{B}(L^2)$,
 $\|A\|\le 1$,
 $\Hc\to A$ strongly.
@@ -476,7 +491,6 @@ We define $\Hlim:=A$;
 from this point on, $\Hlim$
 denotes this globally defined
 bounded operator.
-%%% U5: uniqueness sentence
 By uniqueness of limits in the
 strong operator topology,
 $\Hlim$ is uniquely determined
@@ -563,8 +577,8 @@ and joint continuity of
 $\ip{\cdot}{\cdot}$:
 \[
   \ip{\Hlim f}{g}
-  = \lim_c\ip{\Hc f}{g}
-  = \lim_c\ip{f}{\Hc g}
+  = \lim_{c\to\infty}\ip{\Hc f}{g}
+  = \lim_{c\to\infty}\ip{f}{\Hc g}
   = \ip{f}{\Hlim g}.
 \]
 The middle equality uses
@@ -684,7 +698,6 @@ $f_n$ share index $n$
 \cite{Mosco1969}.)
 \end{definition}
 
-%%%─── LEMMA HS  %%% U2: compactness chain written out step by step
 \begin{lemma}[HS and weak continuity]
 \label{lem:hs}
 For each fixed $c_0>0$:
@@ -799,7 +812,6 @@ $\liminf_n q_{c_n}(f_n,f_n)
 \ge\qlim(f,f)$.
 \end{proof}
 
-%%% U3: Mosco remark on tools used
 \begin{remark}[Tools in (M1)]
 \label{rem:mosco-tools}
 We emphasise that (M1) uses
@@ -927,7 +939,6 @@ and defined on all of
 $L^2(\mathbb{R})$,
 $\Hlim\subset T_{\qlim}$
 implies $\Hlim=T_{\qlim}$.
-%%% U4: coincidence sentence
 Thus the operator constructed
 via strong limits
 (Lemma~\ref{lem:hlim-bounded})
