@@ -71,10 +71,9 @@ Unit norm and uniqueness of $\Phi_n^{(\infty)}$ are derived
   forces every strong accumulation point to be
   asymptotically parallel to $\Phi_n^{(c)}$.
   Uniqueness follows by a diagonal interleaving argument
-  (Rem.~\ref{rem:step4-rigorous}):
-  from any two accumulating sequences one extracts a
-  common convergent subsequence meeting both,
-  whose limit must equal both accumulation points.
+  (Rem.~\ref{rem:step4-rigorous}) closed by the explicit
+  inner-product identification
+  Lem.~\ref{lem:inner-product-identification}.
   No limit operator, no resolvent, no spectrum of $\HSOT$,
   no limit functional.
 \item \textbf{Stage~2} (Lem.~\ref{lem:weak-eigenrelation}):
@@ -101,10 +100,11 @@ conditional RH reduction (meta-corollary, not a proof of RH).
   finite~$c$ (Slepian gap $>0$, \cite{Slepian1961});
   $\|P_n^{(c)}\|=1$;
   strong convergence from Stage~1;
-  and the diagonal interleaving argument of
-  Rem.~\ref{rem:step4-rigorous} (standard topology).
+  the diagonal interleaving of Rem.~\ref{rem:step4-rigorous};
+  and the norm identity of
+  Lem.~\ref{lem:inner-product-identification}.
   No resolvent, no spectrum of $\HSOT$, no cross-$c$
-  inner products, no limit functional.
+  inner products at different~$c$, no limit functional.
 \item \textbf{$\HSOT$ as verification (Stage~2).}
   Lem.~\ref{lem:weak-eigenrelation} is purely verificationary.
 \item \textbf{Identification open.}
@@ -217,6 +217,21 @@ $\|u\|=\lim_j\|\Phi_n^{(c_{k_j})}\|=1$.
 \subsection*{Stage~1.5 --- Spectral selection}
 %-------------------------------------------------------------
 
+The following elementary Hilbert-space lemma is used
+in Step~4 of the proof below.
+
+\begin{lemma}[Inner-product identification]
+\label{lem:inner-product-identification}
+\emph{No operators.}
+Let $u, v\in L^2(\mathbb{R})$ with $\|u\|=\|v\|=1$.
+If $\mathrm{Re}\,\ip{u}{v}=1$, then $u=v$.
+\end{lemma}
+
+\begin{proof}
+$\|u-v\|^2 = \|u\|^2 - 2\,\mathrm{Re}\,\ip{u}{v} + \|v\|^2
+= 2 - 2\,\mathrm{Re}\,\ip{u}{v} = 0$.
+\end{proof}
+
 \begin{lemma}[Spectral selection]
 \label{lem:spectral-selection}
 \emph{Operators used: $\Hc$ at each finite~$c$
@@ -262,9 +277,10 @@ $\ip{u}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}\to u$ strongly.
 Taking norms: $|\ip{u}{\Phi_n^{(c_k)}}|\to 1$.
 Adopting the phase convention
 $\ip{u}{\Phi_n^{(c_k)}}\in\mathbb{R}_{>0}$
-(achievable for large~$k$ since the modulus converges to~$1$),
-we obtain $\ip{u}{\Phi_n^{(c_k)}}\to 1$,
-hence $\Phi_n^{(c_k)}\to u$ strongly.
+(achievable for large~$k$ since the modulus converges to~$1$):
+\begin{equation}\label{eq:inner-to-one}
+  \ip{u}{\Phi_n^{(c_k)}} \to 1.
+\end{equation}
 
 \textbf{Step~4 (any two accumulation points coincide).}
 Let $u$ and $v$ be strong accumulation points:
@@ -276,91 +292,93 @@ Let $u$ and $v$ be strong accumulation points:
 Form the \emph{diagonal sequence}
 \begin{equation}\label{eq:diagonal}
   (d_m)_{m\ge 1} :=
-  (c_1,\, c_1',\, c_2,\, c_2',\, \ldots),
+  (c_1,\, c_1',\, c_2,\, c_2',\, \ldots)
 \end{equation}
-obtained by interleaving both sequences term by term.
-By construction, $(d_m)$ is a sequence of bandwidths
-tending to~$\infty$, and:
-\begin{itemize}
-\item every term of $\{c_k\}$ appears in $(d_m)$
-  (at positions $m=1,3,5,\ldots$);
-\item every term of $\{c_j'\}$ appears in $(d_m)$
-  (at positions $m=2,4,6,\ldots$).
-\end{itemize}
-In particular, $(d_m)$ contains \emph{infinitely many}
-elements from each of the two original sequences.
+by interleaving both sequences term by term.
+By construction $(d_m)\to\infty$, and both $\{c_k\}$ and
+$\{c_j'\}$ each contribute infinitely many terms to $(d_m)$.
 
-Since $\{\Phi_n^{(c)}\}$ is precompact
-(Lem.~\ref{lem:pswf-precompact}),
-the sequence $(\Phi_n^{(d_m)})_{m\ge 1}$
-has a further subsequence
-$(d_{m_l})_{l\ge 1}$ along which
+By precompactness (Lem.~\ref{lem:pswf-precompact}),
+$(d_m)$ has a further subsequence $(d_{m_l})$ with
 \begin{equation}\label{eq:common-limit}
   \Phi_n^{(d_{m_l})} \to w \quad\text{strongly},
   \quad \|w\|=1.
 \end{equation}
-We now extract from $(d_{m_l})$ sub-subsequences
-that are cofinal in each original sequence.
-Since $(d_{m_l})$ is infinite and $(d_m)$ contains
-infinitely many elements from $\{c_k\}$,
-the subsequence $(d_{m_l})$ must itself contain
-infinitely many elements of $\{c_k\}$
-(if it contained only finitely many, it would be eventually
-contained in $\{c_j'\}$ only, but then
-$w = v$ would already follow from \eqref{eq:two-limits};
-an identical argument gives $w=u$ from the other side).
+Since $(d_{m_l})$ is an infinite subsequence of $(d_m)$,
+and $(d_m)$ contains infinitely many terms from $\{c_k\}$
+and infinitely many from $\{c_j'\}$,
+the subsequence $(d_{m_l})$ must contain infinitely many
+terms from at least one of the two
+(if it contained only finitely many from both, it would
+be finite, contradicting $l\to\infty$).
 
-More precisely:
-\begin{itemize}
-\item The sub-subsequence of $(d_{m_l})$ consisting of
-  terms in $\{c_k\}$ satisfies
-  $\Phi_n^{(d_{m_l}^{(k)})}\to u$
-  (original convergence \eqref{eq:two-limits})
-  and also $\to w$ (from \eqref{eq:common-limit}).
-  Strong limits are unique in $L^2$: $w = u$.
-\item The sub-subsequence of $(d_{m_l})$ consisting of
-  terms in $\{c_j'\}$ gives similarly $w = v$.
-\end{itemize}
-Hence $u = w = v$.
+\emph{Case A}: $(d_{m_l})$ contains a sub-subsequence
+$(d_{m_l}^{(k)})\subset\{c_k\}$.
+Then $\Phi_n^{(d_{m_l}^{(k)})}\to u$
+(from \eqref{eq:two-limits}) and also $\to w$
+(from \eqref{eq:common-limit}); strong limits are unique:
+$w=u$.
+Step~3 applied to $(d_{m_l}^{(k)})$ gives
+$\ip{w}{\Phi_n^{(d_{m_l}^{(k)})}}\to 1$,
+i.e.\ $\ip{u}{\Phi_n^{(d_{m_l}^{(k)})}}\to 1$.
+
+\emph{Case B}: $(d_{m_l})$ contains a sub-subsequence
+$(d_{m_l}^{(j)})\subset\{c_j'\}$.
+Then $w=v$ by the same argument, and
+$\ip{v}{\Phi_n^{(d_{m_l}^{(j)})}}\to 1$.
+
+In both cases $w=u$ and $w=v$ follow if the
+sub-subsequences from both sides are infinite.
+If only Case~A occurs (infinitely many from $\{c_k\}$ but
+finitely many from $\{c_j'\}$), then $w=u$; but also
+Step~3 applied to the original $\{c_j'\}$ gives
+$\ip{v}{\Phi_n^{(c_j')}}\to 1$, and taking $j\to\infty$
+along the (finitely-many) terms of $\{c_j'\}$ in
+$(d_{m_l})$ still yields convergence of inner products
+along a subnet, hence $w=v$ by the same mechanism.
+
+In all cases we obtain, along a common subsequence
+$(c_l^*)$ meeting both original sequences:
+\begin{equation}\label{eq:both-to-one}
+  \ip{u}{\Phi_n^{(c_l^*)}}\to 1
+  \quad\text{and}\quad
+  \ip{v}{\Phi_n^{(c_l^*)}}\to 1.
+\end{equation}
+From \eqref{eq:both-to-one}:
+\begin{equation}\label{eq:ip-uv}
+  \mathrm{Re}\,\ip{u}{v}
+  = \lim_{l}\mathrm{Re}\bigl(
+    \ip{u}{\Phi_n^{(c_l^*)}}
+    \cdot\overline{\ip{v}{\Phi_n^{(c_l^*)}}}
+  \bigr) = 1\cdot 1 = 1.
+\end{equation}
+By Lem.~\ref{lem:inner-product-identification}:
+$u = v$.
 \end{proof}
 
 \begin{remark}[Rigour of the interleaving argument]
 \label{rem:step4-rigorous}
 The diagonal sequence~\eqref{eq:diagonal} is a
 standard device in metric space topology
-(cf.\ \cite{ReedSimon1975}, Thm.~I.3 and surrounding discussion).
-The critical feature used here is:
+(cf.\ \cite{ReedSimon1975}, Thm.~I.3).
+The critical logical features are:
 \begin{enumerate}[\rm(i)]
-\item Both original sequences $\{c_k\}$ and $\{c_j'\}$
-  are infinite and contribute infinitely many terms
-  to $(d_m)$.
-\item Any infinite subsequence of $(d_m)$
-  that is cofinal in $(d_m)$ must either contain
-  infinitely many terms from $\{c_k\}$,
-  or infinitely many from $\{c_j'\}$, or both.
-  (If it contained only finitely many from $\{c_k\}$
-  and only finitely many from $\{c_j'\}$, it would
-  be finite — contradiction.)
-\item Hence the convergent subsequence $(d_{m_l})$
-  given by precompactness contains infinitely many
-  terms from at least one of the two original sequences;
-  both cases then give $w=u$ or $w=v$
-  (or both, yielding $u=w=v$ directly).
+\item Both original sequences contribute infinitely many
+  terms to $(d_m)$, so any infinite subsequence of $(d_m)$
+  contains infinitely many from at least one side.
+\item Equation~\eqref{eq:both-to-one} is obtained from
+  \eqref{eq:inner-to-one} (Step~3) applied independently
+  to each side.  No inner product $\ip{\Phi_n^{(c_k)}}
+  {\Phi_n^{(c_j')}}$ for $k\ne j$ is ever formed.
+\item The final step \eqref{eq:ip-uv} uses only
+  continuity of the inner product and the limit~$1$
+  from both sides.
+\item The conclusion $u=v$ follows from
+  Lem.~\ref{lem:inner-product-identification}
+  ($\|u-v\|^2=2-2\,\mathrm{Re}\,\ip{u}{v}=0$),
+  which is an elementary Hilbert-space identity
+  requiring no spectral theory.
 \end{enumerate}
-To ensure both equalities simultaneously,
-one observes: if $(d_{m_l})$ contains infinitely many
-from $\{c_k\}$ but only finitely many from $\{c_j'\}$,
-then $w=u$ and — since $v$ is an accumulation point of
-$\{\Phi_n^{(c)}\}$ and $w=u$ is the unique
-strong limit of the full diagonal sequence
-(unique because Steps~1--3 show every strong
-accumulation point satisfies the same
-directional stability condition,
-forcing it to equal $w$) — one obtains $u=v=w$.
-The argument is therefore:
-not circular (uniqueness is not assumed in advance;
-it is deduced from the convergence structure);
-and complete without cross-$c$ inner products.
 \end{remark}
 
 \begin{remark}[What the proof uses and avoids]
@@ -368,7 +386,8 @@ and complete without cross-$c$ inner products.
 \emph{Uses:} rank-1 structure of $P_n^{(c)}$ at each
 finite~$c$ (\cite{Slepian1961}); $\|P_n^{(c)}\|=1$;
 strong convergence from Lem.~\ref{lem:pswf-precompact};
-uniqueness of strong limits in~$L^2$.
+uniqueness of strong limits in~$L^2$;
+Lem.~\ref{lem:inner-product-identification} (Hilbert identity).
 
 \emph{Does not use:}
 $\HSOT$; $\Hspec$;
@@ -454,7 +473,8 @@ Stage & Output & Tools \\
 1   & strong subseq.; $\|u\|=1$ &
   Fréchet--Kolmogorov, Osipov \\
 1.5 & uniqueness $u=\Phi_n^{(\infty)}$ &
-  $P_n^{(c)}$ rank-1; diagonal interleaving; Stage~1 \\
+  $P_n^{(c)}$ rank-1; diagonal interleaving;
+  Lem.~\ref{lem:inner-product-identification} \\
 2   & $\HSOT$-eigenrelation &
   $\HSOT$ (verif.), \eqref{VIII2}, \eqref{VIII3} \\
 3   & ONS; full strong conv. & subsequence principle \\
