@@ -28,6 +28,7 @@
 \newcommand{\Hlim}{\mathcal{H}_{\lim}}
 \newcommand{\Hstrong}{H_{\lim}^{(\mathrm{str})}}
 \newcommand{\Hspectral}{H_{\lim}^{(\mathrm{sp})}}
+\newcommand{\HSOT}{\mathcal{H}^{\mathrm{SOT}}}
 \newcommand{\Dom}{\mathrm{Dom}}
 \newcommand{\qc}{q_c}
 \newcommand{\qlim}{q_{\lim}}
@@ -78,11 +79,12 @@ are unified by $T_{\qlim}=\Hstrong$,
 yielding strong resolvent convergence.
 For a spectrally constructed
 $\Hspectral$ (Paper~IX),
-uniqueness in the Hausdorff SOT
-topology on $\mathcal{B}(L^2)$ gives
+the identification
 $\Hstrong=\overline{\Hspectral}$
-(Bridge theorem) without eigenfunction
-analysis.
+(Bridge theorem) is conditional
+on a structural hypothesis
+(Paper~IX, Open Problem~7);
+see Sec.~\ref{sec:bridge}.
 No unconditional connection to
 $\zeta(s)$-zeros is made.
 \end{abstract}
@@ -104,13 +106,16 @@ $\zeta(s)$-zeros is made.
 \end{cases}
 \xRightarrow{T_{\qlim}=\Hstrong}
 \text{resolvent}
-\xRightarrow{\text{Hausdorff SOT}}
+\xRightarrow{\text{Hyp.~(IX.b)}}
 \text{Bridge.}
 \]
 Thread~A uses Cauchy nets;
 Thread~B uses compactness;
 both originate from
 Lemma~\ref{lem:ftb}.
+The Bridge theorem is conditional
+on Hyp.~(IX.b) (identification problem);
+all other results are unconditional.
 No eigenfunction analysis;
 $\zeta$-connection speculative only.
 
@@ -121,7 +126,8 @@ $\zeta$-connection speculative only.
 (III)~Rate (Sec.~\ref{sec:rate},
 imports Paper~VIII only);
 (IV)~Bridge (Sec.~\ref{sec:bridge},
-imports Paper~IX only);
+imports Paper~IX only,
+\emph{conditional on Hyp.~(IX.b)});
 (V)~Consequences (Sec.~\ref{sec:consequences}).
 
 \textit{Changes v44\,$\to$\,v45:}
@@ -132,6 +138,16 @@ Fix~3: Bridge proof restated as
 ``same net, unique limit in
 Hausdorff space''.
 lem:wc unchanged.
+
+\textit{Change v45\,$\to$\,v46:}
+Hyp.~(IX.b): identification
+$\HSOT=\overline{\Hspectral}$ demoted
+from Paper~IX import to explicit
+structural hypothesis
+(Paper~IX, Open Problem~7;
+not proved in Paper~IX).
+Bridge theorem now conditional;
+all unconditional results unchanged.
 
 \tableofcontents
 
@@ -439,18 +455,37 @@ Rem.~2.6):
   hence
   $\overline{\Hspectral}\in
   \mathcal{B}(L^2)$.
+  \emph{(Unconditional in Paper~IX,
+  Thm.~3.3 and Rem.~1.3.)}
 \item\label{IXb}
-  The net $(\Hc)_{c\in(0,\infty)}$,
-  ordered by $c\le c'$,
-  is SOT-convergent and satisfies
-  $\Hc\xrightarrow{\mathrm{SOT}}
-  \overline{\Hspectral}$
-  in the SOT topology on
-  $\mathcal{B}(L^2)$.
+  \emph{(Hypothesis; identification
+  problem from Paper~IX,
+  Open Problem~7;
+  not proved in Paper~IX.)}
+  The net $(\Hc)_{c\in(0,\infty)}$
+  converges in the strong operator
+  topology to a limit $\HSOT$ which
+  coincides with the closure of the
+  spectral operator:
+  \[
+    \Hc\xrightarrow{\mathrm{SOT}}\HSOT
+    \quad\text{and}\quad
+    \HSOT=\overline{\Hspectral}.
+  \]
+  The existence of the SOT-limit is
+  unconditional
+  (Lem.~\ref{lem:hlim-bounded});
+  the identification
+  $\HSOT=\overline{\Hspectral}$
+  is a structural hypothesis
+  not yet established in the series.
 \end{enumerate}
 
-\begin{theorem}[Bridge theorem]
+\begin{theorem}[Bridge theorem
+  (conditional on Hyp.~\ref{IXb})]
 \label{thm:bridge}
+\emph{Conditional on
+Hyp.~\hyperref[IXb]{(IX.b)}.}
 $\Hstrong=\overline{\Hspectral}$.
 \end{theorem}
 \begin{proof}
@@ -459,20 +494,43 @@ ordered by $c\le c'$ converges
 in the SOT topology on
 $\mathcal{B}(L^2)$ to both
 $\Hstrong$ (Lem.~\ref{lem:hlim-bounded})
-and $\overline{\Hspectral}$ (\eqref{IXb}).
+and $\HSOT=\overline{\Hspectral}$
+(Hyp.~\hyperref[IXb]{(IX.b)}).
 Limits of a convergent net in a
 Hausdorff topological space are
 unique; hence
 $\Hstrong=\overline{\Hspectral}$.
 \end{proof}
 
+\begin{remark}[Separation of existence
+  and identification]
+\label{rem:bridge-sep}
+The SOT-limit $\Hstrong$ exists
+unconditionally
+(Lem.~\ref{lem:hlim-bounded})
+and satisfies $T_{\qlim}=\Hstrong$
+(Thm.~\ref{thm:friedrichs}).
+The identification
+$\Hstrong=\overline{\Hspectral}$
+requires Hyp.~\hyperref[IXb]{(IX.b)}
+and is the content of
+Thm.~\ref{thm:bridge}.
+The two questions ---
+\emph{existence} of the SOT-limit vs.
+\emph{identification} with the
+spectral closure --- are logically
+independent; conflating them was
+the source of the earlier circularity.
+\end{remark}
+
 \begin{remark}
 No eigenfunction analysis:
-equality is the uniqueness of the
-limit of the SOT-convergent net
-$(\Hc)_{c>0}$ in the Hausdorff
+under Hyp.~\hyperref[IXb]{(IX.b)},
+equality follows from uniqueness of
+the SOT-limit in the Hausdorff
 topology on $\mathcal{B}(L^2)$.
-$\Hlim:=\Hstrong=\overline{\Hspectral}$.
+$\Hlim:=\Hstrong=\overline{\Hspectral}$
+(conditional).
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -499,8 +557,11 @@ $T_{\qlim}=\Hlim$;
 $\qc\xrightarrow{\mathrm{M}}\qlim$;
 $(\Hc-z)^{-1}\xrightarrow{\mathrm{SOT}}
 (\Hlim-z)^{-1}$;
-$\Hstrong=\overline{\Hspectral}$;
 rate $O(c^{-1/4})$ (Paper~VIII).
+The identification
+$\Hstrong=\overline{\Hspectral}$
+is conditional on
+Hyp.~\hyperref[IXb]{(IX.b)}.
 \end{remark}
 
 \begin{remark}[Speculative:
@@ -528,6 +589,15 @@ identification.
 \label{prob:completeness}
 Prove $\{\Phi_n^{(\infty)}\}$
 complete in $L^2(\mathbb{R})$.
+\end{problem}
+
+\begin{problem}[Identification]
+\label{prob:identification}
+Prove Hyp.~\hyperref[IXb]{(IX.b)}:
+$\HSOT=\overline{\Hspectral}$.
+This is Paper~IX, Open Problem~7,
+and the central open problem
+for the Bridge theorem.
 \end{problem}
 
 \begin{problem}[Independent rate]
