@@ -247,10 +247,42 @@ set $c_k:=c_k^{(k)}$.
 \le C_\kappa c^{-1/4}$ (Paper~VIII, Cor.~4.3).
 \textbf{Step~3.} (iii) along any sequence
 (Paper~X, Lem.~2.2).
-\textbf{Step~4.} Orthonormality: off-diagonal
-inner products vanish by weak convergence;
-$\|\Phi_n^{(\infty)}\|=1$ from Paper~IX,
-Prop.~2.2.
+\textbf{Step~4 (Orthonormality).}
+Since $L^2(\mathbb{R})$ is separable,
+the countable diagonal extraction in
+Steps~1--2 suffices to handle all indices
+$n \ge 0$ simultaneously.
+
+For each fixed $c_k$, $\{\Phi_n^{(c_k)}\}_{n \ge 0}$
+is an orthonormal system of Slepian eigenfunctions,
+so $\langle \Phi_m^{(c_k)}, \Phi_n^{(c_k)} \rangle = 0$
+for all $m \ne n$ and all $k$.
+
+For $m \ne n$, we pass to the limit as follows.
+By \eqref{XI2} and the fact that
+$\|\Phi_n^{(c_k)}\| = 1 = \|\Phi_n^{(\infty)}\|$
+(the latter from Paper~IX, Prop.~2.2),
+it follows that $\Phi_n^{(c_k)} \to \Phi_n^{(\infty)}$
+strongly along $c_k$
+(since $\|x_k - x\|^2 = 2 - 2\,\mathrm{Re}\ip{x_k}{x} \to 0$
+whenever $x_k \rightharpoonup x$ and $\|x_k\| = \|x\|$).
+Since $\Phi_m^{(c_k)} \rightharpoonup \Phi_m^{(\infty)}$
+weakly, and since weak$+$strong convergence passes
+inner products to the limit
+(i.e.\ if $x_k \rightharpoonup x$ and
+$y_k \to y$ strongly, then
+$\langle x_k, y_k \rangle \to \langle x, y \rangle$;
+see e.g.\ \cite[Ch.~II]{ReedSimon1975}),
+we obtain:
+\[
+  \langle \Phi_m^{(\infty)}, \Phi_n^{(\infty)} \rangle
+  = \lim_{k \to \infty}
+    \langle \Phi_m^{(c_k)}, \Phi_n^{(c_k)} \rangle
+  = 0.
+\]
+Combined with $\|\Phi_n^{(\infty)}\| = 1$
+(Paper~IX, Prop.~2.2), this establishes that
+$\{\Phi_n^{(\infty)}\}$ is orthonormal.
 \end{proof}
 
 \begin{remark}[Scope]
@@ -352,6 +384,8 @@ $\|\Phi_n^{(\infty)}\|=1$: Paper~IX, Prop.~2.2
 These are independent inputs;
 the limit norm does \emph{not} follow from
 weak convergence alone.
+This ensures that no mass escapes in the limit,
+which is essential for spectral persistence.
 This is the \emph{only} point in the paper
 where Paper~IX is essential;
 all other arguments use only Paper~X and
@@ -414,7 +448,9 @@ $\|\lambda_n^{(c_k)}\Phi_n^{(c_k)}
  + |\lambda_n^{(\infty)}|
    \|\Phi_n^{(c_k)}-\Phi_n^{(\infty)}\|
 \to 0$
-by \eqref{XI1} and strong convergence along $c_k$.
+by \eqref{XI1} and strong convergence along $c_k$;
+note $|\lambda_n^{(\infty)}|\le 1$
+since $\sigma(\Hlim)\subset[0,1]$ (Paper~X).
 
 Since the left-hand side of \eqref{eq:ABC}
 is independent of $k$ and the right-hand
@@ -470,6 +506,9 @@ For $\lambda\in(0,1)$, define
 \end{equation}
 where $W_c = \{n : |n - 2c/\pi|\le C_0\log c\}$
 (Def.~\ref{def:window}).
+Since $\lambda\mapsto c(\lambda)$ is monotone
+(Lem.~\ref{lem:clambda-exists}),
+it is Borel measurable and locally bounded.
 \end{definition}
 
 \begin{remark}[Window-robustness]
@@ -795,6 +834,11 @@ $\lambda_{n'}^{(c')}=\lambda$ exactly.
 Since $n'\in W_{c(\lambda)}$,
 $|n'-2c(\lambda)/\pi|\le C_0\log c(\lambda)$,
 so \eqref{eq:transfer-index} holds.
+Note that $n'\in W_{c(\lambda)}$ implies
+$n' \le 2c(\lambda)/\pi + C_0\log c(\lambda)
+\le \kappa c'$ for all sufficiently large
+$c(\lambda)$ (since $c' \ge c(\lambda) - C$),
+so the rate bound \eqref{XI1} applies.
 By \eqref{XI1}:
 $|\lambda_{n'}^{(c')} - \lambda_{n'}^{(\infty)}|
 \le C_\kappa (c')^{-1/4}$,
