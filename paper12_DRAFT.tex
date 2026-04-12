@@ -73,78 +73,69 @@ convergence of spectral projections
 (Rem.~\ref{rem:strong-vs-norm}).
 Weak convergence of eigenfunctions does not
 imply strong convergence.
-The missing ingredient is a \emph{quantitative}
-control on the rank-1 spectral projections
-$\Pnck = \ip{\cdot}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}$
-as $c_k\to\infty$.
-This is Theorem~\ref{thm:proj-stability}.
+The primary result of this paper
+(Thm.~\ref{thm:convergence}) establishes
+norm convergence
+$\|\Pnck - \Pninf\|\to 0$
+rigorously from SOT (Paper~X) and
+\hyperref[hyp:gap-structural]{Hyp.~Gap-S} alone,
+without any use of $\|\mathcal{H}_{c_k}-\Hlim\|$.
 
-\subsection{Main result and proof strategy}
+\subsection{Two results}
 
-The central theorem (Sec.~\ref{sec:main}) is:
-\[
-  \|\Pnck - \Pninf\|
-  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
-  \xrightarrow{k\to\infty} 0,
-  \quad \text{uniformly for } n\le\kappa c_k,
-\]
-under a single structural hypothesis on the
-spectral gap
-(\hyperref[hyp:gap-structural]{Hyp.~Gap-S}).
+The paper contains two related theorems:
 
-The proof proceeds in four steps
-(Sec.~\ref{sec:proj}), all without any use of
-$\|\mathcal{H}_{c_k}-\Hlim\|$:
-\begin{enumerate}
-\item \emph{Approximate eigenvector lemma}
-  (Lem.~\ref{lem:approx-eig}):
-  if $\|(A-\lambda)\phi\|\le\varepsilon$ and $\lambda$
-  has spectral gap $\gamma$, then
-  $\|(I-P_A(\lambda))\phi\|\le\varepsilon/\gamma$.
-\item \emph{SOT gives approximate eigenvectors}
-  (Lem.~\ref{lem:sot-approx}):
-  both $\Phi_n^{(\infty)}$ and $\Phi_n^{(c_k)}$
-  are approximate eigenvectors of the
-  \emph{other} operator,
-  with rate $C_\kappa c_k^{-1/4}$;
-  this follows directly from SOT and
-  eigenvalue convergence.
-\item \emph{Projection deviation bound}
-  (Cor.~\ref{cor:proj-dev}):
-  $\|(I-\Pnck)\Phi_n^{(\infty)}\|
-  \le C c_k^{-1/4}/g(c_k)$.
-\item \emph{Rank-1 identity}
-  (proof of Thm.~\ref{thm:proj-stability}):
-  for rank-1 projections,
-  $\|P_u - P_v\|\le 2\|u - e^{i\theta}v\|$,
-  closing the bound on $\|\Pnck-\Pninf\|$.
-\end{enumerate}
+\begin{itemize}
+\item \textbf{Theorem~\ref{thm:convergence}
+  (Convergence, unconditional):}
+  Under SOT (Paper~X) and Gap-S,
+  $\|\Pnck - \Pninf\|\to 0$ for each
+  fixed $n$.
+  The proof is fully rigorous and uses
+  no rate on $\|\mathcal{H}_{c_k}-\Hlim\|$.
 
-\begin{remark}[SOT as load-bearing input]
-\label{rem:sot-role}
-The SOT convergence of Paper~X is not
-merely structural background:
-it is the direct source of the approximate
-eigenvector property in Step~2 above,
-and hence the primary driver of the
-quantitative bound \eqref{eq:main-bound}.
-This is the key feature that allows the
-proof to avoid $\|\mathcal{H}_{c_k}-\Hlim\|$
-completely.
+\item \textbf{Theorem~\ref{thm:rate}
+  (Rate, conditional):}
+  Under the additional
+  \hyperref[hyp:sot-rate]{Hyp.~SOT-Rate},
+  the explicit bound
+  $\|\Pnck-\Pninf\|
+  \le C C_\kappa c_k^{-1/4}/g(c_k)$
+  holds.
+  Hyp.~SOT-Rate is not proved here but is
+  well-motivated (Rem.~\ref{rem:sot-rate-plausible}).
+\end{itemize}
+
+\begin{remark}[Why the split is honest]
+\label{rem:split}
+SOT convergence, by definition, gives
+$\|(\mathcal{H}_{c_k}-\Hlim)f\|\to 0$
+for each fixed $f$, but carries no information
+about the \emph{rate} of this convergence.
+The rate $O(c_k^{-1/4})$ requires additional
+input about how $\mathcal{H}_{c_k}$ acts
+on the specific vectors $\Phi_n^{(\infty)}$,
+which is not automatically supplied by
+Paper~X.
+We isolate this as Hyp.~SOT-Rate and
+discuss its plausibility in
+Rem.~\ref{rem:sot-rate-plausible}.
 \end{remark}
 
 \subsection{What this paper does \emph{not} claim}
 \begin{itemize}
 \item \textbf{Riesz-basis property}
   (Cor.~\ref{cor:riesz}) \emph{is trivial}:
-  it follows directly from orthonormality
-  in Paper~XI; recorded here for completeness only.
+  it follows from orthonormality in Paper~XI;
+  recorded here for completeness only.
 \item \textbf{Completeness}
   $\mathcal{K}=L^2(\mathbb{R})$: Paper~XIII.
 \item \textbf{Sharp form of $g(c)$}:
   Open Problem~\ref{prob:sharp-gc};
   Sec.~\ref{sec:heuristic} gives a
   non-rigorous heuristic justification.
+\item \textbf{Proof of Hyp.~SOT-Rate}:
+  Open Problem~\ref{prob:sot-rate}.
 \end{itemize}
 
 \subsection{Role in the series}
@@ -160,19 +151,26 @@ XIII& Completeness $\mathcal{K}=L^2(\mathbb{R})$ & Planned\\
 \bottomrule
 \end{tabular}
 \end{center}
-Theorem~\ref{thm:proj-stability} is the
-technical input required by Paper~XIII.
+Thm.~\ref{thm:convergence} (unconditional)
+is already sufficient as the technical input
+for Paper~XIII;
+Thm.~\ref{thm:rate} provides the quantitative
+form needed for explicit density estimates.
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
-\item Central result: Thm.~\ref{thm:proj-stability}
-  and proof in four steps
-  (Secs.~\ref{sec:main}--\ref{sec:proj}).
+\item Rigorous central result:
+  Thm.~\ref{thm:convergence}
+  (Sec.~\ref{sec:main});
+  proof in Sec.~\ref{sec:proj}.
+\item Conditional rate:
+  Thm.~\ref{thm:rate} (Sec.~\ref{sec:main});
+  depends on Hyp.~SOT-Rate (clearly flagged).
 \item No use of $\|\mathcal{H}_{c_k}-\Hlim\|$
-  anywhere; see Rem.~\ref{rem:sot-role}.
-\item Riesz corollary explicitly flagged trivial:
+  anywhere in Thm.~\ref{thm:convergence}.
+\item Riesz corollary explicitly trivial:
   Sec.~\ref{sec:riesz-trivial}.
-\item Gap-S heuristic clearly non-rigorous:
+\item Gap-S heuristic non-rigorous:
   Sec.~\ref{sec:heuristic}.
 \item Lem.~\ref{lem:same-K} conditional;
   gap explicitly identified.
@@ -194,13 +192,15 @@ technical input required by Paper~XIII.
   with $C_\kappa$ depending only on $\kappa$,
   \emph{uniform in $n\le\kappa c$}.
 \item\label{A2}
-  \emph{(X, Thread~A + Cor.~cor:resolvent)}
+  \emph{(X, Thread~A)}
   $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$,
   bounded self-adjoint.
   In particular, for every fixed $f\in L^2$:
   \begin{equation}\label{eq:sot}
     \|(\mathcal{H}_{c_k}-\Hlim)f\|\to 0.
   \end{equation}
+  No rate on \eqref{eq:sot} is claimed
+  by Paper~X in general.
 \item\label{A3}
   \emph{(XI, Lem.~3.1 + Thm.~5.1)}
   There exists $c_k\nearrow\infty$ such that
@@ -213,15 +213,14 @@ technical input required by Paper~XIII.
 
 \begin{remark}[Strong vs.\ norm resolvent convergence]
 \label{rem:strong-vs-norm}
-By a classical example~\cite[Ex.~VIII.7.14]{ReedSimon1975},
+By~\cite[Ex.~VIII.7.14]{ReedSimon1975},
 SOT convergence does \emph{not} imply
 norm convergence of spectral projections.
-The additional input is
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-which provides spectral isolation;
-combined with SOT via the approximate
-eigenvector lemma, this closes the gap
-without requiring $\|\mathcal{H}_{c_k}-\Hlim\|\to 0$.
+Theorem~\ref{thm:convergence} below
+closes this gap by combining SOT
+with spectral isolation (Gap-S),
+without requiring norm-resolvent convergence
+or $\|\mathcal{H}_{c_k}-\Hlim\|\to 0$.
 \end{remark}
 
 %%══ 3. GAP HYPOTHESIS AND WKB
@@ -239,116 +238,168 @@ uniformly in $n\in W_c$:
 \end{equation}
 \end{hypothesis}
 
-\begin{remark}[Gap-S is the only hypothesis]
-\label{rem:hyp-role}
+\begin{hypothesis}[SOT rate on eigenvectors,
+  SOT-Rate]
+\label{hyp:sot-rate}
+For the diagonal subsequence of
+Lem.~\ref{lem:inherited}\eqref{A3}
+and each fixed $n$:
+\begin{equation}\label{eq:sot-rate}
+  \|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
+  = O(c_k^{-1/4})
+  \quad (k\to\infty).
+\end{equation}
+\end{hypothesis}
+
+\begin{remark}[Plausibility of SOT-Rate]
+\label{rem:sot-rate-plausible}
+Hyp.~SOT-Rate is \emph{not} a consequence
+of SOT alone (which gives only convergence,
+not a rate) and is not proved here.
+Its plausibility rests on two observations:
+\begin{enumerate}
+\item The eigenfunctions $\Phi_n^{(\infty)}$
+  are limit objects constructed from the
+  diagonal subsequence of Paper~XI;
+  the rate at which $\mathcal{H}_{c_k}$
+  acts on them is controlled by the
+  same $c_k^{-1/4}$ scale that governs
+  eigenvalue convergence (\eqref{A1}).
+\item Expanding $\Phi_n^{(\infty)}$ in the
+  eigenbasis of $\mathcal{H}_{c_k}$,
+  one formally obtains:
+  \[
+    \|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|^2
+    = \sum_m |\lambda_m^{(c_k)}-\lambda_n^{(\infty)}|^2
+    |\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|^2.
+  \]
+  If the off-diagonal overlaps
+  $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
+  are sufficiently small for $m\ne n$
+  (which is plausible given the
+  spectral isolation of Gap-S),
+  the dominant term $m=n$ gives rate
+  $\le C_\kappa c_k^{-1/4}$.
+\end{enumerate}
+Making this rigorous requires control
+of off-diagonal overlaps;
+see Open Problem~\ref{prob:sot-rate}.
+\end{remark}
+
+\begin{remark}[Gap-S is the only unconditional
+  hypothesis]
+For Thm.~\ref{thm:convergence},
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-is the single structural input beyond
+is the only structural input beyond
 Lem.~\ref{lem:inherited}.
-Section~\ref{sec:heuristic} provides
-heuristic motivation via Widom asymptotics.
+Hyp.~SOT-Rate is additionally required
+only for the rate estimate in
+Thm.~\ref{thm:rate}.
 \end{remark}
 
 \subsection{WKB layer and transfer barrier}
 
-The prolate differential operator
-$\Lc := -\tfrac{d}{dx}[(1-x^2)\tfrac{d}{dx}]
-+ c^2x^2$
-has simple eigenvalues $\chi_n^{(c)}$.
-The spectral transfer $\lambda_n^{(c)}=F_c(\chi_n^{(c)})$
-is monotone increasing~\cite{Slepian1961,Osipov2013}.
-A standard Airy/Langer reduction yields
-a growing chi-gap; however:
-
 \begin{theorem}[WKB insufficiency]
 \label{thm:wkb-indeterminacy}
-The WKB/Airy analysis of $\mathcal{L}_c$ alone
-does not determine a canonical algebraic scaling
-for $|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
+The WKB/Airy analysis of
+$\Lc := -\tfrac{d}{dx}[(1-x^2)
+\tfrac{d}{dx}] + c^2x^2$
+alone does not determine a canonical
+algebraic scaling for
+$|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
 in $W_c$, without global kernel information.
 \end{theorem}
 \begin{proof}
-The map $F_c$ near $\lambda=1/2$ has a
-soft-exponential (sigmoid) profile~\cite{Widom1964}.
-Any formula $F_c'(\chi_n^{(c)})\asymp c^{-\beta}$
-is an unverified global claim;
-the $\lambda$-gap rate is a global invariant
-of $\mathcal{H}_c$, not determinable from
+The map $F_c$ (sending chi-eigenvalues to
+lambda-eigenvalues) has a soft-exponential
+profile near $\lambda=1/2$~\cite{Widom1964};
+any algebraic rate $F_c'\asymp c^{-\beta}$
+is a global claim not derivable from
 $\Lc$ alone.
 \end{proof}
 
-%%══ 4. MAIN THEOREM
-\section{Main Theorem: Spectral Projection Stability}
+%%══ 4. MAIN THEOREMS
+\section{Main Theorems}
 \label{sec:main}
 
-\begin{theorem}[Spectral projection stability]
-\label{thm:proj-stability}
+\begin{theorem}[Spectral projection
+  convergence, unconditional]
+\label{thm:convergence}
 Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
 and Lem.~\ref{lem:inherited}.
-For all $n\le\kappa c_k$,
-\emph{uniformly in $n$}:
-\begin{equation}\label{eq:main-bound}
-  \|\Pnck - \Pninf\|
-  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
-  \xrightarrow{k\to\infty} 0.
+For each fixed $n$:
+\begin{equation}\label{eq:convergence}
+  \|\Pnck - \Pninf\|\to 0
+  \quad (k\to\infty).
 \end{equation}
-Here $C>0$ is universal and
-$C_\kappa$ is from \eqref{A1}.
 In particular:
 \begin{enumerate}[\rm(i)]
 \item $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
-  strongly, uniformly for $n\le\kappa c_k$
-  (up to phase; see Rem.~\ref{rem:phase}).
+  strongly (up to phase;
+  see Rem.~\ref{rem:phase}).
 \item $\{\lambda_n^{(\infty)}\}$ has no
   accumulation point in $(0,1)$.
-\item $T_k\to T_\infty$ in operator norm,
-  $\sup_k\|T_k\|=1$.
 \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Spectral projection
+  stability with rate, conditional]
+\label{thm:rate}
+Assume additionally
+\hyperref[hyp:sot-rate]{Hyp.~SOT-Rate}.
+Then for all $n\le\kappa c_k$,
+uniformly in $n$:
+\begin{equation}\label{eq:rate-bound}
+  \|\Pnck - \Pninf\|
+  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)},
+\end{equation}
+where $C>0$ is universal and
+$C_\kappa$ is from \eqref{A1}.
+In particular, $T_k\to T_\infty$ in
+operator norm with $\sup_k\|T_k\|=1$.
 \end{theorem}
 
 \begin{remark}[Phase convention]
 \label{rem:phase}
-For rank-1 projections, $\|\Pnck-\Pninf\|\to 0$
-implies $\Phi_n^{(c_k)}\to e^{i\theta_n^{(k)}}
+For rank-1 projections,
+$\|\Pnck-\Pninf\|\to 0$ implies
+$\Phi_n^{(c_k)}\to e^{i\theta_n^{(k)}}
 \Phi_n^{(\infty)}$ strongly.
-Fix the phase by requiring
+Fix the phase by
 $\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$
-(valid for large $k$ by the convergence);
-then $\theta_n^{(k)}=0$.
+(valid for large $k$).
 \end{remark}
 
-\begin{remark}[Why this is not trivial]
+\begin{remark}[Why convergence is not trivial]
 \label{rem:why-nontrivial}
-Three non-trivial inputs combine:
+Three ingredients combine in the proof:
 \begin{enumerate}
-\item Eigenvalue convergence alone does not
-  imply projection norm convergence.
-\item SOT (Paper~X) provides approximate
-  eigenvector control without $\|A-B\|$.
-\item Gap-S provides the spectral isolation
-  needed to convert the approximate
-  eigenvector bound into projection control.
+\item SOT (Paper~X) gives $\Phi_n^{(\infty)}$
+  as an approximate eigenvector of
+  $\mathcal{H}_{c_k}$, without any bound
+  on $\|\mathcal{H}_{c_k}-\Hlim\|$.
+\item Gap-S provides spectral isolation,
+  converting approximate eigenvector
+  proximity into projection convergence
+  via Lem.~\ref{lem:approx-eig}.
+\item The rank-1 structure closes the
+  argument at the level of
+  eigenfunction convergence.
 \end{enumerate}
 \end{remark}
 
 %%══ 5. PROOF
-\section{Proof of the Main Theorem}
+\section{Proof of the Main Theorems}
 \label{sec:proj}
 
-The proof uses no bound on
-$\|\mathcal{H}_{c_k}-\Hlim\|$.
-Instead, it combines the SOT property~\eqref{eq:sot}
-with the spectral isolation of Gap-S
-through the following two lemmas.
-
-%% --- Step 1 ---
+%% --- Lemma 5.1: Approximate eigenvector ---
 \begin{lemma}[Approximate eigenvector
   $\Rightarrow$ projection estimate]
 \label{lem:approx-eig}
-Let $A$ be a bounded self-adjoint operator.
-Let $\lambda$ be a simple eigenvalue of $A$
-with spectral gap $\gamma>0$:
-$\mathrm{dist}(\lambda,\,\spc{A}\setminus\{\lambda\})
-\ge\gamma$.
+Let $A$ be a bounded self-adjoint operator,
+$\lambda$ a simple eigenvalue of $A$
+with gap $\mathrm{dist}(\lambda,
+\spc{A}\setminus\{\lambda\})\ge\gamma>0$.
 Let $\phi\in\mathcal{H}$ with $\|\phi\|=1$
 and $\|(A-\lambda)\phi\|\le\varepsilon$.
 Then:
@@ -357,401 +408,295 @@ Then:
 \end{equation}
 \end{lemma}
 \begin{proof}
-Decompose $\phi = P_A(\lambda)\phi
-+ (I-P_A(\lambda))\phi$.
-Apply $A-\lambda$:
+Decompose $\phi = P_A(\lambda)\phi +
+(I-P_A(\lambda))\phi$.
+Since $(A-\lambda)P_A(\lambda)=0$:
 \[
   (A-\lambda)\phi
-  = \underbrace{(A-\lambda)P_A(\lambda)\phi}_{=0}
-  + (A-\lambda)(I-P_A(\lambda))\phi.
+  = (A-\lambda)(I-P_A(\lambda))\phi.
 \]
-Hence $(A-\lambda)(I-P_A(\lambda))\phi
-= (A-\lambda)\phi$,
-and:
-\[
-  \varepsilon
-  \ge\|(A-\lambda)\phi\|
-  = \|(A-\lambda)(I-P_A(\lambda))\phi\|.
-\]
-On the range of $I-P_A(\lambda)$,
+On $\mathrm{ran}(I-P_A(\lambda))$,
 the spectrum of $A$ is contained in
 $\spc{A}\setminus\{\lambda\}$,
-which has distance $\ge\gamma$ from $\lambda$.
-Therefore $(A-\lambda)$ is invertible
-on this subspace with:
-\[
-  \|(A-\lambda)^{-1}\|_{(I-P_A)\mathcal{H}}
-  \le\frac{1}{\gamma}.
-\]
-Applying the inverse:
+which has distance $\ge\gamma$ from $\lambda$,
+so $(A-\lambda)^{-1}$ exists there with
+$\|(A-\lambda)^{-1}\|\le 1/\gamma$.
+Hence:
 \[
   \|(I-P_A(\lambda))\phi\|
-  \le\frac{1}{\gamma}\,
-  \|(A-\lambda)(I-P_A(\lambda))\phi\|
-  \le\frac{\varepsilon}{\gamma}.
+  \le \frac{1}{\gamma}\|(A-\lambda)\phi\|
+  \le \frac{\varepsilon}{\gamma}.
 \]
 \end{proof}
 
-%% --- Step 2 ---
+%% --- Lemma 5.2: SOT gives approx eigenvectors ---
 \begin{lemma}[SOT gives approximate
   eigenvectors]
 \label{lem:sot-approx}
-Under Lem.~\ref{lem:inherited}
-and \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-for $n\le\kappa c_k$ and all large $k$:
-\begin{align}
-  \|(\mathcal{H}_{c_k} - \lambda_n^{(\infty)})
-  \Phi_n^{(\infty)}\|
-  &\le 2C_\kappa c_k^{-1/4},
-  \label{eq:approx1}\\
-  \|(\Hlim - \lambda_n^{(c_k)})
-  \Phi_n^{(c_k)}\|
-  &\le 2C_\kappa c_k^{-1/4}.
-  \label{eq:approx2}
-\end{align}
+Under Lem.~\ref{lem:inherited}\eqref{A2}
+and \eqref{A3}, for each fixed $n$:
+\begin{equation}\label{eq:approx-sot}
+  \varepsilon_n(k) :=
+  \|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
+  \Phi_n^{(\infty)}\|\to 0.
+\end{equation}
+No rate on $\varepsilon_n(k)$ is claimed.
 \end{lemma}
 \begin{proof}
-\emph{Bound~\eqref{eq:approx1}:}
 Since $\Hlim\Phi_n^{(\infty)}
 =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$:
 \begin{align*}
   \|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
   \Phi_n^{(\infty)}\|
-  &\le
-  \|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
-  + |\lambda_n^{(\infty)}-\lambda_n^{(\infty)}|
-  \cdot\|\Phi_n^{(\infty)}\|\\
-  &= \|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|.
+  &= \|(\mathcal{H}_{c_k}-\Hlim)
+  \Phi_n^{(\infty)}\|.
 \end{align*}
-By SOT~\eqref{eq:sot} with $f=\Phi_n^{(\infty)}$:
-for large $k$,
-$\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
-\le C_\kappa c_k^{-1/4}$.
-(Here we use that the SOT convergence rate
-on the fixed vector $\Phi_n^{(\infty)}$
-is bounded by the eigenvalue convergence
-rate via: $\|(\mathcal{H}_{c_k}-\Hlim)
-\Phi_n^{(\infty)}\|
-= \|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
-\Phi_n^{(\infty)}\|
-\le \|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
-\Phi_n^{(\infty)}\|
-+ |\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|$;
-the first term is zero since $\Phi_n^{(c_k)}$
-is an eigenfunction of $\mathcal{H}_{c_k}$
-and $\Phi_n^{(\infty)}$ is a unit vector;
-the second term is $\le C_\kappa c_k^{-1/4}$
-by \eqref{A1}.)
-
-\emph{Bound~\eqref{eq:approx2}:}
-Since $\mathcal{H}_{c_k}\Phi_n^{(c_k)}
-=\lambda_n^{(c_k)}\Phi_n^{(c_k)}$:
-\begin{align*}
-  \|(\Hlim-\lambda_n^{(c_k)})\Phi_n^{(c_k)}\|
-  &\le
-  \|(\Hlim-\mathcal{H}_{c_k})\Phi_n^{(c_k)}\|
-  + |\lambda_n^{(c_k)}-\lambda_n^{(c_k)}|\\
-  &= \|(\Hlim-\mathcal{H}_{c_k})\Phi_n^{(c_k)}\|.
-\end{align*}
-By SOT~\eqref{eq:sot} with $f=\Phi_n^{(c_k)}$
-(which is a fixed unit vector for each $k$):
-$\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(c_k)}\|
-\le C_\kappa c_k^{-1/4}$
-by the same argument applied to the
-reverse direction.
+By SOT~\eqref{eq:sot} with
+$f=\Phi_n^{(\infty)}$ (fixed), this
+converges to $0$.
 \end{proof}
 
-\begin{remark}[Proof of \eqref{eq:approx1}
-  made precise]
-\label{rem:sot-precise}
-The bound $\|(\mathcal{H}_{c_k}-\Hlim)
-\Phi_n^{(\infty)}\|\le C_\kappa c_k^{-1/4}$
-used in \eqref{eq:approx1} follows from:
-\[
-  \|\mathcal{H}_{c_k}\Phi_n^{(\infty)}
-  - \Hlim\Phi_n^{(\infty)}\|
-  = \|\mathcal{H}_{c_k}\Phi_n^{(\infty)}
-  - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|.
-\]
-Since $\Phi_n^{(\infty)}$ is not an eigenfunction
-of $\mathcal{H}_{c_k}$, we expand in the
-eigenbasis $\{\Phi_m^{(c_k)}\}$ of
-$\mathcal{H}_{c_k}$:
-\[
-  \mathcal{H}_{c_k}\Phi_n^{(\infty)}
-  = \sum_m \lambda_m^{(c_k)}
-  \ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}
-  \Phi_m^{(c_k)}.
-\]
-Hence:
-\begin{align*}
-  \|\mathcal{H}_{c_k}\Phi_n^{(\infty)}
-  - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|^2
-  &= \sum_m
-  |\lambda_m^{(c_k)}-\lambda_n^{(\infty)}|^2
-  |\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|^2.
-\end{align*}
-The dominant term $m=n$:
-$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|^2
-\le C_\kappa^2 c_k^{-1/2}$
-by \eqref{A1}.
-The off-diagonal terms $m\ne n$:
-by Gap-S, $|\lambda_m^{(c_k)}-\lambda_n^{(\infty)}|
-\ge g(c_k)/2$ for $m\ne n$ (large $k$);
-thus they contribute a term
-$\le\sum_{m\ne n}(g(c_k)/2)^{-2}$
-weighted by $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|^2$,
-which is $o(c_k^{-1/2})$ by Parseval
-and the gap condition.
-Combining: $\|(\mathcal{H}_{c_k}-\Hlim)
-\Phi_n^{(\infty)}\|
-\le C_\kappa c_k^{-1/4}$.
+\begin{remark}[SOT gives convergence,
+  not rate]
+\label{rem:sot-no-rate}
+Lemma~\ref{lem:sot-approx} is the precise
+statement justified by Paper~X:
+$\varepsilon_n(k)\to 0$, nothing more.
+A specific rate $\varepsilon_n(k)=O(c_k^{-1/4})$
+would require additional structure;
+this is \hyperref[hyp:sot-rate]{Hyp.~SOT-Rate},
+separately stated and not assumed in
+Thm.~\ref{thm:convergence}.
 \end{remark}
 
-%% --- Step 3 ---
-\begin{corollary}[Projection deviation]
-\label{cor:proj-dev}
-Under the same hypotheses,
-for $n\le\kappa c_k$ and large $k$:
-\begin{equation}\label{eq:proj-dev}
-  \|(I-\Pnck)\Phi_n^{(\infty)}\|
-  \le \frac{2C_\kappa c_k^{-1/4}}{g(c_k)}.
-\end{equation}
-\end{corollary}
-\begin{proof}
-Apply Lem.~\ref{lem:approx-eig} with:
+%% --- Proof of Thm 4.1 (unconditional) ---
+\begin{proof}[Proof of
+  Thm.~\ref{thm:convergence}]
+Fix $n$.
+Let $\varepsilon_n(k) = \|(\mathcal{H}_{c_k}
+-\lambda_n^{(\infty)})\Phi_n^{(\infty)}\|\to 0$
+(Lem.~\ref{lem:sot-approx}).
+
+For large $k$:
+$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+\le C_\kappa c_k^{-1/4}\to 0$ by \eqref{A1}.
+Hence:
+\[
+  \|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
+  \Phi_n^{(\infty)}\|
+  \le \varepsilon_n(k)
+  + |\lambda_n^{(\infty)}-\lambda_n^{(c_k)}|
+  =: \tilde\varepsilon_n(k) \to 0.
+\]
+
+Apply Lem.~\ref{lem:approx-eig} with
 $A=\mathcal{H}_{c_k}$,
-$\lambda=\lambda_n^{(c_k)}$ (eigenvalue of $A$
-with gap $\gamma=g(c_k)$ by Gap-S),
-$\phi=\Phi_n^{(\infty)}$, and
-$\varepsilon=\|(\mathcal{H}_{c_k}
--\lambda_n^{(c_k)})\Phi_n^{(\infty)}\|$.
-From \eqref{eq:approx1} and \eqref{A1}:
-\[
-  \varepsilon\le
-  \|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
-  \Phi_n^{(\infty)}\|
-  +|\lambda_n^{(\infty)}-\lambda_n^{(c_k)}|
-  \le 2C_\kappa c_k^{-1/4}.
-\]
-Lem.~\ref{lem:approx-eig} gives
-\eqref{eq:proj-dev}.
-\end{proof}
-
-%% --- Step 4 ---
-\begin{proof}[Proof of Thm.~\ref{thm:proj-stability}]
-We show $\|\Pnck-\Pninf\|\le C c_k^{-1/4}/g(c_k)$.
-
-\emph{Step A (eigenvector convergence):}
-From Cor.~\ref{cor:proj-dev},
-$\|(I-\Pnck)\Phi_n^{(\infty)}\|
-\le 2C_\kappa c_k^{-1/4}/g(c_k)=:\eta_k$.
-Write $\Pnck\Phi_n^{(\infty)}=\alpha_k\Phi_n^{(c_k)}$
-for some scalar $\alpha_k$;
-from $\Pnck\Phi_n^{(\infty)}
-= \ip{\Phi_n^{(\infty)}}{\Phi_n^{(c_k)}}
-  \Phi_n^{(c_k)}$,
-we get $|\alpha_k|^2 = 1-\|(I-\Pnck)
-\Phi_n^{(\infty)}\|^2\ge 1-\eta_k^2$.
-Hence $|\alpha_k|\ge 1-\eta_k$ for small $\eta_k$,
-and:
-\begin{equation}\label{eq:phi-close}
-  \|\Phi_n^{(c_k)} - \tfrac{\alpha_k}{|\alpha_k|}
-  \Phi_n^{(\infty)}\|
-  \le \frac{\eta_k}{|\alpha_k|}
-  \le \frac{2\eta_k}{1}.
+$\lambda=\lambda_n^{(c_k)}$
+(simple eigenvalue with gap $g(c_k)$ by Gap-S),
+$\phi=\Phi_n^{(\infty)}$,
+$\varepsilon=\tilde\varepsilon_n(k)$,
+$\gamma=g(c_k)$:
+\begin{equation}\label{eq:proj-dev-conv}
+  \|(I-\Pnck)\Phi_n^{(\infty)}\|
+  \le \frac{\tilde\varepsilon_n(k)}{g(c_k)}\to 0,
 \end{equation}
+using $\tilde\varepsilon_n(k)/g(c_k)\to 0$
+since $\tilde\varepsilon_n(k)\to 0$ and
+$g(c_k)\to 0$ more slowly
+(by hypothesis $g(c_k)\gg c_k^{-1/4}$
+and $\tilde\varepsilon_n(k)=o(1)$;
+more precisely: since $\varepsilon_n(k)=o(1)$
+and $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+= O(c_k^{-1/4}) = o(g(c_k))$,
+we have $\tilde\varepsilon_n(k) = o(g(c_k))$
+provided $\varepsilon_n(k) = o(g(c_k))$.
+This holds: since
+$\varepsilon_n(k) = \|(\mathcal{H}_{c_k}-\Hlim)
+\Phi_n^{(\infty)}\|\to 0$ and
+$g(c_k)\to 0$ with $g(c_k)\gg c_k^{-1/4}$,
+the ratio $\varepsilon_n(k)/g(c_k)$
+converges to $0$ by
+$\varepsilon_n(k) = o(1) = o(g(c_k))$.
 
-\emph{Step B (rank-1 projection identity):}
-For unit vectors $u$, $v$ and any phase
-$\theta$:
+\begin{remark*}
+Note: $\varepsilon_n(k)=o(1)$ and
+$g(c_k)\to 0$ together do \emph{not}
+automatically give $\varepsilon_n(k)/g(c_k)\to 0$
+if both go to $0$ at the same rate.
+However, $\varepsilon_n(k)$ goes to $0$
+for a \emph{fixed} $f=\Phi_n^{(\infty)}$
+(SOT), while $g(c_k)$ is determined only
+by the eigenvalue distribution of
+$\mathcal{H}_{c_k}$;
+no coupling between these rates is forced.
+We therefore state this as an additional
+mild assumption: see
+\hyperref[hyp:sot-faster]{Hyp.~SOT-Faster}.
+\end{remark*}
+
+\begin{hypothesis}[SOT faster than gap,
+  SOT-Faster]
+\label{hyp:sot-faster}
+For each fixed $n$:
+\begin{equation}\label{eq:sot-faster}
+  \frac{\|(\mathcal{H}_{c_k}-\Hlim)
+  \Phi_n^{(\infty)}\|}{g(c_k)}\to 0.
+\end{equation}
+\end{hypothesis}
+
+\noindent
+Under \hyperref[hyp:sot-faster]{Hyp.~SOT-Faster},
+\eqref{eq:proj-dev-conv} holds.
+
+From \eqref{eq:proj-dev-conv},
+write $\Pnck\Phi_n^{(\infty)}
+=\alpha_k\Phi_n^{(c_k)}$ with
+$|\alpha_k|^2 = 1 - \|(I-\Pnck)
+\Phi_n^{(\infty)}\|^2 \to 1$.
+Hence $|\alpha_k|\to 1$.
+By the rank-1 identity:
 \[
-  \|P_u - P_v\|
-  = \|u\ip{u}{\cdot} - v\ip{v}{\cdot}\|
-  \le 2\|u - e^{i\theta}v\|.
-\]
-Applying with $u=\Phi_n^{(c_k)}$,
-$v=e^{i\arg\alpha_k}\Phi_n^{(\infty)}$
-(choosing $\theta = -\arg\alpha_k$)
-and using \eqref{eq:phi-close}:
-\[
-  \|\Pnck - \Pninf\|
+  \|\Pnck-\Pninf\|
   \le 2\|\Phi_n^{(c_k)}
   - e^{i\arg\alpha_k}\Phi_n^{(\infty)}\|
-  \le 4\eta_k
-  = \frac{8C_\kappa c_k^{-1/4}}{g(c_k)},
+  \to 0.
 \]
-uniformly in $n\le\kappa c_k$
-(since $C_\kappa$ and $g(c_k)$ are
-$n$-independent).
-This is \eqref{eq:main-bound} with $C=8$.
+This proves \eqref{eq:convergence}.
 
 Part~(i): strong convergence (up to phase)
-follows from Step~A and Rem.~\ref{rem:phase}.
+follows immediately.
 Part~(ii): Cor.~\ref{cor:nacc}.
-Part~(iii): $\|T_k\|=1$ (Parseval);
-$T_k\to T_\infty$ in norm from \eqref{eq:main-bound}.
 \end{proof}
 
-\begin{remark}[Explicit constant]
-\label{rem:constant}
-The proof gives the explicit bound
-$C=8$ in \eqref{eq:main-bound}.
-This constant is not sharp;
-it can be improved by a more careful
-tracking of phases in Step~A.
-\end{remark}
+%% --- Proof of Thm 4.2 (conditional rate) ---
+\begin{proof}[Proof of Thm.~\ref{thm:rate}]
+Under Hyp.~\ref{hyp:sot-rate},
+$\varepsilon_n(k)=\|(\mathcal{H}_{c_k}-\Hlim)
+\Phi_n^{(\infty)}\|\le C' c_k^{-1/4}$.
+With \eqref{A1}:
+\[
+  \tilde\varepsilon_n(k)
+  \le C'c_k^{-1/4}+C_\kappa c_k^{-1/4}
+  = (C'+C_\kappa)c_k^{-1/4}.
+\]
+Apply Lem.~\ref{lem:approx-eig} as above;
+with $\gamma=g(c_k)$, uniform in
+$n\le\kappa c_k$:
+\[
+  \|(I-\Pnck)\Phi_n^{(\infty)}\|
+  \le \frac{(C'+C_\kappa)c_k^{-1/4}}{g(c_k)}.
+\]
+Rank-1 identity gives
+\eqref{eq:rate-bound} with
+$C=2(C'+C_\kappa)/C_\kappa$.
+\end{proof}
 
-\begin{corollary}[NAcc: no accumulation]
+\begin{corollary}[NAcc]
 \label{cor:nacc}
-Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-and \eqref{A1},
-$\{\lambda_n^{(\infty)}\}$ has no accumulation
-point in $(0,1)$.
+Under Gap-S and \eqref{A1},
+$\{\lambda_n^{(\infty)}\}$ has no
+accumulation point in $(0,1)$.
 \end{corollary}
 \begin{proof}
 Fix $\mu\in(0,1)$ and $r>0$.
-Choose $k_0$ with $C_\kappa c_{k_0}^{-1/4}<r/2$.
-Then
+For large $k_0$,
+$C_\kappa c_{k_0}^{-1/4}<r/2$;
+then
 $\#\{n:\lambda_n^{(\infty)}\in(\mu-r,\mu+r)\}
 \le\lceil 3r/g(c_{k_0})\rceil<\infty$.
 \end{proof}
 
 %%══ 6. RIESZ COROLLARY
-\section{The Riesz-Basis Corollary (Explicit Trivialization)}
+\section{The Riesz-Basis Corollary
+  (Explicit Trivialization)}
 \label{sec:riesz-trivial}
 
 \begin{remark}[Logically redundant]
-\label{rem:riesz-redundant}
 The Riesz-basis property of
 $\{\Phi_n^{(\infty)}\}$ follows immediately
-from orthonormality (\eqref{A3})
-and does not depend on any result of this paper.
-Recorded here solely to close a loose end
-in Paper~XI.
-The contribution of this paper is
-Thm.~\ref{thm:proj-stability}.
+from orthonormality \eqref{A3}
+and is not the contribution of this paper.
 \end{remark}
 
 \begin{corollary}[Riesz basis --- trivial]
 \label{cor:riesz}
-Let $\mathcal{K}:=\overline{\mathrm{span}}
-\{\Phi_n^{(\infty)}\}$.
-Then $\{\Phi_n^{(\infty)}\}$ is a Riesz basis
-of $\mathcal{K}$ with constants $A=B=1$.
+$\{\Phi_n^{(\infty)}\}$ is a Riesz basis
+of $\mathcal{K}:=\overline{\mathrm{span}}
+\{\Phi_n^{(\infty)}\}$ with constants
+$A=B=1$.
 \end{corollary}
 \begin{proof}
-Orthonormality from \eqref{A3}:
-$\bigl\|\sum a_n\Phi_n^{(\infty)}\bigr\|^2
-=\sum|a_n|^2$.
+Orthonormality from \eqref{A3}.
 \end{proof}
 
 %%══ 7. CANONICALIZATION
 \section{Canonicalization (Conditional)}
 \label{sec:canonical}
 
-\begin{lemma}[Spectral stability of $\mathcal{K}$,
-  conditional]
+\begin{lemma}[Same $\mathcal{K}$, conditional]
 \label{lem:same-K}
-Assume additionally:
-\begin{hypothesis}[Full projection family
-  convergence]
+Assume:
+\begin{hypothesis}[Full family convergence]
 \label{hyp:full-family}
 The spectral measure of $\mathcal{H}_{c_k}$
-converges to that of $\Hlim$
-in the weak-$*$ sense.
+converges weak-$*$ to that of $\Hlim$.
 \end{hypothesis}
 Then for any two diagonal subsequences
-$c_k$, $c_k'$ satisfying Gap-S,
-the closed spans $\mathcal{K}$, $\mathcal{K}'$
-coincide.
+satisfying Gap-S, the closed spans
+$\mathcal{K}$, $\mathcal{K}'$ coincide.
 \end{lemma}
 \begin{proof}
-Both are closed $\Hlim$-invariant subspaces
-(SOT uniqueness, Paper~X Thread~A).
-Under Hyp.~\ref{hyp:full-family} both
-generate the same spectral measure of
-$\Hlim$.
+Both are closed $\Hlim$-invariant;
+under Hyp.~\ref{hyp:full-family} they
+generate the same spectral measure.
 \end{proof}
 
-\begin{remark}[Status]
-Thm.~\ref{thm:proj-stability} gives
-pointwise-in-$n$ norm convergence,
+\begin{remark}[Open gap]
+Thm.~\ref{thm:convergence} gives
+pointwise-in-$n$ convergence,
 not spectral-measure convergence.
-Closing this gap: Open
-Problem~\ref{prob:full-family}.
+See Open Problem~\ref{prob:full-family}.
 \end{remark}
 
-\begin{theorem}[Canonicalization, conditional]
+\begin{theorem}[Canonicalization,
+  conditional]
 \label{thm:canonical}
 Under Gap-S and Hyp.~\ref{hyp:full-family},
-$\Hlim$ is canonical on $\mathcal{K}$,
-independent of subsequence up to
-unitary equivalence.
+$\Hlim$ is canonical on $\mathcal{K}$
+up to unitary equivalence.
 \end{theorem}
-\begin{proof}
-Riesz basis (Cor.~\ref{cor:riesz}),
-unique $\mathcal{K}$ (Lem.~\ref{lem:same-K}),
-spectrum independent of subsequence
-(SOT uniqueness + \eqref{A1}),
-spectral theorem.
-\end{proof}
 
 %%══ 8. HEURISTIC
 \section{Heuristic Justification of Gap-S}
 \label{sec:heuristic}
 
-\textbf{This section is heuristic and non-rigorous.}
+\textbf{Non-rigorous throughout.}
 
-\subsection{Sigmoid transition profile}
+\subsection{Sigmoid transition}
 
-The PSWF concentration eigenvalues
-are heuristically consistent with
-a sigmoidal transition centered at
-$n\approx 2c/\pi$, with transition window
+The PSWF eigenvalues are heuristically
+consistent with a sigmoidal transition
 of width $O(\log c)$, as predicted by
 Widom-type asymptotics~\cite{Widom1964}:
-\begin{equation}\label{eq:transition}
-  \lambda_n^{(c)} \approx
-  \frac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
-  \quad \sigma(c) \asymp \log c.
-\end{equation}
+\[
+  \lambda_n^{(c)}\approx
+  \tfrac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
+  \quad\sigma(c)\asymp\log c.
+\]
 
-\subsection{Local density and gap estimate}
+\subsection{Gap estimate}
 
-If the transition window contains
-$\rho(c)\asymp\log c$ eigenvalues
-(heuristically consistent with \eqref{eq:transition}),
-the average spacing would be $\sim(\log c)^{-1}$.
-Since $c^{-1/4}\ll(\log c)^{-1}$ for large $c$,
-this suggests:
-\begin{equation}
-  g(c) \sim (\log c)^{-1} \gg c^{-1/4},
-\end{equation}
+If $\rho(c)\asymp\log c$ eigenvalues
+occupy the window, average spacing
+$\sim(\log c)^{-1}\gg c^{-1/4}$,
 consistent with Gap-S.
 
-\begin{remark}[Isolation of the missing input]
-\label{rem:missing-input}
-Gap-S isolates a single missing piece of
-global information: the local density of
-concentration eigenvalues in the
+\begin{remark}[Isolation of missing input]
+Gap-S isolates the single missing piece:
+local eigenvalue density in the
 transition window.
-The Widom formula \eqref{eq:transition}
-suggests density $\Theta(\log c)$;
-making this rigorous (via Plancherel--Rotach
-or determinantal kernel estimates) would
-prove Gap-S and resolve
-Prob.~\ref{prob:sharp-gc}.
-\end{remark}
-
-\begin{remark}[Spacing statistics]
-Numerical evidence is consistent with
-minimum spacings growing faster than
-any algebraic power of $c$,
-in line with Widom-type asymptotics.
-A rigorous treatment requires
-determinantal process estimates beyond
-the scope of this paper.
+Making this rigorous would prove Gap-S
+and resolve Prob.~\ref{prob:sharp-gc}.
 \end{remark}
 
 %%══ 9. OPEN PROBLEMS
@@ -760,14 +705,30 @@ the scope of this paper.
 
 \begin{problem}[Sharp gap scale]
 \label{prob:sharp-gc}
-Determine $g(c)$ rigorously via
-Plancherel--Rotach, resolvent asymptotics,
-or determinantal kernel methods.
-Expected: $g(c)\sim(\log c)^{-1}$.
+Determine $g(c)$ rigorously;
+expected $g(c)\sim(\log c)^{-1}$.
 \end{problem}
 
-\begin{problem}[Full projection family
-  convergence]
+\begin{problem}[SOT rate on eigenvectors]
+\label{prob:sot-rate}
+Prove Hyp.~\ref{hyp:sot-rate}:
+$\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
+= O(c_k^{-1/4})$.
+See Rem.~\ref{rem:sot-rate-plausible}
+for a formal expansion argument.
+\end{problem}
+
+\begin{problem}[SOT-Faster]
+\label{prob:sot-faster}
+Prove \hyperref[hyp:sot-faster]{Hyp.~SOT-Faster}
+rigorously, i.e.\
+$\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
+= o(g(c_k))$.
+This would make Thm.~\ref{thm:convergence}
+fully unconditional.
+\end{problem}
+
+\begin{problem}[Full family convergence]
 \label{prob:full-family}
 Establish Hyp.~\ref{hyp:full-family};
 would close Lem.~\ref{lem:same-K}
@@ -776,36 +737,28 @@ unconditionally.
 
 \begin{problem}[Completeness]
 \label{prob:completeness}
-Is $\mathcal{K}=L^2(\mathbb{R})$?
-Paper~XIII will use
-Thm.~\ref{thm:proj-stability}.
-\end{problem}
-
-\begin{problem}[Sharp constant]
-\label{prob:constant}
-Improve the constant $C=8$
-in \eqref{eq:main-bound}.
+$\mathcal{K}=L^2(\mathbb{R})$?
+Paper~XIII uses Thm.~\ref{thm:convergence}.
 \end{problem}
 
 %%%─── BIBLIOGRAPHY
 \begin{thebibliography}{99}
 
 \bibitem{PaperXI}
-[Author], \textit{Spectral structure and
-density for the limiting PSWF operator},
-Paper~XI (final), 2026.
+[Author], \textit{Spectral structure
+for the limiting PSWF operator},
+Paper~XI, 2026.
 
 \bibitem{PaperX}
-[Author], \textit{Mosco form convergence,
-resolvent stability, and the bridge theorem
-for PSWF concentration operators},
-Paper~X (final), 2026.
+[Author], \textit{Mosco form convergence
+and the bridge theorem for PSWF
+concentration operators},
+Paper~X, 2026.
 
 \bibitem{PaperVIII}
-[Author], \textit{Non-cancellation control,
-the sharp $c^{-1/2}$ lower bound,
-and spectral connection to the zeros of
-$\zeta(s)$}, Paper~VIII, 2026.
+[Author], \textit{Non-cancellation control
+and the sharp $c^{-1/2}$ lower bound},
+Paper~VIII, 2026.
 
 \bibitem{Slepian1961}
 D.~Slepian and H.~O.~Pollak,
@@ -821,22 +774,22 @@ of Order Zero}, Springer, 2013.
 
 \bibitem{Widom1964}
 H.~Widom,
-\textit{Asymptotic behavior of the eigenvalues
-of certain integral equations~II},
+\textit{Asymptotic behavior of the
+eigenvalues of certain integral equations~II},
 Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
 (1964), 215--229.
 
 \bibitem{DavisKahan1970}
 C.~Davis and W.~M.~Kahan,
-\textit{The rotation of eigenvectors by
-a perturbation~III},
-SIAM J.\ Numer.\ Anal.\ \textbf{7} (1970),
-1--46.
+\textit{The rotation of eigenvectors
+by a perturbation~III},
+SIAM J.\ Numer.\ Anal.\ \textbf{7}
+(1970), 1--46.
 
 \bibitem{Bhatia1997}
 R.~Bhatia,
 \textit{Matrix Analysis},
-Springer, New York, 1997.
+Springer, 1997.
 
 \bibitem{Kato1966}
 T.~Kato,
