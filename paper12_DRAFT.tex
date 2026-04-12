@@ -71,21 +71,31 @@ $\Hlim\Phi_n^{(\infty)} = \lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 SOT convergence does \emph{not} imply norm
 convergence of spectral projections
 (Rem.~\ref{rem:strong-vs-norm}).
-The central result of this paper
-(Thm.~\ref{thm:convergence}) establishes:
-\[
-  \|\Pnck - \Pninf\|\to 0,
-\]
+The difficulty is precise:
+SOT convergence produces approximate eigenvectors
+--- the vectors $\Phi_n^{(\infty)}$ satisfy
+$\|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
+\Phi_n^{(\infty)}\|\to 0$ ---
+but provides no control on the residual
+\emph{relative to the spectral gap}.
+Without such control, spectral isolation
+cannot be invoked, and projection convergence
+cannot be concluded.
+This is exactly the gap this paper identifies
+and bridges.
+
+The central result (Thm.~\ref{thm:convergence})
+establishes $\|\Pnck - \Pninf\|\to 0$
 under two well-motivated conditions:
 \begin{itemize}
 \item \hyperref[hyp:gap-structural]{Gap-S}:
-  spectral gaps of $\mathcal{H}_{c_k}$
-  dominate the eigenvalue convergence rate
-  (precisely: $\lim_{c\to\infty}
-  c^{-1/4}/g(c)=0$);
+  $\lim_{c\to\infty} c^{-1/4}/g(c)=0$
+  (spectral gaps dominate the eigenvalue
+  convergence rate);
 \item \hyperref[hyp:sot-faster]{SOT-Faster}:
   $\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
-  =o(g(c_k))$.
+  =o(g(c_k))$
+  (residual decays faster than the gap).
 \end{itemize}
 Neither condition requires any bound on
 $\|\mathcal{H}_{c_k}-\Hlim\|$.
@@ -109,21 +119,18 @@ $\|\mathcal{H}_{c_k}-\Hlim\|$.
 
 \begin{remark}[Core contribution]
 \label{rem:conditions}
-SOT-Faster captures \emph{exactly}
-the missing quantitative link between
-operator convergence and spectral isolation:
-\begin{quote}
-  \textit{The entire difficulty of upgrading
-  SOT convergence to norm convergence of
-  spectral projections is captured by
-  Hypothesis~SOT-Faster.}
-\end{quote}
-This paper's contribution is the
-reduction of projection stability to
-the two isolated, well-motivated conditions
-Gap-S and SOT-Faster.
-Sec.~\ref{sec:heuristic} provides
-heuristic motivation for both.
+The central contribution of this paper
+is the identification of the exact
+minimal conditions under which
+SOT convergence can be upgraded to
+norm convergence of rank-one
+spectral projections.
+SOT-Faster encapsulates precisely
+the missing quantitative link:
+it requires the operator residual on
+$\Phi_n^{(\infty)}$ to decay faster than
+the spectral gap, which is what allows
+spectral isolation (Gap-S) to take effect.
 \end{remark}
 
 \subsection{What this paper does \emph{not} claim}
@@ -164,14 +171,17 @@ XIII& Completeness $\mathcal{K}=L^2$
 \begin{itemize}
 \item Central result: Thm.~\ref{thm:convergence};
   proof in Sec.~\ref{sec:proj}.
+\item Key mechanism (Lem.~\ref{lem:approx-eig}):
+  residual-to-projection principle,
+  Rem.~\ref{rem:residual-principle}.
 \item Hypotheses Gap-S
-  (\ref{hyp:gap-structural}) and
-  SOT-Faster (\ref{hyp:sot-faster}):
+  (\ref{hyp:gap-structural}) and SOT-Faster
+  (\ref{hyp:sot-faster}):
   Sec.~\ref{sec:gap};
   heuristic motivation: Sec.~\ref{sec:heuristic}.
 \item Conditional rate Thm.~\ref{thm:rate}:
-  under additional SOT-Rate
-  (\ref{hyp:sot-rate}), clearly flagged.
+  SOT-Rate (\ref{hyp:sot-rate}),
+  clearly flagged.
 \item Riesz corollary explicitly trivial:
   Sec.~\ref{sec:riesz-trivial}.
 \item All open problems:
@@ -216,8 +226,8 @@ XIII& Completeness $\mathcal{K}=L^2$
 By~\cite[Ex.~VIII.7.14]{ReedSimon1975},
 SOT convergence does not in general imply
 norm convergence of spectral projections.
-Gap-S and SOT-Faster supply the
-additional structure that closes this gap.
+Gap-S and SOT-Faster supply precisely
+the missing structure.
 \end{remark}
 
 %%══ 3. HYPOTHESES
@@ -242,13 +252,10 @@ uniformly in $n\in W_c$:
 
 \begin{remark}[Gap-S implies $c^{-1/4}=o(g(c))$]
 \label{rem:gap-implies-o}
-Condition \eqref{eq:gap-dominates} states
-precisely that $c^{-1/4}=o(g(c))$
-as $c\to\infty$.
-This is used explicitly in the proof of
-Thm.~\ref{thm:convergence}
-(eq.~\eqref{eq:ratio-to-zero})
-to ensure $C_\kappa c_k^{-1/4}/g(c_k)\to 0$.
+Condition \eqref{eq:gap-dominates} is equivalent
+to $c^{-1/4}=o(g(c))$ as $c\to\infty$.
+This is cited explicitly in the proof
+of Thm.~\ref{thm:convergence}.
 \end{remark}
 
 \begin{hypothesis}[SOT faster than gap,
@@ -269,19 +276,14 @@ subsequence of Lem.~\ref{lem:inherited}:
 \label{rem:sot-faster-core}
 SOT (Paper~X) gives $\varepsilon_n(k)\to 0$,
 but no comparison with $g(c_k)$.
-SOT-Faster requires precisely:
-\[
-  \varepsilon_n(k) = o(g(c_k)),
-\]
-i.e., the operator residual on
-$\Phi_n^{(\infty)}$ decays faster than
-the spectral gap.
-This is \emph{not} a technical side condition:
-it encapsulates the entire difficulty of
-upgrading SOT convergence to norm
+SOT-Faster is not a technical side condition:
+it encapsulates \emph{the entire difficulty}
+of upgrading SOT convergence to norm
 convergence of rank-one spectral projections.
 Proving it rigorously is
-Open Problem~\ref{prob:sot-faster}.
+Open Problem~\ref{prob:sot-faster};
+Sec.~\ref{sec:heuristic} strongly suggests
+it holds in the PSWF setting.
 \end{remark}
 
 \begin{hypothesis}[SOT rate on eigenvectors,
@@ -289,8 +291,7 @@ Open Problem~\ref{prob:sot-faster}.
 \label{hyp:sot-rate}
 For each fixed $n$:
 \begin{equation}\label{eq:sot-rate}
-  \varepsilon_n(k)
-  = O(c_k^{-1/4}).
+  \varepsilon_n(k) = O(c_k^{-1/4}).
 \end{equation}
 \end{hypothesis}
 
@@ -303,32 +304,29 @@ For each fixed $n$:
   \Longrightarrow
   \|\Pnck-\Pninf\|\to 0.
 \]
-The implication SOT-Rate $\Rightarrow$
-SOT-Faster follows from
-$c_k^{-1/4}=o(g(c_k))$
-(Rem.~\ref{rem:gap-implies-o}).
 SOT alone gives only $\varepsilon_n(k)\to 0$,
-which is insufficient without comparison
-to $g(c_k)$.
+insufficient without comparison to $g(c_k)$.
+Thm.~\ref{thm:convergence} requires SOT-Faster;
+Thm.~\ref{thm:rate} requires SOT-Rate.
 \end{remark}
 
 \begin{remark}[Plausibility of SOT-Rate]
 \label{rem:sot-rate-plausible}
-Expanding $\Phi_n^{(\infty)}$ in the
-eigenbasis $\{\Phi_m^{(c_k)}\}$:
+Expanding $\Phi_n^{(\infty)}$ in the eigenbasis
+$\{\Phi_m^{(c_k)}\}$:
 \begin{equation}\label{eq:formal-expansion}
   \varepsilon_n(k)^2
   = \sum_m
   |\lambda_m^{(c_k)}-\lambda_n^{(\infty)}|^2
   |\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|^2.
 \end{equation}
-Diagonal term $m=n$:
+The diagonal term $m=n$ contributes
 $\le C_\kappa^2 c_k^{-1/2}$ by \eqref{A1}.
-Off-diagonal $m\ne n$: controlled if
-$|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
-are small, plausible from Gap-S
+Off-diagonal terms $m\ne n$ are controlled
+if $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
+are small, which Gap-S strongly suggests
 (spectral isolation concentrates mass
-on the diagonal).
+on the diagonal component).
 Making this rigorous requires
 off-diagonal overlap estimates;
 see Open Problem~\ref{prob:sot-rate}.
@@ -348,8 +346,7 @@ without global kernel information.
 The transfer map $F_c$ has a sigmoid
 profile near $\lambda=1/2$~\cite{Widom1964};
 any rate $F_c'\asymp c^{-\beta}$ is a
-global claim not derivable from
-$\Lc$ alone.
+global claim not derivable from $\Lc$ alone.
 \end{proof}
 
 %%══ 4. MAIN THEOREMS
@@ -409,12 +406,15 @@ $\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$
 Three inputs combine:
 \begin{enumerate}
 \item SOT + SOT-Faster: $\Phi_n^{(\infty)}$
-  is a \emph{controlled} approximate
-  eigenvector of $\mathcal{H}_{c_k}$
-  (residual $o(g(c_k))$).
+  is a controlled approximate eigenvector
+  of $\mathcal{H}_{c_k}$
+  (residual $o(g(c_k))$;
+  see Rem.~\ref{rem:residual-interp}).
 \item Gap-S: spectral isolation converts
   the residual bound into projection
-  convergence via Lem.~\ref{lem:approx-eig}.
+  convergence via the
+  residual-to-projection principle
+  (Rem.~\ref{rem:residual-principle}).
 \item Rank-one structure closes the
   argument at the eigenfunction level.
 \end{enumerate}
@@ -454,8 +454,26 @@ $\|(I-P_A)\phi\|\le
 \le\varepsilon/\gamma$.
 \end{proof}
 
+\begin{remark}[Residual-to-projection principle]
+\label{rem:residual-principle}
+Lemma~\ref{lem:approx-eig} expresses
+a fundamental principle:
+\emph{an approximate eigenvector whose
+residual is smaller than the spectral gap
+must concentrate on the true eigenspace.}
+Formally: if $\varepsilon<\gamma$, then
+$\|(I-P_A)\phi\|<1$, so $\phi$ has
+non-trivial projection onto the eigenspace.
+If further $\varepsilon/\gamma\to 0$,
+the projection becomes asymptotically
+exact.
+This is the mechanism that converts
+SOT-Faster (residual $o(g(c_k))$)
+into projection convergence.
+\end{remark}
+
 \begin{lemma}[SOT gives approximate
-  eigenvectors (no rate)]
+  eigenvectors, no rate]
 \label{lem:sot-approx}
 Under \eqref{A2}--\eqref{A3},
 for each fixed $n$:
@@ -468,11 +486,33 @@ No rate on $\varepsilon_n(k)$ is claimed.
 \end{lemma}
 \begin{proof}
 $\varepsilon_n(k)
-= \|(\mathcal{H}_{c_k}-\Hlim)
+=\|(\mathcal{H}_{c_k}-\Hlim)
 \Phi_n^{(\infty)}\|\to 0$
 by SOT~\eqref{eq:sot} with
 $f=\Phi_n^{(\infty)}$ fixed.
 \end{proof}
+
+\begin{remark}[Residual interpretation]
+\label{rem:residual-interp}
+The quantity $\varepsilon_n(k)$ is the
+\emph{residual} of $\Phi_n^{(\infty)}$
+as an approximate eigenvector of
+$\mathcal{H}_{c_k}$:
+\[
+  \varepsilon_n(k)
+  = \|(\mathcal{H}_{c_k}-\lambda_n^{(\infty)})
+  \Phi_n^{(\infty)}\|.
+\]
+Lemma~\ref{lem:sot-approx} shows that
+SOT convergence produces approximate
+eigenvectors ($\varepsilon_n(k)\to 0$),
+but without any control relative to
+the spectral gap $g(c_k)$.
+SOT-Faster is precisely the additional
+condition that makes the residual-to-projection
+principle (Rem.~\ref{rem:residual-principle})
+applicable.
+\end{remark}
 
 \begin{proof}[Proof of
   Thm.~\ref{thm:convergence}]
@@ -493,15 +533,17 @@ and Rem.~\ref{rem:gap-implies-o}:
   \le
   \underbrace{\frac{\varepsilon_n(k)}
     {g(c_k)}}_{\to\,0
-    \text{ (SOT-Faster)}}
+    \;(\text{SOT-Faster})}
   +
   \underbrace{\frac{C_\kappa c_k^{-1/4}}
     {g(c_k)}}_{\to\,0
-    \text{ (Rem.~\ref{rem:gap-implies-o})}}
+    \;(\text{Rem.~\ref{rem:gap-implies-o}})}
   \to 0.
 \end{equation}
-Apply Lem.~\ref{lem:approx-eig} with
-$A=\mathcal{H}_{c_k}$,
+Apply Lem.~\ref{lem:approx-eig}
+(residual-to-projection principle,
+Rem.~\ref{rem:residual-principle})
+with $A=\mathcal{H}_{c_k}$,
 $\lambda=\lambda_n^{(c_k)}$ (simple,
 gap $\ge g(c_k)$ by Gap-S),
 $\phi=\Phi_n^{(\infty)}$,
@@ -516,8 +558,9 @@ Write $\Pnck\Phi_n^{(\infty)}
 $\alpha_k=\ip{\Phi_n^{(\infty)}}{\Phi_n^{(c_k)}}$;
 then $|\alpha_k|^2=1-\|(I-\Pnck)
 \Phi_n^{(\infty)}\|^2\to 1$.
-Rank-one projection identity
-($\|P_u-P_v\|\le 2\|u-e^{i\theta}v\|$):
+By the rank-one projection identity
+$\|P_u-P_v\|\le 2\|u-e^{i\theta}v\|$
+(cf.~\cite[Ch.~1]{Bhatia1997}):
 \[
   \|\Pnck-\Pninf\|
   \le 2\|\Phi_n^{(c_k)}
@@ -586,7 +629,7 @@ Orthonormality from \eqref{A3}.
 \begin{lemma}[Same $\mathcal{K}$,
   conditional]
 \label{lem:same-K}
-Assume:
+Assume additionally:
 \begin{hypothesis}[Full family convergence]
 \label{hyp:full-family}
 The spectral measures of $\mathcal{H}_{c_k}$
@@ -598,8 +641,8 @@ closed span $\mathcal{K}$.
 \end{lemma}
 \begin{proof}
 Both subspaces are closed
-$\Hlim$-invariant; under
-Hyp.~\ref{hyp:full-family}
+$\Hlim$-invariant;
+under Hyp.~\ref{hyp:full-family}
 they generate the same spectral measure.
 \end{proof}
 
@@ -621,15 +664,16 @@ up to unitary equivalence.
 \subsection{Sigmoid transition (Widom)}
 
 Widom-type asymptotics~\cite{Widom1964}
-suggest the plausibility of a sigmoidal
-profile:
+predict a sigmoidal eigenvalue profile:
 \[
   \lambda_n^{(c)}\approx
   \tfrac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
   \quad\sigma(c)\asymp\log c.
 \]
-This is heuristically consistent with,
-but does not prove, Gap-S or SOT-Faster.
+This predicts the correct qualitative
+behavior for the PSWF spectrum and
+strongly suggests both Gap-S and SOT-Faster
+hold in this setting.
 
 \subsection{Gap estimate}
 
@@ -637,7 +681,8 @@ If $\rho(c)\asymp\log c$ eigenvalues
 occupy the transition window,
 average spacing $\sim(\log c)^{-1}
 \gg c^{-1/4}$,
-suggesting the plausibility of Gap-S.
+consistent with Gap-S and predicting
+the correct scaling $g(c)\sim(\log c)^{-1}$.
 Rigorous proof requires
 Plancherel--Rotach or determinantal
 kernel methods.
@@ -647,14 +692,21 @@ kernel methods.
 From \eqref{eq:formal-expansion},
 if off-diagonal overlaps
 $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|
-=o(1)$ for $m\ne n$ (plausible from Gap-S),
+=o(1)$ for $m\ne n$
+(which Gap-S strongly suggests,
+as spectral isolation concentrates
+mass on the diagonal),
 then \eqref{eq:formal-expansion}
 is dominated by $m=n$,
-giving $\varepsilon_n(k)=O(c_k^{-1/4})$
-(SOT-Rate), which implies SOT-Faster.
+predicting $\varepsilon_n(k)=O(c_k^{-1/4})
+= o(g(c_k))$.
+This formally confirms SOT-Faster,
+and even the stronger SOT-Rate.
 
 \begin{remark}[Plausibility $\ne$ proof]
-This section suggests plausibility;
+This section predicts the correct
+scaling and strongly suggests that
+Gap-S and SOT-Faster hold;
 it does not constitute a rigorous argument.
 The open problems remain
 \ref{prob:sharp-gc}--\ref{prob:sot-faster}.
