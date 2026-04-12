@@ -461,6 +461,27 @@ This makes $c(\lambda)$ robust against
 index jumps at integer values of $2c/\pi$.
 \end{remark}
 
+\begin{remark}[Well-definedness of the defining set]
+\label{rem:clambda-welldef}
+The set
+$S(\lambda) := \{c > 0 : \exists\, n\in W_c,\,
+\lambda_n^{(c)} \le \lambda\}$
+is non-empty (Lem.~\ref{lem:clambda-exists})
+and admits approximate minimizers:
+for every $\varepsilon > 0$ there exists
+$c_\varepsilon \in S(\lambda)$ with
+$c_\varepsilon \le c(\lambda) + \varepsilon$.
+By continuity of $c \mapsto \lambda_n^{(c)}$
+(\cite{Kato1966}) and compactness of
+$W_c \cap \mathbb{Z}$ for fixed $c$,
+the infimum is approached by a sequence
+along which the relevant eigenvalue
+continuously crosses $\lambda$.
+This is all that is required for
+Lem.~\ref{lem:sweeping}; no openness or
+connectedness of $S(\lambda)$ is needed.
+\end{remark}
+
 \begin{lemma}[Index stability near $c(\lambda)$]
 \label{lem:index-stability}
 Let $\lambda\in(0,1)$ and
@@ -514,20 +535,22 @@ By Lem.~\ref{lem:index-stability}(i),
 $n_0\in W_c$ for all $c$ near $c(\lambda)$.
 
 For fixed $n_0$, the map $c\mapsto\lambda_{n_0}^{(c)}$
-is strictly increasing in $c$
-(\cite[Ch.~3, Prop.~3.2]{Osipov2013}):
-increasing the bandwidth $c$ enlarges the
-time-frequency concentration region, hence
-raises all Slepian eigenvalues.
+is continuous and strictly increasing in $c$
+in the transition regime near $c(\lambda)$
+(\cite[Ch.~3, Prop.~3.2]{Osipov2013});
+we use this only locally, in the
+$\delta$-neighbourhood of $c(\lambda)$
+guaranteed by Lem.~\ref{lem:index-stability}.
 
-\begin{remark*}[Monotonicity]
+\begin{remark*}[Monotonicity: scope of claim]
 For fixed $c$, the sequence
 $n\mapsto\lambda_n^{(c)}$ is strictly decreasing
 (higher index $\Rightarrow$ lower concentration).
 For fixed $n$, the map
 $c\mapsto\lambda_n^{(c)}$ is strictly increasing
-(larger bandwidth $\Rightarrow$ higher concentration).
-Both facts are classical; see \cite[Ch.~3]{Osipov2013}.
+in the transition regime;
+no global monotonicity is claimed or needed.
+Both facts follow from \cite[Ch.~3]{Osipov2013}.
 \end{remark*}
 
 For $c$ slightly less than $c(\lambda)$:
@@ -538,18 +561,30 @@ At $c=c(\lambda)$:
 $\lambda_{n_0}^{(c(\lambda))}\le\lambda$.
 
 Since $c\mapsto\lambda_{n_0}^{(c)}$ is
-strictly increasing and analytic
-(Lem.~\ref{lem:index-stability}(ii)),
-it crosses $\lambda$ at a \emph{unique}
-$c'\in[c(\lambda)-\delta,c(\lambda)]$,
-and this crossing is \emph{transverse}
-(the derivative $\partial_c\lambda_{n_0}^{(c)}>0$
-at $c=c'$ by strict monotonicity):
+continuous (analytic by
+Lem.~\ref{lem:index-stability}(ii))
+and satisfies
+$\lambda_{n_0}^{(c)} > \lambda$ for
+$c \in (c(\lambda)-\delta, c(\lambda))$
+and
+$\lambda_{n_0}^{(c(\lambda))} \le \lambda$,
+by the intermediate value theorem there
+exists $c'\in[c(\lambda)-\delta, c(\lambda)]$
+with
 \[
   \lambda_{n_0}^{(c')} = \lambda.
 \]
 Setting $n':=n_0$ establishes \eqref{eq:sweeping}
 with $\varepsilon=0$ (hence all $\varepsilon>0$).
+
+\begin{remark*}[Existence suffices]
+We claim only existence of $c'$, not uniqueness.
+Uniqueness would follow from strict global
+monotonicity but is not needed for the argument:
+any $c'$ achieving $\lambda_{n_0}^{(c')}=\lambda$
+suffices for Thm.~\ref{thm:weyl}(a).
+\end{remark*}
+
 Uniformity on $K$ follows from compactness
 and continuous dependence of $c(\lambda)$
 on $\lambda$ (\cite{Widom1964,Osipov2013}).
@@ -561,7 +596,8 @@ Lem.~\ref{lem:sweeping} is valid because:
 the \emph{window}, not as a fixed floor index;
 (b) Lem.~\ref{lem:index-stability} guarantees
 $n_0$ remains in the window for nearby $c$,
-justifying the monotone crossing on the fixed-index map;
+justifying the continuous crossing on
+the fixed-index map;
 (c) the infimum definition ensures sign change
 without requiring monotonicity of the floor map.
 \end{remark}
@@ -578,8 +614,7 @@ the transition window eventually covers $\lambda$.
 Positivity: for small $c$, all $\lambda_n^{(c)}>\lambda$
 for $n\in W_c$ (\eqref{XI6}).
 Monotonicity: if $\lambda<\lambda'$ then
-$\{c:\exists n\in W_c,\,\lambda_n^{(c)}\le\lambda\}
-\subset\{c:\exists n\in W_c,\,\lambda_n^{(c)}\le\lambda'\}$.
+$S(\lambda)\subset S(\lambda')$.
 \end{proof}
 
 \begin{hypothesis}[No Accumulation (NAcc)]
@@ -600,6 +635,7 @@ eigenvalues have no accumulation point in $(0,1)$:
 if $N(\lambda)<\infty$ for all $\lambda\in(0,1)$,
 then $\{\lambda_n^{(\infty)}\}$ can only
 accumulate at $0$ or $1$.
+
 Note that
 \begin{itemize}
 \item NAcc implies SOH (injectivity)
@@ -608,21 +644,26 @@ Note that
       then $N(\mu)\ge 2$;
       but NAcc alone does not contradict
       multiplicity $\ge 2$ at isolated points.
-      The \emph{operative} condition for
+\item The \emph{operative} condition for
       Thm.~\ref{thm:weyl} is finiteness of
-      $N(\lambda)$, which is NAcc.
-\item NAcc follows from the uniform gap bound
+      $N(\lambda)$ for each $\lambda\in(0,1)$,
+      which is exactly NAcc.
+      \textbf{No gap control is required for
+      Thm.~\ref{thm:weyl};} NAcc is used only
+      to ensure $N(\lambda)$ is finite,
+      not to bound gaps from below.
+\item NAcc \emph{follows} from the uniform
+      gap bound
       \begin{equation}\label{eq:gap-lower}
         |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
         \ge C_\kappa c^{-3/4},
         \quad n\le\kappa c,
       \end{equation}
-      combined with \eqref{XI1}:
-      distinct limiting eigenvalues are then
-      separated by $\Omega(c^{-3/4})$,
-      preventing accumulation.
+      combined with \eqref{XI1}.
       Establishing \eqref{eq:gap-lower} is
       Open Problem~\ref{prob:NAcc}.
+      NAcc is \emph{strictly weaker} than
+      gap control; the gap bound is not assumed.
 \end{itemize}
 \end{remark}
 
