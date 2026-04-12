@@ -510,6 +510,24 @@ satisfying $\lambda_{n_0}^{(c(\lambda))}\le\lambda$
 (exists by definition of $c(\lambda)$).
 By Lem.~\ref{lem:index-stability}(i),
 $n_0\in W_c$ for all $c$ near $c(\lambda)$.
+
+For fixed $n_0$, the map $c\mapsto\lambda_{n_0}^{(c)}$
+is strictly increasing in $c$
+(\cite[Ch.~3, Prop.~3.2]{Osipov2013}):
+increasing the bandwidth $c$ enlarges the
+time-frequency concentration region, hence
+raises all Slepian eigenvalues.
+
+\begin{remark*}[Monotonicity]
+For fixed $c$, the sequence
+$n\mapsto\lambda_n^{(c)}$ is strictly decreasing
+(higher index $\Rightarrow$ lower concentration).
+For fixed $n$, the map
+$c\mapsto\lambda_n^{(c)}$ is strictly increasing
+(larger bandwidth $\Rightarrow$ higher concentration).
+Both facts are classical; see \cite[Ch.~3]{Osipov2013}.
+\end{remark*}
+
 For $c$ slightly less than $c(\lambda)$:
 by definition of the infimum in \eqref{eq:clambda},
 no $n\in W_c$ satisfies $\lambda_n^{(c)}\le\lambda$,
@@ -517,17 +535,19 @@ so in particular $\lambda_{n_0}^{(c)}>\lambda$.
 At $c=c(\lambda)$:
 $\lambda_{n_0}^{(c(\lambda))}\le\lambda$.
 
-Thus the map $c\mapsto\lambda_{n_0}^{(c)}$
-(smooth by Lem.~\ref{lem:index-stability}(ii))
-passes through $\lambda$ on the interval
-$[c(\lambda)-\delta,c(\lambda)]$.
-The intermediate value theorem gives
-$c'\in[c(\lambda)-\delta,c(\lambda)]$
-with $\lambda_{n_0}^{(c')}=\lambda$.
+Since $c\mapsto\lambda_{n_0}^{(c)}$ is
+strictly increasing (analytic by
+Lem.~\ref{lem:index-stability}(ii)),
+it crosses $\lambda$ at a \emph{unique}
+$c'\in[c(\lambda)-\delta,c(\lambda)]$:
+\[
+  \lambda_{n_0}^{(c')} = \lambda.
+\]
 Setting $n':=n_0$ establishes \eqref{eq:sweeping}
-with $\varepsilon=0$ (and hence all $\varepsilon>0$).
+with $\varepsilon=0$ (hence all $\varepsilon>0$),
+and the crossing is unique by strict monotonicity.
 Uniformity on $K$ follows from compactness
-and the continuous dependence of $c(\lambda)$
+and continuous dependence of $c(\lambda)$
 on $\lambda$ (\cite{Widom1964,Osipov2013}).
 \end{proof}
 
@@ -537,7 +557,7 @@ Lem.~\ref{lem:sweeping} is valid because:
 the \emph{window}, not as a fixed floor index;
 (b) Lem.~\ref{lem:index-stability} guarantees
 $n_0$ remains in the window for nearby $c$,
-justifying the IVT on the fixed-index map;
+justifying the monotone crossing on the fixed-index map;
 (c) the infimum definition ensures sign change
 without requiring monotonicity of the floor map.
 \end{remark}
@@ -602,6 +622,20 @@ Note that
 \end{itemize}
 \end{remark}
 
+\begin{remark}[NAcc: strength and status]
+\label{rem:NAcc-strength}
+Hypothesis~\ref{hyp:NAcc} is a \emph{strong
+structural assumption}: it is equivalent to
+a uniform spectral separation condition in the
+transition regime (see \eqref{eq:gap-lower}).
+No unconditional proof is currently available.
+Establishing the gap lower bound
+$|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge C_\kappa c^{-3/4}$
+is an independent hard problem
+(Open Problem~\ref{prob:NAcc});
+we do not claim it is accessible by current methods.
+\end{remark}
+
 \begin{theorem}[Semiclassical spectral transfer]
 \label{thm:weyl}
 Under Hypothesis~\ref{hyp:NAcc},
@@ -625,7 +659,9 @@ with $c(\lambda)$ from Def.~\ref{def:clambda}:
       recovers the correct label for the
       closest limiting eigenvalue up to
       $O(\log c)$ ambiguity.
-      It is \emph{not} a classical Weyl law.
+      It is \emph{not} a classical Weyl law,
+      and provides localization but not a
+      global counting law.
 \item \textbf{(Transition window.)}
       For $\lambda\in[\varepsilon,1{-}\varepsilon]$:
       $N(\lambda)-N(\lambda-\varepsilon)
@@ -825,6 +861,16 @@ RH would follow; this chain is not yet closed.
 Problem~\ref{prob:riesz} would resolve (2)
 and the Bridge theorem;
 target of Paper~XII.
+
+\medskip\noindent
+The trace formula established in Paper~II
+provides a structural link between the spectral
+density of $\Hlim$ and the distribution of prime
+numbers via the Slepian eigenvalue counting function.
+Once Conditions~(1) and~(2) are established,
+this connection becomes fully operative and the
+Hilbert--P\'olya programme closes conditionally
+on CCM (\cite{CCM2025}).
 
 \medskip\noindent
 State of the programme as of Paper~XI.
