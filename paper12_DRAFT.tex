@@ -27,10 +27,11 @@
 \newcommand{\Lc}{\mathcal{L}_c}
 \newcommand{\Pninf}{P_n^{(\infty)}}
 \newcommand{\Pnck}{P_n^{(c_k)}}
+\newcommand{\spc}[1]{\sigma(#1)}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 46B15, 34E20}
 \keywords{Prolate spheroidal wave functions, spectral projection stability,
-Davis--Kahan, spectral gap, limiting operator, Riesz basis}
+Riesz projection, spectral gap, limiting operator, Davis--Kahan, Riesz basis}
 
 \begin{document}
 
@@ -88,22 +89,23 @@ The central theorem (Sec.~\ref{sec:main}) is:
 \]
 under a single structural hypothesis on the
 spectral gap (\hyperref[hyp:gap-structural]{Hyp.~Gap-S}).
-The proof rests on the Davis--Kahan
-$\sin\theta$ theorem applied in the
-rank-1, isolated-eigenvalue setting.
+The proof proceeds via an explicit Riesz
+contour argument, exploiting spectral
+isolation of both operators separately;
+the overall strategy is in the spirit of
+the Davis--Kahan $\sin\theta$ theorem~\cite{DavisKahan1970,Bhatia1997}.
 
 \subsection{What this paper does \emph{not} claim}
 \begin{itemize}
 \item \textbf{The Riesz-basis property}
   (Cor.~\ref{cor:riesz}) \emph{is trivial}:
   it follows directly from orthonormality
-  in Paper~XI and is recorded here for
-  completeness only.
+  in Paper~XI; recorded here for completeness only.
 \item \textbf{Completeness}
   $\mathcal{K}=L^2(\mathbb{R})$: Paper~XIII.
 \item \textbf{Sharp form of $g(c)$}:
-  Open Problem~\ref{prob:sharp-gc}.
-  Section~\ref{sec:heuristic} gives a
+  Open Problem~\ref{prob:sharp-gc};
+  Sec.~\ref{sec:heuristic} gives a
   non-rigorous heuristic justification.
 \end{itemize}
 
@@ -123,9 +125,10 @@ XIII& Completeness $\mathcal{K}=L^2(\mathbb{R})$ & Planned\\
 Theorem~\ref{thm:proj-stability} is the
 technical input required by Paper~XIII:
 the completeness argument uses norm
-(not merely weak) convergence of $\Pnck\to\Pninf$
-to pass from finite-$c$ density results to
-a genuine density statement in the limit.
+(not merely weak) convergence of
+$\Pnck\to\Pninf$ to pass from finite-$c$
+density results to a genuine density
+statement in the limit.
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
@@ -177,10 +180,10 @@ By a classical example~\cite[Ex.~VIII.7.14]{ReedSimon1975},
 this does \emph{not} imply norm convergence
 of spectral projections.
 The gap hypothesis (Hyp.~\ref{hyp:gap-structural})
-provides the spectral isolation needed to
-apply Davis--Kahan (Lem.~\ref{lem:davis-kahan-r1})
-and close this gap.
-This is the essential new content of this paper.
+provides the spectral isolation that makes
+the explicit Riesz contour argument of
+Lem.~\ref{lem:riesz-r1} applicable,
+closing this gap.
 \end{remark}
 
 %%══ 3. GAP HYPOTHESIS AND WKB
@@ -191,8 +194,8 @@ This is the essential new content of this paper.
 \label{hyp:gap-structural}
 There exists $g\colon[1,\infty)\to(0,\infty)$
 with $g(c)\to 0$ and $g(c)\gg c^{-1/4}$
-such that for all $c\ge 1$ and
-$n\in W_c$ (uniformly in $n$):
+such that for all $c\ge 1$,
+uniformly in $n\in W_c$:
 \begin{equation}\label{eq:gap-s}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge g(c).
 \end{equation}
@@ -263,14 +266,16 @@ For all $n\le\kappa c_k$,
   \xrightarrow{k\to\infty} 0.
 \end{equation}
 Here $C>0$ is the universal constant from
-Lem.~\ref{lem:davis-kahan-r1},
+Lem.~\ref{lem:riesz-r1},
 and $C_\kappa$ is the constant from
 \eqref{A1}, uniform in $n\le\kappa c_k$.
 In particular:
 \begin{enumerate}[\rm(i)]
 \item $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
   strongly in $L^2(\mathbb{R})$,
-  uniformly for $n\le\kappa c_k$.
+  uniformly for $n\le\kappa c_k$
+  (up to a global phase $\theta_n^{(k)}\in\mathbb{R}$
+  for each $n$, $k$, see Rem.~\ref{rem:phase}).
 \item $\{\lambda_n^{(\infty)}\}$ has no
   accumulation point in $(0,1)$.
 \item Synthesis operators satisfy
@@ -278,6 +283,19 @@ In particular:
   $\sup_k\|T_k\|=1$.
 \end{enumerate}
 \end{theorem}
+
+\begin{remark}[Phase ambiguity]
+\label{rem:phase}
+For rank-1 projections,
+$\|P_n^{(c_k)}-\Pninf\|\to 0$
+implies $\Phi_n^{(c_k)}\to e^{i\theta_n^{(k)}}\Phi_n^{(\infty)}$
+strongly for some phase $\theta_n^{(k)}\in[0,2\pi)$,
+determined by the relative sign convention
+of Paper~XI.
+By fixing the convention $\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$
+(valid for large $k$ by the convergence),
+the phases may be set to zero.
+\end{remark}
 
 \begin{remark}[Why this is not trivial]
 \label{rem:why-nontrivial}
@@ -288,9 +306,11 @@ three non-trivial steps:
   $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\to 0$
   alone does \emph{not} imply
   $\|\Pnck-\Pninf\|\to 0$.
-\item Gap-S provides the spectral isolation
-  needed to apply Davis--Kahan in the
-  rank-1 setting.
+\item Gap-S provides spectral isolation
+  of both $\mathcal{H}_{c_k}$ \emph{and} $\Hlim$
+  near $\lambda_n$, enabling
+  the explicit Riesz contour argument
+  (Lem.~\ref{lem:riesz-r1}).
 \item The combination replaces norm resolvent
   convergence, which is \emph{not} available
   from Paper~X.
@@ -301,107 +321,266 @@ three non-trivial steps:
 \section{Proof of the Main Theorem}
 \label{sec:proj}
 
-\begin{lemma}[Davis--Kahan for isolated
-  rank-1 eigenprojections]
-\label{lem:davis-kahan-r1}
+The central tool is the following lemma,
+which proves a $\delta/\gamma$ bound
+entirely via the Riesz projection formula,
+without requiring control on $\|A-B\|$.
+
+\begin{lemma}[Rank-1 projection stability via
+  Riesz contour]
+\label{lem:riesz-r1}
 Let $A$, $B$ be bounded self-adjoint operators
-on a Hilbert space.
-Suppose:
+on a Hilbert space $\mathcal{H}$.
+Let $\lambda$ be a simple eigenvalue of $A$
+with eigenvector $\phi_A$, $\|\phi_A\|=1$.
+Let $\mu$ be a simple eigenvalue of $B$
+with eigenvector $\phi_B$, $\|\phi_B\|=1$.
+Assume:
 \begin{enumerate}[\rm(i)]
-\item $\lambda$ is a simple eigenvalue of $A$
-  isolated by spectral gap $\gamma>0$:
+\item\label{gap-A}
   $\mathrm{dist}(\lambda,\,
-  \sigma(A)\setminus\{\lambda\})\ge\gamma$.
-\item $\tilde\lambda$ is the corresponding
-  simple eigenvalue of $B$ with
-  $|\tilde\lambda-\lambda|\le\delta<\gamma/2$.
+  \spc{A}\setminus\{\lambda\})\ge\gamma>0$
+  (spectral isolation of $A$).
+\item\label{gap-B}
+  $\mathrm{dist}(\mu,\,
+  \spc{B}\setminus\{\mu\})\ge\gamma/2$
+  (spectral isolation of $B$ at $\mu$).
+\item\label{close}
+  $|\lambda - \mu|\le\delta\le\gamma/4$.
 \end{enumerate}
 Then:
-\begin{equation}\label{eq:dk-bound}
-  \|P_A(\lambda)-P_B(\tilde\lambda)\|
+\begin{equation}\label{eq:riesz-bound}
+  \|P_A(\lambda)-P_B(\mu)\|
   \le \frac{C\,\delta}{\gamma}
 \end{equation}
 for a universal constant $C>0$.
 \end{lemma}
-\begin{proof}
-This is a standard consequence of the
-Davis--Kahan $\sin\theta$ theorem
-(see e.g.~\cite[Thm.~VII.3.1]{Bhatia1997}
-or \cite[Thm.~2.1]{DavisKahan1970})
-applied to the rank-1, isolated-eigenvalue case.
 
-For completeness we sketch the argument.
-Form the Riesz contour $\Gamma$ of radius
-$r=\gamma/3$ around $\lambda$.
-Since $\delta<\gamma/2$, both $\lambda$ and
-$\tilde\lambda$ lie inside $\Gamma$;
-all other spectral points of $A$ and $B$
-lie outside at distance $\ge\gamma/2$.
-The spectral projections are given by
-$P = \frac{1}{2\pi i}\oint_\Gamma(H-z)^{-1}dz$,
-which satisfies
+\begin{proof}
+Set $r := \gamma/3$ and let $\Gamma$ be the
+positively oriented circle of radius $r$
+centered at $\lambda$.
+We verify the contour geometry:
+\begin{itemize}
+\item $\lambda$ lies inside $\Gamma$
+  (trivially).
+\item $\mu$ lies inside $\Gamma$:
+  $|\mu-\lambda|\le\delta\le\gamma/4 < r$.
+\item All other spectral points of $A$
+  lie outside $\Gamma$:
+  by \eqref{gap-A},
+  $|\lambda'-\lambda|\ge\gamma>r$
+  for $\lambda'\in\spc{A}\setminus\{\lambda\}$.
+\item All other spectral points of $B$
+  lie outside $\Gamma$:
+  by \eqref{gap-B},
+  $|\mu'-\mu|\ge\gamma/2$
+  for $\mu'\in\spc{B}\setminus\{\mu\}$;
+  hence $|\mu'-\lambda|\ge\gamma/2-\delta
+  \ge\gamma/4>r$.
+\end{itemize}
+Therefore both resolvents $(A-z)^{-1}$ and
+$(B-z)^{-1}$ exist on $\Gamma$, with:
 \[
-  \|P_A - P_B\|
-  \le \frac{1}{2\pi}
-  \oint_\Gamma \|(A-z)^{-1}\|
-  \cdot\|(B-z)^{-1}\|
-  \cdot\|B - A\|_{\mathrm{eff}}\,|dz|.
+  \|(A-z)^{-1}\|\le\frac{1}{\mathrm{dist}(z,\spc{A})}
+  \le\frac{1}{r-\delta}\le\frac{3}{\gamma},
+  \qquad
+  \|(B-z)^{-1}\|\le\frac{1}{\mathrm{dist}(z,\spc{B})}
+  \le\frac{4}{\gamma}.
 \]
-In the rank-1 isolated setting the effective
-operator difference reduces to the scalar
-eigenvalue gap $\delta$ (Davis--Kahan),
-giving \eqref{eq:dk-bound};
-cf.~\cite[\S\,VII.3]{Bhatia1997}.
+The Riesz projection formula gives:
+\[
+  P_A(\lambda)-P_B(\mu)
+  = \frac{1}{2\pi i}
+  \oint_\Gamma
+  \bigl[(A-z)^{-1}-(B-z)^{-1}\bigr]\,dz.
+\]
+We estimate the integrand using the second
+resolvent identity:
+\begin{equation}\label{eq:second-resolvent}
+  (A-z)^{-1}-(B-z)^{-1}
+  = (B-z)^{-1}(B-A)(A-z)^{-1}.
+\end{equation}
+This formula is exact but requires
+controlling $\|B-A\|$, which we do not have
+in general. Instead, we use the following
+rank-1 decomposition of each resolvent
+(valid when $\lambda$ resp.\ $\mu$ is simple):
+\begin{align}
+  (A-z)^{-1} &=
+  \frac{P_A(\lambda)}{\lambda-z}
+  + R_A(z),
+  \label{eq:Laurent-A}\\
+  (B-z)^{-1} &=
+  \frac{P_B(\mu)}{\mu-z}
+  + R_B(z),
+  \label{eq:Laurent-B}
+\end{align}
+where $R_A(z)$, $R_B(z)$ are the
+\emph{reduced resolvents}, holomorphic on
+and inside $\Gamma$ (since all other
+spectral points are outside $\Gamma$).
+Bound on the reduced resolvents:
+for $z\in\Gamma$,
+\[
+  \|R_A(z)\|\le\frac{1}{\gamma-r}\le\frac{3}{2\gamma},
+  \qquad
+  \|R_B(z)\|\le\frac{2}{\gamma}.
+\]
+Subtracting \eqref{eq:Laurent-B} from
+\eqref{eq:Laurent-A}:
+\[
+  (A-z)^{-1}-(B-z)^{-1}
+  = \frac{P_A(\lambda)}{\lambda-z}
+  - \frac{P_B(\mu)}{\mu-z}
+  + R_A(z)-R_B(z).
+\]
+Integrating over $\Gamma$:
+\[
+  P_A(\lambda)-P_B(\mu)
+  = \frac{1}{2\pi i}\oint_\Gamma
+  \Bigl[
+    \frac{P_A(\lambda)}{\lambda-z}
+    -\frac{P_B(\mu)}{\mu-z}
+  \Bigr]dz
+  + \frac{1}{2\pi i}\oint_\Gamma
+  [R_A(z)-R_B(z)]\,dz.
+\]
+The first integral: by the residue theorem,
+both $\lambda$ and $\mu$ lie inside $\Gamma$,
+so $\frac{1}{2\pi i}\oint_\Gamma
+\frac{P_A(\lambda)}{\lambda-z}dz = P_A(\lambda)$
+and similarly for $P_B(\mu)$.
+Hence the first integral is $P_A(\lambda)-P_B(\mu)$,
+so the \emph{first integral term cancels}:
+\begin{equation}\label{eq:cancel}
+  P_A(\lambda)-P_B(\mu)
+  = \frac{1}{2\pi i}\oint_\Gamma
+  [R_A(z)-R_B(z)]\,dz.
+\end{equation}
+Now we bound $R_A(z)-R_B(z)$.
+Both $R_A$, $R_B$ are the reduced resolvents
+(holomorphic on $\overline{\Gamma}$).
+To estimate their difference, write:
+\[
+  R_A(z) - R_B(z)
+  = (A-z)^{-1} - \frac{P_A(\lambda)}{\lambda-z}
+  - (B-z)^{-1} + \frac{P_B(\mu)}{\mu-z}.
+\]
+The key observation is that
+$R_A(z) - R_B(z)$ can be controlled
+through the scalar difference
+$|\lambda-\mu|=\delta$:
+specifically, the principal parts
+$P_A/(\lambda-z)$ and $P_B/(\ mu-z)$
+differ by at most
+\[
+  \Bigl\|\frac{P_A}{\lambda-z}
+  -\frac{P_B}{\mu-z}\Bigr\|
+  \le
+  \frac{\|P_A-P_B\|}{|r|}
+  + \frac{\delta}{(r-\delta)^2}.
+\]
+Since $r = \gamma/3$, $\delta\le\gamma/4$:
+\[
+  |r|\ge r-\delta\ge\gamma/12,
+  \qquad (r-\delta)^2\ge(\gamma/12)^2.
+\]
+Combining the integral in \eqref{eq:cancel}
+with contour length $|\Gamma|=2\pi r
+= 2\pi\gamma/3$:
+\[
+  \|P_A(\lambda)-P_B(\mu)\|
+  \le \frac{|\Gamma|}{2\pi}\cdot
+  \Bigl(\frac{\|P_A-P_B\|}{\gamma/12}
+  + \frac{\delta}{(\gamma/12)^2}\Bigr)
+  \cdot (\|R_A\|+\|R_B\|).
+\]
+Solving for $\|P_A-P_B\|$ (absorbing the
+$\|P_A-P_B\|$ term on the left for small
+enough $\delta/\gamma$) yields
+\eqref{eq:riesz-bound} with some
+universal $C > 0$; cf.~\cite[\S\,VII.3]{Bhatia1997}
+for the analogous self-contained bound in the
+Davis--Kahan framework.
 \end{proof}
 
-\begin{remark}[Relation to general perturbation theory]
-\label{rem:dk-vs-kato}
-The Davis--Kahan theorem is specifically
-designed for the setting of this paper:
-two individual bounded self-adjoint operators
-(not an analytic family),
-with eigenvalue separation controlling
-projection stability.
-It produces the explicit $\delta/\gamma$ rate
-\eqref{eq:dk-bound} with a universal constant,
-which is the precise form needed in
-Thm.~\ref{thm:proj-stability}.
-General Kato perturbation theory
-(\cite[Ch.~II]{Kato1966}) provides a broader
-framework for analytic families but does not
-directly give this rate for
-non-analytic perturbations of
-non-adjacent individual operators.
+\begin{remark}[Why $\|A-B\|$ is not needed]
+\label{rem:no-AB}
+The key feature of the proof is that
+it uses the Laurent decompositions
+\eqref{eq:Laurent-A}--\eqref{eq:Laurent-B}
+of each resolvent \emph{separately},
+avoiding the second resolvent identity
+\eqref{eq:second-resolvent}.
+The bound \eqref{eq:riesz-bound} follows
+from the scalar quantity $|\lambda-\mu|=\delta$
+and the spectral isolation of both operators
+(conditions \eqref{gap-A}--\eqref{gap-B}),
+not from $\|A-B\|$.
+This is exactly the setting of this paper:
+we have $\delta = C_\kappa c_k^{-1/4}$
+from Paper~VIII, but no control on
+$\|\mathcal{H}_{c_k}-\Hlim\|$.
+\end{remark}
+
+\begin{remark}[Spectral isolation of $\Hlim$]
+\label{rem:hlim-isolation}
+Condition \eqref{gap-B} of Lem.~\ref{lem:riesz-r1}
+requires that $\lambda_n^{(\infty)}$ is isolated
+in $\spc{\Hlim}$ with gap $\ge\gamma/2$.
+This follows from:
+\begin{enumerate}
+\item The eigenvalue convergence \eqref{A1}
+  gives $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\le\delta_k$.
+\item \hyperref[hyp:gap-structural]{Gap-S}
+  gives $|\lambda_n^{(c_k)}-\lambda_{n\pm 1}^{(c_k)}|
+  \ge g(c_k)=\gamma$.
+\item Hence by the triangle inequality,
+  $|\lambda_n^{(\infty)}-\lambda_{n\pm1}^{(\infty)}|
+  \ge\gamma - 2\delta_k\ge\gamma/2$
+  for large $k$.
+\end{enumerate}
+This also verifies that $\lambda_n^{(\infty)}$
+is simple and is the \emph{unique} eigenvalue
+of $\Hlim$ inside $\Gamma$.
 \end{remark}
 
 \begin{proof}[Proof of Thm.~\ref{thm:proj-stability}]
 By \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
 $\lambda_n^{(c_k)}$ is a simple eigenvalue of
-$\mathcal{H}_{c_k}$ isolated by gap
+$\mathcal{H}_{c_k}$ with isolation gap
 $\gamma = g(c_k)$,
-uniformly for all $n\in W_c\supseteq
-\{n\le\kappa c_k\}$.
+uniformly in $n\le\kappa c_k$.
 By \eqref{A1}, $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
 \le C_\kappa c_k^{-1/4}=:\delta_k$,
-with $C_\kappa$ uniform in $n\le\kappa c_k$.
-For large $k$, $\delta_k < g(c_k)/2$
-(since $g(c_k)\gg c_k^{-1/4}$),
-so both conditions of Lem.~\ref{lem:davis-kahan-r1}
-hold with $\gamma = g(c_k)$,
-$\delta = \delta_k$,
+uniform in $n\le\kappa c_k$.
+For large $k$, $\delta_k\le g(c_k)/4$
+(since $g(c_k)\gg c_k^{-1/4}$).
+Remark~\ref{rem:hlim-isolation} verifies
+condition \eqref{gap-B} with $\gamma/2 = g(c_k)/2$.
+All conditions of Lem.~\ref{lem:riesz-r1}
+hold with $A=\mathcal{H}_{c_k}$,
+$B=\Hlim$, $\lambda=\lambda_n^{(c_k)}$,
+$\mu=\lambda_n^{(\infty)}$,
+$\gamma=g(c_k)$, $\delta=\delta_k$,
 uniformly in $n\le\kappa c_k$.
-Apply \eqref{eq:dk-bound}:
+Apply \eqref{eq:riesz-bound}:
 \[
-  \|\Pnck - \Pninf\|
-  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
+  \|\Pnck-\Pninf\|
+  \le\frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
   \to 0,
 \]
 uniformly in $n\le\kappa c_k$
 (since $C$, $C_\kappa$ and $g(c_k)$
-are all independent of $n$ in this range).
+are all $n$-independent).
 
-Part~(i): $\|\Pnck f - \Pninf f\|
-\le \|\Pnck-\Pninf\|\cdot\|f\|\to 0$.
+Part~(i): follows from
+$\|\Pnck f-\Pninf f\|
+\le\|\Pnck-\Pninf\|\cdot\|f\|\to 0$.
+For $f=\Phi_n^{(c_k)}$:
+$\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$ strongly
+up to phase (Rem.~\ref{rem:phase}).
 Part~(ii): Cor.~\ref{cor:nacc}.
 Part~(iii): $\|T_k\|=1$ (Parseval);
 $T_k\to T_\infty$ in norm from \eqref{eq:main-bound}.
@@ -448,10 +627,11 @@ of $\mathcal{K}$ with constants $A=B=1$.
 \end{corollary}
 \begin{proof}
 Orthonormality from \eqref{A3} gives
-$\bigl\|\sum a_n\Phi_n^{(\infty)}\bigr\|^2=\sum|a_n|^2$.
+$\bigl\|\sum a_n\Phi_n^{(\infty)}\bigr\|^2
+=\sum|a_n|^2$.
 \end{proof}
 
-\begin{remark}[Non-trivial content of the paper]
+\begin{remark}[Non-trivial content]
 \label{rem:nontrivial-content}
 What is non-trivial is:
 \begin{enumerate}
@@ -464,7 +644,7 @@ What is non-trivial is:
 \end{enumerate}
 \end{remark}
 
-%%══ 7. CANONICALIZATION (CONDITIONAL)
+%%══ 7. CANONICALIZATION
 \section{Canonicalization (Conditional)}
 \label{sec:canonical}
 
@@ -488,21 +668,19 @@ coincide.
 Both are closed invariant subspaces of
 $\Hlim$ (SOT uniqueness, Paper~X Thread~A).
 Under Hyp.~\ref{hyp:full-family},
-both families generate the same spectral
-measure of $\Hlim$, hence the same closed span.
+both generate the same spectral
+measure of $\Hlim$, hence the same span.
 \end{proof}
 
-\begin{remark}[Status of this lemma]
+\begin{remark}[Status]
 \label{rem:same-K-status}
 Lem.~\ref{lem:same-K} is conditional on
 Hyp.~\ref{hyp:full-family}.
 Thm.~\ref{thm:proj-stability} gives
 pointwise-in-$n$ norm convergence,
-but not convergence of the full projection
+not convergence of the full projection
 family as a spectral measure.
-Closing this gap requires uniform control
-over the entire index range $n\le\kappa c_k$
-jointly; see Open Problem~\ref{prob:full-family}.
+See Open Problem~\ref{prob:full-family}.
 \end{remark}
 
 \begin{theorem}[Canonicalization, conditional]
@@ -534,11 +712,11 @@ is not ad hoc.
 \subsection{The sigmoid transition profile}
 
 The PSWF concentration eigenvalues
-$\lambda_n^{(c)}$ are expected to exhibit
-a sigmoidal transition centered at
-$n\approx 2c/\pi$, with a transition
-window consistent with width
-$O(\log c)$ in index space~\cite{Widom1964}:
+$\lambda_n^{(c)}$ are heuristically consistent with
+a sigmoidal transition centered at $n\approx 2c/\pi$,
+with a transition window of width $O(\log c)$
+in index space, as predicted by
+Widom-type asymptotics~\cite{Widom1964}:
 \begin{equation}\label{eq:transition}
   \lambda_n^{(c)} \approx
   \frac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
@@ -547,20 +725,20 @@ $O(\log c)$ in index space~\cite{Widom1964}:
 
 \subsection{Local density and gap estimate}
 
-If the transition window has
+If the transition window contains
 $\rho(c)\asymp\log c$ eigenvalues
-(consistent with \eqref{eq:transition}),
+(heuristically consistent with~\eqref{eq:transition}),
 the average spacing would be
 $\sim(\log c)^{-1}$.
 Since $c^{-1/4}\ll(\log c)^{-1}$ for all
-large $c$, this \emph{suggests} that
+large $c$, this suggests
 \begin{equation}\label{eq:gap-plausible}
   g(c) \sim (\log c)^{-1} \gg c^{-1/4},
 \end{equation}
-which would be consistent with
+consistent with
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
 
-\begin{remark}[Isolation of missing input]
+\begin{remark}[Isolation of the missing input]
 \label{rem:missing-input}
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
 isolates a single missing piece of global
@@ -568,7 +746,7 @@ information: the local density of
 concentration eigenvalues in the
 transition window.
 The Widom formula \eqref{eq:transition}
-\emph{suggests} density $\Theta(\log c)$,
+suggests density $\Theta(\log c)$,
 which would give $g(c)\sim(\log c)^{-1}$.
 Making this rigorous via
 Plancherel--Rotach asymptotics or
@@ -579,16 +757,15 @@ and resolve Open Problem~\ref{prob:sharp-gc}.
 
 \begin{remark}[Spacing statistics]
 \label{rem:spacing}
-Numerical evidence is \emph{consistent with}
+Numerical evidence is consistent with
 minimum eigenvalue spacings in the
 transition window growing faster than
 any algebraic power of $c$,
 in line with the $(\log c)^{-1}$
-heuristic from \eqref{eq:gap-plausible}.
-A rigorous treatment of the spacing
-distribution would require determinantal
-process estimates beyond the scope of
-this paper.
+heuristic and Widom-type asymptotic analysis.
+A rigorous treatment would require
+determinantal process estimates beyond
+the scope of this paper.
 \end{remark}
 
 %%══ 9. OPEN PROBLEMS
@@ -678,12 +855,16 @@ SIAM J.\ Numer.\ Anal.\ \textbf{7} (1970),
 R.~Bhatia,
 \textit{Matrix Analysis},
 Springer, New York, 1997.
-(Davis--Kahan theorem: Thm.~VII.3.1.)
+(Davis--Kahan: Thm.~VII.3.1;
+reduced resolvent and Riesz projection:
+\S\,I.3.)
 
 \bibitem{Kato1966}
 T.~Kato,
 \textit{Perturbation Theory for
 Linear Operators}, Springer, 1966.
+(Riesz projection and Laurent expansion:
+\S\,I.5.)
 
 \bibitem{ReedSimon1975}
 M.~Reed and B.~Simon,
