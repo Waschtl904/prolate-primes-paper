@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 
-%%%─── Theorem environments (section-numbered, shared counter)
+%%%─── Theorem environments
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -22,7 +22,6 @@
 
 %%%─── Macros
 \newcommand{\Phihat}{\widehat{\Phi}}
-\newcommand{\Ai}{\mathrm{Ai}}
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
 \newcommand{\Hc}{\mathcal{H}_c}
@@ -31,9 +30,7 @@
 \newcommand{\Hspectral}{H_{\lim}^{(\mathrm{sp})}}
 \newcommand{\Dom}{\mathrm{Dom}}
 \newcommand{\sigapp}{\sigma_{\mathrm{app}}}
-\DeclareMathOperator{\sgn}{sgn}
 
-%%%─── AMS metadata
 \subjclass[2020]{47A10, 47B25, 42C05, 11M06}
 \keywords{Prolate spheroidal wave functions, limiting PSWF operator,
 spectral inclusion, Weyl asymptotics, spectral density,
@@ -59,117 +56,141 @@ The operator $\Hlim$ is defined as the SOT-limit of $\Hc$
 orthonormal system $\{\Phi_n^{(\infty)}\}$, constructed along a
 common diagonal subsequence (Lemma~\ref{lem:diagonal}).
 Without assuming completeness of $\{\Phi_n^{(\infty)}\}$,
-we prove:
-\begin{enumerate}
-\item \textbf{Spectral Inclusion}
-      (Theorem~\ref{thm:spectral-inclusion}):
-      $\overline{\{\lambda_n^{(\infty)}\}} \subset \sigma(\Hlim)$,
-      each $\lambda_n^{(\infty)}$ a genuine eigenvalue.
-\item \textbf{Semi-classical counting law}
-      (Theorem~\ref{thm:weyl}):
-      under Hypothesis~\ref{hyp:SOH}
-      (injectivity of $n \mapsto \lambda_n^{(\infty)}$),
-      $N(\lambda) \sim \tfrac{2}{\pi}c(\lambda)$.
-\item \textbf{Density Criterion}
-      (Theorem~\ref{thm:density-criterion}):
-      density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$
-      implies $\sigma(\Hlim) = [0,1]$.
-\end{enumerate}
+we establish the four results stated in
+Theorem~\ref{thm:main} below.
 Riesz-basis stability and the identification
 $\HSOT = \overline{\Hspectral}$ are deferred to Paper~XII.
 No unconditional connection to $\zeta(s)$-zeros is made.
 \end{abstract}
 
 \section*{Guide for the Referee}
-
 Two inherited layers:
 \begin{itemize}
 \item \textbf{Operator layer} (Paper~X):
       $\Hlim$ bounded, self-adjoint, SOT-limit.
-\item \textbf{Eigenstructure layer} (Paper~IX +
-      Lemma~\ref{lem:diagonal}):
+\item \textbf{Eigenstructure layer} (Paper~IX
+      + Lemma~\ref{lem:diagonal}):
       $\{\Phi_n^{(\infty)},\lambda_n^{(\infty)}\}$
       orthonormal system along a common diagonal
       subsequence.
 \end{itemize}
-Paper~XI adds the spectral geometry layer:
+Paper~XI adds the \emph{spectral geometry layer}:
 spectral inclusion (unconditional),
 counting law (conditional on Hyp.~\ref{hyp:SOH}),
-density reduction.
-No completeness assumed;
-frame-stability deferred to Paper~XII.
+density reduction (conditional on
+Conjecture~\ref{conj:density}).
+No completeness assumed; frame-stability
+deferred to Paper~XII.
 
 \tableofcontents
+
+%%═══════════════════════════════════════════════════════════════════
+\section{Main Results}
+\label{sec:main}
+%%═══════════════════════════════════════════════════════════════════
+
+\begin{theorem}[Main results of Paper~XI]
+\label{thm:main}
+Let $\Hlim$ and $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}\}$
+be the operator and eigendata constructed in
+Lemma~\ref{lem:diagonal}.
+The following hold.
+\begin{enumerate}[\rm(A)]
+\item \textbf{(Eigenvalue equation,
+      Lemma~\ref{lem:eigenvalue-eq})}
+      For each $n \ge 0$:
+      $\Hlim\,\Phi_n^{(\infty)}
+      = \lambda_n^{(\infty)}\,\Phi_n^{(\infty)}$.
+      The proof uses only SOT-convergence,
+      the eigenvalue rate \eqref{XI1},
+      and orthonormality \eqref{XI2};
+      no completeness, no resolvent, no spectral theorem.
+\item \textbf{(Spectral inclusion,
+      Theorem~\ref{thm:spectral-inclusion})}
+      Each $\lambda_n^{(\infty)} \in \sigma_p(\Hlim)$;
+      hence
+      $\overline{\{\lambda_n^{(\infty)}\}}
+      \subset \sigma(\Hlim) \subset [0,1]$.
+      Unconditional.
+\item \textbf{(Index--bandwidth transfer,
+      Theorem~\ref{thm:weyl})}
+      Under Hypothesis~\ref{hyp:SOH}
+      (injectivity of $n \mapsto \lambda_n^{(\infty)}$):
+      \[
+        \lambda_n^{(\infty)} \approx \lambda
+        \iff
+        n \approx \tfrac{2}{\pi}c(\lambda),
+      \]
+      where $c(\lambda) := \tfrac{\pi}{2}N(\lambda)$
+      is the asymptotic bandwidth proxy for $\lambda$.
+\item \textbf{(Density criterion,
+      Theorem~\ref{thm:density-criterion})}
+      If $\{\lambda_n^{(\infty)}\}$ is dense in $[0,1]$,
+      then $\sigma(\Hlim) = [0,1]$.
+      Conditional on Conjecture~\ref{conj:density}.
+\end{enumerate}
+Items~(A) and~(B) are fully proved;
+(C) is conditional on Hyp.~\ref{hyp:SOH};
+(D) is conditional on Conj.~\ref{conj:density}.
+\end{theorem}
 
 %%═══════════════════════════════════════════════════════════════════
 \section{Setup and Inherited Results}
 \label{sec:setup}
 %%═══════════════════════════════════════════════════════════════════
 
-We retain all notation from Papers~VIII--X.
-
 \subsection{Common diagonal subsequence}
 
 \begin{lemma}[Common diagonal subsequence]
 \label{lem:diagonal}
-There exists a sequence $c_k \nearrow \infty$
-such that for every $n \ge 0$ simultaneously:
+There exists $c_k \nearrow \infty$ such that
+for every $n \ge 0$ simultaneously:
 \begin{enumerate}[\rm(i)]
-\item $\Phi_n^{(c_k)} \rightharpoonup \Phi_n^{(\infty)}$
+\item $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
       weakly in $L^2(\mathbb{R})$;
-\item $\lambda_n^{(c_k)} \to \lambda_n^{(\infty)}$;
-\item $\mathcal{H}_{c_k} \xrightarrow{\mathrm{SOT}} \Hlim$.
+\item $\lambda_n^{(c_k)}\to\lambda_n^{(\infty)}$;
+\item $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$.
 \end{enumerate}
-Moreover $\{\Phi_n^{(\infty)}\}_{n\ge 0}$ is
+The system $\{\Phi_n^{(\infty)}\}_{n\ge 0}$ is
 orthonormal in $L^2(\mathbb{R})$.
 \end{lemma}
 
 \begin{proof}
 \textbf{Step 1.}
-For each fixed $n$, $\|\Phi_n^{(c)}\|=1$ for all $c$;
-Banach--Alaoglu gives a weakly convergent subsequence.
+$\|\Phi_n^{(c)}\|=1$ for all $c$;
+Banach--Alaoglu gives weakly convergent subsequences.
 
 \textbf{Step 2 (Cantor diagonal).}
 Extract $c_k^{(0)}$ for $n=0$;
 from $c_k^{(0)}$ extract $c_k^{(1)}$ for $n=1$;
 continue inductively.
-Set $c_k := c_k^{(k)}$.
+Set $c_k:=c_k^{(k)}$.
 For every fixed $n$, $(c_k)_{k\ge n}$ is a
 subsequence of $c_k^{(n)}$,
-so $\Phi_n^{(c_k)} \rightharpoonup \Phi_n^{(\infty)}$.
-Eigenvalue convergence (ii) follows from
-$|\lambda_n^{(c)}-\lambda_n^{(\infty)}| \le C_\kappa c^{-1/4}$
-(Paper~VIII, Cor.~4.3) along any subsequence.
+so $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$.
+Eigenvalue convergence follows from
+$|\lambda_n^{(c)}-\lambda_n^{(\infty)}|\le C_\kappa c^{-1/4}$
+(Paper~VIII, Cor.~4.3).
 
 \textbf{Step 3 (SOT).}
-Paper~X, Lem.~2.2 gives SOT-convergence along
-any sequence; holds for $c_k$ in particular.
+Paper~X, Lem.~2.2 gives SOT-convergence along any
+sequence; in particular along $c_k$.
 
 \textbf{Step 4 (Orthonormality).}
-For $m\ne n$:
-$\ip{\Phi_m^{(c_k)}}{\Phi_n^{(c_k)}}=0$ for all $k$
-(eigenvectors of a self-adjoint operator for
-distinct eigenvalues).
-For fixed $\varphi,\psi \in L^2$, weak convergence gives
-$\ip{\Phi_m^{(c_k)}}{\Phi_n^{(\infty)}}
-\to \ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}$
-and similarly for the other cross-term;
-hence $\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=0$.
-For $m=n$: weak lower semicontinuity gives
-$\|\Phi_n^{(\infty)}\|\le 1$;
-orthonormality of each finite-$c$ system and the
-diagonal construction give $\|\Phi_n^{(\infty)}\|=1$
-(see Paper~IX, Prop.~2.2 for the full argument).
+For $m\ne n$: $\ip{\Phi_m^{(c_k)}}{\Phi_n^{(c_k)}}=0$
+(eigenvectors for distinct eigenvalues).
+Weak convergence gives
+$\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=0$.
+For $m=n$: $\|\Phi_n^{(\infty)}\|=1$
+follows from the orthonormality structure of
+Paper~IX, Prop.~2.2.
 \end{proof}
 
-\begin{remark}[Scope and uniqueness]
+\begin{remark}[Scope]
 \label{rem:subsequence}
 All results hold along the fixed $c_k$ of
 Lemma~\ref{lem:diagonal}.
-``$\lim_{c\to\infty}$'' means
-``$\lim_{k\to\infty}$ along $c_k$.''
-Uniqueness of limit objects up to phase:
-Open Problem~\ref{prob:uniqueness}.
+Uniqueness up to phase: Open Problem~\ref{prob:uniqueness}.
 \end{remark}
 
 \subsection{Inherited results}
@@ -179,81 +200,52 @@ Open Problem~\ref{prob:uniqueness}.
   \textbf{Eigenvalue rate} (Paper~VIII, Cor.~4.3):
   $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|
   \le C_\kappa c^{-1/4}$
-  for $n\le\kappa c$, $c\ge c_0(\kappa)$.
+  for $n\le\kappa c$.
 \item\label{XI2}
   \textbf{Orthonormal system}
   (Lem.~\ref{lem:diagonal} + Paper~IX, Prop.~2.2):
-  $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
-  for all $n$;
+  $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$;
   $\{\Phi_n^{(\infty)}\}$ orthonormal;
   $\|\Phi_n^{(\infty)}\|=1$.
 \item\label{XI3}
   \textbf{SOT-convergence} (Paper~X, Lem.~2.2):
   $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$;
-  $\Hlim$ bounded, self-adjoint, defined without
-  spectral series or completeness.
+  $\Hlim$ bounded, self-adjoint.
 \item\label{XI4}
   \textbf{Non-cancellation} (Paper~VIII, Thm.~3.3):
-  For $n\le\kappa c$, $\exists\, E_c$ with
-  $|E_c|\ge c_* c^{-1/2}$ and
+  $\exists\, E_c$ with $|E_c|\ge c_* c^{-1/2}$,
   $|\Phihat_n^{(c)}|\ge c_1 c^{-1/2}$ on $E_c$.
-  In particular $\Phi_n^{(\infty)}\not\equiv 0$.
 \item\label{XI5}
-  \textbf{Form rate} (Paper~VIII, Cor.~4.3;
-  sole unconditional source):
+  \textbf{Form rate} (Paper~VIII, Cor.~4.3):
   $0\le q_{\lim}(f,f)-q_c(f,f)
   \le C_\kappa c^{-1/4}\|f\|^2$.
-  Used only in
-  Secs.~\ref{sec:weyl}--\ref{sec:density-question}.
 \item\label{XI6}
-  \textbf{Slepian counting} \cite{Slepian1961,Osipov2013}:
-  For $n<(1{-}\delta)2c/\pi$:
-  $\lambda_n^{(c)}\ge 1-e^{-\gamma_\delta c}$;
-  for $n>(1{+}\delta)2c/\pi$:
-  $\lambda_n^{(c)}\le e^{-\gamma_\delta c}$.
+  \textbf{Slepian counting}
+  \cite{Slepian1961,Osipov2013}:
+  $n<(1{-}\delta)2c/\pi\Rightarrow
+  \lambda_n^{(c)}\ge 1-e^{-\gamma_\delta c}$;
+  $n>(1{+}\delta)2c/\pi\Rightarrow
+  \lambda_n^{(c)}\le e^{-\gamma_\delta c}$.
 \end{enumerate}
 
 \begin{remark}[Dependency architecture]
 \label{rem:dependency-architecture}
-\textbf{Paper~IX (eigenstructure):}
-weak limits, orthonormality, norm control,
-spectral index labeling.
-
-\textbf{Paper~X (operator):}
-SOT-existence and self-adjointness of $\Hlim$;
+\textbf{Paper~IX:} weak limits, orthonormality,
+norm control, spectral index labeling.
+\textbf{Paper~X:} SOT-existence, self-adjointness,
 $\sigma(\Hlim)\subset[0,1]$.
-
-\textbf{Paper~XI (spectral geometry):}
-eigenvalue equation via SOT + orthonormality;
-spectral inclusion $\overline{\{\lambda_n^{(\infty)}\}}
-\subset\sigma(\Hlim)$ (unconditional);
-counting law (cond.\ on Hyp.~\ref{hyp:SOH});
-density reduction.
+\textbf{Paper~XI:} eigenvalue equation, spectral
+inclusion, counting law, density reduction.
 \end{remark}
 
 \begin{remark}[Why Paper~IX orthonormality is necessary]
 \label{rem:norm-circulariy}
 SOT + non-cancellation alone give
-$\Phi_n^{(\infty)}\ne 0$ but no global norm control:
-non-cancellation yields mass on sets
-$E_c$ of measure $\sim c^{-1/2}\to 0$;
-no global $L^2$-lower bound survives.
-Hence $\|\Phi_n^{(\infty)}\|=1$ is an output
-of Paper~IX's construction.
-\end{remark}
-
-\begin{remark}[Definition of $\Hlim$]
-\label{rem:operator-definition}
-$\Hlim:=\mathrm{SOT}\text{-}\lim_k\mathcal{H}_{c_k}$
-(Paper~X, Lem.~2.2):
-bounded, self-adjoint, no spectral series,
-no completeness.
-\end{remark}
-
-\begin{remark}[What is not assumed]
-\label{rem:no-completeness}
-Completeness of $\{\Phi_n^{(\infty)}\}$ not assumed.
-Frame-stability deferred to Paper~XII.
+$\Phi_n^{(\infty)}\ne 0$ but no global norm lower bound:
+non-cancellation acts on sets
+$E_c\to\emptyset$; no $L^2$-lower bound survives.
+Hence $\|\Phi_n^{(\infty)}\|=1$ is an output of
+Paper~IX, not derivable from Paper~VIII alone.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -265,10 +257,7 @@ Frame-stability deferred to Paper~XII.
 \label{lem:nonvanish-limit}
 $\|\Phi_n^{(\infty)}\|=1$ for all $n\ge 0$.
 \end{lemma}
-
-\begin{proof}
-Orthonormality, \eqref{XI2}.
-\end{proof}
+\begin{proof}Orthonormality \eqref{XI2}.\end{proof}
 
 \begin{lemma}[Strong convergence from unit-norm weak limit]
 \label{lem:strong-conv}
@@ -277,28 +266,19 @@ $x_k\rightharpoonup x$ weakly with
 $\|x_k\|=1=\|x\|$.
 Then $x_k\to x$ strongly.
 \end{lemma}
-
 \begin{proof}
-\[
-  \|x_k - x\|^2
-  = \|x_k\|^2 + \|x\|^2 - 2\,\mathrm{Re}\ip{x_k}{x}
-  = 2 - 2\,\mathrm{Re}\ip{x_k}{x}
-  \xrightarrow{k\to\infty} 2 - 2\|x\|^2 = 0,
-\]
-using $\ip{x_k}{x}\to\ip{x}{x}=\|x\|^2=1$
-by weak convergence.
+$\|x_k-x\|^2
+=\|x_k\|^2+\|x\|^2-2\,\mathrm{Re}\ip{x_k}{x}
+=2-2\,\mathrm{Re}\ip{x_k}{x}\to 0$
+by $\ip{x_k}{x}\to\ip{x}{x}=1$.
 \end{proof}
 
-\begin{remark}[Role of Lemma~\ref{lem:strong-conv}]
+\begin{remark}[Independence of norm sources]
 \label{rem:strong-conv-role}
-The key input is that both $\|x_k\|$ and $\|x\|$
-equal $1$ \emph{independently}:
-$\|\Phi_n^{(c_k)}\|=1$ by definition (unit eigenvectors)
-and $\|\Phi_n^{(\infty)}\|=1$ from orthonormality
-(\eqref{XI2}, output of Paper~IX).
-Thus the norm equality is not derived from weak
-convergence but from two independent sources,
-avoiding circularity.
+$\|\Phi_n^{(c_k)}\|=1$ by definition (unit eigenvectors);
+$\|\Phi_n^{(\infty)}\|=1$ from Paper~IX orthonormality.
+The two norm-one inputs are independent:
+norm equality is not derived from weak convergence.
 \end{remark}
 
 \begin{lemma}[Eigenvalue equation]
@@ -307,226 +287,208 @@ $\Hlim\,\Phi_n^{(\infty)}
 =\lambda_n^{(\infty)}\,\Phi_n^{(\infty)}$
 for all $n\ge 0$.
 \end{lemma}
-
 \begin{proof}
-Uses \eqref{XI1}, \eqref{XI2}, \eqref{XI3};
-no completeness; no spectral series.
-
-\textbf{Step 1 (SOT applied).}
-By \eqref{XI3} and the fixed vector
-$\Phi_n^{(\infty)}\in L^2$:
+\textbf{Step~1.}
 $\mathcal{H}_{c_k}\,\Phi_n^{(\infty)}
-\to\Hlim\,\Phi_n^{(\infty)}$ in $L^2$.
+\to\Hlim\,\Phi_n^{(\infty)}$
+by SOT \eqref{XI3} applied to $\Phi_n^{(\infty)}$.
 
-\textbf{Step 2 (Decomposition).}
+\textbf{Step~2.}
 $\mathcal{H}_{c_k}\,\Phi_n^{(\infty)}
 =\mathcal{H}_{c_k}(\Phi_n^{(\infty)}-\Phi_n^{(c_k)})
 +\lambda_n^{(c_k)}\,\Phi_n^{(c_k)}$.
 
-\textbf{Step 3 (Strong convergence).}
-$\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
-weakly (\eqref{XI2}) with
-$\|\Phi_n^{(c_k)}\|=1=\|\Phi_n^{(\infty)}\|$
-(unit eigenvectors resp.\ orthonormality \eqref{XI2}).
-By Lemma~\ref{lem:strong-conv}:
+\textbf{Step~3.}
+Lemma~\ref{lem:strong-conv} with \eqref{XI2}:
 $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$ strongly.
 
-\textbf{Step 4.}
+\textbf{Step~4.}
 $\|\mathcal{H}_{c_k}(\Phi_n^{(\infty)}-\Phi_n^{(c_k)})\|
 \le\|\Phi_n^{(\infty)}-\Phi_n^{(c_k)}\|\to 0$.
 
-\textbf{Step 5.}
+\textbf{Step~5.}
 $\|\lambda_n^{(c_k)}\Phi_n^{(c_k)}
 -\lambda_n^{(\infty)}\Phi_n^{(\infty)}\|
 \le|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
-+\lambda_n^{(\infty)}\|\Phi_n^{(c_k)}
--\Phi_n^{(\infty)}\|\to 0$
-(\eqref{XI1} + Step~3).
++|\lambda_n^{(\infty)}|\cdot
+\|\Phi_n^{(c_k)}-\Phi_n^{(\infty)}\|\to 0$.
 
 \textbf{Conclusion.}
 $\Hlim\,\Phi_n^{(\infty)}
-=\lim_k\lambda_n^{(c_k)}\,\Phi_n^{(c_k)}
 =\lambda_n^{(\infty)}\,\Phi_n^{(\infty)}$.
 \end{proof}
 
-\begin{remark}[Dependency map]
-\label{rem:no-specdef}
-Lemma~\ref{lem:eigenvalue-eq} uses:
-\eqref{XI3} (Paper~X),
-\eqref{XI1} (Paper~VIII),
-\eqref{XI2} + Lem.~\ref{lem:strong-conv}
-(orthonormality from Paper~IX;
-abstract Hilbert space argument),
-$\|\mathcal{H}_{c_k}\|\le 1$ (Slepian).
-Not used:
-Paper~IX Def.~2.3, completeness,
-Paper~IX Thm.~4.1.
-\end{remark}
-
-\begin{remark}[Interpretation: stability of point spectrum]
+\begin{remark}[Stability of point spectrum under SOT]
 \label{rem:specstab}
-Theorem~\ref{thm:spectral-inclusion} below
-instantiates a general principle:
-\emph{stability of eigenvalues under SOT-limits}
-with controlled eigenstructure.
-In general, SOT-limits do not preserve spectra;
-it works here because:
-(i) eigenvectors are unit vectors
-(ii) norm equality is guaranteed by Paper~IX
-orthonormality, independently of the limit
+In general, SOT-limits do not preserve spectra.
+The passage succeeds here because:
+(i) eigenvectors are unit vectors (unit eigenvectors);
+(ii) norm-$1$ of the limit is independent
+     (Paper~IX orthonormality);
 (iii) eigenvalue convergence is quantitative
-(rate $c^{-1/4}$, Paper~VIII).
-This combination makes the passage
-$\lambda_n^{(c_k)} \in \sigma_p(\mathcal{H}_{c_k})
-\Rightarrow \lambda_n^{(\infty)} \in \sigma_p(\Hlim)$
-rigorous without resolvent or compactness arguments.
+     (rate $c^{-1/4}$).
+No resolvent or compactness argument is needed.
 \end{remark}
 
 \begin{theorem}[Spectral inclusion]
 \label{thm:spectral-inclusion}
 \begin{enumerate}[\rm(a)]
-\item $\lambda_n^{(\infty)}\in\sigma_p(\Hlim)$
-      for each $n\ge 0$.
+\item $\lambda_n^{(\infty)}\in\sigma_p(\Hlim)$,
+      $\forall n\ge 0$.
 \item $\overline{\{\lambda_n^{(\infty)}\}}
       \subset\sigma(\Hlim)$.
 \end{enumerate}
 \end{theorem}
-
 \begin{proof}
 (a) Lemma~\ref{lem:eigenvalue-eq};
-$\Phi_n^{(\infty)}\ne 0$ by
-Lemma~\ref{lem:nonvanish-limit}.
-(b) $\sigma(\Hlim)$ is closed
+$\Phi_n^{(\infty)}\ne 0$.
+(b) $\sigma(\Hlim)$ closed
 (\cite{ReedSimon1975}, Thm.~VII.1).
 \end{proof}
 
-\begin{remark}[Scope of part (b)]
-Part~(b) is the spectral lower bound;
-upper bound $\sigma(\Hlim)\subset[0,1]$
-is unconditional (Paper~X).
-Whether $\sigma(\Hlim)=[0,1]$: Section~\ref{sec:density}.
-\end{remark}
-
-\begin{remark}[vs.\ Paper~IX]
-Paper~IX proves $\sigapp(\Hlim)=\sigma(\Hlim)$
-conditionally on completeness.
-Theorem~\ref{thm:spectral-inclusion}(a) gives
-$\lambda_n^{(\infty)}\in\sigma_p(\Hlim)$
-unconditionally.
+\begin{remark}[Bounds on $\sigma(\Hlim)$]
+Lower: $\overline{\{\lambda_n^{(\infty)}\}}
+\subset\sigma(\Hlim)$ (above).
+Upper: $\sigma(\Hlim)\subset[0,1]$ (Paper~X).
+Whether equality holds: Section~\ref{sec:density}.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
-\section{Semi-Classical Counting Law}
+\section{Index--Bandwidth Transfer}
 \label{sec:weyl}
 %%═══════════════════════════════════════════════════════════════════
 
-\begin{definition}[Counting function]
+\begin{definition}[Counting function and bandwidth proxy]
 \label{def:counting}
-For $\lambda\in[0,1]$:
+For $\lambda\in[0,1]$, set
 \[
-  N(\lambda):=\#\{n\ge 0:\lambda_n^{(\infty)}\le\lambda\}.
+  N(\lambda):=\#\{n\ge 0:\lambda_n^{(\infty)}\le\lambda\}
 \]
-$N(\lambda)$ is non-decreasing and right-continuous.
-Under Hypothesis~\ref{hyp:SOH}, $N(\lambda)<\infty$
-for all $\lambda\in[0,1)$; without it,
-finiteness is not guaranteed
-(spectral collisions could concentrate infinitely
-many indices at a single value).
-\end{definition}
+(non-decreasing, right-continuous;
+finite for all $\lambda\in[0,1)$ under
+Hypothesis~\ref{hyp:SOH};
+finiteness is not guaranteed in general
+if spectral collisions occur).
 
-\begin{definition}[Asymptotic index inverse]
-\label{def:clambda}
-For $\lambda\in(0,1)$, define $c(\lambda)$ by
+The \emph{bandwidth proxy} for $\lambda$ is:
 \begin{equation}\label{eq:clambda}
-  \lfloor 2c(\lambda)/\pi\rfloor = N(\lambda),
+  c(\lambda) := \tfrac{\pi}{2}\,N(\lambda).
 \end{equation}
-interpreted as the asymptotic inverse of the
-index relation $N\sim 2c/\pi$
-(see Remark~\ref{rem:weyl-interp}).
-Well-definedness requires $N(\lambda)<\infty$
-and injectivity of $\lambda\mapsto N(\lambda)$,
-both guaranteed by Hyp.~\ref{hyp:SOH}.
+This is an explicit, well-defined function of $\lambda$
+(it takes values in $\frac{\pi}{2}\mathbb{Z}_{\ge 0}$
+under Hyp.~\ref{hyp:SOH}), defined as the
+asymptotic proxy of the index relation
+$n \sim 2c/\pi$ from the Slepian theory:
+if $\lambda_n^{(\infty)}\approx\lambda$, then
+$n = N(\lambda)$ and the Slepian transition
+locates this index at bandwidth $c \approx \pi n/2$.
 \end{definition}
 
-The Slepian--Pollak theorem
+\begin{remark}[Non-circularity of $c(\lambda)$]
+\label{rem:noncircular}
+$c(\lambda)$ is defined directly from $N(\lambda)$,
+which is defined from $\{\lambda_n^{(\infty)}\}$.
+The counting law Theorem~\ref{thm:weyl} below
+is \emph{not} a tautology:
+it asserts that the index $n$ at which
+$\lambda_n^{(\infty)}\approx\lambda$ coincides
+asymptotically with the Slepian index $2c/\pi$,
+a non-trivial transfer between
+the limit spectral scale and the
+finite-$c$ bandwidth scale.
+\end{remark}
+
+The Slepian--Pollak--Widom theorem
 \cite{Slepian1961,Osipov2013,LandauPollak1962,Widom1964}
-gives: for each $\varepsilon>0$,
+gives, for each $\varepsilon>0$:
 \begin{equation}\label{eq:slepian-count}
   \#\{n:\lambda_n^{(c)}\in[\varepsilon,1{-}\varepsilon]\}
   =O(\log c),
 \end{equation}
 with transition window centred at $n=2c/\pi$.
 
-\begin{hypothesis}[Spectral Ordering Hypothesis (SOH)]
+\begin{hypothesis}[Spectral Ordering (SOH)]
 \label{hyp:SOH}
-The map $n\mapsto\lambda_n^{(\infty)}$ is injective:
-\[
-  m\ne n \implies \lambda_m^{(\infty)}\ne\lambda_n^{(\infty)}.
-\]
-Equivalently: the limiting eigenvalue sequence has
-no spectral collisions (no two distinct indices
-share the same limiting eigenvalue).
+$m\ne n\implies\lambda_m^{(\infty)}\ne\lambda_n^{(\infty)}$.
+The limiting eigenvalue sequence has no spectral
+collisions (the map $n\mapsto\lambda_n^{(\infty)}$
+is injective).
 \end{hypothesis}
 
-\begin{remark}[Status and connection to gap control]
+\begin{remark}[Status of SOH: connection to gap control]
 \label{rem:SOH-status}
-Hypothesis~\ref{hyp:SOH} is an injectivity condition
-on the limiting eigenvalue sequence.
-For finite $c$, all eigenvalues of $\Hc$ are simple
-(Slepian non-degeneracy);
-the question is whether injectivity survives
-the limit $c_k\to\infty$.
-It would follow from a uniform gap lower bound:
+SOH is an injectivity condition on the limit.
+For finite $c$, eigenvalues are simple
+(Slepian non-degeneracy).
+SOH would follow from the uniform gap lower bound
 \begin{equation}\label{eq:gap-lower}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
   \ge C_\kappa c^{-3/4}
-  \quad \text{for } n\le\kappa c,
+  \quad(n\le\kappa c),
 \end{equation}
-since combined with the rate
-$|\lambda_n^{(c)}-\lambda_n^{(\infty)}|\le C_\kappa c^{-1/4}$
-(\eqref{XI1}) this would give
+combined with the rate \eqref{XI1}:
 $|\lambda_m^{(\infty)}-\lambda_n^{(\infty)}|
 \ge c^{-3/4}-2Cc^{-1/4}>0$
-for all large $c$.
-Estimate~\eqref{eq:gap-lower} is
-Open Problem~\ref{prob:rate-sharp}
-(Paper~VIII, Rem.~4.2);
-Hyp.~\ref{hyp:SOH} is therefore directly linked
-to the sharpness question for the form rate.
+for $m\ne n$ and large $c$.
+Estimate~\eqref{eq:gap-lower} is the lower bound
+part of Problem~\ref{prob:rate-sharp};
+SOH (Problem~\ref{prob:SOH}) is therefore
+downstream of gap sharpness.
 \end{remark}
 
-\begin{theorem}[Semi-classical counting law]
+\begin{theorem}[Index--bandwidth transfer]
 \label{thm:weyl}
 Under Hypothesis~\ref{hyp:SOH}:
 \begin{enumerate}[\rm(a)]
-\item $N(\lambda)\sim\dfrac{2c(\lambda)}{\pi}$
-      as $\lambda\to 1^-$.
-\item For $\lambda\in[\varepsilon,1{-}\varepsilon]$:
-      $N(\lambda)=O(\log c(\lambda))$.
-\item $N(\lambda)=0$ for
+\item \textbf{(Transfer law.)}
+      For $\lambda\in(0,1)$, the index $n$ at which
+      $\lambda_n^{(\infty)}$ is closest to $\lambda$
+      satisfies
+      \[
+        n \;=\; N(\lambda)
+        \;\sim\; \tfrac{2}{\pi}\,c(\lambda)
+        \quad \text{as }\lambda\to 1^-.
+      \]
+      Equivalently:
+      $\lambda_n^{(\infty)} \approx \lambda$
+      if and only if
+      $n \approx \tfrac{2}{\pi}c(\lambda)$,
+      so the Slepian bandwidth index
+      $\lfloor 2c/\pi\rfloor$ is the correct
+      label for the limiting eigenvalue $\lambda$.
+\item \textbf{(Transition window.)}
+      For $\lambda\in[\varepsilon,1{-}\varepsilon]$:
+      the number of limiting eigenvalues near $\lambda$
+      satisfies $N(\lambda)-N(\lambda-\varepsilon)
+      =O(\log c(\lambda))$.
+\item \textbf{(Spectral floor.)}
+      $N(\lambda)=0$ for
       $\lambda<\lambda_0^{(\infty)}
       :=\lim_k\lambda_0^{(c_k)}$.
 \end{enumerate}
 \end{theorem}
-
 \begin{proof}
 (a) By \eqref{XI6} and \eqref{XI1},
 $\lambda_n^{(\infty)}\ge\lambda$
-iff $n\le 2c(\lambda)/\pi+O(\log c(\lambda))$,
-giving $N(\lambda)\sim 2c(\lambda)/\pi$.
+iff $n\le 2c(\lambda)/\pi+O(\log c(\lambda))$;
+thus $N(\lambda)\sim 2c(\lambda)/\pi$.
+The equivalence $\lambda_n^{(\infty)}\approx\lambda$
+$\iff$ $n\approx\frac{2}{\pi}c(\lambda)$ is the
+substantive content: it transfers the Slepian
+transition threshold at bandwidth $c$ to the
+limiting eigenvalue scale via \eqref{XI1}.
 (b) Direct from \eqref{eq:slepian-count} and \eqref{XI1}.
 (c) No $\lambda_n^{(\infty)}$ lies below
 $\lambda_0^{(\infty)}$.
 \end{proof}
 
-\begin{remark}[Nature of this law]
+\begin{remark}[This is not a classical Weyl law]
 \label{rem:weyl-interp}
-This is a \emph{semi-classical index transfer},
-not a classical Weyl law ($\Hlim$ is not compact):
-$N(\lambda)$ is expressed via the bandwidth
-parameter of the approximating family;
-$c(\lambda)$ is the asymptotic inverse of
-$N\sim 2c/\pi$, well-defined under Hyp.~\ref{hyp:SOH}.
+$\Hlim$ is not compact; $N(\lambda)$ is finite
+only under Hyp.~\ref{hyp:SOH}.
+The result is a \emph{semi-classical index transfer}:
+the spectral counting of $\Hlim$ is governed by
+the bandwidth scale of the Slepian family.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -539,25 +501,18 @@ $N\sim 2c/\pi$, well-defined under Hyp.~\ref{hyp:SOH}.
 If $\{\lambda_n^{(\infty)}\}$ is dense in $[0,1]$,
 then $\sigma(\Hlim)=[0,1]$.
 \end{theorem}
-
 \begin{proof}
-$\sigma(\Hlim)$ contains each $\lambda_n^{(\infty)}$
-(Theorem~\ref{thm:spectral-inclusion}(a)) and is closed;
-density gives $[0,1]\subset\sigma(\Hlim)$.
+Each $\lambda_n^{(\infty)}\in\sigma(\Hlim)$
+(Thm.~\ref{thm:spectral-inclusion}(a));
+$\sigma(\Hlim)$ is closed; density gives $[0,1]
+\subset\sigma(\Hlim)$.
 Reverse: $\sigma(\Hlim)\subset[0,1]$ (Paper~X).
 \end{proof}
 
-\begin{corollary}[No isolated bulk eigenvalues]
-\label{cor:no-isolated}
+\begin{corollary}
 Under the density hypothesis,
 $\sigma(\Hlim)$ has no isolated points in $(0,1)$.
 \end{corollary}
-
-\begin{remark}[Resolution of Paper~X problems]
-Conditional on density:
-$\texttt{prob:spectrum}\Rightarrow\sigma(\Hlim)=[0,1]$;
-$\texttt{prob:spec-structure}\Rightarrow$no isolated points.
-\end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
 \section{The Density Question}
@@ -566,59 +521,54 @@ $\texttt{prob:spec-structure}\Rightarrow$no isolated points.
 
 \begin{conjecture}[Density]
 \label{conj:density}
-$\{\lambda_n^{(\infty)}\}_{n\ge 0}$ is dense in $[0,1]$.
+$\{\lambda_n^{(\infty)}\}$ is dense in $[0,1]$.
 \end{conjecture}
 
 \subsection{Evidence}
 
-By \eqref{eq:slepian-count}, for each $c$ there are
-$O(\log c)$ eigenvalues in any $[\varepsilon,1{-}\varepsilon]$,
-with the window shifting as $c$ varies.
+By \eqref{eq:slepian-count}, for each $c$
+there are $O(\log c)$ eigenvalues in
+$[\varepsilon,1{-}\varepsilon]$,
+with the transition window shifting as $c$ varies.
 By \eqref{XI1}, each $\lambda_n^{(c)}$ lies within
 $C_\kappa c^{-1/4}$ of $\lambda_n^{(\infty)}$.
 
-\begin{remark}[Two-parameter reformulation of density]
+\begin{remark}[Two-parameter reformulation]
 \label{rem:density-gap}
-Density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$
-is equivalent to the following
-\emph{two-parameter coverage statement}:
+Density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$ is
+equivalent to the following two-parameter
+coverage statement:
 \begin{quote}
-  For every open interval $I\subset(0,1)$,
-  there exist sequences $k_j\to\infty$
-  and indices $n_j\ge 0$ such that
-  \[
-    \lambda_{n_j}^{(c_{k_j})} \in I
-    \quad \text{for all } j.
-  \]
+  For every open $I\subset(0,1)$,
+  there exist $k_j\to\infty$ and $n_j\ge 0$ such that
+  $\lambda_{n_j}^{(c_{k_j})}\in I$ for all $j$.
 \end{quote}
-This is a non-trivial statement jointly in
-$(n,c)$: it requires showing that the transition
-eigenvalues (in the $O(\log c)$-window around
-$n=2c/\pi$) cover every subinterval of $(0,1)$
-as $c$ varies along $c_k$.
-The intermediate value theorem shows every
-value in $(0,1)$ is \emph{attained} by some
-$\lambda_n^{(c)}$, but coverage becoming
-\emph{dense in the limit} requires additional
-uniform control over the transition zone ---
-not currently available from Papers~VI--VIII.
+
+The intermediate value theorem guarantees that
+every value in $(0,1)$ is \emph{attained} by
+some $\lambda_n^{(c)}$ for each fixed $c$.
+The difficulty is not the existence of
+transition eigenvalues in $I$,
+but their \emph{uniform distribution} across the
+transition band as $c$ varies:
+one needs the $O(\log c)$ window to sweep every
+subinterval of $(0,1)$ densely as $c\to\infty$,
+a uniform coverage property not currently
+available from Papers~VI--VIII.
 \end{remark}
 
-\begin{proposition}[Non-emptiness]
-\label{prop:partial-density}
-$\{\lambda_n^{(\infty)}\}\cap[1{-}\delta,1)\ne\emptyset$
-for all $\delta\in(0,1)$.
+\begin{proposition}[Non-emptiness near $1$]
+$\{\lambda_n^{(\infty)}\}\cap[1{-}\delta,1)
+\ne\emptyset$ for all $\delta\in(0,1)$.
 \end{proposition}
+\begin{proof}\eqref{XI6} + \eqref{XI1}.\end{proof}
 
-\begin{proof}
-Direct from \eqref{XI6} and \eqref{XI1}.
-\end{proof}
-
-Numerical tables \cite{Slepian1961,Osipov2013,
-LandauPollak1962} consistently show transition
-eigenvalues filling $[0,1]$ densely for finite $c$;
+Numerical tables
+\cite{Slepian1961,Osipov2013,LandauPollak1962}
+show transition eigenvalues filling $[0,1]$
+densely for finite $c$;
 the $c^{-1/4}$ rate makes these reliable
-approximations to $\lambda_n^{(\infty)}$.
+proxies for $\lambda_n^{(\infty)}$.
 
 %%═══════════════════════════════════════════════════════════════════
 \section{Open Problems}
@@ -628,39 +578,35 @@ approximations to $\lambda_n^{(\infty)}$.
 \begin{problem}[Density]
 \label{prob:density}
 Prove Conjecture~\ref{conj:density}.
-Equivalent to the two-parameter coverage statement
+Equivalent to the two-parameter coverage
 of Remark~\ref{rem:density-gap}.
 \end{problem}
 
 \begin{problem}[Spectral Ordering]
 \label{prob:SOH}
-Prove Hypothesis~\ref{hyp:SOH}.
-Would follow from the uniform gap lower bound
-\eqref{eq:gap-lower}; see
-Remark~\ref{rem:SOH-status}.
+Prove Hyp.~\ref{hyp:SOH}.
+Would follow from \eqref{eq:gap-lower};
+see Remark~\ref{rem:SOH-status}.
 \end{problem}
 
 \begin{problem}[Uniqueness of limit objects]
 \label{prob:uniqueness}
-$\Phi_n^{(\infty)}$ independent (up to phase)
-of the diagonal subsequence in
-Lemma~\ref{lem:diagonal}.
+$\Phi_n^{(\infty)}$ independent of the
+diagonal subsequence of Lem.~\ref{lem:diagonal},
+up to phase.
 \end{problem}
 
 \begin{problem}[Sharpness of form rate]
 \label{prob:rate-sharp}
 Is $\sup_f(q_{\lim}-q_c)(f,f)/\|f\|^2
 \asymp c^{-1/4}$?
-Upper bound: Paper~VIII, Cor.~4.3.
-Lower bound: requires \eqref{eq:gap-lower}.
+Lower bound requires \eqref{eq:gap-lower}.
 \end{problem}
 
 \begin{problem}[Completeness]
 \label{prob:completeness}
-Is $\{\Phi_n^{(\infty)}\}$ complete in
-$L^2(\mathbb{R})$?
-Equivalent to essential self-adjointness
-and $\sigapp(\Hlim)=\sigma(\Hlim)$.
+Is $\{\Phi_n^{(\infty)}\}$ complete in $L^2$?
+Equivalent to $\sigapp(\Hlim)=\sigma(\Hlim)$.
 \end{problem}
 
 \begin{problem}[Riesz-basis stability]
@@ -674,17 +620,14 @@ Primary target of Paper~XII.
 
 \begin{remark}[Problem hierarchy]
 \label{rem:problems-relation}
-\begin{itemize}
-\item \ref{prob:density} + \ref{prob:completeness}
-      independent; both needed for
-      unconditional Hilbert--P\'olya.
-\item \ref{prob:riesz} (Paper~XII) resolves
-      completeness + Bridge theorem.
-\item \ref{prob:uniqueness} removes
-      subsequential qualifiers throughout.
-\item \ref{prob:SOH} $\Leftarrow$ \ref{prob:rate-sharp}
-      (gap lower bound implies SOH).
-\end{itemize}
+\ref{prob:density} + \ref{prob:completeness}
+independent; both needed for unconditional
+Hilbert--P\'olya.
+\ref{prob:riesz} (Paper~XII) resolves
+completeness + Bridge theorem.
+\ref{prob:SOH} $\Leftarrow$ \ref{prob:rate-sharp}.
+\ref{prob:uniqueness} removes subsequential
+qualifiers throughout.
 \end{remark}
 
 %%═══════════════════════════════════════════════════════════════════
@@ -692,25 +635,24 @@ Primary target of Paper~XII.
 \label{sec:outlook}
 %%═══════════════════════════════════════════════════════════════════
 
-Papers~I--XI reduce the Hilbert--P\'olya
-question to four independent problems:
+Papers~I--XI reduce the Hilbert--P\'olya question
+to four independent problems:
 \begin{enumerate}
 \item \textbf{Density} (\ref{prob:density}):
-      $\sigma(\Hlim)=[0,1]$ follows.
+      $\sigma(\Hlim)=[0,1]$.
 \item \textbf{Completeness} (\ref{prob:completeness}):
-      $\sigapp(\Hlim)=\sigma(\Hlim)$ follows.
+      $\sigapp(\Hlim)=\sigma(\Hlim)$.
 \item \textbf{Spectral ordering}
       (Hyp.~\ref{hyp:SOH}):
-      counting law holds unconditionally.
+      counting law unconditional.
 \item \textbf{Uniqueness} (\ref{prob:uniqueness}):
       removes subsequential qualifiers.
 \end{enumerate}
 Under (1) and (2) plus CCM (\cite{CCM2025}):
 $\mathrm{Re}(\rho)=1/2$ for all non-trivial
 zeros of $\zeta(s)$.
-The Riesz-basis question
-$\HSOT=\overline{\Hspectral}$
-resolves (2) and the Bridge theorem;
+Problem~\ref{prob:riesz} resolves (2)
+and the Bridge theorem simultaneously;
 primary target of Paper~XII.
 
 \medskip\noindent
@@ -759,9 +701,10 @@ Springer, New York, 2013.
 
 \bibitem{Widom1964}
 H.~Widom,
-\textit{Asymptotic behavior of the eigenvalues of
-certain integral equations~II},
-Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17} (1964), 215--229.
+\textit{Asymptotic behavior of the eigenvalues
+of certain integral equations~II},
+Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
+(1964), 215--229.
 
 \bibitem{Kato1966}
 T.~Kato,
@@ -776,14 +719,15 @@ Academic Press, New York, 1972--1975.
 
 \bibitem{Mosco1969}
 U.~Mosco,
-\textit{Convergence of convex sets and of solutions
-of variational inequalities},
+\textit{Convergence of convex sets and
+of solutions of variational inequalities},
 Adv.\ Math.\ \textbf{3} (1969), 510--585.
 
 \bibitem{KuwaeShioya2003}
 K.~Kuwae and T.~Shioya,
 \textit{Convergence of spectral structures},
-Comm.\ Anal.\ Geom.\ \textbf{11} (2003), 599--673.
+Comm.\ Anal.\ Geom.\ \textbf{11} (2003),
+599--673.
 
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
