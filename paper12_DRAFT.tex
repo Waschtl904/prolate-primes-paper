@@ -21,19 +21,16 @@
 \newtheorem*{remark*}{Remark}
 
 %%%─── Macros
-\newcommand{\Phihat}{\widehat{\Phi}}
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
-\newcommand{\Hc}{\mathcal{H}_c}
 \newcommand{\Hlim}{\mathcal{H}_{\lim}}
-\newcommand{\Dom}{\mathrm{Dom}}
 \newcommand{\Lc}{\mathcal{L}_c}
 \newcommand{\Pninf}{P_n^{(\infty)}}
 \newcommand{\Pnck}{P_n^{(c_k)}}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 46B15, 34E20}
 \keywords{Prolate spheroidal wave functions, spectral projection stability,
-WKB, Airy function, spectral gap, limiting operator, Riesz basis}
+Davis--Kahan, spectral gap, limiting operator, Riesz basis}
 
 \begin{document}
 
@@ -47,10 +44,9 @@ WKB, Airy function, spectral gap, limiting operator, Riesz basis}
 
 \maketitle
 
-%%════════════════════════════════════════════════════════════════
+%%══ 1. INTRODUCTION
 \section{Introduction}
 \label{sec:intro}
-%%════════════════════════════════════════════════════════════════
 
 \subsection{Context and goal}
 
@@ -64,155 +60,139 @@ operators $\mathcal{H}_{c_k}$ converge in the
 strong operator topology (SOT) to a bounded
 self-adjoint limit $\Hlim$.
 Paper~XI constructs a diagonal subsequence
-along which the eigenfunctions
-$\Phi_n^{(c_k)}$ converge weakly to limit
-vectors $\Phi_n^{(\infty)}$, orthonormal and
-satisfying $\Hlim\Phi_n^{(\infty)}
-=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
+along which the eigenfunctions $\Phi_n^{(c_k)}$
+converge weakly to limit vectors $\Phi_n^{(\infty)}$,
+orthonormal and satisfying
+$\Hlim\Phi_n^{(\infty)} = \lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 
 \textbf{The gap that this paper fills.}
-SOT convergence of operators does \emph{not} imply
-norm convergence of spectral projections
-(see Rem.~\ref{rem:strong-vs-norm}).
-Weak convergence of eigenfunctions does not imply
-strong convergence.
-The missing ingredient is a \emph{quantitative control}
-on how the rank-1 spectral projections
-$P_n^{(c_k)} = \ip{\cdot}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}$
-behave as $c_k\to\infty$.
-This control is precisely what
-Theorem~\ref{thm:proj-stability}
-(the main result of this paper) provides.
+SOT convergence does \emph{not} imply norm
+convergence of spectral projections
+(Rem.~\ref{rem:strong-vs-norm}).
+Weak convergence of eigenfunctions does not
+imply strong convergence.
+The missing ingredient is a \emph{quantitative}
+control on the rank-1 spectral projections
+$\Pnck = \ip{\cdot}{\Phi_n^{(c_k)}}\Phi_n^{(c_k)}$
+as $c_k\to\infty$.
+This is Theorem~\ref{thm:proj-stability}.
 
 \subsection{Main result in context}
 
 The central theorem (Sec.~\ref{sec:main}) is:
 \[
-  \|\Pnck - \Pninf\| \le
-  \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)} \to 0,
+  \|\Pnck - \Pninf\|
+  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
+  \xrightarrow{k\to\infty} 0,
+  \quad \text{uniformly for } n\le\kappa c_k,
 \]
 under a single structural hypothesis on the
-spectral gap of $\mathcal{H}_c$ in the
-transition window $W_c$
-(\hyperref[hyp:gap-structural]{Hyp.~Gap-S}).
-This estimate is explicit, depends only on
-the eigenvalue convergence rate of Paper~VIII
-and the gap hypothesis, and does \emph{not}
-require norm resolvent convergence.
+spectral gap (\hyperref[hyp:gap-structural]{Hyp.~Gap-S}).
+The proof rests on the Davis--Kahan
+$\sin\theta$ theorem applied in the
+rank-1, isolated-eigenvalue setting.
 
 \subsection{What this paper does \emph{not} claim}
-
 \begin{itemize}
-\item \textbf{The Riesz-basis property} of
-  $\{\Phi_n^{(\infty)}\}$ (Cor.~\ref{cor:riesz})
-  \emph{is trivial}: it follows directly from
-  the orthonormality established in Paper~XI.
-  It is recorded here for completeness only
-  and is \emph{not} the mathematical contribution
-  of this paper.
-\item \textbf{Completeness} $\mathcal{K}=L^2(\mathbb{R})$:
-  Paper~XIII.
+\item \textbf{The Riesz-basis property}
+  (Cor.~\ref{cor:riesz}) \emph{is trivial}:
+  it follows directly from orthonormality
+  in Paper~XI and is recorded here for
+  completeness only.
+\item \textbf{Completeness}
+  $\mathcal{K}=L^2(\mathbb{R})$: Paper~XIII.
 \item \textbf{Sharp form of $g(c)$}:
   Open Problem~\ref{prob:sharp-gc}.
-  Section~\ref{sec:heuristic} provides a
-  non-rigorous heuristic justification of
-  \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-  via Widom asymptotics.
+  Section~\ref{sec:heuristic} gives a
+  non-rigorous heuristic justification.
 \end{itemize}
 
 \subsection{Role in the series}
-
 \begin{center}
 \begin{tabular}{lll}
 \toprule
-Paper & Content & Status \\
+Paper & Content & Status\\
 \midrule
-X & SOT convergence $\mathcal{H}_c\to\Hlim$ & Final \\
-XI & Diagonal system $\{\Phi_n^{(\infty)},\lambda_n^{(\infty)}\}$ & Final \\
-\textbf{XII} & \textbf{Proj.\ stability; bridge to XIII} & \textbf{This paper} \\
-XIII & Completeness $\mathcal{K}=L^2(\mathbb{R})$ & Planned \\
+X   & SOT convergence $\mathcal{H}_c\to\Hlim$ & Final\\
+XI  & Diagonal system $\{\Phi_n^{(\infty)},\lambda_n^{(\infty)}\}$ & Final\\
+\textbf{XII} & \textbf{Proj.\ stability; bridge to XIII} & \textbf{This paper}\\
+XIII& Completeness $\mathcal{K}=L^2(\mathbb{R})$ & Planned\\
 \bottomrule
 \end{tabular}
 \end{center}
-
 Theorem~\ref{thm:proj-stability} is the
 technical input required by Paper~XIII:
-the completeness argument will use the
-fact that $P_n^{(c_k)}\to\Pninf$ in operator
-norm (not just weakly) to pass from finite-$c$
-density results to a genuine density statement
-in the limit.
+the completeness argument uses norm
+(not merely weak) convergence of $\Pnck\to\Pninf$
+to pass from finite-$c$ density results to
+a genuine density statement in the limit.
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
-\item \textbf{Central new result:}
-  Thm.~\ref{thm:proj-stability} and its proof
-  (Secs.~\ref{sec:main}--\ref{sec:proj}).
-\item \textbf{Riesz corollary} is explicitly
-  flagged as trivial in Sec.~\ref{sec:riesz-trivial}.
-\item \textbf{Gap-S heuristic} is in Sec.~\ref{sec:heuristic},
-  clearly labelled non-rigorous.
-\item \textbf{Conditional result:}
-  Lem.~\ref{lem:same-K} is conditional on
-  Hyp.~\ref{hyp:full-family}; the gap is
-  explicitly identified.
+\item Central result: Thm.~\ref{thm:proj-stability}
+  and proof (Secs.~\ref{sec:main}--\ref{sec:proj}).
+\item Riesz corollary explicitly flagged trivial:
+  Sec.~\ref{sec:riesz-trivial}.
+\item Gap-S heuristic clearly labelled
+  non-rigorous: Sec.~\ref{sec:heuristic}.
+\item Lem.~\ref{lem:same-K} conditional;
+  gap explicitly identified.
 \end{itemize}
 
 \tableofcontents
 
-%%════════════════════════════════════════════════════════════════
+%%══ 2. INPUT
 \section{Input from Papers VIII, X, XI}
 \label{sec:input}
-%%════════════════════════════════════════════════════════════════
 
 \begin{lemma}[Inherited data]
 \label{lem:inherited}
-The following are established in the
-indicated papers and used without proof here.
 \begin{enumerate}[\rm(A)]
-\item\label{A1} \emph{(VIII, Cor.~4.3)}
+\item\label{A1}
+  \emph{(VIII, Cor.~4.3)}
   $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|
   \le C_\kappa c^{-1/4}$ for $n\le\kappa c$,
   with $C_\kappa$ depending only on $\kappa$
   and \emph{uniform in $n\le\kappa c$}.
-\item\label{A2} \emph{(X, Thread~A + Cor.~cor:resolvent)}
+\item\label{A2}
+  \emph{(X, Thread~A + Cor.~cor:resolvent)}
   $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$,
   bounded self-adjoint;
   strong resolvent convergence holds for
   $z\notin[0,1]$.
-\item\label{A3} \emph{(XI, Lem.~3.1 + Thm.~5.1)}
+\item\label{A3}
+  \emph{(XI, Lem.~3.1 + Thm.~5.1)}
   There exists $c_k\nearrow\infty$ such that
   $\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=\delta_{mn}$,
   $\Hlim\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$,
-  and $\lambda_n^{(c)}$ is simple for all $n$, $c$.
+  and $\lambda_n^{(c)}$ is \emph{simple}
+  for all $n$, $c$.
 \end{enumerate}
 \end{lemma}
 
 \begin{remark}[Strong vs.\ norm resolvent convergence]
 \label{rem:strong-vs-norm}
-Paper~X establishes strong resolvent convergence
-of $\mathcal{H}_{c_k}$.
+Paper~X establishes strong resolvent convergence.
 By a classical example~\cite[Ex.~VIII.7.14]{ReedSimon1975},
-this does \emph{not} imply norm convergence of
-spectral projections.
-The additional input required is the gap
-hypothesis (Hyp.~\ref{hyp:gap-structural}),
-which provides the spectral isolation needed for
-the rank-1 projection stability argument
-(Lem.~\ref{lem:rank1-stability}).
+this does \emph{not} imply norm convergence
+of spectral projections.
+The gap hypothesis (Hyp.~\ref{hyp:gap-structural})
+provides the spectral isolation needed to
+apply Davis--Kahan (Lem.~\ref{lem:davis-kahan-r1})
+and close this gap.
 This is the essential new content of this paper.
 \end{remark}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 3. GAP HYPOTHESIS AND WKB
 \section{Spectral Separation Hypothesis and WKB Layer}
 \label{sec:gap}
-%%════════════════════════════════════════════════════════════════
 
 \begin{hypothesis}[Structural gap, Gap-S]
 \label{hyp:gap-structural}
 There exists $g\colon[1,\infty)\to(0,\infty)$
 with $g(c)\to 0$ and $g(c)\gg c^{-1/4}$
-such that for all $c\ge 1$ and $n\in W_c$:
+such that for all $c\ge 1$ and
+$n\in W_c$ (uniformly in $n$):
 \begin{equation}\label{eq:gap-s}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge g(c).
 \end{equation}
@@ -221,30 +201,25 @@ such that for all $c\ge 1$ and $n\in W_c$:
 \begin{remark}[Gap-S is the only hypothesis]
 \label{rem:hyp-role}
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-is the single structural input of this paper
-beyond the inherited data of Lem.~\ref{lem:inherited}.
-All results (Thm.~\ref{thm:proj-stability},
-Cor.~\ref{cor:nacc}, Cor.~\ref{cor:riesz})
-follow from it.
-Section~\ref{sec:heuristic} provides a
-heuristic justification.
+is the single structural input beyond
+Lem.~\ref{lem:inherited}.
+All results follow from it.
+Section~\ref{sec:heuristic} provides
+heuristic motivation.
 \end{remark}
 
-\subsection{WKB layer and the transfer barrier}
+\subsection{WKB layer and transfer barrier}
 
 The prolate differential operator
-\begin{equation}\label{eq:Lc}
-  \Lc := -\tfrac{d}{dx}[(1-x^2)\tfrac{d}{dx}]
-  + c^2x^2
-\end{equation}
+$\Lc := -\tfrac{d}{dx}[(1-x^2)\tfrac{d}{dx}]
++ c^2x^2$
 has simple eigenvalues $\chi_n^{(c)}$.
 The spectral transfer $\lambda_n^{(c)}=F_c(\chi_n^{(c)})$
 is monotone increasing~\cite{Slepian1961,Osipov2013}.
-A standard Airy reduction (Langer substitution
-at the turning point $x_c=\sqrt{1-n^2/c^2}$)
-yields a growing gap
-$\chi_{n+1}^{(c)}-\chi_n^{(c)}\ge C\,\delta(c)$
-with $\delta(c)\to\infty$.
+A standard Airy/Langer reduction at the
+turning point $x_c=\sqrt{1-n^2/c^2}$ yields
+a growing chi-gap $\chi_{n+1}^{(c)}-\chi_n^{(c)}
+\ge C\,\delta(c)$ with $\delta(c)\to\infty$.
 
 \begin{theorem}[WKB insufficiency]
 \label{thm:wkb-indeterminacy}
@@ -257,50 +232,47 @@ about $\mathcal{H}_c$.
 \begin{proof}
 The map $F_c$ near $\lambda=1/2$ has a
 soft-exponential (sigmoid) profile
-(Slepian--Widom, \cite{Slepian1961,Widom1964}).
+(Slepian--Widom,~\cite{Slepian1961,Widom1964}).
 Any formula $F_c'(\chi_n^{(c)})\asymp c^{-\beta}$
-for fixed $\beta$ is therefore an unverified
-global claim about $F_c$.
-The $\lambda$-gap is positive (simplicity
-of $\mathcal{H}_c$ + monotonicity of $F_c$)
-but its rate is a global invariant of $\mathcal{H}_c$,
-not determinable from $\Lc$ alone.
+for fixed $\beta$ is an unverified global claim.
+The $\lambda$-gap is positive (simplicity + monotonicity)
+but its rate is a global invariant of $\mathcal{H}_c$.
 \end{proof}
 
-\begin{remark}[Compatibility with Widom/Slepian]
+\begin{remark}
 Thm.~\ref{thm:wkb-indeterminacy} asserts
 insufficiency of local ODE analysis,
 not non-existence of an asymptotic scale.
-Transition asymptotics of $F_c$ via global
-kernel information would resolve
+Global kernel information would resolve
 Prob.~\ref{prob:sharp-gc}.
 \end{remark}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 4. MAIN THEOREM
 \section{Main Theorem: Spectral Projection Stability}
 \label{sec:main}
-%%════════════════════════════════════════════════════════════════
 
 \begin{theorem}[Spectral projection stability]
 \label{thm:proj-stability}
 Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-and the inherited data of Lem.~\ref{lem:inherited}.
-For all $n\le\kappa c_k$, \emph{uniformly in $n$}:
+and Lem.~\ref{lem:inherited}.
+For all $n\le\kappa c_k$,
+\emph{uniformly in $n$}:
 \begin{equation}\label{eq:main-bound}
   \|\Pnck - \Pninf\|
   \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
   \xrightarrow{k\to\infty} 0.
 \end{equation}
-The constant $C>0$ is universal
-(from Lem.~\ref{lem:rank1-stability})
-and $C_\kappa$ is uniform in $n\le\kappa c_k$
-by \eqref{A1}.
+Here $C>0$ is the universal constant from
+Lem.~\ref{lem:davis-kahan-r1},
+and $C_\kappa$ is the constant from
+\eqref{A1}, uniform in $n\le\kappa c_k$.
 In particular:
 \begin{enumerate}[\rm(i)]
-\item $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$ strongly in
-  $L^2(\mathbb{R})$, uniformly for $n\le\kappa c_k$.
-\item $\{\lambda_n^{(\infty)}\}$ has no accumulation
-  point in $(0,1)$.
+\item $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
+  strongly in $L^2(\mathbb{R})$,
+  uniformly for $n\le\kappa c_k$.
+\item $\{\lambda_n^{(\infty)}\}$ has no
+  accumulation point in $(0,1)$.
 \item Synthesis operators satisfy
   $T_k\to T_\infty$ in operator norm,
   $\sup_k\|T_k\|=1$.
@@ -309,155 +281,129 @@ In particular:
 
 \begin{remark}[Why this is not trivial]
 \label{rem:why-nontrivial}
-Eigenvalue convergence
-$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\to 0$
-does not alone imply
-$\|\Pnck-\Pninf\|\to 0$.
-The additional content is:
+The bound \eqref{eq:main-bound} contains
+three non-trivial steps:
 \begin{enumerate}
-\item Gap-S provides spectral isolation,
-  enabling the Riesz contour construction
-  of Lem.~\ref{lem:rank1-stability}.
-\item Lem.~\ref{lem:rank1-stability} converts
-  scalar eigenvalue control (rate $c^{-1/4}$)
-  into operator norm control on the projection
-  (rate $c^{-1/4}/g(c)$), with an
-  \emph{explicit} $\delta/\gamma$ bound.
+\item Eigenvalue convergence
+  $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\to 0$
+  alone does \emph{not} imply
+  $\|\Pnck-\Pninf\|\to 0$.
+\item Gap-S provides the spectral isolation
+  needed to apply Davis--Kahan in the
+  rank-1 setting.
 \item The combination replaces norm resolvent
   convergence, which is \emph{not} available
   from Paper~X.
 \end{enumerate}
 \end{remark}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 5. PROOF
 \section{Proof of the Main Theorem}
 \label{sec:proj}
-%%════════════════════════════════════════════════════════════════
 
-\begin{lemma}[Rank-1 projection stability under
-  scalar eigenvalue control]
-\label{lem:rank1-stability}
+\begin{lemma}[Davis--Kahan for isolated
+  rank-1 eigenprojections]
+\label{lem:davis-kahan-r1}
 Let $A$, $B$ be bounded self-adjoint operators
-on a Hilbert space $\mathcal{H}$.
+on a Hilbert space.
 Suppose:
 \begin{enumerate}[\rm(i)]
 \item $\lambda$ is a simple eigenvalue of $A$
-  isolated by spectral gap $\gamma>0$.
-\item $\tilde\lambda$ is the corresponding simple
-  eigenvalue of $B$ with
+  isolated by spectral gap $\gamma>0$:
+  $\mathrm{dist}(\lambda,\,
+  \sigma(A)\setminus\{\lambda\})\ge\gamma$.
+\item $\tilde\lambda$ is the corresponding
+  simple eigenvalue of $B$ with
   $|\tilde\lambda-\lambda|\le\delta<\gamma/2$.
 \end{enumerate}
-Then the rank-1 spectral projections satisfy:
-\begin{equation}\label{eq:rank1-bound}
+Then:
+\begin{equation}\label{eq:dk-bound}
   \|P_A(\lambda)-P_B(\tilde\lambda)\|
-  \le \frac{C\,\delta}{\gamma},
-  \quad C = 18\pi.
+  \le \frac{C\,\delta}{\gamma}
 \end{equation}
+for a universal constant $C>0$.
 \end{lemma}
 \begin{proof}
-Choose the Riesz contour $\Gamma$ of radius
-$r = \gamma/3$ centered at $\lambda$.
-Since $\delta < \gamma/2 < r + \delta$,
-both eigenvalues $\lambda$, $\tilde\lambda$
-lie inside $\Gamma$, and all other spectral
-points of $A$ and $B$ lie outside $\Gamma$
-at distance $\ge \gamma - \delta > \gamma/2$.
+This is a standard consequence of the
+Davis--Kahan $\sin\theta$ theorem
+(see e.g.~\cite[Thm.~VII.3.1]{Bhatia1997}
+or \cite[Thm.~2.1]{DavisKahan1970})
+applied to the rank-1, isolated-eigenvalue case.
 
-Both projections are given by the Riesz formula:
-$P = \frac{1}{2\pi i}\oint_\Gamma(H-z)^{-1}dz$.
-On $\Gamma$, both resolvents exist and
-$\|(H-z)^{-1}\|\le 2/\gamma$.
-
-The rank-1 resolvent identity gives:
+For completeness we sketch the argument.
+Form the Riesz contour $\Gamma$ of radius
+$r=\gamma/3$ around $\lambda$.
+Since $\delta<\gamma/2$, both $\lambda$ and
+$\tilde\lambda$ lie inside $\Gamma$;
+all other spectral points of $A$ and $B$
+lie outside at distance $\ge\gamma/2$.
+The spectral projections are given by
+$P = \frac{1}{2\pi i}\oint_\Gamma(H-z)^{-1}dz$,
+which satisfies
 \[
-  (A-z)^{-1}-(B-z)^{-1}
-  =\frac{(\tilde\lambda-\lambda)
-    \ip{\cdot}{\phi_B}\phi_A}
-    {(\lambda-z)(\tilde\lambda-z)}
-  +R(z),
+  \|P_A - P_B\|
+  \le \frac{1}{2\pi}
+  \oint_\Gamma \|(A-z)^{-1}\|
+  \cdot\|(B-z)^{-1}\|
+  \cdot\|B - A\|_{\mathrm{eff}}\,|dz|.
 \]
-where $\phi_A$, $\phi_B$ are unit eigenvectors
-and $\|R(z)\|=O(\delta^2/\gamma^3)$.
-On $\Gamma$: $|\lambda-z|=r=\gamma/3$
-and $|\tilde\lambda-z|\ge r-\delta\ge\gamma/6$.
-Integrating over $\Gamma$ (length $2\pi r = 2\pi\gamma/3$):
-\[
-  \|P_A-P_B\|\le
-  \frac{2\pi r}{2\pi}\cdot
-  \frac{\delta}{r(r-\delta)}
-  +O(\delta^2/\gamma^3)
-  \le \frac{\delta}{\gamma/6}+O(\delta^2/\gamma^3)
-  \le \frac{18\pi\,\delta}{\gamma}
-\]
-for $\delta\le\gamma/4$.
-This is \eqref{eq:rank1-bound} with $C=18\pi$.
+In the rank-1 isolated setting the effective
+operator difference reduces to the scalar
+eigenvalue gap $\delta$ (Davis--Kahan),
+giving \eqref{eq:dk-bound};
+cf.~\cite[\S\,VII.3]{Bhatia1997}.
 \end{proof}
 
-\begin{remark}[What distinguishes this from general Kato theory]
-\label{rem:kato-comparison}
-The general Kato perturbation theory
-(\cite[Ch.~II]{Kato1966}) handles
-analytic families of operators and
-eigenvalue branches tracked by complex analysis.
-Lem.~\ref{lem:rank1-stability} differs in
-three ways that matter for the present application:
-\begin{enumerate}
-\item \textbf{No analytic family required.}
-  We have two individual operators $A=\mathcal{H}_{c_k}$
-  and $B=\Hlim$ at each fixed $k$,
-  not a holomorphic family $A(t)$.
-  The gap and eigenvalue control are
-  given by Gap-S and Paper~VIII respectively,
-  not by analytic continuation.
-\item \textbf{Explicit $\delta/\gamma$ rate.}
-  The bound \eqref{eq:rank1-bound} is
-  quantitative with universal constant $C=18\pi$,
-  directly giving the rate in \eqref{eq:main-bound}.
-  Kato's framework does not automatically
-  produce this explicit form for
-  non-analytic perturbations.
-\item \textbf{Direct scalar-to-operator bridge.}
-  The input is a scalar eigenvalue bound
-  $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\le C_\kappa c_k^{-1/4}$
-  from Paper~VIII;
-  the output is an operator norm bound on the
-  spectral projections.
-  This is the specific bridge needed to connect
-  Paper~VIII to Paper~XIII, and it is not
-  available as a direct corollary of Kato's
-  general theory without the gap isolation
-  of Gap-S.
-\end{enumerate}
+\begin{remark}[Relation to general perturbation theory]
+\label{rem:dk-vs-kato}
+The Davis--Kahan theorem is specifically
+designed for the setting of this paper:
+two individual bounded self-adjoint operators
+(not an analytic family),
+with eigenvalue separation controlling
+projection stability.
+It produces the explicit $\delta/\gamma$ rate
+\eqref{eq:dk-bound} with a universal constant,
+which is the precise form needed in
+Thm.~\ref{thm:proj-stability}.
+General Kato perturbation theory
+(\cite[Ch.~II]{Kato1966}) provides a broader
+framework for analytic families but does not
+directly give this rate for
+non-analytic perturbations of
+non-adjacent individual operators.
 \end{remark}
 
 \begin{proof}[Proof of Thm.~\ref{thm:proj-stability}]
 By \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-$\lambda_n^{(c_k)}$ is isolated in
-$\sigma(\mathcal{H}_{c_k})$ with gap $\gamma=g(c_k)$,
-uniformly for all $n\in W_c\supseteq\{n\le\kappa c_k\}$.
-By \eqref{A1},
-$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+$\lambda_n^{(c_k)}$ is a simple eigenvalue of
+$\mathcal{H}_{c_k}$ isolated by gap
+$\gamma = g(c_k)$,
+uniformly for all $n\in W_c\supseteq
+\{n\le\kappa c_k\}$.
+By \eqref{A1}, $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
 \le C_\kappa c_k^{-1/4}=:\delta_k$,
 with $C_\kappa$ uniform in $n\le\kappa c_k$.
-For large $k$, $\delta_k<g(c_k)/2$
+For large $k$, $\delta_k < g(c_k)/2$
 (since $g(c_k)\gg c_k^{-1/4}$),
-so Lem.~\ref{lem:rank1-stability} applies
-with $\gamma=g(c_k)$, $\delta=\delta_k$,
+so both conditions of Lem.~\ref{lem:davis-kahan-r1}
+hold with $\gamma = g(c_k)$,
+$\delta = \delta_k$,
 uniformly in $n\le\kappa c_k$.
-Apply \eqref{eq:rank1-bound}:
+Apply \eqref{eq:dk-bound}:
 \[
-  \|\Pnck-\Pninf\|
-  \le\frac{18\pi\cdot C_\kappa c_k^{-1/4}}{g(c_k)}\to 0,
+  \|\Pnck - \Pninf\|
+  \le \frac{C\,C_\kappa\,c_k^{-1/4}}{g(c_k)}
+  \to 0,
 \]
 uniformly in $n\le\kappa c_k$
-(since both $C_\kappa$ and $g(c_k)$ are
-independent of $n$ in this range).
+(since $C$, $C_\kappa$ and $g(c_k)$
+are all independent of $n$ in this range).
 
-Part~(i): $\|P_n^{(c_k)}f-\Pninf f\|
-\le\|\Pnck-\Pninf\|\cdot\|f\|\to 0$.
-Apply with $f$ extracting $\Phi_n$.
+Part~(i): $\|\Pnck f - \Pninf f\|
+\le \|\Pnck-\Pninf\|\cdot\|f\|\to 0$.
 Part~(ii): Cor.~\ref{cor:nacc}.
-Part~(iii): $\|T_k\|=1$ from Parseval;
+Part~(iii): $\|T_k\|=1$ (Parseval);
 $T_k\to T_\infty$ in norm from \eqref{eq:main-bound}.
 \end{proof}
 
@@ -477,19 +423,17 @@ Then $\#\{n:\lambda_n^{(\infty)}\in(\mu-r,\mu+r)\}
 \le\lceil 3r/g(c_{k_0})\rceil<\infty$.
 \end{proof}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 6. RIESZ COROLLARY
 \section{The Riesz-Basis Corollary (Explicit Trivialization)}
 \label{sec:riesz-trivial}
-%%════════════════════════════════════════════════════════════════
 
 \begin{remark}[This section is logically redundant]
 \label{rem:riesz-redundant}
 The Riesz-basis property of
-$\{\Phi_n^{(\infty)}\}$ follows \emph{immediately}
-from the orthonormality established in
-Paper~XI (\eqref{A3})
+$\{\Phi_n^{(\infty)}\}$ follows immediately
+from orthonormality (\eqref{A3})
 and does not depend on any result of this paper.
-It is stated here solely to close a
+It is recorded here solely to close a
 loose end in Paper~XI.
 The mathematical contribution of this paper
 is Thm.~\ref{thm:proj-stability}.
@@ -504,27 +448,25 @@ of $\mathcal{K}$ with constants $A=B=1$.
 \end{corollary}
 \begin{proof}
 Orthonormality from \eqref{A3} gives
-$\bigl\|\sum a_n\Phi_n^{(\infty)}\bigr\|^2=\sum|a_n|^2$
-directly.
+$\bigl\|\sum a_n\Phi_n^{(\infty)}\bigr\|^2=\sum|a_n|^2$.
 \end{proof}
 
-\begin{remark}[Non-trivial content]
+\begin{remark}[Non-trivial content of the paper]
 \label{rem:nontrivial-content}
-What is \emph{non-trivial} is:
+What is non-trivial is:
 \begin{enumerate}
-\item That $\{\Phi_n^{(\infty)}\}$
-  exists and is orthonormal (Paper~XI).
-\item That $P_n^{(c_k)}\to\Pninf$ in operator
-  norm (Thm.~\ref{thm:proj-stability}).
-\item That this norm convergence is the
-  technical input for Paper~XIII.
+\item $\{\Phi_n^{(\infty)}\}$ exists and is
+  orthonormal (Paper~XI).
+\item $\Pnck\to\Pninf$ in operator norm
+  (Thm.~\ref{thm:proj-stability}).
+\item This norm convergence is the technical
+  input for Paper~XIII.
 \end{enumerate}
 \end{remark}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 7. CANONICALIZATION (CONDITIONAL)
 \section{Canonicalization (Conditional)}
 \label{sec:canonical}
-%%════════════════════════════════════════════════════════════════
 
 \begin{lemma}[Spectral stability of $\mathcal{K}$,
   conditional]
@@ -533,8 +475,8 @@ Assume additionally:
 \begin{hypothesis}[Full projection family convergence]
 \label{hyp:full-family}
 The spectral measure of $\mathcal{H}_{c_k}$
-converges to that of $\Hlim$
-in the weak-$*$ sense.
+converges to that of $\Hlim$ in the
+weak-$*$ sense.
 \end{hypothesis}
 Then for any two diagonal subsequences
 $c_k$, $c_k'$ satisfying
@@ -543,13 +485,11 @@ the closed spans $\mathcal{K}$ and $\mathcal{K}'$
 coincide.
 \end{lemma}
 \begin{proof}
-Both $\mathcal{K}$ and $\mathcal{K}'$
-are closed invariant subspaces of $\Hlim$
-(SOT uniqueness, Paper~X Thread~A).
+Both are closed invariant subspaces of
+$\Hlim$ (SOT uniqueness, Paper~X Thread~A).
 Under Hyp.~\ref{hyp:full-family},
-both families generate the same
-spectral measure of $\Hlim$,
-hence the same closed span.
+both families generate the same spectral
+measure of $\Hlim$, hence the same closed span.
 \end{proof}
 
 \begin{remark}[Status of this lemma]
@@ -557,14 +497,12 @@ hence the same closed span.
 Lem.~\ref{lem:same-K} is conditional on
 Hyp.~\ref{hyp:full-family}.
 Thm.~\ref{thm:proj-stability} gives
-pointwise-in-$n$ norm convergence of
-spectral projections, but not convergence
-of the full projection family as a spectral
-measure.
-Closing this gap requires uniform
-control over the entire index range
-$n\le\kappa c_k$ jointly;
-this is Open Problem~\ref{prob:full-family}.
+pointwise-in-$n$ norm convergence,
+but not convergence of the full projection
+family as a spectral measure.
+Closing this gap requires uniform control
+over the entire index range $n\le\kappa c_k$
+jointly; see Open Problem~\ref{prob:full-family}.
 \end{remark}
 
 \begin{theorem}[Canonicalization, conditional]
@@ -580,98 +518,82 @@ subsequence up to unitary equivalence.
 (2) Unique $\mathcal{K}$: Lem.~\ref{lem:same-K}.
 (3) Spectrum independent of subsequence:
 SOT uniqueness + \eqref{A1}.
-(4) Simple spectrum + orthonormal eigenbasis
-    $\Rightarrow$ unitarily equivalent by
-    spectral theorem.
+(4) Simple spectrum + ONB $\Rightarrow$
+unitarily equivalent by spectral theorem.
 \end{proof}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 8. HEURISTIC
 \section{Heuristic Justification of Gap-S}
 \label{sec:heuristic}
-%%════════════════════════════════════════════════════════════════
 
 \textbf{This section is heuristic and non-rigorous.}
 Its purpose is to show that
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-is not ad hoc but is supported by the
-known asymptotic structure of PSWF eigenvalues.
+is not ad hoc.
 
 \subsection{The sigmoid transition profile}
 
-It is well established that the PSWF concentration
-eigenvalues $\lambda_n^{(c)}$ exhibit a
-sigmoidal transition centered at $n\approx 2c/\pi$,
-with transition window of width $O(\log c)$
-in index space~\cite{Slepian1961,Widom1964}:
+The PSWF concentration eigenvalues
+$\lambda_n^{(c)}$ are expected to exhibit
+a sigmoidal transition centered at
+$n\approx 2c/\pi$, with a transition
+window consistent with width
+$O(\log c)$ in index space~\cite{Widom1964}:
 \begin{equation}\label{eq:transition}
   \lambda_n^{(c)} \approx
   \frac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
   \quad \sigma(c) \asymp \log c.
 \end{equation}
-This is the Widom asymptotic regime.
 
 \subsection{Local density and gap estimate}
 
-The local density of eigenvalues in the
-transition window satisfies:
-\begin{equation}\label{eq:density}
-  \rho(c) := \#\{n : \lambda_n^{(c)}\in
-  [1/4,3/4]\} \asymp \log c.
-\end{equation}
-The average spacing in the window is therefore:
-\begin{equation}\label{eq:spacing}
-  \text{average gap}
-  \sim \frac{1}{\rho(c)}
-  \sim (\log c)^{-1}.
-\end{equation}
-Since $c^{-1/4}\ll (\log c)^{-1}$ for all
-large $c$, this gives heuristically:
+If the transition window has
+$\rho(c)\asymp\log c$ eigenvalues
+(consistent with \eqref{eq:transition}),
+the average spacing would be
+$\sim(\log c)^{-1}$.
+Since $c^{-1/4}\ll(\log c)^{-1}$ for all
+large $c$, this \emph{suggests} that
 \begin{equation}\label{eq:gap-plausible}
   g(c) \sim (\log c)^{-1} \gg c^{-1/4},
 \end{equation}
-which is the condition in
+which would be consistent with
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
 
-\subsection{What this heuristic means}
-
-\begin{remark}[Isolation of the missing input]
+\begin{remark}[Isolation of missing input]
 \label{rem:missing-input}
 \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-is not an opaque global assumption.
-It isolates a single piece of missing
-global information:
-the \emph{local density of concentration
-eigenvalues in the transition window}.
+isolates a single missing piece of global
+information: the local density of
+concentration eigenvalues in the
+transition window.
 The Widom formula \eqref{eq:transition}
-strongly suggests that this density is
-$\Theta(\log c)$, giving $g(c)\sim(\log c)^{-1}$.
+\emph{suggests} density $\Theta(\log c)$,
+which would give $g(c)\sim(\log c)^{-1}$.
 Making this rigorous via
 Plancherel--Rotach asymptotics or
 determinantal kernel estimates
-would simultaneously prove
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+would simultaneously prove Gap-S
 and resolve Open Problem~\ref{prob:sharp-gc}.
 \end{remark}
 
 \begin{remark}[Spacing statistics]
 \label{rem:spacing}
-The minimum eigenvalue spacing in the PSWF
-transition window has been observed numerically
-to grow faster than any algebraic power of $c$
-(consistent with $(\log c)^{-1}$),
-in line with heuristics from the
-asymptotic study of the
-associated integral operator kernel~\cite{Widom1964}.
+Numerical evidence is \emph{consistent with}
+minimum eigenvalue spacings in the
+transition window growing faster than
+any algebraic power of $c$,
+in line with the $(\log c)^{-1}$
+heuristic from \eqref{eq:gap-plausible}.
 A rigorous treatment of the spacing
 distribution would require determinantal
 process estimates beyond the scope of
 this paper.
 \end{remark}
 
-%%════════════════════════════════════════════════════════════════
+%%══ 9. OPEN PROBLEMS
 \section{Open Problems}
 \label{sec:open}
-%%════════════════════════════════════════════════════════════════
 
 \begin{problem}[Sharp gap scale]
 \label{prob:sharp-gc}
@@ -685,10 +607,7 @@ Expected: $g(c)\sim(\log c)^{-1}$.
 \begin{problem}[Full projection family convergence]
 \label{prob:full-family}
 Establish Hyp.~\ref{hyp:full-family}
-(weak-$*$ convergence of spectral measures
-of $\mathcal{H}_{c_k}$ to that of $\Hlim$)
-using the pointwise convergence of
-Thm.~\ref{thm:proj-stability}
+using Thm.~\ref{thm:proj-stability}
 and uniform index control.
 This would close Lem.~\ref{lem:same-K}
 unconditionally.
@@ -698,25 +617,23 @@ unconditionally.
 \label{prob:completeness}
 Is $\mathcal{K}=L^2(\mathbb{R})$?
 Paper~XIII will use
-Thm.~\ref{thm:proj-stability}
-as the key input.
+Thm.~\ref{thm:proj-stability} as key input.
 \end{problem}
 
 \begin{problem}[Quantitative Riesz constants]
 \label{prob:riesz-quant}
 For a non-orthonormal perturbation
-$\{\tilde\Phi_n^{(\infty)}\}$ of
-$\{\Phi_n^{(\infty)}\}$,
-determine Riesz constants $A$, $B$ explicitly
-via \eqref{eq:main-bound} and gap geometry.
+$\{\tilde\Phi_n^{(\infty)}\}$,
+determine Riesz constants $A$, $B$
+explicitly via \eqref{eq:main-bound}.
 \end{problem}
 
-%%%─── Bibliography
+%%%─── BIBLIOGRAPHY
 \begin{thebibliography}{99}
 
 \bibitem{PaperXI}
-[Author], \textit{Spectral structure and density
-for the limiting PSWF operator},
+[Author], \textit{Spectral structure and
+density for the limiting PSWF operator},
 Paper~XI (final), 2026.
 
 \bibitem{PaperX}
@@ -735,7 +652,8 @@ $\zeta(s)$}, Paper~VIII, 2026.
 D.~Slepian and H.~O.~Pollak,
 \textit{Prolate spheroidal wave functions,
 Fourier analysis and uncertainty~I},
-Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
+Bell Syst.\ Tech.\ J.\ \textbf{40}
+(1961), 43--63.
 
 \bibitem{Osipov2013}
 A.~Osipov, V.~Rokhlin, and H.~Xiao,
@@ -743,25 +661,42 @@ A.~Osipov, V.~Rokhlin, and H.~Xiao,
 of Order Zero}, Springer, 2013.
 
 \bibitem{Widom1964}
-H.~Widom, \textit{Asymptotic behavior of the
-eigenvalues of certain integral equations~II},
+H.~Widom,
+\textit{Asymptotic behavior of the eigenvalues
+of certain integral equations~II},
 Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
 (1964), 215--229.
 
+\bibitem{DavisKahan1970}
+C.~Davis and W.~M.~Kahan,
+\textit{The rotation of eigenvectors by
+a perturbation~III},
+SIAM J.\ Numer.\ Anal.\ \textbf{7} (1970),
+1--46.
+
+\bibitem{Bhatia1997}
+R.~Bhatia,
+\textit{Matrix Analysis},
+Springer, New York, 1997.
+(Davis--Kahan theorem: Thm.~VII.3.1.)
+
 \bibitem{Kato1966}
-T.~Kato, \textit{Perturbation Theory for
+T.~Kato,
+\textit{Perturbation Theory for
 Linear Operators}, Springer, 1966.
 
 \bibitem{ReedSimon1975}
-M.~Reed and B.~Simon, \textit{Methods of
-Modern Mathematical Physics, Vols.~I--II},
+M.~Reed and B.~Simon,
+\textit{Methods of Modern Mathematical
+Physics, Vols.~I--II},
 Academic Press, 1972--1975.
 (Strong vs.\ norm resolvent: Ex.~VIII.7.14.)
 
 \bibitem{GohbergKrein1969}
-I.~Gohberg and M.~Krein, \textit{Introduction
-to the Theory of Linear Nonselfadjoint
-Operators}, AMS, 1969.
+I.~Gohberg and M.~Krein,
+\textit{Introduction to the Theory of
+Linear Nonselfadjoint Operators},
+AMS, 1969.
 
 \bibitem{DLMF2023}
 F.~W.~J.~Olver et al.\ (eds.),
