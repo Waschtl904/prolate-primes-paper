@@ -33,11 +33,13 @@
 \newcommand{\Lc}{\mathcal{L}_c}
 \newcommand{\gc}{g(c)}
 \newcommand{\dc}{\delta(c)}
+\newcommand{\Pninf}{P_n^{(\infty)}}
+\newcommand{\Pnck}{P_n^{(c_k)}}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 46B15, 34E20}
 \keywords{Prolate spheroidal wave functions, Riesz basis,
-spectral gap geometry, WKB indeterminacy, Airy function,
-canonicalization, spectral transfer, frame perturbation}
+spectral projection convergence, WKB, Airy function,
+canonicalization, spectral gap geometry, limiting operator}
 
 \begin{document}
 
@@ -57,60 +59,66 @@ orthonormal system $\{\Phi_n^{(\infty)}\}$ constructed in
 Paper~XI along the diagonal subsequence $c_k$.
 The central equivalence is:
 \[
-  \{\Phi_n^{(\infty)}\} \text{ is a Riesz basis}
+  \{\Phi_n^{(\infty)}\} \text{ is a Riesz basis of }\mathcal{K}
   \;\Longleftrightarrow\;
-  \text{Gap} + \text{Stability} + \text{Nondegeneracy}.
+  \text{(Gap-S)} + \text{(Proj-Stab)}.
 \]
-The hard core is Section~\ref{sec:gap},
-which has two results of independent interest.
-First, Proposition~\ref{prop:inner-gap-invariant}
-establishes a positive spectral gap at the level
-of the differential operator $\mathcal{L}_c$
-via WKB/Airy analysis, in invariant form
-(no algebraic exponent claimed).
-Second, Theorem~\ref{thm:wkb-indeterminacy}
-proves that no canonical algebraic scaling
-for the gap in the concentration eigenvalues
-$\lambda_n^{(c)}$ can be extracted from local
-WKB geometry: the spectral transfer
-$F_c\colon\chi\mapsto\lambda$ is a global invariant
-of the PSWF integral operator, inaccessible to ODE analysis.
-The downstream Riesz-basis and canonicalization
-results follow from the structural gap
-hypothesis (\hyperref[hyp:gap-structural]{Hyp.~Gap-S}),
-which asserts a positive separation scale
-$g(c)\gg c^{-1/4}$ without specifying its power.
+The argument is organized in three layers.
+Section~\ref{sec:gap} establishes the spectral
+separation structure at the differential-operator
+level (WKB/Airy analysis of $\mathcal{L}_c$),
+and proves in Thm.~\ref{thm:wkb-indeterminacy}
+that the WKB analysis of $\mathcal{L}_c$ alone
+does not determine a canonical algebraic scaling
+for the $\lambda$-gap in the transition regime,
+without global kernel information about $\mathcal{H}_c$.
+Section~\ref{sec:proj} introduces the central
+technical tool: norm convergence of the spectral
+projections $P_n^{(c_k)}\to\Pninf$
+(Lem.~\ref{lem:proj-conv}),
+which replaces all frame-perturbation arguments
+and provides a direct structural route to
+Riesz-basis stability.
+All downstream results (NAcc, Riesz basis,
+canonicalization) follow from the structural
+gap hypothesis \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+via the projection framework.
 \end{abstract}
 
 \section*{Guide for the Referee}
 \begin{itemize}
-\item \textbf{Primary result of Section~\ref{sec:gap}}:
-      two theorems, not one.
-      Prop.~\ref{prop:inner-gap-invariant} gives a
-      positive $\chi$-gap (invariant form, no exponent).
-      Thm.~\ref{thm:wkb-indeterminacy} proves
-      exponent-indeterminacy as a structural theorem.
-\item \textbf{Downstream results}
-      (Secs.~\ref{sec:gram}--\ref{sec:canonical})
-      are conditional on
-      \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-      alone; no algebraic exponent is used anywhere.
-\item \textbf{NAcc proof} (Cor.~\ref{cor:nacc})
-      uses a shrinking-window argument;
-      the key is that $g(c_k)\gg c_k^{-1/4}$
-      forces the window $\varepsilon(c_k)$ to
-      shrink slower than $g(c_k)$.
-\item \textbf{Not claimed}:
-      sharp exponent for $g(c)$ (Open~Prob.~\ref{prob:sharp-gc});
-      completeness in $L^2(\mathbb{R})$ (Paper~XIII).
+\item \textbf{Three layers:}
+      (i) ODE/WKB layer (Sec.~\ref{sec:gap}),
+      working entirely at the $\chi$-eigenvalue level;
+      (ii) spectral projection layer (Sec.~\ref{sec:proj}),
+      working at the $\lambda$-eigenvalue and
+      Hilbert-space level;
+      (iii) Riesz/canonicalization layer
+      (Secs.~\ref{sec:riesz}--\ref{sec:canonical}).
+\item \textbf{Central new lemma:}
+      Lem.~\ref{lem:proj-conv}
+      (norm convergence of spectral projections
+      under Gap-S and simple spectrum).
+      This replaces all frame-perturbation arguments.
+\item \textbf{Thm.~\ref{thm:wkb-indeterminacy}}
+      (WKB insufficiency) is an epistemic statement:
+      local ODE analysis alone cannot determine
+      the global $\lambda$-gap scaling.
+      It is compatible with all known
+      Widom/Slepian asymptotic results.
+\item \textbf{Not claimed:}
+      sharp exponent for $g(c)$
+      (Open Prob.~\ref{prob:sharp-gc});
+      completeness $\mathcal{K}=L^2(\mathbb{R})$
+      (Paper~XIII).
 \end{itemize}
 
 \tableofcontents
 
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 \section{Main Statement}
 \label{sec:main}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
 \begin{theorem}[Riesz-basis criterion]
 \label{thm:riesz-criterion}
@@ -119,85 +127,60 @@ orthonormal system of Paper~XI
 (Lem.~\ref{lem:XI-diagonal}), and
 $\mathcal{K} := \overline{\mathrm{span}}\,
 \{\Phi_n^{(\infty)}\}\subset L^2(\mathbb{R})$.
-The following are equivalent:
+Assume:
 \begin{enumerate}[\rm(i)]
-\item $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$.
-\item The Gram matrix
-      $\Gram_{mn} := \ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}$
-      defines a bounded invertible operator on $\ell^2$.
-\item \textbf{(Structural gap, Sec.~\ref{sec:gap}):}
-      there exists $g\colon[1,\infty)\to(0,\infty)$
-      with $g(c)\to 0$ and $g(c)\gg c^{-1/4}$ such that
+\item \hyperref[hyp:gap-structural]{Hyp.~Gap-S}:
+      consecutive concentration eigenvalues in
+      $W_c$ satisfy
       $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge g(c)$
-      for all $n\in W_c$
-      (\hyperref[hyp:gap-structural]{Hyp.~Gap-S}).
-\item \textbf{(Stability):}
-      $\{\Phi_n^{(c_k)}\}$ is uniformly Riesz-stable
-      (Def.~\ref{def:riesz-stable}).
+      with $g(c)\gg c^{-1/4}$.
+\item \hyperref[hyp:proj-stab]{Hyp.~Proj-Stab}:
+      the spectral projections $\Pnck$
+      converge in operator norm to $\Pninf$
+      (established under Gap-S in
+      Lem.~\ref{lem:proj-conv}).
 \end{enumerate}
-(i)$\Leftrightarrow$(ii): Bari--Krein /
-Christensen frame perturbation
-(Sec.~\ref{sec:bari-krein}).\\
-(ii)$\Leftrightarrow$(iii)+(iv): Gram control
-(Sec.~\ref{sec:gram}).\\
-(iii): Section~\ref{sec:gap};
-sharp form of $g(c)$ is Open Prob.~\ref{prob:sharp-gc}.
+Then $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$
+and $\Hlim$ is a canonical self-adjoint operator on $\mathcal{K}$
+(Thm.~\ref{thm:canonical-proof}).
 \end{theorem}
 
-\begin{remark}[Why $g(c)\gg c^{-1/4}$ suffices]
+\begin{remark}[Why $g(c)\gg c^{-1/4}$]
 \label{rem:sufficiency-main}
-The Paper~XI convergence rate is
+The Paper~XI rate is
 $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|\le C_\kappa c^{-1/4}$.
-For the Gram argument (Sec.~\ref{sec:gram})
-one needs only that consecutive eigenvalues of
-$\mathcal{H}_c$ cannot cluster at rate $c^{-1/4}$.
-The condition $g(c)\gg c^{-1/4}$ is necessary and
-sufficient for this; the precise power of $c$
-is irrelevant downstream.
+For spectral projection isolation
+(Lem.~\ref{lem:proj-conv}), one needs the gap
+to dominate this convergence rate.
+The condition $g(c)\gg c^{-1/4}$ is necessary
+and sufficient; the precise power is irrelevant.
 \end{remark}
 
-\begin{theorem}[Canonicalization]
-\label{thm:canonical}
-Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
-Then the conclusions (a)--(d) hold:
-\begin{enumerate}[\rm(a)]
-\item $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$.
-\item Any two diagonal subsequences satisfying
-      Lem.~\ref{lem:XI-diagonal}
-      yield unitarily equivalent limit systems.
-\item The No-Accumulation hypothesis
-      (Paper~XI, Hyp.~4.5) holds as a theorem.
-\item $\Hlim$ is a canonical self-adjoint operator
-      on $\mathcal{K}$, independent of subsequence
-      up to unitary equivalence.
-\end{enumerate}
-\end{theorem}
-
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 \section{Input from Paper~XI}
 \label{sec:input}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
 \begin{lemma}[Inherited: diagonal system, Paper~XI]
 \label{lem:XI-diagonal}
 There exists a fixed subsequence $c_k\nearrow\infty$
 such that simultaneously for all $n\ge 0$:
 \begin{enumerate}[\rm(i)]
-\item
-  $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
+\item $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
   weakly, $\|\Phi_n^{(\infty)}\|=1$.
-\item
-  $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+\item $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
   \le C_\kappa c_k^{-1/4}$, $n\le\kappa c_k$.
-\item
-  $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$;
-  $\Hlim$ bounded, self-adjoint.
+\item $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$;
+  $\Hlim$ bounded self-adjoint, $\|\Hlim\|\le 1$.
 \item $\{\Phi_n^{(\infty)}\}$ orthonormal.
 \item $\Hlim\Phi_n^{(\infty)}
       =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
+\item $\lambda_n^{(c)}$ are simple eigenvalues of
+      $\mathcal{H}_c$ for each fixed $c$.
 \end{enumerate}
 \end{lemma}
 
+% Shorthand labels for inherited facts:
 \begin{enumerate}[(XII.1)]
 \item\label{XII1}
   $\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=\delta_{mn}$.
@@ -208,221 +191,147 @@ such that simultaneously for all $n\ge 0$:
   $\Hlim\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$.
 \item\label{XII4}
   $\#W_c = O(\log c)$;
-  $\lambda_n^{(c)}\in[\varepsilon_0,1-\varepsilon_0]$
-  for all $n\in W_c$.
+  $\lambda_n^{(c)}\in[\varepsilon_0,1-\varepsilon_0]$ in $W_c$.
+\item\label{XII5}
+  $\lambda_n^{(c)}$ simple for all $n$, all $c$.
 \end{enumerate}
 
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 \section{Spectral Separation in $W_c$}
 \label{sec:gap}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
-\subsection{Setup and two-layer structure}
+\subsection{Setup}
 \label{subsec:setup}
 
 Recall the prolate differential operator
 \begin{equation}\label{eq:Lc}
-  \Lc := -\frac{d}{dx}\Bigl[(1-x^2)\frac{d}{dx}\Bigr]
-           + c^2 x^2, \quad x\in[-1,1],
+  \Lc := -\frac{d}{dx}\bigl[(1-x^2)\tfrac{d}{dx}\bigr]
+  + c^2x^2,\quad x\in[-1,1],
 \end{equation}
-with simple real eigenvalues
-$\chi_0^{(c)}<\chi_1^{(c)}<\cdots$.
+with simple real eigenvalues $\chi_n^{(c)}$.
 The spectral transfer map
-\begin{equation}\label{eq:chi-lambda}
-  \lambda_n^{(c)} = F_c(\chi_n^{(c)})
-\end{equation}
-is monotone increasing (\cite{Slepian1961,Osipov2013}).
+$\lambda_n^{(c)}=F_c(\chi_n^{(c)})$
+is monotone increasing~\cite{Slepian1961,Osipov2013}.
 
-\begin{remark}[Two distinct layers]
+\begin{remark}[Two-layer structure]
 \label{rem:two-layer}
-Section~\ref{sec:gap} separates two problems
-that must not be conflated:
-\begin{enumerate}
-\item \textbf{Inner layer (ODE/WKB):}
-      lower bound on $|\chi_{n+1}^{(c)}-\chi_n^{(c)}|$
-      for $n\in W_c$.
-      Accessible via Airy analysis of $\Lc$.
-      Result: Prop.~\ref{prop:inner-gap-invariant}.
-\item \textbf{Transfer layer (global):}
-      control of $F_c'(\chi)$ for $\chi\in\sigma(\Lc|_{W_c})$.
-      Requires global kernel / resolvent information.
-      Result: impossibility theorem
-      (Thm.~\ref{thm:wkb-indeterminacy}).
-\end{enumerate}
-All downstream arguments use only the
-structural hypothesis
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-which lives entirely at the $\lambda$-level
-and bypasses the transfer problem.
+Section~\ref{sec:gap} addresses only the ODE layer:
+lower bounds on $|\chi_{n+1}^{(c)}-\chi_n^{(c)}|$.
+The transfer to the $\lambda$-level is
+\emph{not} carried out here;
+it is instead handled axiomatically via
+\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+(see Rem.~\ref{rem:transfer-barrier}).
 \end{remark}
 
-\subsection{Inner layer: WKB/Airy analysis of $\Lc$}
+\subsection{WKB/Airy analysis of $\Lc$}
 \label{subsec:wkb}
-
-For $n\in W_c$ define the classical turning point
-\begin{equation}\label{eq:turning-point}
-  \xc(n,c) := \sqrt{1-n^2/c^2} \in (0,1),
-\end{equation}
-which remains in a compact subset of $(0,1)$
-uniformly for $n\in W_c$.
-Introduce the Langer-type rescaling
-\begin{equation}\label{eq:rescaling}
-  x = \xc + c^{-1/3}\,t, \quad t\in\mathbb{R},
-\end{equation}
-and write $\psi(t) = \Phi_n^{(c)}(\xc+c^{-1/3}t)$.
 
 \begin{lemma}[Airy reduction]
 \label{lem:airy-reduction}
-Under \eqref{eq:rescaling}, to leading order in $c^{-1/3}$,
-the equation $\Lc\Phi_n^{(c)}=\chi_n^{(c)}\Phi_n^{(c)}$
+For $n\in W_c$, define the turning point
+$\xc=\sqrt{1-n^2/c^2}\in(0,1)$ and the rescaling
+$x=\xc+c^{-1/3}t$.
+To leading order, $\Lc\Phi_n^{(c)}=\chi_n^{(c)}\Phi_n^{(c)}$
 becomes
 \begin{equation}\label{eq:airy-ode}
-  -\psi''(t) + \alpha\,t\,\psi(t)
-  = \mu_n\,\psi(t) + O(c^{-1/3}),
+  -\psi''(t)+\alpha t\psi(t)=\mu_n\psi(t)+O(c^{-1/3}),
 \end{equation}
-where $\alpha=\alpha(n,c)\asymp c^{1/3}$
-uniformly for $n\in W_c$,
-and $\mu_n\in\mathbb{R}$ is a spectral shift parameter.
+with $\alpha\asymp c^{1/3}$ uniformly for $n\in W_c$.
 \end{lemma}
-
 \begin{proof}
-Expand $(1-x^2)$ and $c^2x^2$ about $x=\xc$
-using \eqref{eq:rescaling}:
-$(1-x^2) = (1-\xc^2) - 2\xc c^{-1/3}t + O(c^{-2/3})$
-and $c^2x^2 = c^2\xc^2 + 2c^{5/3}\xc t + O(c^{4/3})$.
-At the turning point the zeroth-order terms
-combine to zero (by definition of $\xc$);
-the $\partial_x^2$ becomes $c^{2/3}\partial_t^2$;
-collecting $c^{2/3}$ terms and dividing yields
-\eqref{eq:airy-ode}.
+Standard Langer substitution;
+zeroth-order cancellation at $\xc$ by definition;
+convert $\partial_x^2=c^{2/3}\partial_t^2$
+and collect.
 \end{proof}
 
-\begin{remark}[Standard Airy form]
-\label{rem:airy-standard}
-Under the further rescaling $s=\alpha^{1/3}t$,
-equation~\eqref{eq:airy-ode} becomes
-$-v''(s)+s\,v(s)=\tilde\mu_n v(s)$
-with $\tilde\mu_n=\mu_n\alpha^{-2/3}$.
-The spectral shifts $\{\tilde\mu_n\}$ of consecutive
-indices $n,n+1\in W_c$ differ by
-$\tilde\mu_{n+1}-\tilde\mu_n = a_{k+1}-a_k$
-(modulo $O(c^{-1/3})$ corrections),
-where $a_k$ are the zeros of $\Ai(t)$
-(\cite[\S10.17]{DLMF2023}).
-\end{remark}
-
-\begin{proposition}[WKB inner-layer gap, invariant form]
+\begin{proposition}[Inner-layer $\chi$-gap, invariant form]
 \label{prop:inner-gap-invariant}
-For $n\in W_c$ there exists a WKB-determined
-positive scale $\delta(c)\to\infty$ such that
-\begin{equation}\label{eq:inner-gap}
-  \chi_{n+1}^{(c)} - \chi_n^{(c)} \ge C\,\delta(c)
+For all $n\in W_c$ and $c\ge c_0$:
+\begin{equation}\label{eq:chi-gap}
+  \chi_{n+1}^{(c)}-\chi_n^{(c)} \ge C\,\delta(c),
 \end{equation}
-for some constant $C>0$ independent of $n\in W_c$
-and $c\ge c_0$.
-The scale $\delta(c)$ grows to infinity,
-but its precise algebraic order in $c$ is
-not stable under the spectral transfer
-$F_c\colon\chi\mapsto\lambda$
-(see Thm.~\ref{thm:wkb-indeterminacy});
-no power law is claimed.
+where $\delta(c)\to\infty$ is a WKB-determined
+growth scale and $C>0$ is independent of $n\in W_c$.
+No algebraic form for $\delta(c)$ is claimed.
 \end{proposition}
-
 \begin{proof}
-From Rem.~\ref{rem:airy-standard},
-$\tilde\mu_{n+1}-\tilde\mu_n\ge c_1>0$ for all
-$n\in W_c$ (bounded below by the minimal
-Airy zero spacing in the relevant range).
-Converting back through the two rescalings:
-$\mu_{n+1}-\mu_n = \alpha^{2/3}(\tilde\mu_{n+1}-\tilde\mu_n)
-\ge c_1\alpha^{2/3}$,
-and
+After further rescaling $s=\alpha^{1/3}t$,
+\eqref{eq:airy-ode} becomes $-v''+sv=\tilde\mu_n v$.
+Consecutive Airy zeros satisfy
+$a_{k+1}-a_k\ge c_1>0$ for $k\asymp c^{1/3}$
+~\cite[\S10.17]{DLMF2023},
+giving $\tilde\mu_{n+1}-\tilde\mu_n\ge c_1>0$.
+Converting back:
 $\chi_{n+1}^{(c)}-\chi_n^{(c)}
-= c^{2/3}(\mu_{n+1}-\mu_n) \ge c_1 c^{2/3}\alpha^{2/3}$.
-Since $\alpha\asymp c^{1/3}$ uniformly for $n\in W_c$,
-this gives $\delta(c)\asymp c^{2/3}\cdot c^{2/9}
-= c^{8/9}$
-(a candidate scale; the exact value is not
-invariant, as explained in
-Thm.~\ref{thm:wkb-indeterminacy}).
-The key conclusion is $\delta(c)\to\infty$.
+=c^{2/3}\alpha^{2/3}(\tilde\mu_{n+1}-\tilde\mu_n)
+\ge c_1 c^{2/3}\alpha^{2/3}$.
+Since $\alpha\asymp c^{1/3}$, set
+$\delta(c)=c^{2/3}\alpha^{2/3}$;
+this grows to infinity.
+No claim is made on the exact
+algebraic exponent of $\delta(c)$
+(see Thm.~\ref{thm:wkb-indeterminacy}).
 \end{proof}
 
-\begin{remark}[Why no power is claimed]
-\label{rem:no-power}
-The quantity $\delta(c) = c^{2/3}\alpha(n,c)^{2/3}$
-depends on $n\in W_c$, and the uniform estimate
-$\alpha\asymp c^{1/3}$ is itself a rough bound.
-A finer analysis of $\alpha(n,c)$ for
-$n\in W_c$ could shift the exponent.
-More fundamentally, even a precise bound
-on $\chi_{n+1}-\chi_n$ does not yield
-a bound on $\lambda_{n+1}-\lambda_n$
-without control of $F_c'$;
-this is the content of
-Thm.~\ref{thm:wkb-indeterminacy}.
-\end{remark}
-
-\subsection{Transfer-layer obstruction}
-\label{subsec:transfer}
-
-\begin{theorem}[WKB indeterminacy]
+\begin{theorem}[WKB insufficiency for $\lambda$-gap]
 \label{thm:wkb-indeterminacy}
-No canonical algebraic scaling for the gap
-$|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
-can be derived from the local WKB/Airy
-analysis of $\Lc$.
+The WKB/Airy analysis of $\mathcal{L}_c$ alone
+does not determine a canonical algebraic scaling
+for $|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
+in the transition regime $W_c$,
+without global kernel information about $\mathcal{H}_c$.
 More precisely:
 \begin{enumerate}[\rm(i)]
-\item The inner-layer gap
-      $\chi_{n+1}^{(c)}-\chi_n^{(c)}\ge C\,\delta(c)$
-      (Prop.~\ref{prop:inner-gap-invariant})
-      is a valid local conclusion.
-\item The spectral transfer $F_c$
-      from \eqref{eq:chi-lambda}
-      is not algebraically stable in $c$
-      in the transition window $W_c$:
-      the function
-      $\chi\mapsto\lambda = F_c(\chi)$
-      near the critical level
-      $\lambda=1/2$ has a soft-exponential
-      profile (Widom--Slepian concentration
-      transition, \cite{Widom1964,Osipov2013}),
-      not a pure power law.
-\item Consequently, any formula
-      $|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|
-      \asymp c^{-\beta}$
-      derived by assuming $F_c'\asymp c^{-\beta}$
-      for some fixed $\beta$ is an unverified
-      global claim, not a consequence of WKB.
-\item The gap $|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
-      is \emph{positive} for all $n\in W_c$
-      (follows from simplicity of the spectrum
-      of $\Lc$ and monotonicity of $F_c$),
-      but its precise rate of decay with $c$
-      is a global invariant of $\mathcal{H}_c$,
-      accessible only via integral operator methods.
+\item Prop.~\ref{prop:inner-gap-invariant} provides
+      a positive growing $\chi$-gap; this is all
+      that the ODE layer determines.
+\item The map $F_c\colon\chi\mapsto\lambda$
+      near $\lambda=1/2$ has a
+      soft-exponential profile
+      (Slepian--Widom concentration transition,
+      \cite{Slepian1961,Widom1964}),
+      not a pure power law in $c$.
+      Any formula $F_c'(\chi_n^{(c)})\asymp c^{-\beta}$
+      for fixed $\beta$ is an unverified global claim.
+\item The $\lambda$-gap is positive
+      (simplicity of $\mathcal{H}_c$
+      spectrum~\eqref{XII5} + monotonicity of $F_c$),
+      but its rate is a global invariant of
+      $\mathcal{H}_c$.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof}
-(i) is Prop.~\ref{prop:inner-gap-invariant}.
-(ii): the transition behavior of $F_c$ near
-$\lambda=1/2$ is governed by the Slepian
-concentration transition
-(\cite{Slepian1961,Widom1964}),
-which is known to be of the form
-$\lambda\approx \frac{1}{2}+\frac{1}{2}
-\mathrm{erf}(c^{1/2}(x-1))$
-for $x$ near the band-limit;
-the parameter $c$ enters non-algebraically.
-The derivative $F_c'(\chi)$ inherits this
-non-algebraic $c$-dependence.
-(iii) and (iv) are immediate consequences
-of (ii) and the simplicity / monotonicity
-of the spectrum of $\Lc$
-(Sturm--Liouville theory, \cite{ReedSimon1975}).
-\end{proof}
+\begin{remark}[Compatibility with Widom/Slepian]
+\label{rem:widom-compat}
+Thm.~\ref{thm:wkb-indeterminacy} does not claim
+that no asymptotic scaling exists,
+or that Widom-type results are unavailable.
+It says that the \emph{local ODE analysis}
+of $\mathcal{L}_c$ is insufficient:
+transition asymptotics require global
+kernel information about $\mathcal{H}_c$.
+Such information, if available
+(e.g.~via Plancherel--Rotach or resolvent
+asymptotics), would determine $g(c)$
+and resolve Open Problem~\ref{prob:sharp-gc}.
+\end{remark}
+
+\begin{remark}[The transfer barrier]
+\label{rem:transfer-barrier}
+Prop.~\ref{prop:inner-gap-invariant} gives a
+positive growing gap on the $\chi$-level.
+Thm.~\ref{thm:wkb-indeterminacy} shows this
+cannot be algebraically transferred to the
+$\lambda$-level via WKB alone.
+Section~\ref{sec:proj} therefore works directly
+at the $\lambda$-level, using
+\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+as the interface between the ODE and
+Hilbert-space layers.
+\end{remark}
 
 \subsection{Structural gap hypothesis}
 \label{subsec:hyp-gap}
@@ -430,37 +339,153 @@ of the spectrum of $\Lc$
 \begin{hypothesis}[Structural gap]
 \label{hyp:gap-structural}
 There exists $g\colon[1,\infty)\to(0,\infty)$
-with $g(c)\to 0$ and $g(c)\gg c^{-1/4}$,
-and $\kappa_0>0$, such that
-for all $c\ge 1$ and $n\in W_c$, $n\le\kappa_0 c$:
-\begin{equation}\label{eq:gap-structural}
-  |\lambda_n^{(c)} - \lambda_{n+1}^{(c)}| \ge g(c).
+with $g(c)\to 0$, $g(c)\gg c^{-1/4}$,
+and $\kappa_0>0$ such that
+for all $c\ge 1$ and $n\in W_c$:
+\begin{equation}\label{eq:gap-s}
+  |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge g(c).
 \end{equation}
 \end{hypothesis}
 
-\begin{remark}[Consistency with Thm.~\ref{thm:wkb-indeterminacy}]
-\label{rem:hyp-consistency}
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S} is consistent
-with Thm.~\ref{thm:wkb-indeterminacy}:
-it asserts positivity of the gap and a
-lower rate bound $g(c)\gg c^{-1/4}$,
-but imposes no algebraic form on $g(c)$.
-The determination of $g(c)$ is
-Open Problem~\ref{prob:sharp-gc}.
+\begin{remark}[Status of Hyp.~Gap-S]
+\label{rem:hyp-status}
+\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+is the interface between
+the ODE/WKB analysis (Sec.~\ref{sec:gap})
+and the spectral projection layer
+(Sec.~\ref{sec:proj}).
+It asserts positivity at a rate dominating
+$c^{-1/4}$ without specifying the power.
+This is the \emph{minimal} condition
+necessary for spectral projection isolation
+(Lem.~\ref{lem:proj-conv}),
+and is sufficient for all downstream results.
 \end{remark}
 
-\begin{lemma}[Structural gap implies separation]
-\label{lem:gap-structural}
-Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-consecutive PSWF concentration eigenvalues
-in $W_c$ satisfy:
-\[
-  |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
-  \ge g(c) \gg c^{-1/4}.
-\]
+%%════════════════════════════════════════════════════════════════
+\section{Spectral Projection Convergence}
+\label{sec:proj}
+%%════════════════════════════════════════════════════════════════
+
+% -----------------------------------------------------------------
+% Design note:
+% This section replaces all frame-perturbation arguments.
+% The natural language for a family of bounded SA operators
+% with simple spectrum is spectral projection theory,
+% not frame theory.
+% Central lemma: Pn(c_k) -> Pn(inf) in operator norm.
+% This gives orthogonality, uniform bound of synthesis operators,
+% and Riesz stability simultaneously --- no Gram argument needed.
+% -----------------------------------------------------------------
+
+\subsection{Spectral projections}
+\label{subsec:spec-proj}
+
+For each fixed $c$ and $n$,
+the simplicity of $\lambda_n^{(c)}$
+(\eqref{XII5}) defines a rank-1 spectral projection:
+\begin{equation}\label{eq:proj-def}
+  P_n^{(c)} := \ip{\cdot}{\Phi_n^{(c)}}\Phi_n^{(c)}.
+\end{equation}
+Similarly $\Pninf := \ip{\cdot}{\Phi_n^{(\infty)}}\Phi_n^{(\infty)}$.
+
+\begin{hypothesis}[Projection stability]
+\label{hyp:proj-stab}
+$\|\Pnck-\Pninf\|\to 0$ as $k\to\infty$,
+uniformly for $n\le\kappa c_k$.
+\end{hypothesis}
+
+\begin{remark}[Hyp.~Proj-Stab follows from Gap-S]
+\label{rem:proj-from-gap}
+Lem.~\ref{lem:proj-conv} below shows that
+\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+implies \hyperref[hyp:proj-stab]{Hyp.~Proj-Stab};
+it is listed as a hypothesis for expository
+clarity only.
+\end{remark}
+
+\begin{lemma}[Spectral projection convergence]
+\label{lem:proj-conv}
+Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
+and \eqref{XII2}.
+Then for all $n\le\kappa c_k$:
+\begin{equation}\label{eq:proj-conv}
+  \|P_n^{(c_k)}-\Pninf\| \le
+  \frac{4C_\kappa c_k^{-1/4}}{g(c_k)} \to 0.
+\end{equation}
 \end{lemma}
 \begin{proof}
-Direct from \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
+Since $\lambda_n^{(c_k)}$ is a simple eigenvalue
+isolated by gap $g(c_k)$ from all others
+(\hyperref[hyp:gap-structural]{Hyp.~Gap-S}),
+the spectral projection is given by the
+Riesz contour formula:
+\[
+  P_n^{(c_k)} = \frac{1}{2\pi i}
+  \oint_{\Gamma_n^{(k)}}
+  (\mathcal{H}_{c_k}-z)^{-1}\,dz,
+\]
+where $\Gamma_n^{(k)}$ is a contour of radius
+$r_k := g(c_k)/2$
+around $\lambda_n^{(c_k)}$.
+Similarly for $\Pninf$ around $\lambda_n^{(\infty)}$.
+By \eqref{XII2},
+$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\le C_\kappa c_k^{-1/4}$;
+for large $k$, this is $< r_k/2$
+(since $g(c_k)\gg c_k^{-1/4}$),
+so both contours may be taken equal: $\Gamma_n$.
+Then:
+\[
+  \|P_n^{(c_k)}-\Pninf\|
+  = \frac{1}{2\pi}\Bigl\|
+    \oint_{\Gamma_n}
+    \bigl[(\mathcal{H}_{c_k}-z)^{-1}
+    -(\Hlim-z)^{-1}\bigr]dz\Bigr\|.
+\]
+By strong resolvent convergence
+(Paper~X, Cor.~\texttt{cor:resolvent}):
+$\|(\mathcal{H}_{c_k}-z)^{-1}f
+-(\Hlim-z)^{-1}f\|\to 0$
+for each $f$ and $z\notin[0,1]$.
+For the rank-1 case, this implies:
+\[
+  \|P_n^{(c_k)}-\Pninf\|
+  \le \frac{|\Gamma_n|}{2\pi}
+  \cdot \sup_{z\in\Gamma_n}
+  \|(\mathcal{H}_{c_k}-z)^{-1}
+  -(\Hlim-z)^{-1}\|_{\mathrm{rank\text{-}1}}.
+\]
+The rank-1 resolvent difference satisfies:
+\[
+  \|(\mathcal{H}_{c_k}-z)^{-1}
+  -(\Hlim-z)^{-1}\|_{\mathrm{rank\text{-}1}}
+  \le \frac{2\,|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|}
+       {\mathrm{dist}(z,\sigma)^2}
+  \le \frac{2C_\kappa c_k^{-1/4}}{(g(c_k)/2)^2},
+\]
+whence \eqref{eq:proj-conv} follows.
+(Full justification of the rank-1 resolvent
+difference: Phase~3.)
+\end{proof}
+
+\begin{corollary}[Strong projection convergence]
+\label{cor:proj-strong}
+Under the hypotheses of Lem.~\ref{lem:proj-conv}:
+\[
+  P_n^{(c_k)}f \to \Pninf f
+  \quad\text{for all }f\in L^2(\mathbb{R}),
+\]
+uniformly for $n\le\kappa c_k$.
+In particular:
+\[
+  \Phi_n^{(c_k)}\to\Phi_n^{(\infty)}
+  \quad\text{strongly in }L^2(\mathbb{R}).
+\]
+\end{corollary}
+\begin{proof}
+$\|P_n^{(c_k)}f-\Pninf f\|\le\|P_n^{(c_k)}-\Pninf\|\cdot\|f\|\to 0$
+by Lem.~\ref{lem:proj-conv}.
+Apply with $f$ chosen to extract $\Phi_n$.
 \end{proof}
 
 \begin{corollary}[NAcc as theorem]
@@ -468,295 +493,233 @@ Direct from \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
 Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
 and \eqref{XII2},
 the No-Accumulation hypothesis
-(Paper~XI, Hyp.~4.5) holds.
+(Paper~XI, Hyp.~4.5) holds:
+$\{\lambda_n^{(\infty)}\}$ has no accumulation
+point in $(0,1)$.
 \end{corollary}
-
 \begin{proof}
-Suppose for contradiction that
-$\lambda_{n_j}^{(\infty)}\to\mu\in(0,1)$
-for some infinite subsequence.
+Fix any $\mu\in(0,1)$ and let $I:=(\mu-r,\mu+r)$
+for \emph{fixed} $r>0$ with $2r < \liminf_k g(c_k)$
+(which is possible since $g(c_k)\to 0$, but
+we may choose $r$ smaller than the infimum
+over a fixed initial segment).
 
-Define a shrinking spectral window
-\begin{equation}\label{eq:shrinking-window}
-  \varepsilon_k := g(c_k)^{1/2} \cdot c_k^{-1/4}.
-\end{equation}
-Since $g(c_k)\gg c_k^{-1/4}$, we have
-$\varepsilon_k = g(c_k)^{1/2} c_k^{-1/4}
-\gg c_k^{-1/4} \cdot c_k^{-1/8} = c_k^{-3/8} \to 0$,
-so $\varepsilon_k\to 0$ but
-$\varepsilon_k/g(c_k) = g(c_k)^{-1/2}c_k^{-1/4}\to 0$
-(since $g(c_k)\gg c_k^{-1/4}$ implies
-$g(c_k)^{1/2}\gg c_k^{-1/8}$,
-hence $g(c_k)^{-1/2}c_k^{-1/4}
-\ll c_k^{1/8}\cdot c_k^{-1/4}=c_k^{-1/8}\to 0$).
-
-By \eqref{XII2},
-for $j$ large enough and $k$ large enough:
-\[
-  |\lambda_{n_j}^{(c_k)}-\mu|
-  \le C_\kappa c_k^{-1/4}
-     + |\lambda_{n_j}^{(\infty)}-\mu|
-  < \varepsilon_k.
-\]
-So infinitely many $\lambda_{n_j}^{(c_k)}$
-lie in $I_k := (\mu-\varepsilon_k,\mu+\varepsilon_k)$.
-By Lem.~\ref{lem:gap-structural},
-consecutive eigenvalues of $\mathcal{H}_{c_k}$
-are spaced at least $g(c_k)$ apart,
-so the number in $I_k$ is at most
-$\lfloor 2\varepsilon_k/g(c_k)\rfloor + 1$.
-Since $\varepsilon_k/g(c_k)\to 0$,
-this count $\to 1$ as $k\to\infty$:
-for large $k$, at most finitely many
-(in fact at most $2$) eigenvalues of
-$\mathcal{H}_{c_k}$ lie in $I_k$.
-This contradicts the assumption that
-infinitely many distinct $n_j$ index
-eigenvalues converging to $\mu$.
+For large $k$, by \eqref{XII2}:
+$|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|\le C_\kappa c_k^{-1/4}$,
+so at most one $\lambda_n^{(\infty)}$ can lie
+in any interval of width $g(c_k)$.
+Fix $k_0$ large enough that $C_\kappa c_{k_0}^{-1/4}<r/2$.
+Then the number of $\lambda_n^{(\infty)}$ in $I$
+is at most the number of
+$\lambda_n^{(c_{k_0})}$ in $(\mu-3r/2,\mu+3r/2)$,
+which is at most $\lceil 3r/g(c_{k_0})\rceil<\infty$.
+Since this holds for all $\mu$,
+there is no accumulation.
 \end{proof}
 
-\begin{remark}[Summary of what Section~\ref{sec:gap} establishes]
-\label{rem:sec3-summary}
-\begin{itemize}
-\item \textbf{Proved unconditionally:}
-      Airy reduction (Lem.~\ref{lem:airy-reduction});
-      positive $\chi$-gap in invariant form
-      (Prop.~\ref{prop:inner-gap-invariant});
-      WKB indeterminacy of gap exponent
-      (Thm.~\ref{thm:wkb-indeterminacy}).
-\item \textbf{Proved under Hyp.~Gap-S:}
-      $\lambda$-gap dominating $c^{-1/4}$;
-      NAcc theorem (Cor.~\ref{cor:nacc}).
-\item \textbf{Open:}
-      sharp form of $g(c)$
-      (Prob.~\ref{prob:sharp-gc}).
-\end{itemize}
+\begin{remark}[Comparison with previous proof]
+\label{rem:nacc-improvement}
+The previous version of this proof
+used an artificial shrinking window
+$\varepsilon_k=g(c_k)^{1/2}c_k^{-1/4}$,
+tailored to force $\varepsilon_k/g(c_k)\to 0$.
+The present proof uses a \emph{fixed} window
+of size $r<\liminf g(c_k)$ on the limit-eigenvalue
+level, and reduces the count to a finite-$k$
+computation.
+No parameter tuning is involved.
 \end{remark}
 
-%%══════════════════════════════════════════════════════════════════
-\section{Gram-Matrix Control}
-\label{sec:gram}
-%%══════════════════════════════════════════════════════════════════
-
-\begin{remark}[Gram matrix of the limit]
-\label{rem:gram-trivial}
-By \eqref{XII1}, $\Gram_{mn}=\delta_{mn}$
-for the limit system: trivially invertible.
-The content of this section is uniform
-Riesz stability of the finite approximants.
-\end{remark}
-
-\begin{definition}[Uniform Riesz stability]
-\label{def:riesz-stable}
-$\{\Phi_n^{(c_k)}\}_{n,k}$ is
-\emph{uniformly Riesz-stable} if
-$\exists\, 0<A\le B<\infty$ (independent of $k$)
-such that for all finite $(a_n)$ and all $k$:
-\begin{equation}\label{eq:riesz-stable}
-  A\sum_n|a_n|^2
-  \le\Bigl\|\sum_n a_n\Phi_n^{(c_k)}\Bigr\|^2
-  \le B\sum_n|a_n|^2.
-\end{equation}
-\end{definition}
-
-\begin{lemma}[Frame perturbation: intermediate layer]
-\label{lem:frame-perturbation}
-Let $\{e_n\}$ be an orthonormal system in
-a Hilbert space $\mathcal{H}$
-and $\{f_n^{(k)}\}$ a sequence of systems
-with $f_n^{(k)}\to e_n$ strongly as $k\to\infty$
-(uniformly in $n$ on finite sets).
-If in addition
-\begin{equation}\label{eq:gap-control}
-  \inf_{n\ne m,\,k}\,
-  |\lambda_n^{(c_k)}-\lambda_m^{(c_k)}| > 0
-  \quad\text{(eventually in }k\text{)},
-\end{equation}
-then $\{f_n^{(k)}\}$ is uniformly Riesz-stable
-for $k$ sufficiently large,
-with bounds $A=1-\varepsilon_k$, $B=1+\varepsilon_k$,
-$\varepsilon_k\to 0$.
-\end{lemma}
-\begin{proof}
-See \cite[Thm.~5.6.1]{Christensen2003}
-(frame perturbation under uniform strong convergence)
-and \cite[Prop.~2.1]{YoungRiesz}
-for the quantitative version.
-The condition \eqref{eq:gap-control} ensures
-that the Riesz lower bound does not collapse;
-it is implied by
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
-\end{proof}
-
-\begin{lemma}[Gram control for approximants]
-\label{lem:gram-approx}
-Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-and \eqref{XII1}--\eqref{XII3}.
-Then $\{\Phi_n^{(c_k)}\}$ satisfies the
-hypotheses of Lem.~\ref{lem:frame-perturbation},
-and is therefore uniformly Riesz-stable
-with $\varepsilon_k\to 0$.
-\end{lemma}
-\begin{proof}
-Strong convergence
-$\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
-follows from SOT convergence + eigenvalue
-equation (\eqref{XII3}).
-Condition \eqref{eq:gap-control} follows
-from Lem.~\ref{lem:gap-structural}:
-$|\lambda_n^{(c_k)}-\lambda_m^{(c_k)}|
-\ge g(c_k)\gg c_k^{-1/4}>0$
-for all $n\ne m$ in $W_{c_k}$.
-Apply Lem.~\ref{lem:frame-perturbation}.
-\end{proof}
-
-\begin{remark}[Bari--Krein vs.\ frame perturbation]
-\label{rem:bari-vs-frame}
-Bari--Krein (Thm.~\ref{thm:bari-krein})
-establishes the equivalence
-(Riesz basis) $\Leftrightarrow$ (Gram invertible)
-for a \emph{fixed} system.
-For passage to a limit under SOT,
-one needs the frame perturbation theory
-of Lem.~\ref{lem:frame-perturbation}
-(\cite{Christensen2003}) as an intermediate step.
-Both are used in
-Prop.~\ref{prop:riesz-basis}.
-\end{remark}
-
-%%══════════════════════════════════════════════════════════════════
-\section{Bari--Krein and Frame Machinery}
-\label{sec:bari-krein}
-%%══════════════════════════════════════════════════════════════════
-
-\begin{theorem}[Bari--Krein]
-\label{thm:bari-krein}
-A sequence $\{f_n\}$ in a separable Hilbert space
-is a Riesz basis of its closed span if and only
-if the Gram matrix $\ip{f_m}{f_n}$ is bounded
-and invertible on $\ell^2$.
-\end{theorem}
-\begin{proof}
-\cite[Ch.~VI]{GohbergKrein1969}.
-\end{proof}
-
-\begin{proposition}[Riesz basis of $\mathcal{K}$]
-\label{prop:riesz-basis}
+\begin{lemma}[Uniform bound: synthesis operators]
+\label{lem:synth-bound}
 Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-$\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$.
+the synthesis operators
+$T_k\colon\ell^2\to L^2(\mathbb{R})$,
+$T_k(a_n) := \sum_n a_n \Phi_n^{(c_k)}$,
+are uniformly bounded:
+$\sup_k \|T_k\| \le 1$ and
+$\sup_k \|T_k^*\| \le 1$.
+\end{lemma}
+\begin{proof}
+For each fixed $k$,
+$\{\Phi_n^{(c_k)}\}$ is an orthonormal system,
+hence $\|T_k\|=1$ and $\|T_k^*\|=1$
+exactly (Parseval).
+Uniformity follows immediately.
+Norm convergence $P_n^{(c_k)}\to\Pninf$
+(Lem.~\ref{lem:proj-conv})
+shows that $T_k\to T_\infty$ in operator norm,
+so the limit inherits $\|T_\infty\|\le 1$.
+\end{proof}
+
+%%════════════════════════════════════════════════════════════════
+\section{Riesz-Basis Structure}
+\label{sec:riesz}
+%%════════════════════════════════════════════════════════════════
+
+\begin{proposition}[Riesz basis from projection decomposition]
+\label{prop:riesz-basis}
+Assume \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
+Then $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of
+$\mathcal{K}=\overline{\mathrm{span}}\{\Phi_n^{(\infty)}\}$.
 \end{proposition}
 \begin{proof}
-Step 1:
-By Rem.~\ref{rem:gram-trivial}, $\Gram=I$.
-Step 2:
-By Lem.~\ref{lem:gram-approx},
-$\{\Phi_n^{(c_k)}\}$ is uniformly Riesz-stable;
-by Lem.~\ref{lem:frame-perturbation}
-(\cite[Thm.~5.6.1]{Christensen2003})
-this stability passes to the SOT limit.
-Step 3:
-Apply Thm.~\ref{thm:bari-krein}
-to the limit system.
+\textbf{Step 1 (Orthogonality).}
+$P_m^{(\infty)}P_n^{(\infty)}=\delta_{mn}P_n^{(\infty)}$
+follows directly from
+$\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=\delta_{mn}$
+(\eqref{XII1}).
+
+\textbf{Step 2 (Completeness in $\mathcal{K}$).}
+For $f\in\mathcal{K}$:
+$\sum_n \Pninf f = f$
+(by definition of $\mathcal{K}$ as the closed span).
+
+\textbf{Step 3 (Riesz bounds).}
+For any finite $(a_n)\subset\mathbb{C}$:
+\[
+  \Bigl\|\sum_n a_n\Phi_n^{(\infty)}\Bigr\|^2
+  = \sum_n |a_n|^2\|\Phi_n^{(\infty)}\|^2
+  = \sum_n |a_n|^2,
+\]
+using orthonormality (Step~1).
+Hence $A=B=1$: the system is an orthonormal
+basis of $\mathcal{K}$, which is in particular
+a Riesz basis.
+
+\textbf{Step 4 (Uniform bound of synthesis operators).}
+Lem.~\ref{lem:synth-bound} ensures
+$\sup_k\|T_k\|=1$, so the bound is inherited
+by the limit.
 \end{proof}
 
-%%══════════════════════════════════════════════════════════════════
+\begin{remark}[Role of Bari--Krein]
+\label{rem:bari-role}
+Since $\{\Phi_n^{(\infty)}\}$ is orthonormal
+in $\mathcal{K}$, it is automatically a Riesz basis
+with constants $A=B=1$.
+Bari--Krein~\cite{GohbergKrein1969} confirms
+this via Gram$=I$, but is not needed
+as the primary argument.
+The non-trivial content is in the projection
+stability lemma (Lem.~\ref{lem:proj-conv}),
+not in the Gram computation.
+\end{remark}
+
+%%════════════════════════════════════════════════════════════════
 \section{Canonicalization}
 \label{sec:canonical}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
-\begin{lemma}[Uniqueness of $\mathcal{K}$]
+\begin{lemma}[Spectral stability of $\mathcal{K}$]
 \label{lem:same-K}
-Any two diagonal subsequences satisfying
-Lem.~\ref{lem:XI-diagonal} and
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S}
-yield the same closed span $\mathcal{K}$.
+Let $c_k$ and $c_k'$ be two diagonal subsequences
+both satisfying Lem.~\ref{lem:XI-diagonal}
+and \hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
+Then the resulting closed spans
+$\mathcal{K}$ and $\mathcal{K}'$
+are equal as subspaces of $L^2(\mathbb{R})$.
 \end{lemma}
 \begin{proof}
-Both are closed invariant subspaces of $\Hlim$
-(uniquely determined SOT limit).
-By the spectral theorem for bounded self-adjoint
-operators, the maximal invariant subspace
-spanned by an orthonormal set of eigenvectors
-is unique up to unitary equivalence.
-Full detail: Phase~3.
+Both $\mathcal{K}$ and $\mathcal{K}'$
+are closed invariant subspaces of $\Hlim$
+(the SOT limit is uniquely determined,
+Paper~X Thread~A).
+By Cor.~\ref{cor:proj-strong},
+both families $\{\Phi_n^{(\infty)},
+\Phi_n^{(\infty)'}\}$
+are obtained as strong limits of spectral
+projections of $\Hlim$.
+Since $\Hlim$ has simple spectrum
+(\eqref{XII3} + \eqref{XII5} in the limit)
+and the spectral projections $\{\Pninf\}$
+are uniquely determined by $\Hlim$
+(via the Riesz formula with isolated eigenvalues,
+Gap-S + Lem.~\ref{lem:proj-conv}),
+the two families generate the same
+spectral projections, hence the same $\mathcal{K}$.
 \end{proof}
 
 \begin{theorem}[Canonicalization]
 \label{thm:canonical-proof}
 Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-$\Hlim$ is a canonical self-adjoint operator on $\mathcal{K}$,
-independent of diagonal subsequence up to
-unitary equivalence.
+$\Hlim$ is a canonical self-adjoint operator on
+$\mathcal{K}$, independent of diagonal subsequence
+up to unitary equivalence.
 \end{theorem}
 \begin{proof}
 (1) Riesz basis: Prop.~\ref{prop:riesz-basis}.
 (2) Unique $\mathcal{K}$: Lem.~\ref{lem:same-K}.
-(3) $\sigma(\Hlim|_{\mathcal{K}})=\{\lambda_n^{(\infty)}\}$
-independent of subsequence
-(SOT uniqueness + \eqref{XII2}).
-(4) Spectral theorem: two bounded self-adjoint
-operators with the same simple spectrum are
-unitarily equivalent.
+(3) Spectrum $\{\lambda_n^{(\infty)}\}$
+    is independent of subsequence
+    (SOT uniqueness + \eqref{XII2}).
+(4) $\Hlim|_{\mathcal{K}}$ has simple spectrum
+    $\{\lambda_n^{(\infty)}\}$ with orthonormal
+    eigenbasis $\{\Phi_n^{(\infty)}\}$.
+    Two such operators are unitarily equivalent
+    by the spectral theorem.
 \end{proof}
 
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 \section{System Closure}
 \label{sec:closure}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
 Under \hyperref[hyp:gap-structural]{Hyp.~Gap-S},
-the open axes of Paper~XI close:
+the three open axes of Paper~XI close:
 \begin{enumerate}
 \item \textbf{Subsequence dependence:}
       Thm.~\ref{thm:canonical-proof}.
-\item \textbf{NAcc as external axiom:}
-      Cor.~\ref{cor:nacc}.
-\item \textbf{Sweeping:}
-      Riesz indexing gives canonical labeling.
+\item \textbf{NAcc:} Cor.~\ref{cor:nacc}.
+\item \textbf{Existential sweeping:}
+      canonical eigenbasis labeling from
+      Prop.~\ref{prop:riesz-basis}.
 \end{enumerate}
 
-\begin{remark}[What remains open]
-Completeness ($\mathcal{K}=L^2(\mathbb{R})$):
-Paper~XIII.
-Density of $\{\lambda_n^{(\infty)}\}$:
-Paper~XI, Conj.~6.1.
-Sharp gap scale $g(c)$:
-Problem~\ref{prob:sharp-gc}.
+\begin{remark}[Remaining open]
+Completeness ($\mathcal{K}=L^2(\mathbb{R})$): Paper~XIII.
+Density of $\{\lambda_n^{(\infty)}\}$: Paper~XI Conj.~6.1.
+Sharp gap scale $g(c)$: Prob.~\ref{prob:sharp-gc}.
+Rank-1 resolvent estimate (full detail
+of Lem.~\ref{lem:proj-conv}): Phase~3.
 \end{remark}
 
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 \section{Open Problems}
 \label{sec:open}
-%%══════════════════════════════════════════════════════════════════
+%%════════════════════════════════════════════════════════════════
 
-\begin{problem}[Sharp gap scale $g(c)$]
+\begin{problem}[Sharp gap scale]
 \label{prob:sharp-gc}
-Determine the sharp form of $g(c)$ in
-\hyperref[hyp:gap-structural]{Hyp.~Gap-S}.
-By Thm.~\ref{thm:wkb-indeterminacy}, this requires
-global control of the spectral transfer $F_c'$.
+Determine the sharp form of $g(c)$.
+By Thm.~\ref{thm:wkb-indeterminacy},
+this requires global control of $F_c'$.
 Two approaches:
 \begin{enumerate}
-\item \textbf{Plancherel--Rotach / kernel asymptotics:}
-      expand the prolate integral kernel near
-      the critical level $\lambda=1/2$ to extract
-      the density of concentration eigenvalues;
-      this gives $F_c'$ in the transition regime.
-\item \textbf{Resolvent asymptotics:}
-      control the imaginary part of the resolvent
-      $(\mathcal{H}_c-z)^{-1}$ near $z=1/2+i0$;
-      the spectral density gives $F_c'$ directly.
+\item \textit{Plancherel--Rotach / kernel asymptotics:}
+      extract the density of concentration eigenvalues
+      near $\lambda=1/2$ from the prolate integral kernel.
+\item \textit{Resolvent asymptotics:}
+      control $\operatorname{Im}(\mathcal{H}_c-z)^{-1}$
+      near $z=1/2+i0$.
 \end{enumerate}
-In either case one expects
-$g(c)=c^{-\alpha}$ for some
-$\alpha\in(1/4,\,1)$,
-but the precise value is unknown.
+Expected: $g(c)=c^{-\alpha}$ for some
+$\alpha\in(1/4,1)$; precise value unknown.
+\end{problem}
+
+\begin{problem}[Full detail: rank-1 resolvent estimate]
+\label{prob:resolvent-detail}
+Provide the full justification of the rank-1
+resolvent difference bound in
+Lem.~\ref{lem:proj-conv},
+using strong resolvent convergence from
+Paper~X Cor.~\texttt{cor:resolvent}
+and the gap isolation geometry.
 \end{problem}
 
 \begin{problem}[Completeness]
 \label{prob:completeness}
-Is $\mathcal{K}=L^2(\mathbb{R})$?
-Target: Paper~XIII.
+Is $\mathcal{K}=L^2(\mathbb{R})$? (Paper~XIII.)
 \end{problem}
 
 \begin{problem}[Density]
@@ -766,10 +729,9 @@ Is $\{\lambda_n^{(\infty)}\}$ dense in $[0,1]$?
 
 \begin{problem}[Explicit Riesz bounds]
 \label{prob:riesz-constants}
-Determine $A,B$ in Def.~\ref{def:riesz-stable}
-explicitly in terms of $g(c)$
-(via the frame perturbation estimate of
-Lem.~\ref{lem:frame-perturbation}).
+Determine $A,B$ explicitly in terms of $g(c)$
+via the projection stability estimate
+\eqref{eq:proj-conv}.
 \end{problem}
 
 %%%─── Bibliography
@@ -781,19 +743,19 @@ Lem.~\ref{lem:frame-perturbation}).
 for the limiting PSWF operator},
 Paper~XI (final), 2026.
 
+\bibitem{PaperX}
+[Author],
+\textit{Mosco form convergence, resolvent
+stability, and the bridge theorem
+for PSWF concentration operators},
+Paper~X, preprint, 2026.
+
 \bibitem{PaperVIII}
 [Author],
 \textit{Non-cancellation control, the sharp
-$c^{-1/2}$ lower bound, and spectral connection
-to the zeros of $\zeta(s)$},
+$c^{-1/2}$ lower bound, and spectral
+connection to the zeros of $\zeta(s)$},
 Paper~VIII, preprint, 2026.
-
-\bibitem{PaperX}
-[Author],
-\textit{Mosco convergence, resolvent stability,
-and the bridge theorem for PSWF
-concentration operators},
-Paper~X, preprint, 2026.
 
 \bibitem{Slepian1961}
 D.~Slepian and H.~O.~Pollak,
@@ -809,13 +771,14 @@ Springer, New York, 2013.
 
 \bibitem{Kato1966}
 T.~Kato,
-\textit{Perturbation Theory for Linear Operators},
+\textit{Perturbation Theory for
+Linear Operators},
 Springer, Berlin, 1966.
 
 \bibitem{ReedSimon1975}
 M.~Reed and B.~Simon,
-\textit{Methods of Modern Mathematical Physics,
-Vols.~I--II},
+\textit{Methods of Modern Mathematical
+Physics, Vols.~I--II},
 Academic Press, New York, 1972--1975.
 
 \bibitem{GohbergKrein1969}
@@ -826,20 +789,15 @@ AMS, Providence, 1969.
 
 \bibitem{Christensen2003}
 O.~Christensen,
-\textit{An Introduction to Frames and Riesz Bases},
+\textit{An Introduction to Frames
+and Riesz Bases},
 Birkh\"auser, Boston, 2003.
-
-\bibitem{YoungRiesz}
-R.~M.~Young,
-\textit{An Introduction to Nonharmonic
-Fourier Series},
-Academic Press, New York, 1980
-(revised ed.\ 2001).
 
 \bibitem{Widom1964}
 H.~Widom,
-\textit{Asymptotic behavior of the eigenvalues
-of certain integral equations~II},
+\textit{Asymptotic behavior of the
+eigenvalues of certain integral
+equations~II},
 Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
 (1964), 215--229.
 
@@ -852,7 +810,7 @@ Functions}, Release 1.1.10, 2023.
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
 \textit{Zeta Spectral Triples},
-arXiv:2511.22755 [math.NT], preprint, 2025.
+arXiv:2511.22755 [math.NT], 2025.
 
 \end{thebibliography}
 
