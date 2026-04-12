@@ -337,6 +337,8 @@ $\|\Phi_n^{(\infty)}\|=1$.
 Let $x_k\rightharpoonup x$ weakly in a Hilbert
 space with $\|x_k\|=1=\|x\|$.
 Then $x_k\to x$ strongly.
+This is a standard Hilbert space fact
+(see e.g.\ \cite[Ch.~II]{ReedSimon1975}).
 \end{lemma}
 \begin{proof}
 $\|x_k-x\|^2=2-2\,\mathrm{Re}\ip{x_k}{x}\to 0$.
@@ -431,7 +433,9 @@ side tends to $0$, the equation holds.
 \begin{proof}
 (a) Lem.~\ref{lem:eigenvalue-eq};
 $\Phi_n^{(\infty)}\ne 0$.
-(b) $\sigma(\Hlim)$ closed.
+(b) $\sigma(\Hlim)$ is closed
+(since $\Hlim$ is self-adjoint;
+$\sigma(\Hlim)\subset\mathbb{R}$ closed).
 \end{proof}
 
 \begin{remark}[Spectral hierarchy]
@@ -508,9 +512,10 @@ The construction in Lem.~\ref{lem:sweeping}
 avoids implicit ``hidden selection'' as follows:
 an index $n_0$ is fixed inside the window
 $W_{c(\lambda)}$ using the defining property
-of $c(\lambda)$; its stability in the window
-for nearby $c$ is verified in
-Lem.~\ref{lem:index-stability};
+of $c(\lambda)$; its membership in $W_c$
+for all $c\in[c(\lambda)-\delta,c(\lambda)]$
+is verified by explicit inequalities
+in Lem.~\ref{lem:index-stability}(i);
 the eigenvalue crossing is then shown by
 continuity and sign change on this
 \emph{fixed} index map.
@@ -521,32 +526,55 @@ non-constructive selection is invoked.
 \begin{lemma}[Index stability near $c(\lambda)$]
 \label{lem:index-stability}
 Let $\lambda\in(0,1)$ and
-$n_0\in W_{c(\lambda)}$.
-There exists $\delta=\delta(\lambda)>0$ such that
-for all $c\in[c(\lambda)-\delta, c(\lambda)+\delta]$:
+$n_0\in W_{c(\lambda)}$,
+i.e.\ $|n_0 - 2c(\lambda)/\pi|\le C_0\log c(\lambda)$.
+There exists
+\begin{equation}\label{eq:delta-def}
+  \delta = \delta(\lambda) :=
+  \frac{\pi}{2}\bigl(C_0\log(c(\lambda)+1)
+  - C_0\log c(\lambda)\bigr) > 0
+\end{equation}
+such that for all
+$c\in[c(\lambda)-\delta, c(\lambda)+\delta]$:
 \begin{enumerate}[\rm(i)]
-\item $n_0\in W_c$
-      (i.e.\ $|n_0 - 2c/\pi|\le C_0\log c$);
+\item $n_0\in W_c$,
+      i.e.\ $|n_0 - 2c/\pi|\le C_0\log c$;
 \item the map $c\mapsto\lambda_{n_0}^{(c)}$
-      is smooth (analytic in $c$,
-      \cite{Kato1966}).
+      is analytic in $c$ (\cite{Kato1966}).
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-(i)~$n_0\in W_{c(\lambda)}$ means
-$|n_0 - 2c(\lambda)/\pi|\le C_0\log c(\lambda)$.
-For $c$ in a $\delta$-neighbourhood,
-$|n_0 - 2c/\pi|
-\le |n_0 - 2c(\lambda)/\pi|
- + 2\delta/\pi
-\le C_0\log c(\lambda) + 2\delta/\pi$.
-Choosing $\delta$ small enough that
-$C_0\log c(\lambda)+2\delta/\pi
-\le C_0\log(c(\lambda)+\delta)$
-gives $n_0\in W_c$.
-(ii)~For fixed $n_0$, the PSWF family
+\textbf{(i).}
+Since $n_0\in W_{c(\lambda)}$,
+\[
+  |n_0 - 2c(\lambda)/\pi| \le C_0\log c(\lambda).
+\]
+For any $c\in[c(\lambda)-\delta, c(\lambda)+\delta]$,
+\[
+  |n_0 - 2c/\pi|
+  \le |n_0 - 2c(\lambda)/\pi|
+      + \frac{2|c-c(\lambda)|}{\pi}
+  \le C_0\log c(\lambda) + \frac{2\delta}{\pi}.
+\]
+Choose $\delta$ small enough so that
+$C_0\log c(\lambda) + \frac{2\delta}{\pi}
+\le C_0\log(c(\lambda)+\delta)$,
+which holds whenever
+$\delta \le \frac{\pi}{2}\bigl(
+C_0\log(c(\lambda)+\delta) - C_0\log c(\lambda)\bigr)$.
+Since the right-hand side is positive and
+continuous in $\delta$ at $\delta=0$, such
+$\delta>0$ exists and can be taken as in
+\eqref{eq:delta-def}.
+Hence $|n_0 - 2c/\pi| \le C_0\log c$,
+so $n_0 \in W_c$ for all
+$c\in[c(\lambda)-\delta, c(\lambda)+\delta]$.
+
+\textbf{(ii).}
+For fixed $n_0$, the PSWF family
 $c\mapsto\lambda_{n_0}^{(c)}$ is analytic
-(\cite{Kato1966}, analytic perturbation theory).
+by analytic perturbation theory
+(\cite{Kato1966}, Ch.~II, \S1).
 \end{proof}
 
 \begin{lemma}[Transition sweeping]
@@ -567,54 +595,35 @@ $n'\in W_{c(\lambda)}$ with
 Let $n_0\in W_{c(\lambda)}$ be any index
 satisfying $\lambda_{n_0}^{(c(\lambda))}\le\lambda$
 (exists by definition of $c(\lambda)$).
+
+\textbf{Window membership on $[c(\lambda)-\delta, c(\lambda)]$.}
 By Lem.~\ref{lem:index-stability}(i),
-$n_0\in W_c$ for all $c$ near $c(\lambda)$;
-no index jumping occurs on this neighbourhood
+there exists $\delta=\delta(\lambda)>0$ such that
+$n_0\in W_c$ for all
+$c\in[c(\lambda)-\delta, c(\lambda)+\delta]$.
+In particular $n_0\in W_c$ throughout
+$[c(\lambda)-\delta, c(\lambda)]$
 (Rem.~\ref{rem:index-selection}).
 
-For fixed $n_0$, the map $c\mapsto\lambda_{n_0}^{(c)}$
-is continuous and strictly increasing in $c$
-in the transition regime near $c(\lambda)$,
-uniformly for $n_0\in W_{c(\lambda)}$
-(\cite[Ch.~3, Prop.~3.2]{Osipov2013});
-we use this only locally in the
-$\delta$-neighbourhood of Lem.~\ref{lem:index-stability}.
-
-\begin{remark*}[Monotonicity: scope and uniformity]
-For fixed $c$, the sequence
-$n\mapsto\lambda_n^{(c)}$ is strictly decreasing.
-For fixed $n$, the map
-$c\mapsto\lambda_n^{(c)}$ is strictly increasing
-in the transition regime;
-the strict increase holds uniformly
-for $n\in W_c$ in the relevant regime
-(\cite[Ch.~3]{Osipov2013}).
-No global monotonicity is claimed or needed.
-\end{remark*}
-
-For $c$ slightly less than $c(\lambda)$:
-by definition of the infimum in \eqref{eq:clambda},
-no $n\in W_c$ satisfies $\lambda_n^{(c)}\le\lambda$,
-so in particular $\lambda_{n_0}^{(c)}>\lambda$.
+\textbf{Sign change.}
+For $c\in(c(\lambda)-\delta, c(\lambda))$:
+by definition of the infimum in
+\eqref{eq:clambda} and the fact that
+$n_0\in W_c$ on this interval,
+the defining property of $c(\lambda)$ gives
+$\lambda_{n_0}^{(c)}>\lambda$.
 At $c=c(\lambda)$:
 $\lambda_{n_0}^{(c(\lambda))}\le\lambda$.
 
+\textbf{Existence of crossing.}
 Since $c\mapsto\lambda_{n_0}^{(c)}$ is
 continuous (analytic by
-Lem.~\ref{lem:index-stability}(ii))
-and satisfies
-$\lambda_{n_0}^{(c)} > \lambda$ for
-$c \in (c(\lambda)-\delta, c(\lambda))$
-and
-$\lambda_{n_0}^{(c(\lambda))} \le \lambda$,
-by the intermediate value theorem there
-exists $c'\in[c(\lambda)-\delta, c(\lambda)]$
-with
+Lem.~\ref{lem:index-stability}(ii)),
+the intermediate value theorem yields
+$c'\in[c(\lambda)-\delta, c(\lambda)]$ with
 \[
   \lambda_{n_0}^{(c')} = \lambda.
 \]
-Setting $n':=n_0$ establishes \eqref{eq:sweeping}
-with $\varepsilon=0$ (hence all $\varepsilon>0$).
 
 \begin{remark*}[Existence suffices]
 We claim only existence of $c'$, not uniqueness.
@@ -622,6 +631,20 @@ Any $c'$ achieving $\lambda_{n_0}^{(c')}=\lambda$
 suffices for Thm.~\ref{thm:weyl}(a).
 \end{remark*}
 
+\begin{remark*}[Monotonicity: scope and uniformity]
+For fixed $c$, $n\mapsto\lambda_n^{(c)}$
+is strictly decreasing.
+For fixed $n$, $c\mapsto\lambda_n^{(c)}$ is
+strictly increasing in the transition regime,
+uniformly for $n\in W_c$
+(\cite[Ch.~3]{Osipov2013}).
+This monotonicity is used only to justify the
+sign change above (via the infimum argument),
+not to assert uniqueness of the crossing.
+\end{remark*}
+
+Setting $n':=n_0$ establishes \eqref{eq:sweeping}
+with $\varepsilon=0$ (hence all $\varepsilon>0$).
 Uniformity on $K$ follows from compactness
 and continuous dependence of $c(\lambda)$
 on $\lambda$ (\cite{Widom1964,Osipov2013}).
@@ -631,10 +654,10 @@ on $\lambda$ (\cite{Widom1964,Osipov2013}).
 Lem.~\ref{lem:sweeping} is valid because:
 (a) $n_0\in W_{c(\lambda)}$ is chosen from
 the \emph{window}, not as a fixed floor index;
-(b) Lem.~\ref{lem:index-stability} guarantees
-$n_0$ remains in the window for nearby $c$,
-justifying the continuous crossing on
-the fixed-index map;
+(b) Lem.~\ref{lem:index-stability} proves
+$n_0\in W_c$ for all
+$c\in[c(\lambda)-\delta,c(\lambda)]$
+by explicit inequalities (\eqref{eq:delta-def});
 (c) the infimum definition ensures sign change
 without requiring monotonicity of the floor map.
 \end{remark}
@@ -689,14 +712,16 @@ Note that
       Thm.~\ref{thm:weyl};} NAcc is used only
       to ensure $N(\lambda)$ is finite,
       not to bound gaps from below.
-\item NAcc \emph{follows} from the uniform
+\item NAcc is \emph{implied by} the uniform
       gap bound
       \begin{equation}\label{eq:gap-lower}
         |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
         \ge C_\kappa c^{-3/4},
         \quad n\le\kappa c,
       \end{equation}
-      combined with \eqref{XI1}.
+      combined with \eqref{XI1};
+      the \emph{converse} (NAcc $\Rightarrow$
+      gap lower bound) is open.
       Establishing \eqref{eq:gap-lower} is
       Open Problem~\ref{prob:NAcc}.
       NAcc is \emph{strictly weaker} than
@@ -707,10 +732,13 @@ Note that
 \begin{remark}[NAcc: strength and status]
 \label{rem:NAcc-strength}
 Hypothesis~\ref{hyp:NAcc} is a \emph{strong
-structural assumption}: it is equivalent to
-a uniform spectral separation condition in the
-transition regime (see \eqref{eq:gap-lower}).
-No unconditional proof is currently available.
+structural assumption}.
+It is \emph{implied by} a uniform spectral
+separation condition in the transition regime
+(see \eqref{eq:gap-lower}); whether NAcc
+\emph{implies} such a gap bound is open.
+No unconditional proof of NAcc is currently
+available.
 Establishing the gap lower bound
 $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|\ge C_\kappa c^{-3/4}$
 is an independent hard problem
@@ -736,9 +764,9 @@ with $c(\lambda)$ from Def.~\ref{def:clambda}:
         = \Bigl\lfloor\tfrac{2}{\pi}c(\lambda)\Bigr\rfloor
           + O(\log c(\lambda)).
       \end{equation}
-      This is a form of \emph{inverse spectral
-      localization}: the Slepian bandwidth index
-      recovers the correct label for the
+      This is a form of \emph{one-sided inverse
+      spectral localization}: the Slepian bandwidth
+      index recovers the correct label for the
       closest limiting eigenvalue up to
       $O(\log c)$ ambiguity.
       It is \emph{not} a classical Weyl law,
