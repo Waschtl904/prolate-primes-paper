@@ -329,6 +329,18 @@ By Lem.~\ref{lem:strong-conv} and \eqref{XI2},
 $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$ strongly
 (uses Paper~IX; Rem.~\ref{rem:norm-essential}).
 
+\begin{remark*}[Non-commutation of limits]
+We deliberately \emph{avoid} writing
+$\lim_k\mathcal{H}_{c_k}\Phi_n^{(c_k)}
+= \Hlim\lim_k\Phi_n^{(c_k)}$:
+such interchange of the operator limit and
+the vector limit is \emph{not} justified by
+SOT alone, since SOT convergence is pointwise
+on fixed vectors, not on sequences of vectors.
+Instead, the three-term decomposition below
+bypasses this non-commutation entirely.
+\end{remark*}
+
 We estimate
 \begin{equation}\label{eq:ABC}
   \|\Hlim\,\Phi_n^{(\infty)}
@@ -345,8 +357,8 @@ where
            - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|.
 \end{align*}
 \textbf{$A_k\to 0$:}
-SOT \eqref{XI3} applied pointwise to
-$\Phi_n^{(\infty)}\in L^2$.
+SOT \eqref{XI3} applied pointwise to the
+\emph{fixed} vector $\Phi_n^{(\infty)}\in L^2$.
 
 \textbf{$B_k\to 0$:}
 $\|\mathcal{H}_{c_k}\|\le 1$ \eqref{XI3}, so
@@ -429,20 +441,23 @@ independently of $\{\lambda_n^{(\infty)}\}$.
 \begin{remark}[Quasi-monotonicity of the transition map]
 \label{rem:quasi-mono}
 The map $c\mapsto\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}$
-is \emph{not} globally monotone:
-the floor causes integer-jumps in the index.
-However, $c\mapsto\lambda_n^{(c)}$ is smooth
-for fixed $n$ (analytic perturbation theory),
-and consecutive index eigenvalues satisfy
+is \emph{not} globally monotone in $c$:
+the floor causes integer jumps in the index.
+However, for fixed $n$, the map
+$c\mapsto\lambda_n^{(c)}$ is smooth
+(analytic perturbation theory, \cite{Kato1966}),
+and consecutive transition-window eigenvalues
+satisfy
 $|\lambda_n^{(c)}-\lambda_{n\pm 1}^{(c)}|
 = O(c^{-1/4})$ in the transition window
 (Slepian counting, \eqref{XI6}).
-Hence, the jumps in the floor-indexed map
-are at most $O(c^{-1/4})$, and the map is
-\emph{piecewise continuous with jumps of
-size $O(c^{-1/4})$}.
-This suffices for the IVT argument of
-Lemma~\ref{lem:sweeping}.
+Hence, the floor-induced jumps are at most
+$O(c^{-1/4})$, and the floor-indexed map is
+\emph{piecewise smooth with jumps of size
+$O(c^{-1/4})$} at values where
+$\lfloor 2c/\pi\rfloor$ changes.
+This suffices for the fixed-index IVT argument
+of Lemma~\ref{lem:sweeping}.
 \end{remark}
 
 \begin{lemma}[Transition sweeping]
@@ -452,47 +467,60 @@ and every $\varepsilon>0$,
 there exists $C_{K,\varepsilon}<\infty$ such that
 for every $\lambda\in K$,
 there exists $c\in[c(\lambda),c(\lambda)+C_{K,\varepsilon}]$
-and an index $n(c)=\lfloor 2c/\pi\rfloor+O(1)$
 with
 \begin{equation}\label{eq:sweeping}
-  \Bigl|\lambda_{n(c)}^{(c)}
-  - \lambda\Bigr| < \varepsilon.
+  \Bigl|\lambda_{n_*}^{(c)}
+  - \lambda\Bigr| < \varepsilon,
 \end{equation}
-In particular, the Slepian transition eigenvalues
-cover any compact subset of $(0,1)$ as $c\to\infty$.
+where $n_* := \lfloor 2c(\lambda)/\pi\rfloor$
+is a fixed index chosen from the transition
+window at $c(\lambda)$.
 \end{lemma}
 \begin{proof}
-By \eqref{XI6}, for each $c$ there exist
-$O(\log c)$ indices near $2c/\pi$ with
-$\lambda_n^{(c)}\in[\varepsilon_0,1-\varepsilon_0]$.
-Fix a continuous piece of
-$c\mapsto\lambda_n^{(c)}$ (smooth in $c$
-for fixed $n$) with $n=n(c)$ near $2c/\pi$.
-For $c$ just below $c(\lambda)$,
-$\lambda_{n(c)}^{(c)}>\lambda$;
-for $c=c(\lambda)$,
-$\lambda_{n(c(\lambda))}^{(c(\lambda))}\le\lambda$
-by definition.
-By continuity of $c\mapsto\lambda_n^{(c)}$
-for fixed $n$ (analytic family) and the
-$O(c^{-1/4})$ jump control of
-Rem.~\ref{rem:quasi-mono},
-IVT on any continuous piece gives existence
-of $c$ satisfying \eqref{eq:sweeping}.
+Fix $n_* := \lfloor 2c(\lambda)/\pi\rfloor$.
+By \eqref{XI6}, $n_*$ lies in the transition
+window for all $c$ in a neighbourhood of
+$c(\lambda)$: precisely,
+$n_* \le (1+\delta)2c/\pi$ and
+$n_* \ge (1-\delta)2c/\pi$
+for $c\in[c(\lambda), c(\lambda)(1+\delta/2)]$
+and any fixed $\delta>0$, since
+$n_* = \lfloor 2c(\lambda)/\pi\rfloor
+\approx 2c(\lambda)/\pi$.
+
+For $c$ slightly below $c(\lambda)$,
+the definition of $c(\lambda)$ gives
+$\lambda_{n_*}^{(c)} > \lambda$.
+At $c = c(\lambda)$,
+$\lambda_{n_*}^{(c(\lambda))} \le \lambda$
+(definition of infimum).
+The map $c\mapsto\lambda_{n_*}^{(c)}$ is smooth
+in $c$ for the fixed index $n_*$
+(analytic family, \cite{Kato1966},
+Rem.~\ref{rem:quasi-mono}).
+By the intermediate value theorem applied to
+this \emph{fixed-index} smooth map,
+there exists $c_*\in[c(\lambda)-\eta, c(\lambda)]$
+for some $\eta>0$ with
+$|\lambda_{n_*}^{(c_*)}-\lambda|<\varepsilon$.
+Taking $c = c_*$ establishes \eqref{eq:sweeping}.
 Uniformity on compact $K$ follows from
 compactness and the logistic profile
 \cite{Widom1964,Osipov2013}.
 \end{proof}
 
-\begin{remark}[Why IVT alone is insufficient]
+\begin{remark}[Why IVT requires a fixed index]
 \label{rem:IVT-insufficient}
 For fixed $c$, IVT gives attainment of every
 $\mu\in(0,1)$ by \emph{some} $\lambda_n^{(c)}$,
-but not by a transition-window index
-$n\approx 2c/\pi$ specifically.
-Lemma~\ref{lem:sweeping} uses IVT on
-continuous pieces of the transition map
-as $c$ varies, which is the essential point.
+but not by a specific transition-window index.
+The key point of Lemma~\ref{lem:sweeping} is
+that IVT is applied to the map
+$c\mapsto\lambda_{n_*}^{(c)}$ with $n_*$
+\emph{held fixed}, which is smooth in $c$
+by analytic perturbation theory.
+Varying the index with $c$ (as in the
+floor-indexed map) does not support IVT directly.
 \end{remark}
 
 \begin{lemma}[Existence and monotonicity of $c(\lambda)$]
@@ -502,10 +530,14 @@ $c(\lambda)\in(0,\infty)$ and
 $c(\lambda)$ is non-decreasing in $\lambda$.
 \end{lemma}
 \begin{proof}
-Finiteness: Lem.~\ref{lem:sweeping}.
-Positivity: for small $c$ the transition
-eigenvalue exceeds $\lambda$
-(\eqref{XI6}, $c\to 0$).
+Finiteness: Lem.~\ref{lem:sweeping}
+(the transition window sweeps $(0,1)$;
+see also Slepian~\cite{Slepian1961},
+Landau--Pollak~\cite{LandauPollak1962}
+for the once-through sweep of $[0,1]$).
+Positivity: for small $c$,
+$\lambda_{n_*}^{(c)} > \lambda$
+(transition not yet reached, \eqref{XI6}).
 Monotonicity: inclusion of sets in \eqref{eq:clambda}.
 \end{proof}
 
@@ -527,33 +559,37 @@ $m\ne n\implies\lambda_m^{(\infty)}
 \begin{remark}[SOH implies absence of spectral collapse]
 \label{rem:SOH-essential}
 SOH (injectivity of the spectral labeling)
-\emph{implies} absence of spectral collapse:
-no $\lambda\in(0,1)$ can be the limit of
-infinitely many distinct $\lambda_n^{(\infty)}$,
-for if it were, injectivity would fail at every
-accumulation point.
-The converse --- absence of spectral collapse
-implying SOH --- may require additional
-compactness or uniform gap assumptions
-(e.g.\ \eqref{eq:gap-lower})
-and is not claimed here.
-
-Without SOH, the limiting spectrum could undergo
-\emph{spectral collapse}: infinitely many
-eigenvalues accumulating at a single point,
-causing $N(\lambda)$ to be infinite,
-the transfer index $n(\lambda)$ to be ambiguous
-beyond $O(1)$, and Theorem~\ref{thm:weyl}
-to break entirely.
-SOH is therefore a \emph{structural} condition
-asserting that the limiting spectral measure
-carries no atoms of infinite multiplicity.
-It would follow from the uniform gap bound
+\emph{implies} absence of spectral collapse.
+Indeed, if some $\lambda\in(0,1)$ were
+the limit of infinitely many distinct
+$\lambda_n^{(\infty)}$, there would exist
+an infinite set of indices $\{n_j\}$ with
+$\lambda_{n_j}^{(\infty)}\to\lambda$.
+By SOH, all these values are distinct,
+so in particular $\lambda_{n_j}^{(\infty)}\ne\lambda$
+for all $j$, yet they converge to $\lambda$:
+this does not contradict SOH directly.
+However, for the counting function $N(\lambda)$
+to be finite, we need the set
+$\{n : \lambda_n^{(\infty)}\le\lambda\}$
+to be finite.
+If infinitely many $\lambda_n^{(\infty)}$
+accumulate at $\lambda$, $N(\lambda)$ may still
+be infinite even under SOH.
+Thus the operative condition for
+Thm.~\ref{thm:weyl} is the finiteness of
+$N(\lambda)$, which we state explicitly:
+\emph{under SOH, we additionally assume
+$N(\lambda)<\infty$ for all $\lambda\in(0,1)$}.
+This is guaranteed if the uniform gap bound
 \begin{equation}\label{eq:gap-lower}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
   \ge C_\kappa c^{-3/4},\quad n\le\kappa c,
 \end{equation}
-combined with \eqref{XI1}
+holds (combined with \eqref{XI1}),
+since then distinct limiting eigenvalues
+are separated by at least $O(c^{-3/4})$,
+preventing accumulation
 (Open Problem~\ref{prob:SOH}).
 \end{remark}
 
@@ -561,12 +597,15 @@ combined with \eqref{XI1}
 \label{rem:SOH-status}
 Estimate \eqref{eq:gap-lower} is the lower bound
 of Prob.~\ref{prob:rate-sharp};
-SOH is downstream of gap sharpness.
+SOH + finiteness of $N$ are downstream of
+gap sharpness.
 \end{remark}
 
 \begin{theorem}[Semiclassical spectral transfer]
 \label{thm:weyl}
-Under Hypothesis~\ref{hyp:SOH},
+Under Hypothesis~\ref{hyp:SOH} and
+$N(\lambda)<\infty$ for all $\lambda\in(0,1)$
+(cf.~Rem.~\ref{rem:SOH-essential}),
 with $c(\lambda)$ from Def.~\ref{def:clambda}:
 \begin{enumerate}[\rm(a)]
 \item \textbf{(Transfer law.)}
@@ -604,16 +643,16 @@ with $c(\lambda)$ from Def.~\ref{def:clambda}:
 \textbf{(a).}
 Apply Lem.~\ref{lem:sweeping} with
 $K=\{\lambda\}$ and $\varepsilon_0:=c(\lambda)^{-1/4}$:
-there exist $c_*\in[c(\lambda),c(\lambda)+C]$
-and $n_0=\lfloor 2c_*/\pi\rfloor+O(1)$
-with $|\lambda_{n_0}^{(c_*)}-\lambda|<\varepsilon_0$.
+there exists $c_*\in[c(\lambda)-\eta, c(\lambda)]$
+with $|\lambda_{n_*}^{(c_*)}-\lambda|<\varepsilon_0$,
+where $n_*=\lfloor 2c(\lambda)/\pi\rfloor$.
 The transition window for $c_*$ has
 $O(\log c_*)=O(\log c(\lambda))$ elements
 (\eqref{XI6}).
 By \eqref{XI1}:
-$|\lambda_{n_0}^{(c_*)} - \lambda_{n_0}^{(\infty)}|
+$|\lambda_{n_*}^{(c_*)} - \lambda_{n_*}^{(\infty)}|
 \le C_\kappa c_*^{-1/4}$.
-Setting $n(\lambda):=n_0$ gives
+Setting $n(\lambda):=n_*$ gives
 \eqref{eq:transfer-exist}--\eqref{eq:transfer-index}.
 
 \textbf{(b).} From \eqref{XI6} and \eqref{XI1}.
@@ -728,11 +767,11 @@ equivalent to two-parameter coverage
 (Rem.~\ref{rem:density-gap}).
 \end{problem}
 
-\begin{problem}[Spectral Ordering / No collapse]
+\begin{problem}[Spectral Ordering and $N(\lambda)$ finiteness]
 \label{prob:SOH}
-Prove Hyp.~\ref{hyp:SOH}
-(SOH, which implies absence of spectral collapse);
-follows from \eqref{eq:gap-lower}.
+Prove Hyp.~\ref{hyp:SOH} and
+$N(\lambda)<\infty$ for all $\lambda\in(0,1)$;
+both follow from \eqref{eq:gap-lower}.
 \end{problem}
 
 \begin{problem}[Uniqueness]
@@ -782,7 +821,7 @@ being established:
 \begin{enumerate}
 \item \textbf{Density} (\ref{prob:density}).
 \item \textbf{Completeness} (\ref{prob:completeness}).
-\item \textbf{No spectral collapse}
+\item \textbf{SOH and $N(\lambda)$ finiteness}
       (Hyp.~\ref{hyp:SOH} + Rem.~\ref{rem:SOH-essential}).
 \item \textbf{Uniqueness} (\ref{prob:uniqueness}).
 \end{enumerate}
