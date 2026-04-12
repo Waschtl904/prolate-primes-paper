@@ -1,0 +1,706 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros (consistent with Papers VIII–XI)
+\newcommand{\Phihat}{\widehat{\Phi}}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\Hc}{\mathcal{H}_c}
+\newcommand{\Hlim}{\mathcal{H}_{\lim}}
+\newcommand{\Dom}{\mathrm{Dom}}
+\newcommand{\sigapp}{\sigma_{\mathrm{app}}}
+\newcommand{\Win}[1]{W_{#1}}
+\newcommand{\Gram}{\mathcal{G}}
+% Gap function
+\newcommand{\gap}[2]{\gamma_{#1,#2}}
+
+\subjclass[2020]{47A10, 47B25, 42C05, 46B15}
+\keywords{Prolate spheroidal wave functions, Riesz basis,
+spectral gap, canonicalization, limiting operator}
+
+\begin{document}
+
+\title[Riesz-Basis Structure of the Limiting PSWF System]{%
+  Riesz-Basis Structure and Canonicalization\\
+  of the Limiting PSWF Operator}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\maketitle
+
+\begin{abstract}
+We establish the Riesz-basis criterion for the limiting
+orthonormal system $\{\Phi_n^{(\infty)}\}$ constructed in
+Paper~XI along the diagonal subsequence $c_k$.
+The central equivalence is:
+\[
+  \{\Phi_n^{(\infty)}\} \text{ is a Riesz basis}
+  \;\Longleftrightarrow\;
+  \text{Gap} + \text{Stability} + \text{Nondegeneracy}.
+\]
+Under this criterion, the limiting operator $\Hlim$
+becomes a canonical object, independent of the diagonal
+subsequence up to phase: the three structural open axes
+of Paper~XI (subsequence dependence, NAcc as external axiom,
+existential sweeping) collapse to derived consequences.
+The hard core of the paper is Section~\ref{sec:gap}:
+spectral separation in the transition window $W_c$.
+All other sections are framework and machinery.
+\end{abstract}
+
+\section*{Guide for the Referee}
+\begin{itemize}
+\item \textbf{Input layer} (Paper~XI, frozen):
+      subsequence-dependent orthonormal system
+      $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}\}$
+      along fixed $c_k$; $\Hlim$ self-adjoint, bounded.
+\item \textbf{This paper's single task}:
+      verify the Riesz-basis criterion
+      (Thm.~\ref{thm:riesz-criterion})
+      and derive canonicalization as a consequence
+      (Thm.~\ref{thm:canonical}).
+\item \textbf{Hard core}: Lem.~\ref{lem:gap} (Section~\ref{sec:gap}).
+      All other results are standard machinery applied
+      to that one input.
+\item \textbf{What is \emph{not} claimed}:
+      completeness of $\{\Phi_n^{(\infty)}\}$ in all of
+      $L^2(\mathbb{R})$ (deferred to Paper~XIII);
+      unconditional RH connection.
+\end{itemize}
+
+\tableofcontents
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Main Statement}
+\label{sec:main}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% PHASE 1 NOTE: Theorem XII.1 is stated as a CRITERION (biconditional),
+% not as an existence theorem. The three conditions are not yet
+% proved here -- they are the content of Sections 3--5.
+% Do NOT strengthen this to an unconditional existence claim
+% until Section 4 (Gram matrix control) is fully established.
+% ----------------------------------------------------------------
+
+\begin{theorem}[Riesz-basis criterion]
+\label{thm:riesz-criterion}
+Let $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}\}$ be the
+orthonormal system of Paper~XI
+(Lem.~\ref{lem:XI-diagonal}), defined along the fixed
+diagonal subsequence $c_k$.
+Let $\mathcal{K} := \overline{\mathrm{span}}\,
+\{\Phi_n^{(\infty)} : n\ge 0\}\subset L^2(\mathbb{R})$.
+The following are equivalent:
+\begin{enumerate}[\rm(i)]
+\item $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$.
+\item The Gram matrix
+      $\Gram_{mn} := \ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}$
+      defines a bounded invertible operator on $\ell^2$.
+\item \textbf{(Gap condition, Sec.~\ref{sec:gap}):}
+      $|\lambda_n^{(c)} - \lambda_{n+1}^{(c)}|
+      \ge C_\kappa c^{-3/4}$ for all $n\le\kappa c$
+      (\hyperref[hyp:gap]{Hyp.~Gap}).
+\item \textbf{(Stability condition):}
+      the family $\{\Phi_n^{(c_k)}\}$ is uniformly
+      Riesz-stable along $c_k$
+      (Def.~\ref{def:riesz-stable}).
+\end{enumerate}
+(i)$\Leftrightarrow$(ii): Bari--Krein theorem
+(Sec.~\ref{sec:bari-krein}).\\
+(ii)$\Leftrightarrow$(iii)+(iv): Gram-matrix control
+(Sec.~\ref{sec:gram}).\\
+(iii): hard core, Section~\ref{sec:gap}.
+\end{theorem}
+
+\begin{remark}[Logical status]
+\label{rem:main-status}
+Theorem~\ref{thm:riesz-criterion} is a criterion:
+it reduces the Riesz-basis property to three
+verifiable conditions.
+Section~\ref{sec:gap} is the only section
+where genuinely new analysis is required.
+The remaining implications are functional-analytic
+standard machinery (Bari--Krein, Gram-matrix bounds).
+\end{remark}
+
+\begin{theorem}[Canonicalization]
+\label{thm:canonical}
+Assume the Gap condition
+(\hyperref[hyp:gap]{Hyp.~Gap}) and
+the Stability condition
+(Def.~\ref{def:riesz-stable}).
+Then:
+\begin{enumerate}[\rm(a)]
+\item $\{\Phi_n^{(\infty)}\}$ is a Riesz basis of $\mathcal{K}$.
+\item \textbf{(Subsequence independence.)}
+      Any two diagonal subsequences $c_k, c_k'$
+      satisfying the conditions of Paper~XI,
+      Lem.~\ref{lem:XI-diagonal}
+      yield limit systems that are unitarily equivalent
+      up to phase permutation.
+\item \textbf{(NAcc as theorem.)}
+      The No-Accumulation hypothesis
+      (Paper~XI, Hyp.~4.5)
+      holds unconditionally under \hyperref[hyp:gap]{Hyp.~Gap}.
+\item \textbf{(Canonical object.)}
+      $\Hlim$ is a well-defined self-adjoint operator
+      on $\mathcal{K}$, independent of the choice
+      of diagonal subsequence up to unitary equivalence.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[What remains open]
+\label{rem:remaining-open}
+Theorem~\ref{thm:canonical} establishes canonicalization
+\emph{within} $\mathcal{K}$.
+The question whether $\mathcal{K}=L^2(\mathbb{R})$
+(completeness) is \emph{not} resolved here;
+it is Open Problem~\ref{prob:completeness}.
+Density of $\{\lambda_n^{(\infty)}\}$ also remains open
+(Paper~XI, Conj.~6.1).
+\end{remark}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Input from Paper~XI}
+\label{sec:input}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% This section is purely a dependency injection block.
+% No new mathematical content.
+% Paper XI is treated as a black box with exactly the outputs
+% listed below. Do not re-prove anything from XI here.
+% ----------------------------------------------------------------
+
+\begin{lemma}[Inherited: diagonal system, Paper~XI]
+\label{lem:XI-diagonal}
+From Paper~XI, Lem.~2.3 and Sec.~2.4:
+there exists a fixed subsequence $c_k\nearrow\infty$
+such that simultaneously for all $n\ge 0$:
+\begin{enumerate}[\rm(i)]
+\item
+  $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
+  weakly, with $\|\Phi_n^{(\infty)}\|=1$.
+\item
+  $\lambda_n^{(c_k)}\to\lambda_n^{(\infty)}$,
+  with rate $|\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+  \le C_\kappa c_k^{-1/4}$ for $n\le\kappa c_k$.
+\item
+  $\mathcal{H}_{c_k}\xrightarrow{\mathrm{SOT}}\Hlim$;
+  $\Hlim$ bounded, self-adjoint, $\|\Hlim\|\le 1$.
+\item
+  $\{\Phi_n^{(\infty)}\}$ is orthonormal
+  (Paper~XI, Lem.~2.3, Step~4).
+\item
+  $\Hlim\Phi_n^{(\infty)}
+  =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$
+  (Paper~XI, Lem.~3.4).
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}[What Paper~XI does \emph{not} provide]
+\label{rem:XI-limits}
+Paper~XI does \emph{not} establish:
+\begin{itemize}
+\item subsequence-independence of
+      $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}, \Hlim\}$
+      (Open Problem~XI.7.3);
+\item the gap lower bound
+      $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
+      \ge C_\kappa c^{-3/4}$
+      (Open Problem~XI.7.2);
+\item completeness of $\{\Phi_n^{(\infty)}\}$
+      in $L^2(\mathbb{R})$ (Open Problem~XI.7.5).
+\end{itemize}
+All three are targets of the present paper
+(gap lower bound)
+or Paper~XIII (completeness).
+\end{remark}
+
+\begin{enumerate}[(XII.1)]
+\item\label{XII1}
+  \textbf{Orthonormal system}
+  (Lem.~\ref{lem:XI-diagonal}(i,iv)):
+  $\Phi_n^{(c_k)}\rightharpoonup\Phi_n^{(\infty)}$
+  weakly; $\|\Phi_n^{(\infty)}\|=1$;
+  $\ip{\Phi_m^{(\infty)}}{\Phi_n^{(\infty)}}=\delta_{mn}$.
+\item\label{XII2}
+  \textbf{Eigenvalue rate}
+  (Lem.~\ref{lem:XI-diagonal}(ii)):
+  $|\lambda_n^{(c)}-\lambda_n^{(\infty)}|
+  \le C_\kappa c^{-1/4}$, $n\le\kappa c$.
+\item\label{XII3}
+  \textbf{SOT + eigenvalue equation}
+  (Lem.~\ref{lem:XI-diagonal}(iii,v)):
+  $\Hlim\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$;
+  $\sigma_p(\Hlim)\supset\{\lambda_n^{(\infty)}\}$.
+\item\label{XII4}
+  \textbf{Slepian counting and rate}
+  (Paper~VIII/XI):
+  $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|$ in $W_c$:
+  \emph{lower bound not yet established};
+  this is the content of Lem.~\ref{lem:gap}.
+\end{enumerate}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Spectral Separation in $W_c$}
+\label{sec:gap}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% THIS IS THE HARD CORE OF THE PAPER.
+% The entire canonicalization program reduces to this section.
+% Three routes are identified below; the proof of Lem. 3.1
+% is currently a STUB -- the actual argument must be filled in.
+%
+% Route A: Osipov-Rokhlin-Xiao (2013), Ch. 4 -- asymptotic bounds
+% Route B: Sturm-Liouville separation (prolate ODE)
+% Route C: WKB analysis of PSWF in the transition regime
+%
+% Fill in only after deciding which route is viable.
+% Do NOT insert a placeholder proof.
+% ----------------------------------------------------------------
+
+\begin{hypothesis}[Spectral gap lower bound]
+\label{hyp:gap}
+For every $\kappa>0$ there exists $C_\kappa>0$ such that
+for all $c\ge 1$ and all $n$ with $n\le\kappa c$:
+\begin{equation}\label{eq:gap}
+  |\lambda_n^{(c)} - \lambda_{n+1}^{(c)}|
+  \ge C_\kappa\, c^{-3/4}.
+\end{equation}
+\end{hypothesis}
+
+\begin{remark}[Why $c^{-3/4}$?]
+\label{rem:gap-rate}
+The rate $c^{-3/4}$ is the natural exponent
+consistent with the eigenvalue rate $c^{-1/4}$
+of \eqref{XII2}:
+if individual eigenvalues converge at rate $c^{-1/4}$
+and are \emph{distinct} in the limit
+(which follows from the Riesz-basis conclusion
+once established),
+then their separations in the finite system
+cannot collapse faster than $c^{-3/4}$
+without violating the rate bound.
+This is a consistency argument, not a proof;
+the actual lower bound requires independent analysis
+(see routes A--C in the section header).
+\end{remark}
+
+\begin{remark}[Three proof routes]
+\label{rem:gap-routes}
+\begin{itemize}
+\item \textbf{Route~A (asymptotic):}
+      Osipov--Rokhlin--Xiao \cite{Osipov2013}, Ch.~4,
+      gives asymptotic separation estimates for PSWF
+      eigenvalues in the transition regime.
+      Potentially sufficient if their bounds are
+      made quantitative and uniform in $n\in W_c$.
+\item \textbf{Route~B (Sturm--Liouville):}
+      The prolate spheroidal differential operator
+      $\mathcal{L}_c = -\partial_x[(1-x^2)\partial_x]
+      + c^2 x^2$ has simple spectrum for each fixed $c$;
+      Sturm--Liouville oscillation theory gives
+      $\lambda_{n+1}(\mathcal{L}_c)
+      > \lambda_n(\mathcal{L}_c)$,
+      but explicit lower gap bounds require
+      additional work.
+\item \textbf{Route~C (WKB):}
+      In the transition window $W_c$,
+      PSWF behave semiclassically;
+      WKB theory for the associated
+      Schr\"odinger-type operator may
+      yield $c^{-3/4}$ directly from
+      the Airy-function regime near the
+      classical turning point.
+      This is likely the most direct route.
+\end{itemize}
+\end{remark}
+
+\begin{lemma}[Spectral gap in $W_c$]
+\label{lem:gap}
+% STUB -- proof to be filled in.
+% Do not weaken the statement; do not insert a placeholder argument.
+Assume \hyperref[hyp:gap]{Hyp.~Gap}.
+Then for all $n\in W_c$ and all $c\ge c_0$:
+\[
+  |\lambda_n^{(c)} - \lambda_{n+1}^{(c)}|
+  \ge C_\kappa c^{-3/4}.
+\]
+\end{lemma}
+\begin{proof}
+% TODO: implement via Route A, B, or C (see Rem.~\ref{rem:gap-routes}).
+% Decision required before Phase 2 begins.
+\end{proof}
+
+\begin{corollary}[NAcc as theorem]
+\label{cor:nacc}
+Under \hyperref[hyp:gap]{Hyp.~Gap} and \eqref{XII2},
+the No-Accumulation hypothesis
+(Paper~XI, Hyp.~4.5) holds:
+for all $\lambda\in(0,1)$,
+$\#\{n : \lambda_n^{(\infty)}\le\lambda\}<\infty$.
+\end{corollary}
+\begin{proof}
+% Sketch (to be formalized in Phase 2):
+% If \lambda_n^{(\infty)} had an accumulation point \mu \in (0,1),
+% then infinitely many \lambda_n^{(c_k)} would cluster near \mu
+% for large k, contradicting Lem.~\ref{lem:gap} + \eqref{XII2}.
+\end{proof}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Gram-Matrix Control}
+\label{sec:gram}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% This section connects Gap + Stability to the invertibility
+% of the Gram matrix. The orthonormality of {Phi_n^(infty)}
+% means the diagonal is already 1; the task is to control
+% the off-diagonal decay.
+%
+% Key point: since {Phi_n^(infty)} is already orthonormal
+% (from Paper XI, Lem. 2.3), the Gram matrix IS the identity!
+% Therefore Thm XII.1 (i)<->(ii) is TRIVIAL for the limit system.
+% The non-trivial part is uniform Riesz-stability of the
+% FINITE approximants {Phi_n^(c_k)}, which requires Gap.
+% ----------------------------------------------------------------
+
+\begin{remark}[Gram matrix is trivial for the limit system]
+\label{rem:gram-trivial}
+Since $\{\Phi_n^{(\infty)}\}$ is orthonormal by Paper~XI,
+the Gram matrix of the limit system
+is exactly $\Gram_{mn}=\delta_{mn}$,
+which is trivially bounded and invertible on $\ell^2$.
+The non-trivial content is therefore \emph{not}
+the Gram matrix of the limit system,
+but the \emph{uniform Riesz stability} of the
+finite approximants $\{\Phi_n^{(c_k)}\}$,
+which is the content of Def.~\ref{def:riesz-stable}
+and Lem.~\ref{lem:gram-approx} below.
+\end{remark}
+
+\begin{definition}[Uniform Riesz stability]
+\label{def:riesz-stable}
+The family $\{\Phi_n^{(c_k)}\}_{n\ge 0,\,k\ge 1}$
+is \emph{uniformly Riesz-stable} if there exist
+constants $0<A\le B<\infty$, independent of $k$,
+such that for every finite sequence
+$(a_n)\subset\mathbb{C}$ and all $k\ge 1$:
+\begin{equation}\label{eq:riesz-stable}
+  A\sum_n|a_n|^2
+  \le\Bigl\|\sum_n a_n\Phi_n^{(c_k)}\Bigr\|^2
+  \le B\sum_n|a_n|^2.
+\end{equation}
+The constants $A,B$ are the \emph{Riesz bounds}.
+\end{definition}
+
+\begin{lemma}[Gram-matrix control for finite approximants]
+\label{lem:gram-approx}
+% STUB -- to be filled in Phase 2.
+% The argument will use:
+% (a) {Phi_n^(c_k)} is ON for each fixed k (free)
+% (b) Gap condition controls eigenvalue separation
+% (c) This translates to stability of frame bounds
+%     under the SOT limit (via Paper X, SOT convergence)
+Assume \hyperref[hyp:gap]{Hyp.~Gap} and
+\eqref{XII1}--\eqref{XII3}.
+Then $\{\Phi_n^{(c_k)}\}$ is uniformly Riesz-stable
+(Def.~\ref{def:riesz-stable}) with constants
+$A=1-\varepsilon_k$, $B=1+\varepsilon_k$,
+where $\varepsilon_k\to 0$ as $k\to\infty$.
+\end{lemma}
+\begin{proof}
+% TODO: Phase 2.
+\end{proof}
+
+\begin{remark}[Why $\varepsilon_k\to 0$]
+\label{rem:eps-to-zero}
+For each fixed $k$, $\{\Phi_n^{(c_k)}\}$ is
+an orthonormal system (so bounds $A=B=1$ hold
+trivially). The content of
+Lem.~\ref{lem:gram-approx} is that the Riesz
+bounds are \emph{inherited uniformly in $n$}
+as $k\to\infty$, i.e., passing to the limit
+does not destroy the frame property.
+This is precisely what Gap controls.
+\end{remark}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Bari--Krein Machinery}
+\label{sec:bari-krein}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% This section is purely standard machinery.
+% The Bari theorem is cited, not reproved.
+% The only task here is to verify that the hypotheses
+% of the Bari theorem are met by our system.
+% The nontrivial input is Lem. 4.1 (Gram-matrix control).
+% ----------------------------------------------------------------
+
+\begin{theorem}[Bari--Krein, standard]
+\label{thm:bari-krein}
+Let $\mathcal{H}$ be a separable Hilbert space and
+$\{e_n\}$ an orthonormal basis of $\mathcal{H}$.
+A sequence $\{f_n\}\subset\mathcal{H}$ is a Riesz
+basis of $\mathcal{H}$ if and only if there exists
+a bounded invertible operator
+$T:\mathcal{H}\to\mathcal{H}$ such that
+$f_n = Te_n$ for all $n$.
+Equivalently: $\{f_n\}$ is a Riesz basis if and only
+if the Gram matrix $\Gram_{mn}=\ip{f_m}{f_n}$
+defines a bounded invertible operator on $\ell^2$.
+\end{theorem}
+\begin{proof}
+Standard; see e.g.\ \cite[Ch.~VI]{GohbergKrein1969}
+or \cite[Sec.~6.1]{Christensen2003}.
+\end{proof}
+
+\begin{proposition}[Riesz basis of $\mathcal{K}$]
+\label{prop:riesz-basis}
+Under \hyperref[hyp:gap]{Hyp.~Gap} and
+Def.~\ref{def:riesz-stable},
+$\{\Phi_n^{(\infty)}\}$ is a Riesz basis of
+$\mathcal{K}=\overline{\mathrm{span}}\,
+\{\Phi_n^{(\infty)}\}$.
+\end{proposition}
+\begin{proof}
+By Rem.~\ref{rem:gram-trivial},
+$\Gram = I$ for the limit system.
+By Lem.~\ref{lem:gram-approx},
+the approximants are uniformly Riesz-stable.
+The passage from uniform stability of approximants
+to Riesz-basis property of the limit follows from
+SOT convergence \eqref{XII3} and
+Thm.~\ref{thm:bari-krein}.
+\end{proof}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Canonicalization}
+\label{sec:canonical}
+%%══════════════════════════════════════════════════════════════════════
+
+% ----------------------------------------------------------------
+% This is the structural transition:
+% from selection-structure to intrinsic structure.
+% Riesz basis => canonical coordinate system
+%             => subsequence-independence up to phase
+%             => H_lim as intrinsic operator
+% The argument here is:
+% (1) any two diagonal subsequences give Riesz bases of K
+% (2) two Riesz bases of the same separable Hilbert space
+%     are related by a bounded invertible operator
+% (3) if they share the same eigenvalues (which they do
+%     by continuity of spectrum + rate control XII2),
+%     the operator is unitary up to phase permutation
+% ----------------------------------------------------------------
+
+\begin{lemma}[Two subsequences give the same $\mathcal{K}$]
+\label{lem:same-K}
+% STUB -- to be formalized in Phase 3.
+Let $c_k$ and $c_k'$ be two diagonal subsequences
+as in Lem.~\ref{lem:XI-diagonal},
+both satisfying \hyperref[hyp:gap]{Hyp.~Gap}.
+Then the closed spans
+$\mathcal{K} = \overline{\mathrm{span}}\,
+\{\Phi_n^{(c_k,\infty)}\}$
+and
+$\mathcal{K}' = \overline{\mathrm{span}}\,
+\{\Phi_n^{(c_k',\infty)}\}$
+coincide.
+\end{lemma}
+\begin{proof}
+% TODO: Phase 3.
+% Key idea: both K and K' are invariant subspaces of H_lim
+% (since H_lim Phi_n^infty = lambda_n^infty Phi_n^infty),
+% and H_lim is the same bounded operator on L^2(R)
+% regardless of which subsequence generated it
+% (SOT limit is unique along any sequence).
+\end{proof}
+
+\begin{theorem}[Canonicalization]
+\label{thm:canonical-proof}
+% This is the proof version of Thm. 1.2.
+% Depends on: Prop. 5.1, Lem. 5.1, Cor. 3.2.
+Assume \hyperref[hyp:gap]{Hyp.~Gap}.
+Then $\Hlim$ is a well-defined self-adjoint
+operator on $\mathcal{K}$, independent of
+the choice of diagonal subsequence up to
+unitary equivalence, and
+$\{\Phi_n^{(\infty)}\}$ is a canonical
+orthonormal Riesz basis of $\mathcal{K}$
+(up to phase permutation).
+\end{theorem}
+\begin{proof}
+% Proof chain:
+% Step 1: Riesz basis by Prop. 5.1.
+% Step 2: K is unique by Lem. 5.1.
+% Step 3: H_lim restricted to K has spectrum
+%         {lambda_n^(infty)}, independent of c_k
+%         (uniqueness of SOT limit + rate XII2).
+% Step 4: Any two such systems are unitarily
+%         equivalent by spectral theorem for
+%         self-adjoint operators with simple spectrum.
+\end{proof}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{System Closure}
+\label{sec:closure}
+%%══════════════════════════════════════════════════════════════════════
+
+Under \hyperref[hyp:gap]{Hyp.~Gap}, the open
+axes of Paper~XI are closed as follows:
+\begin{enumerate}
+\item \textbf{Subsequence dependence:}
+      eliminated by Thm.~\ref{thm:canonical-proof}
+      (canonical object up to unitary equivalence).
+\item \textbf{NAcc as external axiom:}
+      demoted to theorem by Cor.~\ref{cor:nacc}.
+\item \textbf{Sweeping as existential argument:}
+      Riesz-basis indexing provides a canonical
+      labeling of all limit eigenvalues,
+      replacing the infimum-selection mechanism.
+\end{enumerate}
+
+\begin{remark}[Remaining open problems]
+\label{rem:open-remaining}
+The following are \emph{not} resolved by Paper~XII:
+\begin{itemize}
+\item $\mathcal{K} = L^2(\mathbb{R})$ (completeness),
+      deferred to Paper~XIII;
+\item density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$;
+\item unconditional proof of
+      \hyperref[hyp:gap]{Hyp.~Gap} itself.
+\end{itemize}
+Paper~XII is conditional on \hyperref[hyp:gap]{Hyp.~Gap};
+it is a criterion paper, not an unconditional theorem.
+\end{remark}
+
+%%══════════════════════════════════════════════════════════════════════
+\section{Open Problems}
+\label{sec:open}
+%%══════════════════════════════════════════════════════════════════════
+
+\begin{problem}[Gap lower bound (unconditional)]
+\label{prob:gap-unconditional}
+Prove \hyperref[hyp:gap]{Hyp.~Gap} without
+additional assumptions.
+This is the central open problem of Paper~XII;
+until it is resolved, all results of this paper
+are conditional.
+\end{problem}
+
+\begin{problem}[Completeness]
+\label{prob:completeness}
+$\mathcal{K} = L^2(\mathbb{R})$?
+Equivalently: $\{\Phi_n^{(\infty)}\}$ complete.
+Target of Paper~XIII.
+\end{problem}
+
+\begin{problem}[Density]
+\label{prob:density}
+Density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$
+(Paper~XI, Conj.~6.1).
+Not implied by Riesz-basis structure alone.
+\end{problem}
+
+\begin{problem}[Riesz bounds: explicit constants]
+\label{prob:riesz-constants}
+Determine explicit values of the Riesz bounds
+$A,B$ in Def.~\ref{def:riesz-stable}
+in terms of $C_\kappa$ and the gap rate.
+Relevant for quantitative spectral geometry.
+\end{problem}
+
+%%%─── Bibliography
+\begin{thebibliography}{99}
+
+\bibitem{PaperXI}
+[Author],
+\textit{Spectral structure and density
+for the limiting PSWF operator},
+Paper~XI (final), 2026.
+
+\bibitem{PaperVIII}
+[Author],
+\textit{Non-cancellation control, the sharp
+$c^{-1/2}$ lower bound, and spectral connection
+to the zeros of $\zeta(s)$},
+Paper~VIII, preprint, 2026.
+
+\bibitem{PaperX}
+[Author],
+\textit{Mosco convergence, resolvent stability,
+and the bridge theorem for PSWF
+concentration operators},
+Paper~X, preprint, 2026.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, and H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions
+of Order Zero},
+Springer, New York, 2013.
+
+\bibitem{Kato1966}
+T.~Kato,
+\textit{Perturbation Theory for
+Linear Operators},
+Springer, Berlin, 1966.
+
+\bibitem{ReedSimon1975}
+M.~Reed and B.~Simon,
+\textit{Methods of Modern Mathematical Physics,
+Vols.~I--II},
+Academic Press, New York, 1972--1975.
+
+\bibitem{GohbergKrein1969}
+I.~Gohberg and M.~Krein,
+\textit{Introduction to the Theory of
+Linear Nonselfadjoint Operators},
+AMS, Providence, 1969.
+
+\bibitem{Christensen2003}
+O.~Christensen,
+\textit{An Introduction to Frames
+and Riesz Bases},
+Birkh\"auser, Boston, 2003.
+
+\bibitem{Widom1964}
+H.~Widom,
+\textit{Asymptotic behavior of the eigenvalues
+of certain integral equations~II},
+Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
+(1964), 215--229.
+
+\bibitem{CCM2025}
+A.~Connes, C.~Consani, and H.~Moscovici,
+\textit{Zeta Spectral Triples},
+arXiv:2511.22755 [math.NT], preprint, 2025.
+
+\end{thebibliography}
+
+\end{document}
