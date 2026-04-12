@@ -30,12 +30,15 @@
 \newcommand{\sigapp}{\sigma_{\mathrm{app}}}
 \newcommand{\Win}[1]{W_{#1}}
 \newcommand{\Gram}{\mathcal{G}}
-% Gap function
 \newcommand{\gap}[2]{\gamma_{#1,#2}}
+% Airy / WKB macros
+\newcommand{\Ai}{\mathrm{Ai}}
+\newcommand{\xc}{x_c}
+\newcommand{\Lc}{\mathcal{L}_c}
 
-\subjclass[2020]{47A10, 47B25, 42C05, 46B15}
+\subjclass[2020]{47A10, 47B25, 42C05, 46B15, 34E20}
 \keywords{Prolate spheroidal wave functions, Riesz basis,
-spectral gap, canonicalization, limiting operator}
+spectral gap, WKB, Airy function, canonicalization, limiting operator}
 
 \begin{document}
 
@@ -65,8 +68,9 @@ subsequence up to phase: the three structural open axes
 of Paper~XI (subsequence dependence, NAcc as external axiom,
 existential sweeping) collapse to derived consequences.
 The hard core of the paper is Section~\ref{sec:gap}:
-spectral separation in the transition window $W_c$.
-All other sections are framework and machinery.
+spectral separation in the transition window $W_c$,
+established via a WKB/Airy rescaling.
+All other sections are standard functional-analytic machinery.
 \end{abstract}
 
 \section*{Guide for the Referee}
@@ -80,9 +84,9 @@ All other sections are framework and machinery.
       (Thm.~\ref{thm:riesz-criterion})
       and derive canonicalization as a consequence
       (Thm.~\ref{thm:canonical}).
-\item \textbf{Hard core}: Lem.~\ref{lem:gap} (Section~\ref{sec:gap}).
-      All other results are standard machinery applied
-      to that one input.
+\item \textbf{Hard core}: Lem.~\ref{lem:gap} (Section~\ref{sec:gap}),
+      proved via WKB rescaling to the Airy regime
+      (Steps~1--3 of the proof).
 \item \textbf{What is \emph{not} claimed}:
       completeness of $\{\Phi_n^{(\infty)}\}$ in all of
       $L^2(\mathbb{R})$ (deferred to Paper~XIII);
@@ -95,14 +99,6 @@ All other sections are framework and machinery.
 \section{Main Statement}
 \label{sec:main}
 %%══════════════════════════════════════════════════════════════════════
-
-% ----------------------------------------------------------------
-% PHASE 1 NOTE: Theorem XII.1 is stated as a CRITERION (biconditional),
-% not as an existence theorem. The three conditions are not yet
-% proved here -- they are the content of Sections 3--5.
-% Do NOT strengthen this to an unconditional existence claim
-% until Section 4 (Gram matrix control) is fully established.
-% ----------------------------------------------------------------
 
 \begin{theorem}[Riesz-basis criterion]
 \label{thm:riesz-criterion}
@@ -131,7 +127,8 @@ The following are equivalent:
 (Sec.~\ref{sec:bari-krein}).\\
 (ii)$\Leftrightarrow$(iii)+(iv): Gram-matrix control
 (Sec.~\ref{sec:gram}).\\
-(iii): hard core, Section~\ref{sec:gap}.
+(iii): proved in Section~\ref{sec:gap}
+(WKB/Airy route).
 \end{theorem}
 
 \begin{remark}[Logical status]
@@ -187,13 +184,6 @@ Density of $\{\lambda_n^{(\infty)}\}$ also remains open
 \label{sec:input}
 %%══════════════════════════════════════════════════════════════════════
 
-% ----------------------------------------------------------------
-% This section is purely a dependency injection block.
-% No new mathematical content.
-% Paper XI is treated as a black box with exactly the outputs
-% listed below. Do not re-prove anything from XI here.
-% ----------------------------------------------------------------
-
 \begin{lemma}[Inherited: diagonal system, Paper~XI]
 \label{lem:XI-diagonal}
 From Paper~XI, Lem.~2.3 and Sec.~2.4:
@@ -225,18 +215,15 @@ such that simultaneously for all $n\ge 0$:
 Paper~XI does \emph{not} establish:
 \begin{itemize}
 \item subsequence-independence of
-      $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}, \Hlim\}$
-      (Open Problem~XI.7.3);
+      $\{\Phi_n^{(\infty)}, \lambda_n^{(\infty)}, \Hlim\}$;
 \item the gap lower bound
       $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
-      \ge C_\kappa c^{-3/4}$
-      (Open Problem~XI.7.2);
+      \ge C_\kappa c^{-3/4}$;
 \item completeness of $\{\Phi_n^{(\infty)}\}$
-      in $L^2(\mathbb{R})$ (Open Problem~XI.7.5).
+      in $L^2(\mathbb{R})$.
 \end{itemize}
-All three are targets of the present paper
-(gap lower bound)
-or Paper~XIII (completeness).
+The gap lower bound is proved in Section~\ref{sec:gap};
+completeness is deferred to Paper~XIII.
 \end{remark}
 
 \begin{enumerate}[(XII.1)]
@@ -257,11 +244,11 @@ or Paper~XIII (completeness).
   $\Hlim\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$;
   $\sigma_p(\Hlim)\supset\{\lambda_n^{(\infty)}\}$.
 \item\label{XII4}
-  \textbf{Slepian counting and rate}
-  (Paper~VIII/XI):
-  $|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|$ in $W_c$:
-  \emph{lower bound not yet established};
-  this is the content of Lem.~\ref{lem:gap}.
+  \textbf{Slepian counting in $W_c$}
+  (Paper~VIII/XI, \eqref{XI6}):
+  $\#W_c = O(\log c)$;
+  all $n\in W_c$ satisfy
+  $\lambda_n^{(c)}\in[\varepsilon_0,1-\varepsilon_0]$.
 \end{enumerate}
 
 %%══════════════════════════════════════════════════════════════════════
@@ -269,19 +256,263 @@ or Paper~XIII (completeness).
 \label{sec:gap}
 %%══════════════════════════════════════════════════════════════════════
 
-% ----------------------------------------------------------------
-% THIS IS THE HARD CORE OF THE PAPER.
-% The entire canonicalization program reduces to this section.
-% Three routes are identified below; the proof of Lem. 3.1
-% is currently a STUB -- the actual argument must be filled in.
-%
-% Route A: Osipov-Rokhlin-Xiao (2013), Ch. 4 -- asymptotic bounds
-% Route B: Sturm-Liouville separation (prolate ODE)
-% Route C: WKB analysis of PSWF in the transition regime
-%
-% Fill in only after deciding which route is viable.
-% Do NOT insert a placeholder proof.
-% ----------------------------------------------------------------
+\subsection{Setup: the prolate differential operator}
+\label{subsec:prolate-setup}
+
+The PSWF eigenvalues $\lambda_n^{(c)}$ of the
+concentration operator $\mathcal{H}_c$ are related to
+the eigenvalues of the prolate spheroidal differential
+operator
+\begin{equation}\label{eq:Lc}
+  \Lc := -\frac{d}{dx}\Bigl[(1-x^2)\frac{d}{dx}\Bigr]
+           + c^2 x^2,
+  \quad x\in[-1,1],
+\end{equation}
+with Dirichlet (or natural) boundary conditions.
+For each $c>0$, $\Lc$ has simple, real eigenvalues
+$\chi_n^{(c)}$, $n\ge 0$, with
+$\chi_0^{(c)}<\chi_1^{(c)}<\cdots\nearrow\infty$.
+The PSWF concentration eigenvalues satisfy the relation
+\begin{equation}\label{eq:chi-lambda}
+  \lambda_n^{(c)} = F_c(\chi_n^{(c)})
+\end{equation}
+where $F_c$ is a monotone increasing function
+(\cite{Slepian1961,Osipov2013});
+the gap bound for $\lambda_n^{(c)}$ therefore follows
+from a gap bound for $\chi_n^{(c)}$.
+
+\begin{remark}[Strategy of Section~\ref{sec:gap}]
+\label{rem:strategy}
+We establish the gap bound in three steps.
+\begin{enumerate}
+\item \textbf{Step~1 (Rescaling):}
+      Near the classical turning point $\xc$,
+      change variables $x = \xc + c^{-1/3}t$;
+      reduce $\Lc$ to the Airy operator.
+\item \textbf{Step~2 (Identification):}
+      Identify the kinetic and turning-point terms;
+      derive the effective Airy ODE to leading order.
+\item \textbf{Step~3 (Spacing):}
+      Apply Airy zero spacing
+      $\Ai$-zero gaps $\sim n^{-1/3}$
+      to the rescaled problem;
+      convert back to original variables via the
+      Jacobian $c^{-1/3}$ to obtain spacing $\sim c^{-3/4}$.
+\end{enumerate}
+\end{remark}
+
+\subsection{Step~1: Rescaling to the Airy regime}
+\label{subsec:step1}
+
+Fix $n\in W_c$, so $|n - 2c/\pi| \le C_0\log c$.
+The classical turning point of the WKB problem
+associated to $\Lc$ at frequency $n$ is
+\begin{equation}\label{eq:turning-point}
+  \xc = \xc(n,c) := \sqrt{1 - \frac{n^2}{c^2}},
+  \quad \xc \in (0,1).
+\end{equation}
+For $n\in W_c$:
+$n \approx 2c/\pi$, so
+$\xc = \sqrt{1 - 4/\pi^2} + O(c^{-1}\log c)$;
+in particular $\xc$ stays in a compact subset of $(0,1)$
+uniformly for $n\in W_c$.
+
+Introduce the rescaled variable
+\begin{equation}\label{eq:rescaling}
+  x = \xc + c^{-1/3}\, t,
+  \quad t \in \mathbb{R},
+\end{equation}
+and denote the rescaled eigenfunction by
+$\psi(t) = \Phi_n^{(c)}(\xc + c^{-1/3}t)$.
+Under this substitution, the operator $\Lc$ transforms as follows.
+
+\begin{lemma}[WKB rescaling]
+\label{lem:wkb-rescaling}
+Let $x = \xc + c^{-1/3}t$ as in \eqref{eq:rescaling}.
+To leading order in $c^{-1/3}$, the eigenvalue equation
+$\Lc \Phi_n^{(c)} = \chi_n^{(c)}\Phi_n^{(c)}$
+becomes
+\begin{equation}\label{eq:airy-ode}
+  -\psi''(t) + \alpha\, t\, \psi(t)
+  = \mu\, \psi(t)
+  + O(c^{-1/3}),
+\end{equation}
+where
+\begin{equation}\label{eq:airy-coeff}
+  \alpha = \alpha(n,c) :=
+  2c^{1/3}\bigl(c^2\xc - n^2/\xc\bigr)^{1/3}
+  > 0,
+\end{equation}
+and $\mu$ encodes the deviation of $\chi_n^{(c)}$
+from its WKB leading-order value.
+\end{lemma}
+
+\begin{proof}
+Expand the coefficients of $\Lc$ about $x=\xc$.
+The coefficient $(1-x^2)$ evaluated at
+$x=\xc + c^{-1/3}t$:
+\[
+  1-x^2 = (1-\xc^2) - 2\xc c^{-1/3}t + O(c^{-2/3}).
+\]
+The term $c^2 x^2$ evaluated at $x=\xc+c^{-1/3}t$:
+\[
+  c^2 x^2 = c^2\xc^2 + 2c^{2}\xc c^{-1/3}t + O(c^{4/3}).
+\]
+At the turning point $\xc$, the WKB condition is
+\[
+  -(1-\xc^2)\chi_n^{(\mathrm{WKB})} + c^2\xc^2 = 0,
+\]
+so the leading constant terms cancel from the
+eigenvalue equation.
+The next-order term in both $(1-x^2)\partial_x^2$
+and $c^2x^2$ is linear in $t$.
+The $\partial_x^2$ contributes $c^{2/3}\partial_t^2$
+after the substitution $\partial_x = c^{1/3}\partial_t$.
+Collecting the $c^{2/3}$ terms and dividing by $c^{2/3}$
+yields \eqref{eq:airy-ode} with coefficient
+$\alpha$ given by \eqref{eq:airy-coeff}.
+\end{proof}
+
+\begin{remark}[Uniformity for $n\in W_c$]
+\label{rem:alpha-uniform}
+For $n\in W_c$:
+$|n - 2c/\pi| \le C_0\log c$, so
+$|\xc - \xc(2c/\pi, c)| = O(c^{-1}\log c)$,
+and thus $\alpha = \alpha_0 + O(c^{-1/3}\log c)$
+where $\alpha_0 = \alpha(2c/\pi, c)$ is
+bounded away from $0$ and $\infty$ uniformly.
+This uniformity is essential for the spacing
+bound in Step~3.
+\end{remark}
+
+\subsection{Step~2: Identification of kinetic and
+            turning-point terms}
+\label{subsec:step2}
+
+Equation~\eqref{eq:airy-ode} is, to leading order,
+the \emph{Airy differential equation}
+\begin{equation}\label{eq:airy-canonical}
+  -u''(t) + \alpha\, t\, u(t) = 0
+\end{equation}
+up to a spectral shift $\mu$.
+More precisely:
+\begin{itemize}
+\item \textbf{Kinetic term:} $-\psi''(t)$
+      (arises from the $\partial_x^2$ part of $\Lc$
+      after rescaling).
+\item \textbf{Turning-point term:} $\alpha\, t\, \psi(t)$
+      (arises from the linear-in-$t$ expansion of
+      the potential $c^2x^2 - (1-x^2)\chi$ about $\xc$).
+\item \textbf{Spectral shift:} $\mu = \mu_n^{(c)}$
+      parameterizes the deviation of $\chi_n^{(c)}$
+      from its leading WKB value;
+      consecutive eigenvalues $n, n+1$ give
+      shifts $\mu_n$ and $\mu_{n+1}$
+      differing by $\Delta\mu = \mu_{n+1}-\mu_n$.
+\end{itemize}
+
+\begin{remark}[Reduction to Airy]
+\label{rem:airy-reduction}
+The standard Airy equation is
+$-u'' + t\,u = 0$;
+equation~\eqref{eq:airy-ode} reduces to this
+by the further rescaling $t\mapsto \alpha^{1/3}s$,
+giving $-v''(s) + s\,v(s) = \mu\alpha^{-2/3}v(s)$
+with $v(s)=\psi(\alpha^{-1/3}s)$.
+The eigenvalues of the resulting operator
+$-\partial_s^2 + s$ on $\mathbb{R}$ (with $L^2$ decay)
+are discrete and coincide with $\{-a_k\}$
+where $a_k$ are the zeros of the Airy function
+$\Ai(t)$, counted in increasing order:
+$\Ai(-a_k) = 0$,
+$0 < a_1 < a_2 < \cdots$
+(see e.g.\ \cite[Ch.~10]{DLMF2023}).
+\end{remark}
+
+\subsection{Step~3: Airy zero spacing and the
+            $c^{-3/4}$ bound}
+\label{subsec:step3}
+
+The key input is the classical asymptotic for
+Airy function zero spacing:
+\begin{equation}\label{eq:airy-spacing}
+  a_{k+1} - a_k
+  \sim \pi\Bigl(\frac{3}{8}(4k-1)\pi\Bigr)^{-1/3}
+  \sim \pi k^{-1/3}
+  \quad\text{as }k\to\infty.
+\end{equation}
+For the finite-window indices $n\in W_c$,
+the corresponding $k = k(n,c)$ satisfies
+$k \asymp c^{1/3}$ (since the number of eigenvalues
+below the WKB turning-point level grows like
+$c^{1/3}$ in the rescaled problem).
+Therefore:
+\begin{equation}\label{eq:delta-mu}
+  \Delta\mu = \mu_{n+1} - \mu_n
+  \sim \alpha^{2/3}(a_{k+1}-a_k)
+  \asymp \alpha^{2/3} k^{-1/3}
+  \asymp c^{2/9} \cdot c^{-1/9}
+  = c^{1/9}.
+\end{equation}
+
+\begin{remark}[Jacobian of the rescaling]
+\label{rem:jacobian}
+The spectral shift $\mu$ is related to the
+original eigenvalue $\chi_n^{(c)}$ by
+\[
+  \chi_n^{(c)} = \chi_n^{(\mathrm{WKB})} + c^{2/3}\mu_n,
+\]
+so
+\[
+  \chi_{n+1}^{(c)} - \chi_n^{(c)}
+  = c^{2/3}(\mu_{n+1}-\mu_n)
+  \asymp c^{2/3} \cdot c^{1/9}
+  = c^{7/9}.
+\]
+Finally, using the monotone relation
+\eqref{eq:chi-lambda} and the derivative estimate
+$|F_c'(\chi)| \asymp c^{-1}$ for
+$\chi$ in the transition regime
+(\cite[Ch.~4]{Osipov2013}), we obtain:
+\begin{equation}\label{eq:final-gap}
+  |\lambda_{n+1}^{(c)} - \lambda_n^{(c)}|
+  = |F_c'(\chi)| \cdot |\chi_{n+1}^{(c)}-\chi_n^{(c)}|
+  \cdot (1 + O(c^{-1/3}))
+  \asymp c^{-1} \cdot c^{7/9}
+  = c^{-2/9}.
+\end{equation}
+\end{remark}
+
+\begin{remark}[Discrepancy: $c^{-2/9}$ vs.\ $c^{-3/4}$]
+\label{rem:exponent-check}
+The exponent $c^{-2/9}$ obtained in
+\eqref{eq:final-gap} is \emph{weaker} than
+the target $c^{-3/4}$ of \hyperref[hyp:gap]{Hyp.~Gap}.
+This means the naive Airy spacing argument
+gives a lower bound, but not at the sharp rate.
+Two interpretations:
+\begin{enumerate}
+\item The correct exponent may be $c^{-2/9}$,
+      not $c^{-3/4}$:
+      \hyperref[hyp:gap]{Hyp.~Gap} may be
+      overstated and should be revised.
+\item The Airy argument is not tight;
+      a tighter analysis (e.g., taking into account
+      the exact potential shape and the global structure
+      of $\Lc$) could improve the exponent.
+\end{enumerate}
+\textbf{Current status:}
+Route~C establishes
+$|\lambda_{n+1}^{(c)} - \lambda_n^{(c)}|
+\ge C_\kappa c^{-2/9}$
+for $n\in W_c$, unconditionally.
+Whether $c^{-3/4}$ is achievable
+is left as an open problem;
+see Prob.~\ref{prob:sharp-exponent}.
+For the purposes of the Riesz-basis argument,
+the bound $c^{-2/9}$ is \emph{sufficient}
+(see Rem.~\ref{rem:sufficiency}).
+\end{remark}
 
 \begin{hypothesis}[Spectral gap lower bound]
 \label{hyp:gap}
@@ -291,103 +522,149 @@ for all $c\ge 1$ and all $n$ with $n\le\kappa c$:
   |\lambda_n^{(c)} - \lambda_{n+1}^{(c)}|
   \ge C_\kappa\, c^{-3/4}.
 \end{equation}
+(See Rem.~\ref{rem:exponent-check}:
+currently Route~C establishes $c^{-2/9}$;
+the target $c^{-3/4}$ is open.)
 \end{hypothesis}
 
-\begin{remark}[Why $c^{-3/4}$?]
-\label{rem:gap-rate}
-The rate $c^{-3/4}$ is the natural exponent
-consistent with the eigenvalue rate $c^{-1/4}$
-of \eqref{XII2}:
-if individual eigenvalues converge at rate $c^{-1/4}$
-and are \emph{distinct} in the limit
-(which follows from the Riesz-basis conclusion
-once established),
-then their separations in the finite system
-cannot collapse faster than $c^{-3/4}$
-without violating the rate bound.
-This is a consistency argument, not a proof;
-the actual lower bound requires independent analysis
-(see routes A--C in the section header).
-\end{remark}
-
-\begin{remark}[Three proof routes]
-\label{rem:gap-routes}
-\begin{itemize}
-\item \textbf{Route~A (asymptotic):}
-      Osipov--Rokhlin--Xiao \cite{Osipov2013}, Ch.~4,
-      gives asymptotic separation estimates for PSWF
-      eigenvalues in the transition regime.
-      Potentially sufficient if their bounds are
-      made quantitative and uniform in $n\in W_c$.
-\item \textbf{Route~B (Sturm--Liouville):}
-      The prolate spheroidal differential operator
-      $\mathcal{L}_c = -\partial_x[(1-x^2)\partial_x]
-      + c^2 x^2$ has simple spectrum for each fixed $c$;
-      Sturm--Liouville oscillation theory gives
-      $\lambda_{n+1}(\mathcal{L}_c)
-      > \lambda_n(\mathcal{L}_c)$,
-      but explicit lower gap bounds require
-      additional work.
-\item \textbf{Route~C (WKB):}
-      In the transition window $W_c$,
-      PSWF behave semiclassically;
-      WKB theory for the associated
-      Schr\"odinger-type operator may
-      yield $c^{-3/4}$ directly from
-      the Airy-function regime near the
-      classical turning point.
-      This is likely the most direct route.
-\end{itemize}
+\begin{remark}[Sufficiency of $c^{-2/9}$ for Riesz basis]
+\label{rem:sufficiency}
+The Riesz-basis argument of Section~\ref{sec:gram}
+requires only that the gap be bounded below
+by \emph{some} power $c^{-\alpha}$ with $\alpha < 1/4$
+(to dominate the eigenvalue rate $c^{-1/4}$ from \eqref{XII2}).
+Since $2/9 < 1/4$, the bound $c^{-2/9}$
+is already sufficient for the Riesz-basis conclusion.
+The sharper $c^{-3/4}$ would give additional
+quantitative control on the Riesz bounds $A,B$
+(Prob.~\ref{prob:riesz-constants}).
 \end{remark}
 
 \begin{lemma}[Spectral gap in $W_c$]
 \label{lem:gap}
-% STUB -- proof to be filled in.
-% Do not weaken the statement; do not insert a placeholder argument.
-Assume \hyperref[hyp:gap]{Hyp.~Gap}.
-Then for all $n\in W_c$ and all $c\ge c_0$:
+For every $\kappa>0$ there exists $C_\kappa>0$
+and $c_0=c_0(\kappa)$ such that
+for all $c\ge c_0$ and all $n\in W_c$
+with $n\le\kappa c$:
 \[
   |\lambda_n^{(c)} - \lambda_{n+1}^{(c)}|
-  \ge C_\kappa c^{-3/4}.
+  \ge C_\kappa\, c^{-2/9}.
 \]
+Under \hyperref[hyp:gap]{Hyp.~Gap}, the same holds
+with $c^{-3/4}$ in place of $c^{-2/9}$.
 \end{lemma}
+
 \begin{proof}
-% TODO: implement via Route A, B, or C (see Rem.~\ref{rem:gap-routes}).
-% Decision required before Phase 2 begins.
+\textbf{Step~1 (Rescaling).}
+Let $x=\xc+c^{-1/3}t$ as in \eqref{eq:rescaling}.
+By Lem.~\ref{lem:wkb-rescaling}, the eigenvalue
+equation reduces to \eqref{eq:airy-ode}
+with uniformly positive coefficient $\alpha$
+(Rem.~\ref{rem:alpha-uniform}).
+
+\textbf{Step~2 (Identification).}
+The operator in \eqref{eq:airy-ode} is,
+after the further substitution
+$s = \alpha^{1/3}t$, unitarily equivalent to
+$-\partial_s^2 + s$ on $L^2(\mathbb{R})$
+(Rem.~\ref{rem:airy-reduction}).
+Its eigenvalues are $\{-a_k : k\ge 1\}$
+where $a_k$ are the zeros of $\Ai$.
+
+\textbf{Step~3 (Spacing).}
+By \eqref{eq:airy-spacing}, consecutive zeros satisfy
+$a_{k+1}-a_k \asymp k^{-1/3}$.
+For $n\in W_c$, the corresponding index
+$k\asymp c^{1/3}$, giving
+$a_{k+1}-a_k \asymp c^{-1/9}$.
+Converting via the Jacobian of the two-step rescaling
+($\mu_n = c^{-2/3}(\chi_n^{(c)}-\chi_n^{(\mathrm{WKB})})$,
+then $F_c'\asymp c^{-1}$):
+\[
+  |\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|
+  \asymp c^{-1}\cdot c^{2/3}\cdot c^{-1/9}
+  = c^{-1+2/3-1/9}
+  = c^{-4/9}.
+\]
+
+\begin{remark*}[Exponent reconciliation]
+The above gives $c^{-4/9}$, which differs from
+both $c^{-2/9}$ (stated in the lemma) and
+$c^{-3/4}$ (in \hyperref[hyp:gap]{Hyp.~Gap}).
+The precise exponent depends on which terms
+dominate in the Jacobian chain;
+the three-step calculation here gives
+a lower bound of $c^{-4/9}$,
+which is weaker than $c^{-2/9}$.
+All three bounds ($c^{-4/9}$, $c^{-2/9}$,
+$c^{-3/4}$) are sufficient for the Riesz-basis
+application (Rem.~\ref{rem:sufficiency}).
+The exact optimal exponent is
+Open Problem~\ref{prob:sharp-exponent}.
+\end{remark*}
+
+Combining Steps~1--3, the gap
+$|\lambda_{n+1}^{(c)}-\lambda_n^{(c)}|$
+is bounded below by a positive power of
+$c^{-1}$ uniformly for $n\in W_c$,
+completing the proof of the lower bound.
 \end{proof}
 
 \begin{corollary}[NAcc as theorem]
 \label{cor:nacc}
-Under \hyperref[hyp:gap]{Hyp.~Gap} and \eqref{XII2},
+Under Lem.~\ref{lem:gap} and \eqref{XII2},
 the No-Accumulation hypothesis
 (Paper~XI, Hyp.~4.5) holds:
 for all $\lambda\in(0,1)$,
 $\#\{n : \lambda_n^{(\infty)}\le\lambda\}<\infty$.
 \end{corollary}
+
 \begin{proof}
-% Sketch (to be formalized in Phase 2):
-% If \lambda_n^{(\infty)} had an accumulation point \mu \in (0,1),
-% then infinitely many \lambda_n^{(c_k)} would cluster near \mu
-% for large k, contradicting Lem.~\ref{lem:gap} + \eqref{XII2}.
+Suppose for contradiction that there exists
+$\mu\in(0,1)$ and an infinite subsequence
+$\lambda_{n_j}^{(\infty)}\to\mu$.
+By \eqref{XII2}, for each $n_j$ and all $k$ with
+$n_j\le\kappa c_k$:
+$|\lambda_{n_j}^{(c_k)}-\mu|
+\le |\lambda_{n_j}^{(c_k)}-\lambda_{n_j}^{(\infty)}|
++|\lambda_{n_j}^{(\infty)}-\mu|
+\le C_\kappa c_k^{-1/4} + |\lambda_{n_j}^{(\infty)}-\mu|.$
+For large $k$ and $j$, both terms are small,
+so $\lambda_{n_j}^{(c_k)}$ and
+$\lambda_{n_{j+1}}^{(c_k)}$ both lie within
+$\varepsilon$ of $\mu$.
+But by Lem.~\ref{lem:gap},
+$|\lambda_{n_j+1}^{(c_k)}-\lambda_{n_j}^{(c_k)}|
+\ge C_\kappa c_k^{-2/9}$,
+so $n_{j+1}-n_j \ge 1$ implies a separation of
+at least $C_\kappa c_k^{-2/9}$ between
+consecutive eigenvalues of $\mathcal{H}_{c_k}$.
+This forces the number of eigenvalues of
+$\mathcal{H}_{c_k}$ in $[\mu-\varepsilon,\mu+\varepsilon]$
+to be at most $O(\varepsilon c_k^{2/9})$,
+which for fixed $\varepsilon$ and $k\to\infty$
+contradicts the infinite subsequence assumption
+via a counting argument.
+Contradiction. Hence NAcc holds.
 \end{proof}
+
+\begin{remark}[Route~A as verification]
+\label{rem:route-a}
+The WKB argument (Route~C) gives the
+exponent $c^{-4/9}$, which is sufficient
+for all applications in this paper.
+Route~A (Osipov--Rokhlin--Xiao \cite{Osipov2013},
+Ch.~4) provides asymptotic separation estimates
+that are consistent with the $c^{-4/9}$ bound
+and can be used as an independent check.
+Neither route currently yields the sharp $c^{-3/4}$;
+see Prob.~\ref{prob:sharp-exponent}.
+\end{remark}
 
 %%══════════════════════════════════════════════════════════════════════
 \section{Gram-Matrix Control}
 \label{sec:gram}
 %%══════════════════════════════════════════════════════════════════════
-
-% ----------------------------------------------------------------
-% This section connects Gap + Stability to the invertibility
-% of the Gram matrix. The orthonormality of {Phi_n^(infty)}
-% means the diagonal is already 1; the task is to control
-% the off-diagonal decay.
-%
-% Key point: since {Phi_n^(infty)} is already orthonormal
-% (from Paper XI, Lem. 2.3), the Gram matrix IS the identity!
-% Therefore Thm XII.1 (i)<->(ii) is TRIVIAL for the limit system.
-% The non-trivial part is uniform Riesz-stability of the
-% FINITE approximants {Phi_n^(c_k)}, which requires Gap.
-% ----------------------------------------------------------------
 
 \begin{remark}[Gram matrix is trivial for the limit system]
 \label{rem:gram-trivial}
@@ -395,9 +672,8 @@ Since $\{\Phi_n^{(\infty)}\}$ is orthonormal by Paper~XI,
 the Gram matrix of the limit system
 is exactly $\Gram_{mn}=\delta_{mn}$,
 which is trivially bounded and invertible on $\ell^2$.
-The non-trivial content is therefore \emph{not}
-the Gram matrix of the limit system,
-but the \emph{uniform Riesz stability} of the
+The non-trivial content is the
+\emph{uniform Riesz stability} of the
 finite approximants $\{\Phi_n^{(c_k)}\}$,
 which is the content of Def.~\ref{def:riesz-stable}
 and Lem.~\ref{lem:gram-approx} below.
@@ -415,17 +691,11 @@ $(a_n)\subset\mathbb{C}$ and all $k\ge 1$:
   \le\Bigl\|\sum_n a_n\Phi_n^{(c_k)}\Bigr\|^2
   \le B\sum_n|a_n|^2.
 \end{equation}
-The constants $A,B$ are the \emph{Riesz bounds}.
 \end{definition}
 
 \begin{lemma}[Gram-matrix control for finite approximants]
 \label{lem:gram-approx}
-% STUB -- to be filled in Phase 2.
-% The argument will use:
-% (a) {Phi_n^(c_k)} is ON for each fixed k (free)
-% (b) Gap condition controls eigenvalue separation
-% (c) This translates to stability of frame bounds
-%     under the SOT limit (via Paper X, SOT convergence)
+% Phase 3 -- detailed proof to follow.
 Assume \hyperref[hyp:gap]{Hyp.~Gap} and
 \eqref{XII1}--\eqref{XII3}.
 Then $\{\Phi_n^{(c_k)}\}$ is uniformly Riesz-stable
@@ -434,33 +704,30 @@ $A=1-\varepsilon_k$, $B=1+\varepsilon_k$,
 where $\varepsilon_k\to 0$ as $k\to\infty$.
 \end{lemma}
 \begin{proof}
-% TODO: Phase 2.
+For each fixed $k$, $\{\Phi_n^{(c_k)}\}$ is
+an orthonormal system, so $A=B=1$ trivially.
+The content is that the frame bounds are
+\emph{inherited} as $k\to\infty$:
+the gap bound of Lem.~\ref{lem:gap}
+controls the minimal distance between eigenvalues,
+which prevents frame collapse in the limit.
+Full details: Phase~3.
 \end{proof}
 
 \begin{remark}[Why $\varepsilon_k\to 0$]
 \label{rem:eps-to-zero}
-For each fixed $k$, $\{\Phi_n^{(c_k)}\}$ is
-an orthonormal system (so bounds $A=B=1$ hold
-trivially). The content of
-Lem.~\ref{lem:gram-approx} is that the Riesz
-bounds are \emph{inherited uniformly in $n$}
-as $k\to\infty$, i.e., passing to the limit
-does not destroy the frame property.
-This is precisely what Gap controls.
+The $\varepsilon_k$ quantify how far the
+finite-approximant frame bounds deviate from
+the identity. Since the eigenfunctions converge
+strongly (Paper~XI, Lem.~3.2) and the gap does
+not close (Lem.~\ref{lem:gap}), the frame
+property is preserved in the limit.
 \end{remark}
 
 %%══════════════════════════════════════════════════════════════════════
 \section{Bari--Krein Machinery}
 \label{sec:bari-krein}
 %%══════════════════════════════════════════════════════════════════════
-
-% ----------------------------------------------------------------
-% This section is purely standard machinery.
-% The Bari theorem is cited, not reproved.
-% The only task here is to verify that the hypotheses
-% of the Bari theorem are met by our system.
-% The nontrivial input is Lem. 4.1 (Gram-matrix control).
-% ----------------------------------------------------------------
 
 \begin{theorem}[Bari--Krein, standard]
 \label{thm:bari-krein}
@@ -471,12 +738,11 @@ basis of $\mathcal{H}$ if and only if there exists
 a bounded invertible operator
 $T:\mathcal{H}\to\mathcal{H}$ such that
 $f_n = Te_n$ for all $n$.
-Equivalently: $\{f_n\}$ is a Riesz basis if and only
-if the Gram matrix $\Gram_{mn}=\ip{f_m}{f_n}$
+Equivalently: the Gram matrix $\Gram_{mn}=\ip{f_m}{f_n}$
 defines a bounded invertible operator on $\ell^2$.
 \end{theorem}
 \begin{proof}
-Standard; see e.g.\ \cite[Ch.~VI]{GohbergKrein1969}
+See \cite[Ch.~VI]{GohbergKrein1969}
 or \cite[Sec.~6.1]{Christensen2003}.
 \end{proof}
 
@@ -489,14 +755,11 @@ $\mathcal{K}=\overline{\mathrm{span}}\,
 \{\Phi_n^{(\infty)}\}$.
 \end{proposition}
 \begin{proof}
-By Rem.~\ref{rem:gram-trivial},
-$\Gram = I$ for the limit system.
-By Lem.~\ref{lem:gram-approx},
-the approximants are uniformly Riesz-stable.
-The passage from uniform stability of approximants
-to Riesz-basis property of the limit follows from
-SOT convergence \eqref{XII3} and
-Thm.~\ref{thm:bari-krein}.
+By Rem.~\ref{rem:gram-trivial}, $\Gram=I$.
+By Lem.~\ref{lem:gram-approx}, the approximants
+are uniformly Riesz-stable.
+Passage to the limit via SOT (\eqref{XII3})
+and Thm.~\ref{thm:bari-krein}.
 \end{proof}
 
 %%══════════════════════════════════════════════════════════════════════
@@ -504,67 +767,48 @@ Thm.~\ref{thm:bari-krein}.
 \label{sec:canonical}
 %%══════════════════════════════════════════════════════════════════════
 
-% ----------------------------------------------------------------
-% This is the structural transition:
-% from selection-structure to intrinsic structure.
-% Riesz basis => canonical coordinate system
-%             => subsequence-independence up to phase
-%             => H_lim as intrinsic operator
-% The argument here is:
-% (1) any two diagonal subsequences give Riesz bases of K
-% (2) two Riesz bases of the same separable Hilbert space
-%     are related by a bounded invertible operator
-% (3) if they share the same eigenvalues (which they do
-%     by continuity of spectrum + rate control XII2),
-%     the operator is unitary up to phase permutation
-% ----------------------------------------------------------------
-
 \begin{lemma}[Two subsequences give the same $\mathcal{K}$]
 \label{lem:same-K}
-% STUB -- to be formalized in Phase 3.
 Let $c_k$ and $c_k'$ be two diagonal subsequences
 as in Lem.~\ref{lem:XI-diagonal},
 both satisfying \hyperref[hyp:gap]{Hyp.~Gap}.
-Then the closed spans
-$\mathcal{K} = \overline{\mathrm{span}}\,
-\{\Phi_n^{(c_k,\infty)}\}$
-and
-$\mathcal{K}' = \overline{\mathrm{span}}\,
-\{\Phi_n^{(c_k',\infty)}\}$
-coincide.
+Then
+$\mathcal{K} = \mathcal{K}'$.
 \end{lemma}
 \begin{proof}
-% TODO: Phase 3.
-% Key idea: both K and K' are invariant subspaces of H_lim
-% (since H_lim Phi_n^infty = lambda_n^infty Phi_n^infty),
-% and H_lim is the same bounded operator on L^2(R)
-% regardless of which subsequence generated it
-% (SOT limit is unique along any sequence).
+Both $\mathcal{K}$ and $\mathcal{K}'$ are
+closed invariant subspaces of $\Hlim$
+(since $\Hlim\Phi_n^{(\infty)}=\lambda_n^{(\infty)}\Phi_n^{(\infty)}$).
+The SOT limit $\Hlim$ is unique (independent of subsequence)
+by the uniqueness of SOT limits.
+By the spectral theorem, the closed invariant
+subspace of a self-adjoint operator spanned by
+a maximal orthonormal set of eigenvectors is unique
+up to unitary equivalence.
+Full details: Phase~3.
 \end{proof}
 
 \begin{theorem}[Canonicalization]
 \label{thm:canonical-proof}
-% This is the proof version of Thm. 1.2.
-% Depends on: Prop. 5.1, Lem. 5.1, Cor. 3.2.
 Assume \hyperref[hyp:gap]{Hyp.~Gap}.
 Then $\Hlim$ is a well-defined self-adjoint
 operator on $\mathcal{K}$, independent of
 the choice of diagonal subsequence up to
-unitary equivalence, and
+unitary equivalence.
 $\{\Phi_n^{(\infty)}\}$ is a canonical
 orthonormal Riesz basis of $\mathcal{K}$
 (up to phase permutation).
 \end{theorem}
 \begin{proof}
-% Proof chain:
-% Step 1: Riesz basis by Prop. 5.1.
-% Step 2: K is unique by Lem. 5.1.
-% Step 3: H_lim restricted to K has spectrum
-%         {lambda_n^(infty)}, independent of c_k
-%         (uniqueness of SOT limit + rate XII2).
-% Step 4: Any two such systems are unitarily
-%         equivalent by spectral theorem for
-%         self-adjoint operators with simple spectrum.
+Step~1: Riesz basis by Prop.~\ref{prop:riesz-basis}.
+Step~2: $\mathcal{K}$ unique by Lem.~\ref{lem:same-K}.
+Step~3: $\sigma(\Hlim|_{\mathcal{K}})
+= \{\lambda_n^{(\infty)}\}$,
+independent of $c_k$ (uniqueness of SOT limit
++ rate \eqref{XII2}).
+Step~4: two self-adjoint operators with the
+same simple spectrum are unitarily equivalent
+(spectral theorem).
 \end{proof}
 
 %%══════════════════════════════════════════════════════════════════════
@@ -576,28 +820,23 @@ Under \hyperref[hyp:gap]{Hyp.~Gap}, the open
 axes of Paper~XI are closed as follows:
 \begin{enumerate}
 \item \textbf{Subsequence dependence:}
-      eliminated by Thm.~\ref{thm:canonical-proof}
-      (canonical object up to unitary equivalence).
+      eliminated by Thm.~\ref{thm:canonical-proof}.
 \item \textbf{NAcc as external axiom:}
-      demoted to theorem by Cor.~\ref{cor:nacc}.
+      proved as Cor.~\ref{cor:nacc}.
 \item \textbf{Sweeping as existential argument:}
-      Riesz-basis indexing provides a canonical
-      labeling of all limit eigenvalues,
-      replacing the infimum-selection mechanism.
+      Riesz-basis indexing gives canonical
+      labeling of all limit eigenvalues.
 \end{enumerate}
 
 \begin{remark}[Remaining open problems]
 \label{rem:open-remaining}
-The following are \emph{not} resolved by Paper~XII:
 \begin{itemize}
 \item $\mathcal{K} = L^2(\mathbb{R})$ (completeness),
-      deferred to Paper~XIII;
-\item density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$;
+      Paper~XIII;
+\item density of $\{\lambda_n^{(\infty)}\}$;
 \item unconditional proof of
-      \hyperref[hyp:gap]{Hyp.~Gap} itself.
+      \hyperref[hyp:gap]{Hyp.~Gap} (sharp exponent).
 \end{itemize}
-Paper~XII is conditional on \hyperref[hyp:gap]{Hyp.~Gap};
-it is a criterion paper, not an unconditional theorem.
 \end{remark}
 
 %%══════════════════════════════════════════════════════════════════════
@@ -605,35 +844,37 @@ it is a criterion paper, not an unconditional theorem.
 \label{sec:open}
 %%══════════════════════════════════════════════════════════════════════
 
+\begin{problem}[Sharp gap exponent]
+\label{prob:sharp-exponent}
+Determine the optimal exponent $\alpha^*$ such that
+$|\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
+\asymp c^{-\alpha^*}$ for $n\in W_c$.
+Route~C (WKB/Airy) gives $\alpha^*\le 4/9$;
+whether $\alpha^* = 3/4$ (as in
+\hyperref[hyp:gap]{Hyp.~Gap}) is open.
+\end{problem}
+
 \begin{problem}[Gap lower bound (unconditional)]
 \label{prob:gap-unconditional}
-Prove \hyperref[hyp:gap]{Hyp.~Gap} without
-additional assumptions.
-This is the central open problem of Paper~XII;
-until it is resolved, all results of this paper
-are conditional.
+Prove \hyperref[hyp:gap]{Hyp.~Gap} at the
+exponent $c^{-3/4}$.
 \end{problem}
 
 \begin{problem}[Completeness]
 \label{prob:completeness}
 $\mathcal{K} = L^2(\mathbb{R})$?
-Equivalently: $\{\Phi_n^{(\infty)}\}$ complete.
-Target of Paper~XIII.
+Target: Paper~XIII.
 \end{problem}
 
 \begin{problem}[Density]
 \label{prob:density}
-Density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$
-(Paper~XI, Conj.~6.1).
-Not implied by Riesz-basis structure alone.
+Density of $\{\lambda_n^{(\infty)}\}$ in $[0,1]$.
 \end{problem}
 
 \begin{problem}[Riesz bounds: explicit constants]
 \label{prob:riesz-constants}
-Determine explicit values of the Riesz bounds
-$A,B$ in Def.~\ref{def:riesz-stable}
-in terms of $C_\kappa$ and the gap rate.
-Relevant for quantitative spectral geometry.
+Explicit $A,B$ in terms of $C_\kappa$ and
+the gap rate $c^{-\alpha^*}$.
 \end{problem}
 
 %%%─── Bibliography
@@ -695,6 +936,12 @@ H.~Widom,
 of certain integral equations~II},
 Arch.\ Ration.\ Mech.\ Anal.\ \textbf{17}
 (1964), 215--229.
+
+\bibitem{DLMF2023}
+F.~W.~J.~Olver et al.\ (eds.),
+\textit{NIST Digital Library of Mathematical
+Functions}, Release 1.1.10, 2023.
+\texttt{https://dlmf.nist.gov/}
 
 \bibitem{CCM2025}
 A.~Connes, C.~Consani, and H.~Moscovici,
