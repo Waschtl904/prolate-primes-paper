@@ -113,10 +113,10 @@ statements use only explicit $O(\cdot)$ bounds.
 
 \tableofcontents
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Main Results}
 \label{sec:main}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{theorem}[Main results]
 \label{thm:main}
@@ -160,10 +160,10 @@ be as in Lemma~\ref{lem:diagonal}.
 (D) under Conj.~\ref{conj:density}.
 \end{theorem}
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Notation and Setup}
 \label{sec:setup}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \subsection{Approximation convention}
 
@@ -281,10 +281,10 @@ $E_c\to\emptyset$, no $L^2$-bound survives.
 $\|\Phi_n^{(\infty)}\|=1$ is an output of Paper~IX.
 \end{remark}
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Spectral Inclusion}
 \label{sec:spectral-inclusion}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{lemma}[Non-vanishing]
 \label{lem:nonvanish-limit}
@@ -322,40 +322,56 @@ $\Hlim\,\Phi_n^{(\infty)}
 =\lambda_n^{(\infty)}\,\Phi_n^{(\infty)}$.
 \end{lemma}
 \begin{proof}
-\textbf{Step~1.}
-Since $\Hlim$ is bounded on $L^2(\mathbb{R})$
-(Paper~X, \eqref{XI3}),
-$\Dom(\Hlim)=L^2(\mathbb{R})$,
-hence $\Phi_n^{(\infty)}\in\Dom(\Hlim)$.
-SOT applied pointwise:
-$\mathcal{H}_{c_k}\,\Phi_n^{(\infty)}
-\to\Hlim\,\Phi_n^{(\infty)}$.
-
-\textbf{Step~2.}
-$\mathcal{H}_{c_k}\,\Phi_n^{(\infty)}
-=\mathcal{H}_{c_k}(\Phi_n^{(\infty)}-\Phi_n^{(c_k)})
-+\lambda_n^{(c_k)}\,\Phi_n^{(c_k)}$.
-
-\textbf{Step~3.}
-Lem.~\ref{lem:strong-conv} + \eqref{XI2}:
+Since $\Hlim$ is bounded (Paper~X, \eqref{XI3}),
+$\Dom(\Hlim)=L^2(\mathbb{R})$, so
+$\Phi_n^{(\infty)}\in\Dom(\Hlim)$.
+By Lem.~\ref{lem:strong-conv} and \eqref{XI2},
 $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$ strongly
-(uses Paper~IX via Rem.~\ref{rem:norm-essential}).
+(uses Paper~IX; Rem.~\ref{rem:norm-essential}).
 
-\textbf{Step~4.}
-$\|\mathcal{H}_{c_k}(\Phi_n^{(\infty)}-\Phi_n^{(c_k)})\|
-\le\|\Phi_n^{(\infty)}-\Phi_n^{(c_k)}\|\to 0$.
+We estimate
+\begin{equation}\label{eq:ABC}
+  \|\Hlim\,\Phi_n^{(\infty)}
+  - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|
+  \le A_k + B_k + C_k,
+\end{equation}
+where
+\begin{align*}
+  A_k &:= \|\Hlim\,\Phi_n^{(\infty)}
+           - \mathcal{H}_{c_k}\Phi_n^{(\infty)}\|,\\
+  B_k &:= \|\mathcal{H}_{c_k}
+           (\Phi_n^{(\infty)}-\Phi_n^{(c_k)})\|,\\
+  C_k &:= \|\lambda_n^{(c_k)}\Phi_n^{(c_k)}
+           - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|.
+\end{align*}
+\textbf{$A_k\to 0$:}
+SOT \eqref{XI3} applied pointwise to
+$\Phi_n^{(\infty)}\in L^2$.
 
-\textbf{Step~5.}
+\textbf{$B_k\to 0$:}
+$\|\mathcal{H}_{c_k}\|\le 1$ \eqref{XI3}, so
+$B_k\le\|\Phi_n^{(\infty)}-\Phi_n^{(c_k)}\|\to 0$
+by strong convergence.
+
+\textbf{$C_k\to 0$:}
 $\|\lambda_n^{(c_k)}\Phi_n^{(c_k)}
--\lambda_n^{(\infty)}\Phi_n^{(\infty)}\|
-\to 0$ by \eqref{XI1} + Step~3.
+ - \lambda_n^{(\infty)}\Phi_n^{(\infty)}\|
+\le |\lambda_n^{(c_k)}-\lambda_n^{(\infty)}|
+ + |\lambda_n^{(\infty)}|
+   \|\Phi_n^{(c_k)}-\Phi_n^{(\infty)}\|
+\to 0$
+by \eqref{XI1} and strong convergence.
+
+Since the left-hand side of \eqref{eq:ABC}
+is independent of $k$ and the right-hand side
+tends to $0$, the equation holds.
 \end{proof}
 
 \begin{remark}[Why SOT suffices]
-(i)~$\Dom(\Hlim)=L^2$ (bounded).
+(i)~$\Dom(\Hlim)=L^2$ (bounded operator, Paper~X).
 (ii)~Unit eigenvectors.
 (iii)~$\|\Phi_n^{(\infty)}\|=1$ from Paper~IX
-     (only use of Paper~IX in this paper).
+     (only use of Paper~IX).
 (iv)~Quantitative rate $c^{-1/4}$.
 No resolvent or compactness needed.
 \end{remark}
@@ -390,16 +406,10 @@ Paper~XI's unconditional contribution:
 $\sigma_p(\Hlim)$ non-empty and explicitly identified.
 \end{remark}
 
-\begin{remark}[Spectral bounds]
-Lower: above.
-Upper: $\sigma(\Hlim)\subset[0,1]$ (Paper~X).
-Equality: Section~\ref{sec:density}.
-\end{remark}
-
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Semiclassical Spectral Transfer}
 \label{sec:weyl}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{definition}[Transition bandwidth]
 \label{def:clambda}
@@ -416,52 +426,73 @@ Defined entirely from finite-$c$ data,
 independently of $\{\lambda_n^{(\infty)}\}$.
 \end{definition}
 
+\begin{remark}[Quasi-monotonicity of the transition map]
+\label{rem:quasi-mono}
+The map $c\mapsto\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}$
+is \emph{not} globally monotone:
+the floor causes integer-jumps in the index.
+However, $c\mapsto\lambda_n^{(c)}$ is smooth
+for fixed $n$ (analytic perturbation theory),
+and consecutive index eigenvalues satisfy
+$|\lambda_n^{(c)}-\lambda_{n\pm 1}^{(c)}|
+= O(c^{-1/4})$ in the transition window
+(Slepian counting, \eqref{XI6}).
+Hence, the jumps in the floor-indexed map
+are at most $O(c^{-1/4})$, and the map is
+\emph{piecewise continuous with jumps of
+size $O(c^{-1/4})$}.
+This suffices for the IVT argument of
+Lemma~\ref{lem:sweeping}.
+\end{remark}
+
 \begin{lemma}[Transition sweeping]
 \label{lem:sweeping}
 For every compact $K\subset(0,1)$
 and every $\varepsilon>0$,
-there exists $C_{K,\varepsilon}<\infty$ such that:
+there exists $C_{K,\varepsilon}<\infty$ such that
 for every $\lambda\in K$,
 there exists $c\in[c(\lambda),c(\lambda)+C_{K,\varepsilon}]$
+and an index $n(c)=\lfloor 2c/\pi\rfloor+O(1)$
 with
 \begin{equation}\label{eq:sweeping}
-  \Bigl|\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}
+  \Bigl|\lambda_{n(c)}^{(c)}
   - \lambda\Bigr| < \varepsilon.
 \end{equation}
-In particular, the transition eigenvalue
-$c\mapsto\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}$
-sweeps any compact subset of $(0,1)$ as $c\to\infty$.
+In particular, the Slepian transition eigenvalues
+cover any compact subset of $(0,1)$ as $c\to\infty$.
 \end{lemma}
 \begin{proof}
-The Slepian logistic profile
-(Widom~\cite{Widom1964},
-Osipov--Rokhlin--Xiao~\cite{Osipov2013}, Ch.~3)
-shows that
-$c\mapsto\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}$
-is continuous in $c$.
-By definition of $c(\lambda)$,
-$\lambda_{\lfloor 2c(\lambda)/\pi\rfloor}^{(c(\lambda))}
-\le\lambda$
-and for $c$ slightly below $c(\lambda)$
-the transition eigenvalue exceeds $\lambda$.
-Continuity and the intermediate value theorem
-give existence of $c$ near $c(\lambda)$
-satisfying \eqref{eq:sweeping}.
+By \eqref{XI6}, for each $c$ there exist
+$O(\log c)$ indices near $2c/\pi$ with
+$\lambda_n^{(c)}\in[\varepsilon_0,1-\varepsilon_0]$.
+Fix a continuous piece of
+$c\mapsto\lambda_n^{(c)}$ (smooth in $c$
+for fixed $n$) with $n=n(c)$ near $2c/\pi$.
+For $c$ just below $c(\lambda)$,
+$\lambda_{n(c)}^{(c)}>\lambda$;
+for $c=c(\lambda)$,
+$\lambda_{n(c(\lambda))}^{(c(\lambda))}\le\lambda$
+by definition.
+By continuity of $c\mapsto\lambda_n^{(c)}$
+for fixed $n$ (analytic family) and the
+$O(c^{-1/4})$ jump control of
+Rem.~\ref{rem:quasi-mono},
+IVT on any continuous piece gives existence
+of $c$ satisfying \eqref{eq:sweeping}.
 Uniformity on compact $K$ follows from
-compactness and continuity of $c(\lambda)$
-in $\lambda$ (Landau--Pollak~\cite{LandauPollak1962},
-Slepian--Pollak~\cite{Slepian1961}).
+compactness and the logistic profile
+\cite{Widom1964,Osipov2013}.
 \end{proof}
 
 \begin{remark}[Why IVT alone is insufficient]
 \label{rem:IVT-insufficient}
 For fixed $c$, IVT gives attainment of every
 $\mu\in(0,1)$ by \emph{some} $\lambda_n^{(c)}$,
-but not by the transition eigenvalue
-$\lambda_{\lfloor 2c/\pi\rfloor}^{(c)}$
-specifically.
-Lemma~\ref{lem:sweeping} controls the
-transition index as $c$ varies.
+but not by a transition-window index
+$n\approx 2c/\pi$ specifically.
+Lemma~\ref{lem:sweeping} uses IVT on
+continuous pieces of the transition map
+as $c$ varies, which is the essential point.
 \end{remark}
 
 \begin{lemma}[Existence and monotonicity of $c(\lambda)$]
@@ -473,8 +504,9 @@ $c(\lambda)$ is non-decreasing in $\lambda$.
 \begin{proof}
 Finiteness: Lem.~\ref{lem:sweeping}.
 Positivity: for small $c$ the transition
-eigenvalue exceeds $\lambda$.
-Monotonicity: inclusion of sets.
+eigenvalue exceeds $\lambda$
+(\eqref{XI6}, $c\to 0$).
+Monotonicity: inclusion of sets in \eqref{eq:clambda}.
 \end{proof}
 
 \begin{definition}[Counting function]
@@ -492,14 +524,20 @@ $m\ne n\implies\lambda_m^{(\infty)}
 \ne\lambda_n^{(\infty)}$.
 \end{hypothesis}
 
-\begin{remark}[SOH $=$ absence of spectral collapse]
+\begin{remark}[SOH implies absence of spectral collapse]
 \label{rem:SOH-essential}
-SOH is \emph{equivalent} to:
-\begin{quote}
-  No $\lambda\in(0,1)$ is the limit of
-  infinitely many distinct
-  $\lambda_n^{(\infty)}$.
-\end{quote}
+SOH (injectivity of the spectral labeling)
+\emph{implies} absence of spectral collapse:
+no $\lambda\in(0,1)$ can be the limit of
+infinitely many distinct $\lambda_n^{(\infty)}$,
+for if it were, injectivity would fail at every
+accumulation point.
+The converse --- absence of spectral collapse
+implying SOH --- may require additional
+compactness or uniform gap assumptions
+(e.g.\ \eqref{eq:gap-lower})
+and is not claimed here.
+
 Without SOH, the limiting spectrum could undergo
 \emph{spectral collapse}: infinitely many
 eigenvalues accumulating at a single point,
@@ -507,10 +545,9 @@ causing $N(\lambda)$ to be infinite,
 the transfer index $n(\lambda)$ to be ambiguous
 beyond $O(1)$, and Theorem~\ref{thm:weyl}
 to break entirely.
-SOH is therefore not a technical simplification
-but a \emph{structural} condition on the limit:
-it asserts that the limiting spectral measure
-has no atoms of infinite multiplicity.
+SOH is therefore a \emph{structural} condition
+asserting that the limiting spectral measure
+carries no atoms of infinite multiplicity.
 It would follow from the uniform gap bound
 \begin{equation}\label{eq:gap-lower}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
@@ -545,11 +582,13 @@ with $c(\lambda)$ from Def.~\ref{def:clambda}:
         = \Bigl\lfloor\tfrac{2}{\pi}c(\lambda)\Bigr\rfloor
           + O(\log c(\lambda)).
       \end{equation}
-      The Slepian bandwidth index
-      $\lfloor 2c(\lambda)/\pi\rfloor$
-      is (up to $O(\log c)$ ambiguity)
-      the correct label for the limiting eigenvalue
-      closest to $\lambda$.
+      This is a form of \emph{inverse spectral
+      localization}: the Slepian bandwidth index
+      $\lfloor 2c(\lambda)/\pi\rfloor$ recovers
+      (up to $O(\log c)$ ambiguity) the correct
+      label for the limiting eigenvalue closest
+      to $\lambda$.
+      It is \emph{not} a classical Weyl counting law.
 \item \textbf{(Transition window.)}
       For $\lambda\in[\varepsilon,1{-}\varepsilon]$:
       $N(\lambda)-N(\lambda-\varepsilon)
@@ -565,9 +604,9 @@ with $c(\lambda)$ from Def.~\ref{def:clambda}:
 \textbf{(a).}
 Apply Lem.~\ref{lem:sweeping} with
 $K=\{\lambda\}$ and $\varepsilon_0:=c(\lambda)^{-1/4}$:
-there exists $c_*\in[c(\lambda),c(\lambda)+C]$
-with $|\lambda_{n_0}^{(c_*)}-\lambda|<\varepsilon_0$,
-where $n_0:=\lfloor 2c_*/\pi\rfloor$.
+there exist $c_*\in[c(\lambda),c(\lambda)+C]$
+and $n_0=\lfloor 2c_*/\pi\rfloor+O(1)$
+with $|\lambda_{n_0}^{(c_*)}-\lambda|<\varepsilon_0$.
 The transition window for $c_*$ has
 $O(\log c_*)=O(\log c(\lambda))$ elements
 (\eqref{XI6}).
@@ -587,7 +626,7 @@ $\lambda_0^{(\infty)}=\lim_k\lambda_0^{(c_k)}$.
 \label{rem:weyl-existential}
 We exhibit one index near $2c(\lambda)/\pi$
 whose limit eigenvalue is close to $\lambda$.
-The global law
+The global counting law
 $N(\lambda)\sim\frac{2}{\pi}c(\lambda)$
 would additionally require:
 uniform continuity of $c(\lambda)$ in $\lambda$
@@ -602,17 +641,10 @@ Non-trivial: two apriori unrelated scales
 coincide with explicit $O(\log c)$ error.
 \end{remark}
 
-\begin{remark}[Not a classical Weyl law]
-$\Hlim$ not compact;
-$N(\lambda)$ finite only under SOH.
-Semiclassical index transfer, not compact
-eigenvalue counting.
-\end{remark}
-
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Density Criterion}
 \label{sec:density}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{theorem}[Density criterion]
 \label{thm:density-criterion}
@@ -632,10 +664,10 @@ Under density, $\sigma(\Hlim)$ has no isolated
 points in $(0,1)$.
 \end{corollary}
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{The Density Question}
 \label{sec:density-question}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{conjecture}[Density]
 \label{conj:density}
@@ -684,10 +716,10 @@ $\{\lambda_n^{(\infty)}\}\cap[1{-}\delta,1)
 \end{proposition}
 \begin{proof}\eqref{XI6} + \eqref{XI1}.\end{proof}
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Open Problems}
 \label{sec:open-problems}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 \begin{problem}[Density]
 \label{prob:density}
@@ -699,7 +731,7 @@ equivalent to two-parameter coverage
 \begin{problem}[Spectral Ordering / No collapse]
 \label{prob:SOH}
 Prove Hyp.~\ref{hyp:SOH}
-(absence of spectral collapse);
+(SOH, which implies absence of spectral collapse);
 follows from \eqref{eq:gap-lower}.
 \end{problem}
 
@@ -738,10 +770,10 @@ both needed for Hilbert--P\'olya.
 qualifiers.
 \end{remark}
 
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 \section{Outlook}
 \label{sec:outlook}
-%%═══════════════════════════════════════════════════════════════════
+%%══════════════════════════════════════════════════════════════════════
 
 Papers~I--XI reduce the Hilbert--P\'olya program
 to four independent structural conditions;
@@ -751,7 +783,7 @@ being established:
 \item \textbf{Density} (\ref{prob:density}).
 \item \textbf{Completeness} (\ref{prob:completeness}).
 \item \textbf{No spectral collapse}
-      (Hyp.~\ref{hyp:SOH}).
+      (Hyp.~\ref{hyp:SOH} + Rem.~\ref{rem:SOH-essential}).
 \item \textbf{Uniqueness} (\ref{prob:uniqueness}).
 \end{enumerate}
 Under (1)--(4) plus CCM (\cite{CCM2025}),
