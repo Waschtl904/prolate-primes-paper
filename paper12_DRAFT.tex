@@ -36,13 +36,31 @@ spectral gap, limiting operator, Riesz basis}
 
 \begin{document}
 
-\title[Spectral Projection Stability for the Limiting PSWF System]{%
-  Spectral Projection Stability and the Bridge\\
-  to Completeness for the Limiting PSWF Operator}
+\title[Spectral Projection Stability for Strongly Convergent Operators]{%
+  Spectral Projection Stability for Strongly Convergent Operators:\\
+  A Reduction via Spectral Gap Control}
 
 \author{[Author]}
 \address{[Address]}
 \email{[Email]}
+
+\begin{abstract}
+We identify the precise conditions under which strong operator convergence
+$A_k \xrightarrow{\mathrm{SOT}} A$ upgrades to norm convergence of
+rank-one spectral projections.
+The key mechanism is a rank-one specialisation of the Davis--Kahan
+$\sin\Theta$ theorem: if the operator residual on a limit eigenvector
+decays faster than the local spectral gap of the approximating operator,
+then the corresponding spectral projections converge in norm.
+We apply this to the prolate spheroidal wave function (PSWF) concentration
+operators $\mathcal{H}_{c_k} \xrightarrow{\mathrm{SOT}} \Hlim$,
+reducing the projection stability problem to two explicit asymptotic
+hypotheses (Gap-S and SOT-Faster).
+This paper does not prove these hypotheses; it identifies them as the
+precise missing mechanism in the chain
+$\mathrm{SOT} \Rightarrow \text{projection stability}
+\Rightarrow \text{completeness}$.
+\end{abstract}
 
 \maketitle
 
@@ -53,9 +71,15 @@ spectral gap, limiting operator, Riesz basis}
 \subsection{Context and goal}
 
 This paper occupies a specific position in the series:
-it provides the bridge between
-the strong operator convergence of Paper~X
-and the completeness result of Paper~XIII.
+it \emph{identifies the precise missing mechanism}
+and reduces the problem of spectral projection stability
+to two explicit asymptotic hypotheses.
+
+\begin{center}\itshape
+SOT convergence produces approximate eigenvectors\\
+but provides no control on the residual relative to the spectral gap.\\
+This is the exact obstruction this paper identifies and bridges.
+\end{center}
 
 Paper~X establishes that the PSWF concentration
 operators $\mathcal{H}_{c_k}$ converge in the
@@ -81,62 +105,42 @@ but provides no control on the residual
 Without such control, spectral isolation
 cannot be invoked, and projection convergence
 cannot be concluded.
-This is exactly the gap this paper identifies
-and bridges.
+This paper identifies the precise additional
+conditions that close this gap, reducing the
+problem to two explicit hypotheses.
 
-The central result (Thm.~\ref{thm:convergence})
-establishes $\|\Pnck - \Pninf\|\to 0$
-under two conditions:
+The central results are:
 \begin{itemize}
-\item \hyperref[hyp:gap-structural]{Gap-S}:
-  an effective asymptotic gap condition
-  in the transition window $W_c$,
-  $\lim_{c\to\infty} c^{-1/4}/g(c)=0$;
-\item \hyperref[hyp:sot-faster]{SOT-Faster}:
-  $\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|
-  =o(g(c_k))$ as $k\to\infty$,
-  a local spectral stability condition
-  (see Rem.~\ref{rem:sot-faster-resolvent}).
-\end{itemize}
-Neither condition requires any bound on
-$\|\mathcal{H}_{c_k}-\Hlim\|$.
-
-\subsection{Main results}
-
-\begin{itemize}
-\item \textbf{Theorem~\ref{thm:convergence}
-  (Convergence):}
-  Under Gap-S and SOT-Faster,
-  $\|\Pnck - \Pninf\|\to 0$.
-
-\item \textbf{Theorem~\ref{thm:rate}
-  (Rate):}
-  Under the additional
+\item \textbf{Thm.~\ref{thm:abstract}
+  (Abstract Stability Principle):}
+  an operator-theoretic implication valid for
+  any sequence of bounded self-adjoint operators
+  satisfying approximate eigenvector $+$
+  gap-dominated residual conditions.
+\item \textbf{Thm.~\ref{thm:convergence}
+  (PSWF application):}
+  under Gap-S and SOT-Faster,
+  $\|P_n^{(c_k)} - P_n^{(\infty)}\|\to 0$.
+\item \textbf{Thm.~\ref{thm:rate}
+  (Rate):} under the additional
   \hyperref[hyp:sot-rate]{Hyp.~SOT-Rate},
-  $\|\Pnck-\Pninf\|
-  \le C C_\kappa c_k^{-1/4}/g(c_k)$,
-  uniformly in $n\le\kappa c_k$.
+  $\|P_n^{(c_k)}-P_n^{(\infty)}\|
+  \le C C_\kappa c_k^{-1/4}/g(c_k)$.
 \end{itemize}
 
-\begin{remark}[Core contribution
-  and abstract structure]
-\label{rem:conditions}
-Theorem~\ref{thm:convergence} is an
-\emph{abstract operator-theoretic
-implication}:
-it holds for any sequence of bounded
-self-adjoint operators satisfying the
-stated hypotheses.
-All PSWF-specific content of the paper
-is encoded in Hypotheses~Gap-S and
-SOT-Faster; the operator-theoretic
-mechanism --- approximate eigenvector
-$+$ spectral isolation $\Rightarrow$
-projection convergence --- is
-a rank-one specialisation of the
-Davis--Kahan $\sin\Theta$ theorem
-(Lem.~\ref{lem:approx-eig},
-Rem.~\ref{rem:perturbation-mechanism}).
+\begin{remark}[Scope: reduction, not resolution]
+\label{rem:scope}
+This paper does \emph{not} prove projection
+stability unconditionally.
+It identifies the precise missing mechanism
+and reduces the problem to two hypotheses
+(Gap-S, SOT-Faster), both currently unproved.
+The Abstract Stability Principle
+(Thm.~\ref{thm:abstract}) is fully rigorous
+as an operator-theoretic statement;
+the PSWF content is encoded entirely in
+Hypotheses~\ref{hyp:gap-structural}
+and~\ref{hyp:sot-faster}.
 \end{remark}
 
 \subsection{What this paper does \emph{not} claim}
@@ -166,8 +170,10 @@ X   & SOT: $\mathcal{H}_c
 XI  & Diagonal system
   $\{\Phi_n^{(\infty)},\lambda_n^{(\infty)}\}$
   & Final\\
-\textbf{XII} & \textbf{Projection stability;
-  bridge to XIII} & \textbf{This paper}\\
+\textbf{XII} & \textbf{Reduction:
+  projection stability}
+  \textbf{$\Leftrightarrow$ Gap-S + SOT-Faster}
+  & \textbf{This paper}\\
 XIII& Completeness $\mathcal{K}=L^2$
   & Planned\\
 \bottomrule
@@ -176,26 +182,22 @@ XIII& Completeness $\mathcal{K}=L^2$
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
-\item Central result: Thm.~\ref{thm:convergence};
-  abstract structure in Rem.~\ref{rem:conditions};
+\item Abstract Stability Principle:
+  Thm.~\ref{thm:abstract}, Sec.~\ref{sec:abstract}.
+\item PSWF application:
+  Thm.~\ref{thm:convergence}, Sec.~\ref{sec:main};
   proof in Sec.~\ref{sec:proj}.
 \item Key mechanism: Lem.~\ref{lem:approx-eig}
-  (Davis--Kahan rank-one specialisation)
   and Rem.~\ref{rem:perturbation-mechanism}.
 \item Eigenvalue matching:
   Lem.~\ref{lem:eigenvalue-matching}.
-\item Hypotheses Gap-S
-  (\ref{hyp:gap-structural}) and SOT-Faster
-  (\ref{hyp:sot-faster}):
+\item Hypotheses Gap-S (\ref{hyp:gap-structural})
+  and SOT-Faster (\ref{hyp:sot-faster}):
   Sec.~\ref{sec:gap};
-  heuristic motivation: Sec.~\ref{sec:heuristic}.
-\item Conditional rate Thm.~\ref{thm:rate}:
-  SOT-Rate (\ref{hyp:sot-rate}),
-  clearly flagged.
-\item Riesz corollary explicitly trivial:
+  heuristic: Sec.~\ref{sec:heuristic}.
+\item Riesz corollary (trivial):
   Sec.~\ref{sec:riesz-trivial}.
-\item All open problems tiered
-  (conjecture vs.\ technical):
+\item Open problems (tiered):
   Sec.~\ref{sec:open}.
 \end{itemize}
 
@@ -241,12 +243,8 @@ all $k$ with $n\le\kappa c_k$:
 \end{equation}
 In particular, $\lambda_n^{(c_k)}\to
 \lambda_n^{(\infty)}$ as $k\to\infty$,
-and the spectral labeling along the
-diagonal subsequence is consistent:
-the $n$-th eigenvalue of $\mathcal{H}_{c_k}$
-converges to the $n$-th eigenvalue of
-$\Hlim$ in the ordering inherited from
-Paper~XI.
+and spectral labeling along the
+diagonal subsequence is consistent.
 \end{lemma}
 \begin{proof}
 Direct from \eqref{A1}.
@@ -288,22 +286,23 @@ uniformly in $n\in W_c$:
 \end{equation}
 \end{hypothesis}
 
-\begin{remark}[Scope and effective
-  interpretation of Gap-S]
+\begin{remark}[Scope and interpretation
+  of Gap-S]
 \label{rem:gap-scope}
+Gap-S is a uniform lower bound on the
+spectral gap \emph{along the chosen
+diagonal subsequence}, not a pointwise
+bound for all indices.
 The restriction to $W_c$ is essential:
 bulk eigenvalues (near $0$ or $1$)
-have exponentially small gaps
-not uniformly bounded below by $g(c)$,
-but these indices do not appear in the
-diagonal subsequence of Paper~XI.
-Within the transition window,
-Widom-type asymptotics~\cite{Widom1964}
-predict average spacing $\sim(\log c)^{-1}$,
-so Gap-S with $g(c)=(\log c)^{-1}$
-is an \emph{effective asymptotic} condition
---- a lower bound on the typical gap
-rather than a deterministic infimum ---
+have exponentially small individual gaps
+and do not appear in the diagonal
+subsequence of Paper~XI.
+Within $W_c$, Widom-type asymptotics
+\cite{Widom1964} predict average spacing
+$\sim(\log c)^{-1}$;
+Gap-S with $g(c)=(\log c)^{-1}$
+is thus an effective asymptotic condition
 consistent with known PSWF spectral theory.
 A rigorous deterministic lower bound
 remains Open Problem~\ref{prob:sharp-gc}.
@@ -313,7 +312,7 @@ remains Open Problem~\ref{prob:sharp-gc}.
 \label{rem:gap-implies-o}
 Condition \eqref{eq:gap-dominates} is
 equivalent to $c^{-1/4}=o(g(c))$
-as $c\to\infty$, cited explicitly in
+as $c\to\infty$, used explicitly in
 the proof of Thm.~\ref{thm:convergence}.
 \end{remark}
 
@@ -332,42 +331,43 @@ subsequence of Lem.~\ref{lem:inherited}:
 \end{hypothesis}
 
 \begin{remark}[SOT-Faster as local
-  resolvent stability]
+  resolvent stability and scale condition]
 \label{rem:sot-faster-resolvent}
-SOT (Paper~X) gives $\varepsilon_n(k)\to 0$,
-but no rate.
-SOT-Faster is quantitatively stronger:
-it requires the operator residual on
-the \emph{fixed limit eigenvector}
-$\Phi_n^{(\infty)}$ to decay faster than
-the spectral gap of the
-\emph{approximating operator}
+SOT-Faster is quantitatively stronger
+than SOT in a precise sense:
+it requires the operator residual on the
+fixed limit eigenvector $\Phi_n^{(\infty)}$
+to be \emph{asymptotically negligible
+relative to the local spectral scale}
+of the approximating operator
 $\mathcal{H}_{c_k}$.
-This is in spirit a
+This is a scale condition, not merely
+a smallness condition:
+$\varepsilon_n(k)\to 0$ is not sufficient;
+the rate must dominate the gap $g(c_k)$.
+In spirit, SOT-Faster is a
 \emph{local resolvent stability condition}
-at the eigenvalue $\lambda_n^{(c_k)}$:
-it would follow, for example, from
-uniform control of
+at the $n$-th eigenvalue:
+it would follow from uniform control of
 $\|(\mathcal{H}_{c_k}-z)^{-1}
 -(\Hlim-z)^{-1}\|$
-on the $n$-th spectral scale,
+restricted to the $n$-th spectral scale,
 which is norm-resolvent information
-restricted to a single eigenvalue.
+localised to a single eigenvalue.
 Proving this rigorously is
-Open Problem~\ref{prob:sot-faster};
-Sec.~\ref{sec:heuristic} presents
-evidence consistent with it
-in the PSWF setting.
+Open Problem~\ref{prob:sot-faster}.
 \end{remark}
 
 \begin{remark}[SOT-Faster is the
   core difficulty]
 \label{rem:sot-faster-core}
-SOT-Faster is not a technical side condition:
-it encapsulates \emph{the entire difficulty}
-of upgrading SOT convergence to
-norm convergence of rank-one
+SOT-Faster encapsulates \emph{the entire
+difficulty} of upgrading SOT convergence
+to norm convergence of rank-one
 spectral projections.
+SOT (Paper~X) alone gives
+$\varepsilon_n(k)\to 0$,
+but no comparison with $g(c_k)$.
 \end{remark}
 
 \begin{hypothesis}[SOT rate on
@@ -407,12 +407,11 @@ of $\mathcal{H}_{c_k}$:
 The diagonal term $m=n$ contributes
 $\le C_\kappa^2 c_k^{-1/2}$ by \eqref{A1}.
 If off-diagonal overlaps are small
-for $m\ne n$ (consistent with Gap-S;
-see Sec.~\ref{sec:heuristic}),
-then the sum is dominated by $m=n$,
+for $m\ne n$ (consistent with Gap-S),
+the sum is dominated by $m=n$,
 predicting $\varepsilon_n(k)=O(c_k^{-1/4})$.
-This is formally consistent with SOT-Rate,
-but does not constitute rigorous evidence;
+This is formally consistent with SOT-Rate
+but not rigorous evidence;
 it requires off-diagonal overlap estimates
 (Open Problem~\ref{prob:off-diagonal}).
 \end{remark}
@@ -435,8 +434,87 @@ is a global claim not derivable from
 $\Lc$ alone.
 \end{proof}
 
-%%══ 4. MAIN THEOREMS
-\section{Main Theorems}
+%%══ 4. ABSTRACT STABILITY PRINCIPLE
+\section{Abstract Stability Principle}
+\label{sec:abstract}
+
+The following theorem is purely
+operator-theoretic and requires no
+knowledge of PSWFs.
+It is stated in full generality to
+make explicit that the PSWF application
+(Thm.~\ref{thm:convergence}) is an
+instance of a universal mechanism.
+
+\begin{theorem}[Abstract Stability Principle]
+\label{thm:abstract}
+Let $\mathcal{H}$ be a Hilbert space and
+let $\{A_k\}$, $A$ be bounded self-adjoint
+operators on $\mathcal{H}$ with
+$A_k\xrightarrow{\mathrm{SOT}} A$.
+Let $\phi\in\mathcal{H}$, $\|\phi\|=1$,
+with $A\phi = \lambda\phi$ for some
+$\lambda\in\mathbb{R}$, simple in $\sigma(A)$.
+Let $P^\infty$ denote the rank-one
+spectral projection of $A$ onto $\ker(A-\lambda)$.
+
+Suppose there exist $\gamma_k>0$ such that
+$\lambda_k:=\lambda_k(A_k)$ is a simple
+eigenvalue of $A_k$ with
+\begin{equation}\label{eq:abstract-gap}
+  \mathrm{dist}\!\bigl(\lambda_k,\,
+  \sigma(A_k)\setminus\{\lambda_k\}\bigr)
+  \ge\gamma_k > 0,
+\end{equation}
+and suppose:
+\begin{equation}\label{eq:abstract-sot-faster}
+  \frac{\|(A_k - A)\phi\|}{\gamma_k}
+  + \frac{|\lambda_k-\lambda|}{\gamma_k}
+  \to 0
+  \quad\text{as }k\to\infty.
+\end{equation}
+Let $P_k$ denote the rank-one spectral
+projection of $A_k$ onto $\ker(A_k-\lambda_k)$.
+Then:
+\[
+  \|P_k - P^\infty\| \to 0
+  \quad\text{as }k\to\infty.
+\]
+\end{theorem}
+\begin{proof}
+Set $\varepsilon_k:=\|(A_k-A)\phi\|$
+and $\delta_k:=|\lambda_k-\lambda|$.
+By the triangle inequality:
+\[
+  \|(A_k-\lambda_k)\phi\|
+  \le \varepsilon_k + \delta_k.
+\]
+Since $\lambda_k$ is a simple eigenvalue
+of $A_k$ with spectral gap $\gamma_k$,
+Lem.~\ref{lem:approx-eig} gives
+$\|(I-P_k)\phi\|\le(\varepsilon_k+\delta_k)/\gamma_k\to 0$.
+The rank-one identity then yields
+$\|P_k-P^\infty\|\to 0$
+(see proof of Thm.~\ref{thm:convergence}
+for the algebraic details).
+\end{proof}
+
+\begin{remark}[What Thm.~\ref{thm:abstract}
+  really says]
+\label{rem:abstract-meaning}
+Theorem~\ref{thm:abstract} makes precise:
+\emph{norm convergence of spectral projections
+does not require operator norm convergence ---
+only local control of the residual and
+eigenvalue shift relative to the spectral gap
+of the approximating operator.}
+This is a local version of
+norm-resolvent convergence restricted to
+a single eigenvalue.
+\end{remark}
+
+%%══ 5. PSWF APPLICATION: MAIN THEOREMS
+\section{PSWF Application: Main Theorems}
 \label{sec:main}
 
 \begin{theorem}[Spectral projection
@@ -454,11 +532,9 @@ for all large $k$:
 In particular:
 \begin{enumerate}[\rm(i)]
 \item $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
-  strongly as $k\to\infty$, up to phase
-  (Rem.~\ref{rem:phase}).
+  strongly as $k\to\infty$, up to phase.
 \item $\{\lambda_n^{(\infty)}\}$ has no
-  accumulation point in $(0,1)$
-  (Cor.~\ref{cor:nacc}).
+  accumulation point in $(0,1)$.
 \end{enumerate}
 \end{theorem}
 
@@ -477,7 +553,6 @@ where $C>0$ is universal.
 
 \begin{remark}[Phase convention]
 \label{rem:phase}
-For rank-one projections,
 $\|P_n^{(c_k)}-P_n^{(\infty)}\|\to 0$
 implies $\Phi_n^{(c_k)}
 \to e^{i\theta_n^{(k)}}\Phi_n^{(\infty)}$
@@ -487,8 +562,8 @@ $\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$,
 valid for all large $k$.
 \end{remark}
 
-%%══ 5. PROOF
-\section{Proof of the Main Theorems}
+%%══ 6. PROOFS
+\section{Proofs}
 \label{sec:proj}
 
 \begin{lemma}[Approximate eigenvector
@@ -498,28 +573,31 @@ valid for all large $k$.
   cf.\ \cite{DavisKahan1970,Kato1966}]
 \label{lem:approx-eig}
 Let $A$ be a bounded self-adjoint operator
-and $\lambda$ a simple eigenvalue of $A$
-with
+and $\lambda$ a \emph{simple} eigenvalue
+of $A$ with spectral gap
 $\gamma:=\mathrm{dist}(\lambda,
 \spc{A}\setminus\{\lambda\})>0$.
+Since $\lambda$ is simple,
+$P_n^A$ is rank-one and the
+reduced resolvent
+$(A-\lambda)^{-1}\big|_{\mathrm{ran}(I-P_n^A)}$
+is bounded with norm $\le 1/\gamma$.
 Let $\phi\in\mathcal{H}$, $\|\phi\|=1$,
 with $\|(A-\lambda)\phi\|\le\varepsilon$.
 Then:
 \begin{equation}\label{eq:approx-eig-bound}
   \|(I-P_n^A)\phi\|
-  \le\frac{\varepsilon}{\gamma},
+  \le\frac{\varepsilon}{\gamma}.
 \end{equation}
-where $P_n^A$ is the rank-one spectral
-projection of $A$ onto $\ker(A-\lambda)$.
 \end{lemma}
 \begin{proof}
 Write $\phi = P_n^A\phi + (I-P_n^A)\phi$.
 Since $(A-\lambda)P_n^A=0$:
 $(A-\lambda)\phi = (A-\lambda)(I-P_n^A)\phi$.
 On $\mathrm{ran}(I-P_n^A)$,
-$\|(A-\lambda)^{-1}\|\le 1/\gamma$,
-so
-$\|(I-P_n^A)\phi\|
+$\|(A-\lambda)^{-1}\|\le 1/\gamma$
+(by simplicity of $\lambda$),
+so $\|(I-P_n^A)\phi\|
 \le\gamma^{-1}\|(A-\lambda)\phi\|
 \le\varepsilon/\gamma$.
 \end{proof}
@@ -532,15 +610,15 @@ $\sin\Theta$ theorem~\cite{DavisKahan1970}:
 \emph{an approximate eigenvector whose
 residual is smaller than the spectral gap
 must concentrate on the true eigenspace}.
-The gap $\gamma$ in Lem.~\ref{lem:approx-eig}
-is applied to $A=\mathcal{H}_{c_k}$,
-not to $\Hlim$:
-it is the gap of the \emph{approximating}
-operator that provides spectral isolation,
-and Gap-S supplies this via \eqref{eq:gap-s}.
+The gap $\gamma$ is applied to
+$A=\mathcal{H}_{c_k}$ (not $\Hlim$):
+Gap-S supplies the gap of the
+\emph{approximating} operator,
+which is the relevant quantity for
+spectral isolation.
 SOT-Faster then ensures
-$\varepsilon_n(k)/g(c_k)\to 0$
-as $k\to\infty$, activating the mechanism.
+$\varepsilon_n(k)/g(c_k)\to 0$,
+activating the mechanism.
 \end{remark}
 
 \begin{lemma}[SOT gives approximate
@@ -559,37 +637,25 @@ No rate on $\varepsilon_n(k)$ is claimed.
 \begin{proof}
 Since $\Hlim\Phi_n^{(\infty)}
 =\lambda_n^{(\infty)}\Phi_n^{(\infty)}$,
-we have $\varepsilon_n(k)
-=\|(\mathcal{H}_{c_k}-\Hlim)
-\Phi_n^{(\infty)}\|\to 0$
-by SOT~\eqref{eq:sot} applied to the
-fixed vector $f=\Phi_n^{(\infty)}$.
+SOT~\eqref{eq:sot} applied to
+$f=\Phi_n^{(\infty)}$ gives the result.
 \end{proof}
 
 \begin{proof}[Proof of
   Thm.~\ref{thm:convergence}]
 Fix $n\in W_{c_k}$ for all large $k$.
-By Lem.~\ref{lem:sot-approx} and the
-triangle inequality, using the
-explicit eigenvalue matching of
+By Lem.~\ref{lem:sot-approx} and
 Lem.~\ref{lem:eigenvalue-matching}:
 \begin{equation}\label{eq:eps-tilde}
   \tilde\varepsilon_n(k) :=
   \|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
   \Phi_n^{(\infty)}\|
-  \le \varepsilon_n(k)
-  + |\lambda_n^{(\infty)}-\lambda_n^{(c_k)}|
+  \le \underbrace{\varepsilon_n(k)}_{\text{SOT term}}
+  + \underbrace{|\lambda_n^{(\infty)}
+    -\lambda_n^{(c_k)}|}_{\text{eigenvalue shift}}
   \le \varepsilon_n(k) + C_\kappa c_k^{-1/4}.
 \end{equation}
-Here $\tilde\varepsilon_n(k)$ is the
-residual of $\Phi_n^{(\infty)}$ as
-approximate eigenvector of
-$\mathcal{H}_{c_k}$ at eigenvalue
-$\lambda_n^{(c_k)}$;
-the spectral parameter shift from
-$\lambda_n^{(\infty)}$ to $\lambda_n^{(c_k)}$
-is controlled by Lem.~\ref{lem:eigenvalue-matching}.
-Dividing by $g(c_k)>0$ (Gap-S):
+Dividing by $g(c_k)>0$:
 \begin{equation}\label{eq:ratio-to-zero}
   \frac{\tilde\varepsilon_n(k)}{g(c_k)}
   \le
@@ -601,8 +667,10 @@ Dividing by $g(c_k)>0$ (Gap-S):
     {g(c_k)}}_{\to\,0
     \;\text{(Rem.~\ref{rem:gap-implies-o})}}
   \to 0
-  \quad\text{as }k\to\infty.
+  \quad\text{as }k\to\infty,
 \end{equation}
+where both terms vanish independently
+as $k\to\infty$.
 Since $\lambda_n^{(c_k)}$ is a simple
 eigenvalue of $\mathcal{H}_{c_k}$
 with spectral gap $\ge g(c_k)$
@@ -653,9 +721,10 @@ $\{\lambda_n^{(\infty)}\}$ has no
 accumulation point in $(0,1)$.
 \end{corollary}
 \begin{proof}
-Eigenvalues $\lambda_n^{(c)}$ are strictly
-ordered in $n$~\cite{Slepian1961}.
-Fix $\mu\in(0,1)$, $r>0$;
+Since eigenvalues $\lambda_n^{(c)}$ are
+strictly ordered in $n$
+(Slepian--Pollak~\cite{Slepian1961}),
+fix $\mu\in(0,1)$, $r>0$;
 choose $k_0$ with
 $C_\kappa c_{k_0}^{-1/4}<r/2$.
 Then $\lambda_n^{(\infty)}\in(\mu-r,\mu+r)$
@@ -666,14 +735,14 @@ at most $\lceil 3r/g(c_{k_0})\rceil<\infty$
 eigenvalues lie in this interval.
 \end{proof}
 
-%%══ 6. RIESZ COROLLARY
+%%══ 7. RIESZ COROLLARY
 \section{The Riesz-Basis Corollary
   (Explicit Trivialization)}
 \label{sec:riesz-trivial}
 
 \begin{remark}
 The property below follows from
-orthonormality (\eqref{A3}) alone
+orthonormality \eqref{A3} alone
 and is not the contribution of this paper.
 \end{remark}
 
@@ -687,7 +756,7 @@ of $\mathcal{K}:=\overline{\mathrm{span}}
 Orthonormality from \eqref{A3}.
 \end{proof}
 
-%%══ 7. CANONICALIZATION
+%%══ 8. CANONICALIZATION
 \section{Canonicalization (Conditional)}
 \label{sec:canonical}
 
@@ -719,7 +788,7 @@ $\Hlim$ is canonical on $\mathcal{K}$
 up to unitary equivalence.
 \end{theorem}
 
-%%══ 8. HEURISTIC
+%%══ 9. HEURISTIC
 \section{Heuristic Motivation of Gap-S
   and SOT-Faster}
 \label{sec:heuristic}
@@ -736,48 +805,48 @@ in the transition window:
   \tfrac{1}{1+e^{\pi(n-2c/\pi)/\sigma(c)}},
   \quad\sigma(c)\asymp\log c.
 \]
-This predicts the correct qualitative
-behavior and is consistent with Gap-S
-at scale $g(c)\sim(\log c)^{-1}$.
+This predicts qualitative behavior
+consistent with Gap-S at scale
+$g(c)\sim(\log c)^{-1}$.
 
 \subsection{Gap estimate}
 
 If $\rho(c)\asymp\log c$ eigenvalues
-occupy the transition window $W_c$,
+occupy $W_c$,
 the average spacing is
-$\sim(\log c)^{-1}\gg c^{-1/4}$,
-strongly suggesting Gap-S.
-A rigorous lower bound requires
-Plancherel--Rotach or determinantal
-kernel methods~\cite{Widom1964,Osipov2013}.
+$\sim(\log c)^{-1}\gg c^{-1/4}$.
+This supports Gap-S at the level of
+\emph{typical spacing},
+but does not imply a uniform lower bound:
+average spacing $\ne$ minimum gap.
+A rigorous deterministic lower bound
+requires Plancherel--Rotach or
+determinantal kernel methods
+\cite{Widom1964,Osipov2013}.
 
 \subsection{SOT-Faster plausibility}
 
 From \eqref{eq:formal-expansion},
-if off-diagonal overlaps satisfy
-$|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|
-\to 0$ for $m\ne n$
+if off-diagonal overlaps
+$|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
+are small for $m\ne n$
 (consistent with spectral isolation
 under Gap-S),
-then the sum is dominated by $m=n$,
+the sum is dominated by $m=n$,
 predicting $\varepsilon_n(k)=O(c_k^{-1/4})$.
-This is formally consistent with
-SOT-Faster (and the stronger SOT-Rate),
-but does not constitute rigorous evidence;
-making it precise requires control of
-off-diagonal overlaps
+This is formally consistent with SOT-Rate
+but not rigorous evidence
 (Open Problem~\ref{prob:off-diagonal}).
 
 \begin{remark}[Heuristic status]
-Section~\ref{sec:heuristic} predicts the
-correct qualitative scaling and provides
-evidence \emph{consistent with}
-Gap-S and SOT-Faster;
+Section~\ref{sec:heuristic} provides
+evidence consistent with Gap-S and
+SOT-Faster;
 it does not constitute a rigorous proof
 of either.
 \end{remark}
 
-%%══ 9. OPEN PROBLEMS
+%%══ 10. OPEN PROBLEMS
 \section{Open Problems}
 \label{sec:open}
 
@@ -802,7 +871,7 @@ Prove $\varepsilon_n(k)=o(g(c_k))$
 as $k\to\infty$;
 would make Thm.~\ref{thm:convergence}
 fully unconditional.
-Equivalently (by Rem.~\ref{rem:sot-faster-resolvent}):
+Equivalently (Rem.~\ref{rem:sot-faster-resolvent}):
 prove local resolvent stability of
 $\mathcal{H}_{c_k}$ at the $n$-th
 eigenvalue scale.
@@ -814,8 +883,7 @@ eigenvalue scale.
 
 \begin{problem}[SOT-Rate]
 \label{prob:sot-rate}
-Prove $\varepsilon_n(k)=O(c_k^{-1/4})$
-as $k\to\infty$;
+Prove $\varepsilon_n(k)=O(c_k^{-1/4})$;
 stronger than SOT-Faster
 (implies it via Rem.~\ref{rem:hyp-hierarchy})
 and would justify the rate in
@@ -827,8 +895,7 @@ Thm.~\ref{thm:rate}.
 Estimate
 $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
 for $m\ne n$ rigorously;
-would supply a route to
-Open Problem~\ref{prob:sot-rate}.
+route to Open Problem~\ref{prob:sot-rate}.
 \end{problem}
 
 \begin{problem}[Full family convergence]
