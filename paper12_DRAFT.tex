@@ -45,23 +45,35 @@ spectral gap, limiting operator, Riesz basis}
 \email{[Email]}
 
 \begin{abstract}
-We identify the sharp sufficient condition for rank-one spectral
-projection stability under strong operator convergence
-(Thm.~\ref{thm:abstract})
-and show it is also necessary when the spectral gap is bounded
-away from zero (Thm.~\ref{thm:necessary-bounded-gap}).
-The key mechanism is a \emph{minimal localization principle}:
-SOT-convergence alone produces approximate eigenvectors
-but gives no scale control;
-projection stability follows if and only if (in the bounded-gap case)
-the residual on the limit eigenvector is asymptotically negligible
-relative to the local spectral gap.
-We establish: a No-Go result (Prop.~\ref{prop:no-go})
-showing eigenvalue density alone cannot yield projection stability;
+\textbf{Main result.}
+For bounded self-adjoint operators with
+$A_k\xrightarrow{\mathrm{SOT}} A$,
+rank-one spectral projection stability
+$\|P_k - P^\infty\|\to 0$
+is equivalent, when the spectral gap
+$\gamma_k\ge c_0>0$, to the gap-normalized
+residual condition
+\[
+  \frac{\|(A_k-A)\phi\|}{\gamma_k}
+  +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0.
+\]
+This is a \emph{minimal localization principle}:
+it replaces global operator-norm control
+(Davis--Kahan, Kato) by a single local
+spectral-geometric condition,
+and is not a corollary of existing
+perturbation theory.
+
+\medskip
+We further establish:
+a No-Go result (Prop.~\ref{prop:no-go})
+showing eigenvalue density alone cannot
+yield projection stability;
 a counterexample (Prop.~\ref{prop:counterexample})
-confirming the ratio condition is sharp;
-and a reduction of PSWF projection stability to two explicit
-analytic mechanisms (Gap-S, SOT-Faster).
+confirming sharpness when gap control fails;
+and a reduction of PSWF projection stability
+to two explicit analytic mechanisms
+(Gap-S and SOT-Faster).
 \end{abstract}
 
 \maketitle
@@ -151,15 +163,17 @@ XIII& Completeness $\mathcal{K}=L^2$
 \begin{itemize}
 \item Abstract Stability Principle
   (sufficient): Thm.~\ref{thm:abstract}.
+\item Rank-one projection $\Rightarrow$
+  eigenvector convergence:
+  Lem.~\ref{lem:rank-one-proj}.
 \item Necessary mechanism
   (bounded gap): Thm.~\ref{thm:necessary-bounded-gap}.
-\item Novelty relative to classical
-  perturbation theory: Rem.~\ref{rem:abstract-novelty}.
+\item Novelty vs.\ classical perturbation theory:
+  Rem.~\ref{rem:abstract-novelty}.
 \item No-Go and counterexample:
   Props.~\ref{prop:no-go},~\ref{prop:counterexample}.
-\item PSWF reduction:
-  Thms.~\ref{thm:convergence},~\ref{thm:rate};
-  gap inequality: Rem.~\ref{rem:gap-inequality}.
+\item Gap inequality in PSWF application:
+  Rem.~\ref{rem:gap-inequality}.
 \item Structural evidence:
   Sec.~\ref{sec:heuristic}.
 \item Open problems:
@@ -239,11 +253,19 @@ uniformly in $n\in W_c$:
 \begin{remark}[Gap-S: structural necessity;
   determinantal context]
 \label{rem:gap-necessary}
-Gap-S is \textbf{structurally necessary}:
-any SOT-based argument for projection
-stability must control the minimal gap
-relative to $c^{-1/4}$
-(confirmed by Prop.~\ref{prop:counterexample}).
+Gap-S is \textbf{structurally necessary}
+for any SOT-based argument for projection
+stability that does not use additional
+structure beyond the local spectral gap:
+without a lower bound of the form
+\eqref{eq:gap-s} with $c^{-1/4}=o(g(c))$,
+the ratio $\tilde\varepsilon_n(k)/g(c_k)$
+in \eqref{eq:ratio-to-zero} cannot be shown
+to vanish (confirmed by Prop.~\ref{prop:counterexample}).
+A different proof strategy might encode
+an equivalent condition differently,
+but must capture the same gap-relative
+scale information.
 
 \textbf{Density vs.\ gap.}
 Widom~\cite{Widom1964} controls average
@@ -389,7 +411,7 @@ $P^\infty$ the rank-one projection
 onto $\ker(A-\lambda)$.
 Assume simple eigenvalues
 $\lambda_k\in\sigma(A_k)$
-with $\lambda_k\to\lambda$
+with
 \begin{equation}\label{eq:abstract-matching}
   \lambda_k\to\lambda,
 \end{equation}
@@ -406,17 +428,51 @@ Then $\|P_k - P^\infty\|\to 0$.
 \begin{proof}
 Set $\varepsilon_k:=\|(A_k-A)\phi\|$,
 $\delta_k:=|\lambda_k-\lambda|$.
-By the triangle inequality:
+By triangle inequality:
 $\|(A_k-\lambda_k)\phi\|
 \le\varepsilon_k+\delta_k$.
-Lem.~\ref{lem:approx-eig} applied to
-$A_k$ at eigenvalue $\lambda_k$ with gap
-$\gamma_k$ gives:
+Lem.~\ref{lem:approx-eig} gives
 $\|(I-P_k)\phi\|
-\le(\varepsilon_k+\delta_k)/\gamma_k\to 0$
-by \eqref{eq:abstract-ratio}.
+\le(\varepsilon_k+\delta_k)/\gamma_k\to 0$.
 Rank-one identity~\cite[Ch.~1]{Bhatia1997}
 yields $\|P_k-P^\infty\|\to 0$.
+\end{proof}
+
+\begin{lemma}[Rank-one projection convergence
+  implies eigenvector convergence]
+\label{lem:rank-one-proj}
+Let $P_k = v_k\otimes v_k$ and
+$P^\infty = \phi\otimes\phi$
+be rank-one orthogonal projections
+with $\|v_k\|=\|\phi\|=1$.
+If $\|P_k - P^\infty\|\to 0$, then
+there exist phases $\theta_k\in\mathbb{R}$
+such that
+\[
+  \|v_k - e^{i\theta_k}\phi\|\to 0.
+\]
+\end{lemma}
+\begin{proof}
+For rank-one projections,
+$\|P_k - P^\infty\|^2
+= \|v_k\otimes v_k - \phi\otimes\phi\|^2
+= 2(1 - |\ip{v_k}{\phi}|^2)$
+(direct computation via Hilbert--Schmidt
+norm and trace; cf.~\cite[Ch.~1]{Bhatia1997}).
+Hence $\|P_k-P^\infty\|\to 0$ implies
+$|\ip{v_k}{\phi}|\to 1$.
+Choose $\theta_k$ so that
+$e^{i\theta_k}\ip{v_k}{\phi}
+= |\ip{v_k}{\phi}| > 0$
+(i.e.\ the phase making the inner product
+real and positive).
+Then
+\begin{align*}
+  \|v_k - e^{i\theta_k}\phi\|^2
+  &= 2 - 2\,\mathrm{Re}\,
+    e^{-i\theta_k}\ip{v_k}{\phi}
+  = 2 - 2|\ip{v_k}{\phi}|\to 0.
+\end{align*}
 \end{proof}
 
 \begin{theorem}[Necessary condition;
@@ -425,103 +481,75 @@ yields $\|P_k-P^\infty\|\to 0$.
 Under the setup of Thm.~\ref{thm:abstract},
 assume $\|P_k-P^\infty\|\to 0$
 and $\gamma_k\ge c_0>0$.
-Then
-\begin{equation}\label{eq:ratio-necessary}
-  \frac{\|(A_k-A)\phi\|}{\gamma_k}
-  +\frac{|\lambda_k-\lambda|}{\gamma_k}
-  \to 0.
-\end{equation}
+Then \eqref{eq:abstract-ratio} holds.
 \end{theorem}
 \begin{proof}
 \textbf{Eigenvalue term.}
 $|\lambda_k-\lambda|/\gamma_k
-\le|\lambda_k-\lambda|/c_0\to 0$
-by \eqref{eq:abstract-matching}.
+\le|\lambda_k-\lambda|/c_0\to 0$.
 
 \textbf{Residual term.}
-Decompose $\phi=P_k\phi+(I-P_k)\phi$
-and write
-\begin{align}
+Decompose $\phi=P_k\phi+(I-P_k)\phi$:
+\begin{equation}\label{eq:decomp-necessary}
   (A_k-A)\phi
-  &= (A_k-A)P_k\phi
+  = (A_k-A)P_k\phi
   + (A_k-A)(I-P_k)\phi.
-  \label{eq:decomp-necessary}
-\end{align}
+\end{equation}
 \textit{Term~(II).}
 $\|(A_k-A)(I-P_k)\phi\|
-\le(\|A_k\|+\|A\|)\|(I-P_k)\phi\|$.
-Since $A_k\xrightarrow{\mathrm{SOT}} A$,
-uniform boundedness gives $\sup_k\|A_k\|\le M$.
-Since $\|P_k-P^\infty\|\to 0$,
-we have $\|(I-P_k)\phi\|\to 0$
-(because $P^\infty\phi=\phi$).
+\le(\sup_k\|A_k\|+\|A\|)\|(I-P_k)\phi\|$.
+$\sup_k\|A_k\|\le M<\infty$
+by uniform boundedness
+($A_k\xrightarrow{\mathrm{SOT}} A$).
+$\|(I-P_k)\phi\|\to 0$ since
+$P^\infty\phi=\phi$ and $\|P_k-P^\infty\|\to 0$.
 Hence Term~(II) $\to 0$.
 
 \textit{Term~(I).}
-$P_k$ is rank-one; write
-$P_k\phi=\alpha_k v_k$ where
-$v_k\in\mathcal{H}$, $\|v_k\|=1$,
-$A_k v_k=\lambda_k v_k$.
-Then
-\begin{align}
-  (A_k-A)P_k\phi
-  &= \alpha_k(A_k-A)v_k
-  = \alpha_k(\lambda_k v_k - A v_k).
-  \label{eq:main-term}
-\end{align}
-Write $\lambda_k v_k - Av_k
+Write $P_k\phi=\alpha_k v_k$,
+$\alpha_k:=\ip{v_k}{\phi}$,
+$A_k v_k=\lambda_k v_k$; so
+$(A_k-A)P_k\phi
+= \alpha_k(\lambda_k v_k - Av_k)$.
+Decompose:
+$\lambda_k v_k - Av_k
 = (\lambda_k-\lambda)v_k
 + (\lambda-A)v_k$.
-For the second part:
-$\|(\lambda-A)v_k\|
-=\|(A-\lambda)(v_k-\phi)\|
-+\underbrace{\|(A-\lambda)\phi\|}_{=0}$
-$\le\|A-\lambda\|\cdot\|v_k-\phi\|$.
-Now $\|P_k-P^\infty\|\to 0$
-implies $\|v_k-\phi\|\to 0$
-(the eigenvector $v_k$ of $P_k$
-converges strongly to
-$\phi=$ eigenvector of $P^\infty$,
-since $\|P_kf-P^\infty f\|\to 0$
-for all $f$ and both are rank-one).
-Hence $\|(\lambda-A)v_k\|\to 0$.
-The first part
+First part:
 $\|(\lambda_k-\lambda)v_k\|
-=|\lambda_k-\lambda|\to 0$
-by \eqref{eq:abstract-matching}.
-Also $|\alpha_k|=\|P_k\phi\|
-\le\|P_k\|\|\phi\|=1$.
-So Term~(I) $\to 0$.
+=|\lambda_k-\lambda|\to 0$.
+Second part:
+$(A-\lambda)v_k
+=(A-\lambda)(v_k - e^{i\theta_k}\phi)$
+since $(A-\lambda)\phi=0$; hence
+$\|(A-\lambda)v_k\|
+\le\|A-\lambda\|\cdot\|v_k-e^{i\theta_k}\phi\|\to 0$
+by Lem.~\ref{lem:rank-one-proj}.
+Since $|\alpha_k|\le 1$:
+Term~(I) $\to 0$.
 
-Combining: $\|(A_k-A)\phi\|\to 0$.
-Dividing by $\gamma_k\ge c_0$:
-$\|(A_k-A)\phi\|/\gamma_k\to 0$.
+Combining: $\|(A_k-A)\phi\|\to 0$;
+dividing by $\gamma_k\ge c_0$ gives
+\eqref{eq:abstract-ratio}.
 \end{proof}
 
 \begin{remark}[Open: full iff when
   $\gamma_k\to 0$]
 \label{rem:iff-open}
 When $\gamma_k\to 0$,
-the direction
-$\|P_k-P^\infty\|\to 0$
-$\Rightarrow$
-$\|(A_k-A)\phi\|/\gamma_k\to 0$
-requires knowing whether
-$\|(A_k-A)\phi\|\to 0$
-faster than $\gamma_k$.
-The proof of Thm.~\ref{thm:necessary-bounded-gap}
-shows $\|(A_k-A)\phi\|\to 0$
-independently of $\gamma_k$;
-however, whether the rate is faster
-than $\gamma_k$ depends on the
-specific spectral geometry.
-This is precisely the analytic content
-of Hyp.~\ref{hyp:sot-faster}
+the proof above shows $\|(A_k-A)\phi\|\to 0$
+(independent of $\gamma_k$),
+but whether the rate is faster than
+$\gamma_k$ depends on the specific
+spectral geometry and is not determined
+by projection convergence alone.
+This is precisely the content of
+Hyp.~\ref{hyp:sot-faster}
 and Open Problem~\ref{prob:full-iff}.
 \end{remark}
 
-\begin{remark}[Novelty: minimal
-  localization principle]
+\begin{remark}[Novelty: minimal localization
+  principle]
 \label{rem:abstract-novelty}
 Thm.~\ref{thm:abstract} is
 \textbf{not a new perturbation theorem},
@@ -531,17 +559,16 @@ from SOT, replacing global norm control
 by local spectral geometry.
 Davis--Kahan~\cite{DavisKahan1970}
 and Kato~\cite{Kato1966} require
-$\|A_k-A\|\to 0$ (strictly stronger
-than SOT, unavailable here);
-Reed--Simon~\cite{ReedSimon1975}
-does not treat this ratio regime.
-While approximate eigenvector arguments
-are classical,
-\emph{the explicit ratio formulation
+$\|A_k-A\|\to 0$;
+classical approximate eigenvector results
+(Chatelin~\cite{Chatelin1983},
+Osborn~\cite{Osborn1975})
+similarly assume norm-perturbation control.
+\emph{The explicit ratio formulation
 under mere SOT convergence ---
 without any operator-norm perturbation
-control --- does not appear in standard
-perturbation frameworks}.
+control --- does not appear in these
+frameworks.}
 The bounded-gap iff
 (Thms.~\ref{thm:abstract}
 $+$~\ref{thm:necessary-bounded-gap})
@@ -586,22 +613,17 @@ By Thm.~\ref{thm:abstract}
 $\|P_k-P^\infty\|\not\to 0$.
 \end{proof}
 
-\begin{remark}[Sharpness of ratio condition]
+\begin{remark}[Sharpness]
 \label{rem:counterexample-meaning}
-Prop.~\ref{prop:counterexample} shows
-the ratio condition \eqref{eq:abstract-ratio}
-is \emph{tight}:
-SOT $+$ eigenvalue convergence alone
-cannot be strengthened to projection
-stability without gap-relative control.
+The ratio \eqref{eq:abstract-ratio}
+is tight: SOT $+$ eigenvalue convergence
+alone do not suffice.
 \end{remark}
 
 %%══ 5. PSWF APPLICATION
 \section{PSWF Application: Main Theorems}
 \label{sec:main}
 
-The following reduces PSWF projection
-stability to two explicit analytic conditions.
 Thms.~\ref{thm:convergence}
 and~\ref{thm:rate} apply Thm.~\ref{thm:abstract}
 with
@@ -612,15 +634,13 @@ $\lambda_k=\lambda_n^{(c_k)}$.
 
 \begin{remark}[Gap inequality in application]
 \label{rem:gap-inequality}
-Gap-S supplies a \emph{lower bound}
+Gap-S supplies the lower bound
 $|\lambda_n^{(c_k)}-\lambda_{n\pm 1}^{(c_k)}|
-\ge g(c_k)$;
-the effective spectral gap satisfies
-$\gamma_k\ge g(c_k)$.
+\ge g(c_k)$, hence $\gamma_k\ge g(c_k)$.
 In the ratio condition \eqref{eq:abstract-ratio}
-we use $\gamma_k\ge g(c_k)$, so dividing
-the residual by $g(c_k)$ (a lower bound for
-$\gamma_k$) is sufficient to verify
+we use $g(c_k)$ as a lower bound for
+$\gamma_k$; dividing by $g(c_k)$ is
+therefore sufficient to verify
 \eqref{eq:abstract-ratio}.
 \end{remark}
 
@@ -656,7 +676,8 @@ rate $O(c_k^{-1/4}\log c_k)$.
 
 \begin{remark}[Phase]
 Phase fixed by
-$\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$.
+$\ip{\Phi_n^{(c_k)}}{\Phi_n^{(\infty)}}>0$
+for large $k$.
 \end{remark}
 
 %%══ 6. PROOFS
@@ -680,24 +701,18 @@ $\|(A-\lambda)\phi\|\le\varepsilon$:
 \begin{proof}
 $(A-\lambda)\phi=(A-\lambda)(I-P)\phi$
 since $(A-\lambda)P=0$.
-Since $\lambda$ is simple,
-$(A-\lambda)$ is invertible on
-$\mathrm{ran}(I-P)$ with norm $\le 1/\gamma$
-(spectral theorem: all eigenvalues of $A$
-on $\mathrm{ran}(I-P)$ are at distance
-$\ge\gamma$ from $\lambda$).
-Hence
-$\|(I-P)\phi\|
-\le\gamma^{-1}\|(A-\lambda)\phi\|
-\le\varepsilon/\gamma$.
+$\lambda$ simple $\Rightarrow$
+$(A-\lambda)$ invertible on $\mathrm{ran}(I-P)$
+with $\|(A-\lambda)^{-1}\|\le 1/\gamma$
+(spectral theorem).
+Hence $\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \end{proof}
 
 \begin{remark}[Rank-one structure]
 \label{rem:perturbation-mechanism}
-Rank-one gives a uniform resolvent bound
+Rank-one gives uniform resolvent bound
 $1/\gamma$ on $\mathrm{ran}(I-P)$.
-Gap-S supplies $\gamma\ge g(c_k)$
-for $A_k=\mathcal{H}_{c_k}$;
+Gap-S supplies $\gamma\ge g(c_k)$;
 SOT-Faster gives
 $\varepsilon_n(k)/g(c_k)\to 0$.
 \end{remark}
@@ -713,8 +728,6 @@ $\varepsilon_n(k)=
 
 \begin{proof}[Proof of Thm.~\ref{thm:convergence}]
 Fix $n\in W_{c_k}$.
-By Lem.~\ref{lem:sot-approx}
-and Lem.~\ref{lem:eigenvalue-matching}:
 \[
   \tilde\varepsilon_n(k)
   :=\|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
@@ -722,7 +735,7 @@ and Lem.~\ref{lem:eigenvalue-matching}:
   \le\varepsilon_n(k)+C_\kappa c_k^{-1/4}.
 \]
 By Rem.~\ref{rem:gap-inequality},
-$\gamma_k\ge g(c_k)$; dividing:
+$\gamma_k\ge g(c_k)$; hence:
 \begin{equation}\label{eq:ratio-to-zero}
   \frac{\tilde\varepsilon_n(k)}{g(c_k)}
   \le
@@ -733,9 +746,8 @@ $\gamma_k\ge g(c_k)$; dividing:
     \,(\text{Rem.}\,\ref{rem:gap-implies-o})}
   \to 0.
 \end{equation}
-Since $\tilde\varepsilon_n(k)/g(c_k)\to 0$
-and $\gamma_k\ge g(c_k)$,
-Lem.~\ref{lem:approx-eig} gives
+Lem.~\ref{lem:approx-eig} with
+$\gamma_k\ge g(c_k)$ gives
 $\|(I-P_n^{(c_k)})\Phi_n^{(\infty)}\|\to 0$;
 rank-one identity completes.
 \end{proof}
@@ -942,6 +954,19 @@ AMS, 1969.
 \bibitem{DLMF2023}
 F.~W.~J.~Olver et al.,
 \textit{NIST DLMF}, Release 1.1.10, 2023.
+
+\bibitem{Chatelin1983}
+F.~Chatelin,
+\textit{Spectral Approximation of
+Linear Operators},
+Academic Press, 1983.
+
+\bibitem{Osborn1975}
+J.~E.~Osborn,
+\textit{Spectral approximation for
+compact operators},
+Math.\ Comp.\ \textbf{29} (1975), 712--725.
+
 \end{thebibliography}
 
 \end{document}
