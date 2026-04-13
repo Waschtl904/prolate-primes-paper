@@ -74,8 +74,8 @@ operator-norm control
 \medskip
 We further establish:
 a No-Go result (Prop.~\ref{prop:no-go})
-showing eigenvalue density alone cannot
-yield projection stability;
+showing eigenvalue density alone does not
+control spectral angles;
 a counterexample (Prop.~\ref{prop:counterexample})
 confirming sharpness when gap control fails;
 and a reduction of PSWF projection stability
@@ -109,7 +109,8 @@ $\lambda_k$ of $A_k$
 Then:
 \begin{equation}\label{eq:main-principle-informal}
   \frac{\|(A_k-A)\phi\|}{\gamma_k}
-  +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0
+  +\frac{|\lambda_k-\lambda|}{\gamma_k}
+  \to 0
   \;\Longrightarrow\;
   \|P_k-P^\infty\|\to 0.
 \end{equation}
@@ -136,8 +137,8 @@ This paper proves:
   then \eqref{eq:main-principle-informal}
   holds automatically
   (Lem.~\ref{lem:dk-comparison}).
-\item Eigenvalue density alone cannot
-  imply projection stability
+\item Eigenvalue density alone does not
+  control spectral angles
   (Prop.~\ref{prop:no-go}).
 \item SOT $+$ eigenvalue convergence
   is insufficient without gap control
@@ -341,7 +342,7 @@ even under SOT convergence and eigenvalue
 convergence.
 
 \begin{proposition}[No-Go: eigenvalue
-  density cannot imply projection stability]
+  density does not control spectral angles]
 \label{prop:no-go}
 Let $(\mu_n)$ be a sequence with
 $\liminf_n(\mu_n-\mu_{n+1})=0$
@@ -401,9 +402,19 @@ so projection convergence fails for all $j$.
 
 \begin{remark}
 \begin{center}\itshape
-Any argument based solely on eigenvalue
-density cannot yield projection stability;
-minimal-gap control is logically necessary.
+The example shows that eigenvalue density
+alone --- even of Widom type --- does not
+suffice to control spectral projection
+stability: it does not control whether
+the normalized residual
+$\|(A_k - A)\phi\|/\gamma_k$
+vanishes, even under eigenvalue convergence
+$\lambda_k\to\lambda$ and asymptotic
+spacing of order $(\log c)^{-1}$.
+Minimal-gap control relative to the
+residual is therefore an additional
+structural assumption, independent of
+density information.
 \end{center}
 \end{remark}
 
@@ -492,7 +503,7 @@ We assume:
   projection onto $\ker(A-\lambda)$.
 \item\label{S2}
   For each $k$, $\lambda_k\in\sigma(A_k)$
-  is simple, with
+  is isolated and simple, with
   $\gamma_k := \mathrm{dist}(\lambda_k,
   \sigma(A_k)\setminus\{\lambda_k\})>0$
   and rank-one projection $P_k$.
