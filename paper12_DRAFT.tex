@@ -70,7 +70,8 @@ spectral gap ---
 that goes strictly beyond
 Davis--Kahan/Kato-type global
 operator-norm control
-(Lemma~\ref{lem:dk-comparison}).
+(Lemma~\ref{lem:dk-comparison},
+Prop.~\ref{prop:separation}).
 
 \medskip
 We further establish:
@@ -133,11 +134,12 @@ This paper proves:
 \item When $\gamma_k\ge c_0>0$,
   it is also \emph{necessary}
   (Thm.~\ref{thm:necessary-bounded-gap}).
-\item The condition strictly extends
-  Davis--Kahan: if $\|A_k-A\|\to 0$
-  then \eqref{eq:main-principle-informal}
-  holds automatically
-  (Lem.~\ref{lem:dk-comparison}).
+\item The condition requires strictly weaker
+  input than Davis--Kahan: there exist
+  families with $\|A_k-A\|\equiv 1$
+  where \eqref{eq:main-principle-informal}
+  holds and $\|P_k-P^\infty\|\to 0$
+  (Prop.~\ref{prop:separation}).
 \item Eigenvalue density alone does not
   control spectral angles
   (Prop.~\ref{prop:no-go}).
@@ -209,6 +211,8 @@ XIII& Completeness $\mathcal{K}=L^2$
   Assumption~S (Sec.~\ref{sec:abstract}).
 \item Davis--Kahan comparison:
   Lem.~\ref{lem:dk-comparison}.
+\item Separation from Davis--Kahan
+  (key example): Prop.~\ref{prop:separation}.
 \item Abstract Stability Principle
   (sufficient): Thm.~\ref{thm:abstract}.
 \item Non-circularity of localization:
@@ -558,7 +562,7 @@ weaker than $\|A_k-A\|\to 0$:
   \|P_k-P^\infty\|\to 0,
 \]
 but neither implication reverses in general
-(Prop.~\ref{prop:counterexample}).
+(Props.~\ref{prop:separation},~\ref{prop:counterexample}).
 \end{lemma}
 \begin{proof}
 $\|(A_k-A)\phi\|\le\|A_k-A\|\cdot\|\phi\|=
@@ -569,6 +573,96 @@ by spectral stability under norm convergence.
 Dividing by $\gamma_k\ge c_0$:
 both terms $\to 0$.
 \end{proof}
+
+\begin{proposition}[Separation: local stability
+  without global norm control]
+\label{prop:separation}
+There exist bounded self-adjoint operators
+$\{A_k\}$, $A$ on $\mathcal{H} = \ell^2$
+satisfying Assumption~S with
+$\gamma_k \ge c_0 > 0$, such that
+\begin{enumerate}[\rm(i)]
+\item $\|A_k - A\| = 1$ for all $k$
+  \textup{(Davis--Kahan gives no information)},
+\item $(A_k - A)\phi = 0$ for all $k$,
+  hence
+  $\dfrac{\|(A_k-A)\phi\|}{\gamma_k} = 0$,
+\item $P_k = P^\infty$ for all $k$
+  \textup{(projection is exactly stable)}.
+\end{enumerate}
+In particular, the ratio condition
+\eqref{eq:abstract-ratio} is satisfied
+and $\|P_k - P^\infty\| = 0$,
+while $\|A_k - A\| \equiv 1$.
+\end{proposition}
+\begin{proof}
+Decompose $\mathcal{H} = \mathrm{span}\{\phi\}
+\oplus \phi^\perp$.
+Define $A$ and $A_k$ in block form with
+respect to this decomposition:
+\[
+  A =
+  \begin{pmatrix} \lambda & 0 \\ 0 & B \end{pmatrix},
+  \qquad
+  A_k =
+  \begin{pmatrix} \lambda & 0 \\ 0 & B + K_k \end{pmatrix},
+\]
+where $B$ is a bounded self-adjoint operator
+on $\phi^\perp$ with $\lambda \notin \sigma(B)$
+and $\gamma_0 := \dist(\lambda, \sigma(B)) > 0$,
+and $K_k$ is a bounded self-adjoint operator
+on $\phi^\perp$ with $\|K_k\| = 1$ for all $k$.
+
+\textit{Verification of (i).}
+$A_k - A = \mathrm{diag}(0, K_k)$,
+so $\|A_k - A\| = \|K_k\| = 1$.
+
+\textit{Verification of (ii).}
+$(A_k - A)\phi = 0$
+since the perturbation acts entirely
+on $\phi^\perp$ and $\phi \perp \phi^\perp$.
+
+\textit{Verification of (iii).}
+The eigenvalue $\lambda$ of $A_k$
+is $\lambda$ for all $k$
+(the $\phi$-block is unperturbed),
+with eigenvector $\phi$ for all $k$.
+Hence $P_k = \phi \otimes \phi = P^\infty$
+for all $k$.
+
+\textit{Assumption~S.}
+(S1): $\lambda$ is isolated and simple
+for $A$ with gap $\gamma_0 > 0$.
+(S2): $\lambda$ remains isolated and
+simple for each $A_k$ with
+$\gamma_k \ge \gamma_0 - \|K_k\|_{\phi^\perp}$;
+choosing $K_k$ with $\|K_k\|=1$ and
+$\sigma(B+K_k)$ bounded away from $\lambda$
+(e.g.\ $K_k$ supported on a spectral subspace
+of $B$ far from $\lambda$) ensures
+$\gamma_k \ge c_0 > 0$.
+(S3): $\lambda_k = \lambda \to \lambda$.
+\end{proof}
+
+\begin{remark}[Interpretation]
+\label{rem:separation-meaning}
+Prop.~\ref{prop:separation} exhibits
+the strict logical gap between global
+and local perturbation theory:
+the global operator norm $\|A_k - A\|$
+can be large (here: identically $1$)
+while the localized residual
+$(A_k - A)\phi$ vanishes exactly.
+The geometric mechanism is orthogonal
+separation: the perturbation $K_k$ lives
+entirely in $\phi^\perp$ and is therefore
+invisible to the spectral direction of
+interest.
+This is precisely the situation that
+arises in PSWF families, where the
+operator perturbation acts
+non-uniformly across spectral directions.
+\end{remark}
 
 \begin{theorem}[Main Principle;
   sufficient condition]
@@ -791,12 +885,11 @@ $\|P_k - P^\infty\| \lesssim
 requiring $\|A_k-A\|\to 0$.
 \textbf{Present result:}
 no access to $\|A_k - A\|$;
-global control may fail completely,
+global control may fail completely
+(Prop.~\ref{prop:separation}),
 yet stability is governed by a single
 \emph{vector-local} residual
-$\|(A_k-A)\phi\|$ relative to the gap
-(see implication diagram in
-Lem.~\ref{lem:dk-comparison}).
+$\|(A_k-A)\phi\|$ relative to the gap.
 
 By \emph{localization principle}
 we mean: dependence only on the residual
