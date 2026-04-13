@@ -319,11 +319,9 @@ for infinitely many $n$.
 \begin{proof}
 Choose indices $n_j$ along which
 $\gamma_j := \mu_{n_j} - \mu_{n_j+1} \to 0$.
-For each $j$, define on $\ell^2$
-the block-diagonal operator
-$B_k^{(j)}$ acting on
+For each $j$, define on
 $\mathrm{span}\{e_{n_j}, e_{n_j+1}\}$
-by the $2\times 2$ matrix
+the symmetric $2\times 2$ matrix
 \[
   B_k^{(j)} :=
   \begin{pmatrix}
@@ -336,19 +334,32 @@ by the $2\times 2$ matrix
 where $\gamma_j^{(k)}
 := \mu_{n_j}^{(k)} - \mu_{n_j+1}^{(k)}
 \to \gamma_j \to 0$.
-Setting $B_k := \bigoplus_j B_k^{(j)}$
-(block-diagonal, bounded since
-$\sup_j \|\mu_{n_j}\| < \infty$):
-$B_k \xrightarrow{\mathrm{SOT}} B$
-(each block converges in norm).
-The eigenvector of $B_k^{(j)}$
-for the upper eigenvalue satisfies
-$\|(I - Q_{n_j}^{(k)})e_{n_j}\|
-\ge \varepsilon_j(k)/\gamma_j^{(k)}
-= (\gamma_j^{(k)})^{-1/2} \to \infty$,
-contradicting projection convergence.
-Hence $\|Q_{n_j}^{(k)} - Q_{n_j}\| \not\to 0$
-for all $j$.
+Set $B_k := \bigoplus_j B_k^{(j)}$
+(block-diagonal, uniformly bounded);
+then $B_k \xrightarrow{\mathrm{SOT}} B$.
+
+For the $j$-th block,
+the eigenvector of $B_k^{(j)}$
+corresponding to the upper eigenvalue
+makes an angle $\theta_j^{(k)}$
+with $e_{n_j}$ satisfying
+\[
+  \tan\bigl(2\theta_j^{(k)}\bigr)
+  = \frac{2\varepsilon_j(k)}{\gamma_j^{(k)}}
+  = \frac{2}{\sqrt{\gamma_j^{(k)}}}
+  \to +\infty.
+\]
+Hence $\theta_j^{(k)} \to \pi/4$,
+so the upper eigenvector tends to
+$\tfrac{1}{\sqrt{2}}(e_{n_j}+e_{n_j+1})$
+rather than $e_{n_j}$.
+Therefore
+$\|Q_{n_j}^{(k)} - Q_{n_j}\|
+\ge |\ip{Q_{n_j}^{(k)}e_{n_j}}{e_{n_j}}
+- 1|
+= |\cos^2\theta_j^{(k)} - 1|
+\to \tfrac{1}{2}$,
+so projection convergence fails for all $j$.
 \end{proof}
 
 \begin{remark}
@@ -438,7 +449,8 @@ Let $\{A_k\}$, $A$ be bounded self-adjoint
 on a Hilbert space $\mathcal{H}$ with
 $A_k\xrightarrow{\mathrm{SOT}} A$.
 Let $\phi\in\mathcal{H}$, $\|\phi\|=1$,
-$A\phi=\lambda\phi$, $\lambda$ isolated,
+$A\phi=\lambda\phi$, $\lambda$ isolated
+and simple,
 $P^\infty$ the rank-one projection
 onto $\ker(A-\lambda)$.
 Assume simple eigenvalues
@@ -611,12 +623,14 @@ Thm.~\ref{thm:abstract} appears implicitly
 in classical spectral approximation theory
 (Chatelin~\cite{Chatelin1983},
 Osborn~\cite{Osborn1975},
-Kato~\cite{Kato1966} Ch.~IV).
-\textbf{The novelty is not the inequality itself,
-but its role as a sharp and complete
-localization principle under mere
-strong operator convergence,
-without any operator-norm perturbation control.}
+Kato~\cite{Kato1966} Ch.~IV),
+always within a framework that assumes
+$\|A_k - A\| \to 0$.
+\textbf{The novelty lies in showing that
+this condition remains sufficient ---
+and in the bounded-gap case necessary ---
+under mere strong operator convergence,
+where operator-norm control may completely fail.}
 By ``localization principle'' we mean:
 projection stability is governed entirely
 by the residual $\|(A_k-A)\phi\|$
@@ -631,7 +645,7 @@ require $\|A_k-A\|\to 0$
 as a standing assumption;
 the SOT setting studied here ---
 where $\|A_k-A\|\to 0$ may fail entirely ---
-is not covered.
+is not covered by these frameworks.
 To our knowledge, the exact iff formulation
 in the bounded-gap regime
 (Thms.~\ref{thm:abstract}
@@ -765,11 +779,16 @@ for large $k$.
   $\Rightarrow$ projection bound]
 \label{lem:approx-eig}
 Let $A$ bounded self-adjoint,
-$\lambda$ simple,
+$\lambda$ isolated and simple,
 $\gamma:=\mathrm{dist}(\lambda,
 \spc{A}\setminus\{\lambda\})>0$,
 $P$ rank-one onto $\ker(A-\lambda)$.
-For $\|\phi\|=1$,
+The simplicity of $\lambda$ ensures
+that $(A-\lambda)$ is invertible on
+$\mathrm{ran}(I-P)$ with
+$\|(A-\lambda)^{-1}|_{\mathrm{ran}(I-P)}\|
+\le 1/\gamma$.
+For $\|\phi\|=1$ and
 $\|(A-\lambda)\phi\|\le\varepsilon$:
 \[
   \|(I-P)\phi\|\le\varepsilon/\gamma.
@@ -778,10 +797,12 @@ $\|(A-\lambda)\phi\|\le\varepsilon$:
 \begin{proof}
 $(A-\lambda)\phi=(A-\lambda)(I-P)\phi$
 since $(A-\lambda)P=0$.
-$\lambda$ simple $\Rightarrow$
-$(A-\lambda)$ invertible on $\mathrm{ran}(I-P)$
-with $\|(A-\lambda)^{-1}\|\le 1/\gamma$
-(spectral theorem).
+By the spectral theorem,
+all eigenvalues of $A$ on $\mathrm{ran}(I-P)$
+are at distance $\ge\gamma$ from $\lambda$
+(using simplicity of $\lambda$),
+so $(A-\lambda)^{-1}$ exists on $\mathrm{ran}(I-P)$
+with norm $\le 1/\gamma$.
 Hence $\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \end{proof}
 
