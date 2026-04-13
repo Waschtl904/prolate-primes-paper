@@ -212,7 +212,7 @@ XIII& Completeness $\mathcal{K}=L^2$
 \item Abstract Stability Principle
   (sufficient): Thm.~\ref{thm:abstract}.
 \item Non-circularity of localization:
-  Rem.~\ref{rem:non-circularity}.
+  Rems.~\ref{rem:non-circularity},~\ref{rem:structural-independence}.
 \item Rank-one projection $\Rightarrow$
   eigenvector convergence:
   Lem.~\ref{lem:rank-one-proj}.
@@ -377,7 +377,13 @@ where $\gamma_j^{(k)}
 \to \gamma_j \to 0$.
 Set $B_k := \bigoplus_j B_k^{(j)}$
 (block-diagonal, uniformly bounded);
-then $B_k \xrightarrow{\mathrm{SOT}} B$.
+SOT convergence $B_k\xrightarrow{\mathrm{SOT}} B$
+follows since each basis vector $e_m$ is
+affected by at most one block,
+$\varepsilon_j(k)\to 0$ ensures pointwise
+convergence on all $e_m$,
+and $\sup_k\|B_k\|<\infty$ by uniform
+boundedness of the eigenvalues $\mu_n^{(k)}$.
 
 For the $j$-th block,
 the eigenvector of $B_k^{(j)}$
@@ -604,6 +610,20 @@ given that $\phi$ is a good approximate eigenvector
 of $A_k$ relative to $\gamma_k$,
 we conclude $P_k \to P^\infty$.
 No fixed-point argument or circularity is involved.
+\end{remark}
+
+\begin{remark}[Structural independence of the test vector]
+\label{rem:structural-independence}
+The vector $\phi$ is fixed at the level of the
+limiting operator $A$ and is independent of the
+spectral data of $A_k$ in the following sense:
+no step in the argument uses any spectral projection,
+eigenvector, or spectral decomposition of $A_k$
+in the construction of $\phi$.
+All quantities involving $A_k$ appear only in the form
+$(A_k - A)\phi$ or $(A_k - \lambda_k)\phi$,
+i.e.\ as evaluations of $A_k$ on a fixed vector,
+not as spectral inputs defining that vector.
 \end{remark}
 
 \begin{lemma}[Rank-one projection convergence
@@ -941,10 +961,12 @@ $\lambda$ isolated and simple,
 $\gamma:=\dist(\lambda,
 \spc{A}\setminus\{\lambda\})>0$,
 $P$ rank-one onto $\ker(A-\lambda)$.
-By the spectral theorem
-(functional calculus),
-the simplicity of $\lambda$ ensures
-that $(A-\lambda)$ is invertible on
+This follows from the spectral calculus
+for bounded self-adjoint operators,
+identifying $\mathrm{ran}(I-P)$ with the
+spectral subspace associated to
+$\sigma(A)\setminus\{\lambda\}$:
+$(A-\lambda)$ is invertible on
 $\mathrm{ran}(I-P)$ with
 $\|(A-\lambda)^{-1}|_{\mathrm{ran}(I-P)}\|
 \le 1/\gamma$.
