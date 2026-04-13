@@ -52,9 +52,15 @@
 \address{[Address]}
 \email{[Email]}
 
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% FIX ⚠️1 + ⚠️5: Abstract neu strukturiert
+% – "localization" erklärt
+% – Teil 1 / Teil 2 klar getrennt
+% – PSWF als "reduction result" gerahmt
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \begin{abstract}
-\textbf{Main result (abstract,
-  fully proved).}
+\textbf{Part~I: Abstract principle
+  (fully proved).}
 For bounded self-adjoint operators with
 $A_k\xrightarrow{\mathrm{SOT}} A$,
 under explicit spectral isolation
@@ -76,6 +82,11 @@ error to a single scalar; the spectral
 gap provides the resolvent bound;
 the local residual is the direct
 observable under SOT.
+The term \emph{localization} refers
+throughout to restriction of the
+perturbation analysis to a single
+direction $\phi$ --- not to spatial
+or semiclassical localization.
 The hypothesis structure is strictly
 different from Davis--Kahan: it depends
 on a direction-sensitive quantity
@@ -86,12 +97,18 @@ rotation-invariant $\|A_k-A\|$
 Prop.~\ref{prop:separation}).
 
 \medskip
-\textbf{Conditional PSWF corollary.}
+\textbf{Part~II: PSWF reduction
+  (conditional).}
 Under two analytic hypotheses
 (Gap-S, SOT-Faster), PSWF projection
 stability reduces entirely to the
 abstract principle.
-Both hypotheses are open
+The contribution of Part~II is a
+complete reduction identifying the
+exact analytic bottlenecks:
+both hypotheses are open and no further
+PSWF-specific input is needed beyond
+the inherited data
 (Problems~\ref{prob:sharp-gc},
 \ref{prob:sot-faster}).
 
@@ -171,7 +188,7 @@ This paper proves:
   (Rems.~\ref{rem:input-comparison},
   \ref{rem:nonreducibility},
   Prop.~\ref{prop:separation});
-\item SOT is the minimal access condition
+\item SOT is the minimal topology
   for the local residual; gap and
   isolation are independent structural
   inputs (Rem.~\ref{rem:sot-role});
@@ -256,7 +273,7 @@ XIII & Completeness
   Davis--Kahan and non-embeddability:
   Rems.~\ref{rem:input-comparison},
   \ref{rem:nonreducibility}.
-\item Role of SOT:
+\item Role of SOT as minimal topology:
   Rem.~\ref{rem:sot-role}.
 \item Why SOT-Faster is a genuine
   open hypothesis and plays no role
@@ -264,8 +281,10 @@ XIII & Completeness
   Rems.~\ref{rem:sot-faster-localized},
   \ref{rem:sot-faster-logical}.
 \item Gap-S independence from
-  the principle:
-  Rem.~\ref{rem:gap-independent}.
+  the principle and structural
+  necessity via No-Go:
+  Rems.~\ref{rem:gap-necessary},
+  \ref{rem:gap-independent}.
 \item Rank-one scope and scalar
   reduction:
   Rem.~\ref{rem:rank-one-scope}.
@@ -396,9 +415,13 @@ and uniformly in $n\in W_c$:
 \end{equation}
 \end{hypothesis}
 
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% FIX ⚠️6: Gap-S strukturell notwendig
+% wegen No-Go explizit verbunden
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \begin{remark}[Gap-S: status,
-  determinantal context,
-  and independence]
+  structural necessity via No-Go,
+  and determinantal context]
 \label{rem:gap-necessary}
 Gap-S is an open hypothesis
 (Prob.~\ref{prob:sharp-gc}).
@@ -408,6 +431,16 @@ cannot be shown to vanish.
 Widom~\cite{Widom1964} controls
 average density, not the minimum gap;
 Gap-S is strictly stronger.
+
+Gap-S is moreover \emph{structurally
+necessary}: Prop.~\ref{prop:no-go}
+shows that without a positive gap lower
+bound, projection instability is
+unavoidable --- there always exists
+a SOT-convergent family with
+$\|Q_n^{(k)}-Q_n\|\not\to 0$.
+Gap-S is precisely the hypothesis that
+excludes this pathological regime.
 The analogous bound in determinantal
 point processes follows from
 sine-kernel repulsion.
@@ -603,6 +636,10 @@ any algebraic rate is a global claim.
 \section{Abstract Stability Principle}
 \label{sec:abstract}
 
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% FIX ⚠️2: Assumption S — λ_k eindeutig
+% in einer Umgebung von λ definiert
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \begin{assumption}[Spectral isolation,
   Assumption~S]
 \label{ass:spectral-isolation}
@@ -614,8 +651,13 @@ $A_k\xrightarrow{\mathrm{SOT}} A$.
   $\lambda\in\sigma(A)$ isolated,
   simple; $P^\infty=\phi\otimes\phi$.
 \item\label{S2}
-  Each $\lambda_k\in\sigma(A_k)$
-  isolated, simple;
+  There exists an open interval
+  $I\ni\lambda$ with
+  $\sigma(A)\cap I=\{\lambda\}$.
+  For each $k$, $\lambda_k$ is the
+  \emph{unique} eigenvalue of $A_k$
+  in $I$, with $\lambda_k$ isolated
+  and simple;
   $\gamma_k:=\dist(\lambda_k,
   \sigma(A_k)\setminus\{\lambda_k\})
   >0$; $P_k$ rank-one.
@@ -635,6 +677,10 @@ Under mere SOT, eigenvalues can in
 principle fail to be consistently
 indexed; (S3) must be verified
 explicitly.
+The uniqueness clause in (S2) prevents
+eigenvalue jumping: no other branch
+of $\sigma(A_k)$ can enter the window
+$I$ and be mistaken for $\lambda_k$.
 
 In the PSWF application, strict
 ordering of $\lambda_n^{(c)}$ for
@@ -660,7 +706,13 @@ explicit axiom the user must verify
 for the operator family at hand.
 \end{remark}
 
-\begin{remark}[Role of SOT]
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% FIX ⚠️3: SOT als minimale Topologie
+% — "weaker convergence destroys
+% residual control" explizit
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\begin{remark}[Role of SOT as minimal
+  topology]
 \label{rem:sot-role}
 The only contribution of strong operator
 convergence in this paper is the
@@ -674,10 +726,18 @@ The spectral gap and isolation are
 independent structural inputs,
 not consequences of SOT.
 
-The theorem asserts: this minimal
-SOT output, when combined with a gap
-structure, is sufficient to recover
-spectral projection stability.
+The principle is sharp with respect
+to the topology: replacing SOT by a
+strictly weaker convergence --- one
+that does not guarantee pointwise
+vanishing of $(A_k-A)\phi$ --- destroys
+the residual control in step (M3),
+and the mechanism chain breaks.
+SOT is therefore not merely sufficient
+but the \emph{minimal} topology under
+which $\|(A_k-A)\phi\|$ is a
+well-defined, vanishing observable.
+
 This is a non-trivial statement:
 SOT alone is not sufficient
 (Rem.~\ref{rem:strong-vs-norm},
@@ -685,12 +745,10 @@ Prop.~\ref{prop:no-go}),
 and the gap cannot substitute for
 the residual control
 (Prop.~\ref{prop:counterexample}).
-
 SOT is therefore not doing ``hidden
 norm work''; it is the minimal
-access condition that makes
-$\|(A_k-A)\phi\|$ a well-defined,
-vanishing observable.
+access condition that makes the
+mechanism possible.
 \end{remark}
 
 \begin{lemma}[Mechanism chain:
@@ -942,6 +1000,11 @@ All $A_k$-quantities appear only as
 $(A_k-A)\phi$ or $(A_k-\lambda_k)\phi$.
 \end{remark}
 
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+% FIX ⚠️4: Rank-one — Mechanismus
+% allgemein, Skalar-Kollaps spezifisch
+% klar getrennt
+% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \begin{remark}[Rank-one: sharp regime,
   not artificial restriction]
 \label{rem:rank-one-scope}
@@ -950,7 +1013,13 @@ artificial limitation but the regime
 in which the direction-sensitive
 mechanism is sharp.
 
-The critical identity is step (M1):
+The abstract mechanism --- residual
+controlled by SOT, gap supplying
+the resolvent bound, perturbation
+restricted to an active direction ---
+is not intrinsically rank-one.
+What is rank-one specific is the
+\emph{scalar collapse} in step~(M1):
 \[
   \|P_k - P^\infty\|
   = \|(I-P_k)\phi\|,
@@ -959,22 +1028,21 @@ which holds \emph{only} for rank-one
 projections and makes the proof
 fully one-dimensional at the level
 of estimates.
-This one-dimensionality is what allows
+This scalar reduction is what allows
 the residual-gap ratio to serve as
-a complete invariant in the rank-one
-case.
+a complete invariant.
 
 For higher-multiplicity eigenspaces,
-this scalar reduction is lost: the
+the scalar collapse is lost: the
 projection norm no longer reduces to
 a single vector quantity, and new
 degrees of freedom appear (rotations
 within the eigenspace) that require
 additional geometric input beyond
 a single test vector.
-The mechanism itself is not restricted
-to rank-one, but its current
-formulation is.
+The mechanism itself generalizes;
+only its current one-dimensional
+formulation is rank-one specific.
 
 The present result therefore isolates
 the pure SOT-regime mechanism in its
@@ -1153,7 +1221,8 @@ both of which are open
 The contribution of this section is a
 complete reduction of PSWF projection
 stability to these two independent
-analytic hypotheses.
+analytic hypotheses, identifying the
+exact analytic bottlenecks.
 No further PSWF-specific input beyond
 Lem.~\ref{lem:inherited} is needed.}}
 \end{center}
