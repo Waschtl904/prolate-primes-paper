@@ -50,19 +50,21 @@ For bounded self-adjoint operators with
 $A_k\xrightarrow{\mathrm{SOT}} A$,
 rank-one spectral projection stability
 $\|P_k - P^\infty\|\to 0$
-is equivalent, when the spectral gap
-$\gamma_k\ge c_0>0$, to the gap-normalized
-residual condition
+is equivalent
+(in the bounded-gap regime $\gamma_k\ge c_0>0$)
+to the gap-normalized residual condition
 \[
   \frac{\|(A_k-A)\phi\|}{\gamma_k}
   +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0.
 \]
 This is a \emph{localization principle}
-(by which we mean: control of the residual
-relative to the local spectral gap)
+--- by which we mean: dependence only on
+the residual evaluated on a single
+eigenvector, normalized by the local
+spectral gap ---
 that replaces global operator-norm control
-(Davis--Kahan, Kato) by a single local
-spectral-geometric condition,
+(Davis--Kahan, Kato) by a single
+vector-local condition,
 and is not captured by standard
 norm-based perturbation theory.
 
@@ -264,17 +266,17 @@ uniformly in $n\in W_c$:
 \end{equation}
 \end{hypothesis}
 
-\begin{remark}[Gap-S: structural necessity;
+\begin{remark}[Gap-S: necessity within SOT arguments;
   determinantal context]
 \label{rem:gap-necessary}
-Gap-S is \textbf{structurally necessary}
-for any SOT-based argument for projection
-stability that does not use additional
-structure beyond the local spectral gap:
+Gap-S is necessary for any argument
+based solely on local spectral gap control
+and SOT-type information,
+as demonstrated by Prop.~\ref{prop:no-go}:
 without \eqref{eq:gap-dominates},
 the ratio $\tilde\varepsilon_n(k)/g(c_k)$
 in \eqref{eq:ratio-to-zero} cannot be shown
-to vanish (confirmed by Prop.~\ref{prop:counterexample}).
+to vanish.
 A different proof strategy might encode
 an equivalent condition differently,
 but must capture the same gap-relative
@@ -540,6 +542,11 @@ and $\gamma_k\ge c_0>0$.
 Then \eqref{eq:abstract-ratio} holds.
 \end{theorem}
 \begin{proof}
+The simplicity of $\lambda$ ensures
+that $P^\infty$ is rank-one and that
+the decompositions used below are
+well-defined.
+
 \textbf{Eigenvalue term.}
 $|\lambda_k-\lambda|/\gamma_k
 \le|\lambda_k-\lambda|/c_0\to 0$.
@@ -641,50 +648,44 @@ Hyp.~\ref{hyp:sot-faster}
 and Open Problem~\ref{prob:full-iff}.
 \end{remark}
 
-\begin{remark}[Novelty: the localization
-  principle as a one-vector perturbation
-  theory]
+\begin{remark}[Novelty: a one-vector
+  perturbation principle]
 \label{rem:abstract-novelty}
-The residual-gap inequality underlying
-Thm.~\ref{thm:abstract} appears implicitly
-in classical spectral approximation theory
+While residual-gap estimates are classical
 (Chatelin~\cite{Chatelin1983},
 Osborn~\cite{Osborn1975},
 Kato~\cite{Kato1966} Ch.~IV),
-always within a framework that assumes
-$\|A_k - A\| \to 0$.
+their formulation as a purely one-vector
+sufficient and (under bounded gap)
+necessary condition under mere SOT
+convergence appears not to be standard.
 
 \textbf{Classical theory}
 (Davis--Kahan~\cite{DavisKahan1970},
 Kato~\cite{Kato1966}):
 $\|P_k - P^\infty\| \lesssim
 \|A_k - A\|/\mathrm{gap}$,
-controlled via the global operator norm.
+controlled via the global operator norm,
+which requires $\|A_k-A\|\to 0$
+as a standing assumption.
 \textbf{Present result:}
 no access to $\|A_k - A\|$
 (which may be infinite or diverging);
 global control may fail completely,
 yet projection stability is governed
 purely by a single \emph{vector-local}
-residual $\|(A_k-A)\phi\|$
-relative to the gap.
-We therefore call this a
+residual $\|(A_k-A)\phi\|$ relative to
+the gap.
+
+By \emph{localization principle}
+we mean: dependence only on the residual
+evaluated on a single eigenvector $\phi$,
+normalized by the local spectral gap.
+We call this a
 \emph{one-vector perturbation principle}:
 the only perturbation information needed
 is the action of $A_k - A$ on the
 single vector $\phi$.
-
-\textbf{The novelty lies in showing that
-this condition remains sufficient ---
-and in the bounded-gap case necessary ---
-under mere strong operator convergence,
-where operator-norm control may
-completely fail.}
-To our knowledge, the exact iff formulation
-in the bounded-gap regime
-(Thms.~\ref{thm:abstract}
-$+$~\ref{thm:necessary-bounded-gap})
-is not explicitly isolated in the literature.
 \end{remark}
 
 \begin{proposition}[Counterexample:
