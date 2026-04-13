@@ -52,15 +52,18 @@
 \address{[Address]}
 \email{[Email]}
 
+% ══════════════════════════════════════
+% FIX A: "completely governed" →
+% "admits a sharp scalar control"
+% FIX C: PSWF-Framing: Obstruction Set
+% zuerst, Reduktion danach
+% ══════════════════════════════════════
 \begin{abstract}
-% FIX 1+5+7: Part I/II getrennt,
-% "localization" erklärt,
-% Core scalar invariant explizit
 \textbf{Part~I: Abstract principle
   (fully proved).}
 Spectral projection stability in the
-SOT regime is completely governed by
-a single scalar invariant:
+SOT regime admits a sharp scalar
+control via the invariant
 \[
   R_k :=
   \frac{\|(A_k-A)\phi\|
@@ -72,20 +75,21 @@ under explicit spectral isolation
 (Assumption~S):
 $R_k\to 0$ is sufficient for
 $\|P_k - P^\infty\|\to 0$,
-and necessary when $\gamma_k\ge c_0>0$.
-The mechanism is a factorization of
-responsibility into three independent
-structures
-(Lem.~\ref{lem:mechanism-chain}):
+and necessary when $\gamma_k\ge c_0>0$
+(Thm.~\ref{thm:necessary-bounded-gap}).
+The mechanism is an exact factorization
+of responsibility into three
+independent structures
+(Thm.~\ref{thm:mechanism}):
 rank-one structure effects scalar
 reduction; the spectral gap provides
 the resolvent bound; the local residual
 is the direct observable under SOT.
 Classical perturbation theory cannot
-isolate this mechanism because it
-operates with $\|A_k-A\|$, which is
-insensitive to the direction $\phi$
-and cannot detect the factorization.
+isolate this factorization in explicit
+form because it operates with
+$\|A_k-A\|$, which is insensitive
+to the direction $\phi$.
 The term \emph{localization} refers
 throughout to restriction of the
 perturbation analysis to the single
@@ -93,17 +97,17 @@ direction $\phi$ --- not to spatial
 or semiclassical localization.
 
 \medskip
-\textbf{Part~II: PSWF reduction
-  (conditional).}
-Under two analytic hypotheses
-(Gap-S, SOT-Faster), PSWF projection
-stability reduces entirely to the
-abstract principle.
-Part~II identifies the exact
-obstruction set for PSWF spectral
-stability: both hypotheses are open,
-and no further PSWF-specific input
-is needed beyond the inherited data
+\textbf{Part~II: PSWF obstruction
+  set (conditional).}
+We identify the complete obstruction
+set for PSWF spectral projection
+stability: two analytic conditions
+(Gap-S, SOT-Faster) are the sole
+remaining hypotheses; no further
+PSWF-specific mechanism is involved
+beyond these two conditions.
+This reduces the problem to exactly
+two open analytic problems
 (Problems~\ref{prob:sharp-gc},
 \ref{prob:sot-faster}).
 
@@ -140,41 +144,47 @@ spectral projection stability.}}
 
 \medskip
 \noindent
-% FIX 7: Core Theorem prominent
+% FIX A: "completely governed" →
+% "admits sharp scalar control"
 \textbf{Core Theorem (informal).}
 \emph{Spectral projection stability
-in the SOT regime is completely
-governed by the scalar invariant}
+in the SOT regime admits a sharp
+scalar control via the invariant}
 \begin{equation}\label{eq:main-principle}
   R_k :=
   \frac{\|(A_k-A)\phi\|}{\gamma_k}
   +\frac{|\lambda_k-\lambda|}{\gamma_k}
-  \;\longrightarrow\; 0
+\end{equation}
+\emph{which provides a sharp sufficient
+condition, and a necessary one under
+a uniform gap\/}
+(Thms.~\ref{thm:abstract},
+\ref{thm:necessary-bounded-gap}):
+\[
+  R_k\to 0
   \;\Longrightarrow\;
   \|P_k-P^\infty\|\to 0.
-\end{equation}
-Converse when $\gamma_k\ge c_0>0$
-(Thm.~\ref{thm:necessary-bounded-gap}).
+\]
 
 \medskip
 \noindent
-\textbf{Why this mechanism was not
-isolated before.}
+\textbf{Why this factorization was
+not isolated before.}
 Classical perturbation theory
 (Davis--Kahan, Kato) operates with
 $\|A_k-A\|$, which is rotation-invariant
 and insensitive to the direction $\phi$.
 It cannot distinguish between
 perturbations that interact with $\phi$
-and those that do not.
-The present principle replaces this
-global input with a direction-sensitive
-one, enabled precisely by rank-one
-structure.
+and those that do not, and therefore
+cannot isolate the three-way
+factorization in explicit form.
 The novelty is not the inequality
-itself, but the factorization of
-responsibility into three independent
-structures: rank-one, gap, residual.
+itself, but the exact factorization
+of responsibility: each of the three
+structures (rank-one, gap, residual)
+plays a distinct and non-substitutable
+role.
 
 \medskip
 \noindent
@@ -188,30 +198,30 @@ bound. The local residual is the only
 quantity accessible under SOT without
 global norm control. This chain is
 exact and tight
-(Lem.~\ref{lem:mechanism-chain}).
+(Thm.~\ref{thm:mechanism}).
 
 \medskip
 This paper proves:
 \begin{itemize}
-\item $R_k\to 0$ is the sharp sufficient
-  mechanism
+\item $R_k\to 0$ provides a sharp
+  sufficient scalar control
   (Thm.~\ref{thm:abstract},
-  Lem.~\ref{lem:mechanism-chain});
+  Thm.~\ref{thm:mechanism});
 \item necessary when $\gamma_k\ge c_0>0$
   (Thm.~\ref{thm:necessary-bounded-gap});
-\item the hypothesis is direction-sensitive
-  and not embeddable into norm-based
-  perturbation theory; Davis--Kahan
-  and the present principle operate
-  on fundamentally incompatible
+\item the hypothesis is direction-sensitive;
+  Davis--Kahan and the present principle
+  operate on fundamentally incompatible
   information structures
   (Rems.~\ref{rem:input-comparison},
   \ref{rem:nonreducibility},
   Prop.~\ref{prop:separation});
 \item SOT is the minimal topology
   ensuring pointwise residual
-  observability; gap and isolation
-  are independent structural inputs
+  observability; any weaker mode
+  of convergence that does not ensure
+  $(A_k-A)\phi\to 0$ immediately
+  destroys step~(M3)
   (Rem.~\ref{rem:sot-role});
 \item any attempt to bypass a gap
   condition is provably impossible
@@ -219,9 +229,10 @@ This paper proves:
 \item ratio blow-up implies projection
   failure quantitatively
   (Prop.~\ref{prop:counterexample});
-\item PSWF stability reduces
-  conditionally to Gap-S and SOT-Faster,
-  identifying the exact obstruction set
+\item the complete obstruction set
+  for PSWF stability is identified:
+  Gap-S and SOT-Faster are the sole
+  remaining conditions
   (Cors.~\ref{cor:convergence},
   \ref{cor:rate}).
 \end{itemize}
@@ -229,7 +240,8 @@ This paper proves:
 \begin{remark}[Scope and logical status]
 \label{rem:scope}
 Thms.~\ref{thm:abstract},
-\ref{thm:necessary-bounded-gap}
+\ref{thm:necessary-bounded-gap},
+\ref{thm:mechanism}
 and Props.~\ref{prop:no-go},
 \ref{prop:separation},
 \ref{prop:counterexample}
@@ -272,8 +284,8 @@ XI & Diagonal system
   & Final\\
 \textbf{XII}
   & \textbf{Localization principle
-  (proved); PSWF reduction
-  (conditional)}
+  (proved); PSWF obstruction set
+  (identified)}
   & \textbf{This paper}\\
 XIII & Completeness
   & Planned\\
@@ -284,14 +296,14 @@ XIII & Completeness
 \subsection*{Guide for the Referee}
 \begin{itemize}
 \item Scalar invariant $R_k$ and
-  Core Theorem:
+  sharp control:
   \eqref{eq:main-principle},
   Thm.~\ref{thm:abstract}.
-\item Mechanism factorization
-  (key lemma):
-  Lem.~\ref{lem:mechanism-chain}.
-\item Why mechanism was not isolated
-  before:
+\item \textbf{Exact Mechanism
+  Factorization (signature result):}
+  Thm.~\ref{thm:mechanism}.
+\item Why factorization was not
+  isolated before:
   Rem.~\ref{rem:abstract-novelty}.
 \item Davis--Kahan incompatibility:
   Rems.~\ref{rem:input-comparison},
@@ -432,8 +444,6 @@ and uniformly in $n\in W_c$:
 \end{equation}
 \end{hypothesis}
 
-% FIX 6: Gap-S strukturell via No-Go
-% + "bypassing impossible" Formulierung
 \begin{remark}[Gap-S: structural
   necessity via No-Go, and
   determinantal context]
@@ -476,8 +486,7 @@ but is not logically entailed by
 the abstract mechanism.
 It is an independent analytic
 hypothesis about the PSWF eigenvalue
-spectrum, engineered neither to fit
-the theorem nor derived from it.
+spectrum.
 \end{remark}
 
 \begin{remark}[$c^{-1/4}/g(c)\to 0$]
@@ -488,7 +497,6 @@ smaller order than $g(c)$;
 used in \eqref{eq:ratio-to-zero}.
 \end{remark}
 
-% FIX 3: No-Go aggressiver formuliert
 \begin{proposition}[No-Go: bypassing
   a gap condition is impossible]
 \label{prop:no-go}
@@ -561,25 +569,15 @@ SOT gives only $\varepsilon_n(k)\to 0$;
 SOT-Faster adds rate $o(g(c_k))$
 at one vector --- strictly weaker than
 local norm convergence over a window.
-
 There is no general reason why SOT
 convergence should be compatible with
 any prescribed rate relative to
-$g(c_k)$: pointwise convergence
-places no constraint on the speed
-of convergence relative to the
-spectral gap of the limit operator.
-This is precisely why SOT-Faster
-is an open hypothesis and not a
-consequence of SOT.
-The formal expansion in
-Rem.~\ref{rem:sot-rate-plausible}
-provides structural plausibility
-but not a proof.
-
-SOT-Faster is therefore the sole
-remaining analytic bottleneck in
-the PSWF reduction
+$g(c_k)$: this is precisely why
+SOT-Faster is an open hypothesis and
+not a consequence of SOT.
+SOT-Faster is the sole remaining
+analytic bottleneck in the PSWF
+reduction
 (Prob.~\ref{prob:sot-faster}).
 \end{remark}
 
@@ -589,18 +587,13 @@ the PSWF reduction
 SOT-Faster plays \emph{no role} in
 the abstract stability principle
 (Thm.~\ref{thm:abstract},
-Lem.~\ref{lem:mechanism-chain}).
+Thm.~\ref{thm:mechanism}).
 It is used exclusively in the PSWF
 instantiation (Sec.~\ref{sec:main})
 to compare two independent asymptotic
-regimes: the spectral gap scale
-$g(c_k)$ and the pointwise SOT error
-$\varepsilon_n(k)$.
+regimes.
 The abstract theorem remains valid
 without any rate assumption on SOT.
-SOT-Faster is therefore a PSWF-closure
-hypothesis, not a structural component
-of the mechanism.
 \end{remark}
 
 \begin{hypothesis}[SOT-Rate]
@@ -653,8 +646,6 @@ any algebraic rate is a global claim.
 \section{Abstract Stability Principle}
 \label{sec:abstract}
 
-% FIX 2: Assumption S — λ_k eindeutig
-% in Umgebung von λ, kein jumping
 \begin{assumption}[Spectral isolation,
   Assumption~S]
 \label{ass:spectral-isolation}
@@ -701,28 +692,13 @@ ordering of $\lambda_n^{(c)}$ for
 all $c$ is not an assumption but a
 classical consequence of the
 Sturm--Liouville character of
-$\mathcal{L}_c$: simple eigenvalues
-with strictly monotone dependence
-on $c$ follow from oscillation
-theory for regular Sturm--Liouville
-families~\cite[Sec.~3.2]{Osipov2013}.
-Index stability is therefore not
-imposed externally but inherited
-from the spectral geometry of the
-operator family.
-Lem.~\ref{lem:eigenvalue-matching}
-gives $\lambda_n^{(c_k)}
-\to\lambda_n^{(\infty)}$,
-verifying (S3).
-
+$\mathcal{L}_c$
+(Lem.~\ref{lem:eigenvalue-matching},
+\cite[Sec.~3.2]{Osipov2013}).
 In the abstract setting, (S3) is an
-explicit axiom the user must verify
-for the operator family at hand.
+explicit axiom the user must verify.
 \end{remark}
 
-% FIX 6b: SOT als minimale Topologie
-% präzise: "pointwise residual
-% observability"
 \begin{remark}[Role of SOT as minimal
   topology for residual observability]
 \label{rem:sot-role}
@@ -739,15 +715,15 @@ not consequences of SOT.
 
 SOT is the minimal topology ensuring
 pointwise residual observability:
-replacing SOT by any strictly weaker
-convergence that does not guarantee
-$(A_k-A)\phi\to 0$ pointwise destroys
-the residual control in step~(M3),
-and the mechanism chain breaks
-irreparably.
+any weaker mode of convergence that
+does not ensure $(A_k-A)\phi\to 0$
+immediately destroys step~(M3) of
+the mechanism, and the factorization
+chain breaks irreparably.
 SOT is therefore not doing ``hidden
 norm work''; it is precisely the
-minimal structure the mechanism requires.
+minimal structure the mechanism
+requires.
 
 This is non-trivial:
 SOT alone is not sufficient
@@ -758,14 +734,20 @@ for residual control
 (Prop.~\ref{prop:counterexample}).
 \end{remark}
 
-\begin{lemma}[Mechanism chain:
-  factorization into rank-one,
-  gap, and residual]
-\label{lem:mechanism-chain}
-Under Assumption~S,
-\eqref{eq:main-principle}
+% ══════════════════════════════════════
+% FIX B: Lemma → THEOREM
+% "Exact Mechanism Factorization"
+% als Signature-Result
+% ══════════════════════════════════════
+\begin{theorem}[Exact Mechanism
+  Factorization]
+\label{thm:mechanism}
+Under Assumption~S, the scalar
+control $R_k\to 0
+\Rightarrow\|P_k-P^\infty\|\to 0$
 is the composition of three exact,
-independent steps:
+independent, and non-substitutable
+steps:
 \begin{enumerate}[\rm(M1)]
 \item\label{M1}
   \textbf{(Rank-one scalar reduction.)}
@@ -775,10 +757,11 @@ independent steps:
   \textup{\cite[Ch.~1]{Bhatia1997}}.
   Hence $\|P_k-P^\infty\|
   =\|(I-P_k)\phi\|$.
-  The projection has a single degree
-  of freedom.
+  The projection reduces to a single
+  scalar degree of freedom.
 \item\label{M2}
-  \textbf{(Gap resolvent bound.)}
+  \textbf{(Spectral gap resolvent
+  bound.)}
   $\|(A_k-\lambda_k)^{-1}
   |_{\mathrm{ran}(I-P_k)}\|
   \le 1/\gamma_k$.
@@ -787,22 +770,26 @@ independent steps:
   $\|(I-P_k)\phi\|
   \le\|(A_k-\lambda_k)\phi\|/\gamma_k$.
 \item\label{M3}
-  \textbf{(Residual triangle.)}
+  \textbf{(SOT residual triangle.)}
   $\|(A_k-\lambda_k)\phi\|
   \le\|(A_k-A)\phi\|
   +|\lambda_k-\lambda|$,
   using $(A-\lambda)\phi=0$.
 \end{enumerate}
 Combined:
-$\|P_k-P^\infty\|
-\le R_k \to 0$.
-Removing any single condition
-breaks the chain independently
-(Rems.~\ref{rem:rank-one-essential},
-\ref{rem:necessity-uniform-gap};
-Props.~\ref{prop:no-go},
-\ref{prop:counterexample}).
-\end{lemma}
+\[
+  \|P_k-P^\infty\| \le R_k \to 0.
+\]
+Each step is exact and tight.
+Removing any single structure
+breaks the chain independently:
+(M1) fails for higher rank;
+(M2) fails without a gap lower bound
+(Prop.~\ref{prop:no-go});
+(M3) fails without pointwise residual
+control, i.e.\ without SOT
+(Prop.~\ref{prop:counterexample}).
+\end{theorem}
 \begin{proof}
 (M1): \cite[Ch.~1]{Bhatia1997}.
 (M2): Spectral theorem on
@@ -811,22 +798,21 @@ $(A_k-\lambda_k)P_k\phi=0$.
 (M3): Triangle with $(A-\lambda)\phi=0$.
 \end{proof}
 
-\begin{remark}[Why the chain is exact]
+\begin{remark}[Each structure is
+  non-substitutable]
 \label{rem:chain-exact}
-Each step is sharp:
-(M1) uses rank-one in the only way it
-can --- one direction, one scalar.
-(M2) uses only $\gamma_k$, no reference
-to $A_k-A$.
-(M3) is exact because
-$(A-\lambda)\phi=0$ strictly.
-The three structures are independent:
-no two of them suffice without the
-third.
+(M1): rank-one collapses the projection
+to one direction --- not ``one direction
+controls all,'' but ``there is only
+one direction.''
+(M2): a standard resolvent bound using
+only $\gamma_k$, independent of $A_k-A$.
+(M3): exact because $(A-\lambda)\phi=0$
+strictly.
+No two of the three structures suffice
+without the third.
 \end{remark}
 
-% FIX 4: Davis–Kahan als
-% "incompatible information structures"
 \begin{remark}[Davis--Kahan and the
   present principle operate on
   incompatible information structures]
@@ -837,19 +823,15 @@ rotation-invariant quantity insensitive
 to the direction $\phi$ and to whether
 the perturbation interacts with the
 active subspace.
-
 The present principle depends on
 $\|(A_k-A)\phi\|$: a direction-sensitive
 quantity that measures exactly this
 interaction.
-These are not two estimates for the
-same thing --- they operate on
-fundamentally incompatible information
-structures.
+These operate on fundamentally
+incompatible information structures:
 $\|A_k-A\|$ cannot be used to compute
 $\|(A_k-A)\phi\|$ in either direction
 without additional structure.
-
 Prop.~\ref{prop:separation} makes
 this concrete: $\|A_k-A\|=1$ but
 $\|(A_k-A)\phi\|\to 0$, with full
@@ -908,8 +890,7 @@ $\gamma_k\ge c_0>0$, such that:
   component;
 \item the large-norm component is
   asymptotically spectrally orthogonal
-  to the active subspace
-  $\mathrm{span}\{\phi\}$;
+  to $\mathrm{span}\{\phi\}$;
 \item $\|P_k-P^\infty\|\to 0$.
 \end{enumerate}
 \end{proposition}
@@ -942,18 +923,17 @@ for large $k$~\cite[Ch.~II]{Kato1966}.
 \begin{remark}[Direction-sensitivity
   is the mechanism, not a defect]
 \label{rem:block-is-the-point}
-Step (M1) says $P^\infty=\phi\otimes\phi$
+Step~(M1) says $P^\infty=\phi\otimes\phi$
 has a single degree of freedom.
 Any perturbation component spectrally
 orthogonal to $\mathrm{span}\{\phi\}$
-is invisible to $P^\infty$, regardless
-of its norm.
+is invisible to $P^\infty$,
+regardless of its norm.
 Davis--Kahan sees $\|A_k-A\|\equiv 1$
 and gives no information.
 The present principle identifies the
 geometrically relevant quantity.
-The direction-sensitivity is the
-mechanism.
+Direction-sensitivity is the mechanism.
 \end{remark}
 
 \begin{theorem}[Main Principle;
@@ -965,7 +945,7 @@ $\Rightarrow$
 $\|P_k-P^\infty\|\to 0$.
 \end{theorem}
 \begin{proof}
-Lem.~\ref{lem:mechanism-chain},
+Thm.~\ref{thm:mechanism},
 steps (M3), (M2), (M1).
 \end{proof}
 
@@ -982,8 +962,6 @@ All $A_k$-quantities appear only as
 $(A_k-A)\phi$ or $(A_k-\lambda_k)\phi$.
 \end{remark}
 
-% FIX 5: Rank-one als "canonical
-% minimal model case", nicht Spezialfall
 \begin{remark}[Rank-one: canonical
   minimal model case]
 \label{rem:rank-one-scope}
@@ -992,12 +970,8 @@ restriction but the \emph{canonical
 minimal model case} in which the
 direction-sensitive mechanism is
 sharp and complete.
-
-The abstract mechanism --- residual
-observable via SOT, gap supplying
-the resolvent bound, perturbation
-restricted to an active direction ---
-is not intrinsically rank-one.
+The abstract mechanism is not
+intrinsically rank-one.
 What is rank-one specific is the
 scalar reduction in step~(M1):
 \[
@@ -1007,26 +981,17 @@ scalar reduction in step~(M1):
 which holds only for rank-one
 projections and makes the proof
 fully one-dimensional at the level
-of estimates.
-This reduction is precisely what allows
-$R_k$ to serve as a complete scalar
-invariant.
+of estimates, allowing $R_k$ to
+serve as a complete scalar invariant.
 
 For higher-multiplicity eigenspaces,
-the scalar reduction is lost:
-the projection norm no longer reduces
-to a single vector quantity;
-rotations within the eigenspace
-introduce new degrees of freedom
-requiring additional geometric input.
-The mechanism generalizes;
-only its current one-dimensional
-formulation is rank-one specific.
-
-Rank-one is therefore the minimal
-nontrivial case in which the full
-mechanism can be stated and proved
-with complete scalar control.
+scalar reduction fails: rotations
+within the eigenspace introduce new
+degrees of freedom requiring
+additional geometric input beyond
+a single test vector.
+Rank-one is the minimal nontrivial
+case with complete scalar control.
 Extension to higher rank is a separate
 problem
 (Prob.~\ref{prob:higher-rank}).
@@ -1036,15 +1001,11 @@ problem
   convention]
 \label{rem:fixed-test-vector}
 The vector $\Phi_n^{(\infty)}$ is
-fixed in the limit Hilbert space
-$L^2$ and is \emph{not} transported
-along the $c_k$-dependent spectral
-bases $\{\Phi_m^{(c_k)}\}$.
-All residual computations and
-comparisons are performed in the
-ambient $L^2$ space, with
-$\Phi_n^{(\infty)}$ as a fixed,
-$k$-independent test vector.
+fixed in $L^2$ and is \emph{not}
+transported along the $c_k$-dependent
+spectral bases $\{\Phi_m^{(c_k)}\}$.
+All residual computations are
+performed in the ambient $L^2$ space.
 This is consistent with the abstract
 setting, where $\phi$ is the fixed
 eigenvector of $A$
@@ -1095,7 +1056,9 @@ Divide by $c_0$.
 Without $\gamma_k\ge c_0$, $R_k$
 may diverge even when
 $\|P_k-P^\infty\|\to 0$.
-Open Prob.~\ref{prob:full-iff}.
+The full iff characterization
+for vanishing gap remains open
+(Prob.~\ref{prob:full-iff}).
 \end{remark}
 
 \begin{remark}[Rank-one essential
@@ -1107,11 +1070,8 @@ to extract eigenvector convergence
 from projection convergence.
 \end{remark}
 
-% FIX 1b+4b: Novelty — "factorization"
-% als eigentliche Neuheit, nicht die
-% Ungleichung selbst
-\begin{remark}[Novelty: factorization
-  of responsibility in the SOT regime]
+\begin{remark}[Novelty: exact
+  factorization in the SOT regime]
 \label{rem:abstract-novelty}
 Classical theory
 (Davis--Kahan~\cite{DavisKahan1970},
@@ -1119,28 +1079,28 @@ Kato~\cite{Kato1966},
 Chatelin~\cite{Chatelin1983},
 Osborn~\cite{Osborn1975})
 requires $\|A_k-A\|\to 0$ or
-norm-resolvent convergence, and
-cannot isolate the three-way
-factorization: it conflates what
-rank-one does, what the gap does,
-and what SOT provides.
+norm-resolvent convergence.
+Such global-norm input conflates
+what rank-one does, what the gap does,
+and what SOT provides, and therefore
+cannot isolate the factorization in
+explicit form.
 
-The novelty of the present result
-is not the inequality $R_k\to 0
+The novelty of the present result is
+not the inequality $R_k\to 0
 \Rightarrow\|P_k-P^\infty\|\to 0$
-itself, but the factorization of
-responsibility: rank-one effects
-scalar reduction; gap supplies the
-resolvent bound; SOT delivers the
-observable residual.
+itself, but the exact factorization
+of responsibility:
+rank-one effects scalar reduction;
+gap supplies the resolvent bound;
+SOT delivers the observable residual.
 Each structure is necessary and
 plays a distinct, non-substitutable
-role.
+role (Thm.~\ref{thm:mechanism}).
 
 This factorization is invisible to
 norm-based theory because $\|A_k-A\|$
-conflates all three and cannot be
-decomposed along these lines.
+conflates all three structures.
 \end{remark}
 
 \begin{proposition}[Counterexample:
@@ -1188,22 +1148,33 @@ sufficient.
   Conditional Corollaries}
 \label{sec:main}
 
+% FIX C: Obstruction Set zuerst,
+% Reduktion danach
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{%
 \centering\itshape
-The following are
-\textbf{conditional corollaries},
-not theorems. They assume Gap-S
+\textbf{Main contribution of this
+section:}
+We identify the complete obstruction
+set for PSWF spectral projection
+stability.
+Two analytic conditions --- Gap-S
 (Hyp.~\ref{hyp:gap-structural})
 and SOT-Faster
-(Hyp.~\ref{hyp:sot-faster}),
-both of which are open.
-The contribution of this section is
-a complete identification of the
-\textbf{exact obstruction set} for
-PSWF spectral projection stability:
-no further PSWF-specific input beyond
-Lem.~\ref{lem:inherited} is needed.}}
+(Hyp.~\ref{hyp:sot-faster}) ---
+are the \emph{sole} remaining
+hypotheses; no further PSWF-specific
+mechanism is involved beyond the
+inherited data
+(Lem.~\ref{lem:inherited}).
+This reduces the problem to exactly
+two open analytic problems.
+Both are open
+(Probs.~\ref{prob:sharp-gc},
+\ref{prob:sot-faster}).
+The following corollaries are
+\textbf{conditional} on these
+two hypotheses.}}
 \end{center}
 
 \medskip
