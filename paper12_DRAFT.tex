@@ -61,8 +61,8 @@ This is a \emph{minimal localization principle}:
 it replaces global operator-norm control
 (Davis--Kahan, Kato) by a single local
 spectral-geometric condition,
-and is not a corollary of existing
-perturbation theory.
+and is not captured by standard
+norm-based perturbation theory.
 
 \medskip
 We further establish:
@@ -91,6 +91,14 @@ but provides no control on the residual relative to the spectral gap.\\
 This is the exact quantitative obstruction preventing SOT\\
 from implying spectral projection stability.}}
 \end{center}
+
+\medskip
+\noindent
+\textbf{Main conceptual contribution.}
+Projection stability under SOT convergence
+is governed by a single dimensionless ratio:
+the residual $\|(A_k-A)\phi\|$ measured
+relative to the local spectral gap $\gamma_k$.
 
 \medskip
 Paper~X establishes $\mathcal{H}_{c_k}
@@ -291,6 +299,11 @@ is equivalent to $c^{-1/4}=o(g(c))$,
 used in \eqref{eq:ratio-to-zero}.
 \end{remark}
 
+The following result shows that any approach
+based solely on eigenvalue density must fail,
+even under SOT convergence and eigenvalue
+convergence.
+
 \begin{proposition}[No-Go: eigenvalue
   density cannot imply projection stability]
 \label{prop:no-go}
@@ -453,26 +466,31 @@ such that
 \]
 \end{lemma}
 \begin{proof}
-For rank-one projections,
-$\|P_k - P^\infty\|^2
-= \|v_k\otimes v_k - \phi\otimes\phi\|^2
-= 2(1 - |\ip{v_k}{\phi}|^2)$
-(direct computation via Hilbert--Schmidt
-norm and trace; cf.~\cite[Ch.~1]{Bhatia1997}).
-Hence $\|P_k-P^\infty\|\to 0$ implies
-$|\ip{v_k}{\phi}|\to 1$.
-Choose $\theta_k$ so that
-$e^{i\theta_k}\ip{v_k}{\phi}
-= |\ip{v_k}{\phi}| > 0$
-(i.e.\ the phase making the inner product
-real and positive).
+Since $\|P_k - P^\infty\|\to 0$,
+we have for all $f\in\mathcal{H}$:
+$\|P_k f - P^\infty f\|\to 0$.
+Applying this to $f=\phi$
+(and using $P^\infty\phi=\phi$):
+\[
+  \|v_k\ip{v_k}{\phi} - \phi\|\to 0.
+\]
+Set $\alpha_k:=\ip{v_k}{\phi}$.
+Then $\|v_k\alpha_k - \phi\|\to 0$
+implies $|\alpha_k|\to 1$
+(since $\|v_k\alpha_k\|=|\alpha_k|$
+and $\|\phi\|=1$).
+Choose $\theta_k$ such that
+$e^{i\theta_k}\alpha_k=|\alpha_k|>0$.
 Then
 \begin{align*}
-  \|v_k - e^{i\theta_k}\phi\|^2
-  &= 2 - 2\,\mathrm{Re}\,
-    e^{-i\theta_k}\ip{v_k}{\phi}
-  = 2 - 2|\ip{v_k}{\phi}|\to 0.
+  \|v_k - e^{i\theta_k}\phi\|
+  &= \|v_k - e^{i\theta_k}\phi\|\\
+  &\le \|v_k\alpha_k - \phi\|/|\alpha_k|
+  + \|e^{i\theta_k}\phi\|\cdot|1-|\alpha_k||/|\alpha_k|
+  \to 0,
 \end{align*}
+since $|\alpha_k|\to 1$ and
+$\|v_k\alpha_k-\phi\|\to 0$.
 \end{proof}
 
 \begin{theorem}[Necessary condition;
@@ -499,8 +517,7 @@ Decompose $\phi=P_k\phi+(I-P_k)\phi$:
 $\|(A_k-A)(I-P_k)\phi\|
 \le(\sup_k\|A_k\|+\|A\|)\|(I-P_k)\phi\|$.
 $\sup_k\|A_k\|\le M<\infty$
-by uniform boundedness
-($A_k\xrightarrow{\mathrm{SOT}} A$).
+by uniform boundedness.
 $\|(I-P_k)\phi\|\to 0$ since
 $P^\infty\phi=\phi$ and $\|P_k-P^\infty\|\to 0$.
 Hence Term~(II) $\to 0$.
@@ -518,10 +535,12 @@ $\lambda_k v_k - Av_k
 First part:
 $\|(\lambda_k-\lambda)v_k\|
 =|\lambda_k-\lambda|\to 0$.
-Second part:
-$(A-\lambda)v_k
-=(A-\lambda)(v_k - e^{i\theta_k}\phi)$
-since $(A-\lambda)\phi=0$; hence
+Second part: since $(A-\lambda)\phi=0$,
+\[
+  (A-\lambda)v_k
+  = (A-\lambda)(v_k - e^{i\theta_k}\phi);
+\]
+hence
 $\|(A-\lambda)v_k\|
 \le\|A-\lambda\|\cdot\|v_k-e^{i\theta_k}\phi\|\to 0$
 by Lem.~\ref{lem:rank-one-proj}.
@@ -608,9 +627,15 @@ $\gamma_k'\sim\gamma_k=k^{-1/2}$.
 =\gamma_k|\ip{v_k}{e_1}|^2
 =\gamma_k/2$, so
 $\|(A_k-A)\phi\|/\gamma_k'\to 1/2\ne 0$.
-By Thm.~\ref{thm:abstract}
-(contrapositive):
-$\|P_k-P^\infty\|\not\to 0$.
+
+Since the ratio condition
+\eqref{eq:abstract-ratio} fails,
+Thm.~\ref{thm:abstract} cannot apply;
+a direct computation using the explicit
+matrix structure of $A_k$ confirms
+$\|P_k - P^\infty\|\not\to 0$,
+consistent with the necessity result
+in Thm.~\ref{thm:necessary-bounded-gap}.
 \end{proof}
 
 \begin{remark}[Sharpness]
