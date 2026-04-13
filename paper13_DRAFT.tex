@@ -1,0 +1,634 @@
+
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros (consistent with series)
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\Hlim}{\mathcal{H}_{\lim}}
+\newcommand{\Hc}{\mathcal{H}_c}
+\newcommand{\Phiinf}[1]{\Phi_{#1}^{(\infty)}}
+\newcommand{\Phic}[2]{\Phi_{#2}^{(#1)}}
+\newcommand{\lambdainf}[1]{\lambda_{#1}^{(\infty)}}
+\newcommand{\lambdac}[2]{\lambda_{#2}^{(#1)}}
+\newcommand{\PW}{PW}
+\newcommand{\spc}[1]{\sigma(#1)}
+\newcommand{\Kspace}{\mathcal{K}}
+
+\subjclass[2020]{47A10, 47B25, 42C05, 46B15, 46C05}
+\keywords{Prolate spheroidal wave functions, completeness,
+  orthonormal basis, Riesz basis, strong operator convergence,
+  Paley--Wiener space, Hilbert--P\'{o}lya programme}
+
+\begin{document}
+
+\title[Completeness of the Limiting Slepian Eigenbasis]{%
+  Completeness of the Limiting Slepian Eigenbasis in $L^2(\mathbb{R})$}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\begin{abstract}
+Let $\Hlim$ denote the bounded self-adjoint SOT-limit operator
+constructed in Paper~X, and let $\{\Phiinf{n}\}_{n \ge 0}$ denote
+the orthonormal system of limit eigenfunctions constructed in Paper~XI.
+We define $\Kspace := \overline{\mathrm{span}}\{\Phiinf{n}\} \subseteq L^2(\mathbb{R})$
+and study the completeness problem $\Kspace = L^2(\mathbb{R})$,
+which is Open Problem~7 of Paper~IX and Open Problem~5 of Paper~X.
+
+\medskip
+\textbf{Unconditional results.}
+We give a precise functional-analytic reduction of completeness
+to three independent mechanisms:
+(i)~a Riesz-basis criterion using the Gram operator;
+(ii)~a direct orthogonality-rigidity argument via Paley--Wiener density,
+grounded in the nonvanishing estimates of Paper~VIII
+and the precompactness of Paper~IX;
+(iii)~a conditional compactness route.
+
+\medskip
+\textbf{Conditional results.}
+Under the hypothesis that $\Hlim$ has compact resolvent
+(Hypothesis~\ref{hyp:compact-resolvent}), we show that
+$\{\Phiinf{n}\}$ is an orthonormal basis of $L^2(\mathbb{R})$.
+This hypothesis is currently open and is not implied by boundedness
+or SOT-convergence of $\Hlim$.
+
+\medskip
+We make no assumption on the spectral type of $\Hlim$;
+in particular, we do not assume purely discrete spectrum.
+All results are labelled \textup{(unconditional)} or
+\textup{(conditional)} throughout.
+\end{abstract}
+
+\maketitle
+
+%%══ 1. INTRODUCTION
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Setting and goal}
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{%
+\centering\itshape
+The completeness problem $\Kspace = L^2(\mathbb{R})$
+is the last open structural problem of the series.
+It is not resolved by SOT-convergence, spectral-type assumptions,
+or Sturm--Liouville theory of the auxiliary operator $\mathcal{L}_c$.}}
+\end{center}
+
+\medskip
+\noindent
+Let $\Hc$ be the classical Slepian concentration operator
+(a bounded, self-adjoint, positive operator on $L^2(\mathbb{R})$
+with $\norm{\Hc} \le 1$), acting via
+\[
+  \Hc f(x) = \int_{-\infty}^{\infty}
+    \frac{\sin c(x-y)}{\pi(x-y)} f(y)\, dy.
+\]
+Paper~X establishes, unconditionally, that the strong operator limit
+\[
+  \Hlim := \mathrm{SOT}\text{-}\lim_{c \to \infty} \Hc
+\]
+exists as a bounded self-adjoint operator on $L^2(\mathbb{R})$,
+with $\norm{\Hlim} \le 1$ and $\spc{\Hlim} \subseteq [0,1]$
+(Paper~X, Thread~A; Reed--Simon II, Problem~II.3).
+Paper~XI constructs the orthonormal system $\{\Phiinf{n}\}$
+satisfying
+\begin{equation}\label{eq:eigen-relation}
+  \Hlim \Phiinf{n} = \lambdainf{n} \Phiinf{n},
+  \quad
+  \ip{\Phiinf{m}}{\Phiinf{n}} = \delta_{mn},
+\end{equation}
+with $\lambdainf{n} \in (0,1)$ for all $n$.
+
+\medskip
+\noindent
+\textbf{The completeness problem.}
+Define
+\[
+  \Kspace := \overline{\mathrm{span}}\{\Phiinf{n}\}_{n \ge 0}
+  \subseteq L^2(\mathbb{R}).
+\]
+The central question of this paper is:
+\begin{equation}\label{eq:completeness-question}
+  \Kspace \stackrel{?}{=} L^2(\mathbb{R}).
+\end{equation}
+This is Open Problem~7 of Paper~IX and Open Problem~5 of Paper~X.
+
+\subsection{What this paper does \emph{not} claim}
+
+\begin{itemize}
+\item We do not claim that $\spc{\Hlim}$ is purely discrete.
+  This is Open Problem~4 of Paper~X
+  (is $\spc{\Hlim} = [0,1]$?).
+\item We do not use Sturm--Liouville theory of $\mathcal{L}_c$
+  to deduce completeness of $\{\Phiinf{n}\}$.
+  The operator $\mathcal{L}_c$ and $\Hc$ are distinct objects;
+  their eigenfunctions coincide by classical results
+  \cite{Osipov2013}, but the spectral structure of $\Hlim$
+  does not follow from $\mathcal{L}_c$.
+\item We do not re-prove self-adjointness of $\Hlim$:
+  this is unconditional in Paper~X.
+\end{itemize}
+
+\subsection{Role in the series}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Paper & Content & Status \\
+\midrule
+X  & SOT: $\Hc \xrightarrow{\mathrm{SOT}} \Hlim$; Mosco; Friedrichs
+   & Final \\
+XI & Diagonal system $\{\Phiinf{n}\}$; orthonormality; spectral structure
+   & Final \\
+XII & Localization principle; PSWF obstruction set
+   & Final (submitted) \\
+\textbf{XIII} & \textbf{Completeness} $\Kspace = L^2(\mathbb{R})$
+   & \textbf{This paper} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%══ 2. INPUT FROM THE SERIES
+\section{Inherited Data}
+\label{sec:input}
+
+We collect the results from the series that are used in this paper.
+
+\begin{lemma}[Inherited results]
+\label{lem:inherited}
+\begin{enumerate}[\rm(A)]
+\item\label{A:bounded-sa}
+  \emph{(Paper~X, Theorem~A; Reed--Simon II, Problem~II.3.)}
+  $\Hlim$ is bounded, self-adjoint on $L^2(\mathbb{R})$,
+  with $\norm{\Hlim} \le 1$ and $\spc{\Hlim} \subseteq [0,1]$.
+  In particular, $-1 \notin \spc{\Hlim}$, so
+  $(\Hlim + I)^{-1}$ is a well-defined bounded operator.
+
+\item\label{A:ONS}
+  \emph{(Paper~XI, Lemma~3.1 + Theorem~5.1.)}
+  The system $\{\Phiinf{n}\}_{n \ge 0}$ satisfies
+  \eqref{eq:eigen-relation} and is orthonormal in $L^2(\mathbb{R})$.
+
+\item\label{A:nonvanish}
+  \emph{(Paper~VIII, Theorem~\textup{thm:nonvanish}.)}
+  For each $n$, there exists a measurable set $E_c \subset \mathbb{R}$
+  with $|E_c| \ge c_* c^{-1/2}$ such that
+  $|\widehat{\Phic{c}{n}}(t)| \ge c_1 c^{-1/2}$ on $E_c$.
+
+\item\label{A:precompact}
+  \emph{(Paper~IX, Lemma~3.1.)}
+  The family $\{\Phic{c}{n}\}_{c > 0}$ is precompact in $L^2(\mathbb{R})$:
+  every subsequence has a further subsequence converging strongly
+  to a unit vector.
+
+\item\label{A:eigenvalue-rate}
+  \emph{(Paper~VIII, Corollary~4.3.)}
+  $|\lambdac{c}{n} - \lambdainf{n}| \le C_\kappa c^{-1/4}$
+  for $n \le \kappa c$, uniformly in $n$.
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}[SOT does not imply spectral-type control]
+\label{rem:sot-limitation}
+By \cite[Ex.~VIII.7.14]{ReedSimon1975}, SOT-convergence
+$\Hc \xrightarrow{\mathrm{SOT}} \Hlim$ does not imply
+norm-resolvent convergence, and does not control the
+spectral type of $\Hlim$.
+Whether $\spc{\Hlim}$ is purely discrete, absolutely continuous,
+or equal to $[0,1]$ is not determined by Papers~X--XII.
+\end{remark}
+
+%%══ 3. COMPLETENESS: FUNCTIONAL-ANALYTIC REDUCTION
+\section{Completeness: Functional-Analytic Reduction}
+\label{sec:reduction}
+
+\begin{lemma}[Orthogonality characterisation of completeness]
+\label{lem:orth-char}
+Let $\{\Phiinf{n}\}$ be an orthonormal system in $L^2(\mathbb{R})$.
+Then $\Kspace = L^2(\mathbb{R})$ if and only if
+\[
+  \ip{f}{\Phiinf{n}} = 0 \text{ for all } n \ge 0
+  \quad\Longrightarrow\quad f = 0.
+\]
+\end{lemma}
+\begin{proof}
+Standard Hilbert space theory: the closed span of an orthonormal system
+equals $L^2(\mathbb{R})$ if and only if there is no nonzero vector
+orthogonal to all elements of the system
+\cite[Theorem~3.3]{Conway1990}.
+\end{proof}
+
+\begin{remark}[Role of Lemma~\ref{lem:orth-char}]
+\label{rem:orth-char-role}
+Lemma~\ref{lem:orth-char} is not a tautology but an
+\emph{interface lemma}: it converts the geometric
+completeness condition~\eqref{eq:completeness-question}
+into an analytic condition on inner products,
+which can then be attacked via the series structure.
+\end{remark}
+
+%%══ 4. ROUTE A: RIESZ-BASIS APPROACH
+\section{Route~A: Riesz-Basis Approach}
+\label{sec:riesz}
+
+\begin{definition}[Gram operator]
+\label{def:gram}
+Define the Gram operator $G \colon L^2(\mathbb{R}) \to L^2(\mathbb{R})$ by
+\[
+  Gf := \sum_{n \ge 0} \ip{f}{\Phiinf{n}} \Phiinf{n}.
+\]
+Since $\{\Phiinf{n}\}$ is orthonormal, Bessel's inequality gives
+$\norm{Gf}^2 \le \norm{f}^2$ for all $f$,
+so $G$ is a well-defined bounded operator with $\norm{G} \le 1$.
+Moreover, $G$ is the orthogonal projection onto $\Kspace$.
+\end{definition}
+
+\begin{proposition}[Riesz-basis criterion]
+\label{prop:riesz-criterion}
+\textup{(Unconditional formulation.)}
+Suppose there exist constants $A, B > 0$ such that
+\begin{equation}\label{eq:frame-bounds}
+  A \norm{f}^2
+  \le \sum_{n \ge 0} |\ip{f}{\Phiinf{n}}|^2
+  \le B \norm{f}^2
+  \quad \forall f \in L^2(\mathbb{R}).
+\end{equation}
+Then $\{\Phiinf{n}\}$ is a Riesz basis of $L^2(\mathbb{R})$,
+and in particular $\Kspace = L^2(\mathbb{R})$.
+\end{proposition}
+\begin{proof}
+The upper bound in~\eqref{eq:frame-bounds} follows from Bessel's
+inequality since $\{\Phiinf{n}\}$ is orthonormal (Parseval gives
+$B = 1$ for the orthonormal case).
+The lower bound $A \norm{f}^2 \le \sum_n |\ip{f}{\Phiinf{n}}|^2$
+implies $Gf = 0 \Rightarrow f = 0$, hence $G$ is injective,
+hence $\Kspace = L^2(\mathbb{R})$.
+For orthonormal systems, a Riesz basis with bounds $A = B = 1$
+is precisely an orthonormal basis \cite[Chapter~6]{Young2001}.
+\end{proof}
+
+\begin{remark}[Connection to Paper~VIII]
+\label{rem:paper8-connection}
+The lower bound in~\eqref{eq:frame-bounds} is the key open problem.
+The nonvanishing estimates of Paper~VIII
+(Lemma~\ref{lem:inherited}\ref{A:nonvanish}) provide pointwise
+control on $|\widehat{\Phic{c}{n}}|$, which is the
+natural starting point for establishing such a lower bound
+in the limit $c \to \infty$.
+A rigorous derivation of~\eqref{eq:frame-bounds} from
+Paper~VIII data is Open Problem~\ref{prob:riesz-lower-bound}.
+\end{remark}
+
+%%══ 5. ROUTE B: PALEY--WIENER ORTHOGONALITY RIGIDITY
+\section{Route~B: Paley--Wiener Orthogonality Rigidity}
+\label{sec:pw}
+
+\begin{lemma}[Paley--Wiener density]
+\label{lem:pw-dense}
+The union $\bigcup_{c > 0} \PW_c^2$ is dense in $L^2(\mathbb{R})$,
+where $\PW_c^2$ denotes the Paley--Wiener space of functions
+bandlimited to $[-c, c]$.
+\end{lemma}
+\begin{proof}
+Standard: $\bigcup_{c > 0} \PW_c^2$ contains all Schwartz functions
+with compactly supported Fourier transform, which is dense in
+$L^2(\mathbb{R})$ \cite[Theorem~7.14]{Rudin1991}.
+\end{proof}
+
+\begin{proposition}[Paley--Wiener orthogonality transfer]
+\label{prop:pw-transfer}
+\textup{(Unconditional, modulo Hypothesis~\ref{hyp:pw-transfer}.)}
+Let $f \in L^2(\mathbb{R})$ satisfy $\ip{f}{\Phiinf{n}} = 0$
+for all $n \ge 0$.
+Assume:
+\begin{hypothesis}[Concentration transfer]
+\label{hyp:pw-transfer}
+For each $c > 0$ and each $g \in \PW_c^2$,
+the PSWF expansion $g = \sum_n a_n^{(c)} \Phi_n^{(c)}$ satisfies
+\[
+  \ip{f}{g}
+  = \lim_{c \to \infty}
+    \sum_{n} a_n^{(c)} \ip{f}{\Phi_n^{(c)}}
+  = \sum_{n} a_n^{(\infty)} \ip{f}{\Phiinf{n}},
+\]
+where convergence of coefficients
+$a_n^{(c)} \to a_n^{(\infty)}$ holds in $\ell^2$
+and the interchange of limit and sum is justified
+by dominated convergence via the Bessel majorant
+$\sum_n |a_n^{(\infty)}|^2 \le \norm{g}^2$.
+\end{hypothesis}
+Then $f \perp \PW_c^2$ for all $c > 0$,
+and by Lemma~\ref{lem:pw-dense}, $f = 0$.
+\end{proposition}
+\begin{proof}
+Fix $c > 0$ and $g \in \PW_c^2$.
+Expand $g$ in the PSWF basis $\{\Phi_n^{(c)}\}$,
+which is an orthonormal basis of $\PW_c^2$ \cite{Osipov2013}.
+By Hypothesis~\ref{hyp:pw-transfer}:
+\[
+  \ip{f}{g}
+  = \sum_{n} a_n^{(\infty)} \ip{f}{\Phiinf{n}}
+  = \sum_n a_n^{(\infty)} \cdot 0 = 0.
+\]
+Since $c > 0$ and $g \in \PW_c^2$ were arbitrary,
+$f \perp \bigcup_{c > 0} \PW_c^2$.
+By density (Lemma~\ref{lem:pw-dense}), $f = 0$.
+\end{proof}
+
+\begin{remark}[Status of Hypothesis~\ref{hyp:pw-transfer}]
+\label{rem:pw-status}
+Hypothesis~\ref{hyp:pw-transfer} requires two things:
+(a) coefficient convergence $a_n^{(c)} \to a_n^{(\infty)}$,
+which is related to strong convergence
+$\Phi_n^{(c)} \to \Phiinf{n}$ established conditionally
+in Paper~XII (Corollary~\ref{cor:convergence});
+(b) the Bessel-majorant dominated convergence,
+which follows from the orthonormality of $\{\Phiinf{n}\}$
+(Lemma~\ref{lem:inherited}\ref{A:ONS}).
+The hypothesis is therefore plausible but requires the
+Gap-S and SOT-Faster conditions of Paper~XII to close
+the coefficient convergence step.
+It is Open Problem~\ref{prob:pw-transfer}.
+\end{remark}
+
+%%══ 6. ROUTE C: CONDITIONAL COMPACTNESS
+\section{Route~C: Conditional Compactness}
+\label{sec:compact}
+
+\begin{remark}[Why compactness is a genuine additional hypothesis]
+\label{rem:compact-not-free}
+Since $\norm{\Hlim} \le 1$, we have $-1 \notin \spc{\Hlim}$,
+so $(\Hlim + I)^{-1}$ is a well-defined, bounded operator
+on $L^2(\mathbb{R})$ (Lemma~\ref{lem:inherited}\ref{A:bounded-sa}).
+However, boundedness of $(\Hlim + I)^{-1}$ does \emph{not} imply
+compactness. Compactness is a strictly stronger condition
+that is not implied by SOT-convergence of $\Hc$
+(cf.\ Remark~\ref{rem:sot-limitation}).
+\end{remark}
+
+\begin{hypothesis}[Compact resolvent]
+\label{hyp:compact-resolvent}
+$(\Hlim + I)^{-1}$ is a compact operator on $L^2(\mathbb{R})$.
+\end{hypothesis}
+
+\begin{proposition}[Conditional completeness via spectral theorem]
+\label{prop:compact-route}
+\textup{(Conditional on Hypothesis~\ref{hyp:compact-resolvent}.)}
+If $(\Hlim + I)^{-1}$ is compact, then:
+\begin{enumerate}[\rm(i)]
+\item $\Hlim$ has purely discrete spectrum:
+  $\spc{\Hlim} = \{\lambdainf{n}\}_{n \ge 0}$
+  with $\lambdainf{n} \in (0,1)$ accumulating only at $0$ or $1$;
+\item the eigenfunctions $\{\Phiinf{n}\}$ form an orthonormal
+  basis of $L^2(\mathbb{R})$;
+\item in particular, $\Kspace = L^2(\mathbb{R})$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+If $(\Hlim + I)^{-1}$ is compact, then $\Hlim$ has compact resolvent
+in the sense of \cite[Chapter~VIII]{ReedSimon1975},
+and the spectral theorem for self-adjoint operators with compact
+resolvent gives~(i).
+Since $\Hlim$ is bounded and self-adjoint with purely discrete spectrum,
+its eigenfunctions form a complete orthonormal system by the
+spectral theorem \cite[Theorem~VIII.6]{ReedSimon1975}, giving~(ii)--(iii).
+\end{proof}
+
+\begin{remark}[Relation to Paper~X Open Problem~4]
+\label{rem:op4}
+Paper~X Open Problem~4 asks whether $\spc{\Hlim} = [0,1]$.
+If this were true, $\Hlim$ would have \emph{purely continuous}
+(or mixed) spectrum, and Hypothesis~\ref{hyp:compact-resolvent}
+would be \emph{false}.
+The two possibilities --- $\spc{\Hlim} = [0,1]$ versus
+compact resolvent --- are mutually exclusive.
+Paper~XIII does not resolve this tension; it is precisely
+the central open question.
+\end{remark}
+
+%%══ 7. MAIN THEOREM
+\section{Main Theorem}
+\label{sec:main}
+
+\begin{theorem}[Completeness --- three routes]
+\label{thm:main}
+Let $\Hlim$ and $\{\Phiinf{n}\}$ be as in
+Lemma~\ref{lem:inherited}.
+\begin{enumerate}[\rm(i)]
+\item\label{main:riesz}
+  \textup{(Unconditional formulation.)}
+  $\Kspace = L^2(\mathbb{R})$ if and only if
+  no nonzero $f \in L^2(\mathbb{R})$ is orthogonal to all
+  $\Phiinf{n}$ \textup{(Lemma~\ref{lem:orth-char})}.
+
+\item\label{main:riesz-crit}
+  \textup{(Riesz-basis criterion; unconditional implication.)}
+  If the frame lower bound~\eqref{eq:frame-bounds} holds,
+  then $\Kspace = L^2(\mathbb{R})$
+  \textup{(Proposition~\ref{prop:riesz-criterion})}.
+
+\item\label{main:pw}
+  \textup{(Paley--Wiener route; conditional on
+  Hypothesis~\ref{hyp:pw-transfer}.)}
+  If Hypothesis~\ref{hyp:pw-transfer} holds,
+  then $\Kspace = L^2(\mathbb{R})$
+  \textup{(Proposition~\ref{prop:pw-transfer})}.
+
+\item\label{main:compact}
+  \textup{(Compactness route; conditional on
+  Hypothesis~\ref{hyp:compact-resolvent}.)}
+  If $(\Hlim + I)^{-1}$ is compact,
+  then $\{\Phiinf{n}\}$ is an orthonormal basis of $L^2(\mathbb{R})$
+  and $\Kspace = L^2(\mathbb{R})$
+  \textup{(Proposition~\ref{prop:compact-route})}.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Independence of routes]
+\label{rem:routes-independent}
+The three routes in Theorem~\ref{thm:main} are logically independent.
+Route~(ii) requires only Bessel/Parseval structure.
+Route~(iii) requires coefficient convergence (tied to Paper~XII).
+Route~(iv) requires compact resolvent (unrelated to SOT-rate questions).
+A proof via any single route would complete Open Problem~7 of Paper~IX.
+\end{remark}
+
+%%══ 8. OPEN PROBLEMS
+\section{Open Problems}
+\label{sec:open}
+
+\begin{problem}[Frame lower bound from Paper~VIII data]
+\label{prob:riesz-lower-bound}
+Derive the lower frame bound
+$A \norm{f}^2 \le \sum_n |\ip{f}{\Phiinf{n}}|^2$
+from the nonvanishing estimates of Paper~VIII
+(Lemma~\ref{lem:inherited}\ref{A:nonvanish}).
+This would complete Route~A and prove $\Kspace = L^2(\mathbb{R})$
+unconditionally.
+\end{problem}
+
+\begin{problem}[Coefficient convergence and Hypothesis~\ref{hyp:pw-transfer}]
+\label{prob:pw-transfer}
+Prove Hypothesis~\ref{hyp:pw-transfer} using
+the conditional eigenvector convergence of Paper~XII
+(Corollary~\ref{cor:convergence} under Gap-S and SOT-Faster).
+This would complete Route~B conditionally on the two
+Paper~XII hypotheses.
+\end{problem}
+
+\begin{problem}[Spectral type of $\Hlim$]
+\label{prob:spectral-type}
+Determine whether $\spc{\Hlim}$ is purely discrete,
+purely continuous, or mixed.
+In particular:
+\begin{enumerate}[\rm(a)]
+\item Is $\spc{\Hlim} = \{\lambdainf{n}\}$ (discrete)?
+\item Is $\spc{\Hlim} = [0,1]$ (Paper~X, Open Problem~4)?
+\item Is $(\Hlim + I)^{-1}$ compact
+  (Hypothesis~\ref{hyp:compact-resolvent})?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[Operator identification]
+\label{prob:identification}
+Prove or disprove $\Hlim = \overline{H_{\mathrm{spec}}}$,
+where $H_{\mathrm{spec}} := \sum_n \lambdainf{n}
+\ip{\cdot}{\Phiinf{n}} \Phiinf{n}$.
+This is Open Problem~7 of Paper~IX and the Bridge hypothesis
+of Paper~X.
+Completeness of $\{\Phiinf{n}\}$ is a necessary condition
+for $\overline{H_{\mathrm{spec}}}$ to be densely defined on all
+of $L^2(\mathbb{R})$.
+\end{problem}
+
+\begin{problem}[Riesz-basis property]
+\label{prob:riesz-basis}
+Is $\{\Phiinf{n}\}$ a Riesz basis of $L^2(\mathbb{R})$?
+A positive answer would simultaneously close:
+completeness ($\Kspace = L^2$),
+operator-norm control for $H_{\mathrm{spec}}$,
+and essential self-adjointness of $H_{\mathrm{spec}}$
+(Paper~IX, Theorem~6.1).
+Starting point: Paper~VIII, \texttt{thm:nonvanish}.
+\end{problem}
+
+%%══ 9. CONCLUSION
+\section{Structural Summary}
+\label{sec:conclusion}
+
+The completeness problem $\Kspace = L^2(\mathbb{R})$ is reduced
+to three independent mechanisms, each reflecting a different
+aspect of the limiting Slepian structure:
+
+\medskip
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Route & Mechanism & Key open step \\
+\midrule
+A & Frame lower bound from Paper~VIII &
+  Open Problem~\ref{prob:riesz-lower-bound} \\
+B & Paley--Wiener density + coeff.\ convergence &
+  Open Problem~\ref{prob:pw-transfer} \\
+C & Compact resolvent of $\Hlim$ &
+  Open Problem~\ref{prob:spectral-type} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent
+No route is complete at present.
+Route~A is the most direct and requires only data internal
+to Papers~VIII--XI.
+Route~C is the most structurally powerful but depends on a
+hypothesis (Hypothesis~\ref{hyp:compact-resolvent}) that
+may conflict with Paper~X Open Problem~4.
+
+%%%─── BIBLIOGRAPHY
+\begin{thebibliography}{99}
+
+\bibitem{PaperXIII-XI}[Author],
+\textit{Spectral structure for the limiting PSWF operator},
+Paper~XI, 2026.
+
+\bibitem{PaperXIII-X}[Author],
+\textit{Mosco form convergence and the bridge theorem},
+Paper~X, 2026.
+
+\bibitem{PaperXIII-IX}[Author],
+\textit{Conditional framework: domain, closability, self-adjointness},
+Paper~IX, 2026.
+
+\bibitem{PaperXIII-VIII}[Author],
+\textit{Non-cancellation control and the sharp $c^{-1/2}$ lower bound},
+Paper~VIII, 2026.
+
+\bibitem{PaperXIII-XII}[Author],
+\textit{A localization principle for spectral projection stability},
+Paper~XII, 2026.
+
+\bibitem{Slepian1961}
+D.~Slepian and H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier analysis and
+uncertainty~I},
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions of Order Zero},
+Springer, 2013.
+
+\bibitem{Kato1966}
+T.~Kato,
+\textit{Perturbation Theory for Linear Operators},
+Springer, 1966.
+
+\bibitem{ReedSimon1975}
+M.~Reed and B.~Simon,
+\textit{Methods of Modern Mathematical Physics, Vol.~II},
+Academic Press, 1975.
+
+\bibitem{Conway1990}
+J.~B.~Conway,
+\textit{A Course in Functional Analysis}, 2nd ed.,
+Springer, 1990.
+
+\bibitem{Rudin1991}
+W.~Rudin,
+\textit{Functional Analysis}, 2nd ed.,
+McGraw-Hill, 1991.
+
+\bibitem{Young2001}
+R.~M.~Young,
+\textit{An Introduction to Nonharmonic Fourier Series},
+Academic Press, 2001.
+
+\end{thebibliography}
+
+\end{document}
