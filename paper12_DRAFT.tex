@@ -125,6 +125,14 @@ This paper proves:
   (Thms.~\ref{thm:convergence},~\ref{thm:rate}).
 \end{itemize}
 
+\medskip
+\noindent
+\textit{Projection stability under strong operator
+convergence is not governed by global
+perturbation size, but by a purely local
+spectral-geometric quantity:
+the residual relative to the spectral gap.}
+
 \begin{remark}[Scope]
 \label{rem:scope}
 Thms.~\ref{thm:abstract},
@@ -243,13 +251,12 @@ of spectral projections in general.
 Let $W_c:=\{n:\lambda_n^{(c)}
 \in(\delta,1-\delta)\}$ for fixed $\delta>0$.
 There exists $g\colon[1,\infty)\to(0,\infty)$
-with
+such that
 \begin{equation}\label{eq:gap-dominates}
-  g(c)\to 0
-  \quad\text{and}\quad
-  c^{-1/4} = o(g(c)),
+  \frac{c^{-1/4}}{g(c)}\to 0
+  \quad\text{as }c\to\infty,
 \end{equation}
-such that for all $c\ge 1$,
+and for all $c\ge 1$,
 uniformly in $n\in W_c$:
 \begin{equation}\label{eq:gap-s}
   |\lambda_n^{(c)}-\lambda_{n+1}^{(c)}|
@@ -264,8 +271,7 @@ Gap-S is \textbf{structurally necessary}
 for any SOT-based argument for projection
 stability that does not use additional
 structure beyond the local spectral gap:
-without a lower bound of the form
-\eqref{eq:gap-s} with $c^{-1/4}=o(g(c))$,
+without \eqref{eq:gap-dominates},
 the ratio $\tilde\varepsilon_n(k)/g(c_k)$
 in \eqref{eq:ratio-to-zero} cannot be shown
 to vanish (confirmed by Prop.~\ref{prop:counterexample}).
@@ -291,11 +297,13 @@ bound for the PSWF kernel;
 Open Problem~\ref{prob:sharp-gc}.
 \end{remark}
 
-\begin{remark}[$c^{-1/4}=o(g(c))$]
+\begin{remark}[$c^{-1/4}/g(c)\to 0$]
 \label{rem:gap-implies-o}
 Condition \eqref{eq:gap-dominates}
-is equivalent to $c^{-1/4}=o(g(c))$,
-used in \eqref{eq:ratio-to-zero}.
+states explicitly that $c^{-1/4}/g(c)\to 0$,
+i.e.\ the eigenvalue-matching error $C_\kappa c^{-1/4}$
+is of strictly smaller order than the gap $g(c)$.
+This ratio is used in \eqref{eq:ratio-to-zero}.
 \end{remark}
 
 The following result shows that any approach
@@ -582,6 +590,24 @@ dividing by $\gamma_k\ge c_0$ gives
 \eqref{eq:abstract-ratio}.
 \end{proof}
 
+\begin{remark}[Uniform gap is essential for necessity]
+\label{rem:necessity-uniform-gap}
+The assumption $\gamma_k\ge c_0>0$
+cannot be dropped in
+Thm.~\ref{thm:necessary-bounded-gap}.
+Without a uniform lower bound on $\gamma_k$,
+the normalization by $\gamma_k$ becomes
+unstable: the quantity
+$\|(A_k-A)\phi\|/\gamma_k$ may diverge
+even when projection convergence holds,
+because the numerator can vanish slower
+than $\gamma_k$.
+The precise analysis of the
+vanishing-gap regime is encoded in
+Hyp.~\ref{hyp:sot-faster}
+and Open Problem~\ref{prob:full-iff}.
+\end{remark}
+
 \begin{remark}[Rank-one structure is essential]
 \label{rem:rank-one-essential}
 The necessity direction in
@@ -616,7 +642,8 @@ and Open Problem~\ref{prob:full-iff}.
 \end{remark}
 
 \begin{remark}[Novelty: the localization
-  principle]
+  principle as a one-vector perturbation
+  theory]
 \label{rem:abstract-novelty}
 The residual-gap inequality underlying
 Thm.~\ref{thm:abstract} appears implicitly
@@ -626,26 +653,33 @@ Osborn~\cite{Osborn1975},
 Kato~\cite{Kato1966} Ch.~IV),
 always within a framework that assumes
 $\|A_k - A\| \to 0$.
+
+\textbf{Classical theory}
+(Davis--Kahan~\cite{DavisKahan1970},
+Kato~\cite{Kato1966}):
+$\|P_k - P^\infty\| \lesssim
+\|A_k - A\|/\mathrm{gap}$,
+controlled via the global operator norm.
+\textbf{Present result:}
+no access to $\|A_k - A\|$
+(which may be infinite or diverging);
+global control may fail completely,
+yet projection stability is governed
+purely by a single \emph{vector-local}
+residual $\|(A_k-A)\phi\|$
+relative to the gap.
+We therefore call this a
+\emph{one-vector perturbation principle}:
+the only perturbation information needed
+is the action of $A_k - A$ on the
+single vector $\phi$.
+
 \textbf{The novelty lies in showing that
 this condition remains sufficient ---
 and in the bounded-gap case necessary ---
 under mere strong operator convergence,
-where operator-norm control may completely fail.}
-By ``localization principle'' we mean:
-projection stability is governed entirely
-by the residual $\|(A_k-A)\phi\|$
-measured relative to the local spectral gap $\gamma_k$,
-with no global information on $\|A_k-A\|$ required.
-Classical frameworks
-(Davis--Kahan~\cite{DavisKahan1970},
-Kato~\cite{Kato1966},
-Chatelin~\cite{Chatelin1983},
-Osborn~\cite{Osborn1975})
-require $\|A_k-A\|\to 0$
-as a standing assumption;
-the SOT setting studied here ---
-where $\|A_k-A\|\to 0$ may fail entirely ---
-is not covered by these frameworks.
+where operator-norm control may
+completely fail.}
 To our knowledge, the exact iff formulation
 in the bounded-gap regime
 (Thms.~\ref{thm:abstract}
@@ -714,6 +748,13 @@ gap control (Gap-S) and
 localized SOT rate (SOT-Faster).
 No further PSWF-specific input is needed
 beyond Lem.~\ref{lem:inherited}.
+The contribution of this section is a
+\emph{complete reduction} of PSWF
+projection stability to two independent
+analytic problems, each of which can be
+studied by separate methods
+(Probs.~\ref{prob:sharp-gc},
+\ref{prob:sot-faster}).
 
 Thms.~\ref{thm:convergence}
 and~\ref{thm:rate} apply Thm.~\ref{thm:abstract}
@@ -783,7 +824,9 @@ $\lambda$ isolated and simple,
 $\gamma:=\mathrm{dist}(\lambda,
 \spc{A}\setminus\{\lambda\})>0$,
 $P$ rank-one onto $\ker(A-\lambda)$.
-The simplicity of $\lambda$ ensures
+By the spectral theorem
+(functional calculus),
+the simplicity of $\lambda$ ensures
 that $(A-\lambda)$ is invertible on
 $\mathrm{ran}(I-P)$ with
 $\|(A-\lambda)^{-1}|_{\mathrm{ran}(I-P)}\|
@@ -797,13 +840,12 @@ $\|(A-\lambda)\phi\|\le\varepsilon$:
 \begin{proof}
 $(A-\lambda)\phi=(A-\lambda)(I-P)\phi$
 since $(A-\lambda)P=0$.
-By the spectral theorem,
-all eigenvalues of $A$ on $\mathrm{ran}(I-P)$
-are at distance $\ge\gamma$ from $\lambda$
-(using simplicity of $\lambda$),
-so $(A-\lambda)^{-1}$ exists on $\mathrm{ran}(I-P)$
-with norm $\le 1/\gamma$.
-Hence $\|(I-P)\phi\|\le\varepsilon/\gamma$.
+By the spectral theorem, all spectral
+values of $A$ on $\mathrm{ran}(I-P)$
+lie at distance $\ge\gamma$ from $\lambda$;
+hence $(A-\lambda)^{-1}$ exists on
+$\mathrm{ran}(I-P)$ with norm $\le 1/\gamma$.
+Therefore $\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \end{proof}
 
 \begin{remark}[Rank-one structure]
