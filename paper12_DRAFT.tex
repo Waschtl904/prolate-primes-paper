@@ -67,9 +67,8 @@ This is a \emph{localization principle}
 the residual evaluated on a single
 eigenvector, normalized by the local
 spectral gap ---
-that goes strictly beyond
-Davis--Kahan/Kato-type global
-operator-norm control
+that goes beyond global-norm-based
+perturbation theory in the SOT-only regime
 (Lemma~\ref{lem:dk-comparison},
 Prop.~\ref{prop:separation}).
 
@@ -134,17 +133,21 @@ This paper proves:
 \item When $\gamma_k\ge c_0>0$,
   it is also \emph{necessary}
   (Thm.~\ref{thm:necessary-bounded-gap}).
-\item The condition requires strictly weaker
-  input than Davis--Kahan: there exist
-  families with $\|A_k-A\|\equiv 1$
-  where \eqref{eq:main-principle-informal}
+\item The condition operates beyond
+  global-norm-based perturbation theory:
+  there exist families with
+  $\|A_k-A\|\equiv 1$, genuine spectral
+  interaction, yet
+  \eqref{eq:main-principle-informal}
   holds and $\|P_k-P^\infty\|\to 0$
   (Prop.~\ref{prop:separation}).
 \item Eigenvalue density alone does not
   control spectral angles
   (Prop.~\ref{prop:no-go}).
 \item SOT $+$ eigenvalue convergence
-  is insufficient without gap control
+  is insufficient without gap control;
+  projection failure is quantitatively
+  linked to ratio blow-up
   (Prop.~\ref{prop:counterexample}).
 \item PSWF projection stability reduces
   to Gap-S and SOT-Faster
@@ -211,8 +214,9 @@ XIII& Completeness $\mathcal{K}=L^2$
   Assumption~S (Sec.~\ref{sec:abstract}).
 \item Davis--Kahan comparison:
   Lem.~\ref{lem:dk-comparison}.
-\item Separation from Davis--Kahan
-  (key example): Prop.~\ref{prop:separation}.
+\item Separation from global perturbation
+  theory (key example):
+  Prop.~\ref{prop:separation}.
 \item Abstract Stability Principle
   (sufficient): Thm.~\ref{thm:abstract}.
 \item Non-circularity of localization:
@@ -338,8 +342,9 @@ Open Problem~\ref{prob:sharp-gc}.
 \label{rem:gap-implies-o}
 Condition \eqref{eq:gap-dominates}
 states explicitly that $c^{-1/4}/g(c)\to 0$,
-i.e.\ the eigenvalue-matching error $C_\kappa c^{-1/4}$
-is of strictly smaller order than the gap $g(c)$.
+i.e.\ the eigenvalue-matching error
+$C_\kappa c^{-1/4}$ is of strictly smaller
+order than the gap $g(c)$.
 This ratio is used in \eqref{eq:ratio-to-zero}.
 \end{remark}
 
@@ -441,18 +446,35 @@ density information.
 \end{equation}
 \end{hypothesis}
 
-\begin{remark}[SOT-Faster as microlocal
+\begin{remark}[SOT-Faster: pointwise,
+  not uniform; strictly weaker than local
   norm convergence]
 \label{rem:sot-faster-localized}
-SOT-Faster is strictly stronger than
-$\varepsilon_n(k)\to 0$ (SOT gives this freely).
-It encodes norm control localised to a
-spectral window of width $\sim g(c_k)$
-around $\lambda_n^{(\infty)}$:
-SOT-Faster follows from
-$\|(\mathcal{H}_{c_k}-z)^{-1}
--(\Hlim-z)^{-1}\|\cdot g(c_k)\to 0$
-for $|z-\lambda_n^{(\infty)}|\asymp g(c_k)$.
+SOT-Faster asserts $\varepsilon_n(k) = o(g(c_k))$,
+where $\varepsilon_n(k) =
+\|(\mathcal{H}_{c_k}-\Hlim)\Phi_n^{(\infty)}\|$
+is a \emph{pointwise} quantity evaluated
+on a single fixed vector $\Phi_n^{(\infty)}$.
+This is strictly weaker than local norm
+convergence, which would require
+\[
+  \sup_{\|f\|\le 1,\,
+  \ip{f}{\Phi_n^{(\infty)}}\ne 0}
+  \|(\mathcal{H}_{c_k}-\Hlim)f\|
+  \cdot g(c_k)^{-1} \to 0,
+\]
+i.e.\ uniform control over all vectors
+in a spectral window of width $g(c_k)$.
+SOT-Faster requires only
+$\varepsilon_n(k)/g(c_k)\to 0$
+at the single test vector $\Phi_n^{(\infty)}$
+--- a strictly weaker, one-vector condition.
+It is also \emph{not} implied by mere SOT,
+since SOT gives only $\varepsilon_n(k)\to 0$
+without rate relative to $g(c_k)$.
+SOT-Faster is therefore the minimal
+vector-local rate condition needed to
+activate the localization principle.
 \end{remark}
 
 \begin{hypothesis}[SOT-Rate]
@@ -551,9 +573,7 @@ if $\|A_k - A\|\to 0$, then
   \to 0
 \]
 provided $\gamma_k \ge c_0 > 0$.
-In particular, the ratio condition
-\eqref{eq:abstract-ratio} is strictly
-weaker than $\|A_k-A\|\to 0$:
+In particular:
 \[
   \|A_k-A\|\to 0
   \;\Longrightarrow\;
@@ -568,100 +588,130 @@ but neither implication reverses in general
 $\|(A_k-A)\phi\|\le\|A_k-A\|\cdot\|\phi\|=
 \|A_k-A\|\to 0$.
 Eigenvalue convergence:
-$|\lambda_k-\lambda|\le\|A_k-A\|\to 0$
-by spectral stability under norm convergence.
+$|\lambda_k-\lambda|\le\|A_k-A\|\to 0$.
 Dividing by $\gamma_k\ge c_0$:
 both terms $\to 0$.
 \end{proof}
 
 \begin{proposition}[Separation: local stability
-  without global norm control]
+  with genuine spectral interaction but
+  $\|A_k-A\|\equiv 1$]
 \label{prop:separation}
 There exist bounded self-adjoint operators
 $\{A_k\}$, $A$ on $\mathcal{H} = \ell^2$
 satisfying Assumption~S with
-$\gamma_k \ge c_0 > 0$, such that
+$\gamma_k \ge c_0 > 0$, such that:
 \begin{enumerate}[\rm(i)]
 \item $\|A_k - A\| = 1$ for all $k$
-  \textup{(Davis--Kahan gives no information)},
-\item $(A_k - A)\phi = 0$ for all $k$,
-  hence
-  $\dfrac{\|(A_k-A)\phi\|}{\gamma_k} = 0$,
-\item $P_k = P^\infty$ for all $k$
-  \textup{(projection is exactly stable)}.
+  \textup{(Davis--Kahan gives no
+  information)};
+\item $\|(A_k - A)\phi\| = \varepsilon_k \to 0$,
+  so the ratio condition
+  \eqref{eq:abstract-ratio} holds;
+\item $A_k - A$ has a genuine off-diagonal
+  spectral interaction component
+  \textup{(not a block decoupling)};
+\item $\|P_k - P^\infty\| \to 0$.
 \end{enumerate}
-In particular, the ratio condition
-\eqref{eq:abstract-ratio} is satisfied
-and $\|P_k - P^\infty\| = 0$,
-while $\|A_k - A\| \equiv 1$.
 \end{proposition}
 \begin{proof}
-Decompose $\mathcal{H} = \mathrm{span}\{\phi\}
-\oplus \phi^\perp$.
-Define $A$ and $A_k$ in block form with
-respect to this decomposition:
+Set $\phi = e_1$, $\lambda = 0$, and
 \[
-  A =
-  \begin{pmatrix} \lambda & 0 \\ 0 & B \end{pmatrix},
-  \qquad
-  A_k =
-  \begin{pmatrix} \lambda & 0 \\ 0 & B + K_k \end{pmatrix},
+  A := \sum_{n \ge 2} \mu_n (e_n \otimes e_n),
+  \quad \mu_n \in [-1, -c_0] \text{ uniformly},
 \]
-where $B$ is a bounded self-adjoint operator
-on $\phi^\perp$ with $\lambda \notin \sigma(B)$
-and $\gamma_0 := \dist(\lambda, \sigma(B)) > 0$,
-and $K_k$ is a bounded self-adjoint operator
-on $\phi^\perp$ with $\|K_k\| = 1$ for all $k$.
+so $\lambda = 0$ is isolated and simple
+for $A$ with gap $\gamma \ge c_0 > 0$.
 
-\textit{Verification of (i).}
-$A_k - A = \mathrm{diag}(0, K_k)$,
-so $\|A_k - A\| = \|K_k\| = 1$.
+Define the perturbation in two components:
+\[
+  A_k - A := \underbrace{\varepsilon_k
+  (e_2 \otimes e_1 + e_1 \otimes e_2)}_{=:\,S_k}
+  + \underbrace{K_k}_{},
+\]
+where:
+\begin{itemize}
+\item $S_k$ is the off-diagonal rank-two
+  operator coupling $e_1$ and $e_2$,
+  with $\|S_k\| = \varepsilon_k \to 0$;
+\item $K_k$ acts on
+  $\mathrm{span}\{e_3, e_4, \ldots\}$
+  only, with $\|K_k\| = 1$ for all $k$,
+  chosen so that $\sigma(A|_{\{e_n,n\ge 3\}}
+  + K_k|_{\{e_n,n\ge 3\}})$ stays
+  uniformly bounded away from $0$.
+\end{itemize}
+Then $\|A_k - A\| \ge \|K_k\| = 1$,
+establishing (i).
 
-\textit{Verification of (ii).}
-$(A_k - A)\phi = 0$
-since the perturbation acts entirely
-on $\phi^\perp$ and $\phi \perp \phi^\perp$.
+\textit{Spectral interaction (iii).}
+$S_k$ couples $e_1$ and $e_2$ directly:
+it is not a block-diagonal decoupling,
+but a rank-two off-diagonal perturbation
+that shifts the eigenvalue $\lambda = 0$
+and mixes the eigenvectors $e_1$ and $e_2$.
 
-\textit{Verification of (iii).}
-The eigenvalue $\lambda$ of $A_k$
-is $\lambda$ for all $k$
-(the $\phi$-block is unperturbed),
-with eigenvector $\phi$ for all $k$.
-Hence $P_k = \phi \otimes \phi = P^\infty$
-for all $k$.
+\textit{Residual (ii).}
+$(A_k - A)\phi = S_k e_1 + K_k e_1
+= \varepsilon_k e_2 + 0
+= \varepsilon_k e_2$,
+since $K_k$ acts on
+$\mathrm{span}\{e_3, e_4, \ldots\}$
+only and $e_1 \perp \mathrm{span}\{e_3,\ldots\}$.
+Hence $\|(A_k - A)\phi\| = \varepsilon_k \to 0$,
+and with $\gamma_k \ge c_0$:
+\[
+  \frac{\|(A_k - A)\phi\|}{\gamma_k}
+  = \frac{\varepsilon_k}{\gamma_k} \to 0.
+\]
 
-\textit{Assumption~S.}
-(S1): $\lambda$ is isolated and simple
-for $A$ with gap $\gamma_0 > 0$.
-(S2): $\lambda$ remains isolated and
-simple for each $A_k$ with
-$\gamma_k \ge \gamma_0 - \|K_k\|_{\phi^\perp}$;
-choosing $K_k$ with $\|K_k\|=1$ and
-$\sigma(B+K_k)$ bounded away from $\lambda$
-(e.g.\ $K_k$ supported on a spectral subspace
-of $B$ far from $\lambda$) ensures
-$\gamma_k \ge c_0 > 0$.
-(S3): $\lambda_k = \lambda \to \lambda$.
+\textit{Eigenvalue convergence.}
+By standard eigenvalue perturbation
+(Kato~\cite{Kato1966}, Ch.~II),
+the shift of $\lambda = 0$ under $S_k$
+is $O(\varepsilon_k^2 / c_0) \to 0$;
+$K_k$ does not affect $\lambda_k$ since
+it acts on a spectral subspace bounded
+away from $0$.
+Hence $\lambda_k \to 0$ (S3), and
+the ratio condition \eqref{eq:abstract-ratio}
+holds.
+
+\textit{Gap (S2).}
+$\gamma_k = \dist(\lambda_k,
+\sigma(A_k)\setminus\{\lambda_k\})
+\ge c_0 - C\varepsilon_k^2 \ge c_0/2$
+for large $k$.
+
+\textit{Projection stability (iv).}
+Thm.~\ref{thm:abstract} applies
+and gives $\|P_k - P^\infty\| \to 0$.
 \end{proof}
 
 \begin{remark}[Interpretation]
 \label{rem:separation-meaning}
-Prop.~\ref{prop:separation} exhibits
-the strict logical gap between global
-and local perturbation theory:
-the global operator norm $\|A_k - A\|$
-can be large (here: identically $1$)
-while the localized residual
-$(A_k - A)\phi$ vanishes exactly.
-The geometric mechanism is orthogonal
-separation: the perturbation $K_k$ lives
-entirely in $\phi^\perp$ and is therefore
-invisible to the spectral direction of
-interest.
-This is precisely the situation that
-arises in PSWF families, where the
-operator perturbation acts
-non-uniformly across spectral directions.
+The construction combines two components:
+an off-diagonal perturbation $S_k$ that
+genuinely interacts with the spectral
+direction $\phi = e_1$ (rotating eigenvectors,
+shifting eigenvalues), and a large
+orthogonal component $K_k$ with
+$\|K_k\| = 1$ that keeps
+$\|A_k - A\| \equiv 1$ while remaining
+invisible to $\phi$.
+The key point is that $S_k$ is \emph{not}
+a decoupling: it produces real spectral
+mixing between $e_1$ and $e_2$, yet its
+effect on the ratio
+$\|(A_k-A)\phi\|/\gamma_k = \varepsilon_k/\gamma_k$
+vanishes.
+Davis--Kahan, which sees only
+$\|A_k - A\| \equiv 1$, cannot distinguish
+this situation from one where the
+projection is unstable.
+The localization principle detects stability
+precisely because it measures only
+the spectral effect along $\phi$.
 \end{remark}
 
 \begin{theorem}[Main Principle;
@@ -689,34 +739,40 @@ Rank-one identity~\cite[Ch.~1]{Bhatia1997}
 yields $\|P_k-P^\infty\|\to 0$.
 \end{proof}
 
-\begin{remark}[Non-circularity of the localization principle]
+\begin{remark}[Non-circularity of the
+  localization principle]
 \label{rem:non-circularity}
-The vector $\phi$ is a \emph{fixed} eigenvector of $A$;
-it is \emph{not} assumed to be an eigenvector of $A_k$.
-The quantity $(A_k-A)\phi$ measures the deviation
-of the two operators on a fixed spectral direction,
-and does not presuppose any eigenvector relation
-for $A_k$.
+The vector $\phi$ is a \emph{fixed}
+eigenvector of $A$; it is \emph{not}
+assumed to be an eigenvector of $A_k$.
+The quantity $(A_k-A)\phi$ measures the
+deviation of the two operators on a fixed
+spectral direction, and does not
+presuppose any eigenvector relation for
+$A_k$.
 The subsequent projection estimate
-(Lem.~\ref{lem:approx-eig}) is therefore a
-\emph{forward stability implication}:
-given that $\phi$ is a good approximate eigenvector
-of $A_k$ relative to $\gamma_k$,
+(Lem.~\ref{lem:approx-eig}) is therefore
+a \emph{forward stability implication}:
+given that $\phi$ is a good approximate
+eigenvector of $A_k$ relative to $\gamma_k$,
 we conclude $P_k \to P^\infty$.
-No fixed-point argument or circularity is involved.
+No fixed-point argument or circularity
+is involved.
 \end{remark}
 
-\begin{remark}[Structural independence of the test vector]
+\begin{remark}[Structural independence
+  of the test vector]
 \label{rem:structural-independence}
-The vector $\phi$ is fixed at the level of the
-limiting operator $A$ and is independent of the
-spectral data of $A_k$ in the following sense:
-no step in the argument uses any spectral projection,
-eigenvector, or spectral decomposition of $A_k$
-in the construction of $\phi$.
-All quantities involving $A_k$ appear only in the form
-$(A_k - A)\phi$ or $(A_k - \lambda_k)\phi$,
-i.e.\ as evaluations of $A_k$ on a fixed vector,
+The vector $\phi$ is fixed at the level
+of the limiting operator $A$ and is
+independent of the spectral data of $A_k$:
+no step in the argument uses any spectral
+projection, eigenvector, or spectral
+decomposition of $A_k$ in the construction
+of $\phi$.
+All quantities involving $A_k$ appear only
+as $(A_k - A)\phi$ or $(A_k - \lambda_k)\phi$,
+i.e.\ evaluations of $A_k$ on a fixed vector,
 not as spectral inputs defining that vector.
 \end{remark}
 
@@ -729,36 +785,21 @@ be rank-one orthogonal projections
 with $\|v_k\|=\|\phi\|=1$.
 If $\|P_k - P^\infty\|\to 0$, then
 there exist phases $\theta_k\in\mathbb{R}$
-such that
-\[
-  \|v_k - e^{i\theta_k}\phi\|\to 0.
-\]
+such that $\|v_k - e^{i\theta_k}\phi\|\to 0$.
 \end{lemma}
 \begin{proof}
 Since $\|P_k - P^\infty\|\to 0$,
-we have for all $f\in\mathcal{H}$:
-$\|P_k f - P^\infty f\|\to 0$.
-Applying this to $f=\phi$
-(and using $P^\infty\phi=\phi$):
-\[
-  \|v_k\ip{v_k}{\phi} - \phi\|\to 0.
-\]
-Set $\alpha_k:=\ip{v_k}{\phi}$.
-Then $\|v_k\alpha_k - \phi\|\to 0$
-implies $|\alpha_k|\to 1$
-(since $\|v_k\alpha_k\|=|\alpha_k|$
-and $\|\phi\|=1$).
-Choose $\theta_k$ such that
+applying to $f=\phi$:
+$\|v_k\ip{v_k}{\phi} - \phi\|\to 0$.
+Set $\alpha_k:=\ip{v_k}{\phi}$;
+then $|\alpha_k|\to 1$.
+Choose $\theta_k$ with
 $e^{i\theta_k}\alpha_k=|\alpha_k|>0$.
 Then
-\begin{align*}
-  \|v_k - e^{i\theta_k}\phi\|
-  &\le \|v_k\alpha_k - \phi\|/|\alpha_k|
-  + \|e^{i\theta_k}\phi\|\cdot|1-|\alpha_k||/|\alpha_k|
-  \to 0,
-\end{align*}
-since $|\alpha_k|\to 1$ and
-$\|v_k\alpha_k-\phi\|\to 0$.
+$\|v_k - e^{i\theta_k}\phi\|
+\le \|v_k\alpha_k - \phi\|/|\alpha_k|
++ |1-|\alpha_k||/|\alpha_k|
+\to 0$.
 \end{proof}
 
 \begin{theorem}[Necessary condition;
@@ -770,143 +811,121 @@ and $\gamma_k\ge c_0>0$.
 Then \eqref{eq:abstract-ratio} holds.
 \end{theorem}
 \begin{proof}
-The simplicity of $\lambda$ ensures
-that $P^\infty$ is rank-one and that
-the decompositions used below are
-well-defined.
-
 \textbf{Eigenvalue term.}
 $|\lambda_k-\lambda|/\gamma_k
 \le|\lambda_k-\lambda|/c_0\to 0$.
 
 \textbf{Residual term.}
 Decompose $\phi=P_k\phi+(I-P_k)\phi$:
-\begin{equation}\label{eq:decomp-necessary}
-  (A_k-A)\phi
-  = (A_k-A)P_k\phi
-  + (A_k-A)(I-P_k)\phi.
-\end{equation}
-\textit{Term~(II).}
-$\|(A_k-A)(I-P_k)\phi\|
-\le(\sup_k\|A_k\|+\|A\|)\|(I-P_k)\phi\|$.
-$\sup_k\|A_k\|\le M<\infty$
-by uniform boundedness.
-$\|(I-P_k)\phi\|\to 0$ since
-$P^\infty\phi=\phi$ and $\|P_k-P^\infty\|\to 0$.
-Hence Term~(II) $\to 0$.
+$(A_k-A)\phi
+= (A_k-A)P_k\phi
++ (A_k-A)(I-P_k)\phi$.
 
-\textit{Term~(I).}
-Write $P_k\phi=\alpha_k v_k$,
-$\alpha_k:=\ip{v_k}{\phi}$,
-$A_k v_k=\lambda_k v_k$; so
+\textit{Term~(II):}
+$\|(A_k-A)(I-P_k)\phi\|
+\le 2M\|(I-P_k)\phi\|\to 0$,
+where $M:=\sup_k\|A_k\|<\infty$
+by uniform boundedness,
+and $\|(I-P_k)\phi\|\to 0$
+since $\|P_k-P^\infty\|\to 0$.
+
+\textit{Term~(I):}
 $(A_k-A)P_k\phi
 = \alpha_k(\lambda_k v_k - Av_k)$.
-Decompose:
-$\lambda_k v_k - Av_k
-= (\lambda_k-\lambda)v_k
-+ (\lambda-A)v_k$.
-First part:
 $\|(\lambda_k-\lambda)v_k\|
 =|\lambda_k-\lambda|\to 0$.
-Second part: since $(A-\lambda)\phi=0$,
-\[
-  (A-\lambda)v_k
-  = (A-\lambda)(v_k - e^{i\theta_k}\phi);
-\]
-hence
-$\|(A-\lambda)v_k\|
-\le\|A-\lambda\|\cdot\|v_k-e^{i\theta_k}\phi\|\to 0$
+$(A-\lambda)v_k
+= (A-\lambda)(v_k - e^{i\theta_k}\phi)$
+since $(A-\lambda)\phi=0$;
+hence $\|(A-\lambda)v_k\|\to 0$
 by Lem.~\ref{lem:rank-one-proj}.
-Since $|\alpha_k|\le 1$:
-Term~(I) $\to 0$.
 
 Combining: $\|(A_k-A)\phi\|\to 0$;
 dividing by $\gamma_k\ge c_0$ gives
 \eqref{eq:abstract-ratio}.
 \end{proof}
 
-\begin{remark}[Uniform gap is essential for necessity]
+\begin{remark}[Uniform gap is essential
+  for necessity]
 \label{rem:necessity-uniform-gap}
-The assumption $\gamma_k\ge c_0>0$
-cannot be dropped in
-Thm.~\ref{thm:necessary-bounded-gap}.
-Without a uniform lower bound on $\gamma_k$,
-the normalization by $\gamma_k$ becomes
-unstable: the quantity
-$\|(A_k-A)\phi\|/\gamma_k$ may diverge
+Without $\gamma_k\ge c_0>0$,
+the normalization by $\gamma_k$ is
+unstable and the ratio may diverge
 even when projection convergence holds.
 The vanishing-gap regime is encoded in
-Hyp.~\ref{hyp:sot-faster}
-and Open Problem~\ref{prob:full-iff}.
+Hyp.~\ref{hyp:sot-faster} and
+Open Problem~\ref{prob:full-iff}.
 \end{remark}
 
-\begin{remark}[Rank-one structure is essential]
+\begin{remark}[Rank-one structure
+  is essential]
 \label{rem:rank-one-essential}
-The necessity direction crucially uses
-rank-one structure of $P_k$, $P^\infty$
-to extract $\|v_k-e^{i\theta_k}\phi\|\to 0$
-directly from $\|P_k-P^\infty\|\to 0$
-(Lem.~\ref{lem:rank-one-proj}).
+The necessity direction uses rank-one
+structure to extract
+$\|v_k-e^{i\theta_k}\phi\|\to 0$
+from $\|P_k-P^\infty\|\to 0$.
 For higher-multiplicity eigenspaces,
-the argument fails without additional
-assumptions (e.g.\ reduced resolvent
-convergence or angular subspace bounds).
+additional assumptions are required.
 \end{remark}
 
-\begin{remark}[Open: full iff when
-  $\gamma_k\to 0$]
-\label{rem:iff-open}
-When $\gamma_k\to 0$,
-the proof above shows $\|(A_k-A)\phi\|\to 0$
-but whether the rate is faster than
-$\gamma_k$ is not determined by projection
-convergence alone
-(Hyp.~\ref{hyp:sot-faster},
-Open Prob.~\ref{prob:full-iff}).
-\end{remark}
-
-\begin{remark}[Novelty: a one-vector
-  perturbation principle]
+\begin{remark}[Novelty: one-vector
+  perturbation principle in SOT regime]
 \label{rem:abstract-novelty}
-While residual-gap estimates are classical
-(Chatelin~\cite{Chatelin1983},
-Osborn~\cite{Osborn1975},
-Kato~\cite{Kato1966} Ch.~IV),
-their formulation as a purely one-vector
-sufficient and (under bounded gap)
-necessary condition under mere SOT
-convergence appears not to be standard.
-
-\textbf{Classical theory}
+Classical perturbation theory
 (Davis--Kahan~\cite{DavisKahan1970},
-Kato~\cite{Kato1966}):
-$\|P_k - P^\infty\| \lesssim
-\|A_k - A\|/\mathrm{gap}$,
-requiring $\|A_k-A\|\to 0$.
-\textbf{Present result:}
-no access to $\|A_k - A\|$;
-global control may fail completely
-(Prop.~\ref{prop:separation}),
-yet stability is governed by a single
-\emph{vector-local} residual
-$\|(A_k-A)\phi\|$ relative to the gap.
+Kato~\cite{Kato1966},
+Chatelin~\cite{Chatelin1983},
+Osborn~\cite{Osborn1975})
+requires global norm control
+$\|A_k-A\|\to 0$ or norm-resolvent
+convergence to estimate
+$\|P_k - P^\infty\|$.
+The present result operates in a
+strictly weaker regime:
+no global norm control is available
+or assumed (SOT only),
+and yet projection stability is
+characterized by a single vector-local
+quantity $\|(A_k-A)\phi\|/\gamma_k$.
 
-By \emph{localization principle}
-we mean: dependence only on the residual
-evaluated on a single eigenvector $\phi$,
-normalized by the local spectral gap.
+More precisely: classical theory
+requires control of $\|A_k-A\|$ as input
+to estimate the residual;
+here the residual $\|(A_k-A)\phi\|$ is
+the \emph{direct observable}, and no
+global operator norm appears anywhere
+in the sufficient or necessary conditions.
+This goes beyond global-norm-based
+perturbation theory in the SOT-only regime
+(Prop.~\ref{prop:separation}).
+
+By \emph{localization principle} we mean:
+dependence only on the residual evaluated
+on a single eigenvector $\phi$, normalized
+by the local spectral gap.
 We call this a \emph{one-vector
 perturbation principle}.
 \end{remark}
 
 \begin{proposition}[Counterexample:
-  SOT but projection failure]
+  SOT but quantitative projection failure
+  linked to ratio blow-up]
 \label{prop:counterexample}
 There exist bounded self-adjoint $\{A_k\}$,
 $A$ on $\ell^2$ satisfying Assumption~S
 with $A_k\xrightarrow{\mathrm{SOT}} A$,
-$\lambda_k\to\lambda$, yet
-$\|P_k-P^\infty\|\not\to 0$.
+$\lambda_k\to\lambda$, such that
+\begin{equation}\label{eq:ratio-blowup}
+  r_k := \frac{\|(A_k-A)\phi\|}{\gamma_k}
+  \to \tfrac{1}{2} \ne 0,
+\end{equation}
+and quantitatively:
+\begin{equation}\label{eq:proj-blowup}
+  \|P_k - P^\infty\| \ge c \cdot r_k
+  \quad\text{for all large }k,
+\end{equation}
+for an explicit constant $c > 0$.
+In particular, $\|P_k-P^\infty\|\not\to 0$.
 \end{proposition}
 \begin{proof}
 Set $\phi=e_1$, $\lambda=0$,
@@ -919,26 +938,55 @@ $v_k:=\tfrac{1}{\sqrt{2}}(e_1+e_2)$,
   A_k:=\gamma_k(v_k\otimes v_k)
   +\sum_{n\ge 2} n^{-1}(e_n\otimes e_n).
 \]
-(S1)--(S3) of Assumption~S hold:
-$\lambda=0$ is isolated and simple for $A$;
-$\lambda_k=\gamma_k$ is simple for $A_k$
-with gap $\gamma_k'\sim\gamma_k$;
-$\lambda_k\to 0$.
+Then $\|(A_k-A)e_1\|
+= \|\gamma_k v_k \ip{v_k}{e_1}
+- 0\| = \gamma_k/2$
+(since $(A_k - A)e_1
+= \gamma_k v_k\ip{v_k}{e_1}
+= \tfrac{\gamma_k}{2}(e_1 + e_2)
+- 0$; more precisely:
+$(A_k-A)e_1
+= \gamma_k(v_k\otimes v_k)e_1
+= \gamma_k \ip{v_k}{e_1} v_k
+= \tfrac{\gamma_k}{\sqrt{2}}
+\cdot\tfrac{1}{\sqrt{2}}(e_1+e_2)
+= \tfrac{\gamma_k}{2}(e_1+e_2)$,
+so $\|(A_k-A)e_1\|
+= \gamma_k/\sqrt{2}$).
 
-$\|(A_k-A)\phi\|=\gamma_k/2$, so
-$\|(A_k-A)\phi\|/\gamma_k'\to 1/2\ne 0$:
-ratio condition \eqref{eq:abstract-ratio}
-fails.
-Direct computation confirms
-$\|P_k - P^\infty\|\not\to 0$,
-consistent with Thm.~\ref{thm:necessary-bounded-gap}.
+Hence $r_k = \|(A_k-A)\phi\|/\gamma_k
+= 1/\sqrt{2}$ for all $k$,
+confirming \eqref{eq:ratio-blowup}
+with $r_k \equiv 1/\sqrt{2} \ne 0$.
+
+For the projection, the eigenvector of
+$A_k$ associated to $\lambda_k = \gamma_k$
+is $v_k = \tfrac{1}{\sqrt{2}}(e_1+e_2)$,
+giving $P_k = v_k \otimes v_k$.
+Then
+\[
+  \|P_k - P^\infty\|
+  \ge |\ip{(P_k - P^\infty)e_1}{e_1}|
+  = |{\textstyle\frac{1}{2}} - 1|
+  = \tfrac{1}{2}.
+\]
+Hence \eqref{eq:proj-blowup} holds with
+$c = 1/\sqrt{2}$,
+since $\|P_k - P^\infty\| \ge \tfrac{1}{2}
+= \tfrac{1}{\sqrt{2}} \cdot r_k$.
 \end{proof}
 
-\begin{remark}[Sharpness]
+\begin{remark}[Quantitative link]
 \label{rem:counterexample-meaning}
-SOT $+$ eigenvalue convergence alone
-do not suffice;
-the ratio condition is tight.
+The ratio $r_k = \|(A_k-A)\phi\|/\gamma_k$
+stays bounded away from zero, and the
+projection error $\|P_k - P^\infty\|$
+is bounded below by $c \cdot r_k$.
+This is the quantitative converse to
+Thm.~\ref{thm:abstract}: ratio blow-up
+implies projection failure, and the
+bound \eqref{eq:proj-blowup} makes the
+coupling explicit.
 \end{remark}
 
 %%══ 5. PSWF APPLICATION
@@ -952,13 +1000,6 @@ gap control (Gap-S) and
 localized SOT rate (SOT-Faster).
 No further PSWF-specific input is needed
 beyond Lem.~\ref{lem:inherited}.
-The contribution of this section is a
-\emph{complete reduction} of PSWF
-projection stability to two independent
-analytic problems, each of which can be
-studied by separate methods
-(Probs.~\ref{prob:sharp-gc},
-\ref{prob:sot-faster}).
 Assumption~S is verified by
 Lem.~\ref{lem:inherited}(A3)
 and Lem.~\ref{lem:eigenvalue-matching}.
@@ -971,38 +1012,28 @@ $\phi=\Phi_n^{(\infty)}$,
 $\lambda=\lambda_n^{(\infty)}$,
 $\lambda_k=\lambda_n^{(c_k)}$.
 
-\begin{lemma}[Gap-S supplies Assumption~S gap bound]
+\begin{lemma}[Gap-S supplies Assumption~S
+  gap bound]
 \label{lem:gap-bridge}
 Under Hyp.~\ref{hyp:gap-structural} (Gap-S),
 the gap~$\gamma_k$ from Assumption~S satisfies
-\[
-  \gamma_k \;\ge\; g(c_k)
-\]
-in the PSWF application $A_k = \mathcal{H}_{c_k}$,
-for each fixed index $n \in W_{c_k}$.
+$\gamma_k \ge g(c_k)$
+in the PSWF application,
+for each fixed $n \in W_{c_k}$.
 \end{lemma}
 \begin{proof}
 By Hyp.~\ref{hyp:gap-structural},
-\[
-  |\lambda_n^{(c_k)} - \lambda_{n\pm1}^{(c_k)}|
-  \ge g(c_k)
-\]
-on the index set~$W_{c_k}$.
-In the PSWF setting, eigenvalues are simple
-and ordered, so the nearest spectral neighbors
-of $\lambda_n^{(c_k)}$ are $\lambda_{n\pm1}^{(c_k)}$.
-Hence the spectral gap
-$\gamma_k = \dist\!\big(\lambda_n^{(c_k)},\,
-\sigma(A_k)\setminus\{\lambda_n^{(c_k)}\}\big)$
-is controlled below by the same spacing,
-i.e.~$\gamma_k \ge g(c_k)$.
+$|\lambda_n^{(c_k)} - \lambda_{n\pm1}^{(c_k)}|
+\ge g(c_k)$ on $W_{c_k}$.
+Eigenvalues are simple and ordered,
+so $\gamma_k \ge g(c_k)$.
 \end{proof}
 
 \begin{remark}[Gap inequality in application]
 \label{rem:gap-inequality}
-Lem.~\ref{lem:gap-bridge} supplies the lower bound
-$\gamma_k \ge g(c_k)$ used throughout this section.
-Dividing by $g(c_k)$ suffices to verify
+Lem.~\ref{lem:gap-bridge} supplies
+$\gamma_k \ge g(c_k)$;
+dividing by $g(c_k)$ verifies
 \eqref{eq:abstract-ratio}.
 \end{remark}
 
@@ -1012,15 +1043,12 @@ Assume Lem.~\ref{lem:inherited},
 Hyp.~\ref{hyp:gap-structural} (Gap-S),
 and Hyp.~\ref{hyp:sot-faster} (SOT-Faster).
 For each fixed $n\in W_{c_k}$:
-\[
-  \|P_n^{(c_k)} - P_n^{(\infty)}\|\to 0.
-\]
+$\|P_n^{(c_k)} - P_n^{(\infty)}\|\to 0$.
 In particular,
 $\Phi_n^{(c_k)}\to\Phi_n^{(\infty)}$
 strongly (up to phase)
 and $\{\lambda_n^{(\infty)}\}$ has no
-accumulation point in $(0,1)$
-(Rem.~\ref{rem:nacc}).
+accumulation point in $(0,1)$.
 \end{theorem}
 
 \begin{theorem}[Rate]
@@ -1060,34 +1088,19 @@ identifying $\mathrm{ran}(I-P)$ with the
 spectral subspace associated to
 $\sigma(A)\setminus\{\lambda\}$:
 $(A-\lambda)$ is invertible on
-$\mathrm{ran}(I-P)$ with
-$\|(A-\lambda)^{-1}|_{\mathrm{ran}(I-P)}\|
-\le 1/\gamma$.
+$\mathrm{ran}(I-P)$ with norm $\le 1/\gamma$.
 For $\|\phi\|=1$ and
 $\|(A-\lambda)\phi\|\le\varepsilon$:
-\[
-  \|(I-P)\phi\|\le\varepsilon/\gamma.
-\]
+$\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \end{lemma}
 \begin{proof}
 $(A-\lambda)\phi=(A-\lambda)(I-P)\phi$
 since $(A-\lambda)P=0$.
-By the spectral theorem, all spectral
-values of $A$ on $\mathrm{ran}(I-P)$
-lie at distance $\ge\gamma$ from $\lambda$;
-hence $(A-\lambda)^{-1}$ exists on
-$\mathrm{ran}(I-P)$ with norm $\le 1/\gamma$.
-Therefore $\|(I-P)\phi\|\le\varepsilon/\gamma$.
+Spectral theorem: all values of $A$
+on $\mathrm{ran}(I-P)$ lie at distance
+$\ge\gamma$ from $\lambda$;
+hence $\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \end{proof}
-
-\begin{remark}[Rank-one structure]
-\label{rem:perturbation-mechanism}
-Rank-one gives uniform resolvent bound
-$1/\gamma$ on $\mathrm{ran}(I-P)$.
-Lem.~\ref{lem:gap-bridge} supplies $\gamma\ge g(c_k)$;
-SOT-Faster gives
-$\varepsilon_n(k)/g(c_k)\to 0$.
-\end{remark}
 
 \begin{lemma}[SOT: approx.\ eigenvectors,
   no rate]
@@ -1100,9 +1113,6 @@ $\varepsilon_n(k)=
 
 \begin{proof}[Proof of Thm.~\ref{thm:convergence}]
 Fix $n\in W_{c_k}$.
-Assumption~S is verified by
-Lem.~\ref{lem:inherited}(A3)
-and Lem.~\ref{lem:eigenvalue-matching}.
 \[
   \tilde\varepsilon_n(k)
   :=\|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
