@@ -214,6 +214,9 @@ and~\ref{hyp:sot-faster}.
 \item Spectral isolation without
   Assumption~S:
   Rem.~\ref{rem:spectral-isolation}.
+\item Extension to higher-rank
+  eigenspaces:
+  Rem.~\ref{rem:rank-one-scope}.
 \end{itemize}
 
 \subsection{Role in the series}
@@ -241,8 +244,9 @@ XIII & Completeness
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
-\item Spectral isolation and
-  index-stability in SOT:
+\item Spectral isolation, index-stability
+  (classical Sturm--Liouville fact),
+  and SOT:
   Assumption~S,
   Rem.~\ref{rem:spectral-isolation}.
 \item \textbf{Mechanism chain
@@ -254,9 +258,15 @@ XIII & Completeness
   \ref{rem:nonreducibility}.
 \item Role of SOT:
   Rem.~\ref{rem:sot-role}.
+\item Why SOT-Faster is a genuine
+  open hypothesis:
+  Rem.~\ref{rem:sot-faster-localized}.
 \item Gap-S independence from
   the principle:
   Rem.~\ref{rem:gap-independent}.
+\item Rank-one scope and scalar
+  reduction:
+  Rem.~\ref{rem:rank-one-scope}.
 \item Separation example:
   Prop.~\ref{prop:separation},
   Rem.~\ref{rem:block-is-the-point}.
@@ -470,7 +480,7 @@ the regime excluded by Gap-S.
 \end{hypothesis}
 
 \begin{remark}[SOT-Faster: pointwise,
-  not uniform; sole analytic bottleneck]
+  not uniform; genuine open hypothesis]
 \label{rem:sot-faster-localized}
 SOT-Faster is a pointwise condition
 at the single fixed vector
@@ -480,8 +490,25 @@ SOT gives only $\varepsilon_n(k)\to 0$;
 SOT-Faster adds rate $o(g(c_k))$
 at one vector --- strictly weaker than
 local norm convergence over a window.
-It is the sole remaining analytic
-bottleneck in the PSWF reduction
+
+There is no general reason why SOT
+convergence should be compatible with
+any prescribed rate relative to
+$g(c_k)$: pointwise convergence
+places no constraint on the speed
+of convergence relative to the
+spectral gap of the limit operator.
+This is precisely why SOT-Faster
+is an open hypothesis and not a
+consequence of SOT.
+The formal expansion in
+Rem.~\ref{rem:sot-rate-plausible}
+provides structural plausibility
+but not a proof.
+
+SOT-Faster is therefore the sole
+remaining analytic bottleneck in
+the PSWF reduction
 (Prob.~\ref{prob:sot-faster}).
 \end{remark}
 
@@ -567,17 +594,29 @@ Under mere SOT, eigenvalues can in
 principle fail to be consistently
 indexed; (S3) must be verified
 explicitly.
-In the PSWF application, strict ordering
-of $\lambda_n^{(c)}$ for all $c$
-(Lem.~\ref{lem:inherited}(A3))
-ensures canonical assignment
-$\lambda_n^{(c_k)}
-\leftrightarrow\lambda_n^{(\infty)}$,
-and Lem.~\ref{lem:eigenvalue-matching}
+
+In the PSWF application, strict
+ordering of $\lambda_n^{(c)}$ for
+all $c$ is not an assumption but a
+classical consequence of the
+Sturm--Liouville character of
+$\mathcal{L}_c$: simple eigenvalues
+with strictly monotone dependence
+on $c$ follow from oscillation
+theory for regular Sturm--Liouville
+families~\cite[Sec.~3.2]{Osipov2013}.
+Index stability is therefore not
+imposed externally but inherited
+from the spectral geometry of the
+operator family.
+Lem.~\ref{lem:eigenvalue-matching}
 gives $\lambda_n^{(c_k)}
-\to\lambda_n^{(\infty)}$.
+\to\lambda_n^{(\infty)}$,
+verifying (S3).
+
 In the abstract setting, (S3) is an
-explicit axiom the user must verify.
+explicit axiom the user must verify
+for the operator family at hand.
 \end{remark}
 
 \begin{remark}[Role of SOT]
@@ -862,6 +901,47 @@ All $A_k$-quantities appear only as
 $(A_k-A)\phi$ or $(A_k-\lambda_k)\phi$.
 \end{remark}
 
+\begin{remark}[Rank-one: sharp regime,
+  not artificial restriction]
+\label{rem:rank-one-scope}
+The rank-one assumption is not an
+artificial limitation but the regime
+in which the direction-sensitive
+mechanism is sharp.
+
+The critical identity is step (M1):
+\[
+  \|P_k - P^\infty\|
+  = \|(I-P_k)\phi\|,
+\]
+which holds \emph{only} for rank-one
+projections and reduces the full
+projection norm to a single scalar.
+This scalar reduction is precisely
+what allows the residual-gap ratio
+to serve as a complete invariant.
+
+For higher-multiplicity eigenspaces,
+this scalar reduction is lost: the
+projection norm no longer reduces to
+a single vector quantity, and new
+degrees of freedom appear (rotations
+within the eigenspace) that require
+additional geometric input beyond
+a single test vector.
+The mechanism is not false in higher
+rank, but it is incomplete: additional
+structure must be specified before
+an analogue of (M1) can be applied.
+
+The present result therefore isolates
+the pure SOT-regime mechanism in its
+sharpest and most complete form.
+Extension to higher rank is a separate
+problem with a different geometric
+structure.
+\end{remark}
+
 \begin{lemma}[Rank-one projection
   $\Rightarrow$ eigenvector convergence]
 \label{lem:rank-one-proj}
@@ -943,7 +1023,8 @@ rotation-invariant global input with
 a direction-sensitive local one.
 The replacement is enabled precisely
 by rank-one structure, which collapses
-the projection norm to a single scalar.
+the projection norm to a single scalar
+(Rem.~\ref{rem:rank-one-scope}).
 \end{remark}
 
 \begin{proposition}[Counterexample:
@@ -1016,7 +1097,11 @@ Lem.~\ref{lem:inherited} is needed.}}
 \medskip
 Assumption~S is verified by
 Lem.~\ref{lem:inherited}(A3)
-and Lem.~\ref{lem:eigenvalue-matching}.
+and Lem.~\ref{lem:eigenvalue-matching};
+index stability follows from the
+Sturm--Liouville character of
+$\mathcal{L}_c$
+(Rem.~\ref{rem:spectral-isolation}).
 
 \begin{lemma}[Gap-S supplies gap bound]
 \label{lem:gap-bridge}
@@ -1228,6 +1313,15 @@ in strong resolvent sense?
 \label{prob:completeness}
 $\mathcal{K}=L^2(\mathbb{R})$?
 Paper~XIII.
+\end{problem}
+
+\begin{problem}[Higher-rank extension]
+\label{prob:higher-rank}
+Extend the localization principle
+to higher-multiplicity eigenspaces,
+where scalar reduction (M1) fails
+and additional geometric structure
+is required.
 \end{problem}
 
 %%%─── BIBLIOGRAPHY
