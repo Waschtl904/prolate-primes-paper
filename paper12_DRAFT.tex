@@ -259,14 +259,18 @@ XIII & Completeness
 \item Role of SOT:
   Rem.~\ref{rem:sot-role}.
 \item Why SOT-Faster is a genuine
-  open hypothesis:
-  Rem.~\ref{rem:sot-faster-localized}.
+  open hypothesis and plays no role
+  in the abstract principle:
+  Rems.~\ref{rem:sot-faster-localized},
+  \ref{rem:sot-faster-logical}.
 \item Gap-S independence from
   the principle:
   Rem.~\ref{rem:gap-independent}.
 \item Rank-one scope and scalar
   reduction:
   Rem.~\ref{rem:rank-one-scope}.
+\item Fixed test vector convention:
+  Rem.~\ref{rem:fixed-test-vector}.
 \item Separation example:
   Prop.~\ref{prop:separation},
   Rem.~\ref{rem:block-is-the-point}.
@@ -336,12 +340,28 @@ $\lambda_n^{(c_k)}
 \leftrightarrow\lambda_n^{(\infty)}$
 is unambiguous for all large $k$
 and cannot cross.
+Since eigenvalues depend continuously
+and strictly monotonically on $c$
+(classical Sturm--Liouville oscillation
+theory~\cite[Sec.~3.2]{Osipov2013}),
+crossings between distinct branches
+$\lambda_n^{(c)}$ and
+$\lambda_m^{(c)}$ for $n\ne m$
+are excluded for all $c$.
+Hence the labeling by index is globally
+consistent in $c$, and the assignment
+$\lambda_n^{(c_k)}\leftrightarrow
+\lambda_n^{(\infty)}$ is canonical.
 \end{lemma}
 \begin{proof}
 Convergence from \eqref{A1}.
 Index stability: strict ordering is
 preserved in the limit; canonical
 assignment by index.
+Crossing exclusion: strictly monotone
+eigenvalue branches
+(Sturm--Liouville character of
+$\mathcal{L}_c$) cannot intersect.
 \end{proof}
 
 \begin{remark}[SOT $\not\Rightarrow$
@@ -510,6 +530,27 @@ SOT-Faster is therefore the sole
 remaining analytic bottleneck in
 the PSWF reduction
 (Prob.~\ref{prob:sot-faster}).
+\end{remark}
+
+\begin{remark}[Logical status of
+  SOT-Faster]
+\label{rem:sot-faster-logical}
+SOT-Faster plays \emph{no role} in
+the abstract stability principle
+(Thm.~\ref{thm:abstract},
+Lem.~\ref{lem:mechanism-chain}).
+It is used exclusively in the PSWF
+instantiation (Sec.~\ref{sec:main})
+to compare two independent asymptotic
+regimes: the spectral gap scale
+$g(c_k)$ and the pointwise SOT error
+$\varepsilon_n(k)$.
+
+The abstract theorem remains valid
+without any rate assumption on SOT.
+SOT-Faster is therefore a PSWF-closure
+hypothesis, not a structural component
+of the mechanism.
 \end{remark}
 
 \begin{hypothesis}[SOT-Rate]
@@ -915,11 +956,13 @@ The critical identity is step (M1):
   = \|(I-P_k)\phi\|,
 \]
 which holds \emph{only} for rank-one
-projections and reduces the full
-projection norm to a single scalar.
-This scalar reduction is precisely
-what allows the residual-gap ratio
-to serve as a complete invariant.
+projections and makes the proof
+fully one-dimensional at the level
+of estimates.
+This one-dimensionality is what allows
+the residual-gap ratio to serve as
+a complete invariant in the rank-one
+case.
 
 For higher-multiplicity eigenspaces,
 this scalar reduction is lost: the
@@ -929,17 +972,37 @@ degrees of freedom appear (rotations
 within the eigenspace) that require
 additional geometric input beyond
 a single test vector.
-The mechanism is not false in higher
-rank, but it is incomplete: additional
-structure must be specified before
-an analogue of (M1) can be applied.
+The mechanism itself is not restricted
+to rank-one, but its current
+formulation is.
 
 The present result therefore isolates
 the pure SOT-regime mechanism in its
 sharpest and most complete form.
 Extension to higher rank is a separate
 problem with a different geometric
-structure.
+structure (Prob.~\ref{prob:higher-rank}).
+\end{remark}
+
+\begin{remark}[Fixed test vector
+  convention]
+\label{rem:fixed-test-vector}
+The vector $\Phi_n^{(\infty)}$ is
+fixed in the limit Hilbert space
+$L^2$ and is \emph{not} transported
+along the $c_k$-dependent spectral
+bases $\{\Phi_m^{(c_k)}\}$.
+All residual computations
+$\|(\mathcal{H}_{c_k}-\Hlim)
+\Phi_n^{(\infty)}\|$
+and comparisons are performed in
+the ambient $L^2$ space, with
+$\Phi_n^{(\infty)}$ treated as
+a fixed, $k$-independent test vector.
+This is consistent with the abstract
+setting, where $\phi$ is the fixed
+eigenvector of the limit operator $A$
+(Rem.~\ref{rem:non-circularity}).
 \end{remark}
 
 \begin{lemma}[Rank-one projection
@@ -1022,8 +1085,9 @@ the output, but by replacing a
 rotation-invariant global input with
 a direction-sensitive local one.
 The replacement is enabled precisely
-by rank-one structure, which collapses
-the projection norm to a single scalar
+by rank-one structure, which makes
+the proof fully one-dimensional at
+the level of estimates
 (Rem.~\ref{rem:rank-one-scope}).
 \end{remark}
 
@@ -1102,6 +1166,10 @@ index stability follows from the
 Sturm--Liouville character of
 $\mathcal{L}_c$
 (Rem.~\ref{rem:spectral-isolation}).
+The vector $\Phi_n^{(\infty)}$ serves
+as fixed test vector in the ambient
+$L^2$ space throughout
+(Rem.~\ref{rem:fixed-test-vector}).
 
 \begin{lemma}[Gap-S supplies gap bound]
 \label{lem:gap-bridge}
