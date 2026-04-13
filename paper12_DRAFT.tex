@@ -15,6 +15,7 @@
 \newtheorem{hypothesis}[theorem]{Hypothesis}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{problem}[theorem]{Open Problem}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -48,25 +49,27 @@ spectral gap, limiting operator, Riesz basis}
 \textbf{Main result.}
 For bounded self-adjoint operators with
 $A_k\xrightarrow{\mathrm{SOT}} A$,
-rank-one spectral projection stability
-$\|P_k - P^\infty\|\to 0$
-is equivalent
-(in the bounded-gap regime $\gamma_k\ge c_0>0$)
-to the gap-normalized residual condition
+under an explicit spectral isolation
+assumption (Assumption~S),
+the gap-normalized residual condition
 \[
   \frac{\|(A_k-A)\phi\|}{\gamma_k}
-  +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0.
+  +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0
 \]
+is sufficient for rank-one spectral
+projection stability
+$\|P_k - P^\infty\|\to 0$,
+and necessary in the bounded-gap regime
+$\gamma_k\ge c_0>0$.
 This is a \emph{localization principle}
 --- by which we mean: dependence only on
 the residual evaluated on a single
 eigenvector, normalized by the local
 spectral gap ---
-that replaces global operator-norm control
-(Davis--Kahan, Kato) by a single
-vector-local condition,
-and is not captured by standard
-norm-based perturbation theory.
+that goes strictly beyond
+Davis--Kahan/Kato-type global
+operator-norm control
+(Lemma~\ref{lem:dk-comparison}).
 
 \medskip
 We further establish:
@@ -97,11 +100,23 @@ This is the precise obstruction to spectral projection stability.}}
 
 \medskip
 \noindent
-\textbf{Main conceptual contribution.}
-Projection stability under SOT convergence
-is governed by a single dimensionless ratio:
-the residual $\|(A_k-A)\phi\|$ measured
-relative to the local spectral gap $\gamma_k$.
+\textbf{Main Principle (informal).}
+Let $A_k\xrightarrow{\mathrm{SOT}} A$
+with isolated simple eigenvalue $\lambda$
+of $A$ and associated simple eigenvalues
+$\lambda_k$ of $A_k$
+(Assumption~S below).
+Then:
+\begin{equation}\label{eq:main-principle-informal}
+  \frac{\|(A_k-A)\phi\|}{\gamma_k}
+  +\frac{|\lambda_k-\lambda|}{\gamma_k}\to 0
+  \;\Longrightarrow\;
+  \|P_k-P^\infty\|\to 0.
+\end{equation}
+The converse holds when $\gamma_k\ge c_0>0$
+(Thm.~\ref{thm:necessary-bounded-gap}).
+See Thm.~\ref{thm:abstract} for the
+precise statement.
 
 \medskip
 Paper~X establishes $\mathcal{H}_{c_k}
@@ -110,12 +125,17 @@ Paper~XI constructs an orthonormal diagonal
 eigenfunction system $\{\Phi_n^{(\infty)}\}$.
 This paper proves:
 \begin{itemize}
-\item The ratio condition \eqref{eq:abstract-ratio}
+\item \eqref{eq:main-principle-informal}
   is the \emph{sharp sufficient mechanism}
   (Thm.~\ref{thm:abstract}).
 \item When $\gamma_k\ge c_0>0$,
   it is also \emph{necessary}
   (Thm.~\ref{thm:necessary-bounded-gap}).
+\item The condition strictly extends
+  Davis--Kahan: if $\|A_k-A\|\to 0$
+  then \eqref{eq:main-principle-informal}
+  holds automatically
+  (Lem.~\ref{lem:dk-comparison}).
 \item Eigenvalue density alone cannot
   imply projection stability
   (Prop.~\ref{prop:no-go}).
@@ -155,6 +175,9 @@ and~\ref{hyp:sot-faster}.
   \ref{prob:sot-faster}.
 \item Completeness $\mathcal{K}=L^2$:
   Paper~XIII.
+\item Spectral isolation without
+  Assumption~S: see
+  Rem.~\ref{rem:spectral-isolation}.
 \end{itemize}
 
 \subsection{Role in the series}
@@ -180,6 +203,10 @@ XIII& Completeness $\mathcal{K}=L^2$
 
 \subsection*{Guide for the Referee}
 \begin{itemize}
+\item Spectral isolation axiom:
+  Assumption~S (Sec.~\ref{sec:abstract}).
+\item Davis--Kahan comparison:
+  Lem.~\ref{lem:dk-comparison}.
 \item Abstract Stability Principle
   (sufficient): Thm.~\ref{thm:abstract}.
 \item Rank-one projection $\Rightarrow$
@@ -452,32 +479,88 @@ any algebraic rate is a global claim.
 \section{Abstract Stability Principle}
 \label{sec:abstract}
 
-\begin{theorem}[Abstract Stability Principle;
+\begin{assumption}[Spectral isolation, Assumption~S]
+\label{ass:spectral-isolation}
+Let $\{A_k\}$ and $A$ be bounded
+self-adjoint on $\mathcal{H}$ with
+$A_k\xrightarrow{\mathrm{SOT}} A$.
+We assume:
+\begin{enumerate}[\rm(S1)]
+\item\label{S1}
+  $\lambda\in\sigma(A)$ is isolated and
+  simple; $P^\infty$ is the rank-one
+  projection onto $\ker(A-\lambda)$.
+\item\label{S2}
+  For each $k$, $\lambda_k\in\sigma(A_k)$
+  is simple, with
+  $\gamma_k := \mathrm{dist}(\lambda_k,
+  \sigma(A_k)\setminus\{\lambda_k\})>0$
+  and rank-one projection $P_k$.
+\item\label{S3}
+  $\lambda_k\to\lambda$.
+\end{enumerate}
+\end{assumption}
+
+\begin{remark}[Spectral isolation under SOT]
+\label{rem:spectral-isolation}
+Under strong resolvent convergence
+(SRC, i.e.\ $(A_k-z)^{-1}\to (A-z)^{-1}$
+in norm for $z\notin\sigma(A)$),
+Assumption~S follows automatically from
+isolation of $\lambda$ via Riesz
+projections~\cite[Ch.~VIII]{Kato1966}.
+Under mere SOT, SRC may fail, so
+Assumption~S must be imposed explicitly.
+In the PSWF application, (S1)--(S3) are
+supplied by Lem.~\ref{lem:inherited}(A3)
+and Lem.~\ref{lem:eigenvalue-matching}.
+\end{remark}
+
+\begin{lemma}[Davis--Kahan implies ratio
+  condition]
+\label{lem:dk-comparison}
+Under Assumption~S,
+if $\|A_k - A\|\to 0$, then
+\[
+  \frac{\|(A_k-A)\phi\|}{\gamma_k}
+  +\frac{|\lambda_k-\lambda|}{\gamma_k}
+  \to 0
+\]
+provided $\gamma_k \ge c_0 > 0$.
+In particular, the ratio condition
+\eqref{eq:abstract-ratio} is strictly
+weaker than $\|A_k-A\|\to 0$:
+\[
+  \|A_k-A\|\to 0
+  \;\Longrightarrow\;
+  \eqref{eq:abstract-ratio}
+  \;\Longrightarrow\;
+  \|P_k-P^\infty\|\to 0,
+\]
+but neither implication reverses in general
+(Prop.~\ref{prop:counterexample}).
+\end{lemma}
+\begin{proof}
+$\|(A_k-A)\phi\|\le\|A_k-A\|\cdot\|\phi\|=
+\|A_k-A\|\to 0$.
+Eigenvalue convergence:
+$|\lambda_k-\lambda|\le\|A_k-A\|\to 0$
+by spectral stability under norm convergence.
+Dividing by $\gamma_k\ge c_0$:
+both terms $\to 0$.
+\end{proof}
+
+\begin{theorem}[Main Principle;
   sufficient condition]
 \label{thm:abstract}
-Let $\{A_k\}$, $A$ be bounded self-adjoint
-on a Hilbert space $\mathcal{H}$ with
-$A_k\xrightarrow{\mathrm{SOT}} A$.
-Let $\phi\in\mathcal{H}$, $\|\phi\|=1$,
-$A\phi=\lambda\phi$, $\lambda$ isolated
-and simple,
-$P^\infty$ the rank-one projection
-onto $\ker(A-\lambda)$.
-Assume simple eigenvalues
-$\lambda_k\in\sigma(A_k)$
-with
-\begin{equation}\label{eq:abstract-matching}
-  \lambda_k\to\lambda,
-\end{equation}
-gap $\gamma_k:=\mathrm{dist}(\lambda_k,
-\sigma(A_k)\setminus\{\lambda_k\})>0$,
-and
+Under Assumption~S,
+if the ratio condition
 \begin{equation}\label{eq:abstract-ratio}
   \frac{\|(A_k-A)\phi\|}{\gamma_k}
   +\frac{|\lambda_k-\lambda|}{\gamma_k}
-  \to 0.
+  \to 0
 \end{equation}
-Then $\|P_k - P^\infty\|\to 0$.
+holds, then $\|P_k - P^\infty\|\to 0$.
 \end{theorem}
 \begin{proof}
 Set $\varepsilon_k:=\|(A_k-A)\phi\|$,
@@ -536,7 +619,7 @@ $\|v_k\alpha_k-\phi\|\to 0$.
 \begin{theorem}[Necessary condition;
   bounded-gap case]
 \label{thm:necessary-bounded-gap}
-Under the setup of Thm.~\ref{thm:abstract},
+Under Assumption~S,
 assume $\|P_k-P^\infty\|\to 0$
 and $\gamma_k\ge c_0>0$.
 Then \eqref{eq:abstract-ratio} holds.
@@ -606,31 +689,23 @@ Without a uniform lower bound on $\gamma_k$,
 the normalization by $\gamma_k$ becomes
 unstable: the quantity
 $\|(A_k-A)\phi\|/\gamma_k$ may diverge
-even when projection convergence holds,
-because the numerator can vanish slower
-than $\gamma_k$.
-The precise analysis of the
-vanishing-gap regime is encoded in
+even when projection convergence holds.
+The vanishing-gap regime is encoded in
 Hyp.~\ref{hyp:sot-faster}
 and Open Problem~\ref{prob:full-iff}.
 \end{remark}
 
 \begin{remark}[Rank-one structure is essential]
 \label{rem:rank-one-essential}
-The necessity direction in
-Thm.~\ref{thm:necessary-bounded-gap}
-crucially uses the rank-one structure
-of $P_k$ and $P^\infty$:
-it allows the eigenvector convergence
-$\|v_k - e^{i\theta_k}\phi\|\to 0$
-to be extracted directly from
-$\|P_k - P^\infty\|\to 0$
+The necessity direction crucially uses
+rank-one structure of $P_k$, $P^\infty$
+to extract $\|v_k-e^{i\theta_k}\phi\|\to 0$
+directly from $\|P_k-P^\infty\|\to 0$
 (Lem.~\ref{lem:rank-one-proj}).
 For higher-multiplicity eigenspaces,
-this argument fails without
-additional assumptions
-(e.g.\ convergence of reduced resolvents
-or angular subspace bounds).
+the argument fails without additional
+assumptions (e.g.\ reduced resolvent
+convergence or angular subspace bounds).
 \end{remark}
 
 \begin{remark}[Open: full iff when
@@ -638,14 +713,11 @@ or angular subspace bounds).
 \label{rem:iff-open}
 When $\gamma_k\to 0$,
 the proof above shows $\|(A_k-A)\phi\|\to 0$
-(independent of $\gamma_k$),
 but whether the rate is faster than
-$\gamma_k$ depends on the specific
-spectral geometry and is not determined
-by projection convergence alone.
-This is precisely the content of
-Hyp.~\ref{hyp:sot-faster}
-and Open Problem~\ref{prob:full-iff}.
+$\gamma_k$ is not determined by projection
+convergence alone
+(Hyp.~\ref{hyp:sot-faster},
+Open Prob.~\ref{prob:full-iff}).
 \end{remark}
 
 \begin{remark}[Novelty: a one-vector
@@ -665,38 +737,31 @@ convergence appears not to be standard.
 Kato~\cite{Kato1966}):
 $\|P_k - P^\infty\| \lesssim
 \|A_k - A\|/\mathrm{gap}$,
-controlled via the global operator norm,
-which requires $\|A_k-A\|\to 0$
-as a standing assumption.
+requiring $\|A_k-A\|\to 0$.
 \textbf{Present result:}
-no access to $\|A_k - A\|$
-(which may be infinite or diverging);
+no access to $\|A_k - A\|$;
 global control may fail completely,
-yet projection stability is governed
-purely by a single \emph{vector-local}
-residual $\|(A_k-A)\phi\|$ relative to
-the gap.
+yet stability is governed by a single
+\emph{vector-local} residual
+$\|(A_k-A)\phi\|$ relative to the gap
+(see implication diagram in
+Lem.~\ref{lem:dk-comparison}).
 
 By \emph{localization principle}
 we mean: dependence only on the residual
 evaluated on a single eigenvector $\phi$,
 normalized by the local spectral gap.
-We call this a
-\emph{one-vector perturbation principle}:
-the only perturbation information needed
-is the action of $A_k - A$ on the
-single vector $\phi$.
+We call this a \emph{one-vector
+perturbation principle}.
 \end{remark}
 
 \begin{proposition}[Counterexample:
   SOT but projection failure]
 \label{prop:counterexample}
 There exist bounded self-adjoint $\{A_k\}$,
-$A$ on $\ell^2$ with
-$A_k\xrightarrow{\mathrm{SOT}} A$,
-simple $\lambda\in\sigma(A)$,
-and $\lambda_k\in\sigma(A_k)$,
-$\lambda_k\to\lambda$, such that
+$A$ on $\ell^2$ satisfying Assumption~S
+with $A_k\xrightarrow{\mathrm{SOT}} A$,
+$\lambda_k\to\lambda$, yet
 $\|P_k-P^\infty\|\not\to 0$.
 \end{proposition}
 \begin{proof}
@@ -710,32 +775,26 @@ $v_k:=\tfrac{1}{\sqrt{2}}(e_1+e_2)$,
   A_k:=\gamma_k(v_k\otimes v_k)
   +\sum_{n\ge 2} n^{-1}(e_n\otimes e_n).
 \]
-(i)~$A_k\xrightarrow{\mathrm{SOT}} A$:
-$\|(A_k-A)f\|=\gamma_k|\ip{v_k}{f}|\to 0$
-for each $f\in\ell^2$.
-(ii)~$\lambda_k=\gamma_k\to 0$.
-(iii)~Spectral gap at $\lambda_k$:
-$\gamma_k'\sim\gamma_k=k^{-1/2}$.
-(iv)~$\|(A_k-A)\phi\|
-=\gamma_k|\ip{v_k}{e_1}|^2
-=\gamma_k/2$, so
-$\|(A_k-A)\phi\|/\gamma_k'\to 1/2\ne 0$.
+(S1)--(S3) of Assumption~S hold:
+$\lambda=0$ is isolated and simple for $A$;
+$\lambda_k=\gamma_k$ is simple for $A_k$
+with gap $\gamma_k'\sim\gamma_k$;
+$\lambda_k\to 0$.
 
-Since the ratio condition
-\eqref{eq:abstract-ratio} fails,
-Thm.~\ref{thm:abstract} cannot apply;
-a direct computation using the explicit
-matrix structure of $A_k$ confirms
+$\|(A_k-A)\phi\|=\gamma_k/2$, so
+$\|(A_k-A)\phi\|/\gamma_k'\to 1/2\ne 0$:
+ratio condition \eqref{eq:abstract-ratio}
+fails.
+Direct computation confirms
 $\|P_k - P^\infty\|\not\to 0$,
-consistent with the necessity result
-in Thm.~\ref{thm:necessary-bounded-gap}.
+consistent with Thm.~\ref{thm:necessary-bounded-gap}.
 \end{proof}
 
 \begin{remark}[Sharpness]
 \label{rem:counterexample-meaning}
-The ratio \eqref{eq:abstract-ratio}
-is tight: SOT $+$ eigenvalue convergence
-alone do not suffice.
+SOT $+$ eigenvalue convergence alone
+do not suffice;
+the ratio condition is tight.
 \end{remark}
 
 %%══ 5. PSWF APPLICATION
@@ -756,6 +815,9 @@ analytic problems, each of which can be
 studied by separate methods
 (Probs.~\ref{prob:sharp-gc},
 \ref{prob:sot-faster}).
+Assumption~S is verified by
+Lem.~\ref{lem:inherited}(A3)
+and Lem.~\ref{lem:eigenvalue-matching}.
 
 Thms.~\ref{thm:convergence}
 and~\ref{thm:rate} apply Thm.~\ref{thm:abstract}
@@ -770,10 +832,7 @@ $\lambda_k=\lambda_n^{(c_k)}$.
 Gap-S supplies the lower bound
 $|\lambda_n^{(c_k)}-\lambda_{n\pm 1}^{(c_k)}|
 \ge g(c_k)$, hence $\gamma_k\ge g(c_k)$.
-In the ratio condition \eqref{eq:abstract-ratio}
-we use $g(c_k)$ as a lower bound for
-$\gamma_k$; dividing by $g(c_k)$ is
-therefore sufficient to verify
+Dividing by $g(c_k)$ suffices to verify
 \eqref{eq:abstract-ratio}.
 \end{remark}
 
@@ -869,6 +928,9 @@ $\varepsilon_n(k)=
 
 \begin{proof}[Proof of Thm.~\ref{thm:convergence}]
 Fix $n\in W_{c_k}$.
+Assumption~S is verified by
+Lem.~\ref{lem:inherited}(A3)
+and Lem.~\ref{lem:eigenvalue-matching}.
 \[
   \tilde\varepsilon_n(k)
   :=\|(\mathcal{H}_{c_k}-\lambda_n^{(c_k)})
@@ -1008,8 +1070,6 @@ $\|P_k-P^\infty\|\to 0$
 $\Rightarrow$
 $\|(A_k-A)\phi\|/\gamma_k\to 0$
 for $\gamma_k\to 0$.
-This is the precise analytic difficulty
-encoded in Hyp.~\ref{hyp:sot-faster}.
 \end{problem}
 
 \noindent\textbf{Technical-level:}
@@ -1023,6 +1083,14 @@ $\varepsilon_n(k)=O(c_k^{-1/4})$.
 \label{prob:off-diagonal}
 $|\ip{\Phi_n^{(\infty)}}{\Phi_m^{(c_k)}}|$
 for $m\ne n$.
+\end{problem}
+
+\begin{problem}[Strong resolvent convergence]
+\label{prob:src}
+Does $\mathcal{H}_{c_k}$ converge
+strongly in resolvent sense?
+This would make Assumption~S
+automatic for isolated eigenvalues.
 \end{problem}
 
 \begin{problem}[Full family convergence]
