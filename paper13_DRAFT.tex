@@ -73,7 +73,7 @@ Mechanism & Character & Status \\
 A (Frame identity) & \emph{Equivalence reformulation}
   & Not an independent proof route \\
 B (Paley--Wiener transfer) & \emph{Genuine analytic reduction}
-  & Conditional on Hyp.~\ref{hyp:pw-transfer} \\
+  & Conditional on Hyp.~\ref{hyp:coeff-stability}+\ref{hyp:reconstruction} \\
 C (Compact resolvent) & \emph{Structural collapse}
   & Conditional on Hyp.~\ref{hyp:compact-resolvent} \\
 \bottomrule
@@ -82,21 +82,31 @@ C (Compact resolvent) & \emph{Structural collapse}
 
 \medskip
 The central result (Theorem~\ref{thm:route-A-equivalence}) establishes
-that the frame identity $\sum_n |\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$
-is \emph{equivalent} to $\Kspace = L^2(\mathbb{R})$ for orthonormal
-systems; it is therefore a reformulation, not a reduction.
+that the Parseval identity $\sum_n |\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$
+is \emph{equivalent} to $\Kspace = L^2(\mathbb{R})$; it is a structural
+characterisation, not an independent route.
+This shows that frame identities in this setting are not global
+proof tools but characterisations of the global closure of the
+spectral representation.
 
 \medskip
 \textbf{Main theorem (Route~B).}
-Under Hypothesis~\ref{hyp:pw-transfer} (coefficient stability
-under SOT-limit, grounded in Papers~VIII--IX and XII),
-the Paley--Wiener density argument yields $\Kspace = L^2(\mathbb{R})$
-without any assumption on the spectral type of $\Hlim$.
+Route~B reduces completeness to two independent hypotheses:
+(H1) coefficient stability under SOT-limit
+(grounded in Papers~VIII and XII)
+and (H2) reconstruction of $\PW_c^2$-elements
+in the limit basis (the genuine open step).
+Route~B is not circular: it establishes that
+$\overline{\Kspace}$ contains each $\PW_c^2$
+--- a local completeness property in the inductive
+limit of Paley--Wiener spaces --- and closes via density.
 
 \medskip
 \textbf{Conditional result (Route~C).}
 Under Hypothesis~\ref{hyp:compact-resolvent},
-$\{\Phiinf{n}\}$ is an orthonormal basis.
+$\{\Phiinf{n}\}$ is an orthonormal basis;
+the spectrum of $\Hlim$ is purely discrete with
+finite multiplicities, accumulating only at $0$ or $1$.
 This hypothesis is mutually exclusive with
 $\spc{\Hlim} = [0,1]$ (Paper~X, Open Problem~4).
 \end{abstract}
@@ -112,12 +122,10 @@ $\spc{\Hlim} = [0,1]$ (Paper~X, Open Problem~4).
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{%
 \centering\itshape
-The completeness problem $\Kspace = L^2(\mathbb{R})$ is not resolved
-by SOT-convergence, spectral-type assumptions, or Sturm--Liouville theory.
-This paper provides a precise classification of the mechanisms
-by which completeness could be established, including a proof
-that one apparent route (the frame lower bound) is in fact
-an equivalent reformulation of the problem itself.}}
+Frame identities in this setting are not global proof tools,
+but characterisations of the global closure of the spectral
+representation. Any frame-based argument must therefore be
+localised to the level of individual Paley--Wiener spaces.}}
 \end{center}
 
 \medskip
@@ -127,8 +135,8 @@ The Slepian concentration operator $\Hc$ acts on $L^2(\mathbb{R})$ via
   (\Hc f)(x) = \int_{-\infty}^{\infty}
     \frac{\sin c(x-y)}{\pi(x-y)} f(y)\, dy.
 \]
-Paper~X establishes that $\Hlim := \mathrm{SOT}\text{-}\lim_{c \to \infty} \Hc$
-exists as a bounded self-adjoint operator with $\norm{\Hlim} \le 1$
+Paper~X establishes $\Hlim := \mathrm{SOT}\text{-}\lim_{c \to \infty} \Hc$
+as a bounded self-adjoint operator with $\norm{\Hlim} \le 1$
 and $\spc{\Hlim} \subseteq [0,1]$.
 Paper~XI constructs eigenfunctions $\{\Phiinf{n}\}$ satisfying
 \begin{equation}\label{eq:eigen-relation}
@@ -147,11 +155,11 @@ The central question is whether
 \begin{itemize}
 \item We do not claim $\spc{\Hlim}$ is purely discrete
   (Paper~X, Open Problem~4 remains open).
-\item We do not derive completeness from
-  Sturm--Liouville theory of $\mathcal{L}_c$:
-  the operators $\mathcal{L}_c$ and $\Hc$ are distinct;
-  their eigenfunctions coincide classically \cite{Osipov2013}
-  but the spectral structure of $\Hlim$ is independent.
+\item We do not derive completeness from Sturm--Liouville
+  theory of $\mathcal{L}_c$: the operators $\mathcal{L}_c$
+  and $\Hc$ are distinct; their eigenfunctions coincide
+  classically \cite{Osipov2013} but the spectral
+  structure of $\Hlim$ is independent.
 \item We do not re-prove self-adjointness of $\Hlim$
   (unconditional in Paper~X).
 \end{itemize}
@@ -202,7 +210,9 @@ XII & Localization principle; PSWF obstruction set
 
 \item\label{A:precompact}
   \emph{(Paper~IX, Lem.~3.1.)}
-  $\{\Phic{c}{n}\}_{c > 0}$ is precompact in $L^2(\mathbb{R})$.
+  $\{\Phic{c}{n}\}_{c > 0}$ is precompact in $L^2(\mathbb{R})$,
+  via Fr\'echet--Kolmogorov: uniform exponential decay
+  and uniform $H^1$-bound \cite{Osipov2013}.
 
 \item\label{A:eigenvalue-rate}
   \emph{(Paper~VIII, Cor.~4.3.)}
@@ -210,10 +220,10 @@ XII & Localization principle; PSWF obstruction set
   for $n \le \kappa c$, uniformly in $n$.
 
 \item\label{A:eigenvec-conv}
-  \emph{(Paper~XII, Cor., conditional on Gap-S + SOT-Faster.)}
-  Under the two Paper~XII hypotheses,
-  $\norm{\Phic{c}{n} - \Phiinf{n}} \to 0$ as $c \to \infty$
-  for each fixed $n$.
+  \emph{(Paper~XII, conditional on Gap-S + SOT-Faster.)}
+  Under those two hypotheses,
+  $\norm{\Phic{c}{n} - \Phiinf{n}} \to 0$
+  as $c \to \infty$ for each fixed $n$.
 \end{enumerate}
 \end{lemma}
 
@@ -244,23 +254,21 @@ For an orthonormal system $\{\Phiinf{n}\}$ in $L^2(\mathbb{R})$:
 \end{proof}
 
 \begin{remark}[Function of this lemma]
-This is an \emph{interface lemma}: it converts the geometric
-question~\eqref{eq:completeness-question} into an analytic condition
-on inner products, which is the entry point for both Route~B
-and Route~C.
+This is the \emph{interface lemma}: it converts the
+geometric question~\eqref{eq:completeness-question}
+into an analytic condition on inner products,
+which is the entry point for Routes~B and~C.
 \end{remark}
 
 %%═══ 4. ROUTE A: FRAME IDENTITY AS EQUIVALENCE
 \section{Route~A: The Frame Identity is an Equivalence, Not a Reduction}
 \label{sec:riesz}
 
-We record Route~A precisely in order to establish its correct
-logical status: it is a reformulation of completeness,
-not an independent proof strategy.
+We record Route~A in order to establish its precise logical status.
 
 \begin{definition}[Gram operator]
 \label{def:gram}
-The Gram operator $G \colon L^2(\mathbb{R}) \to L^2(\mathbb{R})$ is defined by
+The Gram operator $G \colon L^2(\mathbb{R}) \to L^2(\mathbb{R})$ is
 \[
   Gf := \sum_{n \ge 0} \ip{f}{\Phiinf{n}} \Phiinf{n}.
 \]
@@ -275,55 +283,73 @@ For the orthonormal system $\{\Phiinf{n}\}$,
 the following are equivalent:
 \begin{enumerate}[\rm(i)]
 \item $\Kspace = L^2(\mathbb{R})$ (completeness);
-\item $G = \mathrm{id}_{L^2(\mathbb{R})}$ (Gram operator is the identity);
-\item The Parseval identity holds:
-  $\displaystyle\sum_{n \ge 0}|\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$
-  for all $f \in L^2(\mathbb{R})$;
-\item The frame lower bound holds with $A = 1$:
+\item $G = \mathrm{id}_{L^2(\mathbb{R})}$;
+\item $\displaystyle\sum_{n \ge 0}|\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$
+  for all $f \in L^2(\mathbb{R})$ (Parseval identity);
+\item There exists $A > 0$ such that
   $\displaystyle\sum_{n \ge 0}|\ip{f}{\Phiinf{n}}|^2 \ge A\norm{f}^2$
-  for some $A > 0$ and all $f \in L^2(\mathbb{R})$.
+  for all $f \in L^2(\mathbb{R})$ (frame lower bound).
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(i)$\Rightarrow$(ii): If $\Kspace = L^2(\mathbb{R})$, then $G$ is the
-orthogonal projection onto all of $L^2(\mathbb{R})$, hence $G = \mathrm{id}$.
-(ii)$\Rightarrow$(iii): $\norm{Gf}^2 = \norm{f}^2$ expands as Parseval.
-(iii)$\Rightarrow$(iv): Take $A = 1$.
-(iv)$\Rightarrow$(i): The lower bound $\sum_n|\ip{f}{\Phiinf{n}}|^2 \ge A\norm{f}^2 > 0$
-for $f \ne 0$ implies $Gf \ne 0$, hence $G$ is injective,
-hence $\Kspace = \overline{\mathrm{ran}\,G} = L^2(\mathbb{R})$.
-Finally (i)$\Rightarrow$(iii) gives $A = 1$ as the only admissible value,
-so (iii)$\Leftrightarrow$(iv) for orthonormal systems.
+\textbf{(i)$\Rightarrow$(ii).}
+If $\Kspace = L^2(\mathbb{R})$, then $G$ projects onto all
+of $L^2(\mathbb{R})$, so $G = \mathrm{id}$.
+
+\textbf{(ii)$\Rightarrow$(iii).}
+For any $f \in L^2(\mathbb{R})$:
+$\norm{Gf}^2 = \sum_n |\ip{f}{\Phiinf{n}}|^2$.
+If $G = \mathrm{id}$, this equals $\norm{f}^2$.
+
+\textbf{(iii)$\Rightarrow$(iv).}
+Take $A = 1$.
+
+\textbf{(iv)$\Rightarrow$(i).}
+Suppose $\sum_n |\ip{f}{\Phiinf{n}}|^2 \ge A\norm{f}^2 > 0$
+for all $f \ne 0$.
+If $f \perp \Phiinf{n}$ for all $n$,
+then the left-hand side is $0$, forcing $f = 0$.
+Hence $\{\Phiinf{n}\}^\perp = \{0\}$,
+which is equivalent to $\Kspace = L^2(\mathbb{R})$
+by Lemma~\ref{lem:orth-char}.
+
+\textbf{Remark on the value of $A$.}
+For orthonormal systems, Bessel's inequality gives
+$\sum_n |\ip{f}{\Phiinf{n}}|^2 \le \norm{f}^2$,
+so if (iv) holds then necessarily $A = 1$
+and (iii) holds, confirming (iii)$\Leftrightarrow$(iv).
 \end{proof}
 
-\begin{remark}[Route~A is not an independent proof strategy]
+\begin{remark}[Route~A: structural characterisation only]
 \label{rem:route-A-status}
-Theorem~\ref{thm:route-A-equivalence} has the following critical
-consequence: \emph{proving the frame lower bound
-$\sum_n |\ip{f}{\Phiinf{n}}|^2 \ge A\norm{f}^2$ is exactly as
-hard as proving completeness itself.}
-Route~A is therefore a structural characterisation of the problem,
-not a path to its resolution.
-In particular:
+Theorem~\ref{thm:route-A-equivalence} shows that
+any proof of the frame lower bound
+$\sum_n |\ip{f}{\Phiinf{n}}|^2 \ge A\norm{f}^2$
+is precisely as hard as proving completeness itself.
+Hence:
 \begin{itemize}
+\item Frame identities in this setting are not global
+  proof tools, but characterisations of the global
+  closure of the spectral representation.
 \item The nonvanishing estimates of Paper~VIII
-  (Lemma~\ref{lem:inherited}\ref{A:nonvanish}) concern
-  $|\widehat{\Phi}_n^{(c)}|$ for \emph{finite} $c$.
-  They do not directly control $\ip{f}{\Phiinf{n}}$ for $f \notin PW_c^2$,
-  and the passage $c \to \infty$ in the frame sum requires
-  precisely the coefficient-stability that constitutes OP~\ref{prob:frame-stability}.
-\item Any derivation of the frame lower bound from Paper~VIII data
-  must implicitly solve the completeness problem;
-  there is no shortcut via nonvanishing alone.
+  (Lemma~\ref{lem:inherited}\ref{A:nonvanish})
+  control $|\widehat{\Phi}_n^{(c)}|$ for
+  \emph{finite} $c$ only.
+  Passing to the limit in the frame sum requires
+  coefficient stability, which is exactly the content
+  of Hypotheses~\ref{hyp:coeff-stability}--\ref{hyp:reconstruction}.
+\item Any frame-based argument must be
+  \emph{localised to the level of individual
+  Paley--Wiener spaces} to avoid circularity.
 \end{itemize}
 \end{remark}
 
 \begin{problem}[Structural decomposition of completeness]
 \label{prob:frame-stability}
-Analyse whether $\Kspace = L^2(\mathbb{R})$ can be decomposed
-into the following two independent statements:
+Analyse whether $\Kspace = L^2(\mathbb{R})$ decomposes
+into the following two logically independent statements:
 \begin{enumerate}[\rm(a)]
-\item \emph{(Limit-interchange stability.)}
+\item \emph{(Limit-interchange stability)}
 \[
   \lim_{c \to \infty}
   \sum_{n \le \kappa c}
@@ -331,133 +357,184 @@ into the following two independent statements:
   = \sum_{n \ge 0}|\ip{f}{\Phiinf{n}}|^2
   \quad \forall\, f \in L^2(\mathbb{R}).
 \]
-\item \emph{(Frame isometry.)}
+\item \emph{(Frame isometry)}
 $\displaystyle\sum_{n \ge 0}|\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$.
 \end{enumerate}
-Note that (a) requires only dominated convergence via the
-Bessel majorant and strong eigenvector convergence
-(Lemma~\ref{lem:inherited}\ref{A:eigenvec-conv}),
-while (b) is, by Theorem~\ref{thm:route-A-equivalence},
-precisely the completeness statement.
-Statement~(a) therefore does not reduce (b); it is a
-\emph{necessary} consequence of completeness, not a sufficient one.
+By Theorem~\ref{thm:route-A-equivalence}, statement~(b) is
+precisely the completeness problem.
+Statement~(a) is a necessary consequence of completeness
+(not a sufficient one); it follows from dominated convergence
+and strong eigenvector convergence
+(Lemma~\ref{lem:inherited}\ref{A:eigenvec-conv}).
 \end{problem}
 
 %%═══ 5. ROUTE B: PALEY–WIENER TRANSFER (MAIN THEOREM)
 \section{Route~B: Paley--Wiener Transfer --- Main Theorem}
 \label{sec:pw}
 
-Route~B is the primary analytic route.
-It avoids circularity by attacking completeness directly:
-if every $f$ orthogonal to all $\Phiinf{n}$ must be zero,
-it suffices to show $f \perp \PW_c^2$ for all $c > 0$,
-and then invoke density.
+Route~B avoids circularity by working locally:
+it establishes that $\Kspace$ contains each $\PW_c^2$
+--- a local completeness property in the inductive
+limit of Paley--Wiener spaces ---
+then closes via density of $\bigcup_{c>0}\PW_c^2$.
 
 \begin{lemma}[Paley--Wiener density]
 \label{lem:pw-dense}
 $\bigcup_{c > 0} \PW_c^2$ is dense in $L^2(\mathbb{R})$.
 \end{lemma}
 \begin{proof}
-$\bigcup_{c > 0} \PW_c^2$ contains all Schwartz functions with
-compactly supported Fourier transform, which form a dense subspace
-\cite[Theorem~7.14]{Rudin1991}.
+$\bigcup_{c > 0} \PW_c^2$ contains all Schwartz functions
+with compactly supported Fourier transform,
+a dense subspace \cite[Theorem~7.14]{Rudin1991}.
 \end{proof}
 
-\begin{hypothesis}[Coefficient stability under SOT-limit]
-\label{hyp:pw-transfer}
-For each $c_0 > 0$ and $g \in \PW_{c_0}^2$,
-expand $g = \sum_{n \ge 0} a_n^{(c)} \Phic{c}{n}$
-in the PSWF basis of $\PW_c^2$ (for $c \ge c_0$).
-Assume that as $c \to \infty$:
-\begin{enumerate}[\rm(i)]
-\item The coefficients converge: $a_n^{(c)} \to a_n^{(\infty)}$ in $\ell^2$.
-\item The limit satisfies: $g = \sum_{n \ge 0} a_n^{(\infty)} \Phiinf{n}$
-  in $L^2(\mathbb{R})$.
-\item Dominated convergence applies via the Bessel majorant:
-  $\sum_n |a_n^{(\infty)}|^2 \le \norm{g}^2$.
-\end{enumerate}
+\medskip
+Hypothesis~\ref{hyp:pw-transfer} from the previous version
+is now split into two independent hypotheses,
+corresponding to the two independent open steps.
+
+\begin{hypothesis}[Coefficient stability, H1]
+\label{hyp:coeff-stability}
+For each fixed $c_0 > 0$, $g \in \PW_{c_0}^2$,
+and $c \ge c_0$, let
+$a_n^{(c)} := \ip{g}{\Phic{c}{n}}$.
+As $c \to \infty$, the coefficients converge
+in $\ell^2$:
+\[
+  a_n^{(c)} \longrightarrow a_n^{(\infty)}
+  \quad \text{in } \ell^2(\mathbb{N}),
+  \qquad
+  a_n^{(\infty)} := \ip{g}{\Phiinf{n}}.
+\]
 \end{hypothesis}
 
-\begin{remark}[Grounding of Hypothesis~\ref{hyp:pw-transfer}]
-\label{rem:hyp-grounding}
-Part~(i) of Hypothesis~\ref{hyp:pw-transfer} is related to
-strong eigenvector convergence
-$\norm{\Phic{c}{n} - \Phiinf{n}} \to 0$,
-established conditionally in Paper~XII
+\begin{remark}[Grounding of Hypothesis~\ref{hyp:coeff-stability}]
+\label{rem:H1-grounding}
+For each fixed $n$, the pointwise convergence
+$a_n^{(c)} \to a_n^{(\infty)}$ follows from strong
+eigenvector convergence
 (Lemma~\ref{lem:inherited}\ref{A:eigenvec-conv})
-under Gap-S and SOT-Faster.
-Part~(iii) follows from the orthonormality of $\{\Phiinf{n}\}$
-(Lemma~\ref{lem:inherited}\ref{A:ONS}) unconditionally.
-Part~(ii) is the substantive content: it says $g$ is recoverable
-from its limit-coefficient expansion, which requires both
-eigenvector convergence and a uniform approximation argument.
-This is the genuine open step (Open Problem~\ref{prob:pw-transfer}).
+conditionally on Gap-S and SOT-Faster (Paper~XII).
+Upgrading to $\ell^2$-convergence requires uniform
+tail control: $\sum_{n > N} |a_n^{(c)}|^2 \to 0$
+uniformly in $c$, which follows from the Bessel majorant
+$\sum_n |a_n^{(c)}|^2 \le \norm{g}^2$
+and dominated convergence.
+The non-degeneracy of individual $a_n^{(c)}$ for
+$n \le \kappa c$ is supported by
+Lemma~\ref{lem:inherited}\ref{A:nonvanish}.
 \end{remark}
 
-\begin{theorem}[Main theorem: Route~B]
-\label{thm:main-B}
-\textup{(Conditional on Hypothesis~\ref{hyp:pw-transfer}.)}
-Assume Hypothesis~\ref{hyp:pw-transfer} holds.
-Then $\Kspace = L^2(\mathbb{R})$.
-\end{theorem}
-\begin{proof}
-Suppose $f \in L^2(\mathbb{R})$ satisfies $\ip{f}{\Phiinf{n}} = 0$
-for all $n \ge 0$; we show $f = 0$.
-
-\textbf{Step~1.} Fix $c_0 > 0$ and $g \in \PW_{c_0}^2$.
-By Hypothesis~\ref{hyp:pw-transfer}(ii),
+\begin{hypothesis}[Reconstruction in $\PW_c^2$, H2]
+\label{hyp:reconstruction}
+Under the notation of Hypothesis~\ref{hyp:coeff-stability},
+for each $c_0 > 0$ and $g \in \PW_{c_0}^2$:
 \[
   g = \sum_{n \ge 0} a_n^{(\infty)} \Phiinf{n}
   \quad \text{in } L^2(\mathbb{R}).
 \]
+In other words, $\overline{\Kspace}$ contains
+every element of $\PW_{c_0}^2$.
+\end{hypothesis}
 
-\textbf{Step~2.} Compute the inner product:
+\begin{remark}[H2 is the genuine open step]
+\label{rem:H2-status}
+Hypothesis~\ref{hyp:reconstruction} is the substantive
+content of Route~B.
+It asserts a \emph{local completeness property}:
+$\PW_{c_0}^2 \subseteq \Kspace$ for each fixed $c_0$.
+This is structurally weaker than global completeness
+$\Kspace = L^2(\mathbb{R})$, but it is still a local
+completeness property in the inductive limit of
+Paley--Wiener spaces.
+H2 does not follow from H1 alone;
+it requires that the limit-coefficient expansion
+converges \emph{to the original function $g$},
+not merely in an abstract $\ell^2$-sense.
+H1 provides the coordinate control; H2 requires
+that these coordinates reconstruct $g$ in $L^2$.
+\end{remark}
+
+\begin{theorem}[Main theorem: Route~B]
+\label{thm:main-B}
+\textup{(Conditional on Hypotheses~\ref{hyp:coeff-stability}
+and~\ref{hyp:reconstruction}.)}
+If both hypotheses hold,
+then $\Kspace = L^2(\mathbb{R})$.
+\end{theorem}
+\begin{proof}
+Suppose $f \in L^2(\mathbb{R})$ with
+$\ip{f}{\Phiinf{n}} = 0$ for all $n \ge 0$.
+
+\textbf{Step~1.}
+Fix $c_0 > 0$ and $g \in \PW_{c_0}^2$.
+By Hypothesis~\ref{hyp:reconstruction},
+$g = \sum_{n \ge 0} a_n^{(\infty)} \Phiinf{n}$
+in $L^2(\mathbb{R})$.
+
+\textbf{Step~2.}
+Compute:
 \[
   \ip{f}{g}
-  = \ip*{f}{\sum_{n \ge 0} a_n^{(\infty)} \Phiinf{n}}
-  = \sum_{n \ge 0} a_n^{(\infty)}\, \ip{f}{\Phiinf{n}}.
+  = \ip*{f}{\,\sum_{n \ge 0} a_n^{(\infty)} \Phiinf{n}}
+  = \sum_{n \ge 0} a_n^{(\infty)} \ip{f}{\Phiinf{n}}.
 \]
-The interchange of sum and inner product is justified by
-dominated convergence:
-$\sum_n |a_n^{(\infty)} \ip{f}{\Phiinf{n}}|
-\le \norm{g} \cdot \norm{f} < \infty$
-(Cauchy--Schwarz + Bessel for $\{a_n^{(\infty)}\}$).
+The interchange is justified: by Hypothesis~\ref{hyp:coeff-stability},
+$(a_n^{(\infty)}) \in \ell^2$, and by Bessel's inequality
+$(\ip{f}{\Phiinf{n}}) \in \ell^2$, so the series converges
+absolutely by Cauchy--Schwarz.
 
-\textbf{Step~3.} By hypothesis $\ip{f}{\Phiinf{n}} = 0$ for all $n$,
-so $\ip{f}{g} = 0$.
+\textbf{Step~3.}
+Since $\ip{f}{\Phiinf{n}} = 0$ for all $n$, we get
+$\ip{f}{g} = 0$.
 
-\textbf{Step~4.} Since $c_0 > 0$ and $g \in \PW_{c_0}^2$ were arbitrary,
+\textbf{Step~4.}
+As $c_0 > 0$ and $g \in \PW_{c_0}^2$ were arbitrary,
 $f \perp \bigcup_{c_0 > 0} \PW_{c_0}^2$.
 By density (Lemma~\ref{lem:pw-dense}), $f = 0$.
 
-\textbf{Conclusion.} By Lemma~\ref{lem:orth-char},
-$\Kspace = L^2(\mathbb{R})$.
+\textbf{Conclusion.}
+By Lemma~\ref{lem:orth-char}, $\Kspace = L^2(\mathbb{R})$.
 \end{proof}
 
 \begin{remark}[Why Route~B is not circular]
 \label{rem:route-B-not-circular}
-The argument uses Hypothesis~\ref{hyp:pw-transfer}(ii) to
-represent $g \in \PW_{c_0}^2$ in the basis $\{\Phiinf{n}\}$.
-This representation is the non-trivial content:
-it asserts that $\{\Phiinf{n}\}$ \emph{spans} $\PW_{c_0}^2$,
-which is a \emph{weaker} statement than spanning all of $L^2(\mathbb{R})$.
-Closedness under the union over $c_0$ and density then
-upgrade this to full completeness.
-The logical direction is:
-$\{\Phiinf{n}\}$ spans each $\PW_{c_0}^2$
-$\Rightarrow$ $\{\Phiinf{n}\}$ spans $L^2(\mathbb{R})$.
-This is a genuine reduction, not a reformulation.
+The argument requires that $\Kspace$ contains each
+$\PW_{c_0}^2$ (Hypothesis~\ref{hyp:reconstruction}),
+not that $\Kspace = L^2(\mathbb{R})$ a priori.
+More precisely: the argument establishes
+\[
+  \PW_{c_0}^2 \subseteq \Kspace
+  \quad\forall\, c_0 > 0
+  \quad\Longrightarrow\quad
+  \Kspace = L^2(\mathbb{R}),
+\]
+where the implication is by density of
+$\bigcup_{c_0}\PW_{c_0}^2$ (Lemma~\ref{lem:pw-dense}).
+The hypothesis $\PW_{c_0}^2 \subseteq \Kspace$
+is a local completeness property in the inductive
+limit of Paley--Wiener spaces.
+This is structurally weaker in spectral support
+than global completeness, but it is not a
+reformulation: it is a local statement about
+each finite bandwidth space that propagates to
+global completeness only via the density step.
+In particular, a hypothetical proof of H2
+for a single value $c_0$ would not suffice;
+the density argument requires all $c_0 > 0$.
 \end{remark}
 
-\begin{remark}[Relation to nonvanishing (Paper~VIII)]
+\begin{remark}[Role of Paper~VIII in Route~B]
 \label{rem:paper8-in-B}
 The nonvanishing estimates of Paper~VIII
-(Lemma~\ref{lem:inherited}\ref{A:nonvanish}) enter Route~B
-indirectly: they support the non-degeneracy of
-$a_n^{(c)} = \ip{g}{\Phic{c}{n}}$ via
+(Lemma~\ref{lem:inherited}\ref{A:nonvanish}) enter
+Route~B through H1: they prevent coefficient
+collapse $a_n^{(c)} \to 0$ for
+$n \le \kappa c$ by ensuring
 $|\widehat{\Phi}_n^{(c)}| \ge c_1 c^{-1/2}$ on $E_c$,
-which prevents coefficient collapse in the limit.
-Making this precise is part of Open Problem~\ref{prob:pw-transfer}.
+which gives non-trivial inner products with
+bandlimited functions. Making this precise is
+part of Open Problem~\ref{prob:pw-transfer}.
 \end{remark}
 
 %%═══ 6. ROUTE C: CONDITIONAL COMPACTNESS
@@ -466,11 +543,11 @@ Making this precise is part of Open Problem~\ref{prob:pw-transfer}.
 
 \begin{remark}[Compactness is a genuine additional hypothesis]
 \label{rem:compact-not-free}
-Since $\spc{\Hlim} \subseteq [0,1]$, we have $-1 \notin \spc{\Hlim}$
-and $(\Hlim + I)^{-1}$ is a well-defined bounded operator
+Since $\spc{\Hlim} \subseteq [0,1]$,
+the operator $(\Hlim + I)^{-1}$ is well-defined and bounded
 (Lemma~\ref{lem:inherited}\ref{A:bounded-sa}).
-Compactness of $(\Hlim + I)^{-1}$ is strictly stronger
-and is not implied by boundedness, self-adjointness,
+Compactness of $(\Hlim + I)^{-1}$ is strictly stronger:
+it is not implied by boundedness, self-adjointness,
 or SOT-convergence of $\Hc$ (Remark~\ref{rem:sot-limitation}).
 \end{remark}
 
@@ -482,31 +559,44 @@ $(\Hlim + I)^{-1}$ is compact on $L^2(\mathbb{R})$.
 \begin{proposition}[Conditional completeness via compact resolvent]
 \label{prop:compact-route}
 \textup{(Conditional on Hypothesis~\ref{hyp:compact-resolvent}.)}
-If Hypothesis~\ref{hyp:compact-resolvent} holds, then:
+If $(\Hlim + I)^{-1}$ is compact, then:
 \begin{enumerate}[\rm(i)]
-\item $\spc{\Hlim} = \{\lambdainf{n}\}_{n \ge 0}$
-  (purely discrete, accumulating only at $0$ or $1$);
-\item $\{\Phiinf{n}\}$ is an orthonormal basis of $L^2(\mathbb{R})$;
+\item $\Hlim$ has purely discrete spectrum:
+  $\spc{\Hlim} = \{\lambdainf{n}\}_{n \ge 0}$
+  with finite multiplicities,
+  accumulating only at $0$ or $1$;
+\item $\{\Phiinf{n}\}$ is an orthonormal basis
+  of $L^2(\mathbb{R})$;
 \item $\Kspace = L^2(\mathbb{R})$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Compact resolvent implies purely discrete spectrum
-\cite[Chapter~VIII]{ReedSimon1975}.
+If $(\Hlim + I)^{-1}$ is compact, then by the spectral
+theory of compact self-adjoint operators
+\cite[Chapter~VI]{ReedSimon1975},
+the spectrum of $(\Hlim + I)^{-1}$ consists of
+eigenvalues accumulating only at $0$.
+Translating back: $\Hlim = (\Hlim + I)^{-1} - I$
+has purely discrete spectrum $\{\lambdainf{n}\}$
+with finite multiplicities.
+Since $\spc{\Hlim} \subseteq [0,1]$,
+accumulation can only occur at $0$ or $1$.
 The spectral theorem for bounded self-adjoint operators
-with purely discrete spectrum then gives (ii)--(iii)
+with purely discrete spectrum then gives
+the eigenfunction expansion in (ii)--(iii)
 \cite[Theorem~VIII.6]{ReedSimon1975}.
 \end{proof}
 
-\begin{remark}[Mutual exclusivity with Paper~X Open Problem~4]
+\begin{remark}[Mutual exclusivity with Paper~X, Open Problem~4]
 \label{rem:op4-conflict}
 Paper~X Open Problem~4 asks whether $\spc{\Hlim} = [0,1]$.
-If $\spc{\Hlim} = [0,1]$, then $\Hlim$ has purely continuous
-(or mixed) spectrum, and Hypothesis~\ref{hyp:compact-resolvent}
-is \emph{false}: an operator with continuous spectrum
-cannot have compact resolvent.
-The two possibilities are mutually exclusive;
-Paper~XIII does not resolve this dilemma.
+An operator with spectrum $[0,1]$ (purely continuous
+or mixed spectrum filling an interval) cannot have
+compact resolvent, since compact self-adjoint operators
+have discrete spectrum with finite multiplicities.
+Hence Hypothesis~\ref{hyp:compact-resolvent} and
+$\spc{\Hlim} = [0,1]$ are mutually exclusive;
+Paper~XIII does not resolve this tension.
 \end{remark}
 
 %%═══ 7. STRUCTURAL CLASSIFICATION THEOREM
@@ -521,186 +611,215 @@ admits the following classification:
 \item\label{class:A}
   \textup{(Mechanism~A: Equivalence reformulation.)}
   For the orthonormal system $\{\Phiinf{n}\}$,
-  the frame identity
-  $\sum_n |\ip{f}{\Phiinf{n}}|^2 = \norm{f}^2$
-  is \emph{equivalent} to $\Kspace = L^2(\mathbb{R})$
+  the Parseval identity and the frame lower bound
+  are each \emph{equivalent} to completeness
   (Theorem~\ref{thm:route-A-equivalence}).
-  It is a structural characterisation, not an independent proof route.
+  They are structural characterisations, not
+  independent proof routes.
+  Frame-based arguments must be localised to
+  individual $\PW_c^2$-spaces to avoid circularity.
 
 \item\label{class:B}
   \textup{(Mechanism~B: Genuine analytic reduction.)}
-  Under Hypothesis~\ref{hyp:pw-transfer},
+  Under Hypotheses~\ref{hyp:coeff-stability}
+  and~\ref{hyp:reconstruction},
   $\Kspace = L^2(\mathbb{R})$
   (Theorem~\ref{thm:main-B}).
-  Route~B is not circular: it reduces completeness to
-  the strictly weaker statement that $\{\Phiinf{n}\}$
-  spans each $\PW_c^2$, and closes via density.
+  Route~B is not circular:
+  it establishes the local containment
+  $\PW_{c_0}^2 \subseteq \Kspace$ for all $c_0$
+  and closes via density.
+  The open core is H2
+  (Hypothesis~\ref{hyp:reconstruction}).
 
 \item\label{class:C}
   \textup{(Mechanism~C: Structural collapse.)}
   Under Hypothesis~\ref{hyp:compact-resolvent},
   $\{\Phiinf{n}\}$ is an orthonormal basis
+  and $\spc{\Hlim}$ is purely discrete
+  with finite multiplicities accumulating
+  only at $0$ or $1$
   (Proposition~\ref{prop:compact-route}).
-  Route~C is logically independent of Route~B;
-  it depends on a hypothesis that may be \emph{false}
-  if $\spc{\Hlim} = [0,1]$.
+  This hypothesis is mutually exclusive with
+  $\spc{\Hlim} = [0,1]$.
 \end{enumerate}
 
 \medskip
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{llll}
+\begin{tabular}{lllll}
 \toprule
-Route & Type & Hypothesis required & Circular? \\
+Route & Type & Circular? & Hypothesis & Open core \\
 \midrule
-A & Equivalence & None (proven) & Yes (by def.) \\
-B & Analytic reduction & Hyp.~\ref{hyp:pw-transfer} & No \\
-C & Structural collapse & Hyp.~\ref{hyp:compact-resolvent} & No \\
+A & Equivalence & Yes & None & ---
+  (closed, negative) \\
+B & Analytic reduction & No
+  & H1+H2 & H2 (Hyp.~\ref{hyp:reconstruction}) \\
+C & Structural collapse & No
+  & Hyp.~\ref{hyp:compact-resolvent}
+  & Spectral-type question \\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{theorem}
 
-\begin{remark}[Consequence for the series]
-Paper~XIII makes three contributions:
-(a) Theorem~\ref{thm:route-A-equivalence}: Route~A is an
-equivalence, not a reduction --- this is a negative structural result
-that closes off a potential proof path;
-(b) Theorem~\ref{thm:main-B}: Route~B is the primary analytic
-route;
-(c) the explicit identification of the two remaining hypotheses
-(Hyp.~\ref{hyp:pw-transfer} and Hyp.~\ref{hyp:compact-resolvent})
-as the precise obstructions to a complete proof.
+\begin{remark}[Three contributions of Paper~XIII]
+Paper~XIII makes three contributions to the series:
+\begin{enumerate}[\rm(a)]
+\item Theorem~\ref{thm:route-A-equivalence}:
+  Route~A is an equivalence, not a reduction
+  (a negative structural result that closes
+  off a class of proof attempts);
+\item Theorem~\ref{thm:main-B}:
+  Route~B is the primary analytic route,
+  with the open core precisely identified
+  as H2;
+\item The explicit identification of
+  Hypotheses~\ref{hyp:coeff-stability},
+  \ref{hyp:reconstruction},
+  \ref{hyp:compact-resolvent}
+  as the precise remaining obstructions.
+\end{enumerate}
 \end{remark}
 
 %%═══ 8. OPEN PROBLEMS
 \section{Open Problems}
 \label{sec:open}
 
-\begin{problem}[Coefficient stability: Route~B core]
-\label{prob:pw-transfer}
-Prove Hypothesis~\ref{hyp:pw-transfer}:
-for $g \in \PW_{c_0}^2$, the PSWF expansion coefficients
-$a_n^{(c)} = \ip{g}{\Phic{c}{n}}$ satisfy
-$a_n^{(c)} \to a_n^{(\infty)}$ in $\ell^2$
-and $g = \sum_n a_n^{(\infty)} \Phiinf{n}$ in $L^2(\mathbb{R})$.
+\begin{problem}[H1: coefficient stability in $\ell^2$]
+\label{prob:coeff-stability}
+Prove Hypothesis~\ref{hyp:coeff-stability}:
+for $g \in \PW_{c_0}^2$,
+$\ip{g}{\Phic{c}{n}} \to \ip{g}{\Phiinf{n}}$
+in $\ell^2$ as $c \to \infty$.
 This requires:
 \begin{enumerate}[\rm(a)]
-\item Strong eigenvector convergence
-  $\norm{\Phic{c}{n} - \Phiinf{n}} \to 0$
-  (Paper~XII, conditional on Gap-S + SOT-Faster);
-\item Uniformity in $n$ for the approximation
-  $g \approx \sum_{n \le N} a_n^{(c)} \Phic{c}{n}$
-  as $c, N \to \infty$;
-\item Non-degeneration of coefficients, supported by
-  Paper~VIII nonvanishing
-  (Lemma~\ref{lem:inherited}\ref{A:nonvanish}).
+\item Strong eigenvector convergence for each
+  fixed $n$ (Paper~XII, conditional on
+  Gap-S + SOT-Faster);
+\item Uniform tail control via
+  Bessel: $\sum_{n>N}|\ip{g}{\Phic{c}{n}}|^2
+  \le \norm{g}^2 - \sum_{n \le N}|\ip{g}{\Phic{c}{n}}|^2$.
 \end{enumerate}
+\end{problem}
+
+\begin{problem}[H2: reconstruction in $L^2$]
+\label{prob:pw-transfer}
+Prove Hypothesis~\ref{hyp:reconstruction}:
+for each $c_0 > 0$ and $g \in \PW_{c_0}^2$,
+\[
+  g = \sum_{n \ge 0} \ip{g}{\Phiinf{n}} \Phiinf{n}
+  \quad \text{in } L^2(\mathbb{R}).
+\]
+This is the genuinely hard step:
+it requires that $\Kspace \supseteq \PW_{c_0}^2$,
+i.e.\ that $\{\Phiinf{n}\}$ spans $\PW_{c_0}^2$
+(local completeness at bandwidth $c_0$).
+It does not follow from H1 alone.
+Note: by Theorem~\ref{thm:route-A-equivalence},
+\emph{global} completeness $\Kspace = L^2(\mathbb{R})$
+would imply H2, but H2 for all $c_0$ suffices
+(via Lemma~\ref{lem:pw-dense}) to prove global completeness
+without circular reasoning.
 \end{problem}
 
 \begin{problem}[Spectral type of $\Hlim$]
 \label{prob:spectral-type}
-Determine whether $\spc{\Hlim}$ is discrete, continuous, or mixed.
+Determine whether $\spc{\Hlim}$ is discrete,
+continuous, or mixed:
 \begin{enumerate}[\rm(a)]
-\item Is $\spc{\Hlim} = \{\lambdainf{n}\}$? (discrete)
-\item Is $\spc{\Hlim} = [0,1]$? (Paper~X, Open Problem~4)
-\item Is $(\Hlim + I)^{-1}$ compact?
-  (Hypothesis~\ref{hyp:compact-resolvent};
-  would imply (a) and close Route~C)
+\item Is $\spc{\Hlim} = \{\lambdainf{n}\}$?
+\item Is $\spc{\Hlim} = [0,1]$
+  (Paper~X, Open Problem~4)?
+\item Is $(\Hlim + I)^{-1}$ compact
+  (Hypothesis~\ref{hyp:compact-resolvent})?
 \end{enumerate}
-Note: (b) and (c) are mutually exclusive.
+(b) and (c) are mutually exclusive.
 \end{problem}
 
-\begin{problem}[Operator identification: bridge theorem]
+\begin{problem}[Operator identification]
 \label{prob:bridge}
-Prove or disprove $\Hlim = \overline{H_{\mathrm{spec}}}$,
-where $H_{\mathrm{spec}} := \sum_n \lambdainf{n}\ip{\cdot}{\Phiinf{n}}\Phiinf{n}$.
+Prove $\Hlim = \overline{H_{\mathrm{spec}}}$,
+where $H_{\mathrm{spec}}
+:= \sum_n \lambdainf{n}\ip{\cdot}{\Phiinf{n}}\Phiinf{n}$.
 Completeness of $\{\Phiinf{n}\}$ is necessary for
-$H_{\mathrm{spec}}$ to be densely defined on all of $L^2(\mathbb{R})$
+$H_{\mathrm{spec}}$ to be densely defined
 (Paper~IX, Open Problem~7).
-\end{problem}
-
-\begin{problem}[Spanning of individual $\PW_c^2$ spaces]
-\label{prob:pswf-span}
-Does $\{\Phiinf{n}\}$ span $\PW_c^2$ for each fixed $c > 0$?
-This is the \emph{local} version of completeness and is the
-substantive content of Hypothesis~\ref{hyp:pw-transfer}(ii).
-A positive answer for all $c$ would complete Route~B.
 \end{problem}
 
 %%═══ 9. STRUCTURAL SUMMARY
 \section{Structural Summary}
 \label{sec:summary}
 
-Paper~XIII identifies three mechanisms for the completeness problem
-$\Kspace = L^2(\mathbb{R})$:
+Paper~XIII identifies and classifies three mechanisms
+for the completeness problem $\Kspace = L^2(\mathbb{R})$:
 
 \medskip
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{llll}
+\begin{tabular}{lllll}
 \toprule
-Route & Character & Key step & Blocks on \\
+Route & Character & Open core & Blocks on \\
 \midrule
-A & Equivalence & --- & Circular by Thm.~\ref{thm:route-A-equivalence} \\
-B & Analytic reduction & OP~\ref{prob:pw-transfer} + OP~\ref{prob:pswf-span}
-  & Coeff.\ stability \\
-C & Structural collapse & OP~\ref{prob:spectral-type}(c)
-  & Spectral-type question \\
+A & Equivalence & ---
+  & Circular (Thm.~\ref{thm:route-A-equivalence}) \\
+B & Analytic reduction
+  & H2 (Hyp.~\ref{hyp:reconstruction})
+  & Local span of $\PW_c^2$ \\
+C & Structural collapse
+  & Spectral type
+  & Hyp.~\ref{hyp:compact-resolvent}
+  vs.~$\spc{\Hlim}=[0,1]$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \medskip
 \noindent
-Route~B (Theorem~\ref{thm:main-B}) is the only non-circular
-analytic route currently available.
-Its proof skeleton is complete; the remaining open step
-(Hypothesis~\ref{hyp:pw-transfer}) is grounded in
-Papers~VIII, IX, and XII and does not require spectral-type
-assumptions on $\Hlim$.
+Route~B is the only non-circular analytic route.
+Its proof skeleton is complete;
+the open core is H2 (local $\PW_c^2$-spanning),
+grounded in Papers~VIII, IX, and~XII
+without spectral-type assumptions on $\Hlim$.
 
 %%%─── BIBLIOGRAPHY
 \begin{thebibliography}{99}
 
 \bibitem{PaperXIII-XI}
 [Author],
-\textit{Spectral structure for the limiting PSWF operator},
-Paper~XI, 2026.
+\textit{Spectral structure for the limiting PSWF
+operator}, Paper~XI, 2026.
 
 \bibitem{PaperXIII-X}
 [Author],
-\textit{Mosco form convergence and the bridge theorem},
-Paper~X, 2026.
+\textit{Mosco form convergence and the bridge
+theorem}, Paper~X, 2026.
 
 \bibitem{PaperXIII-IX}
 [Author],
 \textit{Conditional framework: domain, closability,
-self-adjointness},
-Paper~IX, 2026.
+self-adjointness}, Paper~IX, 2026.
 
 \bibitem{PaperXIII-VIII}
 [Author],
-\textit{Non-cancellation control and the sharp $c^{-1/2}$
-lower bound},
-Paper~VIII, 2026.
+\textit{Non-cancellation control and the sharp
+$c^{-1/2}$ lower bound}, Paper~VIII, 2026.
 
 \bibitem{PaperXIII-XII}
 [Author],
-\textit{A localization principle for spectral projection
-stability},
-Paper~XII, 2026.
+\textit{A localization principle for spectral
+projection stability}, Paper~XII, 2026.
 
 \bibitem{Slepian1961}
 D.~Slepian and H.~O.~Pollak,
-\textit{Prolate spheroidal wave functions, Fourier analysis
-and uncertainty~I},
+\textit{Prolate spheroidal wave functions,
+Fourier analysis and uncertainty~I},
 Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
 
 \bibitem{Osipov2013}
 A.~Osipov, V.~Rokhlin, H.~Xiao,
-\textit{Prolate Spheroidal Wave Functions of Order Zero},
-Springer, 2013.
+\textit{Prolate Spheroidal Wave Functions of
+Order Zero}, Springer, 2013.
 
 \bibitem{Kato1966}
 T.~Kato,
@@ -709,13 +828,13 @@ Springer, 1966.
 
 \bibitem{ReedSimon1975}
 M.~Reed and B.~Simon,
-\textit{Methods of Modern Mathematical Physics, Vol.~II},
-Academic Press, 1975.
+\textit{Methods of Modern Mathematical Physics,
+Vol.~II}, Academic Press, 1975.
 
 \bibitem{Conway1990}
 J.~B.~Conway,
-\textit{A Course in Functional Analysis}, 2nd ed.,
-Springer, 1990.
+\textit{A Course in Functional Analysis},
+2nd ed., Springer, 1990.
 
 \bibitem{Rudin1991}
 W.~Rudin,
@@ -724,8 +843,8 @@ McGraw-Hill, 1991.
 
 \bibitem{Young2001}
 R.~M.~Young,
-\textit{An Introduction to Nonharmonic Fourier Series},
-Academic Press, 2001.
+\textit{An Introduction to Nonharmonic Fourier
+Series}, Academic Press, 2001.
 
 \end{thebibliography}
 
