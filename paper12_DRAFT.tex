@@ -24,6 +24,7 @@
 %%%─── Macros
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\dist}{\mathrm{dist}}
 \newcommand{\Hlim}{\mathcal{H}_{\lim}}
 \newcommand{\Lc}{\mathcal{L}_c}
 \newcommand{\Pninf}{P_n^{(\infty)}}
@@ -504,7 +505,7 @@ We assume:
 \item\label{S2}
   For each $k$, $\lambda_k\in\sigma(A_k)$
   is isolated and simple, with
-  $\gamma_k := \mathrm{dist}(\lambda_k,
+  $\gamma_k := \dist(\lambda_k,
   \sigma(A_k)\setminus\{\lambda_k\})>0$
   and rank-one projection $P_k$.
 \item\label{S3}
@@ -838,11 +839,37 @@ $\phi=\Phi_n^{(\infty)}$,
 $\lambda=\lambda_n^{(\infty)}$,
 $\lambda_k=\lambda_n^{(c_k)}$.
 
+\begin{lemma}[Gap-S supplies Assumption~S gap bound]
+\label{lem:gap-bridge}
+Under Hyp.~\ref{hyp:gap-structural} (Gap-S),
+the gap~$\gamma_k$ from Assumption~S satisfies
+\[
+  \gamma_k \;\ge\; g(c_k)
+\]
+in the PSWF application $A_k = \mathcal{H}_{c_k}$,
+for each fixed index $n \in W_{c_k}$.
+\end{lemma}
+\begin{proof}
+By Hyp.~\ref{hyp:gap-structural},
+\[
+  |\lambda_n^{(c_k)} - \lambda_{n\pm1}^{(c_k)}|
+  \ge g(c_k)
+\]
+on the index set~$W_{c_k}$.
+In the PSWF setting, eigenvalues are simple
+and ordered, so the nearest spectral neighbors
+of $\lambda_n^{(c_k)}$ are $\lambda_{n\pm1}^{(c_k)}$.
+Hence the spectral gap
+$\gamma_k = \dist\!\big(\lambda_n^{(c_k)},\,
+\sigma(A_k)\setminus\{\lambda_n^{(c_k)}\}\big)$
+is controlled below by the same spacing,
+i.e.~$\gamma_k \ge g(c_k)$.
+\end{proof}
+
 \begin{remark}[Gap inequality in application]
 \label{rem:gap-inequality}
-Gap-S supplies the lower bound
-$|\lambda_n^{(c_k)}-\lambda_{n\pm 1}^{(c_k)}|
-\ge g(c_k)$, hence $\gamma_k\ge g(c_k)$.
+Lem.~\ref{lem:gap-bridge} supplies the lower bound
+$\gamma_k \ge g(c_k)$ used throughout this section.
 Dividing by $g(c_k)$ suffices to verify
 \eqref{eq:abstract-ratio}.
 \end{remark}
@@ -892,7 +919,7 @@ for large $k$.
 \label{lem:approx-eig}
 Let $A$ bounded self-adjoint,
 $\lambda$ isolated and simple,
-$\gamma:=\mathrm{dist}(\lambda,
+$\gamma:=\dist(\lambda,
 \spc{A}\setminus\{\lambda\})>0$,
 $P$ rank-one onto $\ker(A-\lambda)$.
 By the spectral theorem
@@ -923,7 +950,7 @@ Therefore $\|(I-P)\phi\|\le\varepsilon/\gamma$.
 \label{rem:perturbation-mechanism}
 Rank-one gives uniform resolvent bound
 $1/\gamma$ on $\mathrm{ran}(I-P)$.
-Gap-S supplies $\gamma\ge g(c_k)$;
+Lem.~\ref{lem:gap-bridge} supplies $\gamma\ge g(c_k)$;
 SOT-Faster gives
 $\varepsilon_n(k)/g(c_k)\to 0$.
 \end{remark}
@@ -948,7 +975,7 @@ and Lem.~\ref{lem:eigenvalue-matching}.
   \Phi_n^{(\infty)}\|
   \le\varepsilon_n(k)+C_\kappa c_k^{-1/4}.
 \]
-By Rem.~\ref{rem:gap-inequality},
+By Lem.~\ref{lem:gap-bridge},
 $\gamma_k\ge g(c_k)$; hence:
 \begin{equation}\label{eq:ratio-to-zero}
   \frac{\tilde\varepsilon_n(k)}{g(c_k)}
