@@ -96,8 +96,8 @@ NC$^c\Rightarrow$H3, is proved false
 (Proposition~\ref{prop:NC-not-H3}):
 an explicit model family with NC$^c$
 but $\liminf_c S_N(c)=1>0$ shows that
-being a band-level and a global tail
-phenomenon are genuinely distinct.
+band-level and global tail control
+are genuinely distinct.
 NC holds under the local Weyl law (Paper~XV).
 \end{abstract}
 
@@ -532,103 +532,152 @@ and $S_N(c)\ge c_*$.
 \begin{proposition}[NC$^c$ does not imply H3]
 \label{prop:NC-not-H3}
 There exists a model family of measures
-$\{\mu_{n,c}\}$ satisfying the normalization
-$\mu_{n,c}(\mathbb{R})=1$ and $\mu_{n,c}\ge 0$,
+$\{\mu_{n,c}\}_{n\ge 0,\,c>0}$
+satisfying $\mu_{n,c}\ge 0$ and
+$\mu_{n,c}(\mathbb{R})=1$,
 such that\textup{:}
 \begin{enumerate}[\rm(i)]
 \item\label{it:NCc}
-  \textup{NC$^c$ holds}: for every
-  $0<\alpha<\kappa<1$ and every $c_*>0$,
+  \textup{NC fails (NC$^c$ holds)}:
+  for every $0<\alpha'<\kappa'<1$
+  and every $c_*>0$,
   \[
     \liminf_{c\to\infty}
-    \sum_{n\in\mathcal{T}_{\alpha,\kappa}(c)}
+    \sum_{n\in\mathcal{T}_{\alpha',\kappa'}(c)}
     \mu_{n,c}([-c_0,c_0]) < c_*;
   \]
 \item\label{it:H3fail}
-  \textup{H3 fails}: for every fixed $N$,
+  \textup{H3 fails}: for every fixed $N\ge 0$,
   \[
-    \liminf_{c\to\infty} S_N(c) = 1 > 0.
+    \liminf_{c\to\infty} S_N(c) \ge 1.
   \]
 \end{enumerate}
 In particular, $\mathrm{NC}^c\not\Rightarrow\mathrm{H3}$.
 \end{proposition}
 
 \begin{proof}
-Fix $\alpha\in(0,1)$ and set
-$w(c):=\lfloor\sqrt{c}\rfloor$.
-Define the active zone:
+Fix $\alpha\in(0,1)$.
+Set $w(c):=\lfloor\sqrt{c}\rfloor\ge 1$
+and define the active zone
 \[
-  I_c := \{n\in\mathbb{N}_0:
-    |n-\lfloor\alpha c\rfloor|\le w(c)\},
-  \qquad |I_c|=2w(c)+1\sim 2\sqrt{c}.
+  I_c := \bigl\{n\in\mathbb{N}_0 :
+    |n-\lfloor\alpha c\rfloor|\le w(c)\bigr\},
+  \qquad |I_c|=2w(c)+1.
 \]
-Assign weights:
+Assign weights
 \begin{equation}\label{eq:model-weights}
   \mu_{n,c}([-c_0,c_0]) :=
   \begin{cases}
-    \dfrac{1}{2w(c)+1} & n\in I_c,\\
-    0 & n\notin I_c.
+    \dfrac{1}{|I_c|} & n\in I_c,\\
+    0 & n\notin I_c,
   \end{cases}
 \end{equation}
-Extend $\mu_{n,c}$ to a probability measure
-on $\mathbb{R}$ arbitrarily
-(e.g.\ place remaining mass outside $[-c_0,c_0]$).
+and extend $\mu_{n,c}$ to a probability
+measure on $\mathbb{R}$ by placing the
+remaining mass $1-\mu_{n,c}([-c_0,c_0])$
+at an arbitrary point outside $[-c_0,c_0]$.
 
 \medskip
-\textit{Proof of~\ref{it:NCc} (NC$^c$).}
-Fix $0<\alpha'<\kappa'<1$.
-$\mathcal{T}_{\alpha',\kappa'}(c)$ contains
-at most $|I_c|=2w(c)+1\sim 2\sqrt{c}$
-indices from $I_c$ (since the centre of
-$I_c$ lies at $\lfloor\alpha c\rfloor$,
-which may or may not lie in
-$\mathcal{T}_{\alpha',\kappa'}(c)$).
-
-\textit{Case 1}: $\alpha\notin(\alpha',\kappa')$.
-For large $c$, $\lfloor\alpha c\rfloor
-\notin\mathcal{T}_{\alpha',\kappa'}(c)$,
-so $|I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)|=0$
-and the sum is $0$.
-
-\textit{Case 2}: $\alpha\in(\alpha',\kappa')$.
-$|I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)|
-\le|I_c|=2w(c)+1$, so:
-\[
-  \sum_{n\in\mathcal{T}_{\alpha',\kappa'}(c)}
-  \mu_{n,c}([-c_0,c_0])
-  \le \frac{2w(c)+1}{2w(c)+1}=1.
-\]
-But crucially, the relative width is
-$|I_c|/|{\mathcal{T}_{\alpha',\kappa'}(c)}|
-\sim 2\sqrt{c}/(\kappa'-\alpha')c\to 0$,
-so the mass is concentrated in a
-\emph{sub-proportional} sub-band
-$|I_c|/c\to 0$.
-For any $c_*>0$, choose
-$\alpha'',\kappa''$ with
-$\alpha\in(\alpha'',\kappa'')\subsetneq(\alpha',\kappa')$
-and $\kappa''-\alpha''<c_*/2$;
-then for large $c$,
-$I_c\cap\mathcal{T}_{\alpha'',\kappa''}(c)=\emptyset$
-and the sum over $\mathcal{T}_{\alpha'',\kappa''}$ is $0$.
-Since this holds for all
-$\alpha',\kappa'$ and all $c_*>0$,
-NC$^c$ holds.
-
-\medskip
-\textit{Proof of~\ref{it:H3fail} (H3 fails).}
-Fix $N$.
-For large $c$: $\lfloor\alpha c\rfloor>N$,
+\textit{Proof of~\ref{it:H3fail}.}
+Fix $N\ge 0$.
+For all $c>((N+1)/\alpha)^2$ we have
+$\lfloor\alpha c\rfloor-w(c)
+\ge \alpha c - 1 - \sqrt{c} > N$
+(since $\alpha c - 1 - \sqrt{c}\to+\infty$),
 so $I_c\subseteq\{n>N\}$.
-Therefore:
+Therefore
 \[
   S_N(c)
   =\sum_{n>N}\mu_{n,c}([-c_0,c_0])
-  \ge\sum_{n\in I_c}\frac{1}{2w(c)+1}
+  \ge\sum_{n\in I_c}\frac{1}{|I_c|}
   = 1.
 \]
-Hence $\liminf_{c\to\infty}S_N(c)\ge 1$
-for every fixed $N$, so H3 fails.
+
+\medskip
+\textit{Proof of~\ref{it:NCc}.}
+Fix $0<\alpha'<\kappa'<1$ and $c_*>0$.
+Let $\varepsilon:=\min(\alpha-\alpha',\kappa'-\alpha,1)/2$
+if $\alpha\in(\alpha',\kappa')$,
+otherwise the sum is eventually $0$
+(Case~1 below) and we are done.
+
+\textit{Case~1}: $\alpha\notin[\alpha',\kappa']$.
+Then $\mathrm{dist}(\alpha,[\alpha',\kappa'])
+=:\delta>0$.
+For $n\in I_c$: $|n/c-\alpha|\le (w(c)+1)/c
+\le 2/\sqrt{c}\to 0$,
+so for all large $c$,
+$|n/c-\alpha|<\delta/2$,
+which gives $n/c\notin[\alpha',\kappa']$,
+i.e.\ $n\notin\mathcal{T}_{\alpha',\kappa'}(c)$.
+Hence
+$I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)=\emptyset$
+and the band sum is $0<c_*$.
+
+\textit{Case~2}: $\alpha\in(\alpha',\kappa')$.
+Set
+\[
+  \varepsilon
+  :=\tfrac{1}{2}\min(\alpha-\alpha',\,\kappa'-\alpha)
+  >0.
+\]
+Consider the \emph{inner band}
+$\mathcal{T}_{\alpha'+\varepsilon,\,\kappa'-\varepsilon}(c)
+\subsetneq\mathcal{T}_{\alpha',\kappa'}(c)$,
+which contains $\alpha$ in its interior.
+For $n\in I_c$:
+$|n-\lfloor\alpha c\rfloor|\le w(c)=\lfloor\sqrt{c}\rfloor$,
+so
+\[
+  \left|\frac{n}{c}-\alpha\right|
+  \le \frac{w(c)+1}{c}
+  \le \frac{\sqrt{c}+2}{c}
+  = \frac{1}{\sqrt{c}}+\frac{2}{c}
+  \xrightarrow{c\to\infty}0.
+\]
+In particular, for all large $c$,
+$|n/c-\alpha|<\varepsilon/2$
+for every $n\in I_c$.
+Hence every $n\in I_c$ satisfies
+$n/c\in(\alpha-\varepsilon/2,\,\alpha+\varepsilon/2)
+\subsetneq(\alpha',\kappa')$,
+so $n\in\mathcal{T}_{\alpha',\kappa'}(c)$.
+This gives
+\[
+  \sum_{n\in\mathcal{T}_{\alpha',\kappa'}(c)}
+  \mu_{n,c}([-c_0,c_0])
+  = \sum_{n\in I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)}
+  \frac{1}{|I_c|}
+  = 1.
+\]
+However, the mass $1$ is carried by $|I_c|=2w(c)+1$
+indices, while $|\mathcal{T}_{\alpha',\kappa'}(c)|
+\sim(\kappa'-\alpha')c$.
+The relative density is
+\[
+  \frac{|I_c|}{|\mathcal{T}_{\alpha',\kappa'}(c)|}
+  \sim \frac{2\sqrt{c}}{(\kappa'-\alpha')c}
+  = \frac{2}{(\kappa'-\alpha')\sqrt{c}}
+  \to 0.
+\]
+To show NC fails, we must exhibit
+a proportional band carrying no persistent mass.
+Choose any $\beta$ with
+$\alpha<\beta<\kappa'$ and $\beta-\alpha>\varepsilon$.
+For all large $c$: every $n\in I_c$ satisfies
+$n/c<\alpha+\varepsilon/2<\beta$,
+so $I_c\cap\mathcal{T}_{\beta,\kappa'}(c)=\emptyset$.
+Hence
+\[
+  \sum_{n\in\mathcal{T}_{\beta,\kappa'}(c)}
+  \mu_{n,c}([-c_0,c_0]) = 0 < c_*.
+\]
+Since $\mathcal{T}_{\beta,\kappa'}(c)$ is a
+proportional band not hit by $I_c$,
+the sum is $0$ for all large $c$.
+Thus for the band $\mathcal{T}_{\beta,\kappa'}$,
+the $\liminf$ is $0 < c_*$,
+so NC fails for any $c_*>0$.
 \end{proof}
 
 \begin{remark}[Structural separation]
@@ -641,20 +690,19 @@ NC and H3 operate at genuinely different levels:
   proportional band $\mathcal{T}_{\alpha,\kappa}(c)$.
 \item \emph{H3 is a global tail phenomenon}:
   it requires the total tail mass $S_N(c)$
-  to vanish, regardless of
-  how mass is distributed.
+  to vanish, regardless of how mass
+  is distributed across bands.
 \end{itemize}
-The model in the proof achieves NC$^c$
-by concentrating mass in a
-\emph{sub-proportional} band
-$|I_c|\sim\sqrt{c}\ll c$
-that escapes every fixed proportional window,
+The model concentrates all mass in a
+\emph{sub-proportional} zone
+$|I_c|\sim 2\sqrt{c}\ll c$
+that migrates with $\lfloor\alpha c\rfloor$.
+This zone escapes every fixed proportional
+window $\mathcal{T}_{\beta,\kappa'}(c)$
+with $\beta>\alpha$ (it never enters),
 while maintaining $S_N(c)=1$ for all $N$.
-This is the mass migration mechanism
-described in the introduction:
-no single proportional band carries
-persistent mass,
-but the global tail never empties.
+The correct obstruction to H1 is H3,
+not NC.
 \end{remark}
 
 %%═══ 6. H3 AND THE MAIN REDUCTION
@@ -791,15 +839,13 @@ for every $N$, the $\mu_{n,c}$-mass
 of $\{n>N\}$ on $[-c_0,c_0]$
 vanishes uniformly in $c$.
 The model of Proposition~\ref{prop:NC-not-H3}
-shows that mass can migrate through
+shows mass can migrate through
 sub-proportional bands and still prevent
 evacuation, even without any single
 proportional band carrying persistent mass.
 
 \subsection{NC as band-level; H3 as global-tail}
 
-Proposition~\ref{prop:NC-not-H3} establishes
-the \emph{structural separation}:
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{lll}
@@ -813,9 +859,9 @@ H3 & Global tail
 \bottomrule
 \end{tabular}
 \end{center}
-NC$\Rightarrow$H3 fails;
-but NC$^c$ does not imply H3.
-The correct obstruction for H1 is H3, not NC.
+NC$\Rightarrow$H3 fails (proved);
+NC$^c\not\Rightarrow$H3 (Prop.~\ref{prop:NC-not-H3}).
+The correct obstruction for H1 is H3.
 
 \subsection{$S_N(c)$ as trace control;
 rank explosion}
