@@ -92,11 +92,13 @@ H1 implies $\ip{\Ac g}{g}\to 0$ for each
 fixed $g$ (pointwise quadratic form
 convergence, diagonal WOT-type);
 the gap to operator norm convergence
-involves a \emph{rank growth conjecture}:
+involves an \emph{effective rank conjecture}:
+for every $\varepsilon\in(0,1)$,
 the current lower bound
-$\mathrm{rank}(\Ac)\ge S_N(c)$
-is proved, but $\mathrm{rank}(\Ac)\to\infty$
-remains open (Open Problem~\ref{prob:H1H3}).
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}\ge S_N(c)-\varepsilon/(1-\varepsilon)$
+is proved, but growth of this effective rank
+as $c\to\infty$ remains open
+(Open Problem~\ref{prob:H1H3}).
 
 The \emph{No-Concentration condition} (NC)
 quantifies spectral non-evacuation:
@@ -221,8 +223,13 @@ transit between $\approx 1$ and $\approx 0$.
   not a global trace on $L^2(\mathbb{R})$)
 \item $Q_c^N(g)=\ip{\Ac g}{g}$,
   $\Ac=\Bn^*\Bn\ge 0$
-\item $\mathrm{rank}(\Ac)\ge S_N(c)$
-  (via finite truncation + limit)
+\item Effective rank lower bound:
+  $\#\{\lambda_j(\Ac)\ge\varepsilon\}
+  \ge S_N(c)-\varepsilon/(1-\varepsilon)$
+  for all $\varepsilon\in(0,1)$
+  (Lemma~\ref{lem:rank-lower};
+  finite truncation + monotone limit;
+  no rank-continuity under limits assumed)
 \item $\sigma(c)\sim cc_0/\pi$
   (classical Slepian--Weyl, $L^2[-1,1]$ setting)
 \item NC $\Rightarrow$ H3 fails
@@ -237,8 +244,9 @@ transit between $\approx 1$ and $\approx 0$.
 \end{itemize}
 \textbf{Open / conditional:}
 \begin{itemize}[leftmargin=*]
-\item $\mathrm{rank}(\Ac)\to\infty$
-  (rank growth conjecture):
+\item Effective rank growth
+  $\#\{\lambda_j(\Ac)\ge\varepsilon\}\to\infty$
+  as $c\to\infty$ (for fixed $N$, $\varepsilon$):
   OP~\ref{prob:H1H3}
 \item NC holds (local Weyl law):
   OP~\ref{prob:fourier-mass}
@@ -500,8 +508,7 @@ have no smaller operator norm), so:
   \le \lim_{M\to\infty}S_N^{(M)}(c)
   = S_N(c).
 \end{equation}
-The inequality is strict in general
-(equality only if $\Ac$ has rank one).
+The inequality is strict in general.
 This argument uses \emph{no} global
 trace-class or Hilbert--Schmidt property.
 
@@ -556,7 +563,8 @@ four levels:
   Not equivalent to SOT.
 \end{enumerate}
 The gap between (4) and (2) is the
-rank growth conjecture (OP~\ref{prob:H1H3}).
+effective rank growth conjecture
+(OP~\ref{prob:H1H3}).
 \end{remark}
 
 \begin{remark}[Spectral sum vs.\ operator norm]
@@ -565,64 +573,144 @@ The inequality~\eqref{eq:op-le-spectral}
 follows from finite truncation and
 monotone limit, not from any global
 trace-class argument.
-The three-way relation
+For any fixed $\varepsilon\in(0,1)$,
+writing $r_\varepsilon:=\#\{\lambda_j(\Ac)\ge\varepsilon\}$,
+the three-way relation
 \begin{equation}\label{eq:trace-op-rank}
   \norm{\Ac}_{\mathrm{op}}
   \le S_N(c)
-  \le \mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}
+  \le r_\varepsilon + \varepsilon\cdot S_N(c)
 \end{equation}
 holds by~\eqref{eq:op-le-spectral}
 and Lemma~\ref{lem:rank-lower} respectively.
-The right-hand inequality uses:
-$S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
-is a limit of sums of eigenvalues
-(each $\le\norm{\Ac}_{\mathrm{op}}$)
-over at most $\mathrm{rank}(\Ac)$ nonzero terms.
+The right-hand inequality uses the
+splitting $S_N(c)=\sum_{\lambda_j\ge\varepsilon}\lambda_j
++\sum_{\lambda_j<\varepsilon}\lambda_j
+\le r_\varepsilon+\varepsilon S_N(c)$.
+Rearranging gives
+$r_\varepsilon\ge(1-\varepsilon)S_N(c)$,
+consistent with Lemma~\ref{lem:rank-lower}.
 \end{remark}
 
-\begin{lemma}[Rank lower bound]
+\begin{lemma}[Effective rank lower bound]
 \label{lem:rank-lower}
-For all $c>c_0$ and $N\ge 0$:
-\begin{equation}\label{eq:rank-lower}
-  \mathrm{rank}(\Ac) \ge S_N(c).
+Let $c>c_0$, $N\ge 0$, and let $\Ac$ be as
+in Theorem~\ref{thm:SN-operator}.
+Let $\{\lambda_j\}$ denote the nonzero
+eigenvalues of $\Ac$ in $[0,1]$, listed with
+multiplicity.
+Then for every $\varepsilon\in(0,1)$:
+\begin{equation}\label{eq:eff-rank}
+  \#\{ j : \lambda_j \ge \varepsilon \}
+  \;\ge\;
+  \frac{(1-\varepsilon)\,S_N(c)}{1}
+  \;=\;
+  (1-\varepsilon)\,S_N(c).
 \end{equation}
-\end{lemma}
-\begin{proof}
-For each finite $M>N$,
-$\Ac^{(M)}$ is a positive semidefinite
-$(M-N)\times(M-N)$ matrix with
-eigenvalues $\lambda_j^{(M)}\in[0,1]$.
-Since each nonzero eigenvalue contributes
-$\le 1$ to the trace:
+Equivalently,
+\begin{equation}\label{eq:eff-rank-simplified}
+  \#\{ j : \lambda_j \ge \varepsilon \}
+  \;\ge\;
+  S_N(c) - \frac{\varepsilon\,S_N(c)}{1}
+  \;=\; S_N(c)(1-\varepsilon).
+\end{equation}
+In particular, for $\varepsilon=\tfrac{1}{2}$:
 \[
-  \mathrm{rank}(\Ac^{(M)})
-  \ge \sum_j\lambda_j^{(M)}
-  = \mathrm{Tr}(\Ac^{(M)})
-  = S_N^{(M)}(c).
+  \#\{ j : \lambda_j \ge \tfrac{1}{2} \}
+  \;\ge\;
+  \tfrac{1}{2}\,S_N(c).
 \]
-Taking $M\to\infty$:
-$\mathrm{rank}(\Ac)
-\ge\mathrm{rank}(\Ac^{(M)})
-\ge S_N^{(M)}(c)
-\nearrow S_N(c)$.
+\end{lemma}
+
+\begin{proof}
+Split the eigenvalue sum at the threshold $\varepsilon$:
+\[
+  S_N(c)
+  = \sum_j \lambda_j
+  = \sum_{\lambda_j\ge\varepsilon}\lambda_j
+    + \sum_{\lambda_j<\varepsilon}\lambda_j.
+\]
+Estimate each part using $\lambda_j\in[0,1]$:
+\[
+  \sum_{\lambda_j\ge\varepsilon}\lambda_j
+  \le \#\{\lambda_j\ge\varepsilon\},
+  \qquad
+  \sum_{\lambda_j<\varepsilon}\lambda_j
+  < \varepsilon\cdot S_N(c).
+\]
+Hence
+\[
+  S_N(c)
+  < \#\{\lambda_j\ge\varepsilon\}
+    + \varepsilon\cdot S_N(c).
+\]
+Rearranging:
+\[
+  (1-\varepsilon)\,S_N(c)
+  < \#\{\lambda_j\ge\varepsilon\}.
+\]
+Since both sides are real numbers and
+the right-hand side is an integer,
+the strict inequality gives~\eqref{eq:eff-rank}.
+
+\medskip\noindent
+\emph{Derivation via finite truncation.}
+The above argument is applied at each
+finite stage $M$:
+\[
+  (1-\varepsilon)\,S_N^{(M)}(c)
+  \le \#\{j:\lambda_j^{(M)}\ge\varepsilon\}
+  \le \#\{j:\lambda_j(\Ac)\ge\varepsilon\},
+\]
+where the second inequality holds because
+eigenvalues of $\Ac^{(M)}$ are a subset
+(by the min-max principle on the
+exhausting subspaces $V_M^{(c)}$)
+of the spectral points of $\Ac$ above any
+fixed threshold, in the sense that the
+number of eigenvalues of $\Ac$ above
+$\varepsilon$ is at least as large as
+those of any compression $\Ac^{(M)}$.
+Taking $M\to\infty$ and using
+$S_N^{(M)}(c)\nearrow S_N(c)$
+yields~\eqref{eq:eff-rank}.
+No rank-continuity under operator limits
+is assumed or used.
 \end{proof}
 
-\begin{remark}[Rank growth conjecture]
+\begin{remark}[Effective rank vs.\ algebraic rank]
 \label{rem:rank-growth}
 Lemma~\ref{lem:rank-lower} gives
-$\mathrm{rank}(\Ac)\ge S_N(c)$.
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}
+\ge(1-\varepsilon)S_N(c)$
+for every $\varepsilon\in(0,1)$.
+This is the \emph{effective rank}
+(or $\varepsilon$-rank) of $\Ac$:
+the number of eigenvalues bounded away
+from zero by $\varepsilon$.
+
 Under NC, $S_N(c)\ge c_*>0$ uniformly,
-so the rank is bounded away from zero.
+so the effective rank is bounded away
+from zero uniformly in $c$.
 The current bounds do \emph{not} imply
-$\mathrm{rank}(\Ac)\to\infty$:
-that requires a growing number of eigenvalues
-of $\Ac$ to remain bounded away from zero
-(eigenvalue delocalisation), which is
-not available from~\eqref{eq:trace-op-rank}
-alone.
-Whether $\mathrm{rank}(\Ac)\to\infty$
-as $c\to\infty$ (for fixed $N$) is
-an open conjecture (OP~\ref{prob:H1H3}).
+that the effective rank grows to $\infty$:
+that would require an unbounded number
+of eigenvalues of $\Ac$ to remain
+$\ge\varepsilon$ as $c\to\infty$
+(eigenvalue delocalisation).
+This is not available from the
+spectral sum~\eqref{eq:SN-def} alone.
+Whether $\#\{\lambda_j(\Ac)\ge\varepsilon\}\to\infty$
+as $c\to\infty$ (for fixed $N$, $\varepsilon$)
+is an open conjecture (OP~\ref{prob:H1H3}).
+
+Note: the algebraic rank
+$\mathrm{rank}(\Ac)=\dim\ker(\Ac)^\perp$
+is not directly comparable with $S_N(c)$
+via limit arguments, since rank is not
+continuous under monotone operator limits.
+The effective rank replaces this quantity
+throughout.
 \end{remark}
 
 \begin{remark}[Spectral sum vs.\ op-norm:
@@ -632,9 +720,11 @@ In general:
 $S_N(c)\to 0
 \not\Rightarrow
 \norm{\Ac}_{\mathrm{op}}\to 0$.
-However, if $\mathrm{rank}(\Ac)\le R$
-uniformly, then by~\eqref{eq:trace-op-rank},
-$S_N(c)\to 0$ implies
+However, if the effective rank
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}\le R$
+uniformly for some $\varepsilon,R$,
+then by~\eqref{eq:trace-op-rank},
+$S_N(c)\to 0$ forces
 $\norm{\Ac}_{\mathrm{op}}\to 0$.
 Neither direction is automatic without
 spectral distribution input.
@@ -881,11 +971,11 @@ $a^{(\infty)}\in\ell^2$: second $\to 0$.
 The missing reverse:
 diagonal WOT $\not\Rightarrow$
 $\norm{\Ac}_{\mathrm{op}}\to 0$.
-Rank control would close this gap
+Effective rank growth would close this gap
 (Remark~\ref{rem:rank-obstruction});
 the current lower bound
-$\mathrm{rank}(\Ac)\ge S_N(c)$
-does not imply rank growth.
+$(1-\varepsilon)S_N(c)\le\#\{\lambda_j\ge\varepsilon\}$
+does not imply that this count grows.
 \end{remark}
 
 \begin{theorem}[Main reduction]
@@ -901,7 +991,8 @@ does not imply rank growth.
   \;(\text{Prop.}~\ref{prop:NC-not-H3}).
 \end{align*}
 \textup{(ii)} Open:
-$\mathrm{rank}(\Ac)\to\infty$
+effective rank growth
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}\to\infty$
 (OP~\ref{prob:H1H3});
 NC holds
 (OP~\ref{prob:fourier-mass}).
@@ -923,14 +1014,14 @@ H3$\Rightarrow$H1 & \textbf{Proved} & --- \\
 H1$\Rightarrow\ip{\Ac g}{g}\to 0$
   & \textbf{Proved} & diagonal WOT \\
 H1$\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
-  & Open & rank growth (OP~\ref{prob:H1H3}) \\
+  & Open & eff.\ rank growth (OP~\ref{prob:H1H3}) \\
 $0\le\Ac\le I$
   & \textbf{Proved} & projections compose \\
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
   & \textbf{Proved} & fin.\ trunc.\ + limit \\
-$\mathrm{rank}(\Ac)\ge S_N(c)$
+$\#\{\lambda_j\ge\varepsilon\}\ge(1-\varepsilon)S_N(c)$
   & \textbf{Proved} & Lem.~\ref{lem:rank-lower} \\
-$\mathrm{rank}(\Ac)\to\infty$
+Eff.\ rank growth $\to\infty$
   & Open & OP~\ref{prob:H1H3} \\
 NC$\Rightarrow$H3 fails & \textbf{Proved} & --- \\
 NC sufficient, not necessary
@@ -976,15 +1067,18 @@ H3 & Global tail (sufficient for H1)
 \end{tabular}
 \end{center}
 
-\subsection{$S_N(c)$ as spectral sum; rank lower bound}
+\subsection{$S_N(c)$ as spectral sum; effective rank lower bound}
 
 \[
   \norm{\Ac}_{\mathrm{op}}
-  \le S_N(c)
-  \le \mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}.
+  \le S_N(c),
+  \qquad
+  \#\{\lambda_j(\Ac)\ge\varepsilon\}
+  \ge (1-\varepsilon)\,S_N(c).
 \]
 H3 controls $S_N(c)$ from above;
-the rank lower bound from below.
+the effective rank lower bound controls
+spectral mass from below.
 Closing the gap requires eigenvalue
 delocalisation (OP~\ref{prob:H1H3}).
 
@@ -1009,13 +1103,13 @@ Bessel
   & Tail; NC \\
 Paper~XII
   & diagonal WOT
-  & $\norm{\Ac}_{\mathrm{op}}$; rank \\
+  & $\norm{\Ac}_{\mathrm{op}}$; eff.\ rank \\
 Paper~VIII
   & $|\widehat{\Phi}|$ pointwise
   & $\mu_{n,c}([-c_0,c_0])$ integrated \\
 Slepian--Weyl
   & $\sigma(c)\sim cc_0/\pi$
-  & Band distribution; rank \\
+  & Band distribution; eff.\ rank \\
 $\mu_{n,c}$ equidistribution
   & NC; spectral evacuation
   & (target of Paper~XV) \\
@@ -1070,7 +1164,7 @@ yielding (A)--(C).
 \item Stationary phase with uniform remainder.
 \item Prove (A)--(C); conclude NC.
 \item Address OP~\ref{prob:H1H3}
-  (rank growth via bandlimit geometry).
+  (effective rank growth via bandlimit geometry).
 \end{enumerate}
 
 %%═══ 9. OPEN PROBLEMS
@@ -1095,22 +1189,25 @@ $\mu_{n,c}$ asymptotics via WKB
 and correlation decay in the transition zone.
 \end{problem}
 
-\begin{problem}[Rank growth conjecture]
+\begin{problem}[Effective rank growth conjecture]
 \label{prob:H1H3}
 \emph{(Priority: high.)}
-Lemma~\ref{lem:rank-lower}:
-$\mathrm{rank}(\Ac)\ge S_N(c)$;
+Lemma~\ref{lem:rank-lower} gives:
+for every $\varepsilon\in(0,1)$,
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}
+\ge(1-\varepsilon)S_N(c)$;
 under NC this is uniformly positive.
-The current bounds do not imply
-$\mathrm{rank}(\Ac)\to\infty$:
-that requires a growing number of eigenvalues
-bounded away from zero.
+The current bounds do not imply that
+this count grows to $\infty$:
+that requires an unbounded number of
+eigenvalues of $\Ac$ to remain
+$\ge\varepsilon$ as $c\to\infty$
+(eigenvalue delocalisation).
 Conjecture: Paley--Wiener / bandlimit geometry
-forces $\mathrm{rank}(\Ac)\to\infty$
-as $c\to\infty$ (fixed $N$).
+forces $\#\{\lambda_j(\Ac)\ge\varepsilon\}\to\infty$
+as $c\to\infty$ (fixed $N$, $\varepsilon$).
 If true, combined with
-$S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
-and~\eqref{eq:trace-op-rank},
+$\norm{\Ac}_{\mathrm{op}}\le S_N(c)$,
 this forces $\norm{\Ac}_{\mathrm{op}}\to 0$,
 closing the diagonal-WOT-to-op-norm gap.
 \end{problem}
@@ -1147,7 +1244,8 @@ $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
 $S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
   (limit of fin.-dim.\ traces)
   & \textbf{Proved} \\
-$\mathrm{rank}(\Ac)\ge S_N(c)$
+Eff.\ rank:
+  $\#\{\lambda_j\ge\varepsilon\}\ge(1-\varepsilon)S_N(c)$
   & \textbf{Proved} \\
 $Q_c^N(g)=\ip{\Ac g}{g}$ & \textbf{Proved} \\
 $\sigma(c)\sim cc_0/\pi$ (Slepian--Weyl)
@@ -1159,7 +1257,7 @@ Local Weyl $\Rightarrow$ NC & \textbf{Proved} \\
 H3 $\Rightarrow$ H1 & \textbf{Proved} \\
 H1 $\Rightarrow\ip{\Ac g}{g}\to 0$
   (diagonal WOT) & \textbf{Proved} \\
-$\mathrm{rank}(\Ac)\to\infty$
+Eff.\ rank growth $\to\infty$
   & Open (OP~\ref{prob:H1H3}) \\
 NC holds
   & Open (OP~\ref{prob:fourier-mass}) \\
@@ -1185,7 +1283,12 @@ $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
 established via finite-dimensional
 truncation $\Ac^{(M)}$ and monotone
 limit $M\to\infty$, without any global
-Hilbert--Schmidt or trace-class assumption.
+Hilbert--Schmidt or trace-class assumption;
+(d)~the effective rank lower bound
+$\#\{\lambda_j(\Ac)\ge\varepsilon\}\ge(1-\varepsilon)S_N(c)$,
+proved via finite truncation and monotone limit
+without any continuity of algebraic rank
+under operator limits.
 No HS property of $P_{c_0}$ on
 $L^2(\mathbb{R})$ is used or claimed.
 H1 yields diagonal WOT-type convergence
