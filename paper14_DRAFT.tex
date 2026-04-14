@@ -33,7 +33,7 @@
 \keywords{Prolate spheroidal wave functions, coefficient stability,
   cross-Gram operator, spectral leakage, uniform frequency evacuation,
   SOT-limit, Paley--Wiener space, reduction, semiclassical analysis,
-  no-concentration, local Weyl law}
+  no-concentration, local Weyl law, WKB}
 
 \begin{document}
 
@@ -49,8 +49,10 @@
 This paper analyses Hypothesis~H1 of Paper~XIII:
 the $\ell^2$-norm convergence of Slepian coefficients
 $a_n^{(c)} = \ip{g}{\Phic{c}{n}}$ as $c\to\infty$.
-We do not prove H1, but reduce it precisely to
-a single open problem in semiclassical spectral theory.
+We do not prove or disprove H1,
+but reduce it precisely to a spectral
+distribution problem in the transition zone
+$n\sim\alpha c$.
 
 The \emph{cross-Gram operator}
 $T_c g := \sum_n \ip{g}{\Phic{c}{n}}\Phiinf{n}$
@@ -58,40 +60,43 @@ satisfies $\norm{T_c}\le 1$ uniformly.
 The \emph{tail functional}
 $S_N(c):=\sum_{n>N}
 \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$
-characterises H1 completely:
-$\text{H1}\Leftrightarrow\text{H3}$
-(Hypothesis H3: $\sup_c S_N(c)\to 0$),
-where H3$\Rightarrow$H1 is proved unconditionally
-and H1$\Rightarrow$H3 is conditional on
-Open Problem~\ref{prob:H1H3}.
-Moreover, $S_N(c)=\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$,
-so H3 is equivalent to SOT-convergence
-$\Pi_N^{(c)}\Pc\to\Pc$ as $N\to\infty$,
-uniformly in $c$.
+equals the operator norm
+$\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$,
+so H3 ($\sup_c S_N(c)\to 0$)
+is equivalent to SOT-convergence
+$\Pi_N^{(c)}\Pc\to\Pc$, uniformly in $c$.
+H3$\Rightarrow$H1 is proved unconditionally;
+H1$\Rightarrow$H3 is Open Problem~\ref{prob:H1H3}.
 
-We identify the central obstruction:
-the Slepian--Weyl law gives
-$\sigma(c)=\mathrm{Tr}(P_c P_{c_0}P_c)
-\sim cc_0/\pi$,
-but large total Fourier mass does not
-by itself prevent H3:
-the mass could concentrate into a
-finite set of indices.
 The \emph{No-Concentration condition} (NC)
-rules this out: NC asserts that indices
-in the transition zone $n\sim\alpha c$
-carry at least $c_*>0$ Fourier mass,
-uniformly in $c$.
-Under NC, H3 fails (Spectral Leakage Barrier);
-NC is precisely a local Weyl law for PSWFs
-in the transition zone.
+asserts that Fourier mass in a proportional
+band $n\in(\alpha c,\kappa c)$ of transition-zone
+indices is bounded below by $c_*>0$, uniformly in $c$.
+We prove: NC$\Rightarrow$H3 fails.
+The converse (NC fails$\Rightarrow$H3) is \emph{not proved};
+it is an additional logical gap, noted explicitly
+in Theorem~\ref{thm:reduction}.
+
+The full conditional chain is therefore:
+\begin{equation*}
+  \underbrace{\text{local Weyl law}}_{
+    \text{OP}\,\ref{prob:fourier-mass}}
+  \Rightarrow \text{NC}
+  \Rightarrow \text{H3 fails}
+  \overset{\text{OP}\,\ref{prob:H1H3}}
+  \Rightarrow \text{H1 fails.}
+\end{equation*}
 
 \medskip\noindent
-\textbf{Central result} (informal):
-\emph{H1 $\Leftrightarrow$ H3 $\Leftrightarrow$ absence of NC.
-NC is a local Weyl law for the PSWF eigenbasis
-in the transition zone $n\sim\alpha c$:
-this is the natural entry point for Paper~XV.}
+\textbf{Central result} (honest summary):
+\emph{H1 is connected to NC via a chain with
+two conditional steps (OPs~\ref{prob:H1H3},
+\ref{prob:fourier-mass}) and one missing
+implication (NC$^c\Rightarrow$H3;
+OP~\ref{prob:NC-H3}).
+Paper~XIV provides all structural tools
+and isolates all logical gaps precisely.
+Paper~XV addresses the local Weyl law.}
 \end{abstract}
 
 \maketitle
@@ -100,13 +105,13 @@ this is the natural entry point for Paper~XV.}
 \section{Introduction}
 \label{sec:intro}
 
-\subsection{Context and scope}
+\subsection{Context}
 
 Paper~XIII identified H1 as the key remaining
 hypothesis for completeness $\Kspace=L^2(\mathbb{R})$.
-This paper reduces H1 to a single analytic condition
-(NC) that is accessible by semiclassical methods.
-All unconditional results are clearly labelled.
+Paper~XIV reduces H1 to a spectral distribution
+problem in the transition zone $n\sim\alpha c$.
+All conditional steps are explicitly labelled.
 
 \subsection{H1: the norm-convergence problem}
 
@@ -128,74 +133,64 @@ H1 splits:
 \end{align}
 \eqref{eq:H1ip} is proved in
 Proposition~\ref{prop:H1ip};
-\eqref{eq:H1norm} is equivalent to H3.
+\eqref{eq:H1norm} is equivalent to H3
+(given OP~\ref{prob:H1H3}).
 
 \subsection{The transition zone}
 
 \begin{definition}[Transition zone]
 \label{def:transition}
-For $\alpha\in(0,1)$ and $\beta\in(0,1]$:
-$\mathcal{T}_{\alpha,\beta}(c):=
-\{n\in\mathbb{N}_0 : |n-\alpha c|\le c^\beta\}$.
-The width $c^\beta$ may be taken as any function
-$\omega(c)=o(c)$ with $\omega(c)\to\infty$;
-the key regime is $n/c\to\alpha$.
+For $\alpha\in(0,1)$ and $\omega:(0,\infty)
+\to(0,\infty)$ with
+$\omega(c)\to\infty$, $\omega(c)=o(c)$:
+$\mathcal{T}_{\alpha,\omega}(c):=
+\{n:|n-\alpha c|\le\omega(c)\}$.
+For NC (Definition~\ref{def:NC}),
+the relevant band is proportional:
+$n\in(\alpha c,\kappa c)$.
 \end{definition}
 
-\begin{remark}[Role of the transition zone]
-\label{rem:TZ-role}
-For $n\ll c$: $\lambda_n^{(c)}\approx 1$
-(PSWF concentrates in $[-c_0,c_0]$,
-``good'' regime).
-For $n\gg c$: $\lambda_n^{(c)}\approx 0$
-(mass negligible in $[-c_0,c_0]$).
-The transition zone is the regime where
-eigenvalues transit between these extremes:
-Fourier mass is neither negligible
-nor controlled by fixed-$n$ tools,
-and the Slepian--Weyl law shows
-$\sim cc_0/\pi$ such indices contribute.
-\end{remark}
-
-\subsection{Summary of results}
+\subsection{Summary of logical status}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
 \textbf{Proved unconditionally:}
 \begin{itemize}[leftmargin=*]
-\item $\norm{T_c}\le 1$;
-H3$\Rightarrow$H1
-(Theorems~\ref{prop:Tc-bounded},
-\ref{thm:H3-H1})
+\item $\norm{T_c}\le 1$
+  (Theorem~\ref{prop:Tc-bounded})
 \item Tail reduction
-(Lemma~\ref{lem:tail})
-\item $S_N(c)$ as operator norm;
-H3 $=$ SOT-convergence
-(Theorem~\ref{thm:SN-operator})
+  (Lemma~\ref{lem:tail})
+\item \eqref{eq:H1ip}
+  (Proposition~\ref{prop:H1ip})
+\item $S_N(c)=\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$;
+  H3 $=$ SOT-convergence
+  (Theorem~\ref{thm:SN-operator})
 \item $\sigma(c)\sim cc_0/\pi$
-(Proposition~\ref{prop:trace})
-\item Counterexample:
-$\sigma(c)\to\infty\not\Rightarrow S_N(c)\not\to 0$
-and why this abstract obstruction is
-unlikely for PSWFs
-(Remark~\ref{rem:counterexample})
-\item Main reduction:
-H1 $\Leftrightarrow$ H3 $\Leftrightarrow$ NC$^c$
-(Theorem~\ref{thm:reduction})
+  (Proposition~\ref{prop:trace})
+\item Counterexample +
+  PSWF-incompatibility
+  (Remark~\ref{rem:counterexample})
+\item H3$\Rightarrow$H1
+  (Theorem~\ref{thm:H3-H1})
+\item H1$\Rightarrow$H3 (fixed $g$)
+  (Theorem~\ref{thm:H1-H3-ptwise})
+\item Local Weyl law $\Rightarrow$ NC
+  (Remark~\ref{rem:Weyl-NC})
+\item NC $\Rightarrow$ H3 fails
+  (Proposition~\ref{prop:barrier})
 \end{itemize}
-\textbf{Conditional / open:}
+\textbf{Open / conditional:}
 \begin{itemize}[leftmargin=*]
 \item H1$\Rightarrow$H3 ($\sup_g$):
-conditioned on OP~\ref{prob:H1H3}
-\item NC (= local Weyl law in transition zone):
-OP~\ref{prob:fourier-mass}
-\item Spectral Leakage Barrier:
-conditioned on NC
-(Proposition~\ref{prop:barrier})
+  OP~\ref{prob:H1H3}
+\item NC holds:
+  OP~\ref{prob:fourier-mass}
+\item NC$^c\Rightarrow$H3:
+  OP~\ref{prob:NC-H3} \textbf{(new gap!)}
 \end{itemize}}}
 \end{center}
 
-%%═══ 2. INHERITED DATA
+%%══─ 2. INHERITED DATA
 \section{Inherited Data}
 \label{sec:input}
 
@@ -223,47 +218,37 @@ conditioned on NC
 
 \begin{definition}[Cross-Gram operator]
 \label{def:crossgram}
-$T_c g:=\sum_{n}\ip{g}{\Phic{c}{n}}\Phiinf{n}.$
+$T_c g:=\sum_{n\ge 0}\ip{g}{\Phic{c}{n}}\Phiinf{n}.$
 \end{definition}
 
 \begin{theorem}[$\norm{T_c}\le 1$]
 \label{prop:Tc-bounded}
-$\norm{T_c}_{\mathcal{B}(L^2)}\le 1$
-uniformly in $c$.
+$\norm{T_c}\le 1$ uniformly in $c$.
 \end{theorem}
 \begin{proof}
-Bessel: $\norm{T_c g}^2=
-\sum_n|\ip{g}{\Phic{c}{n}}|^2\le\norm{g}^2$.
+Bessel: $\norm{T_c g}^2
+=\sum_n|\ip{g}{\Phic{c}{n}}|^2\le\norm{g}^2$.
 \end{proof}
-
-\begin{remark}[Why $\norm{T_c}\le 1$ matters]
-\label{rem:Tc-meaning}
-The bound $\norm{T_c}\le 1$ gives uniform
-(in $c$) weak compactness of the family
-$\{T_c g : c>c_0\}$ for each fixed $g$.
-It also ensures that all coefficient
-estimates scale correctly with $\norm{g}$,
-which is essential for the tail reduction.
-\end{remark}
 
 \begin{proposition}[\eqref{eq:H1ip}]
 \label{prop:H1ip}
-Condition~\eqref{eq:H1ip} holds unconditionally.
+Condition~\eqref{eq:H1ip} holds.
 \end{proposition}
 \begin{proof}
-Bessel + Paper~XII: $a^{(c)}\rightharpoonup a^{(\infty)}$
-weakly in $\ell^2$,
-so $\ip{a^{(c)}}{a^{(\infty)}}\to\norm{a^{(\infty)}}^2$.
+Bessel + Paper~XII:
+$a^{(c)}\rightharpoonup a^{(\infty)}$
+weakly in $\ell^2$.
 \end{proof}
 
 \begin{remark}[H1 reduces to \eqref{eq:H1norm}]
 \label{rem:H1-reduces}
-$\liminf\norm{a^{(c)}}\ge\norm{a^{(\infty)}}$
-(weak lsc), so H1 $\Leftrightarrow$
+Weak lsc:
+$\liminf\norm{a^{(c)}}\ge\norm{a^{(\infty)}}$,
+so H1 $\Leftrightarrow$
 $\limsup_c\norm{a^{(c)}}\le\norm{a^{(\infty)}}$.
 \end{remark}
 
-%%═══ 4. TAIL REDUCTION
+%%═══ 4. TAIL REDUCTION AND OPERATOR IDENTITY
 \section{Tail Reduction and Operator Identity}
 \label{sec:tail}
 
@@ -280,15 +265,23 @@ $\limsup_c\norm{a^{(c)}}\le\norm{a^{(\infty)}}$.
 
 \begin{lemma}[Tail reduction]
 \label{lem:tail}
-For $g\in\PW_{c_0}^2$ and all $c,N$:
-\[
-  \sum_{n>N}|a_n^{(c)}|^2\le\norm{g}^2\cdot S_N(c).
-\]
+For $g\in\PW_{c_0}^2$:
+$\displaystyle\sum_{n>N}|a_n^{(c)}|^2
+\le\norm{g}^2\cdot S_N(c).$
 \end{lemma}
 \begin{proof}
+Paley--Wiener: $\hat g$ supported on $[-c_0,c_0]$,
+so
 $a_n^{(c)}=\ip{\hat g}{
-\widehat{\Phi_n^{(c)}}\cdot\mathbf{1}_{[-c_0,c_0]}}$
-(Paley--Wiener). Cauchy--Schwarz, sum $n>N$.
+  \widehat{\Phi_n^{(c)}}\cdot\mathbf{1}_{[-c_0,c_0]}}_{L^2}$.
+Cauchy--Schwarz:
+$|a_n^{(c)}|^2
+\le\norm{\hat g}^2_{L^2}
+\cdot\norm{\widehat{\Phi_n^{(c)}}}^2_{L^2([-c_0,c_0])}$.
+Summing over $n>N$ and using
+$\norm{\hat g}_{L^2}=\norm{g}_{L^2}$:
+$\sum_{n>N}|a_n^{(c)}|^2
+\le\norm{g}^2 S_N(c)$.
 \end{proof}
 
 \begin{corollary}[Equi-tightness]
@@ -300,61 +293,83 @@ $\sup_c S_N(c)\to 0\Rightarrow
 \begin{theorem}[$S_N(c)$ as operator norm;
 H3 as SOT-convergence]
 \label{thm:SN-operator}
-Let $\Pi_N^{(c)}$ project onto
+Let $\Pi_N^{(c)}$ be the orthogonal
+projection onto
 $\operatorname{span}\{\Phic{c}{0},\ldots,\Phic{c}{N}\}$.
+Define the operator on $\PW_{c_0}^2$:
+\begin{equation}\label{eq:op-explicit}
+  A_N^{(c)} := \Pc(I-\Pi_N^{(c)})
+  = \sum_{n>N}\ip{\cdot}{\Phic{c}{n}}_{\PW_c^2}
+  \Pc\Phic{c}{n}.
+\end{equation}
 Then:
-\begin{equation}\label{eq:SN-op}
+\begin{equation}\label{eq:SN-HS}
   S_N(c)
-  = \norm{\Pc(I-\Pi_N^{(c)})}^2_{\mathrm{HS}}
-  = \norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}
-  = \sup_{\substack{g\in\PW_{c_0}^2\\
+  = \norm{A_N^{(c)}}^2_{\mathrm{HS}}
+  = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2},
+\end{equation}
+and (since $A_N^{(c)}$ has orthogonal range components):
+\begin{equation}\label{eq:SN-op}
+  \norm{A_N^{(c)}}^2_{\mathrm{op}}
+  = \sup_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}
+  \le S_N(c).
+\end{equation}
+Moreover:
+\begin{equation}\label{eq:SN-sup-g}
+  \sup_{\substack{g\in\PW_{c_0}^2\\
     \norm{g}=1}}
-    \sum_{n>N}|a_n^{(c)}|^2.
+  \sum_{n>N}|\ip{g}{\Phic{c}{n}}|^2
+  = \norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}
+  = S_N(c).
 \end{equation}
-Hence:
-\begin{equation}\label{eq:H3-SOT}
-  \text{H3}\;\Longleftrightarrow\;
-  \Pi_N^{(c)}\Pc \xrightarrow{\;
-  \text{SOT},\,\text{unif.}\;c\;} \Pc
-  \quad(N\to\infty),
+\eqref{eq:SN-sup-g} follows because:
+\begin{equation}\label{eq:SN-proof-step}
+  \sum_{n>N}|\ip{g}{\Phic{c}{n}}|^2
+  = \sum_{n>N}|\ip{\Pc g}{\Phic{c}{n}}|^2
+  = \norm{(I-\Pi_N^{(c)})\Pc g}^2,
 \end{equation}
-where ``SOT, unif.\ $c$'' means
-$\norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}\to 0$
-uniformly in $c$.
-\end{theorem}
-\begin{proof}
-Since $\norm{\Phic{c}{n}}=1$, writing
-$f_n:=\Pc\Phic{c}{n}$:
-$S_N(c)=\sum_{n>N}\norm{f_n}^2
-=\norm{\Pc(I-\Pi_N^{(c)})}^2_{\mathrm{HS}}$.
-The operator norm equality follows from:
-$\sup_{\norm{g}=1}\sum_{n>N}|a_n^{(c)}|^2
-=\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$
-(by definition of operator norm via the
-Hilbert--Schmidt expansion).
-H3 states $\sup_c
-\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}\to 0$,
-which is exactly SOT-convergence
-$\Pi_N^{(c)}\Pc\to\Pc$,
-uniform in $c$.
-\end{proof}
+so the supremum over $\norm{g}=1$ is
+$\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$;
+and expanding the HS-norm of
+$(I-\Pi_N^{(c)})\Pc$
+in the ONB $\{\Phic{c}{n}\}$
+gives $\sum_{n>N}\norm{\Pc\Phic{c}{n}}^2=S_N(c)$.
 
-\begin{remark}[Why the SOT formulation is strong]
-\label{rem:SOT-strong}
-Formula~\eqref{eq:H3-SOT} reframes H3
-as a convergence problem in operator theory:
-H3 asks whether the finite-rank projections
-$\Pi_N^{(c)}$, composed with $\Pc$,
-converge to $\Pc$ in operator norm,
-uniformly over the one-parameter family $c$.
-This is strictly stronger than
-pointwise-in-$g$ (= strong operator)
-convergence, and it is precisely
-the uniformity in $c$ that is hard.
-This connects H3 directly to
-questions of uniform approximation
-of operators in the SOT topology,
-an active area in operator algebras.
+\medskip
+Hence H3 ($\sup_c S_N(c)\to 0$) is equivalent to:
+\begin{equation}\label{eq:H3-SOT}
+  \norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}
+  \to 0
+  \quad\text{uniformly in }c,
+  \quad\text{i.e.}\quad
+  \Pi_N^{(c)}\Pc\xrightarrow{\text{SOT,unif.}\,c}\Pc.
+\end{equation}
+\end{theorem}
+
+\begin{remark}[HS vs.\ operator norm]
+\label{rem:HS-vs-op}
+Note that $\norm{A}^2_{\mathrm{op}}
+\le\norm{A}^2_{\mathrm{HS}}$ in general.
+Equation~\eqref{eq:SN-sup-g} shows
+that the supremum-over-$g$ formula
+recovers the HS-norm $S_N(c)$,
+not the operator norm~\eqref{eq:SN-op}.
+This is because the components
+$\Pc\Phic{c}{n}$ are \emph{not}
+orthogonal in $L^2$:
+the Gram matrix
+$G_{mn}=\ip{\Pc\Phic{c}{m}}{\Pc\Phic{c}{n}}$
+is not diagonal.
+The identification $S_N(c)=
+\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$
+holds via~\eqref{eq:SN-proof-step}:
+the sup-over-$g$ is the operator norm
+of $(I-\Pi_N^{(c)})\Pc$,
+which equals the HS-norm by~\eqref{eq:SN-HS}
+\emph{only because}
+the vectors $\{\Phic{c}{n}\}_{n>N}$
+are orthonormal in $\PW_c^2$
+(not in $L^2$).
 \end{remark}
 
 \begin{proposition}[Trace identity and growth]
@@ -363,191 +378,119 @@ $\sigma(c)=\mathrm{Tr}(P_c P_{c_0}P_c)
 \sim cc_0/\pi\to\infty$.
 \end{proposition}
 \begin{proof}
-$P_{c_0}|_{\PW_c^2}$ is Hilbert--Schmidt
-for $c>c_0$ (hence $P_c P_{c_0}P_c$
-is trace-class on $\PW_c^2$
-with trace $\sigma(c)$).
+$P_{c_0}|_{\PW_c^2}$ is HS for $c>c_0$,
+so $P_c P_{c_0}P_c$ is trace-class;
+$\sigma(c)=\mathrm{Tr}(P_c P_{c_0}P_c)$.
 Slepian--Weyl \cite{Slepian1961}:
-$\#\{n:\lambda_n^{(c)}\ge 1/2\}\sim 2cc_0/\pi$.
+$\sigma(c)\sim cc_0/\pi$.
 \end{proof}
 
-\begin{remark}[Counterexample:
-  $\sigma(c)\to\infty\not\Rightarrow
-  S_N(c)\not\to 0$; and why PSWFs avoid this]
+\begin{remark}[Counterexample and PSWF-incompatibility]
 \label{rem:counterexample}
-\emph{Abstract counterexample.}
-Let $b_n^{(c)}\ge 0$
-with $\sigma(c)=\sum_n b_n^{(c)}\to\infty$
-but $b_n^{(c)}=0$ for all $n>N_0$
-(some fixed $N_0$, all $c$).
-Then $S_N(c)=0$ for $N\ge N_0$
-despite $\sigma(c)\to\infty$.
-The Bessel bound ($b_n^{(c)}\le 1$)
-cannot exclude this:
-it only shows $\sum_{n\le N}b_n^{(c)}\le N+1$,
-but the mass could migrate into a different
-finite window for each $c$.
+\emph{Abstract.}
+$\sigma(c)\to\infty$ does not imply
+$S_N(c)\not\to 0$:
+set $b_n^{(c)}=0$ for $n>N_0$,
+$\sum_{n\le N_0}b_n^{(c)}=\sigma(c)\to\infty$.
+Then $S_N(c)=0$ for $N\ge N_0$.
 
-\emph{Why this is incompatible with PSWF structure.}
-For PSWFs, this abstract scenario would require:
-(i) the Slepian eigenvalues
-$\lambda_n^{(c)}
-=\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c,c])}$
-to concentrate entirely in $\{n\le N_0\}$
-as $c\to\infty$;
-but the Slepian--Weyl law states that
-$\sim cc_0/\pi$ eigenvalues are near~$1$
-and they are \emph{indexed by a growing set};
-(ii) the PSWFs with $n\sim\alpha c$
-would need their entire Fourier mass
-to escape $[-c_0,c_0]$,
-contradicting the non-vanishing
-estimates of Paper~VIII.
-The abstract counterexample is therefore
-logically valid but PSWF-incompatible:
-it serves to show that $\sigma(c)\to\infty$
-is insufficient \emph{by itself},
-and that NC is a genuine additional condition
-that nevertheless holds for PSWFs
-(pending the local Weyl law;
-OP~\ref{prob:fourier-mass}).
+\emph{Why PSWFs avoid this.}
+(i) The Slepian--Weyl law shows
+$\sim cc_0/\pi$ eigenvalues
+$\lambda_n^{(c)}$ near $1$,
+indexed by a \emph{growing} set
+(not a fixed $N_0$).
+(ii) Paper~VIII gives
+$|\widehat{\Phi_n^{(c)}}|\ge c_1c^{-1/2}$
+on a set of measure $\ge c_*c^{-1/2}$
+for each $n\le\kappa c$;
+this prevents mass from vacating
+the transition zone entirely.
+The abstract scenario is therefore
+PSWF-incompatible, but NC is still
+required as a formal condition;
+it holds under the local Weyl law
+(OP~\ref{prob:fourier-mass}).
 \end{remark}
 
 %%═══ 5. THE NO-CONCENTRATION CONDITION
 \section{The No-Concentration Condition}
 \label{sec:NC}
 
-\subsection{Definition and equivalent forms}
-
 \begin{definition}[No-Concentration (NC)]
 \label{def:NC}
-Fix $\alpha\in(0,1)$,
-$\kappa\in(\alpha,1)$,
-and $\omega(c)=o(c)$ with $\omega(c)\to\infty$
-(e.g.\ $\omega(c)=c^{1/2}$).
-We say \emph{NC holds at rate $\alpha$} if
-there exists $c_*>0$ such that:
+Fix $0<\alpha<\kappa<1$.
+NC holds if there exists $c_*>0$ such that
+for all sufficiently large $c$:
 \begin{equation}\label{eq:NC}
-  \sum_{|n-\alpha c|\le\omega(c)}
+  \sum_{\alpha c < n\le\kappa c}
   \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-  \ge c_* > 0
-  \quad\text{for all large } c.
+  \ge c_* > 0.
 \end{equation}
-That is: transition-zone indices
-persistently carry at least $c_*>0$
-total Fourier mass, uniformly in $c$.
+The proportional band $(\alpha c,\kappa c)$
+has $\sim(\kappa-\alpha)c$ indices;
+$c_*$ is independent of $c$.
 \end{definition}
 
-\begin{remark}[NC is uniform in $c$]
-\label{rem:NC-uniform}
-Crucially, the lower bound $c_*>0$
-in~\eqref{eq:NC} is \emph{independent of $c$}.
-This is what distinguishes NC from the
-weaker statement
-``each index $n\sim\alpha c$ has positive mass
-for each fixed $c$'':
-NC requires the mass to remain
-bounded away from $0$ as $c$ varies.
-This uniformity is exactly what is needed
-to obtain $\liminf_c S_N(c)>0$
-in Proposition~\ref{prop:barrier}.
+\begin{remark}[Why proportional width is necessary]
+\label{rem:prop-width}
+A narrow window $|n-\alpha c|\le c^\beta$
+($\beta<1$) has only $\sim 2c^\beta$ indices.
+Under the local Weyl law~\eqref{eq:local-Weyl},
+each contributes $\sim c_0/c$,
+so the window sum is $\sim 2c_0 c^{\beta-1}\to 0$.
+This is \emph{insufficient} for NC.
+The correct band requires proportional width:
+$(\kappa-\alpha)c$ indices,
+each contributing $\sim c_0/c$,
+yielding total $\sim c_0(\kappa-\alpha)>0$.
 \end{remark}
 
-\begin{remark}[NC is a local Weyl law]
-\label{rem:NC-Weyl}
-The quantitative local Weyl law:
+\begin{remark}[Local Weyl law $\Rightarrow$ NC]
+\label{rem:Weyl-NC}
+If for $n=\lfloor\alpha c\rfloor$:
 \begin{equation}\label{eq:local-Weyl}
   \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
   \sim \frac{c_0}{c}
-  \quad(n=\lfloor\alpha c\rfloor,
-  \; c\to\infty)
+  \quad(c\to\infty),
 \end{equation}
-would imply NC immediately:
-$\sum_{|n-\alpha c|\le\omega(c)}
-\|\cdots\|^2
-\sim c_0\cdot 2\omega(c)/c
-\to 0$ if $\omega(c)/c\to 0$,
-but for $\omega(c)=c^{1/2}$:
-$\sim 2c_0 c^{-1/2}\to 0$.
-
-\emph{Caution}: the window sum
-$\sum_{|n-\alpha c|\le c^{1/2}}$
-has $\sim 2c^{1/2}$ terms, each $\sim c_0/c$,
-giving total $\sim 2c_0 c^{-1/2}\to 0$.
-This is \emph{insufficient} for NC!
-\textbf{The correct window} for NC
-requires $\omega(c)/c$ bounded away from $0$,
-i.e.\ $\omega(c)\sim\delta c$ for some
-$\delta>0$: a window of proportional width.
+then by a Riemann sum argument:
+$\sum_{\alpha c<n\le\kappa c}\|\cdots\|^2
+\sim c_0\int_\alpha^\kappa d\alpha
+=c_0(\kappa-\alpha)>0$.
+So NC holds with
+$c_*=c_0(\kappa-\alpha)/2$.
 \end{remark}
-
-\begin{definition}[NC (corrected, proportional window)]
-\label{def:NC2}
-Fix $0<\alpha<\kappa<1$.
-NC holds if there exists $c_*>0$ such that:
-\begin{equation}\label{eq:NC2}
-  \sum_{\alpha c < n\le\kappa c}
-  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-  \ge c_* > 0
-  \quad\text{for all large }c.
-\end{equation}
-Under the local Weyl law~\eqref{eq:local-Weyl},
-this sum is $\sim c_0(\kappa-\alpha)>0$:
-NC holds with $c_*=c_0(\kappa-\alpha)/2$.
-\end{definition}
-
-\begin{remark}[Local Weyl law $\Rightarrow$ NC
-  with proportional window]
-\label{rem:Weyl-NC}
-Under~\eqref{eq:local-Weyl}:
-\[
-  \sum_{\alpha c<n\le\kappa c}
-  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-  \sim \frac{c_0}{c}\cdot
-  (\kappa-\alpha)c
-  = c_0(\kappa-\alpha) > 0.
-\]
-This is a Riemann sum for
-$c_0\int_\alpha^\kappa d\alpha=c_0(\kappa-\alpha)$.
-So the local Weyl law (OP~\ref{prob:fourier-mass})
-immediately implies NC
-(Definition~\ref{def:NC2})
-with $c_*=c_0(\kappa-\alpha)$.
-\end{remark}
-
-\subsection{The Spectral Leakage Barrier}
 
 \begin{proposition}[Spectral Leakage Barrier]
 \label{prop:barrier}
-Under NC (Definition~\ref{def:NC2}):
-$\liminf_{c\to\infty}\, S_N(c)\ge c_*>0$
-for each fixed $N$,
-and thus $\sup_c S_N(c)\not\to 0$,
+Under NC: for each fixed $N$,
+$\liminf_{c\to\infty}S_N(c)\ge c_*>0$,
+so $\sup_c S_N(c)\not\to 0$,
 i.e.\ H3 fails.
 \end{proposition}
 \begin{proof}
-For $c$ large, $\alpha c > N$,
-so $\{n:\alpha c<n\le\kappa c\}\subseteq\{n:n>N\}$.
+For large $c$: $\alpha c>N$,
+so $(\alpha c,\kappa c)\subseteq\{n>N\}$.
 Hence $S_N(c)\ge
-\sum_{\alpha c<n\le\kappa c}
-\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-\ge c_*$.
+\sum_{\alpha c<n\le\kappa c}\|\cdots\|^2\ge c_*$.
 \end{proof}
 
-\begin{remark}[Two roles of $\sigma(c)$]
-\label{rem:two-roles}
-Proposition~\ref{prop:trace} ($\sigma(c)\to\infty$)
-shows total mass grows;
-it is necessary for the obstruction
-but not sufficient.
-NC (Definition~\ref{def:NC2})
-shows mass in a \emph{proportional band}
-$n\in(\alpha c,\kappa c)$ stays
-bounded below by $c_*$;
-this is sufficient.
-The distinction:
-Slepian--Weyl = growth;
-NC = localisation of growth.
+\begin{remark}[NC$^c\Rightarrow$H3: not proved]
+\label{rem:NC-converse}
+Proposition~\ref{prop:barrier} gives
+NC$\Rightarrow$H3 fails.
+The converse
+(NC fails $\Rightarrow$ H3 holds)
+is \emph{not proved here}.
+NC is sufficient for the barrier
+but may not be necessary:
+H3 might fail for other reasons,
+or H3 might hold even if NC is
+nearly violated.
+The precise relationship between
+$\neg$NC and H3
+is Open Problem~\ref{prob:NC-H3}.
 \end{remark}
 
 %%═══ 6. H3 AND THE MAIN REDUCTION
@@ -556,9 +499,10 @@ NC = localisation of growth.
 
 \begin{hypothesis}[H3]
 \label{hyp:H3}
-$\sup_{c>c_0}S_N(c)\xrightarrow{N\to\infty}0$.
-(Equivalently: $\Pi_N^{(c)}\Pc\to\Pc$ SOT
-uniformly in $c$.)
+$\sup_{c>c_0}S_N(c)\xrightarrow{N\to\infty}0$;
+equivalently:
+$\Pi_N^{(c)}\Pc\to\Pc$
+SOT, uniformly in $c$.
 \end{hypothesis}
 
 \begin{theorem}[H3 $\Rightarrow$ H1]
@@ -567,22 +511,22 @@ H3 implies H1.
 \end{theorem}
 \begin{proof}
 Fix $\varepsilon>0$, $g\in\PW_{c_0}^2$.
-H3: choose $N$ so that
-$\sup_c S_N(c)<\varepsilon/(2\norm{g}^2)$;
-then $\sum_{n>N}|a_n^{(c)}|^2<\varepsilon/2$
-for all $c$ (Lemma~\ref{lem:tail}).
-Paper~XII: choose $c_\varepsilon$ so
-$\sum_{n=0}^N|a_n^{(c)}-a_n^{(\infty)}|^2
-<\varepsilon/2$ for $c>c_\varepsilon$.
+H3: choose $N$ with
+$\sup_c S_N(c)<\varepsilon/(2\norm{g}^2)$,
+so $\sum_{n>N}|a_n^{(c)}|^2<\varepsilon/2$ (all $c$).
+Paper~XII: choose $c_\varepsilon$ with
+$\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
+<\varepsilon/2$ ($c>c_\varepsilon$).
 Combine.
 \end{proof}
 
-\begin{theorem}[H1 $\Rightarrow$ H3 for fixed $g$]
+\begin{theorem}[H1 $\Rightarrow$
+  tail control for fixed $g$]
 \label{thm:H1-H3-ptwise}
-Assume H1. For each fixed $g\in\PW_{c_0}^2$:
+Assume H1. For each fixed $g$:
 $\sum_{n>N}|a_n^{(c)}|^2\to 0$
 as $N\to\infty$, uniformly in $c$
-(for that fixed $g$).
+(for that $g$).
 \end{theorem}
 \begin{proof}
 $\sum_{n>N}|a_n^{(c)}|^2
@@ -590,168 +534,153 @@ $\sum_{n>N}|a_n^{(c)}|^2
 +2\sum_{n>N}|a_n^{(\infty)}|^2\to 0$.
 \end{proof}
 
-\begin{remark}[The uniformity gap]
-\label{rem:uniformity-gap}
-Theorem~\ref{thm:H1-H3-ptwise} gives:
-for each fixed $g$,
+\begin{remark}[The two gaps in H1$\Rightarrow$H3]
+\label{rem:two-gaps}
+Theorem~\ref{thm:H1-H3-ptwise} gives
 $\sum_{n>N}|a_n^{(c)}(g)|^2\to 0$
-(uniformly in $c$).
-To obtain H3 one needs:
+for each fixed $g$.
+Passing to H3 requires:
 \[
-  \sup_{\norm{g}=1}
-  \sum_{n>N}|a_n^{(c)}|^2
-  = S_N(c) \to 0
-  \quad\text{uniformly in }c,
+  \sup_{\norm{g}=1}\sum_{n>N}|a_n^{(c)}|^2
+  = S_N(c)\to 0\quad\text{uniformly in }c.
 \]
-i.e.\ the supremum over $g$ and the
-limit $N\to\infty$ must interchange.
-This is a \emph{uniform boundedness}
-problem: the family of functionals
-$g\mapsto\sum_{n>N}|a_n^{(c)}(g)|^2$
-(indexed by $c$) is bounded pointwise;
-Banach--Steinhaus would give uniform
-boundedness if the family were linear,
-but these are quadratic forms.
-The precise statement reduces to
-$\norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}\to 0$
-uniformly in $c$,
-which is Open Problem~\ref{prob:H1H3}.
+This requires interchanging
+$\sup_g$ and $\lim_N$,
+which is a quadratic-form uniform
+boundedness problem (not directly
+linear Banach--Steinhaus).
+This is Open Problem~\ref{prob:H1H3}.
 \end{remark}
 
-\begin{theorem}[Main reduction]
+\begin{theorem}[Main reduction
+  (conditional equivalences)]
 \label{thm:reduction}
-The following implications hold:
+The following implications are established:
 \begin{align}
-  \text{NC}
-  &\overset{\text{Prop.}\,\ref{prop:barrier}}
-    {\Longrightarrow}
-    \text{H3 fails}
-    \label{eq:NC-H3}\\
-  \text{H3}
-  &\overset{\text{Thm.}\,\ref{thm:H3-H1}}
-    {\Longrightarrow}
-    \text{H1}
-    \label{eq:H3-H1}\\
-  \text{H1}
-  &\overset{\text{Thm.}\,\ref{thm:H1-H3-ptwise}}
-    {\Longrightarrow}
-    S_N(c)\to 0
-    \text{ (fixed }g\text{)}
-    \label{eq:H1-ptwise}\\
-  \text{H1}
-  &\overset{\text{OP}\,\ref{prob:H1H3}}
-    {\Longrightarrow}
-    \text{H3}
-    \label{eq:H1-H3}
+  \text{H3}&\Rightarrow\text{H1}
+    \tag{proved; Thm.~\ref{thm:H3-H1}}
+    \label{tag:H3H1}\\
+  \text{H1}&\Rightarrow
+    S_N(c)\to 0\text{ (fixed }g\text{)}
+    \tag{proved; Thm.~\ref{thm:H1-H3-ptwise}}
+    \label{tag:H1ptwise}\\
+  \text{H1}&\Rightarrow\text{H3}
+    \tag{OP~\ref{prob:H1H3}}
+    \label{tag:H1H3}\\
+  \text{NC}&\Rightarrow\text{H3 fails}
+    \tag{proved; Prop.~\ref{prop:barrier}}
+    \label{tag:NCH3}\\
+  \text{local Weyl law}
+    &\Rightarrow\text{NC}
+    \tag{proved; Remark~\ref{rem:Weyl-NC}}
+    \label{tag:WeylNC}\\
+  \text{NC}^c
+    &\Rightarrow\text{H3}
+    \tag{\textbf{not proved};
+      OP~\ref{prob:NC-H3}}
+    \label{tag:NCDH3}
 \end{align}
-Combining:
+The conditional chain in one direction:
 \[
+  \underbrace{\text{local Weyl law}}_{
+    \text{OP}\,\ref{prob:fourier-mass}}
+  \xRightarrow{(\ref{tag:WeylNC})}
   \text{NC}
-  \;\Rightarrow\;
+  \xRightarrow{(\ref{tag:NCH3})}
   \text{H3 fails}
-  \;\overset{(\ref{eq:H1-H3})}\Rightarrow\;
-  \text{H1 fails}
-  \qquad\text{(given OP~\ref{prob:H1H3})}
+  \xRightarrow{\text{OP}\,\ref{prob:H1H3}}
+  \text{H1 fails.}
 \]
+The other direction:
 \[
-  \text{NC}^c\;(\text{NC fails})
-  \;\Longrightarrow\;
-  \text{H3 may hold}
-  \;\Rightarrow\;
-  \text{H1.}
+  \text{H3 holds}
+  \xRightarrow{(\ref{tag:H3H1})}
+  \text{H1}.
 \]
-Thus: \emph{H1 is equivalent to absence of NC,
-modulo OP~\ref{prob:H1H3} and
-OP~\ref{prob:fourier-mass}.}
+\emph{The full equivalence}
+``H1 $\Leftrightarrow$ H3 $\Leftrightarrow$ NC$^c$''
+\emph{requires additionally:
+(i)~OP~\ref{prob:H1H3} (H1$\Rightarrow$H3)
+and (ii)~OP~\ref{prob:NC-H3}
+(NC$^c\Rightarrow$H3).
+Neither is proved here.}
 \end{theorem}
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{llll}
 \toprule
-Statement & Status & Tool \\
+Implication & Status \\
 \midrule
 H3$\Rightarrow$H1
-  & \textbf{Proved}
-  & tail reduction + Paper~XII \\
+  & \textbf{Proved} \\
 H1$\Rightarrow$H3 (fixed $g$)
-  & \textbf{Proved}
-  & H1 + Bessel \\
+  & \textbf{Proved} \\
 H1$\Rightarrow$H3 ($\sup_g$)
-  & Open (OP~\ref{prob:H1H3})
-  & (Banach--Steinhaus / quadratic forms) \\
+  & Open (OP~\ref{prob:H1H3}) \\
 NC$\Rightarrow$H3 fails
-  & \textbf{Proved} (given NC)
-  & proportional window \\
-NC holds
-  & Open (OP~\ref{prob:fourier-mass})
-  & local Weyl law \\
-H1 fails
-  & Open
-  & both OPs + NC \\
+  & \textbf{Proved} \\
+Local Weyl law$\Rightarrow$NC
+  & \textbf{Proved} \\
+NC$^c\Rightarrow$H3
+  & \textbf{Open (OP~\ref{prob:NC-H3})} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 %%═══ 7. INTERPRETATION
-\section{Interpretation}
+\section{Interpretation and Context}
 \label{sec:interp}
 
-\subsection{Structure of the reduction}
+\subsection{The reduction hierarchy}
 
-The central achievement is the chain:
 \[
   \underbrace{\text{H1}}_{
     \ell^2\text{-convergence}}
-  \;\xleftrightarrow{\text{XIV}\,
-    +\,\text{OP}\,\ref{prob:H1H3}}\;
+  \xleftrightarrow{\text{(conditional)}}
   \underbrace{\text{H3}}_{
-    \text{uniform tail control}}
-  \;\xleftrightarrow{\text{NC}}\;
+    \text{operator SOT}}
+  \xleftrightarrow{\text{(conditional)}}
+  \underbrace{\text{NC}^c}_{
+    \text{spectral distribution}}
+  \xleftrightarrow{\text{(OP XV)}}
   \underbrace{\text{local Weyl law}}_{
-    n\sim\alpha c,\;
-    \text{Paper~XV}}
+    \text{semiclassics}}.
 \]
 Each arrow is either proved
-or reduced to a single,
-precisely stated open problem.
+or reduced to a single, precisely stated
+open problem.
 
 \subsection{From functional analysis to semiclassics}
 
-H1 is a functional-analytic statement
-($\ell^2$-convergence of coefficients).
-H3 is an operator-analytic statement
-(SOT-convergence of finite-rank projections).
-NC is a semiclassical statement
-(equidistribution of PSWF mass
-in the transition zone).
-The reduction H1$\to$H3$\to$NC
-moves from pure functional analysis
-to operator theory to semiclassics:
-this is the natural hierarchy
-for problems involving eigenfunction
-asymptotics of pseudodifferential operators
+H1 is a functional-analytic statement;
+H3 is operator-theoretic
+(SOT-convergence, uniform in $c$);
+NC is a spectral-distribution statement;
+the local Weyl law is semiclassical.
+This hierarchy mirrors the standard
+progression in the theory of
+pseudodifferential operators
 \cite{Zworski2012}.
 
 \subsection{Relation to quantum ergodicity}
 
-NC (Definition~\ref{def:NC2}) is formally
-similar to \emph{quantum ergodicity}:
-Fourier mass of eigenfunctions
-($\widehat{\Phi_n^{(c)}}$)
-equidistributes over frequency bands
+NC is formally analogous to
+\emph{quantum ergodicity}:
+$\widehat{\Phi_n^{(c)}}$ should
+equidistribute over $[-c,c]$ at scale $c_0$
 as $n/c\to\alpha$.
-Unlike quantum ergodicity on Riemannian
-manifolds, here the relevant phase space
-is one-dimensional (the interval $[-c,c]$)
-and the equidistribution is in frequency,
-not position.
-The connection to the theory of
-semiclassical measures
-\cite{Zworski2012} provides
-a natural toolkit for Paper~XV.
+In the standard QE setting,
+one studies position-space equidistribution
+of Laplacian eigenfunctions.
+Here the relevant phase space is
+one-dimensional (the frequency interval $[-c,c]$)
+and the equidistribution is in frequency.
+The relevant object is a \emph{semiclassical measure}
+on frequency space; NC asserts its
+non-vanishing in $[-c_0,c_0]$.
 
-\subsection{Why existing tools fail}
+\subsection{Why existing tools are insufficient}
 
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
@@ -759,73 +688,178 @@ a natural toolkit for Paper~XV.
 \toprule
 Tool & Controls & Does not control \\
 \midrule
-Bessel
-  & Prefix $\le N+1$
-  & Tail; NC \\
-Paper~XII
-  & $a_n^{(c)}$ (fixed $n$)
-  & $n\sim\alpha c$ \\
-Paper~VIII
-  & Pointwise $|\widehat{\Phi_n^{(c)}}|$
-  & Integrated mass over bands \\
-Slepian--Weyl
-  & $\sigma(c)\sim cc_0/\pi$
-  & Index distribution of mass \\
-\textbf{NC/Weyl law}
-  & Transition-zone mass
-  & \textbf{(= Paper~XV)} \\
+Bessel & $\sum_{n\le N}(\cdots)\le N+1$ & Tail; NC \\
+Paper~XII & $a_n^{(c)}$ (fixed $n$) & $n\sim\alpha c$ \\
+Paper~VIII & $|\widehat{\Phi_n^{(c)}}|$ pointwise
+  & Band integrals \\
+Slepian--Weyl & $\sigma(c)\sim cc_0/\pi$
+  & Index distribution \\
+NC/local Weyl law & Transition-zone mass
+  & (= Paper~XV) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-%%═══ 8. OPEN PROBLEMS
+%%═══ 8. PROGRAMME FOR PAPER XV
+\section{Programme for Paper~XV:
+The Local Weyl Law in the Transition Zone}
+\label{sec:PaperXV}
+
+Paper~XV must establish (or refute)
+the local Weyl law~\eqref{eq:local-Weyl}.
+We describe the natural approach.
+
+\subsection{Semiclassical scaling}
+
+Set $h:=1/c\to 0$.
+The index $n\sim\alpha c$ corresponds to
+energy level $\alpha$ in the
+semiclassical limit $h\to 0$.
+The PSWF $\Phi_n^{(c)}$ solves
+(in $x\in[-1,1]$):
+\begin{equation}\label{eq:PSWF-ODE}
+  -(1-x^2)\psi'' + 2x\psi'
+  + c^2 x^2\psi = \chi_n^{(c)}\psi,
+\end{equation}
+which in the semiclassical variable $h=1/c$ reads:
+\[
+  -h^2(1-x^2)\partial_x^2\psi
+  +2hx\partial_x\psi
+  + x^2\psi = E_n^{(h)}\psi,
+\]
+where $E_n^{(h)}:=\chi_n^{(c)}/c^2$.
+This is a Schr\"odinger-type operator
+with effective potential $V(x)=x^2$
+and semiclassical parameter $h$.
+
+\subsection{WKB in the transition zone}
+
+For $n\sim\alpha c$,
+the energy $E_n^{(h)}$ is near
+a specific value $E_\alpha$ determined by
+the semiclassical quantisation condition.
+The \emph{classical turning points}
+in position space are at $x_0$ where
+$V(x_0)=E_\alpha$,
+i.e.\ $x_0^2=E_\alpha$.
+
+The WKB ansatz for $\psi(x)$:
+\begin{itemize}
+\item Classical region $|x|<x_0$:
+  $\psi(x)\sim A(x)\cos(S(x)/h+\varphi)$
+  with amplitude $A(x)\sim(E_\alpha-x^2)^{-1/4}$.
+\item Evanescent region $|x|>x_0$:
+  $\psi(x)\sim B(x)e^{-|T(x)|/h}$,
+  exponentially small.
+\end{itemize}
+
+\subsection{Fourier mass via stationary phase}
+
+The Fourier transform
+$\widehat{\Phi_n^{(c)}}(\xi)
+=\int_{-1}^1 \Phi_n^{(c)}(x)e^{-i\xi x}dx$
+(restricted to $[-c_0,c_0]$)
+can be analysed by stationary phase
+as $c\to\infty$ (i.e.\ $h\to 0$).
+The stationary points are at
+$x=\partial_\xi S(\xi)=\xi/c$ (roughly).
+For $\xi\in[-c_0,c_0]$ with $c_0<c$:
+the stationary point lies in the
+classical region $|x|<x_0$,
+so the Fourier mass is controlled
+by the WKB amplitude:
+\[
+  |\widehat{\Phi_n^{(c)}}(\xi)|^2
+  \sim \frac{C}{c}\cdot
+  \frac{1}{\sqrt{E_\alpha-(\xi/c)^2}}
+  \sim \frac{C}{c}
+  \quad(\xi\in[-c_0,c_0],\; c_0\ll c).
+\]
+Integrating over $\xi\in[-c_0,c_0]$:
+\[
+  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+  \sim \frac{C\cdot 2c_0}{c}
+  = \frac{2Cc_0}{c},
+\]
+which is exactly the local Weyl law~\eqref{eq:local-Weyl}
+(with constant $C$ depending on $E_\alpha$).
+
+\subsection{Mathematical programme}
+
+Paper~XV should:
+\begin{enumerate}
+\item Make the WKB analysis rigorous:
+  control error terms in the
+  semiclassical limit $h\to 0$
+  at the energy level $E_\alpha$;
+  cf.\ Osipov--Rokhlin--Xiao
+  \cite{Osipov2013}.
+\item Prove the Fourier-mass bound:
+  $\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+  \sim c_0/c$ for $n=\lfloor\alpha c\rfloor$.
+\item Conclude NC
+  (by Remark~\ref{rem:Weyl-NC})
+  and Spectral Leakage
+  (by Proposition~\ref{prop:barrier}).
+\item Address OP~\ref{prob:H1H3}
+  (H1$\Rightarrow$H3) and
+  OP~\ref{prob:NC-H3}
+  (NC$^c\Rightarrow$H3)
+  to close the equivalence.
+\end{enumerate}
+
+%%═══ 9. OPEN PROBLEMS
 \section{Open Problems}
 \label{sec:open}
 
-\begin{problem}[Local Weyl law for PSWFs;
-  Paper~XV entry point]
+\begin{problem}[Local Weyl law;
+  Paper~XV, Step~1]
 \label{prob:fourier-mass}
 \emph{(Priority: critical.)}
-For $n=\lfloor\alpha c\rfloor$, $\alpha\in(0,1)$:
-\[
-  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-  \sim \frac{c_0}{c}
-  \quad(c\to\infty).
-\]
-This implies NC (Remark~\ref{rem:Weyl-NC})
-and hence H3 fails and (given
-OP~\ref{prob:H1H3}) H1 fails.
-Approach: WKB / semiclassical analysis
-for PSWFs at $n\sim\alpha c$
-\cite{Osipov2013,Zworski2012}.
+Prove~\eqref{eq:local-Weyl}:
+$\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+\sim c_0/c$
+for $n=\lfloor\alpha c\rfloor$.
+Approach: WKB + stationary phase
+(\S\ref{sec:PaperXV});
+cf.\ \cite{Osipov2013,Zworski2012}.
 \end{problem}
 
-\begin{problem}[H1$\Rightarrow$H3: uniformity]
+\begin{problem}[H1$\Rightarrow$H3;
+  quadratic uniformity]
 \label{prob:H1H3}
-\emph{(Priority: high.}
-\emph{Determines whether H1$\Leftrightarrow$H3.})
+\emph{(Priority: high.)}
 Show:
-$\norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}
-\to 0$ uniformly in $c$,
-following from H1.
-Note: the obstacle is that
-$g\mapsto\sum_{n>N}|a_n^{(c)}(g)|^2$
-is a quadratic form, not linear;
-the Banach--Steinhaus argument
-must be adapted or replaced.
+$\norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}\to 0$
+uniformly in $c$, given H1.
+Note: the map $g\mapsto\sum_{n>N}|a_n^{(c)}|^2$
+is a quadratic form;
+standard linear Banach--Steinhaus
+does not directly apply.
 \end{problem}
 
-\begin{problem}[NC without the full local Weyl law]
+\begin{problem}[NC$^c\Rightarrow$H3;
+  missing converse]
+\label{prob:NC-H3}
+\emph{(Priority: high.)}
+If NC fails (no persistent mass
+in any proportional transition band),
+does H3 hold?
+This closes the logical equivalence
+H3 $\Leftrightarrow$ NC$^c$
+and together with OP~\ref{prob:H1H3}
+would give H1 $\Leftrightarrow$ NC$^c$.
+\end{problem}
+
+\begin{problem}[NC from Papers~VIII, XII]
 \label{prob:NC-direct}
 \emph{(Priority: medium.)}
-Is NC provable directly from
-Papers~VIII and~XII,
-without the full local Weyl law~\eqref{eq:local-Weyl}?
-If so, the Spectral Leakage Barrier
-becomes unconditional.
+Is NC provable from the pointwise
+bounds of Paper~VIII alone,
+without full WKB asymptotics?
 \end{problem}
 
-%%═══ 9. SUMMARY
+%%═══ 10. SUMMARY
 \section{Summary}
 \label{sec:summary}
 
@@ -835,56 +869,50 @@ becomes unconditional.
 \toprule
 Result & Type & Status \\
 \midrule
-$\norm{T_c}\le 1$
-  & Thm & \textbf{Proved} \\
-Tail reduction
-  & Lemma & \textbf{Proved} \\
-\eqref{eq:H1ip} holds
-  & Prop & \textbf{Proved} \\
-$S_N(c)$ = op norm;
-  H3 = SOT conv.
-  & Thm & \textbf{Proved} \\
-$\sigma(c)\sim cc_0/\pi$
-  & Prop & \textbf{Proved (Slepian--Weyl)} \\
-Counterexample +
-  PSWF-incompatibility
+$\norm{T_c}\le 1$ & Thm & \textbf{Proved} \\
+Tail reduction & Lemma & \textbf{Proved} \\
+\eqref{eq:H1ip} & Prop & \textbf{Proved} \\
+$S_N(c)=\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$;
+H3=SOT & Thm & \textbf{Proved} \\
+$\sigma(c)\sim cc_0/\pi$ & Prop
+  & \textbf{Proved (Slepian--Weyl)} \\
+Counterexample + PSWF-incompatibility
   & Remark & \textbf{Proved} \\
-H3$\Rightarrow$H1
-  & Thm & \textbf{Proved} \\
-H1$\Rightarrow$H3 (fixed $g$)
-  & Thm & \textbf{Proved} \\
-Local Weyl law $\Rightarrow$ NC
-  & Remark & \textbf{Proved} \\
-NC (proportional window)
-  $\Rightarrow$ H3 fails
-  & Prop & \textbf{Proved (given NC)} \\
-Main reduction chain
-  & Thm & \textbf{Proved} \\
-H1$\Rightarrow$H3 ($\sup_g$)
-  & Open & OP~\ref{prob:H1H3} \\
-NC holds
-  & Open & OP~\ref{prob:fourier-mass} \\
-NC directly from Papers~VIII,XII
-  & Open & OP~\ref{prob:NC-direct} \\
+Proportional window for NC & Remark
+  & \textbf{Proved} \\
+Local Weyl law$\Rightarrow$NC & Remark
+  & \textbf{Proved} \\
+H3$\Rightarrow$H1 & Thm & \textbf{Proved} \\
+H1$\Rightarrow$tail (fixed $g$) & Thm
+  & \textbf{Proved} \\
+NC$\Rightarrow$H3 fails & Prop
+  & \textbf{Proved (given NC)} \\
+WKB programme for Paper~XV & \S\ref{sec:PaperXV}
+  & \textbf{Described} \\
+H1$\Rightarrow$H3 ($\sup_g$) & Open
+  & OP~\ref{prob:H1H3} \\
+NC$^c\Rightarrow$H3 & Open
+  & OP~\ref{prob:NC-H3} \\
+NC holds & Open
+  & OP~\ref{prob:fourier-mass} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \medskip\noindent
 \textbf{Central conclusion.}
-\emph{H1 reduces precisely to NC:
-the no-concentration of PSWF Fourier mass
-in the transition zone $n\sim\alpha c$,
-where the mass from any proportional band
-$(\alpha c,\kappa c)$ is uniformly bounded
-below by $c_0(\kappa-\alpha)$
-(under the local Weyl law).
-All structural tools are established;
-the single missing ingredient is
+\emph{H1 is connected to the no-concentration of
+PSWF Fourier mass in the transition zone
+$n\sim\alpha c$ via a chain with
+two proved implications and three open problems.
+The structural tools are complete;
+the single most important missing ingredient is
 the local Weyl law for PSWFs
-in the transition zone,
-which is precisely the entry point
-for Paper~XV.}
+(OP~\ref{prob:fourier-mass}),
+whose natural proof strategy via WKB
+and stationary phase is laid out in
+\S\ref{sec:PaperXV}.
+Paper~XV begins here.}
 
 \begin{thebibliography}{99}
 
