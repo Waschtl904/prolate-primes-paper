@@ -15,6 +15,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{problem}[theorem]{Open Problem}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem*{remark*}{Remark}
@@ -36,7 +37,7 @@
   cross-Gram operator, spectral leakage, Paley--Wiener space,
   no-concentration, local Weyl law, semiclassical measures,
   quantum ergodicity, WKB, spectral evacuation, quadratic forms,
-  rank growth}
+  rank growth, Szeg\H{o} theory, Toeplitz operators}
 
 \begin{document}
 
@@ -105,6 +106,11 @@ holds at every finite truncation level
 the count $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
 \to\infty$ along some scale $M(c)\to\infty$
 remains open (Open Problem~\ref{prob:H1H3}).
+This open problem is identified as a
+\emph{semiclassical Szeg\H{o}-type problem}
+for the eigenvalue distribution of the
+truncated Gram operator $\Ac^{(M)}$
+(\S\ref{sec:szego}).
 
 The \emph{No-Concentration condition} (NC)
 quantifies spectral non-evacuation:
@@ -255,8 +261,11 @@ transit between $\approx 1$ and $\approx 0$.
 \begin{itemize}[leftmargin=*]
 \item Non-vanishing mean spectral density:
   whether $S_N^{(M(c))}(c)/M(c)\not\to 0$
-  along some scale $M(c)\to\infty$:
-  OP~\ref{prob:H1H3}
+  along some scale $M(c)\to\infty$
+  (equivalently, $S_N^{(M(c))}(c)\gtrsim M(c)$):
+  OP~\ref{prob:H1H3};
+  identified as a semiclassical Szeg\H{o}-type
+  problem (\S\ref{sec:szego})
 \item NC holds (local Weyl law):
   OP~\ref{prob:fourier-mass}
 \end{itemize}}}
@@ -555,6 +564,23 @@ H3 is a spectral-sum condition on the
 PSWF-ONB; H1 yields only pointwise
 quadratic form convergence (diagonal
 WOT-type, not full SOT).
+
+\medskip
+\begin{center}
+\fbox{\parbox{0.84\linewidth}{
+\textbf{Key distinction.}
+The obstruction is not the size of the
+spectral mass $S_N(c)$, but the
+\emph{distribution of the spectral mass
+across eigenvalues} of $\Ac^{(M)}$.
+A large trace is compatible with all mass
+concentrated on a single eigenvalue;
+controlling the number of large eigenvalues
+requires spectral distribution input
+beyond the trace alone
+(see \S\ref{sec:szego} and
+OP~\ref{prob:H1H3}).}}
+\end{center}
 \end{theorem}
 
 \begin{remark}[Convergence hierarchy]
@@ -577,7 +603,9 @@ four levels:
 \end{enumerate}
 The gap between (4) and (2) is the
 finite-dimensional effective rank
-growth conjecture (OP~\ref{prob:H1H3}).
+growth conjecture (OP~\ref{prob:H1H3}),
+identified in \S\ref{sec:szego} as a
+semiclassical Szeg\H{o}-type problem.
 \end{remark}
 
 \begin{remark}[Spectral sum vs.\ operator norm;
@@ -828,7 +856,16 @@ It does not constrain PSWF spectral geometry:
 the model family does not arise from
 $|\widehat{\Phi_n^{(c)}}|^2\,d\xi$,
 and PSWF realizability is neither
-asserted nor needed.}
+asserted nor needed.
+In particular, the model below
+concentrates mass in a sub-proportional
+window of width $\sim\sqrt{c}$, which is
+incompatible with semiclassical
+equidistribution (local Weyl law);
+this confirms the abstract separation
+is not PSWF-realistic, while remaining
+logically relevant for the implication
+structure.}
 
 \medskip\noindent
 There exists a model family
@@ -896,6 +933,12 @@ The model concentrates mass in a
 sub-proportional zone $|I_c|\sim 2\sqrt{c}\ll c$,
 escaping every fixed proportional window,
 while maintaining $S_N(c)\ge 1$.
+This sub-proportional localisation is
+incompatible with semiclassical
+equidistribution ($\mu_{n,c}\sim c_0/c$
+requires a proportional count of modes),
+confirming the abstract character of the
+separation.
 NC is sufficient but not necessary
 for H3 to fail.
 PSWF realizability is addressed by
@@ -971,10 +1014,10 @@ diagonal WOT $\not\Rightarrow$
 $\norm{\Ac}_{\mathrm{op}}\to 0$.
 Closing this gap requires a non-vanishing
 mean spectral density along some truncation
-scale $M(c)$ (OP~\ref{prob:H1H3}).
-The current structure controls only
-the spectral sum $S_N(c)$,
-not the spectral distribution.
+scale $M(c)$ (OP~\ref{prob:H1H3}),
+equivalently a semiclassical Szeg\H{o}-type
+law for the truncated Gram operator
+(\S\ref{sec:szego}).
 \end{remark}
 
 \begin{theorem}[Main reduction]
@@ -993,6 +1036,7 @@ not the spectral distribution.
 whether the mean spectral density
 $\bar\lambda^{(M(c))}(c)
 :=S_N^{(M(c))}(c)/M(c)\not\to 0$
+(equivalently, $S_N^{(M(c))}(c)\gtrsim M(c)$)
 along some scale $M(c)\to\infty$
 (OP~\ref{prob:H1H3});
 NC holds
@@ -1022,8 +1066,8 @@ $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
   & \textbf{Proved} & fin.\ trunc.\ + limit \\
 Fin.-dim.\ eff.\ rank bound~\eqref{eq:eff-rank-M}
   & \textbf{Proved} & Lem.~\ref{lem:rank-lower}; at level $M$ only \\
-Non-vanishing mean spectral density
-  & Open & OP~\ref{prob:H1H3} \\
+$S_N^{(M(c))}(c)\gtrsim M(c)$
+  & Open & OP~\ref{prob:H1H3}; Szeg\H{o}-type \\
 NC$\Rightarrow$H3 fails & \textbf{Proved} & --- \\
 NC sufficient, not necessary
   & \textbf{Proved} & abstract only \\
@@ -1095,6 +1139,153 @@ the local Weyl law (OP~\ref{prob:fourier-mass})
 asserts equidistribution on $[-c_0,c_0]$
 \cite{Zworski2012}.
 
+\subsection{Connection to semiclassical Szeg\H{o} theory}
+\label{sec:szego}
+
+\subsubsection*{Identification of $\Ac^{(M)}$ as a truncated Gram operator}
+
+The matrix $\Ac^{(M)}$ is the Gram matrix
+of the restricted Fourier transforms:
+\begin{equation}\label{eq:gram}
+  (\Ac^{(M)})_{nm}
+  = \ip{\Pc\Phic{c}{n}}{\Pc\Phic{c}{m}}_{L^2}
+  = \int_{-c_0}^{c_0}
+    \widehat{\Phi_n^{(c)}}(\xi)\,
+    \overline{\widehat{\Phi_m^{(c)}}(\xi)}\,d\xi,
+  \quad N < n,m \le M.
+\end{equation}
+Its diagonal entries are
+$(\Ac^{(M)})_{nn}=\mu_{n,c}([-c_0,c_0])$;
+its trace is $S_N^{(M)}(c)$.
+The eigenvalues of $\Ac^{(M)}$ encode
+the distribution of Fourier energy in
+$[-c_0,c_0]$ across the PSWF modes
+$N<n\le M$, with off-diagonal entries
+measuring correlations between modes.
+
+\subsubsection*{Toeplitz structure and phase space symbol}
+
+In the semiclassical limit $c\to\infty$,
+$n\sim\alpha c$, the operator $\Ac$
+is heuristically a \emph{semiclassical
+Toeplitz operator} with phase space symbol
+\[
+  a(x,\xi) = \mathbf{1}_{|\xi|\le c_0}
+  \cdot \mathbf{1}_{\text{transition zone}},
+\]
+acting on the PSWF eigenbasis.
+The Toeplitz structure arises because
+$\Ac = \Pc(I-\Pi_N^{(c)})\Pc$ is a
+compression of the frequency-projection
+operator $\Pc$ to the complement of the
+first $N$ PSWF modes.
+In this framework, the classical Szeg\H{o}
+theorem predicts that the eigenvalue
+distribution of $\Ac^{(M)}$, as
+$M\to\infty$ and $c\to\infty$ simultaneously,
+converges to a distribution determined
+by the phase space overlap of the
+Paley--Wiener band $|\xi|\le c_0$
+and the transition zone $n\sim\alpha c$
+\cite{BottcherSilbermann1990,Simon2011}.
+
+\subsubsection*{The open problem as a Szeg\H{o}-type question}
+
+Under the local Weyl law
+(Remark~\ref{rem:Weyl-NC}),
+each diagonal entry satisfies
+$(\Ac^{(M)})_{nn}=\mu_{n,c}([-c_0,c_0])
+\sim c_0/c$,
+giving $S_N^{(M)}(c)\sim c_0(M-N)/c$.
+The mean spectral density is then
+\[
+  \bar\lambda^{(M)}(c)
+  = \frac{S_N^{(M)}(c)}{M-N}
+  \sim \frac{c_0}{c}.
+\]
+For this to remain bounded away from zero,
+one needs $M(c)\lesssim c$,
+i.e.\ the truncation scale must grow
+at most linearly in $c$.
+The key additional ingredient is the
+\emph{quasi-orthogonality} of the
+restricted Fourier transforms:
+\begin{equation}\label{eq:quasi-orth}
+  \left|\int_{-c_0}^{c_0}
+  \widehat{\Phi_n^{(c)}}(\xi)\,
+  \overline{\widehat{\Phi_m^{(c)}}(\xi)}\,d\xi
+  \right| = o\!\left(\frac{1}{c}\right)
+  \quad(n\ne m,\; n,m\in\mathcal{T}_{\alpha,\kappa}(c)),
+\end{equation}
+which would imply that the off-diagonal
+entries of $\Ac^{(M)}$ are negligible
+relative to the diagonal, so the
+eigenvalues of $\Ac^{(M)}$ are well
+approximated by the diagonal entries
+$\mu_{n,c}([-c_0,c_0])\sim c_0/c$,
+giving a non-degenerate mean spectral
+density $\bar\lambda^{(M(c))}(c)\sim c_0/c>0$
+for $M(c)=O(c)$.
+
+\medskip\noindent
+Open Problem~\ref{prob:H1H3} can thus be
+precisely reformulated:
+
+\begin{center}
+\fbox{\parbox{0.84\linewidth}{
+\textbf{Semiclassical Szeg\H{o} reformulation
+of OP~\ref{prob:H1H3}.}
+Does the eigenvalue distribution of the
+truncated Gram operator $\Ac^{(M(c))}$
+converge to a non-degenerate density as
+$c\to\infty$ and $M(c)\to\infty$?
+Equivalently: does~\eqref{eq:quasi-orth}
+hold, so that $\Ac^{(M)}$ is
+asymptotically diagonal in the PSWF basis,
+with non-vanishing mean spectral density
+$\bar\lambda^{(M(c))}(c)\not\to 0$?}}
+\end{center}
+
+\begin{conjecture}[Semiclassical Szeg\H{o} behaviour]
+\label{conj:szego}
+The eigenvalue distribution of $\Ac^{(M(c))}$
+converges, as $c\to\infty$ with
+$M(c)\sim\beta c$ for fixed $\beta\in(0,1)$,
+to a non-degenerate density concentrated
+near $c_0/c$, determined by the phase
+space overlap of the Paley--Wiener band
+$|\xi|\le c_0$ and the transition zone
+$n\in\mathcal{T}_{\alpha,\kappa}(c)$.
+In particular:
+\[
+  \bar\lambda^{(M(c))}(c)
+  = \frac{S_N^{(M(c))}(c)}{M(c)}
+  \;\xrightarrow{c\to\infty}\;
+  \frac{c_0}{c}\cdot(1+o(1)) > 0,
+\]
+so that
+$S_N^{(M(c))}(c)\gtrsim M(c)\cdot c_0/c\to\infty$
+and $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}\to\infty$
+for all sufficiently small $\varepsilon>0$.
+\end{conjecture}
+
+\begin{remark}[Programme status]
+Conjecture~\ref{conj:szego} is a programme,
+not a proved statement.
+Its verification requires:
+(1)~the local Weyl law~\eqref{eq:local-Weyl}
+(target of Paper~XV);
+(2)~the quasi-orthogonality
+estimate~\eqref{eq:quasi-orth}
+(off-diagonal decay of $\Ac^{(M)}$;
+not yet established);
+(3)~a semiclassical Szeg\H{o}-type theorem
+for the resulting approximately-diagonal
+positive semidefinite matrix family.
+Steps (1)--(3) together constitute the
+full programme of Paper~XV and beyond.
+\end{remark}
+
 \subsection{Why existing tools are insufficient}
 
 \begin{center}
@@ -1117,7 +1308,7 @@ Slepian--Weyl
   & Band distribution; mean spectral density \\
 $\mu_{n,c}$ equidistribution
   & NC; spectral evacuation
-  & (target of Paper~XV) \\
+  & quasi-orthogonality~\eqref{eq:quasi-orth} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1150,7 +1341,8 @@ $h:=1/c\to 0$; the PSWF solves
 \begin{equation}\label{eq:PSWF-ODE}
   -(1-x^2)\partial_x^2\psi
   +2x\partial_x\psi
-  +c^2x^2\psi=\chi_n^{(c)}\psi
+  +c^2x^2\psi=
+    \chi_n^{(c)}\psi
 \end{equation}
 with $E_n^{(h)}=\chi_n^{(c)}/c^2\to E_\alpha$
 for $n\sim\alpha c$.
@@ -1168,10 +1360,23 @@ yielding (A)--(C).
   \cite{Osipov2013}.
 \item Stationary phase with uniform remainder.
 \item Prove (A)--(C); conclude NC.
-\item Address OP~\ref{prob:H1H3}
-  (non-vanishing mean spectral density
-  at growing truncation scale via
-  bandlimit geometry).
+\item Establish quasi-orthogonality~\eqref{eq:quasi-orth}
+  via off-diagonal stationary phase:
+  for $n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$,
+  the integral
+  $\int_{-c_0}^{c_0}
+  \widehat{\Phi_n^{(c)}}(\xi)\,
+  \overline{\widehat{\Phi_m^{(c)}}(\xi)}\,d\xi$
+  is controlled by the phase difference
+  $(n-m)/c$; rapid oscillation for
+  $|n-m|\gg 1$ yields the $o(1/c)$ bound.
+\item Combine (A)--(C) and~\eqref{eq:quasi-orth}
+  to verify Conjecture~\ref{conj:szego}:
+  the eigenvalue distribution of $\Ac^{(M(c))}$
+  is asymptotically determined by its diagonal,
+  giving non-vanishing mean spectral density
+  $\bar\lambda^{(M(c))}(c)\sim c_0/c$
+  and closing OP~\ref{prob:H1H3}.
 \end{enumerate}
 
 %%═══ 9. OPEN PROBLEMS
@@ -1193,7 +1398,8 @@ $L^2[-c_0/c,c_0/c]$ after rescaling,
 introducing off-diagonal correlations.
 Paper~XV must control both individual
 $\mu_{n,c}$ asymptotics via WKB
-and correlation decay in the transition zone.
+and correlation decay in the transition zone
+via quasi-orthogonality~\eqref{eq:quasi-orth}.
 \end{problem}
 
 \begin{problem}[Non-vanishing mean spectral density]
@@ -1218,11 +1424,7 @@ finite-dimensional effective rank satisfies:
   \frac{(\bar\lambda^{(M)}(c)-\varepsilon)(M-N)}{1-\varepsilon},
 \]
 which is non-trivial exactly when
-$\bar\lambda^{(M)}(c)>\varepsilon$,
-i.e.\ when the mean spectral density
-exceeds the threshold.
-No claim about the global operator $\Ac$
-is made; this is finite linear algebra only.
+$\bar\lambda^{(M)}(c)>\varepsilon$.
 
 \medskip\noindent
 \textbf{The open condition.}
@@ -1234,11 +1436,10 @@ fixed $N$, $\varepsilon$) such that
   = \frac{S_N^{(M(c))}(c)}{M(c)}
   \not\to 0\;?
 \end{equation}
-Equivalently: does the spectral mass
-$S_N^{(M(c))}(c)$ grow at least linearly
-in $M(c)$, i.e.\ does the average
-eigenvalue of $\Ac^{(M(c))}$ remain
-bounded away from zero?
+Equivalently:
+\begin{equation}\label{eq:linear-growth}
+  S_N^{(M(c))}(c) \gtrsim M(c)\;?
+\end{equation}
 
 \medskip\noindent
 \textbf{Why this is a density problem.}
@@ -1247,22 +1448,34 @@ a \emph{non-vanishing mean spectral density}
 along the truncation scale $M(c)$:
 the spectral mass is not asymptotically
 concentrated on a negligible fraction of
-the $M(c)$ eigenvalues, but is spread
-with positive average density.
+the $M(c)$ eigenvalues, but spread with
+positive average density.
 This is the finite-dimensional analogue of
-spectral equidistribution (quantum ergodicity)
-at the operator truncation level.
+spectral equidistribution at the operator
+truncation level.
+
+\medskip\noindent
+\textbf{Szeg\H{o} reformulation.}
+As identified in \S\ref{sec:szego},
+this is equivalent to asking whether
+$\Ac^{(M(c))}$ exhibits semiclassical
+Szeg\H{o} behaviour: asymptotic diagonality
+in the PSWF basis (quasi-orthogonality~%
+\eqref{eq:quasi-orth}) combined with the
+local Weyl law (OP~\ref{prob:fourier-mass})
+would yield $\bar\lambda^{(M(c))}(c)
+\sim c_0/c > 0$ for $M(c)=O(c)$.
 
 \medskip\noindent
 \textbf{Conjecture.}
 Paley--Wiener / bandlimit geometry forces
-$\bar\lambda^{(M(c))}(c)\ge c_*>0$
-uniformly along the scale $M(c)\sim c^\alpha$
-for some $\alpha>0$ and $c_*>0$.
+$\bar\lambda^{(M(c))}(c)\ge c_*/c>0$
+uniformly along the scale $M(c)\sim\beta c$
+for some $\beta\in(0,1)$ and $c_*>0$.
 If confirmed:
 \begin{enumerate}[\rm(i)]
 \item $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
-  \ge c_*(1-\varepsilon)^{-1}M(c)/2\to\infty$,
+  \ge c_*(1-\varepsilon)^{-1}M(c)/(2c)\to\infty$,
 \item combined with
   $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$,
   this closes the diagonal-WOT-to-op-norm gap.
@@ -1313,8 +1526,14 @@ Local Weyl $\Rightarrow$ NC & \textbf{Proved} \\
 H3 $\Rightarrow$ H1 & \textbf{Proved} \\
 H1 $\Rightarrow\ip{\Ac g}{g}\to 0$
   (diagonal WOT) & \textbf{Proved} \\
+$\Ac^{(M)}$ is truncated Gram operator
+  & \textbf{Identified} (\S\ref{sec:szego}) \\
+Toeplitz / Szeg\H{o} structure of $\Ac$
+  & \textbf{Identified} (\S\ref{sec:szego}) \\
+Quasi-orthogonality~\eqref{eq:quasi-orth}
+  & Open (Paper~XV) \\
 Non-vanishing mean spectral density
-  at scale $M(c)$
+  $\bar\lambda^{(M(c))}(c)\not\to 0$
   & Open (OP~\ref{prob:H1H3}) \\
 NC holds
   & Open (OP~\ref{prob:fourier-mass}) \\
@@ -1353,9 +1572,15 @@ and operator norm convergence is now
 precisely identified as a
 \emph{non-vanishing mean spectral density}
 problem at a growing truncation scale
-(OP~\ref{prob:H1H3}):
-whether $S_N^{(M(c))}(c)/M(c)\not\to 0$
-for some $M(c)\to\infty$.
+(OP~\ref{prob:H1H3}),
+and further as a \emph{semiclassical
+Szeg\H{o}-type problem} for the truncated
+Gram operator $\Ac^{(M)}$ (\S\ref{sec:szego}):
+whether quasi-orthogonality~\eqref{eq:quasi-orth}
+holds and the eigenvalue distribution of
+$\Ac^{(M(c))}$ converges to a non-degenerate
+density determined by the phase space overlap
+of the Paley--Wiener band and the transition zone.
 No HS property of $P_{c_0}$ on
 $L^2(\mathbb{R})$ is used or claimed.
 Paper~XIV is logically complete up to
@@ -1363,20 +1588,24 @@ two open problems.}
 
 \begin{thebibliography}{99}
 
-\bibitem{PaperXIV-XIII}[Author],
+\bibitem{PaperXIV-XIII}
+[Author],
 \textit{Paper~XIII}, 2026.
 
-\bibitem{PaperXIV-XII}[Author],
+\bibitem{PaperXIV-XII}
+[Author],
 \textit{Paper~XII}, 2026.
 
-\bibitem{PaperXIV-VIII}[Author],
+\bibitem{PaperXIV-VIII}
+[Author],
 \textit{Paper~VIII}, 2026.
 
 \bibitem{Slepian1961}
 D.~Slepian, H.~O.~Pollak,
 \textit{Prolate spheroidal wave functions,
 Fourier analysis and uncertainty~I},
-Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961),
+43--63.
 
 \bibitem{Osipov2013}
 A.~Osipov, V.~Rokhlin, H.~Xiao,
@@ -1397,6 +1626,17 @@ J.~B.~Conway,
 M.~Zworski,
 \textit{Semiclassical Analysis},
 AMS, 2012.
+
+\bibitem{BottcherSilbermann1990}
+A.~B\"ottcher, B.~Silbermann,
+\textit{Analysis of Toeplitz Operators},
+Springer, 1990.
+
+\bibitem{Simon2011}
+B.~Simon,
+\textit{Szeg\H{o}'s Theorem and Its
+Descendants}, Princeton University Press,
+2011.
 
 \end{thebibliography}
 
