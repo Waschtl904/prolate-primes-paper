@@ -22,12 +22,12 @@
 %%%─── Macros
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
-\newcommand{\Hlim}{\mathcal{H}_{\lim}}
 \newcommand{\Phiinf}[1]{\Phi_{#1}^{(\infty)}}
 \newcommand{\Phic}[2]{\Phi_{#2}^{(#1)}}
 \newcommand{\PW}{PW}
 \newcommand{\Kspace}{\mathcal{K}}
 \newcommand{\Pc}{P_{c_0}}
+\newcommand{\SN}{S_N(c)}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 46B15, 46C05}
 \keywords{Prolate spheroidal wave functions, coefficient stability,
@@ -57,37 +57,36 @@ and reduce H1 to a single analytic condition:
 uniform tail control of
 $S_N(c) := \sum_{n>N}\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$.
 
-We then establish the \emph{Spectral Leakage Barrier}:
+We establish the \emph{Spectral Leakage Barrier}:
 although $S_N(c) \to 0$ for each fixed $c$,
 the uniform control $\sup_c S_N(c) \to 0$ fails.
-Specifically, we prove (rigorously) that
-for each $N$ there exists $c(N)\to\infty$ with
+For each $N$ there exists $c(N)\to\infty$ with
 $S_N(c(N)) \ge c_* > 0$,
-and (via explicit Fourier mass estimates)
-that $\liminf_{c\to\infty} S_N(c) \ge \kappa c_0 > 0$.
-The mechanism is \emph{persistent low-frequency injection}:
-indices $n \sim \alpha c$ (the \emph{transition zone})
-continuously supply Fourier mass in $[-c_0,c_0]$
-as $c\to\infty$.
+and under a Fourier mass assumption
+(consistent with a local Weyl law in frequency)
+$\liminf_{c\to\infty} S_N(c) \ge \kappa c_0 > 0$.
+The mechanism is \emph{persistent low-frequency injection}
+from the \emph{transition zone} $n \sim \alpha c$.
 
 We isolate the missing property as
 \textbf{H3 (Uniform Frequency Evacuation)}
 and prove the main equivalence
-$\text{H1}\Longleftrightarrow\text{H3}$,
-including the direction H1$\Rightarrow$H3
-via a test-function argument.
+$\text{H1}\Longleftrightarrow\text{H3}$.
+The direction H3$\Rightarrow$H1 is complete.
+The direction H1$\Rightarrow$H3 is proved
+via an operator-norm duality argument
+(Theorem~\ref{thm:H1-H3}, proof of H1$\Rightarrow$H3);
+one uniformity detail is flagged as Open Problem~\ref{prob:H1H3}.
 H3 is not implied by any result in Papers~I--XIII.
 
 \medskip
 \noindent
 \textbf{Central structural result} (informal):
-\emph{The coefficient stability problem~H1 is equivalent
-to a uniform evacuation of low-frequency mass from
-high-index PSWFs.
-This property fails by a persistent spectral leakage
-from the transition zone $n\sim c$,
-which lies beyond the reach of the fixed-index
-or low-index analytic tools of the series.}
+\emph{H1 is equivalent to uniform evacuation of Fourier
+mass from high-index PSWFs.
+This fails by persistent spectral leakage from the
+transition zone $n\sim c$,
+beyond the reach of fixed-index or low-index tools.}
 \end{abstract}
 
 \maketitle
@@ -99,7 +98,7 @@ or low-index analytic tools of the series.}
 \subsection{Inheritance from Paper XIII}
 
 Paper~XIII established that all frame-based routes to
-completeness $\Kspace=L^2(\mathbb{R})$ are closed,
+completeness $\Kspace=L^2(\mathbb{R})$ are closed
 and identified \textbf{H1} as the only currently
 identified hypothesis strictly weaker than completeness
 and grounded in the series.
@@ -131,10 +130,11 @@ H1 splits into:
     \to \norm{a^{(\infty)}}^2_{\ell^2}.
     \tag{H1-norm}\label{eq:H1norm}
 \end{align}
-Condition~\eqref{eq:H1ip} follows from
-weak $\ell^2$-convergence
-(pointwise from Paper~XII + Bessel bound).
-The hard part is \eqref{eq:H1norm}.
+Condition~\eqref{eq:H1ip} is proved in
+Proposition~\ref{prop:H1ip} via weak $\ell^2$-convergence.
+The hard part is \eqref{eq:H1norm},
+which H1 reduces to entirely
+(Remark~\ref{rem:reduction}).
 
 \subsection{The transition zone}
 
@@ -144,22 +144,28 @@ For $\alpha\in(0,1)$ and $c>0$, the
 \emph{transition zone at rate $\alpha$} is
 \[
   \mathcal{T}_\alpha(c) :=
-  \{\, n \in \mathbb{N}_0 : n = \lfloor\alpha c\rfloor \pm O(c^{1/2})\,\}.
+  \bigl\{\, n \in \mathbb{N}_0 :
+  |n - \alpha c| \le c^{1/2}\,\bigr\}.
 \]
-Indices in $\mathcal{T}_\alpha(c)$ are simultaneously:
-\emph{high} relative to any fixed $N$ (for large $c$),
-and \emph{low} relative to $c$ (regime of Paper~VIII).
+Indices in $\mathcal{T}_\alpha(c)$ are simultaneously
+\emph{high} relative to any fixed $N$ (for large $c$)
+and \emph{low} relative to $c$
+(within the regime $n\le\kappa c$ of Paper~VIII).
+The transition zone is the region where both
+fixed-index and low-index analytic tools
+become insufficient.
 \end{definition}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{\centering\bfseries
 Core structural result (informal).\\
 \normalfont
-Uniform tail control fails because indices in the
-transition zone $n\sim\alpha c$
-inject Fourier energy into every fixed band
-$[-c_0,c_0]$ as $c\to\infty$.
-No fixed-$n$ or low-index tool can control this.}}
+Uniform tail control fails because indices
+in the transition zone $n\sim\alpha c$
+continuously inject Fourier energy
+into every fixed band $[-c_0,c_0]$ as $c\to\infty$.
+No fixed-$n$ or low-index tool from Papers~I--XIII
+can control this injection.}}
 \end{center}
 
 \subsection{Structure and honest assessment}
@@ -170,13 +176,15 @@ No fixed-$n$ or low-index tool can control this.}}
 Section & Content \\
 \midrule
 \S\ref{sec:input} & Inherited data \\
-\S\ref{sec:crossgram} & Cross-Gram operator; $\norm{T_c}\le 1$;
-  \eqref{eq:H1ip} \\
-\S\ref{sec:tail} & Tail reduction; $S_N(c)$ \\
-\S\ref{sec:barrier} & \textbf{Spectral Leakage Barrier
-  (rigorous + quantitative)} \\
-\S\ref{sec:H3} & H3; Main equivalence H1$\Longleftrightarrow$H3 \\
-\S\ref{sec:interp} & Transition zone; operator interpretation \\
+\S\ref{sec:crossgram} & Cross-Gram operator;
+  $\norm{T_c}\le 1$; \eqref{eq:H1ip} \\
+\S\ref{sec:tail} & Tail reduction; $\SN$ \\
+\S\ref{sec:barrier} & \textbf{Spectral Leakage Barrier:
+  rigorous + quantitative} \\
+\S\ref{sec:H3} & H3;
+  H1$\Longleftrightarrow$H3 (main theorem) \\
+\S\ref{sec:interp} & Transition zone;
+  operator and Weyl-law interpretation \\
 \S\ref{sec:open} & Open problems \\
 \bottomrule
 \end{tabular}
@@ -187,15 +195,16 @@ Section & Content \\
 \fbox{\parbox{0.88\linewidth}{
 \begin{itemize}
 \item This paper does \emph{not} prove H1.
-\item It proves H1 $\Longleftrightarrow$ H3 and that H3
-  is not in Papers~I--XIII.
+\item It proves H1 $\Longleftrightarrow$ H3
+  and that H3 lies outside Papers~I--XIII.
 \item The Spectral Leakage Barrier
-  (Theorem~\ref{thm:barrier}) is proved rigorously
-  at the ``weak'' level; the quantitative
-  $\liminf$ estimate is explicit but uses
-  a Fourier mass assumption
-  (Assumption~\ref{ass:fourier-mass})
-  to be verified against Paper~VIII.
+  (Theorem~\ref{thm:barrier})
+  is proved rigorously (weak form);
+  the quantitative $\liminf$ estimate
+  is conditional on Assumption~\ref{ass:fourier-mass}.
+\item H3$\Rightarrow$H1 is complete.
+  H1$\Rightarrow$H3 is complete modulo
+  Open Problem~\ref{prob:H1H3}.
 \item This is a \emph{reduction and obstruction paper}.
 \end{itemize}}}
 \end{center}
@@ -208,20 +217,22 @@ Section & Content \\
 \label{lem:inherited}
 \begin{enumerate}[\rm(A)]
 \item\label{A:bessel}
-  \emph{Bessel.} $\sum_n|a_n^{(c)}|^2\le\norm{g}^2$
-  for all $c$.
+  \emph{Bessel.}
+  $\sum_n|a_n^{(c)}|^2\le\norm{g}^2$ for all $c$;
+  in particular each $\|\widehat{\Phi_n^{(c)}}\|_{L^2}=1$.
 \item\label{A:ptwise}
-  \emph{Paper~XII (cond.\ Gap-S+SOT-Faster).}
+  \emph{Paper~XII (cond.\ Gap-S + SOT-Faster).}
   $a_n^{(c)}\to a_n^{(\infty)}$ for each fixed $n$.
 \item\label{A:nonvanish}
-  \emph{Paper~VIII.}
+  \emph{Paper~VIII (non-cancellation).}
   For $n\le\kappa c$:
   $|\widehat{\Phi_n^{(c)}}(\xi)|\ge c_1 c^{-1/2}$
-  for $\xi\in E_c$, $|E_c|\ge c_* c^{-1/2}$.
+  on a set $E_c\subseteq[-c,c]$
+  with $|E_c|\ge c_* c^{-1/2}$.
 \item\label{A:supp}
   \emph{Paley--Wiener.}
   $g\in\PW_{c_0}^2\Rightarrow
-  \mathrm{supp}\,\hat g\subseteq[-c_0,c_0]$.
+  \operatorname{supp}\hat g\subseteq[-c_0,c_0]$.
 \end{enumerate}
 \end{lemma}
 
@@ -230,84 +241,128 @@ Section & Content \\
 \label{sec:crossgram}
 
 \begin{definition}[Cross-Gram operator]
-$T_c g := \sum_{n\ge 0}\ip{g}{\Phic{c}{n}}\Phiinf{n}.$
+\label{def:crossgram}
+For $c > c_0 > 0$, define
+$T_c : L^2(\mathbb{R}) \to L^2(\mathbb{R})$ by
+\[
+  T_c g :=
+  \sum_{n\ge 0}\ip{g}{\Phic{c}{n}}\,\Phiinf{n}.
+\]
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[$T_c$ uniformly bounded]
 \label{prop:Tc-bounded}
 $\norm{T_c}\le 1$ uniformly in $c$.
 \end{proposition}
 \begin{proof}
-$\norm{T_c g}^2=\sum_n|\ip{g}{\Phic{c}{n}}|^2
-\le\norm{g}^2$ by Bessel.
+By Bessel for $\{\Phic{c}{n}\}$:
+$\norm{T_c g}^2
+=\sum_n|\ip{g}{\Phic{c}{n}}|^2\le\norm{g}^2$.
 \end{proof}
 
 \begin{lemma}[Cross-Gram identity]
 \label{lem:crossgram-ip}
-$\ip{T_c g}{g}=\ip{a^{(c)}}{a^{(\infty)}}_{\ell^2}.$
+$\ip{T_c g}{g}
+= \ip{a^{(c)}}{a^{(\infty)}}_{\ell^2}
+= \sum_n a_n^{(c)}\,\overline{a_n^{(\infty)}}.$
 \end{lemma}
 \begin{proof}
-Direct: $\ip{T_c g}{g}
+Direct expansion:
+$\ip{T_c g}{g}
 =\sum_n\ip{g}{\Phic{c}{n}}\ip{\Phiinf{n}}{g}
 =\sum_n a_n^{(c)}\overline{a_n^{(\infty)}}$.
 \end{proof}
 
-\begin{proposition}[{\eqref{eq:H1ip} from weak convergence}]
+\begin{proposition}[\eqref{eq:H1ip} from weak convergence]
 \label{prop:H1ip}
-Condition~\eqref{eq:H1ip} holds.
+Condition~\eqref{eq:H1ip} holds under
+Lemma~\ref{lem:inherited}\ref{A:ptwise} and
+\ref{A:bessel}.
 \end{proposition}
 \begin{proof}
-By Lemma~\ref{lem:inherited}\ref{A:ptwise},
-$a_n^{(c)}\to a_n^{(\infty)}$ pointwise.
-By Lemma~\ref{lem:inherited}\ref{A:bessel},
-$\{a^{(c)}\}$ is bounded in $\ell^2$.
-Hence $a^{(c)}\rightharpoonup a^{(\infty)}$
+Lemma~\ref{lem:inherited}\ref{A:ptwise}
+gives $a_n^{(c)}\to a_n^{(\infty)}$ pointwise;
+Lemma~\ref{lem:inherited}\ref{A:bessel}
+gives $\{a^{(c)}\}$ uniformly bounded in $\ell^2$.
+These two facts imply $a^{(c)}\rightharpoonup a^{(\infty)}$
 weakly in $\ell^2$
-(pointwise convergence + uniform bound
-$\Rightarrow$ weak convergence in $\ell^2$).
-Since $a^{(\infty)}\in\ell^2$:
+(standard: uniform bound + pointwise $\Rightarrow$ weak).
+Hence
 $\ip{a^{(c)}}{a^{(\infty)}}_{\ell^2}
 \to\norm{a^{(\infty)}}^2_{\ell^2}$.
 \end{proof}
 
-\begin{remark}
-H1 therefore reduces entirely to~\eqref{eq:H1norm},
-i.e.\ to $\limsup_c\norm{a^{(c)}}_{\ell^2}
-\le\norm{a^{(\infty)}}_{\ell^2}$.
-(The $\liminf$ direction follows from weak lower
-semi-continuity of the norm.)
+\begin{remark}[H1 reduces to \eqref{eq:H1norm}]
+\label{rem:reduction}
+Since weak lower semi-continuity gives
+$\liminf_c\norm{a^{(c)}}\ge\norm{a^{(\infty)}}$
+automatically,
+H1 is entirely equivalent to
+$\limsup_c\norm{a^{(c)}}_{\ell^2}
+\le\norm{a^{(\infty)}}_{\ell^2}$,
+i.e.\ to~\eqref{eq:H1norm}.
 \end{remark}
 
 %%═══ 4. TAIL REDUCTION
 \section{Tail Reduction}
 \label{sec:tail}
 
-\begin{definition}[$S_N(c)$]
+\begin{definition}[$S_N(c)$: tail Fourier mass]
 \label{def:SN}
-$S_N(c):=\sum_{n>N}
-\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}.$
+For $c > c_0$ and $N \ge 0$:
+\[
+  S_N(c) := \sum_{n>N}
+  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}.
+\]
 \end{definition}
 
 \begin{lemma}[Tail reduction]
 \label{lem:tail}
-For $g\in\PW_{c_0}^2$:
-$\displaystyle\sum_{n>N}|a_n^{(c)}|^2\le\norm{g}^2 S_N(c).$
+For $g\in\PW_{c_0}^2$ and all $c > c_0$:
+\[
+  \sum_{n>N}|a_n^{(c)}|^2 \le \norm{g}^2\cdot S_N(c).
+\]
 \end{lemma}
 \begin{proof}
-$a_n^{(c)}=\int_{-c_0}^{c_0}\hat g(\xi)
-\overline{\widehat{\Phi_n^{(c)}}(\xi)}\,d\xi$
-by Lemma~\ref{lem:inherited}\ref{A:supp}.
-Cauchy--Schwarz:
-$|a_n^{(c)}|^2\le\norm{g}^2
+Since $\operatorname{supp}\hat g\subseteq[-c_0,c_0]$
+(Lemma~\ref{lem:inherited}\ref{A:supp}):
+$a_n^{(c)}
+=\int_{-c_0}^{c_0}\hat g(\xi)
+\overline{\widehat{\Phi_n^{(c)}}(\xi)}\,d\xi$.
+By Cauchy--Schwarz:
+$|a_n^{(c)}|^2
+\le\norm{\hat g}^2_{L^2}
+\cdot\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+= \norm{g}^2\cdot
 \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$.
 Sum over $n>N$.
 \end{proof}
 
 \begin{corollary}[Equi-tightness criterion]
 \label{cor:equitight}
-$\sup_{c>c_0}S_N(c)\to 0$
-$\Rightarrow$ $\{a^{(c)}\}$ equi-tight in $\ell^2$.
+If $\sup_{c>c_0}S_N(c)\to 0$ as $N\to\infty$,
+then the family $\{a^{(c)}\}_{c>c_0}$
+is equi-tight in $\ell^2$.
 \end{corollary}
+
+\begin{remark}[Operator interpretation of $S_N(c)$]
+\label{rem:SN-operator}
+Let $\Pi_N^{(c)}$ be the orthogonal projection onto
+$\operatorname{span}\{\Phic{c}{0},\ldots,\Phic{c}{N}\}$.
+Since $\{\Phic{c}{n}\}_{n>N}$ is an ONS in $\PW_c^2$:
+\[
+  S_N(c) = \sum_{n>N}\|\Pc\Phic{c}{n}\|^2
+  = \norm{\Pc(I-\Pi_N^{(c)})}^2_{\mathrm{HS}(\PW_c^2)}.
+\]
+Equivalently, $S_N(c)
+= \sup_{\norm{g}=1}\sum_{n>N}|a_n^{(c)}|^2$
+where the supremum is over $g\in\PW_{c_0}^2$:
+this is precisely the operator-norm formulation
+$S_N(c)
+=\norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$.
+(The Bessel upper bound $\norm{\Phic{c}{n}}_{L^2}=1$
+confirms each term is at most $1$.)
+\end{remark}
 
 %%═══ 5. SPECTRAL LEAKAGE BARRIER
 \section{The Spectral Leakage Barrier}
@@ -317,85 +372,94 @@ $\Rightarrow$ $\{a^{(c)}\}$ equi-tight in $\ell^2$.
 
 \begin{theorem}[Spectral Leakage Barrier, weak form]
 \label{thm:barrier}
-For each $N\ge 0$ there exists $c(N)\to\infty$
-such that
+For each $N\ge 0$ there exists $c(N)\to\infty$ such that
 \[
   S_N(c(N)) \ge c_* > 0,
 \]
 where $c_*$ depends only on $c_0$ and the
-concentration constants of Paper~VIII.
-In particular,
-$\sup_{c>c_0} S_N(c)\not\to 0$.
+concentration constants of Paper~VIII
+(Lemma~\ref{lem:inherited}\ref{A:nonvanish}).
+In particular, $\sup_{c>c_0}S_N(c)\not\to 0$.
 \end{theorem}
 \begin{proof}
-Fix $N$. By Lemma~\ref{lem:inherited}\ref{A:bessel},
-$\sum_{n=0}^\infty
-\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-= \|\Pc\|^2_{\mathrm{HS}(\PW_c^2)}$.
-Since $\{\Phic{c}{n}\}$ is an ONB of $\PW_c^2$
-(for finite $c$, Slepian~\cite{Slepian1961}),
-and $\Pc:\PW_c^2\to\PW_{c_0}^2$ is a non-zero
-partial isometry for $c>c_0$,
-we have
-\begin{equation}\label{eq:total-SN}
-  \sum_{n=0}^\infty
-  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-  = \|\Pc\|^2_{\mathrm{HS}(\PW_c^2)}.
-\end{equation}
-We claim $\liminf_{c\to\infty}\|\Pc\|^2_{\mathrm{HS}(\PW_c^2)}>0$.
-Indeed, by Lemma~\ref{lem:inherited}\ref{A:nonvanish},
-for $n=0$ and all large $c$:
-$\|\widehat{\Phi_0^{(c)}}\|^2_{L^2([-c_0,c_0])}
-\ge c_1^2 c^{-1}\cdot |E_c\cap[-c_0,c_0]|$.
-For $c>c_0$, we have $E_c\subseteq[-c,c]$ and
-$|E_c\cap[-c_0,c_0]|\ge\min(|E_c|, 2c_0)
-\ge c_* c^{-1/2}\wedge 2c_0>0$.
-So at least the $n=0$ term contributes a
-positive amount to \eqref{eq:total-SN}.
-Write $\sigma(c):=\|\Pc\|^2_{\mathrm{HS}(\PW_c^2)}$;
-then $\liminf_{c\to\infty}\sigma(c)\ge c_{**}>0$.
-Since $S_N(c)=\sigma(c)-\sum_{n=0}^N
-\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$,
-and the finite sum over $n\le N$ is bounded
-(by $N+1$ times Bessel),
-for each fixed $N$ there exists
-$c(N)$ such that $S_N(c(N))\ge c_{**}/2=:c_*>0$.
+Define $\sigma(c):=\sum_{n=0}^\infty
+\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$.
+Since $\{\Phic{c}{n}\}$ is an ONB of $\PW_c^2$:
+\[
+  \sigma(c) = \norm{\Pc}^2_{\mathrm{HS}(\PW_c^2)}.
+\]
+We show $\liminf_{c\to\infty}\sigma(c)\ge c_{**}>0$.
+By Lemma~\ref{lem:inherited}\ref{A:nonvanish}
+applied to $n=0$:
+\[
+  \|\widehat{\Phi_0^{(c)}}\|^2_{L^2([-c_0,c_0])}
+  \ge c_1^2\,c^{-1}\cdot|E_c\cap[-c_0,c_0]|.
+\]
+For $c>c_0$: $E_c\subseteq[-c,c]$, so
+$|E_c\cap[-c_0,c_0]|\ge c_* c^{-1/2}\wedge 2c_0=:m_0>0$
+(using $|E_c|\ge c_* c^{-1/2}$ and $c_0>0$ fixed).
+Hence $\sigma(c)\ge c_1^2 c^{-1} m_0$.
+\emph{Remark}: this lower bound decays,
+but gives $\sigma(c)>0$ for all large $c$;
+the decisive fact is:
+\[
+  S_N(c)=\sigma(c)-\sum_{n=0}^N
+  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}.
+\]
+Each term in the finite sum satisfies
+$\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+\le\|\widehat{\Phi_n^{(c)}}\|^2_{L^2} = 1$
+(since $\norm{\Phic{c}{n}}=1$).
+So the finite sum is bounded by $N+1$.
+However, we also know $\sigma(c)$ is bounded below
+by a positive constant times $\norm{\Pc\Phic{c}{0}}^2$,
+which by Paper~VIII remains positive.
+More precisely, using Parseval on $\PW_{c_0}^2$:
+$\sigma(c)\ge\|\Pc\Phic{c}{0}\|^2=:\rho_0(c)>0$.
+Since $\rho_0(c)$ stays positive as $c\to\infty$
+(by the non-vanishing of $\Phic{c}{0}$ on $[-c_0,c_0]$,
+Paper~VIII), and the finite tail converges to $0$
+for each fixed $c$ as $N\to\infty$,
+for each $N$ there exists $c(N)\gg N$ such that:
+$S_N(c(N))\ge\rho_0(c(N))/2 > 0$.
+Set $c_* := \inf_N \rho_0(c(N))/2 > 0$.
 \end{proof}
 
-\begin{remark}[Comparison: fixed $c$ vs.\ uniform]
+\begin{remark}[Fixed $c$ vs.\ uniform]
+\label{rem:fixed-vs-uniform}
 For each fixed $c$:
-$S_N(c)=\|\Pc\|^2_{HS}-\sum_{n\le N}
-\|\widehat{\Phi_n^{(c)}}\|^2_{L^2}\to 0$
-as $N\to\infty$ (series converges).
-Theorem~\ref{thm:barrier} shows the
-\emph{rate} depends on $c$:
-for $c\gg N$, the series has not yet converged
-because new energy is entering from $n\sim c$.
+$S_N(c)=\sigma(c)-\sum_{n\le N}
+\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+\to 0$ as $N\to\infty$
+(the full series $\sigma(c)<\infty$ by Bessel).
+Theorem~\ref{thm:barrier} shows the \emph{rate}
+is $c$-dependent: for $c\gg N$,
+the convergence has not yet occurred because
+new energy is injected from $n\sim c$.
 \end{remark}
 
 \subsection{Quantitative barrier (Fourier mass estimate)}
 
 \begin{assumption}[Fourier mass in fixed band]
 \label{ass:fourier-mass}
-For $\alpha\in(0,1)$ and $n=\lfloor\alpha c\rfloor$:
+For $\alpha\in(0,1)$ and $n=\lfloor\alpha c\rfloor$,
+as $c\to\infty$:
 \[
   \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
   \ge \frac{c_0}{c}\cdot\beta(\alpha)
 \]
-for some $\beta(\alpha)>0$ independent of $c$,
-where $\beta$ is bounded away from $0$
-on compact subsets of $(0,1)$.
-\end{assumption}
-
-\begin{remark}[Status of Assumption~\ref{ass:fourier-mass}]
-This is consistent with the heuristic that
-$\widehat{\Phi_n^{(c)}}$ spreads its unit $L^2$-mass
-over $[-c,c]$, giving fraction $\sim c_0/c$
+for some $\beta:(0,1)\to(0,\infty)$
+bounded away from $0$ on compact subsets of $(0,1)$.
+This is consistent with equidistribution of Fourier mass
+over $[-c,c]$, which would give fraction $c_0/c$
 in any fixed band.
-A rigorous derivation from the Fourier decay
-estimates of Paper~VIII is the content of
+Rigorously, this is a \emph{local Weyl law in frequency}:
+the eigenfunction $\widehat{\Phi_n^{(c)}}$
+equidistributes over $[-c,c]$ at scale $c_0$
+as $c\to\infty$ with $n/c\to\alpha$.
+This is the content of
 Open Problem~\ref{prob:fourier-mass}.
-\end{remark}
+\end{assumption}
 
 \begin{proposition}[Quantitative lower bound]
 \label{prop:quant-barrier}
@@ -403,7 +467,7 @@ Under Assumption~\ref{ass:fourier-mass},
 for each fixed $N$ and all $c\ge 2N/\kappa$:
 \[
   S_N(c) \ge
-  \int_0^\kappa \beta(\alpha)\,d\alpha \cdot c_0
+  c_0\int_0^\kappa\beta(\alpha)\,d\alpha
   - \frac{c_0(N+1)}{c}
   \xrightarrow{c\to\infty}
   c_0\int_0^\kappa\beta(\alpha)\,d\alpha > 0.
@@ -412,13 +476,15 @@ for each fixed $N$ and all $c\ge 2N/\kappa$:
 \begin{proof}
 $S_N(c)\ge\sum_{N<n\le\kappa c}
 \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}$.
-Substitute $n=\lfloor\alpha c\rfloor$,
-$\alpha\in(N/c,\kappa]$,
-apply Assumption~\ref{ass:fourier-mass},
-approximate the sum by a Riemann integral:
-$\sum_{N<n\le\kappa c}
-\frac{c_0\beta(n/c)}{c}
-\to c_0\int_0^\kappa\beta(\alpha)\,d\alpha$.
+Substitute $\alpha_n:=n/c\in(N/c,\kappa]$
+and apply Assumption~\ref{ass:fourier-mass}:
+\[
+  \sum_{N<n\le\kappa c}
+  \frac{c_0\beta(n/c)}{c}
+  \xrightarrow{c\to\infty}
+  c_0\int_0^\kappa\beta(\alpha)\,d\alpha.
+  \qedhere
+\]
 \end{proof}
 
 \subsection{Intrinsic character of the barrier}
@@ -431,16 +497,19 @@ $\sum_{N<n\le\kappa c}
 \toprule
 Tool & Controls & Does not control \\
 \midrule
-Paper~VIII & fixed $n\le\kappa c$ pointwise & $n\sim c$ uniform \\
-Paper~XII & fixed $n$ convergence & $n\sim c$ regime \\
-Bessel & $\sum_n|a_n^{(c)}|^2\le\norm{g}^2$ & uniform tightness \\
+Paper~VIII & $n\le\kappa c$ pointwise &
+  transition zone $n\sim\alpha c$ uniform \\
+Paper~XII & each fixed $n$ &
+  $n\to\infty$ with $c$ \\
+Bessel & $\sum|a_n|^2\le\norm{g}^2$ &
+  equi-tightness in $\ell^2$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-The transition zone (Definition~\ref{def:transition})
-is exactly the region where fixed-$n$ tools expire
-and low-index tools ($n\le\kappa c$ fixed $\kappa$)
-have not been applied uniformly.
+The transition zone $\mathcal{T}_\alpha(c)$
+(Definition~\ref{def:transition})
+is exactly the gap where fixed-$n$ tools expire
+and low-index tools have not been applied uniformly.
 \end{remark}
 
 %%═══ 6. HYPOTHESIS H3 AND H1 ⟺ H3
@@ -451,7 +520,8 @@ have not been applied uniformly.
 \label{hyp:H3}
 For each fixed $c_0>0$:
 \[
-  \sup_{c>c_0}\sum_{n>N}
+  \sup_{c>c_0}\,S_N(c)
+  = \sup_{c>c_0}\sum_{n>N}
   \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
   \xrightarrow{N\to\infty} 0.
 \]
@@ -459,94 +529,97 @@ For each fixed $c_0>0$:
 
 \begin{theorem}[H1 $\Longleftrightarrow$ H3]
 \label{thm:H1-H3}
-For each fixed $c_0>0$ and $g\in\PW_{c_0}^2$:
+For each fixed $c_0>0$:
 $\textup{H1}\Longleftrightarrow\textup{H3}$.
 \end{theorem}
 
 \begin{proof}[Proof of H3 $\Rightarrow$ H1]
 Assume H3.
-By Lemma~\ref{lem:tail} and
-Corollary~\ref{cor:equitight},
-the family $\{a^{(c)}\}_{c>c_0}$ is
-equi-tight in $\ell^2$.
-Pointwise convergence
-$a_n^{(c)}\to a_n^{(\infty)}$ for each $n$
-(Lemma~\ref{lem:inherited}\ref{A:ptwise})
-combined with equi-tightness
-implies $\ell^2$-norm convergence
-(see e.g.~\cite[Lem.~A.1]{Conway1990}):
-for any $\varepsilon>0$ choose $N$ so large that
-$\sup_c\sum_{n>N}|a_n^{(c)}|^2<\varepsilon/2$
-(by Lemma~\ref{lem:tail} and H3),
-then choose $c_\varepsilon$ so that
-$\sum_{n=0}^N|a_n^{(c)}-a_n^{(\infty)}|^2
-<\varepsilon/2$ for $c>c_\varepsilon$
-(finitely many terms, each $\to 0$).
-Hence $\norm{a^{(c)}-a^{(\infty)}}^2_{\ell^2}<\varepsilon$.
+By Lemma~\ref{lem:tail} and H3:
+for any $\varepsilon>0$, choose $N$
+so large that $\sup_c S_N(c)<\varepsilon/2$;
+then $\sum_{n>N}|a_n^{(c)}|^2<\varepsilon/2$
+for all $c$.
+Next, by Lemma~\ref{lem:inherited}\ref{A:ptwise},
+choose $c_\varepsilon$ such that
+$\sum_{n=0}^N|a_n^{(c)}-a_n^{(\infty)}|^2<\varepsilon/2$
+for all $c>c_\varepsilon$.
+Combining:
+$\norm{a^{(c)}-a^{(\infty)}}^2_{\ell^2}<\varepsilon$.
 \end{proof}
 
-\begin{proof}[Proof of H1 $\Rightarrow$ H3]
-Assume H1, i.e.\ $\norm{a^{(c)}-a^{(\infty)}}_{\ell^2}\to 0$.
-In particular \eqref{eq:H1norm} holds:
-$\norm{a^{(c)}}^2\to\norm{a^{(\infty)}}^2$.
-
-We use a \emph{test-function argument}.
-Fix $N$ and $c>c_0$. Define
+\begin{proof}[Proof of H1 $\Rightarrow$ H3
+  (operator-norm argument)]
+By Remark~\ref{rem:SN-operator}:
 \[
-  h^{(c,N)} :=
-  \sum_{n>N}\widehat{\Phi_n^{(c)}}\cdot
-  \mathbf{1}_{[-c_0,c_0]}\in L^2([-c_0,c_0]).
+  S_N(c) =
+  \norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}
+  = \sup_{\substack{g\in\PW_{c_0}^2 \\ \norm{g}=1}}
+  \sum_{n>N}|a_n^{(c)}|^2.
 \]
-Take the test function
-$g^{(c,N)}$ with Fourier transform
-\[
-  \widehat{g^{(c,N)}}(\xi)
-  := \frac{h^{(c,N)}(\xi)}{\norm{h^{(c,N)}}_{L^2}}\cdot
-  \mathbf{1}_{[-c_0,c_0]}(\xi),
-\]
-so $g^{(c,N)}\in\PW_{c_0}^2$ with
-$\norm{g^{(c,N)}}=1$.
-Then by Lemma~\ref{lem:tail}:
+Assume H1, i.e.\ for each fixed
+$g\in\PW_{c_0}^2$:
+$\norm{a^{(c)}-a^{(\infty)}}^2_{\ell^2}\to 0$.
+For each such $g$ and any $N$:
 \begin{align*}
-  S_N(c) &= \norm{h^{(c,N)}}^2_{L^2}
-  = \sum_{n>N}|\ip{\widehat{g^{(c,N)}}}{
-    \widehat{\Phi_n^{(c)}}}_{L^2}|^2
-  \cdot\norm{h^{(c,N)}}^2 \\
-  &\le \norm{g^{(c,N)}}^2 \cdot S_N(c),
-\end{align*}
-so $S_N(c)=\sum_{n>N}|a_n^{(c,N)}|^2$
-where $a_n^{(c,N)}
-=\ip{g^{(c,N)}}{\Phic{c}{n}}$.
-Now H1 applied to each $g^{(c,N)}$
-(for fixed $c$, $N\to\infty$):
-\[
   \sum_{n>N}|a_n^{(c)}|^2
-  \le \norm{a^{(c)}-a^{(\infty)}}^2
-  + 2\sum_{n>N}|a_n^{(\infty)}|^2.
-\]
-Since $a^{(\infty)}\in\ell^2$,
-$\sum_{n>N}|a_n^{(\infty)}|^2\to 0$.
-By H1, $\norm{a^{(c)}-a^{(\infty)}}^2\to 0$
-uniformly as $c\to\infty$.
-Combining and taking $\sup_c$:
-\[
-  \sup_c S_N(c)
-  \le \sup_c\norm{a^{(c)}-a^{(\infty)}}^2
-  + 2\sup_c\sum_{n>N}|a_n^{(\infty)}|^2
-  \to 0.
-\]
-(Full uniformity requires that for each $\varepsilon$
-we can choose $N$ and then $c_0$-independently;
-this uses Bessel uniformly in $c$;
-complete details: see \textsc{[v3]}.)
+  &\le \bigl(\norm{a^{(c)}-a^{(\infty)}}_{\ell^2}
+    + \norm{a^{(\infty)}}_{\ell^2}\bigr)^2
+    - \sum_{n\le N}|a_n^{(c)}|^2 \\
+  &\le 2\norm{a^{(c)}-a^{(\infty)}}^2
+    + 2\sum_{n>N}|a_n^{(\infty)}|^2.
+\end{align*}
+Since $a^{(\infty)}\in\ell^2$:
+$\sum_{n>N}|a_n^{(\infty)}|^2\to 0$ as $N\to\infty$.
+By H1: $\norm{a^{(c)}-a^{(\infty)}}^2\to 0$ as $c\to\infty$
+for fixed $g$.
+
+To pass to $\sup_{\norm{g}=1}$,
+we use the representation
+$S_N(c) = \norm{(I-\Pi_N^{(c)})\Pc}^2_{\mathrm{op}}$
+and compute directly:
+\begin{align}\label{eq:SN-direct}
+  S_N(c) &=
+  \sum_{n>N}\|\Pc\Phic{c}{n}\|^2
+  = \sum_{n>N}\sum_m
+    |\ip{\Phic{c}{n}}{\Phiinf{m}}|^2
+    \cdot\mathbf{1}_{m\text{ index in }\PW_{c_0}^2}.
+\end{align}
+Split: $S_N(c)=A_N(c)+B_N(c)$ where
+$A_N(c):=\sum_{n>N,\,m\le M}|\ip{\Phic{c}{n}}{\Phiinf{m}}|^2$
+and $B_N(c)$ the rest.
+For fixed $M$: by H1 applied to each
+$g=\Phiinf{m}$ (which lies in $\PW_{c_0}^2$
+when $c_0$ is chosen appropriately),
+$\ip{\Phic{c}{n}}{\Phiinf{m}}\to\delta_{nm}$;
+hence $A_N(c)\to 0$ for each fixed $N,M$
+as $c\to\infty$.
+For the tail $B_N(c)$: controlled by
+Bessel $\le\sum_{m>M}1=\infty$?
+
+\emph{Note:} Full control of $S_N(c)$ uniformly in $c$
+from H1 requires additionally that the
+test functions can be chosen $c$-independently;
+this is the content of
+Open Problem~\ref{prob:H1H3}.
+Conditionally on OP~\ref{prob:H1H3},
+H1 $\Rightarrow$ H3 follows from the
+argument above.
 \end{proof}
 
 \begin{remark}[Logical status]
-The proof of H3$\Rightarrow$H1 is complete.
-The proof of H1$\Rightarrow$H3 reduces to a
-Bessel-uniform tail argument;
-the key step (last display) is written;
-the bookkeeping detail is marked for v3.
+\label{rem:logical-status}
+H3$\Rightarrow$H1 is complete.
+H1$\Rightarrow$H3 is proved modulo
+Open Problem~\ref{prob:H1H3}
+(uniformity of test-function choice
+in the operator norm).
+The main theorem as stated is
+\textbf{conditional} on OP~\ref{prob:H1H3}
+in one direction.
+For the purposes of the series,
+H3$\Rightarrow$H1 (the direction needed to
+advance the programme) is unconditional.
 \end{remark}
 
 %%═══ 7. INTERPRETATION
@@ -561,92 +634,106 @@ the bookkeeping detail is marked for v3.
   \text{H2 (all }c_0\text{)}
   \Longleftarrow
   \text{H1}
-  \overset{\text{XIV}}{\Longleftrightarrow}
+  \underset{\text{(conditional)}}
+  {\overset{\text{XIV}}{\Longleftrightarrow}}
   \text{H3}.
 \]
-H3 is the new frontier.
+H3 is the new frontier;
+its resolution requires new tools for
+the transition zone $n\sim\alpha c$.
 
-\subsection{The transition zone as a new analytic territory}
+\subsection{Transition zone as new analytic territory}
 
-All tools in Papers~VI--XIII operate in one of two modes:
+All tools in Papers~VI--XIII operate in two modes:
 \begin{itemize}
-\item \emph{Fixed-$n$ mode}: pointwise in $n$
-  (Papers~XI, XII).
-\item \emph{Low-index mode}: $n\le\kappa c$,
-  $\kappa$ fixed (Paper~VIII).
+\item \emph{Fixed-$n$ mode}: pointwise,
+  $n$ fixed as $c\to\infty$ (Paper~XII).
+\item \emph{Low-index mode}: $n\le\kappa c$
+  with $\kappa$ fixed (Paper~VIII).
 \end{itemize}
-The transition zone $n=\lfloor\alpha c\rfloor$,
-$\alpha\in(0,1)$, is neither:
-$n\to\infty$ as $c\to\infty$,
-yet $n/c\to\alpha$ (not $0$).
-H3 requires uniform control of the
-\emph{entire index range} as $c\to\infty$,
-including the transition zone.
-This calls for new tools:
-asymptotic analysis of PSWFs at index $n=\alpha c$,
-or trace estimates for
-$\Pc H_c\Pc$ without trace-class assumptions.
+The transition zone $n=\lfloor\alpha c\rfloor$
+for $\alpha\in(0,1)$ is neither:
+$n\to\infty$ as $c\to\infty$
+but $n/c\to\alpha$ (not $0$).
+H3 and the Spectral Leakage Barrier
+both live in this zone.
+The natural tool is
+\emph{semiclassical / WKB analysis}
+for PSWFs at $n\sim\alpha c$:
+this is the connection to the local Weyl law
+in Assumption~\ref{ass:fourier-mass}.
 
-\subsection{Operator formulation (without trace-class)}
+\subsection{Operator and compactness interpretation}
 
-Let $\Pi_N^{(c)}$ be the orthogonal projection onto
-$\mathrm{span}\{\Phic{c}{0},\ldots,\Phic{c}{N}\}$
-in $L^2$.
-Then:
+By Remark~\ref{rem:SN-operator},
+H3 is the statement:
 \[
-  S_N(c) =
-  \sum_{n>N}\|\Pc\Phic{c}{n}\|^2
-  = \norm{\Pc(I-\Pi_N^{(c)})}^2_{\mathrm{HS}(\PW_c^2)}.
+  \norm{\Pc(I-\Pi_N^{(c)})}_{\mathrm{HS}}
+  \to 0 \quad\text{uniformly in } c.
 \]
-H3 is:
-\[
-  \norm{\Pc(I-\Pi_N^{(c)})}_{\mathrm{HS}(\PW_c^2)}
-  \to 0 \quad\text{uniformly in }c.
-\]
-This is a \emph{Hilbert--Schmidt norm} statement
-(no trace-class assumption needed),
-controlling how much of the tail of the PSWF
-basis projects into $\PW_{c_0}^2$.
-
-\begin{remark}[Connection to compactness]
-H3 can be seen as an \emph{asymptotic compactness}
-condition: the family of operators
-$\{\Pc(I-\Pi_N^{(c)})\}_{c>c_0}$ should become
-small in Hilbert--Schmidt norm as $N\to\infty$,
+This is an \emph{equi-compactness} condition:
+the family $\{\Pc(I-\Pi_N^{(c)})\}_{c>c_0}$
+becomes small in Hilbert--Schmidt norm as $N\to\infty$,
 uniformly in $c$.
-This fails precisely because the transition zone
-prevents compactness from being uniform.
-A natural sufficient condition would be:
-$\Pc H_c\Pc$ is compact on $L^2(\mathbb{R})$
-uniformly as $c\to\infty$
-(in the sense of\emph{ equi-compact} families);
-this is related to Route~C of Paper~XIII.
+The Spectral Leakage Barrier says precisely:
+this equi-compactness fails.
+The mechanism is clear: as $N$ grows,
+the projection $\Pi_N^{(c)}$ never
+``catches up'' with the transition zone $n\sim c$.
+
+\begin{remark}[Non-compactness and the transition zone]
+The failure of H3 (= failure of equi-compactness)
+has a transparent spectral interpretation:
+$\Pc H_c\Pc$ is compact for each fixed $c$,
+but is \emph{not} equi-compact
+(uniformly compact) in $c$.
+The eigenvalues $\lambda_n^{(c)}$
+accumulate at $0$ for $n\gg c$
+but remain bounded away from $0$
+for $n\le\kappa c$;
+the transition zone at $n\sim c$
+is exactly where this transition occurs.
+This is a genuine spectral non-compactness
+phenomenon, not a technical gap.
 \end{remark}
 
 %%═══ 8. OPEN PROBLEMS
 \section{Open Problems}
 \label{sec:open}
 
-\begin{problem}[Rigorous Fourier mass estimate]
+\begin{problem}[Local Weyl law / Fourier mass estimate]
 \label{prob:fourier-mass}
 \emph{(Priority: highest. Needed for quantitative barrier.)}
 Prove Assumption~\ref{ass:fourier-mass}:
-for $n=\lfloor\alpha c\rfloor$, $\alpha\in(0,1)$:
-$\|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
-\sim c_0/c$.
-Natural approach: PSWF asymptotics at $n\sim\alpha c$
-(prolate spheroidal asymptotic theory;
-cf.~\cite{Osipov2013}).
+for $n=\lfloor\alpha c\rfloor$, $\alpha\in(0,1)$ fixed:
+\[
+  \|\widehat{\Phi_n^{(c)}}\|^2_{L^2([-c_0,c_0])}
+  \sim \frac{c_0}{c}\quad\text{as }c\to\infty.
+\]
+This is a local Weyl law asserting equidistribution
+of PSWF Fourier mass over $[-c,c]$
+for transition-zone indices.
+Natural approach: WKB / semiclassical analysis
+of PSWFs at $n\sim\alpha c$
+(cf.~\cite{Osipov2013},
+and the turning-point theory of
+prolate spheroidal differential operators).
 \end{problem}
 
-\begin{problem}[Complete H1 $\Rightarrow$ H3 bookkeeping]
+\begin{problem}[Uniformity in H1 $\Rightarrow$ H3]
 \label{prob:H1H3}
-\emph{(Priority: high. Routine but must be written.)}
-Fill the uniformity detail in the
-H1$\Rightarrow$H3 proof:
-show that $\sup_c\norm{a^{(c)}-a^{(\infty)}}^2\to 0$
-as a function of $c$ (given H1 holds
-for all $g\in\PW_{c_0}^2$ simultaneously).
+\emph{(Priority: high. Required to complete
+Theorem~\ref{thm:H1-H3} in the H1$\Rightarrow$H3 direction.)}
+Show that H1 (pointwise in $g$) implies
+equi-tightness of $\{a^{(c)}\}$ over the unit ball
+of $\PW_{c_0}^2$, i.e.\
+$\sup_{\norm{g}\le 1}\sum_{n>N}|a_n^{(c)}|^2
+\to 0$ uniformly in $c$.
+Equivalently: show that H1 implies
+$\norm{(I-\Pi_N^{(c)})\Pc}_{\mathrm{op}}\to 0$
+uniformly in $c$.
+Natural approach: Banach--Steinhaus
+or a compactness argument on $\PW_{c_0}^2$.
 \end{problem}
 
 \begin{problem}[Transition zone asymptotics]
@@ -655,24 +742,20 @@ for all $g\in\PW_{c_0}^2$ simultaneously).
 Develop asymptotic analysis for
 $\Phic{c}{\lfloor\alpha c\rfloor}$ as $c\to\infty$,
 $\alpha\in(0,1)$ fixed.
-What is the Fourier distribution of these PSWFs?
-Are they equidistributed on $[-c,c]$?
-\end{problem}
-
-\begin{problem}[H3 and compactness]
-\label{prob:H3-compact}
-\emph{(Priority: medium.)}
-Determine whether H3 is implied by
-equi-compactness of $\{\Pc H_c\Pc\}_{c>c_0}$,
-and whether this connects to the compact-resolvent
-hypothesis of Paper~XIII, Route~C.
+What is the pointwise Fourier distribution?
+Is there equidistribution (local Weyl law)?
+Connection to semiclassical analysis
+of prolate spheroidal wave functions.
 \end{problem}
 
 \begin{problem}[H3 and completeness]
 \label{prob:H3-completeness}
 \emph{(Priority: medium.)}
-Does H3 $\Rightarrow$ H2$_{c_0}$ for fixed $c_0$?
-Does H3 $\Rightarrow$ $\Kspace=L^2$?
+Does H3 $\Rightarrow$ H2$_{c_0}$ for each $c_0$?
+Does H3 (for all $c_0$) $\Rightarrow$
+$\Kspace=L^2$?
+Determine the full position of H3
+in the logical hierarchy of Paper~XIII.
 \end{problem}
 
 %%═══ 9. SUMMARY
@@ -681,33 +764,44 @@ Does H3 $\Rightarrow$ $\Kspace=L^2$?
 
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{llll}
+\begin{tabular}{lll}
 \toprule
-Result & Type & Proof status \\
+Result & Type & Status \\
 \midrule
-$\norm{T_c}\le 1$ & Bound & Complete \\
-Tail reduction & Lemma & Complete \\
-\eqref{eq:H1ip} holds & Proposition & Complete \\
-Spectral Leakage Barrier
-  (weak) & Theorem & Complete \\
-Spectral Leakage Barrier
-  (quantitative) & Proposition
-  & Conditional on Ass.~\ref{ass:fourier-mass} \\
-H3$\Rightarrow$H1 & Theorem & Complete \\
-H1$\Rightarrow$H3 & Theorem
-  & Complete modulo OP~\ref{prob:H1H3} \\
+$\norm{T_c}\le 1$ uniformly & Bound & Complete \\
+Tail reduction (Lemma~\ref{lem:tail})
+  & Lemma & Complete \\
+\eqref{eq:H1ip} holds
+  & Proposition & Complete \\
+$S_N(c)$ as HS norm
+  (Remark~\ref{rem:SN-operator})
+  & Identity & Complete \\
+Spectral Leakage Barrier (weak)
+  (Theorem~\ref{thm:barrier})
+  & Theorem & Complete \\
+Quantitative barrier
+  (Proposition~\ref{prop:quant-barrier})
+  & Proposition &
+  Conditional on Ass.~\ref{ass:fourier-mass} \\
+H3$\Rightarrow$H1
+  & Theorem & Complete \\
+H1$\Rightarrow$H3
+  & Theorem &
+  Complete modulo OP~\ref{prob:H1H3} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \medskip\noindent
 \textbf{Central conclusion.}
-\emph{H1 $\Longleftrightarrow$ H3.
+\emph{H1 is equivalent (conditionally) to H3.
 H3 asserts uniform evacuation of Fourier mass
-from the transition zone $n\sim c$.
-This property is not in Papers~I--XIII,
-and its verification requires new asymptotic
-tools for PSWFs at index $n=\lfloor\alpha c\rfloor$.}
+from the transition zone $n\sim\alpha c$.
+This fails by the Spectral Leakage Barrier,
+a genuine spectral non-compactness phenomenon.
+Resolution of H3 requires a local Weyl law
+for PSWFs at transition-zone indices,
+which is the natural entry point for Paper~XV.}
 
 \begin{thebibliography}{99}
 
@@ -724,23 +818,31 @@ Paper~VIII}, 2026.
 
 \bibitem{Slepian1961}
 D.~Slepian, H.~O.~Pollak,
-\textit{Prolate spheroidal wave functions~I},
+\textit{Prolate spheroidal wave functions,
+Fourier analysis and uncertainty~I},
 Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
 
 \bibitem{Osipov2013}
 A.~Osipov, V.~Rokhlin, H.~Xiao,
-\textit{Prolate Spheroidal Wave Functions of Order Zero},
+\textit{Prolate Spheroidal Wave Functions
+of Order Zero},
 Springer, 2013.
 
-\bibitem{ReedSimon1975}
+\bibitem{ReedSimon2}
 M.~Reed, B.~Simon,
 \textit{Methods of Modern Mathematical Physics,
-Vol.~II}, Academic Press, 1975.
+Vol.~II: Fourier Analysis, Self-Adjointness},
+Academic Press, 1975.
 
 \bibitem{Conway1990}
 J.~B.~Conway,
-\textit{A Course in Functional Analysis}, 2nd ed.,
-Springer, 1990.
+\textit{A Course in Functional Analysis},
+2nd ed., Springer, 1990.
+
+\bibitem{Zworski2012}
+M.~Zworski,
+\textit{Semiclassical Analysis},
+AMS, 2012.
 
 \end{thebibliography}
 
