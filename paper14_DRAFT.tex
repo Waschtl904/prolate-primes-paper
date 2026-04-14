@@ -33,10 +33,10 @@
 
 \subjclass[2020]{47A10, 47B25, 42C05, 46B15, 46C05, 81Q20}
 \keywords{Prolate spheroidal wave functions, coefficient stability,
-  cross-Gram operator, spectral leakage, SOT-convergence,
-  Paley--Wiener space, no-concentration, local Weyl law,
-  semiclassical measures, quantum ergodicity, WKB,
-  spectral evacuation, quadratic forms, rank growth}
+  cross-Gram operator, spectral leakage, Paley--Wiener space,
+  no-concentration, local Weyl law, semiclassical measures,
+  quantum ergodicity, WKB, spectral evacuation, quadratic forms,
+  rank growth}
 
 \begin{document}
 
@@ -68,19 +68,21 @@ The key structural results are:
 (i)~the cross-Gram operator $T_c$ satisfies
 $\norm{T_c}\le 1$ uniformly;
 (ii)~the tail functional
-$S_N(c):=\sum_{n>N}\mu_{n,c}([-c_0,c_0])$
+\[
+  S_N(c) := \sum_{n>N}\mu_{n,c}([-c_0,c_0])
+  = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}
+\]
 controls the tail via
 $\sum_{n>N}|a_n^{(c)}|^2\le\norm{g}^2 S_N(c)$;
-(iii)~$S_N(c)=\mathrm{Tr}(\Ac)
-=\mathrm{Tr}((I-\Pi_N^{(c)})\Pc(I-\Pi_N^{(c)}))$
-is the Hilbert--Schmidt norm of
-$\Bn:=(I-\Pi_N^{(c)})\Pc$,
-which is Hilbert--Schmidt since $\Pc$ acts
-as a Fourier multiplier by $\mathbf{1}_{[-c_0,c_0]}$
-on $L^2(\mathbb{R})$, hence is an orthogonal
-projection of finite-measure type
-(Hilbert--Schmidt on any subspace of
-finite spectral volume);
+(iii)~the operator $\Bn:=(I-\Pi_N^{(c)})\Pc$
+satisfies $\norm{\Bn}_{\mathrm{op}}\le 1$
+(composition of orthogonal projections),
+and $S_N(c)$ equals the basis-relative
+spectral sum $\sum_{n>N}\norm{\Bn\Phic{c}{n}}^2$,
+which we write formally as $\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
+(trace in the sense of the PSWF-ONB
+spectral decomposition, not a global
+operator trace on $L^2(\mathbb{R})$);
 (iv)~$\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
 with strict inequality in general,
 and the relevant quadratic form is
@@ -105,11 +107,10 @@ NC$\Rightarrow$H3 fails (proved).
 The converse is false even at the abstract
 level: NC is sufficient but not necessary
 for H3 to fail, as shown by
-Proposition~\ref{prop:NC-not-H3}.
-This result classifies implication structure
-in the abstract category of
-probability-measure-indexed families;
-it does not constrain PSWF spectral geometry.
+Proposition~\ref{prop:NC-not-H3}
+(a logical separation result for abstract
+measure families; PSWF compatibility
+is not claimed).
 NC holds under the local Weyl law (Paper~XV).
 \end{abstract}
 
@@ -158,18 +159,28 @@ Paper~XIV localises this gap precisely.
 
 \subsection{The central new framing}
 
-\begin{definition}[Spectral measures]
+\begin{definition}[Spectral measures and tail functional]
 \label{def:spectral-measures}
-For $n\ge 0$, $c>c_0$:
+For $n\ge 0$, $c>c_0$, define the
+spectral probability measures
 \[
   \mu_{n,c}(d\xi)
-  :=|\widehat{\Phi_n^{(c)}}(\xi)|^2\,d\xi.
-\]
-Plancherel: $\mu_{n,c}(\mathbb{R})=1$.
-The tail functional and its quadratic form:
-\[
-  S_N(c) := \sum_{n>N}\mu_{n,c}([-c_0,c_0]),
+  :=|\widehat{\Phi_n^{(c)}}(\xi)|^2\,d\xi,
   \qquad
+  \mu_{n,c}(\mathbb{R})=1\;(\text{Plancherel}).
+\]
+The tail functional is defined directly
+via the PSWF-ONB expansion:
+\begin{equation}\label{eq:SN-def}
+  S_N(c) := \sum_{n>N}\mu_{n,c}([-c_0,c_0])
+  = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}.
+\end{equation}
+This is a convergent series of non-negative
+terms (each bounded by 1 by Plancherel);
+no global operator-theoretic interpretation
+is required for this definition.
+The quadratic form in $g$:
+\[
   Q_c^N(g) := \sum_{n>N}|a_n^{(c)}|^2
   = \norm{(I-\Pi_N^{(c)})\Pc g}^2.
 \]
@@ -199,20 +210,23 @@ transit between $\approx 1$ and $\approx 0$.
 \textbf{Proved unconditionally:}
 \begin{itemize}[leftmargin=*]
 \item $\norm{T_c}\le 1$
+\item $S_N(c)$ defined via convergent PSWF-ONB sum
 \item Tail reduction: $Q_c^N(g)\le\norm{g}^2 S_N(c)$
 \item \eqref{eq:H1ip}
-\item $\Bn$ is Hilbert--Schmidt
-  (Fourier multiplier / finite spectral volume)
-\item $S_N(c)=\mathrm{Tr}((I-\Pi_N^{(c)})\Pc(I-\Pi_N^{(c)}))
-      =\norm{\Bn}^2_{\mathrm{HS}}=\mathrm{Tr}(\Ac)$
+\item $\norm{\Bn}_{\mathrm{op}}\le 1$
+  (composition of orthogonal projections)
 \item $0\le\Ac\le I$
-  ($\Bn$ is a contraction; proved)
+\item $S_N(c) = \sum_{n>N}\norm{\Bn\Phic{c}{n}}^2
+      =: \mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
+  (basis-relative spectral sum; not a global
+  trace on $L^2(\mathbb{R})$)
 \item $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
   (strict in general)
 \item $Q_c^N(g)=\ip{\Ac g}{g}$,
   $\Ac=\Bn^*\Bn\ge 0$
 \item $\mathrm{rank}(\Ac)\ge S_N(c)$
 \item $\sigma(c)\sim cc_0/\pi$
+  (classical Slepian--Weyl, $L^2[-1,1]$ setting)
 \item NC $\Rightarrow$ H3 fails
 \item NC sufficient but not necessary
   for H3 to fail (Prop.~\ref{prop:NC-not-H3})
@@ -286,59 +300,97 @@ so H1 $\Leftrightarrow$
 $\limsup_c\norm{a^{(c)}}\le\norm{a^{(\infty)}}$.
 \end{remark}
 
-%%═══ 4. TAIL REDUCTION, HS IDENTITY, AND QUADRATIC FORM
-\section{Tail Reduction, HS Identity, and the Quadratic Form}
+%%═══ 4. TAIL REDUCTION AND THE QUADRATIC FORM
+\section{Tail Reduction, Operator Structure, and the Quadratic Form}
 \label{sec:tail}
 
-\begin{definition}[$S_N(c)$, $\sigma(c)$]
-\label{def:SN}
-$S_N(c):=\sum_{n>N}\mu_{n,c}([-c_0,c_0])$,
-$\quad\sigma(c):=\sum_{n\ge 0}\mu_{n,c}([-c_0,c_0])$.
+\begin{remark}[Foundational convention]
+\label{rem:foundation}
+Throughout this section, all operator-theoretic
+quantities ($\mathrm{Tr}$, HS norm, rank)
+are understood relative to the PSWF-ONB
+$\{\Phic{c}{n}\}_{n>N}$.
+Specifically:
+\begin{itemize}[leftmargin=*]
+\item $S_N(c)$ is \emph{defined} by the
+  convergent series~\eqref{eq:SN-def};
+  it is not defined via a global operator trace
+  on $L^2(\mathbb{R})$.
+\item The notation $\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
+  means $\sum_{n>N}\ip{\Ac\Phic{c}{n}}{\Phic{c}{n}}$,
+  a basis-relative spectral sum.
+\item $P_{c_0}:L^2(\mathbb{R})\to\PW_{c_0}^2$
+  is the orthogonal projection (Fourier
+  multiplier by $\mathbf{1}_{[-c_0,c_0]}$);
+  it is \emph{not} Hilbert--Schmidt on
+  $L^2(\mathbb{R})$ (its kernel is translation-
+  invariant, hence $\|P_{c_0}\|_{\mathrm{HS}}
+  =\infty$). No HS property of $P_{c_0}$
+  on $L^2(\mathbb{R})$ is claimed or used.
+\end{itemize}
+\end{remark}
 
-\medskip\noindent
-Note that $S_N(c)$ admits an equivalent
-operator-theoretic expression:
-\begin{equation}\label{eq:SN-trace-explicit}
-  S_N(c)
-  = \mathrm{Tr}\bigl((I-\Pi_N^{(c)})\Pc(I-\Pi_N^{(c)})\bigr),
-\end{equation}
-as shown in Theorem~\ref{thm:SN-operator}(I) below.
-All three representations --- spectral sum,
-HS norm, and operator trace --- are equivalent
-via ONB completeness and cyclicity of trace
-in the Hilbert--Schmidt class
-(Theorem~\ref{thm:SN-operator}(I)).
-This identity is proved, not assumed.
+\begin{definition}[$S_N(c)$ and $\sigma(c)$]
+\label{def:SN}
+\begin{align*}
+  S_N(c) &:= \sum_{n>N}\mu_{n,c}([-c_0,c_0])
+            = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2},\\
+  \sigma(c) &:= \sum_{n\ge 0}\mu_{n,c}([-c_0,c_0]).
+\end{align*}
+Both series converge: each term
+$\mu_{n,c}([-c_0,c_0])\in[0,1]$,
+and for $S_N(c)$ the sum is finite
+for each fixed $N,c$ by
+Lemma~\ref{lem:inherited}(A).
 
 \medskip\noindent
 \emph{Divergence of $\sigma(c)$ vs.\ vanishing of $S_N(c)$.}
-The full trace $\sigma(c)\sim cc_0/\pi\to\infty$
-reflects the growth of phase-space density
-in the bandlimit geometry (Slepian--Weyl).
-It does \emph{not} preclude $S_N(c)\to 0$:
-the total spectral mass can grow while
-the high-index tail $\{n>N\}$ evacuates.
-H3 asks precisely whether this tail evacuation
+The classical Slepian--Weyl result
+(in the $L^2[-1,1]$ setting, see
+Remark~\ref{rem:sigma-slepian})
+gives $\sigma(c)\sim cc_0/\pi\to\infty$.
+This does \emph{not} preclude $S_N(c)\to 0$:
+the total spectral mass grows while
+the high-index tail $\{n>N\}$ may evacuate.
+H3 asks whether this tail evacuation
 occurs uniformly in $c$.
 \end{definition}
+
+\begin{remark}[Classical status of $\sigma(c)$]
+\label{rem:sigma-slepian}
+The identity $\sigma(c)=\mathrm{Tr}(P_c P_{c_0}P_c)$
+and the asymptotics $\sigma(c)\sim cc_0/\pi$
+are classical results of Slepian--Weyl
+\cite{Slepian1961}, established in the
+time-limited / band-limited operator framework
+on $L^2[-1,1]$ (or equivalently on
+finite-dimensional eigenspace truncations).
+We use $\sigma(c)\sim cc_0/\pi$ only as an
+asymptotic reference; no global trace-class
+claim on $L^2(\mathbb{R})$ is made.
+\end{remark}
 
 \begin{lemma}[Tail reduction]
 \label{lem:tail}
 For $g\in\PW_{c_0}^2$:
-$Q_c^N(g):=\sum_{n>N}|a_n^{(c)}|^2
-\le\norm{g}^2\cdot S_N(c)$.
+\[
+  Q_c^N(g):=\sum_{n>N}|a_n^{(c)}|^2
+  \le\norm{g}^2\cdot S_N(c).
+\]
 \end{lemma}
 \begin{proof}
-Paley--Wiener:
-$a_n^{(c)}
-=\ip{\hat g}{
-  \widehat{\Phi_n^{(c)}}\cdot
-  \mathbf{1}_{[-c_0,c_0]}}_{L^2}$.
+Since $\operatorname{supp}\hat g\subseteq[-c_0,c_0]$:
+\[
+  a_n^{(c)}
+  =\ip{\hat g}{
+    \widehat{\Phi_n^{(c)}}\cdot
+    \mathbf{1}_{[-c_0,c_0]}}_{L^2}.
+\]
 Cauchy--Schwarz:
 $|a_n^{(c)}|^2
 \le\norm{g}^2\cdot
 \mu_{n,c}([-c_0,c_0])$.
-Sum over $n>N$.
+Sum over $n>N$ and use~\eqref{eq:SN-def}.
 \end{proof}
 
 \begin{corollary}[Equi-tightness]
@@ -347,8 +399,7 @@ $\sup_c S_N(c)\to 0
 equi-tight in $\ell^2$.
 \end{corollary}
 
-\begin{theorem}[HS identity, quadratic form,
-  and $S_N$ as trace control]
+\begin{theorem}[Operator structure and spectral sum identity]
 \label{thm:SN-operator}
 Define:
 \begin{align}\label{eq:Bn-def}
@@ -359,95 +410,68 @@ Define:
 \end{align}
 
 \medskip
-\textbf{(0) Hilbert--Schmidt and contraction.}
-The operator $\Pc:L^2(\mathbb{R})\to L^2(\mathbb{R})$
-is the orthogonal projection onto
-$\PW_{c_0}^2$, equivalently the Fourier
-multiplier by $\mathbf{1}_{[-c_0,c_0]}$:
-\[
-  \widehat{\Pc f}(\xi)
-  = \mathbf{1}_{[-c_0,c_0]}(\xi)\,\hat f(\xi).
-\]
-As a Fourier multiplier on a domain of
-finite measure $2c_0$, $\Pc$ is
-Hilbert--Schmidt on $L^2(\mathbb{R})$
-in the sense that its compression to
-any finite-energy input space has
-HS norm bounded by
-$\norm{\Pc}_{\mathrm{HS}}^2
-\le 2c_0\cdot\norm{f}_{L^2}^2$
-per unit input;
-more precisely, for any ONB $\{e_k\}$
-of a separable subspace,
-$\sum_k\norm{\Pc e_k}^2
-=\sum_k\norm{\mathbf{1}_{[-c_0,c_0]}\hat e_k}^2
-\le 2c_0$ (if $\{e_k\}$ is also an ONB in
-frequency, e.g.\ the PSWF basis restricted
-to $[-c,c]$, this sum is finite and equals
-$\sigma(c)\sim cc_0/\pi$).
-Since $(I-\Pi_N^{(c)})$ is an orthogonal
-projection (hence a contraction of norm 1),
-$\Bn=(I-\Pi_N^{(c)})\Pc$ is also
-Hilbert--Schmidt on the relevant subspace and satisfies
+\textbf{(0) Contraction.}
+Both $\Pc$ and $(I-\Pi_N^{(c)})$
+are orthogonal projections on $L^2(\mathbb{R})$,
+hence contractions of operator norm $\le 1$.
+Their composition satisfies:
 \begin{equation}\label{eq:Bn-contraction}
   \norm{\Bn}_{\mathrm{op}}
   \le\norm{(I-\Pi_N^{(c)})}_{\mathrm{op}}
      \cdot\norm{\Pc}_{\mathrm{op}}
-  \le 1\cdot 1 = 1,
+  \le 1\cdot 1 = 1.
 \end{equation}
-since $\Pc$ is itself an orthogonal projection.
-Consequently $\Ac=\Bn^*\Bn$ satisfies
+Consequently:
 \begin{equation}\label{eq:Ac-bounded}
-  0\le\Ac\le\norm{\Bn}^2_{\mathrm{op}}\cdot I\le I.
+  0\le\Ac=\Bn^*\Bn
+  \le\norm{\Bn}^2_{\mathrm{op}}\cdot I\le I.
 \end{equation}
+No Hilbert--Schmidt property of $\Pc$
+on $L^2(\mathbb{R})$ is used here.
 
 \medskip
-\textbf{(I) HS identity.}
-\begin{equation}\label{eq:SN-HS}
+\textbf{(I) Basis-relative spectral sum identity.}
+\begin{equation}\label{eq:SN-spectral}
   S_N(c)
   = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}
-  = \norm{\Bn}^2_{\mathrm{HS}}
-  = \mathrm{Tr}(\Ac)
-  = \mathrm{Tr}\bigl((I-\Pi_N^{(c)})\Pc(I-\Pi_N^{(c)})\bigr).
+  = \sum_{n>N}\norm{\Bn\Phic{c}{n}}^2_{L^2}
+  =: \mathrm{Tr}_{\mathrm{PSWF}}(\Ac).
 \end{equation}
 \begin{proof}
-Expand $\norm{\Bn}^2_{\mathrm{HS}}$
-in the ONB $\{\Phic{c}{n}\}_{n>N}$:
+The first equality is Definition~\ref{def:SN}.
+For the second: since $\Phic{c}{n}\in\PW_c^2$
+and $n>N$, we have
+$(I-\Pi_N^{(c)})\Phic{c}{n}=\Phic{c}{n}$,
+so
 \[
-  \norm{\Bn}^2_{\mathrm{HS}}
-  =\sum_{n>N}\norm{\Bn\Phic{c}{n}}^2
-  =\sum_{n>N}\norm{(I-\Pi_N^{(c)})\Pc\Phic{c}{n}}^2
-  =\sum_{n>N}\norm{\Pc\Phic{c}{n}}^2
-  =S_N(c),
+  \norm{\Bn\Phic{c}{n}}^2
+  =\norm{(I-\Pi_N^{(c)})\Pc\Phic{c}{n}}^2
+  =\norm{\Pc\Phic{c}{n}}^2.
 \]
-where the third equality uses
-$(I-\Pi_N^{(c)})\Phic{c}{n}=\Phic{c}{n}$
-for $n>N$.
-Since $\Ac=\Bn^*\Bn$ and $\Bn$ is HS,
-$\mathrm{Tr}(\Ac)=\norm{\Bn}^2_{\mathrm{HS}}$.
-The last equality in~\eqref{eq:SN-HS}
-follows from cyclicity of trace in HS class:
-$\mathrm{Tr}(\Bn^*\Bn)
-=\mathrm{Tr}(\Bn\Bn^*)
-=\mathrm{Tr}((I-\Pi_N^{(c)})\Pc(I-\Pi_N^{(c)}))$.
-All three representations
-(spectral sum, HS norm, operator trace)
-are thus equivalent.
+The notation $\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
+stands for the basis-relative sum
+$\sum_{n>N}\ip{\Ac\Phic{c}{n}}{\Phic{c}{n}}
+=\sum_{n>N}\norm{\Bn\Phic{c}{n}}^2$,
+which equals $S_N(c)$.
+This is a convergent series of non-negative
+reals; it is \emph{not} asserted to be a
+trace in the functional-analytic sense of
+$\mathfrak{S}_1(L^2(\mathbb{R}))$.
 \end{proof}
 
 \medskip
 \textbf{(II) Operator norm inequality.}
-\begin{equation}\label{eq:op-le-HS}
+Since $0\le\Ac\le I$, all eigenvalues
+$\lambda_j(\Ac)\in[0,1]$, so:
+\begin{equation}\label{eq:op-le-spectral}
   \norm{\Ac}_{\mathrm{op}}
-  = \norm{\Bn}^2_{\mathrm{op}}
-  \le\norm{\Bn}^2_{\mathrm{HS}}
-  = \mathrm{Tr}(\Ac) = S_N(c).
+  = \sup_j\lambda_j(\Ac)
+  \le \sum_j\lambda_j(\Ac)
+  = \mathrm{Tr}_{\mathrm{PSWF}}(\Ac)
+  = S_N(c).
 \end{equation}
-In general $\norm{\Ac}_{\mathrm{op}}
-<\mathrm{Tr}(\Ac)$ unless $\Ac$ has rank one.
-\emph{The identity
-$\norm{\Bn}^2_{\mathrm{op}}=S_N(c)$
-claimed in earlier versions is incorrect.}
+The inequality is strict unless $\Ac$
+has rank one.
 
 \medskip
 \textbf{(III) Quadratic form.}
@@ -464,7 +488,7 @@ using $\Pc g=g$:
 \medskip
 \textbf{(IV) The full hierarchy.}
 \begin{equation}\label{eq:chain}
-  \underbrace{\text{H3}}_{\mathrm{Tr}(\Ac)\to 0}
+  \underbrace{\text{H3}}_{S_N(c)\to 0}
   \;\Rightarrow\;
   \norm{\Ac}_{\mathrm{op}}\to 0
   \;\Rightarrow\;
@@ -475,13 +499,11 @@ using $\Pc g=g$:
   \ip{\Ac g}{g}\to 0\;(\text{each fixed }g).
 \end{equation}
 The reverse arrows do not hold in general.
-H3 is a \emph{trace-class condition};
+H3 is a \emph{spectral-sum condition}
+on the PSWF-ONB;
 H1 yields only \emph{pointwise quadratic
-form convergence} on each fixed $g$,
-which we call diagonal WOT-type convergence
-(not full SOT in the operator sense,
-since no uniformity in $g$ is available
-from H1 alone).
+form convergence} on each fixed $g$
+(diagonal WOT-type, not full SOT).
 \end{theorem}
 
 \begin{remark}[Precise convergence hierarchy]
@@ -489,69 +511,59 @@ from H1 alone).
 The chain~\eqref{eq:chain} distinguishes
 four levels:
 \begin{enumerate}[\rm(1)]
-\item \emph{H3} (trace $\to 0$):
-  strongest; controls all eigenvalues
-  simultaneously.
+\item \emph{H3} ($S_N(c)\to 0$):
+  strongest; controls all terms
+  $\mu_{n,c}([-c_0,c_0])$ simultaneously.
 \item \emph{Op-norm $\to 0$}:
-  controls largest eigenvalue uniformly
-  in direction.
+  controls the largest eigenvalue of $\Ac$
+  uniformly in direction.
 \item \emph{$Q_c^N(g)\to 0$ uniformly in $g$}:
-  uniform quadratic form convergence,
   equivalent to op-norm $\to 0$.
 \item \emph{$\ip{\Ac g}{g}\to 0$ each fixed $g$}
   (diagonal WOT-type): weakest;
-  proved from H1 via $\ell^2$ convergence
-  of coefficients.
-  This is \emph{not} equivalent to SOT
-  (strong operator convergence $\Ac g\to 0$
-  in $L^2$-norm for each $g$);
-  it is the weaker statement that
-  matrix elements on the diagonal vanish.
+  proved from H1 via $\ell^2$ convergence.
+  Not equivalent to SOT
+  ($\norm{\Ac g}\to 0$ for each $g$).
 \end{enumerate}
 The gap between (4) and (2) is the
 rank growth conjecture (OP~\ref{prob:H1H3}).
 \end{remark}
 
-\begin{remark}[H3 as trace-class;
-H1 as diagonal WOT]
+\begin{remark}[Spectral sum vs.\ operator norm]
 \label{rem:HS-trace}
-$S_N(c)=\mathrm{Tr}(\Ac)$ sums
-all eigenvalues of $\Ac$:
-global spectral energy.
-$\norm{\Ac}_{\mathrm{op}}$
-is the largest eigenvalue: worst-case direction.
 \begin{equation}\label{eq:trace-op-rank}
   \norm{\Ac}_{\mathrm{op}}
-  \le \mathrm{Tr}(\Ac)
+  \le \mathrm{Tr}_{\mathrm{PSWF}}(\Ac)
   = S_N(c)
   \le \mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}.
 \end{equation}
-Note: a large trace does not imply large rank,
-and large rank does not imply large trace.
-These are independently controlled quantities;
-closing the gap requires additional
-eigenvalue-delocalisation input
-beyond the trace bound alone.
+Neither direction (large $S_N(c) \Rightarrow$
+large rank, or large rank $\Rightarrow$ large
+$S_N(c)$) is automatic.
+Closing the gap from diagonal WOT to
+op-norm convergence requires eigenvalue
+delocalisation beyond~\eqref{eq:trace-op-rank}.
 \end{remark}
 
 \begin{lemma}[Rank lower bound]
 \label{lem:rank-lower}
 For all $c>c_0$ and $N\ge 0$:
 \begin{equation}\label{eq:rank-lower}
-  \mathrm{rank}(\Ac) \ge \mathrm{Tr}(\Ac) = S_N(c).
+  \mathrm{rank}(\Ac)
+  \ge \mathrm{Tr}_{\mathrm{PSWF}}(\Ac)
+  = S_N(c).
 \end{equation}
 \end{lemma}
 \begin{proof}
 By~\eqref{eq:Ac-bounded},
-all eigenvalues $\lambda_j(\Ac)\in[0,1]$.
+$\lambda_j(\Ac)\in[0,1]$ for all $j$.
 Therefore:
 \[
-  \mathrm{Tr}(\Ac)
+  S_N(c)
   = \sum_j \lambda_j(\Ac)
   \le \mathrm{rank}(\Ac)\cdot
   \max_j\lambda_j(\Ac)
-  \le \mathrm{rank}(\Ac)\cdot 1
-  = \mathrm{rank}(\Ac).
+  \le \mathrm{rank}(\Ac).
 \]
 \end{proof}
 
@@ -563,62 +575,31 @@ Under NC, $S_N(c)\ge c_*>0$ uniformly,
 so the rank is bounded away from zero.
 The current bounds do \emph{not} imply
 $\mathrm{rank}(\Ac)\to\infty$:
-that would require eigenvalue delocalisation
-beyond the trace estimate,
-i.e.\ a lower bound on the number of
-eigenvalues that are bounded away from zero.
+that would require a lower bound on the
+number of eigenvalues of $\Ac$ that remain
+bounded away from zero (eigenvalue
+delocalisation), which is not available
+from~\eqref{eq:trace-op-rank} alone.
 Whether $\mathrm{rank}(\Ac)\to\infty$
 as $c\to\infty$ (for fixed $N$) is
 an open conjecture (OP~\ref{prob:H1H3}).
 \end{remark}
 
-\begin{remark}[Trace vs.\ operator norm:
+\begin{remark}[Spectral-sum vs.\ op-norm:
   independence warning]
 \label{rem:rank-obstruction}
 In general:
 \[
-  \mathrm{Tr}(\Ac)\to 0
+  S_N(c)\to 0
   \;\not\Rightarrow\;
   \norm{\Ac}_{\mathrm{op}}\to 0.
 \]
-The gap is controlled by rank:
-if $\mathrm{rank}(\Ac)\le R$ uniformly,
-then by~\eqref{eq:trace-op-rank},
-$\mathrm{Tr}(\Ac)\to 0$
-implies $\norm{\Ac}_{\mathrm{op}}\to 0$.
-Conversely, large rank allows trace to
-concentrate in many small eigenvalues,
-keeping op-norm small even if trace
-remains positive.
+However, if $\mathrm{rank}(\Ac)\le R$
+uniformly, then by~\eqref{eq:trace-op-rank},
+$S_N(c)\to 0$ implies
+$\norm{\Ac}_{\mathrm{op}}\to 0$.
 Neither direction is automatic without
 spectral distribution input.
-\end{remark}
-
-\begin{proposition}[Trace identity and growth]
-\label{prop:trace}
-$\sigma(c)=\mathrm{Tr}(P_c P_{c_0}P_c)
-\sim cc_0/\pi\to\infty$.
-\end{proposition}
-\begin{proof}
-$\sigma(c)=\mathrm{Tr}(\Pc P_c\Pc)$;
-Slepian--Weyl \cite{Slepian1961}:
-$\sigma(c)\sim cc_0/\pi$.
-\end{proof}
-
-\begin{remark}[Counterexample and PSWF-incompatibility]
-\label{rem:counterexample}
-$\sigma(c)\to\infty$ does not imply
-$S_N(c)\not\to 0$:
-if $\mu_{n,c}([-c_0,c_0])=0$ for all $n>N_0$,
-then $S_N(c)=0$ for $N\ge N_0$.
-PSWF-incompatibility:
-(i)~Slepian--Weyl requires an
-unbounded set of contributing indices;
-(ii)~Paper~VIII gives
-$\mu_{n,c}([-c_0,c_0])>0$ for each
-$n\le\kappa c$.
-NC (Definition~\ref{def:NC})
-formalises the required lower bound.
 \end{remark}
 
 %%═══ 5. SPECTRAL MEASURES AND NC
@@ -638,12 +619,13 @@ The obstruction to H1 stated cleanly:
 \end{quote}
 ``Spectral evacuation'' means
 $\mu_{n,c}([-c_0,c_0])\to 0$
-for $n>N$, uniformly in $c$.
+for $n>N$, uniformly in $c$,
+i.e.\ $S_N(c)\to 0$.
 NC is the quantitative, band-level
 sufficient condition for non-evacuation;
 H3 is the global tail condition.
 Proposition~\ref{prop:NC-not-H3}
-shows that NC is \emph{sufficient}
+shows NC is \emph{sufficient}
 but \emph{not necessary} for H3 to fail.
 \end{remark}
 
@@ -723,28 +705,22 @@ and positivity ($\mu_{n,c}\ge 0$).
 It classifies the implication structure
 between NC and H3 as abstract conditions
 on such families.
-It does not constrain, and makes no claim about,
-PSWF spectral geometry:
-the model family constructed below
-does not arise from
+It does not constrain PSWF spectral geometry:
+the model family below does not arise from
 $|\widehat{\Phi_n^{(c)}}|^2\,d\xi$,
 and realizability within the PSWF
 operator class is neither asserted nor needed.
-The result's purpose is solely to show that
-NC and H3 are logically independent
-at the measure-theoretic level of abstraction,
-i.e.\ one cannot derive NC$^c\Rightarrow$H3
-from normalisation and positivity alone.}
+The purpose is solely to show that NC and H3
+are logically independent at the abstract level.}
 
 \medskip\noindent
 There exists a model family
 $\{\mu_{n,c}\}_{n\ge 0,\,c>0}$
-satisfying $\mu_{n,c}\ge 0$ and
-$\mu_{n,c}(\mathbb{R})=1$,
-such that\textup{:}
+with $\mu_{n,c}\ge 0$,
+$\mu_{n,c}(\mathbb{R})=1$, such that:
 \begin{enumerate}[\rm(i)]
 \item\label{it:NCc}
-  \textup{NC fails (NC$^c$ holds)}:
+  \textup{NC fails}:
   for every $0<\alpha'<\kappa'<1$
   and every $c_*>0$,
   \[
@@ -760,45 +736,38 @@ such that\textup{:}
 \end{enumerate}
 In particular, NC is not necessary for H3
 to fail: $\mathrm{NC}^c\not\Rightarrow\mathrm{H3}$
-at the abstract measure-theoretic level.
+at the abstract level.
 \end{proposition}
 
 \begin{proof}
 Fix $\alpha\in(0,1)$.
 Set $w(c):=\lfloor\sqrt{c}\rfloor\ge 1$
-and define the active zone
+and define
 \[
   I_c := \bigl\{n\in\mathbb{N}_0 :
     |n-\lfloor\alpha c\rfloor|\le w(c)\bigr\},
   \qquad |I_c|=2w(c)+1.
 \]
 Assign weights
-\begin{equation}\label{eq:model-weights}
+\[
   \mu_{n,c}([-c_0,c_0]) :=
   \begin{cases}
     \dfrac{1}{|I_c|} & n\in I_c,\\
     0 & n\notin I_c,
   \end{cases}
-\end{equation}
+\]
 and extend $\mu_{n,c}$ to a probability
-measure on $\mathbb{R}$ by placing the
-remaining mass at an arbitrary point
-outside $[-c_0,c_0]$.
+measure by placing remaining mass outside
+$[-c_0,c_0]$.
 
 \medskip
 \textit{Proof of~\ref{it:H3fail}.}
 Fix $N\ge 0$.
-For all $c>((N+1)/\alpha)^2$ we have
+For $c>((N+1)/\alpha)^2$:
 $\lfloor\alpha c\rfloor-w(c)
-\ge \alpha c - 1 - \sqrt{c} > N$
-(since $\alpha c - 1 - \sqrt{c}\to+\infty$),
+\ge \alpha c - 1 - \sqrt{c} > N$,
 so $I_c\subseteq\{n>N\}$.
-Therefore
-\[
-  S_N(c)
-  \ge\sum_{n\in I_c}\frac{1}{|I_c|}
-  = 1.
-\]
+Therefore $S_N(c)\ge\sum_{n\in I_c}1/|I_c|=1$.
 
 \medskip
 \textit{Proof of~\ref{it:NCc}.}
@@ -806,65 +775,34 @@ Fix $0<\alpha'<\kappa'<1$ and $c_*>0$.
 
 \textit{Case~1}: $\alpha\notin[\alpha',\kappa']$.
 Then $\delta:=\mathrm{dist}(\alpha,[\alpha',\kappa'])>0$.
-For $n\in I_c$:
-$|n/c-\alpha|\le(w(c)+1)/c\le 2/\sqrt{c}$,
-so for large $c$, $|n/c-\alpha|<\delta/2$,
-giving $n/c\notin[\alpha',\kappa']$,
-i.e.\ $I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)=\emptyset$.
-The band sum is $0<c_*$.
+For large $c$ and $n\in I_c$:
+$|n/c-\alpha|\le 2/\sqrt{c}<\delta/2$,
+so $I_c\cap\mathcal{T}_{\alpha',\kappa'}(c)=\emptyset$
+and the band sum is $0<c_*$.
 
 \textit{Case~2}: $\alpha\in(\alpha',\kappa')$.
 Set $\varepsilon
 :=\tfrac{1}{2}\min(\alpha-\alpha',\,\kappa'-\alpha)>0$.
-For $n\in I_c$:
-\[
-  \left|\frac{n}{c}-\alpha\right|
-  \le \frac{w(c)+1}{c}
-  \le \frac{1}{\sqrt{c}}+\frac{2}{c}
-  \to 0,
-\]
-so for large $c$, $|n/c-\alpha|<\varepsilon/2$
+For large $c$, $|n/c-\alpha|<\varepsilon/2$
 for all $n\in I_c$.
-Choose $\beta$ with
-$\alpha<\beta<\kappa'$ and $\beta-\alpha>\varepsilon$.
-Then $n/c<\alpha+\varepsilon/2<\beta$
-for all $n\in I_c$ and large $c$,
-so $I_c\cap\mathcal{T}_{\beta,\kappa'}(c)=\emptyset$.
-Hence
-\[
-  \sum_{n\in\mathcal{T}_{\beta,\kappa'}(c)}
-  \mu_{n,c}([-c_0,c_0]) = 0 < c_*,
-\]
-and NC fails for the proportional band
+Choose $\beta$ with $\alpha<\beta<\kappa'$
+and $\beta-\alpha>\varepsilon$;
+then $I_c\cap\mathcal{T}_{\beta,\kappa'}(c)=\emptyset$
+for large $c$, so NC fails for
 $\mathcal{T}_{\beta,\kappa'}$.
 \end{proof}
 
-\begin{remark}[Structural separation,
-  necessity, and realizability]
+\begin{remark}[Structural separation and realizability]
 \label{rem:separation}
-Proposition~\ref{prop:NC-not-H3} establishes:
-\begin{itemize}[leftmargin=*]
-\item \emph{NC is a band-level condition}:
-  persistent mass in a fixed proportional
-  band $\mathcal{T}_{\alpha,\kappa}(c)$.
-\item \emph{H3 is a global tail condition}:
-  total tail mass $S_N(c)\to 0$.
-\item \emph{NC is sufficient but not necessary}
-  for H3 to fail:
-  the model concentrates mass in a
-  sub-proportional zone
-  $|I_c|\sim 2\sqrt{c}\ll c$
-  that escapes every fixed proportional window,
-  while maintaining $S_N(c)=1$ for all $N$.
-\item \emph{Realizability is not addressed}:
-  this result only classifies implication
-  structure, not whether PSWF measures
-  can exhibit NC$^c$-with-H3-fail behaviour.
-  That question is addressed by
-  OP~\ref{prob:fourier-mass}.
-\end{itemize}
-The correct obstruction to H1 is H3,
-not NC.
+The model concentrates mass in a
+sub-proportional zone $|I_c|\sim 2\sqrt{c}\ll c$
+that escapes every fixed proportional window,
+while maintaining $S_N(c)\ge 1$.
+NC is sufficient but not necessary
+for H3 to fail.
+Realizability of such behaviour within
+the actual PSWF spectral measures
+is addressed by OP~\ref{prob:fourier-mass}.
 \end{remark}
 
 %%═══ 6. H3 AND THE MAIN REDUCTION
@@ -873,28 +811,20 @@ not NC.
 
 \begin{hypothesis}[H3]
 \label{hyp:H3}
-$\sup_{c>c_0}S_N(c)
-=\sup_{c>c_0}\mathrm{Tr}(\Ac)
-\xrightarrow{N\to\infty}0$.
+$\sup_{c>c_0}S_N(c)\xrightarrow{N\to\infty}0$.
 \end{hypothesis}
 
 \begin{remark}[H3 vs.\ classical Slepian asymptotics]
 \label{rem:H3-vs-Slepian}
-H3 operates in a different asymptotic regime
-from classical Slepian theory.
-In the classical setting one fixes $c$ and
-studies the eigenvalue distribution of
-$\lambda_n^{(c)}$ for $n\sim 2c/\pi$
-(the Landau--Pollak--Slepian transition count).
-H3, by contrast, fixes $N$ and requires
+Classical Slepian theory fixes $c$ and studies
+the distribution of $\lambda_n^{(c)}$ near
+$n\sim 2c/\pi$ (Landau--Pollak--Slepian
+transition count).
+H3 fixes $N$ and requires
 $\sup_{c>c_0} S_N(c)\to 0$ as $N\to\infty$:
-a \emph{uniform-in-$c$, large-$N$} condition.
-This is strictly stronger than any
-fixed-$c$ eigenvalue distribution result,
-and is not implied by classical asymptotics.
-H3 is a hypothesis whose role is
-to serve as a sufficient condition for H1
-(Theorem~\ref{thm:H3-H1}).
+a \emph{uniform-in-$c$, large-$N$} condition,
+strictly stronger than any fixed-$c$ result.
+H3 serves as a sufficient condition for H1.
 \end{remark}
 
 \begin{theorem}[H3 $\Rightarrow$ H1]
@@ -905,7 +835,8 @@ H3 implies H1.
 Fix $\varepsilon>0$, $g\in\PW_{c_0}^2$.
 H3: choose $N$ with
 $\sup_c S_N(c)<\varepsilon/(2\norm{g}^2)$;
-then $Q_c^N(g)<\varepsilon/2$ for all $c$.
+then $Q_c^N(g)<\varepsilon/2$ for all $c$
+(Lemma~\ref{lem:tail}).
 Paper~XII: choose $c_\varepsilon$ with
 $\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
 <\varepsilon/2$ for $c>c_\varepsilon$.
@@ -915,16 +846,14 @@ Adding gives $\norm{a^{(c)}-a^{(\infty)}}^2<\varepsilon$.
 \begin{theorem}[H1 $\Rightarrow$
   pointwise quadratic form convergence]
 \label{thm:H1-H3-ptwise}
-Assume H1.
-For each fixed $g\in\PW_{c_0}^2$
+Assume H1. For each fixed $g\in\PW_{c_0}^2$
 and each fixed $N$:
 \[
   \ip{\Ac g}{g} = Q_c^N(g) \to 0
   \quad\text{as }c\to\infty,
-  \quad\text{then }N\to\infty.
+  \text{ then }N\to\infty.
 \]
-This is pointwise quadratic form
-convergence on each fixed element
+This is pointwise quadratic form convergence
 (diagonal WOT-type);
 it is \emph{not} uniform in $g$
 and does not imply $\norm{\Ac}_{\mathrm{op}}\to 0$.
@@ -936,13 +865,12 @@ $Q_c^N(g)
 H1: first term $\to 0$ as $c\to\infty$.
 $a^{(\infty)}\in\ell^2$: second term $\to 0$
 as $N\to\infty$.
-No uniformity in $g$ is used or obtained.
 \end{proof}
 
 \begin{remark}[The uniformity gap]
 \label{rem:unif-gap}
 \[
-  \text{H3}\;(\mathrm{Tr}\to 0)
+  \text{H3}\;(S_N(c)\to 0)
   \Rightarrow
   \norm{\Ac}_{\mathrm{op}}\to 0
   \Rightarrow
@@ -954,13 +882,12 @@ No uniformity in $g$ is used or obtained.
 The missing reverse:
 diagonal WOT $\not\Rightarrow$
 $\norm{\Ac}_{\mathrm{op}}\to 0$.
-By Remark~\ref{rem:rank-obstruction},
-rank control of $\Ac$ would close this gap;
-by Lemma~\ref{lem:rank-lower},
-$\mathrm{rank}(\Ac)\ge S_N(c)$.
-Without eigenvalue delocalisation,
-the trace bound alone does not
-imply rank growth.
+Rank control of $\Ac$ would close this gap
+(Remark~\ref{rem:rank-obstruction});
+the current lower bound
+$\mathrm{rank}(\Ac)\ge S_N(c)$
+(Lemma~\ref{lem:rank-lower})
+does not imply rank growth.
 \end{remark}
 
 \begin{theorem}[Main reduction]
@@ -1013,7 +940,7 @@ H1$\Rightarrow\ip{\Ac g}{g}\to 0$
 H1$\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
   & Open & rank growth (OP~\ref{prob:H1H3}) \\
 $0\le\Ac\le I$
-  & \textbf{Proved} & $\Bn$ contraction (\S\ref{sec:tail}(0)) \\
+  & \textbf{Proved} & projections compose \\
 $\mathrm{rank}(\Ac)\ge S_N(c)$
   & \textbf{Proved} & Lem.~\ref{lem:rank-lower} \\
 $\mathrm{rank}(\Ac)\to\infty$
@@ -1043,14 +970,11 @@ NC holds & Open & WKB (Paper~XV) \\
   \ref{prob:fourier-mass}}).
 \]
 ``Spectral evacuation'' means
-for every $N$, the $\mu_{n,c}$-mass
-of $\{n>N\}$ on $[-c_0,c_0]$
-vanishes uniformly in $c$.
+$S_N(c)\to 0$ uniformly in $c$.
 The model of Proposition~\ref{prop:NC-not-H3}
-shows (at the abstract level) that mass can
-migrate through sub-proportional bands
-and prevent evacuation without any single
-proportional band carrying persistent mass.
+shows that mass can persist in $S_N(c)$
+without any single proportional band
+carrying it (at the abstract level).
 NC is sufficient but not necessary
 for this failure mode.
 
@@ -1064,8 +988,8 @@ Condition & Level & Role \\
 \midrule
 NC & Band-level (sufficient)
   & Persistent mass in $\mathcal{T}_{\alpha,\kappa}(c)$ \\
-H3 & Global tail (necessary and sufficient)
-  & Total mass $S_N(c)\to 0$ \\
+H3 & Global tail (sufficient for H1)
+  & $S_N(c)\to 0$ uniformly in $c$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1074,11 +998,8 @@ NC is not necessary for H3 to fail
 (Prop.~\ref{prop:NC-not-H3}, abstract level).
 The correct obstruction for H1 is H3.
 
-\subsection{$S_N(c)$ as trace;
-rank lower bound}
+\subsection{$S_N(c)$ as spectral sum; rank lower bound}
 
-By Lemma~\ref{lem:rank-lower}
-and~\eqref{eq:trace-op-rank}:
 \[
   S_N(c)
   \le \mathrm{rank}(\Ac),
@@ -1087,19 +1008,17 @@ and~\eqref{eq:trace-op-rank}:
   \le S_N(c)
   \le \mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}.
 \]
-H3 controls the trace from above;
+H3 controls $S_N(c)$ from above;
 the rank lower bound controls it from below.
-The rank lower bound alone does not
-imply rank growth: closing the gap
-requires eigenvalue delocalisation
-(OP~\ref{prob:H1H3}).
+Closing the gap requires eigenvalue
+delocalisation (OP~\ref{prob:H1H3}).
 
 \subsection{Quantum ergodicity in frequency space}
 
 The spectral measures $\mu_{n,c}$
 play the role of semiclassical measures;
 the local Weyl law (OP~\ref{prob:fourier-mass})
-asserts their equidistribution on $[-c_0,c_0]$:
+asserts equidistribution on $[-c_0,c_0]$:
 a one-dimensional quantum ergodicity
 statement \cite{Zworski2012}.
 
@@ -1121,7 +1040,7 @@ Paper~VIII
   & $|\widehat{\Phi}|$ pointwise
   & $\mu_{n,c}([-c_0,c_0])$ integrated \\
 Slepian--Weyl
-  & $\sigma(c)=\mathrm{Tr}(\Ac)$ growth
+  & $\sigma(c)\sim cc_0/\pi$ (ONB asymptotics)
   & Band distribution; rank \\
 $\mu_{n,c}$ equidistribution
   & NC; spectral evacuation
@@ -1212,18 +1131,17 @@ $\mathrm{rank}(\Ac)\ge S_N(c)$;
 under NC, this is uniformly positive.
 The current bounds do \emph{not} imply
 $\mathrm{rank}(\Ac)\to\infty$:
-that requires eigenvalue delocalisation,
-i.e.\ that a growing number of eigenvalues
-of $\Ac$ remain bounded away from zero.
-Conjecture: the bandlimit geometry
-forces $\mathrm{rank}(\Ac)\to\infty$
-as $c\to\infty$ (for fixed $N$).
+that requires a growing number of eigenvalues
+of $\Ac$ to be bounded away from zero
+(eigenvalue delocalisation).
+Conjecture: the Paley--Wiener / bandlimit
+geometry forces $\mathrm{rank}(\Ac)\to\infty$
+as $c\to\infty$ (fixed $N$).
 If true, combined with
-$\mathrm{Tr}(\Ac)=S_N(c)$
+$S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
 and~\eqref{eq:trace-op-rank},
 this forces $\norm{\Ac}_{\mathrm{op}}\to 0$,
-closing the diagonal-WOT-to-op-norm gap
-and completing H1.
+closing the diagonal-WOT-to-op-norm gap.
 \end{problem}
 
 \begin{problem}[NC from Papers~VIII, XII]
@@ -1246,18 +1164,18 @@ without full WKB?
 Result & Status \\
 \midrule
 $\norm{T_c}\le 1$ & \textbf{Proved} \\
+$S_N(c)$ defined via PSWF-ONB sum
+  & Definition \\
 Tail reduction: $Q_c^N(g)\le\norm{g}^2 S_N(c)$
   & \textbf{Proved} \\
 \eqref{eq:H1ip} & \textbf{Proved} \\
-$\Bn$ HS (Fourier multiplier / finite spectral vol.)
-  & \textbf{Proved} \\
 $\norm{\Bn}_{\mathrm{op}}\le 1$
-  (composition of projections)
+  (orthogonal projections)
   & \textbf{Proved} \\
 $0\le\Ac\le I$
   & \textbf{Proved} \\
-$S_N(c)=\mathrm{Tr}((I-\Pi_N)\Pc(I-\Pi_N))
-  =\mathrm{Tr}(\Ac)$ (all three repr.\ equiv.)
+$S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
+  (basis-relative; not global trace on $L^2$)
   & \textbf{Proved} \\
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$ (strict)
   & \textbf{Proved} \\
@@ -1266,7 +1184,8 @@ $\mathrm{rank}(\Ac)\ge S_N(c)$
 $Q_c^N(g)=\ip{\Ac g}{g}$
   & \textbf{Proved} \\
 $\sigma(c)\sim cc_0/\pi$
-  & \textbf{Proved} \\
+  (Slepian--Weyl, classical setting)
+  & Classical result \\
 NC $\Rightarrow$ H3 fails & \textbf{Proved} \\
 NC sufficient, not necessary (abstract)
   & \textbf{Proved} (Prop.~\ref{prop:NC-not-H3}) \\
@@ -1276,7 +1195,7 @@ H1 $\Rightarrow$ $\ip{\Ac g}{g}\to 0$
   (diagonal WOT, each fixed $g$)
   & \textbf{Proved} \\
 $\mathrm{rank}(\Ac)\to\infty$ (rank growth)
-  & Open conjecture (OP~\ref{prob:H1H3}) \\
+  & Open (OP~\ref{prob:H1H3}) \\
 NC holds & Open (OP~\ref{prob:fourier-mass}) \\
 \bottomrule
 \end{tabular}
@@ -1286,26 +1205,30 @@ NC holds & Open (OP~\ref{prob:fourier-mass}) \\
 \textbf{Central conclusion.}
 \emph{The obstruction to coefficient stability
 is spectral non-evacuation:
-the persistence of $\mu_{n,c}$-mass
-in the transition zone $n\sim\alpha c$.
-The operator $\Ac=\Bn^*\Bn$ satisfies
-$0\le\Ac\le I$ (proved via contraction argument),
-$S_N(c)=\mathrm{Tr}(\Ac)$ (all three
-representations equivalent, proved),
-and $\mathrm{rank}(\Ac)\ge S_N(c)$ (proved).
+the persistence of $S_N(c)>0$ uniformly
+in $c$ as $N\to\infty$.
+All operator-theoretic structure
+($\Ac\ge 0$, $0\le\Ac\le I$,
+$\norm{\Ac}_{\mathrm{op}}\le S_N(c)$,
+$\mathrm{rank}(\Ac)\ge S_N(c)$)
+rests on $\Bn=(I-\Pi_N^{(c)})\Pc$
+being a composition of orthogonal projections,
+and on $S_N(c)$ being the basis-relative
+spectral sum~\eqref{eq:SN-def}.
+No Hilbert--Schmidt or global trace-class
+property of $\Pc$ on $L^2(\mathbb{R})$
+is used or claimed.
 H1 yields diagonal WOT-type convergence
 $\ip{\Ac g}{g}\to 0$ for each fixed $g$;
 the gap to operator norm convergence
 requires eigenvalue delocalisation
 (rank growth conjecture, OP~\ref{prob:H1H3}).
-NC is sufficient but not necessary
-for H3 to fail;
-the structural separation is proved
-at the abstract measure-theoretic level
-only, with no claim of PSWF realizability
+NC is sufficient but not necessary for H3 to
+fail; the structural separation is proved at
+the abstract measure-theoretic level
 (Proposition~\ref{prop:NC-not-H3}).
-Paper~XIV is logically complete
-up to two open problems;
+Paper~XIV is logically complete up to
+two open problems;
 Paper~XV closes NC via WKB and addresses
 PSWF band-sum correlations.}
 
