@@ -36,7 +36,7 @@
   cross-Gram operator, spectral leakage, SOT-convergence,
   Paley--Wiener space, no-concentration, local Weyl law,
   semiclassical measures, quantum ergodicity, WKB,
-  spectral evacuation, quadratic forms}
+  spectral evacuation, quadratic forms, rank explosion}
 
 \begin{document}
 
@@ -49,6 +49,14 @@
 \email{[Email]}
 
 \begin{abstract}
+The central obstruction to coefficient stability
+of the Slepian eigenbasis is
+\emph{spectral non-evacuation in the transition
+zone}: the persistence of spectral mass of the
+measures $\mu_{n,c}(d\xi)
+:=|\widehat{\Phi_n^{(c)}}(\xi)|^2\,d\xi$
+in the regime $n\sim\alpha c$ as $c\to\infty$.
+
 This paper reduces Hypothesis~H1 of Paper~XIII
 (the $\ell^2$-norm convergence of Slepian
 coefficients $a_n^{(c)}=\ip{g}{\Phic{c}{n}}$
@@ -60,43 +68,37 @@ The key structural results are:
 (i)~the cross-Gram operator $T_c$ satisfies
 $\norm{T_c}\le 1$ uniformly;
 (ii)~the tail functional
-$S_N(c):=\sum_{n>N}\mu_{n,c}([-c_0,c_0])$,
-where $\mu_{n,c}(d\xi)
-:=|\widehat{\Phi_n^{(c)}}(\xi)|^2\,d\xi$,
+$S_N(c):=\sum_{n>N}\mu_{n,c}([-c_0,c_0])$
 controls the tail via
 $\sum_{n>N}|a_n^{(c)}|^2\le\norm{g}^2 S_N(c)$;
-(iii)~$S_N(c)$ is the
-\emph{Hilbert--Schmidt norm} of the
-truncation operator
+(iii)~$S_N(c)=\mathrm{Tr}(\Ac)$
+is the \emph{Hilbert--Schmidt norm} of
 $\Bn:=(I-\Pi_N^{(c)})\Pc$
-(not the operator norm),
+(not the operator norm;
+$\norm{\Bn}^2_{\mathrm{op}}\le S_N(c)$
+with strict inequality in general),
 and the relevant quadratic form is
-$Q_c^N(g):=\norm{\Bn g}^2
-=\ip{\Ac g}{g}$
+$Q_c^N(g)=\ip{\Ac g}{g}$
 where $\Ac:=\Bn^*\Bn$.
 
 H3 ($\sup_c S_N(c)\to 0$) implies H1
 (proved unconditionally).
-The obstruction to H1 is
-\emph{spectral non-evacuation}:
-``H1 fails if and only if
-there exists persistent spectral mass
-of the measures $\mu_{n,c}$
-in the transition zone $n\sim\alpha c$''
-(conditional on two open problems).
+H1 implies $\Ac\to 0$ in the strong operator
+topology (proved); the gap to operator norm
+convergence is identified as a
+\emph{rank explosion phenomenon}
+(Open Problem~\ref{prob:H1H3}):
+if $\mathrm{rank}(\Ac)$ were uniformly bounded,
+the upgrade $\mathrm{Tr}(\Ac)\to 0
+\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
+would follow immediately.
 
 The \emph{No-Concentration condition} (NC)
-quantifies this: NC$\Rightarrow$H3 fails
-(proved); NC holds under the local Weyl
-law (Paper~XV).
+quantifies spectral non-evacuation:
+NC$\Rightarrow$H3 fails (proved);
+NC holds under the local Weyl law (Paper~XV).
 NC$^c\Rightarrow$H3 is a logically independent
 gap, likely false without additional structure.
-
-H1$\Rightarrow$H3 requires uniform convergence
-of the quadratic forms $Q_c^N$,
-equivalent to strong-to-operator convergence
-of $\Ac\to 0$: this is
-Open Problem~\ref{prob:H1H3}.
 \end{abstract}
 
 \maketitle
@@ -138,7 +140,7 @@ H1 splits:
 (given OP~\ref{prob:H1H3}).
 The core difficulty: $a^{(c)}
 \rightharpoonup a^{(\infty)}$ (weak convergence)
-does not in general imply norm convergence;
+does not imply norm convergence;
 Paper~XIV localises this gap precisely.
 
 \subsection{The central new framing}
@@ -186,25 +188,23 @@ transit between $\approx 1$ and $\approx 0$.
 \item $\norm{T_c}\le 1$
 \item Tail reduction: $Q_c^N(g)\le\norm{g}^2 S_N(c)$
 \item \eqref{eq:H1ip}
-\item $S_N(c)=\norm{\Bn}^2_{\mathrm{HS}}$
-  (HS identity)
+\item $S_N(c)=\norm{\Bn}^2_{\mathrm{HS}}=\mathrm{Tr}(\Ac)$
 \item $\norm{\Bn}^2_{\mathrm{op}}\le S_N(c)$
-  (with strict inequality in general)
-\item $Q_c^N(g)=\ip{\Ac g}{g}$
-  where $\Ac=\Bn^*\Bn$
-\item H3 $\Leftrightarrow$
-  $\norm{\Ac}_{\mathrm{op}}\to 0$
-  uniformly in $c$
+  (strict in general; HS $\ne$ op.~norm)
+\item $Q_c^N(g)=\ip{\Ac g}{g}$,
+  $\Ac=\Bn^*\Bn\ge 0$
 \item $\sigma(c)\sim cc_0/\pi$
 \item NC $\Rightarrow$ H3 fails
 \item Local Weyl law $\Rightarrow$ NC
 \item H3 $\Rightarrow$ H1
-\item H1 $\Rightarrow$ $Q_c^N(g)\to 0$ (fixed $g$)
+\item H1 $\Rightarrow$ $\Ac\to 0$ (SOT)
+\item Rank explosion = obstruction to
+  SOT$\Rightarrow$op.~norm upgrade
 \end{itemize}
 \textbf{Open / conditional:}
 \begin{itemize}[leftmargin=*]
-\item H1 $\Rightarrow$ H3
-  (strong $\to$ op. conv. of $\Ac$):
+\item H1 $\Rightarrow$ $\norm{\Ac}_{\mathrm{op}}\to 0$
+  (rank explosion / bandlimit geometry):
   OP~\ref{prob:H1H3}
 \item NC holds (local Weyl law):
   OP~\ref{prob:fourier-mass}
@@ -315,7 +315,8 @@ Define:
 \begin{equation}\label{eq:SN-HS}
   S_N(c)
   = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}
-  = \norm{\Bn}^2_{\mathrm{HS}}.
+  = \norm{\Bn}^2_{\mathrm{HS}}
+  = \mathrm{Tr}(\Ac).
 \end{equation}
 \begin{proof}
 Expand $\norm{\Bn}^2_{\mathrm{HS}}$
@@ -323,105 +324,120 @@ in the ONB $\{\Phic{c}{n}\}_{n>N}$:
 $\sum_{n>N}\norm{\Bn\Phic{c}{n}}^2
 =\sum_{n>N}\norm{\Pc\Phic{c}{n}}^2
 =S_N(c)$.
+Since $\Ac=\Bn^*\Bn$,
+$\mathrm{Tr}(\Ac)=\norm{\Bn}^2_{\mathrm{HS}}$.
 \end{proof}
 
 \medskip
 \textbf{(II) Operator norm inequality.}
 \begin{equation}\label{eq:op-le-HS}
   \norm{\Bn}^2_{\mathrm{op}}
-  \le\norm{\Bn}^2_{\mathrm{HS}} = S_N(c).
+  = \norm{\Ac}_{\mathrm{op}}
+  \le\mathrm{Tr}(\Ac) = S_N(c).
 \end{equation}
-In general, $\norm{\Bn}_{\mathrm{op}}
-<\norm{\Bn}_{\mathrm{HS}}$ unless
-$\Bn$ has rank one.
+In general $\norm{\Ac}_{\mathrm{op}}
+<\mathrm{Tr}(\Ac)$ unless $\Ac$ has rank one.
 \emph{The identity
 $\norm{\Bn}^2_{\mathrm{op}}=S_N(c)$
 claimed in earlier versions is incorrect.}
 
 \medskip
-\textbf{(III) Quadratic form and key step.}
+\textbf{(III) Quadratic form.}
 For $g\in\PW_{c_0}^2$,
 using $\Pc g=g$:
 \begin{equation}\label{eq:Qc-key}
   Q_c^N(g)
   = \sum_{n>N}|\ip{g}{\Phic{c}{n}}|^2
-  = \norm{(I-\Pi_N^{(c)})g}^2_{\PW_c^2}
   = \norm{\Bn g}^2
-  = \ip{\Ac g}{g}.
+  = \ip{\Ac g}{g},
+  \qquad 0\le\Ac\le I.
 \end{equation}
-So the tail sum is a quadratic form
-$Q_c^N(g)=\ip{\Ac g}{g}$
-with $0\le\Ac\le I$
-(positive semidefinite, bounded by $1$).
 
 \medskip
-\textbf{(IV) H3 = uniform operator convergence of $\Ac$.}
-H3 states:
-\begin{equation}\label{eq:H3-op}
-  \sup_c S_N(c) = \sup_c\norm{\Bn}^2_{\mathrm{HS}}
-  \to 0 \quad (N\to\infty).
-\end{equation}
-By~\eqref{eq:op-le-HS}:
-$H3\Rightarrow
-\norm{\Bn}_{\mathrm{op}}\to 0$
-uniformly in $c$,
-which is equivalent to
-$\norm{\Ac}_{\mathrm{op}}\to 0$
-uniformly in $c$.
-Conversely,
-$\norm{\Ac}_{\mathrm{op}}\to 0$ uniformly in $c$
-implies $Q_c^N(g)\le\norm{\Ac}_{\mathrm{op}}\norm{g}^2
-\to 0$ uniformly in $(g,c)$,
-so $\sup_{\norm{g}=1}Q_c^N(g)\to 0$ uniformly in $c$;
-but $\sup_{\norm{g}=1}Q_c^N(g)
-=\norm{\Ac}_{\mathrm{op}}
-\le S_N(c)$,
-so this is weaker than H3.
-Explicitly:
+\textbf{(IV) The full hierarchy.}
 \begin{equation}\label{eq:chain}
-  \text{H3}
+  \text{H3}\;(\mathrm{Tr}(\Ac)\to 0)
   \;\Rightarrow\;
   \norm{\Ac}_{\mathrm{op}}\to 0
-  \;(\text{unif.}\,c)
   \;\Rightarrow\;
-  Q_c^N(g)\to 0
-  \;(\text{unif.}\,c,g),
+  Q_c^N(g)\to 0\;(\text{unif.}\,c,g)
+  \;\Rightarrow\;
+  \text{H1},
 \end{equation}
-but the second arrow does not reverse
-in general.
-H3 is the strongest condition
-(via HS norm / trace control),
-while $\norm{\Ac}_{\mathrm{op}}\to 0$
-is the operationally relevant one.
+but the reverse arrows do not hold in general.
+H3 is a \emph{trace-class condition};
+H1 requires \emph{uniform spectral decay},
+i.e.\ $\norm{\Ac}_{\mathrm{op}}\to 0$
+uniformly in $c$.
 \end{theorem}
 
-\begin{remark}[HS norm as trace control;
-operational role of $\norm{\Ac}_{\mathrm{op}}$]
+\begin{remark}[H3 as trace-class;
+H1 as uniform spectral decay]
 \label{rem:HS-trace}
-$S_N(c)=\norm{\Bn}^2_{\mathrm{HS}}$
-=\mathrm{Tr}(\Ac)$
-is a \emph{trace-type} quantity:
-it sums contributions from all
-$n>N$ uniformly,
-giving ``global spectral energy''.
-The operator norm $\norm{\Ac}_{\mathrm{op}}$
-is the ``worst-case direction'';
-it satisfies
-$\norm{\Ac}_{\mathrm{op}}
-=\sup_{n>N}\lambda_n(\Ac)$
-(largest eigenvalue of $\Ac$),
-which is smaller than $\mathrm{Tr}(\Ac)=S_N(c)$
-(sum of all eigenvalues).
-
-The relevant problem (H1$\Leftrightarrow$H3
-via OP~\ref{prob:H1H3})
-is whether \emph{pointwise}
-$Q_c^N(g)\to 0$ (strong convergence
-$\Ac\to 0$ in the SOT sense)
-implies \emph{uniform}
+$S_N(c)=\mathrm{Tr}(\Ac)$ sums
+all eigenvalues of $\Ac$:
+it is global spectral energy.
+$\norm{\Ac}_{\mathrm{op}}$ is the
+largest eigenvalue: the worst-case direction.
+Explicitly:
+\begin{equation}\label{eq:trace-op-rank}
+  \norm{\Ac}_{\mathrm{op}}
+  \le \mathrm{Tr}(\Ac)
+  = S_N(c)
+  \le \mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}.
+\end{equation}
+The relevant problem (OP~\ref{prob:H1H3})
+is whether SOT convergence
+$\Ac\to 0$ (given by H1)
+allows the upgrade to
 $\norm{\Ac}_{\mathrm{op}}\to 0$.
 This is the classical
-strong $\not\Rightarrow$ operator convergence gap.
+SOT $\not\Rightarrow$ operator norm gap.
+\end{remark}
+
+\begin{remark}[Trace vs.\ operator norm
+and the rank explosion obstruction]
+\label{rem:rank-obstruction}
+In general:
+\begin{equation}\label{eq:Tr-not-op}
+  \mathrm{Tr}(\Ac)\to 0
+  \;\not\Rightarrow\;
+  \norm{\Ac}_{\mathrm{op}}\to 0.
+\end{equation}
+However, if $\mathrm{rank}(\Ac)\le R$
+uniformly in $c$ and $N$, then by~\eqref{eq:trace-op-rank}:
+\[
+  \norm{\Ac}_{\mathrm{op}}
+  \le\mathrm{Tr}(\Ac)
+  \le R\cdot\norm{\Ac}_{\mathrm{op}},
+\]
+so $\mathrm{Tr}(\Ac)\to 0$ would
+imply $\norm{\Ac}_{\mathrm{op}}\to 0$.
+The obstruction to upgrading SOT to
+operator norm convergence can therefore
+be viewed as a
+\emph{rank explosion phenomenon}:
+$\mathrm{rank}(\Ac)$ growing without bound
+as $c\to\infty$.
+
+This suggests a concrete reformulation of
+Open Problem~\ref{prob:H1H3}:
+does the operator
+\[
+  \Ac
+  = \Pc(I-\Pi_N^{(c)})P_c(I-\Pi_N^{(c)})\Pc
+\]
+admit effective rank control or
+finite-rank approximations
+induced by the bandlimit geometry?
+The special structure
+($\Ac$ is built from the nested
+projections $\Pc$, $P_c$, $\Pi_N^{(c)}$
+and the Paley--Wiener bandlimit constraint)
+may provide enough rigidity to
+control the rank growth,
+bridging the gap between trace control (H3)
+and operator norm control (required for H1).
 \end{remark}
 
 \begin{proposition}[Trace identity and growth]
@@ -443,7 +459,7 @@ if $\mu_{n,c}([-c_0,c_0])=0$ for all $n>N_0$,
 then $S_N(c)=0$ for $N\ge N_0$.
 PSWF-incompatibility:
 (i) Slepian--Weyl requires an
-\emph{unbounded} set of contributing indices;
+unbounded set of contributing indices;
 (ii) Paper~VIII gives
 $\mu_{n,c}([-c_0,c_0])>0$ for each
 $n\le\kappa c$.
@@ -457,7 +473,7 @@ formalises the required lower bound.
 
 \begin{remark}[NC as spectral evacuation failure]
 \label{rem:NC-evac}
-The obstruction to H1 can now be stated cleanly:
+The obstruction to H1 stated cleanly:
 \begin{quote}
   \emph{H1 fails if and only if
   there exists persistent spectral mass
@@ -468,9 +484,10 @@ The obstruction to H1 can now be stated cleanly:
 \end{quote}
 ``Spectral evacuation'' means
 $\mu_{n,c}([-c_0,c_0])\to 0$
-for $n>N$, uniformly in $c$,
-as $N\to\infty$.
-NC is the quantitative obstruction to this.
+for $n>N$, uniformly in $c$.
+NC is the quantitative obstruction to this:
+a band-level phenomenon, whereas
+H3 is a global tail phenomenon.
 \end{remark}
 
 \begin{definition}[No-Concentration (NC)]
@@ -482,7 +499,6 @@ for all large $c$:
   \sum_{n\in\mathcal{T}_{\alpha,\kappa}(c)}
   \mu_{n,c}([-c_0,c_0]) \ge c_*>0.
 \end{equation}
-$c_*$ is independent of $c$.
 \end{definition}
 
 \begin{remark}[Why proportional width is necessary]
@@ -501,19 +517,17 @@ giving sum $\sim c_0(\kappa-\alpha)>0$.
 \begin{remark}[NC as quantum ergodicity]
 \label{rem:NC-QE}
 In the semiclassical limit $c\to\infty$,
-$n\sim\alpha c$,
-the rescaled measures
+$n\sim\alpha c$, the rescaled measures
 $c\cdot\mu_{n,c}|_{[-c,c]}$
 are expected to converge weakly to
 the WKB density
-$(\pi\sqrt{1-(\xi/c)^2})^{-1}d\xi$.
-This is a one-dimensional quantum ergodicity
-statement in frequency space.
+$(\pi\sqrt{1-(\xi/c)^2})^{-1}d\xi$:
+a one-dimensional quantum ergodicity
+statement \cite{Zworski2012}.
 NC is the consequence for $[-c_0,c_0]$:
 $\mu_{n,c}([-c_0,c_0])\sim c_0/c$,
-so the band sum is
-$\sum_{n\in\mathcal{T}}\mu_{n,c}([-c_0,c_0])
-\sim c_0(\kappa-\alpha)>0$.
+so the band sum
+$\sim c_0(\kappa-\alpha)>0$.
 \end{remark}
 
 \begin{remark}[Local Weyl law $\Rightarrow$ NC]
@@ -522,10 +536,9 @@ If uniformly for $n\in\mathcal{T}_{\alpha,\kappa}(c)$:
 \begin{equation}\label{eq:local-Weyl}
   \mu_{n,c}([-c_0,c_0])\sim\frac{c_0}{c},
 \end{equation}
-then the Riemann sum
-$\sum_{n\in\mathcal{T}_{\alpha,\kappa}(c)}
-\mu_{n,c}([-c_0,c_0])
-\sim c_0(\kappa-\alpha)>0$.
+then $\sum_{n\in\mathcal{T}}\mu_{n,c}([-c_0,c_0])
+\sim c_0(\kappa-\alpha)>0$
+(Riemann sum).
 NC holds with $c_*=c_0(\kappa-\alpha)/2$.
 \end{remark}
 
@@ -537,28 +550,27 @@ so H3 fails.
 \end{proposition}
 \begin{proof}
 For large $c$: $\alpha c>N$,
-so $\mathcal{T}_{\alpha,\kappa}(c)\subseteq\{n>N\}$.
-Hence $S_N(c)\ge c_*$.
+hence $\mathcal{T}_{\alpha,\kappa}(c)\subseteq\{n>N\}$
+and $S_N(c)\ge c_*$.
 \end{proof}
 
 \begin{remark}[NC$^c\Rightarrow$H3: likely false]
 \label{rem:NC-converse}
-NC$^c$ means: no proportional band
-carries persistent mass $\ge c_*$.
+NC$^c$ means: no proportional band carries
+persistent mass $\ge c_*$.
 But this permits:
 \begin{itemize}[leftmargin=*]
 \item Mass spreading over many thin windows,
   each with $\mu_{n,c}([-c_0,c_0])\to 0$
-  but with $S_N(c)$ bounded below;
-\item Mass migrating through a sequence of
-  thin bands (not any fixed proportional band),
+  but $S_N(c)$ bounded below;
+\item Mass migrating through thin bands
+  (not any fixed proportional band)
   yet preventing H3.
 \end{itemize}
-Formally, NC$^c$ controls
-$\liminf_c\sum_{n\in\mathcal{T}}\mu_{n,c}$
-for each fixed band $\mathcal{T}$,
-but not $\liminf_c S_N(c)
-=\liminf_c\sum_{n>N}\mu_{n,c}([-c_0,c_0])$.
+NC$^c$ controls $\liminf_c
+\sum_{n\in\mathcal{T}}\mu_{n,c}$
+for each fixed band,
+but not $\liminf_c S_N(c)$.
 This is Open Problem~\ref{prob:NC-H3}.
 \end{remark}
 
@@ -569,7 +581,7 @@ This is Open Problem~\ref{prob:NC-H3}.
 \begin{hypothesis}[H3]
 \label{hyp:H3}
 $\sup_{c>c_0}S_N(c)
-=\sup_{c>c_0}\norm{\Bn}^2_{\mathrm{HS}}
+=\sup_{c>c_0}\mathrm{Tr}(\Ac)
 \xrightarrow{N\to\infty}0$.
 \end{hypothesis}
 
@@ -588,12 +600,12 @@ $\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
 \end{proof}
 
 \begin{theorem}[H1 $\Rightarrow$
-  $Q_c^N(g)\to 0$, fixed $g$]
+  $\Ac\to 0$ in SOT]
 \label{thm:H1-H3-ptwise}
 Assume H1. For each fixed $g$:
-$\sup_c Q_c^N(g)\to 0$ as $N\to\infty$.
-Equivalently: $\Ac\to 0$ in the SOT sense
-(strong operator topology), for fixed $g$.
+$Q_c^N(g)=\ip{\Ac g}{g}\to 0$
+as $N\to\infty$, uniformly in $c$.
+Equivalently, $\Ac\to 0$ in SOT.
 \end{theorem}
 \begin{proof}
 $Q_c^N(g)
@@ -601,29 +613,30 @@ $Q_c^N(g)
 +2\sum_{n>N}|a_n^{(\infty)}|^2\to 0$.
 \end{proof}
 
-\begin{remark}[The uniformity gap]
+\begin{remark}[The uniformity gap:
+SOT $\not\Rightarrow$ operator norm]
 \label{rem:unif-gap}
-The gap between
 Theorems~\ref{thm:H3-H1}
-and~\ref{thm:H1-H3-ptwise}:
+and~\ref{thm:H1-H3-ptwise} give:
 \[
-  \text{SOT: }\Ac\to 0\;(\forall g)
-  \quad\not\Rightarrow\quad
-  \text{operator: }\norm{\Ac}_{\mathrm{op}}\to 0.
+  \text{H3}\;(\mathrm{Tr}\to 0)
+  \Rightarrow
+  \norm{\Ac}_{\mathrm{op}}\to 0
+  \Rightarrow
+  \text{H1}
+  \Rightarrow
+  \Ac\to 0\;(\text{SOT}).
 \]
-This is the classical
-strong operator convergence gap.
-H3 ($\sup_c\mathrm{Tr}(\Ac)\to 0$)
-is stronger than both;
-OP~\ref{prob:H1H3} asks whether H1
-(which gives SOT convergence)
-allows the upgrade to
-$\norm{\Ac}_{\mathrm{op}}\to 0$,
-uniformly in $c$.
+The missing reverse:
+SOT $\not\Rightarrow$ $\norm{\Ac}_{\mathrm{op}}\to 0$
+in general.
+By Remark~\ref{rem:rank-obstruction},
+this is a rank explosion question:
+if $\mathrm{rank}(\Ac)$ is controlled,
+the upgrade follows from~\eqref{eq:trace-op-rank}.
 \end{remark}
 
-\begin{theorem}[Main reduction
-  (all implications honest)]
+\begin{theorem}[Main reduction]
 \label{thm:reduction}
 \textup{(i)} Proved:
 \[
@@ -658,10 +671,6 @@ uniformly in $c$.
   {\Rightarrow}
   \text{H1 fails.}
 \]
-\textup{(iv)} The full equivalence
-``H1 $\Leftrightarrow$ H3
-$\Leftrightarrow$ NC$^c$''
-requires all three open problems.
 \end{theorem}
 
 \begin{center}
@@ -671,10 +680,10 @@ requires all three open problems.
 Implication & Status & Obstacle \\
 \midrule
 H3$\Rightarrow$H1 & \textbf{Proved} & --- \\
-H1$\Rightarrow Q_c^N(g)\to 0$ (fixed $g$)
+H1$\Rightarrow\Ac\to 0$ (SOT)
   & \textbf{Proved} & --- \\
 H1$\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
-  & Open & SOT $\not\Rightarrow$ op.~norm \\
+  & Open & Rank explosion \\
 NC$\Rightarrow$H3 fails
   & \textbf{Proved} & --- \\
 Local Weyl$\Rightarrow$NC
@@ -700,45 +709,54 @@ The central insight:
   \quad(\text{cond. on OPs~\ref{prob:H1H3},
   \ref{prob:fourier-mass}}).
 \]
-``Spectral evacuation'' would mean:
-for every $N$, the total $\mu_{n,c}$-mass
+``Spectral evacuation'' means
+for every $N$, the $\mu_{n,c}$-mass
 of $\{n>N\}$ on $[-c_0,c_0]$
-vanishes uniformly in $c$.
-This is H3.
+vanishes uniformly in $c$ (= H3).
 The measures $\mu_{n,c}$ in the transition zone
-prevent this evacuation.
+prevent this.
 
-\subsection{$S_N(c)$ as trace control}
+\subsection{NC as band-level, H3 as global-tail}
 
-$S_N(c)=\mathrm{Tr}(\Ac)$ sums
-all eigenvalues of $\Ac=\Bn^*\Bn$;
-it is a global spectral energy.
-$\norm{\Ac}_{\mathrm{op}}$ is the
-largest eigenvalue only.
-The distinction:
-\[
-  \norm{\Ac}_{\mathrm{op}}
-  \le\mathrm{Tr}(\Ac)
-  =S_N(c)
-  \le\mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}.
-\]
-H3 controls the trace;
-the operator norm of $\Ac$ is what
-H1 would need to control
-(via OP~\ref{prob:H1H3}).
+NC is a band-level phenomenon:
+it asserts persistent mass in a
+\emph{specific proportional band}
+$\mathcal{T}_{\alpha,\kappa}(c)$.
+H3 is a global tail phenomenon:
+it asserts the vanishing of the
+\emph{total} tail mass $S_N(c)$.
+The difference matters:
+NC$\Rightarrow$H3 fails (proved),
+but NC$^c$ does not imply H3
+(mass can migrate between bands;
+OP~\ref{prob:NC-H3}).
+
+\subsection{$S_N(c)$ as trace control;
+rank explosion}
+
+By~\eqref{eq:trace-op-rank}:
+$\norm{\Ac}_{\mathrm{op}}
+\le\mathrm{Tr}(\Ac)=S_N(c)
+\le\mathrm{rank}(\Ac)\cdot\norm{\Ac}_{\mathrm{op}}$.
+H3 controls the trace.
+If rank could be controlled
+(Remark~\ref{rem:rank-obstruction}),
+the operator norm would follow.
+The bandlimit geometry of $\Ac$
+(nested projections $\Pc$, $P_c$, $\Pi_N^{(c)}$)
+may provide the necessary structure:
+this is OP~\ref{prob:H1H3}.
 
 \subsection{Quantum ergodicity in frequency space}
 
 The spectral measures $\mu_{n,c}$
-play the role of semiclassical measures.
-NC asserts their non-vacuation of $[-c_0,c_0]$;
+play the role of semiclassical measures;
+NC asserts non-vacuation of $[-c_0,c_0]$;
 the local Weyl law
 (OP~\ref{prob:fourier-mass})
-asserts their equidistribution in $[-c,c]$:
-$c\cdot\mu_{n,c}|_{[-c,c]}\rightharpoonup
-(\pi\sqrt{1-\xi^2/c^2})^{-1}d\xi$,
-a one-dimensional quantum ergodicity
-statement \cite{Zworski2012}.
+asserts equidistribution in $[-c,c]$:
+a one-dimensional quantum ergodicity statement
+\cite{Zworski2012}.
 
 \subsection{Why existing tools are insufficient}
 
@@ -753,13 +771,13 @@ Bessel
   & Tail; NC \\
 Paper~XII
   & SOT: $\Ac\to 0$ (fixed $g$)
-  & $\norm{\Ac}_{\mathrm{op}}$ uniform \\
+  & $\norm{\Ac}_{\mathrm{op}}$; rank \\
 Paper~VIII
   & $|\widehat{\Phi}|$ pointwise
   & $\mu_{n,c}([-c_0,c_0])$ integrated \\
 Slepian--Weyl
   & $\sigma(c)=\mathrm{Tr}(\Ac)$ growth
-  & Distribution over bands \\
+  & Band distribution; rank \\
 $\mu_{n,c}$ equidistribution
   & NC; spectral evacuation
   & (= Paper~XV) \\
@@ -783,7 +801,7 @@ Paper~XV must establish:
   for all $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
 \item\label{XV-C} \textbf{Summability:}
   $\mu_{n,c}([-c_0,c_0])=c_0/c+o(1/c)$
-  uniformly, so the Riemann sum gives
+  uniformly, so
   $\sum_{n\in\mathcal{T}}\mu_{n,c}([-c_0,c_0])
   \to c_0(\kappa-\alpha)$.
 \end{enumerate}
@@ -799,39 +817,29 @@ The PSWF $\Phi_n^{(c)}$ solves
   +2x\partial_x\psi
   +c^2x^2\psi=\chi_n^{(c)}\psi
 \end{equation}
-with semiclassical parameter $h=1/c$
-and energy level
-$E_n^{(h)}:=\chi_n^{(c)}/c^2\to E_\alpha$
-for $n\sim\alpha c$.
+with energy $E_n^{(h)}:=\chi_n^{(c)}/c^2
+\to E_\alpha$ for $n\sim\alpha c$.
 
 \subsection{WKB and stationary phase}
 
-Classical turning points of~\eqref{eq:PSWF-ODE}
-at $x_0$ with $x_0^2=E_\alpha$.
+Classical turning points at $x_0^2=E_\alpha$.
 WKB in the classical region $|x|<x_0$:
 $\psi(x)\sim A(x)\cos(S(x)/h+\varphi)$.
 Stationary phase for
-$\widehat{\Phi_n^{(c)}}(\xi)
-=\int_{-1}^1\Phi_n^{(c)}(x)e^{-i\xi x}dx$
-with $\xi\in[-c_0,c_0]$ gives:
-\[
-  \mu_{n,c}([-c_0,c_0])
-  \sim \frac{2c_0 C(E_\alpha)}{c},
-\]
-yielding estimates~(\ref{XV-A})--(\ref{XV-C}).
+$\xi\in[-c_0,c_0]$ gives:
+$\mu_{n,c}([-c_0,c_0])\sim 2c_0 C(E_\alpha)/c$,
+yielding (A)--(C).
 
 \subsection{Rigorous programme}
 
 \begin{enumerate}
-\item WKB with remainder $O(h^2)=O(c^{-2})$,
-  uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$;
-  cf.\ \cite{Osipov2013}.
+\item WKB with remainder $O(c^{-2})$,
+  uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$
+  \cite{Osipov2013}.
 \item Stationary phase with uniform remainder.
-\item Prove (A)--(C);
-  conclude NC and Spectral Leakage.
+\item Prove (A)--(C); conclude NC.
 \item Address OP~\ref{prob:H1H3}
-  (whether SOT$\Rightarrow$op.~norm
-  for $\Ac$ via compactness of $\Pc$).
+  (rank control via bandlimit geometry).
 \end{enumerate}
 
 %%═══ 9. OPEN PROBLEMS
@@ -841,41 +849,36 @@ yielding estimates~(\ref{XV-A})--(\ref{XV-C}).
 \begin{problem}[Local Weyl law; Paper~XV]
 \label{prob:fourier-mass}
 \emph{(Priority: critical.)}
-Prove estimates~(\ref{XV-A})--(\ref{XV-C}):
+Prove (A)--(C) of \S\ref{sec:PaperXV}:
 $\mu_{n,c}([-c_0,c_0])\sim c_0/c$
 uniformly in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
 \end{problem}
 
-\begin{problem}[H1$\Rightarrow$op.~norm;
-SOT to operator upgrade]
+\begin{problem}[Rank control and
+  SOT-to-operator-norm upgrade]
 \label{prob:H1H3}
 \emph{(Priority: high.)}
-H1 gives $\Ac\to 0$ in SOT (Thm.~\ref{thm:H1-H3-ptwise}).
-Does this upgrade to
-$\norm{\Ac}_{\mathrm{op}}\to 0$
-uniformly in $c$?
-This would follow if
-$\{\Ac:c>c_0\}$ is equicontinuous
-or if $\Pc$ is compact
-(which it is not on $L^2$,
-but the question is whether
-the interaction with $\Pi_N^{(c)}$
-gives effective compactness).
-Alternative: reformulate H3
-as $\mathrm{Tr}(\Ac)\to 0$
-and ask whether H1 controls the trace directly.
+H1 gives $\Ac\to 0$ in SOT
+(Theorem~\ref{thm:H1-H3-ptwise}).
+By Remark~\ref{rem:rank-obstruction},
+if $\mathrm{rank}(\Ac)\le R$ uniformly,
+then $\mathrm{Tr}(\Ac)\to 0$ implies
+$\norm{\Ac}_{\mathrm{op}}\to 0$.
+Does $\Ac=\Pc(I-\Pi_N^{(c)})P_c
+(I-\Pi_N^{(c)})\Pc$ admit
+finite-rank approximations
+or rank control via the bandlimit geometry
+(nested projections, Paley--Wiener structure)?
+This is the key structural question
+bridging H1 and H3.
 \end{problem}
 
-\begin{problem}[NC$^c\Rightarrow$H3;
-logically independent]
+\begin{problem}[NC$^c\Rightarrow$H3]
 \label{prob:NC-H3}
 \emph{(Priority: clarification; likely false.)}
-Remark~\ref{rem:NC-converse}
-gives two mechanisms
-by which NC$^c$ can coexist with
-H3 failing.
-Construct an explicit example
-(real or model) to confirm.
+NC$^c$ permits mass migration and spreading;
+construct an explicit model example
+with NC$^c$ but H3 failing.
 \end{problem}
 
 \begin{problem}[NC from Papers~VIII, XII]
@@ -901,21 +904,25 @@ $\norm{T_c}\le 1$ & \textbf{Proved} \\
 Tail reduction: $Q_c^N(g)\le\norm{g}^2 S_N(c)$
   & \textbf{Proved} \\
 \eqref{eq:H1ip} & \textbf{Proved} \\
-$S_N(c)=\norm{\Bn}^2_{\mathrm{HS}}$ (HS identity)
+$S_N(c)=\norm{\Bn}^2_{\mathrm{HS}}=\mathrm{Tr}(\Ac)$
   & \textbf{Proved} \\
-$\norm{\Bn}^2_{\mathrm{op}}\le S_N(c)$
-  (with strict ineq.~in general)
+$\norm{\Ac}_{\mathrm{op}}\le\mathrm{Tr}(\Ac)=S_N(c)$
+  (strict in general)
   & \textbf{Proved} \\
-$Q_c^N(g)=\ip{\Ac g}{g}$ & \textbf{Proved} \\
-$\sigma(c)\sim cc_0/\pi$ & \textbf{Proved} \\
-NC $\Rightarrow$ H3 fails & \textbf{Proved (given NC)} \\
-Local Weyl $\Rightarrow$ NC & \textbf{Proved} \\
+$Q_c^N(g)=\ip{\Ac g}{g}$;
+  rank explosion = obstruction
+  & \textbf{Identified} \\
+$\sigma(c)\sim cc_0/\pi$
+  & \textbf{Proved} \\
+NC $\Rightarrow$ H3 fails
+  & \textbf{Proved} \\
+Local Weyl $\Rightarrow$ NC
+  & \textbf{Proved} \\
 H3 $\Rightarrow$ H1 & \textbf{Proved} \\
 H1 $\Rightarrow$ $\Ac\to 0$ (SOT)
   & \textbf{Proved} \\
-WKB programme for Paper~XV & \textbf{Described} \\
 H1 $\Rightarrow$ $\norm{\Ac}_{\mathrm{op}}\to 0$
-  & Open (OP~\ref{prob:H1H3}) \\
+  & Open: rank control (OP~\ref{prob:H1H3}) \\
 NC$^c\Rightarrow$H3
   & Open, likely false (OP~\ref{prob:NC-H3}) \\
 NC holds & Open (OP~\ref{prob:fourier-mass}) \\
@@ -925,20 +932,17 @@ NC holds & Open (OP~\ref{prob:fourier-mass}) \\
 
 \medskip\noindent
 \textbf{Central conclusion.}
-\emph{H1 is equivalent (conditional on
-OPs~\ref{prob:H1H3} and~\ref{prob:fourier-mass})
-to spectral evacuation:
-the vanishing of $\sum_{n>N}\mu_{n,c}([-c_0,c_0])$
-uniformly in $c$.
-The obstruction is spectral non-evacuation
-in the transition zone $n\sim\alpha c$,
-a one-dimensional analogue of quantum ergodicity.
+\emph{The obstruction to coefficient stability
+is spectral non-evacuation:
+the persistence of $\mu_{n,c}$-mass
+in the transition zone $n\sim\alpha c$.
 $S_N(c)=\mathrm{Tr}(\Ac)$ is the trace control;
-the remaining gap is the classical
-SOT-to-operator-norm upgrade,
-OP~\ref{prob:H1H3}.
-Paper~XV establishes NC via WKB and stationary
-phase, uniformly in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.}
+the gap to H1 is a rank explosion problem
+(OP~\ref{prob:H1H3}),
+where the bandlimit geometry of $\Ac$
+may provide the missing rigidity.
+Paper~XV closes NC via WKB and stationary phase,
+uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.}
 
 \begin{thebibliography}{99}
 
