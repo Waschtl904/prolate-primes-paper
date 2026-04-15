@@ -23,13 +23,14 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Stationary Phase, Singularity Competition,\\
-  and the Genuine Dichotomy}
+  Multiscale Structure, Singular--Saddle\\
+  Competition, and the Absence of a\\
+  Single Asymptotic Region}
 
 \author{[Author]}
 
 \begin{abstract}
-This note studies the model integral
+This note studies
 \[
   \Phi(u):=\int_{\mathbb{R}}
   |\beta|^{-1/2}\chi(\beta)
@@ -38,472 +39,443 @@ This note studies the model integral
 \]
 and $F(U):=\int_0^U\Phi(u)\,du$.
 
-Four errors from the previous
-version are corrected:
-\begin{enumerate}[\rm(1)]
-\item The claim
-  ``$\Phi(u)$ decays exponentially
-  for $u>0$'' is replaced by
-  the correct statement:
-  $\Phi(u)=O(u^{-N})$
-  for all $N$ by integration
-  by parts (Riemann--Lebesgue),
-  \emph{without} contour
-  deformation (which would
-  require controlling
-  Stokes lines and the
-  singularity at $\beta=0$).
-\item The product ansatz
-  $|\Phi(u)|\sim
-  |\beta_0|^{-1/2}\cdot
-  |\phi''(\beta_0)|^{-1/2}$
-  is flagged as heuristic:
-  the singularity at $\beta=0$
-  and the saddle at
-  $\beta_0\sim|u|^{1/2}$
-  are \emph{not independent}
-  and require a split-integral
-  analysis.
-\item The global conclusion
-  ``cubic term worsens decay''
-  is retracted.
-\item The genuine dichotomy
-  is stated:
-  for $u<0$ and $|u|\to\infty$,
-  does the singularity at $\beta=0$
-  or the saddle at $\beta_0$
-  dominate $\Phi(u)$?
-  This determines whether
-  $|\Phi(u)|\sim|u|^{-1/2}$
-  or $|\Phi(u)|\sim|u|^{-1/3}$.
-\end{enumerate}
+The main conclusion,
+correcting two previous versions:
+\begin{center}
+\emph{$\Phi(u)$ is a
+multi-scale object.
+No single asymptotic region
+describes its behaviour.
+The integral $F(U)$ cannot be
+assigned a global power law
+without matching three separate
+layers.}
+\end{center}
+
+\noindent Specifically:
+\begin{itemize}[nosep]
+\item The critical transition
+  is not at $u=0$ (sign change)
+  but at $\beta\sim u^{1/2}$,
+  where the cubic and linear
+  phases are comparable:
+  a \emph{singular--saddle hybrid}.
+\item There is no ``global $U^{2/3}$
+  law'' (previous version~1
+  was wrong) and no ``exponential
+  decay for $u>0$''
+  (previous version~2 was
+  too strong).
+\item Whether $F(U)=o(U^{1/2})$
+  or $F(U)=\Theta(U^{1/2})$
+  requires matching the three
+  layers; this is the precise
+  open problem for Paper~XVI.
+\end{itemize}
 \end{abstract}
 
 \maketitle
 
-\section{Setup}
+\section{Setup and What We Know
+  Unconditionally}
 \label{sec:setup}
 
 \begin{definition}[Fold amplitude]
 \label{def:Phi}
-Fix $c_3>0$, $\chi\in C^\infty_c$
-with $\chi\equiv 1$ near $0$.
+Fix $c_3>0$,
+$\chi\in C^\infty_c(\mathbb{R})$,
+$\chi\equiv 1$ near $0$.
 \begin{equation}\label{eq:Phi}
   \Phi(u):=\int_{\mathbb{R}}
   |\beta|^{-1/2}\chi(\beta)
   e^{i(\beta u+c_3\beta^3)}\,d\beta.
 \end{equation}
-Without cubic ($c_3=0$):
-$\Phi_0(u)=O(|u|^{-1/2})$
-and $F_0(U):=
-\int_0^U\Phi_0(u)\,du=O(U^{1/2})$
-(Ces\`aro baseline).
 \end{definition}
 
+\begin{lemma}[Unconditional
+  bounds \Rig]
+\label{lem:rig}
+\begin{enumerate}[\rm(i)]
+\item $|\beta|^{-1/2}\chi\in L^2$,
+  so $\Phi\in L^2(\mathbb{R})$
+  by Plancherel.
+\item $|\Phi(u)|=O(|u|^{-1/2})$
+  uniformly: this follows
+  from $|\beta|^{-1/2}\chi\in L^1$
+  and the Riemann--Lebesgue lemma
+  applied to the $u$-Fourier
+  transform (the cubic perturbation
+  $e^{ic_3\beta^3}$ does not
+  change the $L^1$ membership).
+\item $|F(U)|=O(U^{1/2})$:
+  immediate from (ii).
+\end{enumerate}
+These hold for all $u\in\mathbb{R}$
+and all $c_3>0$.
+\end{lemma}
+
+\begin{remark}[What is \emph{not}
+  known \Open]
+\label{rem:open}
+\begin{itemize}[nosep]
+\item Whether $|\Phi(u)|
+  =o(|u|^{-1/2})$.
+\item Whether $F(U)=o(U^{1/2})$.
+\item Whether the cubic term
+  improves, worsens, or is
+  neutral for the asymptotics
+  of $\Phi$ and $F$.
+\end{itemize}
+Both previous versions
+made unwarranted claims
+about these questions.
+\end{remark}
+
 \section{Critical Points and
-  Stationary Phase}
-\label{sec:sp}
+  the Transition Scale}
+\label{sec:transition}
 
 \begin{lemma}[Critical points \Rig]
 \label{lem:sp}
-Phase: $\phi(\beta)=\beta u+c_3\beta^3$;
-$\phi'(\beta)=u+3c_3\beta^2$.
-\begin{itemize}[nosep]
-\item $u>0$:
-  $\phi'(\beta)>0$ for all
-  $\beta\in\mathbb{R}$;
-  \emph{no real critical point}.
-\item $u<0$:
-  two real critical points
-  $\pm\beta_0$,
-  $\beta_0:=\sqrt{|u|/(3c_3)}>0$.
-\item $\phi''(\pm\beta_0)
-  =\pm 6c_3\beta_0\ne 0$:
-  non-degenerate saddles.
-\end{itemize}
+Phase: $\phi(\beta)=\beta u+c_3\beta^3$.
+$\phi'(\beta)=u+3c_3\beta^2=0$
+iff $\beta_\pm=\pm\sqrt{|u|/(3c_3)}$
+(real only for $u<0$).
 \end{lemma}
 
-\begin{remark}[What follows from
-  no critical point \Rig]
-\label{rem:u-pos}
-For $u>0$:
-since $\phi'\ne 0$ on $\mathbb{R}$
-and the amplitude
-$|\beta|^{-1/2}\chi$ is in $L^1$
-away from $\beta=0$,
-repeated integration by parts
-in~\eqref{eq:Phi}
-(splitting the integral away from
-$\beta=0$) gives:
-\begin{equation}\label{eq:u-pos-bound}
-  \Phi(u)=O(u^{-N})
-  \text{ for all }N\ge 1,
-\end{equation}
-provided the amplitude
-$(|\beta|^{-1/2}\chi)/(\phi')^N$
-remains integrable after
-$N$ integrations by parts.
-This requires careful treatment
-of the singularity at $\beta=0$;
-for $N=1$ this gives
-$O(u^{-1})$ from the
-non-singular part,
-but the singular part
-near $\beta=0$ contributes
-$O(u^{-1/2})$ regardless
-(Riemann--Lebesgue).
+\begin{remark}[The transition is
+  at $\beta\sim u^{1/2}$, not at
+  $u=0$ \Rig]
+\label{rem:transition}
+The transition between the
+``linear phase dominates''
+($|\beta u|\gg|c_3\beta^3|$)
+and ``cubic phase dominates''
+($|c_3\beta^3|\gg|\beta u|$)
+regimes occurs when
+\[
+  |\beta u|\sim|c_3\beta^3|
+  \quad\Rightarrow\quad
+  \beta\sim\sqrt{|u|/c_3}
+  =:\beta_{\mathrm{trans}}(u).
+\]
+For $|\beta|\ll\beta_{\mathrm{trans}}$:
+phase $\approx\beta u$
+(Fourier regime).
+For $|\beta|\gg\beta_{\mathrm{trans}}$:
+phase $\approx c_3\beta^3$
+(cubic / Airy regime).
 
-\textbf{Corrected statement:}
-$\Phi(u)=O(u^{-1/2})$
-for all $u>0$
-(from the singularity at $\beta=0$
-dominates for bounded $u$;
-for large $u$ the integration
-by parts competes).
-\emph{The claim ``exponentially
-small'' from the previous
-version is not justified}
-without contour deformation,
-which would require:
-(a) verifying no Stokes line
-crosses the singularity
-$\beta=0$;
-(b) controlling the
-contribution of $|\beta|^{-1/2}$
-along the complex contour.
-This is an open problem.
+\emph{The singular--saddle
+hybrid lives at}
+$\beta\sim\beta_{\mathrm{trans}}
+=\sqrt{|u|/c_3}$:
+neither the Fourier nor
+the Airy approximation applies.
+This scale is the genuine
+new object in the problem.
 \end{remark}
 
-\section{The Singularity--Saddle
-  Competition for $u<0$}
-\label{sec:competition}
+\section{Three Layers of $\Phi(u)$}
+\label{sec:layers}
 
-\begin{remark}[Why the product
-  ansatz fails \Warn]
-\label{rem:product-fails}
-The previous version claimed:
-$|\Phi(u)|\sim
-|\beta_0|^{-1/2}\cdot
-|\phi''(\beta_0)|^{-1/2}
-=|u|^{-1/4}\cdot|u|^{-1/6}
-=|u|^{-1/3?}$.
+\begin{remark}[Three-layer
+  structure \Heur]
+\label{rem:layers}
+For fixed $u\ne 0$, split the
+$\beta$-integral~\eqref{eq:Phi}
+into:
 
-This product ansatz fails because:
-\begin{enumerate}[\rm(a)]
-\item Stationary phase applies
-  when the amplitude is smooth
-  near the critical point.
-  Here the amplitude is
-  $|\beta|^{-1/2}$, which is
-  \emph{singular at $\beta=0$}.
-\item The critical point
-  $\beta_0=\sqrt{|u|/(3c_3)}
-  \to\infty$ as $|u|\to\infty$;
-  for large $|u|$, $\beta_0$
-  is far from $\beta=0$
-  and the product ansatz
-  may be valid.
-  But for moderate $|u|\sim 1$,
-  the saddle and singularity
-  are both at scale $O(1)$
-  and interact.
-\item The correct procedure is
-  to \emph{split the integral}:
-  \[
-    \Phi(u)=\int_0^{\beta_0/2}
-    +\int_{\beta_0/2}^\infty
-    +\int_{-\infty}^0 \cdots
-  \]
-  and treat each part
-  separately.
-\end{enumerate}
+\medskip
+\noindent\textbf{Layer~I
+  (inner, $|\beta|\ll
+  \beta_{\mathrm{trans}}$):}
+Linear phase dominates;
+$e^{ic_3\beta^3}\approx 1$;
+contribution $\approx\Phi_0(u)$
+(the cubic-free case);
+leads to $|u|^{-1/2}$ behaviour.
+This is the \emph{singularity-dominated}
+contribution.
+
+\medskip
+\noindent\textbf{Layer~II
+  (transition,
+  $|\beta|\sim\beta_{\mathrm{trans}}$):}
+Both phases comparable;
+for $u<0$, the critical
+points $\pm\beta_0$ lie in
+this layer
+($\beta_0=\sqrt{|u|/(3c_3)}
+\sim\beta_{\mathrm{trans}}$);
+stationary phase gives
+$|\beta_0|^{-1/2}
+\cdot|\phi''(\beta_0)|^{-1/2}
+=|u|^{-1/4}\cdot|u|^{-1/4}
+=|u|^{-1/2}$.
+For $u>0$: no real critical
+point in Layer~II;
+contribution is controlled
+by integration by parts.
+
+\medskip
+\noindent\textbf{Layer~III
+  (outer, $|\beta|\gg
+  \beta_{\mathrm{trans}}$):}
+Cubic phase dominates;
+rapid oscillation;
+contribution is $o(|u|^{-N})$
+for all $N$ by stationary
+phase (the cubic phase has
+no real critical point
+for large $|\beta|$ in
+this regime).
+
+\medskip
+\textbf{Observation:}
+Layers~I and~II both give
+$O(|u|^{-1/2})$.
+The net behaviour of $\Phi(u)$
+depends on whether they
+add or cancel.
+\emph{This cannot be determined
+without computing the phases
+$e^{i\phi(0)}$ (Layer~I)
+and $e^{i\phi(\beta_0)}$
+(Layer~II) and their
+relative sign.}
 \end{remark}
 
-\begin{proposition}[Split-integral
-  analysis \Open]
-\label{prop:split}
-For $u<0$, $|u|\gg 1$,
-define $\beta_0=\sqrt{|u|/(3c_3)}$.
-Split:
-\begin{equation}\label{eq:split}
-  \Phi(u)
-  = \underbrace{\int_0^{\beta_0/2}
-    |\beta|^{-1/2}e^{i\phi(\beta)}
-    d\beta}_{=:A(u)\;\text{singularity-dominated}}
-  +\underbrace{\int_{\beta_0/2}^{2\beta_0}
-    |\beta|^{-1/2}e^{i\phi(\beta)}
-    d\beta}_{=:B(u)\;\text{saddle-dominated}}
-  + \text{tail}.
-\end{equation}
-\begin{enumerate}[\rm(i)]
-\item \textbf{Part $A(u)$}
-  (singularity near $\beta=0$):
-  on $[0,\beta_0/2]$,
-  $\phi'(\beta)=u+3c_3\beta^2
-  \approx u$ (constant $\approx u<0$);
-  integration by parts gives:
-  \[
-    A(u)\approx
-    \frac{e^{i\phi(0)}}{iu}
-    \int_0^{\beta_0/2}
-    \frac{d}{d\beta}
-    [|\beta|^{-1/2}e^{i\phi(\beta)}]
-    \cdots
-  \]
-  Leading term:
-  $|A(u)|=O(|u|^{-1/2})$
-  (from the singularity
-  at $\beta=0$).
-\item \textbf{Part $B(u)$}
-  (near saddle $\beta_0$):
-  on $[\beta_0/2,2\beta_0]$,
-  amplitude $\sim\beta_0^{-1/2}
-  =O(|u|^{-1/4})$;
-  $|\phi''(\beta_0)|
-  =6c_3\beta_0=O(|u|^{1/2})$;
-  standard stationary phase:
-  \[
-    |B(u)|\sim
-    \beta_0^{-1/2}\cdot
-    |\phi''(\beta_0)|^{-1/2}
-    =|u|^{-1/4}\cdot|u|^{-1/4}
-    =|u|^{-1/2}.
-  \]
-\end{enumerate}
-Both parts give $O(|u|^{-1/2})$.
-
-\textbf{Tentative conclusion:}
-$|\Phi(u)|=O(|u|^{-1/2})$
-for $u<0$, $|u|\to\infty$:
-the cubic term does
-\emph{not} change the
-leading power-law decay.
-\emph{This is an open computation;
-the constants and
-oscillatory cancellation
-between $A$ and $B$
-are not determined here.}
-\end{proposition}
-
-\begin{remark}[Corrected exponent
+\begin{remark}[Why ``exponential
+  decay for $u>0$'' is wrong
   \Warn]
-\label{rem:corrected-exponent}
-The previous version claimed
-$|\Phi(u)|\sim|u|^{-1/3}$
-(from the erroneous product
-ansatz $|u|^{-1/6}\cdot|u|^{-1/6}$).
-The split-integral analysis
-suggests instead
-$|\Phi(u)|=O(|u|^{-1/2})$
-(same as without the cubic term).
-
-If this is correct, the cubic
-term does not change the
-leading decay rate,
-only the oscillatory
-phase and sub-leading constants.
-The Ces\`aro bound
-$F(U)=O(U^{1/2})$ would then
-not be improved by the
-cubic structure.
-
-\textbf{This is the key question
-for Paper~XVI.}
+\label{rem:no-exponential}
+For $u>0$, Layer~II has no
+real critical point,
+but Layer~I still contributes
+$O(u^{-1/2})$ from the
+singularity at $\beta=0$.
+Integration by parts in
+$\beta$ (away from $0$)
+gives additional decay
+from Layers~II and~III,
+but the singularity
+$|\beta|^{-1/2}$ at $\beta=0$
+limits the gain to at most
+$O(u^{-1})$ from Layer~I
+(integrating by parts once).
+Exponential decay would
+require a contour deformation
+past the singularity,
+which is not justified
+without Stokes-line analysis.
+The correct bound is:
+$|\Phi(u)|=O(u^{-1/2})$
+for $u>0$,
+with possible improvement
+to $O(u^{-1})$ or higher
+from non-singular layers.
 \end{remark}
 
-\section{The Genuine Dichotomy}
-\label{sec:dichotomy}
+\begin{remark}[Why there is no
+  global power law \Rig]
+\label{rem:no-global}
+The bound $|\Phi(u)|=O(|u|^{-1/2})$
+is the best unconditional
+statement.
+Both previous claims:
+\begin{itemize}[nosep]
+\item ``$|\Phi(u)|\sim|u|^{-1/3}$
+  from saddle'' (Version~1):
+  false, because Layer~I
+  also gives $|u|^{-1/2}$.
+\item ``$|F(U)|=\Theta(U^{2/3})$''
+  (Version~1): retracted.
+\item ``exponential for $u>0$''
+  (Version~2): too strong,
+  requires unjustified
+  contour deformation.
+\end{itemize}
+The correct statement is:
+\emph{$\Phi(u)$ is a multi-scale
+object; no single asymptotic
+region determines its behaviour;
+global bounds on $F(U)$ require
+matching Layers~I and~II.}
+\end{remark}
 
-\begin{problem}[Singularity vs.
-  saddle: the genuine dichotomy
+\section{The Deciding Computation}
+\label{sec:deciding}
+
+\begin{problem}[Layer matching:
+  the decisive computation
   \Open]
-\label{prob:dichotomy}
+\label{prob:matching}
 For $u<0$, $|u|\to\infty$:
-which term dominates
-in~\eqref{eq:split}?
-\begin{enumerate}[\rm(A)]
-\item \textbf{Singularity wins:}
-  $|\Phi(u)|\sim C|u|^{-1/2}$;
-  cubic term irrelevant at
-  leading order;
-  $|F(U)|=\Theta(U^{1/2})$;
-  Ces\`aro is sharp;
-  \emph{no Airy improvement}.
-\item \textbf{Saddle wins:}
-  $|\Phi(u)|\sim C|u|^{-?}$
-  with exponent $<1/2$;
-  possible improvement over
-  Ces\`aro;
-  \emph{Airy regime applies}.
-\item \textbf{Cancellation between
-  $A(u)$ and $B(u)$:}
-  both contribute $O(|u|^{-1/2})$
-  but with opposite sign;
-  $|\Phi(u)|=o(|u|^{-1/2})$;
-  this would be the
-  most favourable case,
-  giving genuine improvement.
+
+\medskip
+\noindent\textbf{Layer~I
+  contribution:}
+\[
+  A(u):=\int_0^{|u|^{1/3}}
+  |\beta|^{-1/2}
+  e^{i(\beta u+c_3\beta^3)}d\beta
+  \sim C_A e^{i\pi/4}|u|^{-1/2}
+\]
+(leading term from the
+$|\beta|^{-1/2}$ endpoint;
+sub-leading from stationary
+phase of the cubic perturbation).
+
+\medskip
+\noindent\textbf{Layer~II
+  contribution:}
+\[
+  B(u):=\int_{|u|^{1/3}}^\infty
+  |\beta|^{-1/2}
+  e^{i(\beta u+c_3\beta^3)}d\beta
+  \sim C_B |\beta_0|^{-1/2}
+  |\phi''(\beta_0)|^{-1/2}
+  e^{i\phi(\beta_0)+i\pi/4}
+\]
+(standard stationary phase
+at $\beta_0=\sqrt{|u|/(3c_3)}$);
+$|B(u)|=O(|u|^{-1/2})$.
+
+\medskip
+\noindent\textbf{The phase gap:}
+\[
+  \phi(\beta_0)
+  =\beta_0 u+c_3\beta_0^3
+  =-\tfrac{2}{3}
+  \sqrt{\tfrac{|u|^3}{3c_3}}
+  \to-\infty.
+\]
+So $e^{i\phi(\beta_0)}$ oscillates
+with frequency $\sim|u|^{3/2}$
+as $|u|\to\infty$;
+the phase gap between
+$A(u)$ (phase $\sim e^{i\pi/4}$)
+and $B(u)$ (phase
+$e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}
++i\pi/4}$)
+oscillates rapidly.
+
+\medskip
+\noindent\textbf{The decision:}
+\begin{enumerate}[\rm(a)]
+\item If $|A(u)+B(u)|
+  =\Theta(|u|^{-1/2})$:
+  both layers add constructively
+  (on average); Ces\`aro is sharp;
+  programme stalls.
+\item If $|A(u)+B(u)|
+  =o(|u|^{-1/2})$:
+  cancellation between layers;
+  genuine improvement;
+  $F(U)=o(U^{1/2})$.
 \end{enumerate}
-The correct answer depends on:
-\begin{itemize}[nosep]
-\item the exact phase
-  $e^{i\phi(\beta_0)}$
-  at the saddle;
-\item whether $e^{i\phi(0)}$
-  (singularity contribution)
-  and $e^{i\phi(\beta_0)}$
-  (saddle contribution)
-  add or cancel;
-\item the sub-leading structure
-  of $\phi$ near $\beta=0$.
-\end{itemize}
-This is the \emph{single
-critical computation}
-for Paper~XVI.
+Because the phase gap
+$\phi(\beta_0)\to-\infty$
+oscillates rapidly,
+the \emph{average} of
+$|A(u)+B(u)|$ over $u$
+may be smaller than
+$|u|^{-1/2}$,
+but the pointwise behaviour
+depends on the precise
+phase structure.
+
+\textbf{This is the single
+computation that decides
+the entire programme:}
+compute $A(u)+B(u)$
+asymptotically for $u<0$,
+$|u|\to\infty$,
+retaining the phase
+of each contribution.
 \end{problem}
 
-\begin{remark}[What we actually
-  know \Rig]
-\label{rem:what-we-know}
-The following is rigorous:
+\begin{remark}[Connection to
+  Paper~XV: the correct
+  version of ass:Phi-cubic
+  \Open]
+\label{rem:connection}
+Assumption~ass:Phi-cubic in
+Paper~XV requires:
+$\Phi(u)=C_*|u|^{-1/2}
+e^{i(\alpha_*u+c_3u^3)}(1+O(u))$.
+In terms of the layer structure:
+\begin{itemize}[nosep]
+\item The factor $e^{ic_3u^3}$
+  in the assumption is
+  the \emph{phase of Layer~II
+  (saddle)} written in terms
+  of $u$ (not $\beta$);
+  this is not the same
+  as the cubic in the
+  $\beta$-phase.
+\item The assumption is really
+  asking: does Layer~II
+  dominate Layer~I,
+  with the saddle phase
+  giving a well-defined
+  ``Airy-type'' form?
+\item The mini-model shows
+  this is \emph{not automatic}:
+  both layers give $O(|u|^{-1/2})$
+  and the assumption
+  would require showing
+  Layer~I is sub-leading.
+\end{itemize}
+This refines the scope of
+Paper~XVI:
+not ``prove the assumption''
+but first \emph{decide
+which layer dominates}
+by computing $A(u)+B(u)$.
+\end{remark}
+
+\section{Summary: What the
+  Mini-Model Actually Proves}
+\label{sec:summary}
+
+\begin{theorem}[Mini-model
+  conclusions \Rig+\Open]
+\label{thm:summary}
+\emph{Rigorous:}
 \begin{enumerate}[\rm(1)]
-\item $\Phi\in L^2(\mathbb{R})$;
-  $|\Phi(u)|=O(|u|^{-1/2})$
-  (from $|\cdot|^{-1/2}\chi
-  \in L^2$, Plancherel;
-  holds with or without cubic).
-\item For $u>0$:
-  no real critical point;
-  $\Phi(u)=O(u^{-1/2})$
-  from Riemann--Lebesgue;
-  the question of whether
-  $\Phi(u)$ decays faster
-  is open (requires contour
-  analysis).
-\item For $u<0$:
-  two real critical points;
-  the leading behaviour is
-  $O(|u|^{-1/2})$ from both
-  the singularity and the
-  saddle (split analysis above);
-  whether they cancel
-  or reinforce is the
-  open problem.
-\item $F(U)=\int_0^U\Phi(u)\,du
-  =O(U^{1/2})$
-  (rigorous upper bound;
-  from $|\Phi|=O(u^{-1/2})$).
-\item Whether $F(U)=o(U^{1/2})$
-  is equivalent to
-  $\Phi(u)=o(u^{-1/2})$
-  and is entirely open.
-\end{enumerate}
-\end{remark}
-
-\section{Consequence for Paper~XV
-  and Paper~XVI}
-\label{sec:consequence}
-
-\begin{remark}[Revised status
-  of Assumption~ass:Phi-cubic]
-\label{rem:revised}
-The mini-model shows:
-\begin{itemize}[nosep]
-\item The cubic term in the
-  phase does NOT automatically
-  improve the decay of $\Phi$.
-\item The leading order
-  $|\Phi(u)|=O(|u|^{-1/2})$
-  is preserved under the
-  cubic perturbation
-  (from both singularity
-  and saddle, each contributing
-  $O(|u|^{-1/2})$).
-\item Any improvement requires
-  cancellation between
-  singularity and saddle
+\item $|\Phi(u)|=O(|u|^{-1/2})$;
+  $|F(U)|=O(U^{1/2})$.
+\item $\Phi$ is a multi-scale
+  object with three layers
+  (I: singularity-dominated,
+  II: saddle-dominated,
+  III: oscillatory tail).
+\item Layers~I and~II
+  each contribute $O(|u|^{-1/2})$;
+  no layer dominates
+  unconditionally.
+\item The decisive quantity
+  is the relative phase
+  between the two leading
   contributions.
-  This cancellation is
-  \emph{not guaranteed}
-  and depends on the
-  exact phase values.
-\end{itemize}
-For Paper~XV:
-the Ces\`aro bound
-$S(c)=o(c^{\theta_0})$ remains
-the best unconditional result.
-
-For Paper~XVI:
-the task is to compute
-exactly whether the
-cancellation in
-Problem~\ref{prob:dichotomy}
-case~(C) occurs,
-i.e., whether
-$|A(u)+B(u)|=o(|u|^{-1/2})$.
-\emph{This is the precise
-one-integral computation
-that decides the entire programme.}
-\end{remark}
-
-\begin{problem}[The deciding
-  integral \Open]
-\label{prob:deciding}
-Compute explicitly:
-\begin{equation}\label{eq:deciding}
-  \Phi(u)
-  =\int_{-\infty}^\infty
-  |\beta|^{-1/2}\chi(\beta)
-  e^{i(\beta u+c_3\beta^3)}\,d\beta
-\end{equation}
-for $u<0$, $|u|\to\infty$,
-as an asymptotic series.
-Specifically:
-\begin{enumerate}[\rm(i)]
-\item Compute the phase values
-  $e^{i\phi(0)}=e^{0}=1$
-  (singularity contribution)
-  and $e^{i\phi(\beta_0)}
-  =e^{i(\beta_0 u+c_3\beta_0^3)}$
-  (saddle contribution).
-\item Determine the relative
-  sign / phase between
-  $A(u)$ and $B(u)$.
-\item Decide:
-  \begin{itemize}[nosep]
-  \item If $|A(u)+B(u)|
-    =\Theta(|u|^{-1/2})$:
-    Ces\`aro is sharp;
-    the programme stalls.
-  \item If $|A(u)+B(u)|
-    =o(|u|^{-1/2})$:
-    genuine improvement
-    exists; characterise
-    the exponent.
-  \end{itemize}
 \end{enumerate}
-Note: $\phi(\beta_0)
-=\beta_0 u+c_3\beta_0^3$
-$=\sqrt{|u|/(3c_3)}\cdot(-|u|)
-+c_3(|u|/(3c_3))^{3/2}$
-$=-(2/3)\sqrt{|u|^3/(3c_3)}$
-(classical cubic phase value);
-this is real and negative,
-so $e^{i\phi(\beta_0)}
-=e^{-i\frac{2}{3}
-\sqrt{|u|^3/(3c_3)}}$
-oscillates rapidly for large $|u|$.
-The phase of the singularity
-contribution is $e^{i\phi(0)}=1$
-(real, positive).
-\textbf{They do not cancel
-automatically:}
-their relative phase is
-$e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}}$,
-which oscillates.
-The asymptotic cancellation
-depends on the coefficient
-structure.
-\end{problem}
+\emph{Open:}
+\begin{enumerate}[\rm(5)]
+\item Is $F(U)=o(U^{1/2})$?
+  Equivalent to:
+  does cancellation occur
+  between Layers~I and~II?
+\item Does Layer~I or~II
+  dominate $\Phi(u)$
+  for $u<0$, $|u|\to\infty$?
+\item Can the cubic phase
+  of Layer~II be matched
+  to the Airy structure
+  assumed in
+  ass:Phi-cubic?
+\end{enumerate}
+\end{theorem}
 
 \end{document}
