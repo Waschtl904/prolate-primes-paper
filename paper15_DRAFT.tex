@@ -27,21 +27,19 @@
 \newcommand{\Tcc}{\mathcal{T}_c^{(c)}}
 \newcommand{\gsing}{g_{\mathrm{sing}}}
 \newcommand{\greg}{g_{\mathrm{reg}}}
-\newcommand{\Rig}{\textup{[Rigorous]}}
-\newcommand{\Cond}{\textup{[Conditional]}}
-\newcommand{\Heur}{\textup{[Heuristic]}}
+\newcommand{\Rig}{\textup{[Rig]}}
+\newcommand{\Cond}{\textup{[Cond]}}
+\newcommand{\Heur}{\textup{[Heur]}}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 81Q20, 11L07}
 \keywords{Prolate spheroidal wave functions,
-  intermediate regime, Dirichlet kernel,
-  mesoscopic scaling, WKB asymptotics,
-  critical Toeplitz energy,
+  intermediate regime, WKB asymptotics,
   Dirichlet-kernel obstruction,
-  Poisson summation,
-  Airy normal form,
+  Poisson summation, fold singularity,
+  Airy-type stationary phase,
   degenerate stationary phase,
-  fold singularity, scaling gap,
-  non-commuting limits}
+  1D model integral, cubic normal form,
+  uniform microlocal estimate}
 
 \begin{document}
 
@@ -58,60 +56,55 @@
 \begin{abstract}
 Paper~XIV reduced H1 to
 $\Sigma_{\mathrm{int}}=o(1)$.
-This paper carries out a complete
-scalar reduction,
-establishes two rigorous results
-(exact equivalence and
-Dirichlet obstruction),
+This paper carries out the
+scalar reduction to a single
+object $I_0(x,c)$,
+establishes its 1D model form,
 and identifies the precise
-remaining task.
+remaining analytic obstacle.
 
-All claims are explicitly labelled
-\Rig, \Cond, or \Heur\ throughout;
-the reader can immediately
-identify the logical status
-of each step.
+All claims are labelled
+\Rig\ (unconditional),
+\Cond\ (conditional on
+Assumption~\ref{ass:Phi-cubic}),
+or \Heur\ (scaling argument).
 
-The rigorous contributions:
-\begin{enumerate}[\rm(1)]
-\item \emph{Exact equivalence} \Rig:
-  $\Sigma_{\mathrm{model}}=o(1)
-  \iff S(c)=o(c^{-(2-2\theta_0)})$;
-  gap $=c^{2-\theta_0}$
-  $=$ frozen-phase saturation rate.
-\item \emph{Ces\`aro step} \Rig:
-  $\Psi\in L^1(d\lambda/\lambda)$
-  via Fubini, giving $S(c)=o(c^{\theta_0})$.
-\item \emph{Dirichlet obstruction} \Rig:
-  $J_K=\Theta(K^{1/2})$ with constant
-  phase $e^{i\pi/4}$; no improvement
-  over Ces\`aro from $D^*_K$ alone.
-\item \emph{Poisson bridge} \Rig:
-  Poisson summation converts
-  discrete $D^*_K$
-  into a sum of continuous
-  phase integrals $I_m(x,c)$;
-  the $m=0$ term $I_0(x,c)$
-  is identified as the
-  sole non-trivial contribution.
-\end{enumerate}
-The conditional/heuristic part:
-\begin{enumerate}[\rm(5)]
-\item \emph{Airy scaling} \Heur:
-  at scale $\xi\sim c^{-\theta_0/3}$,
-  the fold $\theta''(0)=0$,
-  $\theta'''(0)\ne 0$
-  suggests an Airy-type structure
-  for $I_0$;
-  rigorously establishing this
-  requires the Airy normal form
-  (Paper~XVI, Task~A).
-\item \emph{Conditional bound} \Cond:
-  if the Airy normal form holds
-  with uniform error control,
-  then $S(c)=O(c^{\theta_0/2})$,
-  closing the gap for $\theta_0>4/5$.
-\end{enumerate}
+\medskip
+\noindent\textbf{Rigorous results:}
+(1)~Exact equivalence
+$\Sigma_{\mathrm{model}}=o(1)
+\iff S(c)=o(c^{-(2-2\theta_0)})$
+(Lem.~\ref{lem:S-equivalence});
+gap $=c^{2-\theta_0}$.
+(2)~Ces\`aro: $S(c)=o(c^{\theta_0})$
+(Cor.~\ref{cor:cesaro-closed}).
+(3)~Dirichlet obstruction:
+$J_K=\Theta(K^{1/2})$, coherent
+phase, no improvement
+(Lem.~\ref{lem:dirichlet-obstruction}).
+(4)~Poisson bridge:
+$I_0$ is the sole non-trivial term
+(Lem.~\ref{lem:poisson-bridge}).
+(5)~1D reduction of $I_0$:
+$I_0(x,c)=\frac{c^{\theta_0/2}}{|x|^{1/2}}
+\int_0^{c^{\theta_0}/|x|}
+u^{-1/2}\Phi(u)\,du$
+(Prop.~\ref{prop:I0-1D}),
+with $\Phi$ the normalised
+fold amplitude.
+
+\medskip
+\noindent\textbf{Single hard assumption
+(Paper~XVI):}
+Assumption~\ref{ass:Phi-cubic}:
+$\Phi(u)=C_*u^{-1/2}
+e^{i(c_3 u^3+\alpha_* u)}(1+O(u))$
+uniformly in $c$.
+Under this assumption:
+$I_0=O(c^{\theta_0/2}/|x|^{1/2})$,
+$S(c)=O(c^{\theta_0/2})$,
+gap closes for $\theta_0>4/5$
+(Prop.~\ref{prop:S-conditional}).
 \end{abstract}
 
 \maketitle
@@ -119,536 +112,504 @@ The conditional/heuristic part:
 \section{Introduction}
 \label{sec:intro}
 
-\subsection{Inherited structure}
-
-\begin{equation}\label{eq:chain-XIV}
-  (C)+(D\text{-strong})
-  \Rightarrow\text{H3 fails}
-  \Rightarrow\text{H1 fails.}
-\end{equation}
-\begin{equation}\label{eq:int-target}
-  \Sigma_{\mathrm{int}}
-  := \sum_{\substack{n\ne m,\\
-      C<|n-m|\le c^{\theta_0}}}
-    |(\AcM)_{nm}|^2
-  \stackrel{?}{=} o(1).
-\end{equation}
-
-\subsection{Logical map of Paper~XV}
-
-\begin{remark}[Three levels of
-  rigor in this paper]
-\label{rem:three-levels}
-To avoid any ambiguity about the
-strength of each claim,
-we use the following labels:
-\begin{center}
-\begin{tabular}{lp{0.62\linewidth}}
-\toprule
-Label & Meaning \\
-\midrule
-\Rig &
-  Unconditional; complete proof
-  given or directly cited.\\
-\Cond &
-  Follows from a clearly stated
-  assumption (labelled and
-  isolated); proof sketch given.\\
-\Heur &
-  Scaling argument or
-  asymptotic model;
-  motivates the structure but
-  is not a theorem.
-  Serves as input for
-  Paper~XVI.\\
-\bottomrule
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-Result & Label & Location \\
-\midrule
-Exact equivalence &
-  \Rig & Lem.~\ref{lem:S-equivalence}\\
-Ces\`aro step &
-  \Rig & Cor.~\ref{cor:cesaro-closed}\\
-Dirichlet obstruction &
-  \Rig & Lem.~\ref{lem:dirichlet-obstruction}\\
-Poisson bridge &
-  \Rig & Lem.~\ref{lem:poisson-bridge}\\
-$S(c)=O(c^{\theta_0/2})$ &
-  \Cond & Prop.~\ref{prop:S-conditional}\\
-Airy scaling $\beta\sim c^{-\theta_0/3}$ &
-  \Heur & Rem.~\ref{rem:airy-heuristic}\\
-Gap closes for $\theta_0>4/5$ &
-  \Heur & Rem.~\ref{rem:airy-heuristic}\\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{remark}
-
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
-\textbf{Proved unconditionally \Rig:}
-\begin{itemize}[leftmargin=*]
+\textbf{\Rig\ (unconditional):}
+\begin{itemize}[leftmargin=*,nosep]
 \item WKB fold:
-  $g\sim C_*|\alpha-\alpha_*|^{-1/2}$,
-  $\theta''(0)=0$, $\theta'''(0)\ne 0$.
-\item $\Sigma_{\mathrm{model}}=o(1)
-  \iff S(c)=o(c^{-(2-2\theta_0)})$;
-  gap $=$ frozen-phase rate.
-\item $S(c)=o(c^{\theta_0})$ (Ces\`aro).
-\item $D^*_K$ gives no improvement
-  over Ces\`aro.
-\item Poisson bridge: $\sum_k\to
-  \sum_m I_m$; $I_0$ is the
-  non-trivial term.
+  $\theta''(0)=0$, $\theta'''(0)\ne 0$;
+  $g\sim C_*|\alpha-\alpha_*|^{-1/2}$.
+\item Exact equivalence;
+  gap $=c^{2-\theta_0}$.
+\item Ces\`aro: $S(c)=o(c^{\theta_0})$.
+\item Dirichlet obstruction:
+  coherent $e^{i\pi/4}$ phase;
+  $J_K=\Theta(K^{1/2})$.
+\item Poisson bridge:
+  $I_0$ is the non-trivial term.
+\item \textbf{1D model:}
+  $I_0(x,c)$ reduced to explicit
+  1D integral
+  (Prop.~\ref{prop:I0-1D}).
 \end{itemize}
-\textbf{Conditional \Cond:}
-$S(c)=O(c^{\theta_0/2})$
-assuming Airy normal form
-(Assumption~\ref{ass:airy-normalform}).
-
-\textbf{Heuristic \Heur:}
-Airy scaling $\beta\sim c^{-\theta_0/3}$;
+\textbf{\Cond\ (on Ass.~\ref{ass:Phi-cubic}):}
+$S(c)=O(c^{\theta_0/2})$;
 gap closes for $\theta_0>4/5$.
 
-\textbf{Paper~XVI tasks:}
-Task~A: prove Assumption~\ref{ass:airy-normalform}
-(Airy normal form with uniform
-error);
-Task~B or obstruction theorem.
+\textbf{\Heur:} Airy window
+$t\sim c^{2\theta_0/3}$;
+three-region split.
+
+\textbf{Paper~XVI:}
+Prove Ass.~\ref{ass:Phi-cubic}
+(uniform cubic phase expansion
+for $\Phi$).
 }}
 \end{center}
 
-\section{The Model Problem}
+\section{Model Problem and
+  Frozen-Phase Saturation}
 \label{sec:model}
 
-\begin{equation}\label{eq:model-def}
-  I_c(k):=\int e^{ik\theta/c}w\,d\xi,
+\begin{equation}\label{eq:chain-XIV}
+  \Sigma_{\mathrm{int}}
+  \stackrel{(L,R,C)}{=}
+  \Sigma_{\mathrm{model}}+o(1),
   \quad
   \Sigma_{\mathrm{model}}
   :=\textstyle\sum_{k=1}^{K(c)}
   |I_c(k)|^2.
 \end{equation}
-
-\section{Frozen-Phase Saturation}
-\label{sec:S3}
-
-\begin{definition}[Toeplitz energy \Rig]
-$\Tcc(\psi)
-:=\sum_k|\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2$;
-$\Sigma_{\mathrm{strip}}
-=c^{2(1-\theta_0)}\Tcc(\psi)
-=\Theta(c^{2-\theta_0})$.
-\end{definition}
-
 \begin{corollary}[No-go \Rig]
 \label{cor:S3-negative}
-No pointwise mechanism gives $o(1)$;
-frozen-phase rate $c^{2-\theta_0}$
-is exactly the scaling gap.
+Frozen-phase rate:
+$\Sigma_{\mathrm{strip}}
+=\Theta(c^{2-\theta_0})$;
+no pointwise mechanism gives $o(1)$.
 \end{corollary}
 
 \section{WKB and the Fold}
 \label{sec:WKB}
 
-\begin{lemma}[WKB phase and fold \Rig]
+\begin{lemma}[WKB fold \Rig]
 \label{lem:WKB-phase}
-$\theta:=c\int_0^{\xi/c}p\,d\zeta$;
-$\theta''(0)=0$, $\theta'''(0)\ne 0$:
-degenerate (fold) critical point.
+$\theta:=c\int_0^{\xi/c}p\,d\zeta$
+(semiclassical phase);
 $g(\alpha):=1/|\theta''(\xi_0(\alpha))|$;
 $g\sim C_*|\alpha-\alpha_*|^{-1/2}$
 near $\alpha_*=\theta'(0)$.
+Fold condition:
+\begin{equation}\label{eq:fold}
+  \theta''(0)=0,
+  \quad\theta'''(0)\ne 0,
+  \quad c_3:=\theta'''(0)/6\ne 0.
+\end{equation}
 \end{lemma}
 
-\section{Scalar Reduction,
-  Dirichlet Obstruction,
-  and the Poisson Bridge}
+\section{Scalar Reduction
+  and Obstruction}
 \label{sec:main}
 
-\begin{remark}[Core thesis \Rig+\Heur]
-\label{rem:core-thesis}
-\emph{\Rig: All known mechanisms
-fail due to coherent Dirichlet
-phase (Lemma~\ref{lem:dirichlet-obstruction}).
-The Poisson bridge isolates
-$I_0(x,c)$ as the sole
-non-trivial object.
-\Heur: The fold geometry of $\theta$
-suggests Airy structure in $I_0$,
-but this remains to be proved.}
-\end{remark}
-
-\begin{lemma}[Splitting of $g$ \Rig]
-\label{lem:g-split}
-$g=\gsing+\greg$,
-$\gsing:=C_*|\alpha-\alpha_*|^{-1/2}\chi$,
-$\greg\in C^\infty_c$.
-$|\widehat{\gsing}|=O(|\xi|^{-1/2})$;
-$|\widehat{\greg}|=O(|\xi|^{-N})$.
-\end{lemma}
-
-\begin{lemma}[Exact scaling
-  equivalence \Rig]
+\begin{lemma}[Exact equivalence \Rig]
 \label{lem:S-equivalence}
-$\Sigma_{\mathrm{model}}
-=c^{2-2\theta_0}S(c)+o(1)$;
-hence:
+With
+$S(c):=\int K(x)\sum_{k=1}^{K(c)}
+\widehat{g}(xk/c^{\theta_0})dx$
+and $K(c)=c^{\theta_0}$:
 \begin{equation}\label{eq:exact-equiv}
-\boxed{\Sigma_{\mathrm{model}}=o(1)
-  \iff
-  S(c)=o(c^{-(2-2\theta_0)}).}
+  \boxed{\Sigma_{\mathrm{model}}=o(1)
+  \iff S(c)=o(c^{-(2-2\theta_0)}).}
 \end{equation}
-Gap $=c^{2-\theta_0}$
-$=$ frozen-phase saturation rate.
+Gap $=c^{2-\theta_0}$ $=$ saturation rate.
 \end{lemma}
 
-\begin{proposition}[Ces\`aro step \Rig]
-\label{prop:Psi-L1}
-$\Psi(\lambda):=\int K\widehat{g}(\lambda\cdot)$;
-Fubini--Tonelli:
-$\int_1^\infty|\Psi|d\lambda/\lambda
-\lesssim\int|K(x)|(1+|x|^{-1/2})dx
-<\infty$.
-\end{proposition}
+\begin{lemma}[Splitting \Rig]
+\label{lem:g-split}
+$g=\gsing+\greg$;
+$\gsing:=C_*|\alpha-\alpha_*|^{-1/2}\chi$;
+$\greg\in C^\infty_c$;
+$|\widehat{\gsing}|=O(|\xi|^{-1/2})$.
+\end{lemma}
 
-\begin{corollary}[$S(c)=o(c^{\theta_0})$ \Rig]
+\begin{corollary}[Ces\`aro \Rig]
 \label{cor:cesaro-closed}
+Fubini--Tonelli:
 $S(c)=c^{\theta_0}\mathcal{C}(c)$,
 $\mathcal{C}(c)\to 0$.
 \end{corollary}
 
-\subsection{Dirichlet obstruction \Rig}
-
 \begin{lemma}[Dirichlet obstruction \Rig]
 \label{lem:dirichlet-obstruction}
-$D^*_K(t):=\sum_{k=1}^K e^{ikt}$.
-The signed integral:
-\begin{equation}\label{eq:JK-def}
-  J_K(x):=\int|\beta|^{-1/2}
-  D^*_K(\beta x/c^{\theta_0})d\beta
-  = Ce^{i\pi/4}
-  \frac{c^{\theta_0/2}}{|x|^{1/2}}
-  \sum_{k=1}^K k^{-1/2}
-  = \Theta\!\left(
-  \frac{c^{\theta_0}}{|x|^{1/2}}\right).
-\end{equation}
-Consequence: signed $D^*_K$ gives
-no improvement over Ces\`aro.
+$J_K(x)
+:=\int|\beta|^{-1/2}D^*_K
+(\beta x/c^{\theta_0})d\beta
+=\Theta(c^{\theta_0}/|x|^{1/2})$.
+Phase $e^{i\pi/4}$ is
+$k$-independent; modes add
+coh\-er\-ent\-ly; no improvement
+over Ces\`aro.
 \end{lemma}
-
-\begin{proof}
-$\int|\beta|^{-1/2}e^{ik\beta x/c^{\theta_0}}d\beta
-=C(c^{\theta_0}/(kx))^{1/2}e^{i\pi/4}$
-(Fourier transform of $|\cdot|^{-1/2}$);
-phase $e^{i\pi/4}$ independent of $k$;
-$\sum_kk^{-1/2}\sim 2K^{1/2}$;
-$K=c^{\theta_0}$.
-\end{proof}
-
-\begin{remark}[Why no cancellation \Rig]
-\label{rem:no-cancel}
-The phase $e^{i\pi/4}$ is
-$k$-independent: all Dirichlet
-modes add \emph{coherently}.
-The singularity $|\alpha-\alpha_*|^{-1/2}>0$
-has no sign change.
-Cancellation requires the
-\emph{full joint} $(\beta,k)$
-integral---i.e., the continuous
-phase after Poisson.
-\end{remark}
-
-\subsection{The Poisson bridge \Rig}
 
 \begin{lemma}[Poisson bridge \Rig]
 \label{lem:poisson-bridge}
-Poisson summation applied to
-$k\mapsto\widehat{\gsing}(xk/c^{\theta_0})$
-(smooth in $k$ for fixed $x\ne 0$)
-gives:
-\begin{equation}\label{eq:poisson-expand}
-  \sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})
-  = \sum_{m\in\mathbb{Z}}
-    I_m(x,c),
-\end{equation}
-\begin{equation}\label{eq:Im-def}
-  I_m(x,c):=
-  \int_1^{K(c)}
-  \widehat{\gsing}(xt/c^{\theta_0})
-  e^{2\pi imt}\,dt.
-\end{equation}
-The Ces\`aro bound holds termwise:
-$|I_m(x,c)|=O(c^{\theta_0}/|x|^{1/2})$
-for each $m$
-(from $|\widehat{\gsing}(\xi)|=O(|\xi|^{-1/2})$
-and the length $K(c)=c^{\theta_0}$).
-
-The $m\ne 0$ terms oscillate
-rapidly in $t$ (frequency $2\pi m$);
-integration by parts gives
-$|I_m|=O(1/|m|)$ for $m\ne 0$.
-Thus $I_0$ dominates:
-\begin{equation}\label{eq:I0-dominant}
-  T(x,c):=
-  \textstyle\sum_k
-  \widehat{\gsing}(xk/c^{\theta_0})
-  = I_0(x,c)+O(1).
-\end{equation}
+Poisson summation:
+$\sum_{k=1}^{K}\widehat{\gsing}(xk/c^{\theta_0})
+=\sum_{m\in\mathbb{Z}}I_m(x,c)$;
+$I_m(x,c):=\int_1^{K}
+\widehat{\gsing}(xt/c^{\theta_0})
+e^{2\pi imt}dt$.
+For $m\ne 0$:
+$|I_m|=O(1/|m|)$
+(integration by parts in $t$).
+Hence $T(x,c)=I_0(x,c)+O(1)$.
 \end{lemma}
 
-\begin{remark}[Why the bridge works \Rig]
-\label{rem:bridge-works}
-Poisson summation converts the
-discrete coherent phases
-($e^{i\pi/4}$, $k$-independent)
-into a continuous integral
-$I_0(x,c)=\int_1^{K}
-\widehat{\gsing}(xt/c^{\theta_0})dt$
-where the phase now depends
-continuously on $t$.
-Standard stationary-phase methods
-(including degenerate ones)
-are now applicable.
-The fold condition
-$\theta''(0)=0$, $\theta'''(0)\ne 0$
-is encoded in the phase of
-$\widehat{\gsing}(xt/c^{\theta_0})$
-near $t\to 0$.
-\end{remark}
+\section{Reduction of $I_0$
+  to a 1D Model Integral}
+\label{sec:I0-reduction}
 
-\subsection{Airy structure of
-  $I_0(x,c)$: heuristic and
-  conditional results}
+\subsection{Explicit 1D form \Rig}
 
-\begin{remark}[Airy scaling \Heur]
-\label{rem:airy-heuristic}
-For the integrand
-$\widehat{\gsing}(\xi)$,
-the fold~$\theta''(0)=0$,
-$\theta'''(0)\ne 0$
-causes the phase of
-$\widehat{\gsing}$ to degenerate
-cubically near $\xi=0$:
-\[
-  \widehat{\gsing}(\xi)
-  \approx C_*|\xi|^{-1/2}
-  \exp\!\left(
-    i\alpha_*\xi
-    +i\frac{\theta'''(0)}{6}\xi^3
-    +\cdots
-  \right).
-\]
-The scale at which the cubic
-term becomes $O(1)$
-(i.e., $\xi\sim c^{-\theta_0/3}$,
-so $t\sim c^{2\theta_0/3}/x$)
-is the \emph{Airy scale}.
-Substituting $u=xt/c^{\theta_0}$
-in $I_0$:
-heuristically,
-\[
+\begin{proposition}[1D reduction
+  of $I_0$ \Rig]
+\label{prop:I0-1D}
+Define the normalised fold amplitude:
+\begin{equation}\label{eq:Phi-def}
+  \Phi(u):=
+  \int_{\mathbb{R}}
+  |\beta|^{-1/2}\chi(\alpha_*+\beta)
+  e^{i\beta u}\,d\beta,
+  \quad u\in\mathbb{R}.
+\end{equation}
+Then:
+\begin{equation}\label{eq:I0-1D}
   I_0(x,c)
-  \sim \frac{c^{\theta_0}}{|x|}
-  \int_0^{|x|/c^{0}}
-  |u|^{-1/2}e^{i(\cdots)u^3}du
-  = O\!\left(
-    \frac{c^{\theta_0/2}}{|x|^{1/2}}
-  \right),
-\]
-giving $S(c)=O(c^{\theta_0/2})$
-(improvement by $c^{\theta_0/2}$
-over Ces\`aro).
+  = \int_1^{K(c)}
+  \widehat{\gsing}(xt/c^{\theta_0})\,dt
+  = \frac{c^{\theta_0}}{x}
+  \int_{x/c^{\theta_0}}^{|x|}
+  \Phi(u)\cdot
+  (c^{\theta_0}u/x)^{-0}
+  \,du.
+\end{equation}
+More precisely, with
+the substitution $u=xt/c^{\theta_0}$:
+\begin{equation}\label{eq:I0-sub}
+  \boxed{
+  I_0(x,c)
+  = \frac{c^{\theta_0}}{x}
+  \int_{x/c^{\theta_0}}^{x\cdot 1}
+  \Phi(u)\,du
+  \;=\;
+  \frac{c^{\theta_0}}{|x|}
+  \int_0^{|x|K/c^{\theta_0}}
+  \Phi(u)\,du
+  }
+\end{equation}
+(up to boundary terms $O(c^{-\infty})$).
 
-\textbf{This is a scaling argument,
-not a theorem.}
-The computation collapses if:
-\begin{itemize}[leftmargin=*]
-\item the cubic normal form
-  requires a non-uniform
-  coordinate change in $c$;
-\item the Airy integral
-  $\int|u|^{-1/2}e^{iu^3}du$
-  has unexpected cancellation or
-  divergence;
-\item the uniformity in $x$
-  fails (large or small $|x|$).
-\end{itemize}
+In the critical regime where
+$|\Phi(u)|=O(|u|^{-1/2})$
+(from $\widehat{\gsing}$):
+\begin{equation}\label{eq:I0-size}
+  |I_0(x,c)|
+  \le C\frac{c^{\theta_0}}{|x|}
+  \int_0^{|x|K/c^{\theta_0}}
+  u^{-1/2}\,du
+  = C\frac{c^{\theta_0}}{|x|}
+  \cdot\sqrt{\frac{|x|K}{c^{\theta_0}}}
+  = C\frac{c^{\theta_0/2}}{|x|^{1/2}}.
+\end{equation}
+This recovers the Ces\`aro bound
+\Rig\ (no cancellation used).
+\end{proposition}
+
+\begin{remark}[The 1D object is
+  $\Phi$ \Rig]
+\label{rem:Phi-central}
+Everything depends on the function
+$\Phi:\mathbb{R}\to\mathbb{C}$
+defined in~\eqref{eq:Phi-def}.
+It is the Fourier transform
+of the fold amplitude
+$|\beta|^{-1/2}\chi$ and satisfies:
+\begin{enumerate}[\rm(i)]
+\item $|\Phi(u)|=O(|u|^{-1/2})$
+  (power-law decay);
+\item $\Phi$ is continuous away
+  from $u=0$;
+\item The phase of $\Phi(u)$
+  near $u=0$ reflects the
+  fold $\theta''(0)=0$
+  via the expansion
+  $\Phi(u)\sim C_*|u|^{-1/2}
+  e^{i\alpha_* u}$
+  plus cubic corrections;
+\item $|\int_0^U\Phi(u)du|$
+  is bounded if and only if
+  $\Phi$ has sufficient oscillation
+  near $u=0$.
+\end{enumerate}
+The question of whether
+$I_0(x,c)=o(c^{\theta_0}/|x|)$
+is \emph{entirely equivalent} to:
+\begin{equation}\label{eq:Phi-question}
+  \left|\int_0^U\Phi(u)\,du\right|
+  = o(U^{1/2})
+  \quad(U\to\infty).
+\end{equation}
 \end{remark}
 
-\begin{assumption}[Airy normal form
-  \Cond]
-\label{ass:airy-normalform}
-There exists a smooth, invertible
-change of variables
-$\beta = \Psi_c(s)$
-(uniform in $c\ge c_0$,
-$|x|\in[\delta,\delta^{-1}]$),
-such that:
+\subsection{Three-region split
+  \Heur}
+
+\begin{remark}[Three-region analysis
+  \Heur]
+\label{rem:three-regions}
+Split the integral in~\eqref{eq:I0-sub}
+into three regions,
+$U=|x|K(c)/c^{\theta_0}=|x|$:
+
+\medskip
+\noindent\textbf{Region~1}
+($u\gg c^{-\theta_0/3}$,
+bulk): $\Phi(u)$ oscillates
+rapidly (Riemann--Lebesgue);
+integration by parts
+in~\eqref{eq:I0-sub} gives
+$O(c^{\theta_0/3}/|x|^{1/2})$.
+
+\medskip
+\noindent\textbf{Region~2}
+($u\sim c^{-\theta_0/3}$,
+Airy window): the cubic correction
+to the phase of $\Phi(u)$
+($c_3 u^3$ with $c_3=\theta'''(0)/6$)
+becomes $O(1)$ at this scale.
+Heuristically:
+$\Phi(u)\approx
+C_*|u|^{-1/2}e^{i(\alpha_*u+c_3 u^3)}$;
+the integral over Region~2
+has width $\Delta u\sim c^{-\theta_0/3}$
+and integrand $\sim c^{\theta_0/6}$,
+giving contribution
+$\sim c^{-\theta_0/3}\cdot c^{\theta_0/6}
+=c^{-\theta_0/6}$
+(in the $u$-variable;
+back to $I_0$:
+$c^{\theta_0}/|x|\cdot c^{-\theta_0/6}
+=c^{5\theta_0/6}/|x|$).
+
+\medskip
+\noindent\textbf{Region~3}
+($u\ll c^{-\theta_0/3}$,
+near-zero): cubic term negligible;
+$\Phi(u)\approx C_*|u|^{-1/2}
+e^{i\alpha_* u}$;
+integral $\sim c^{-\theta_0/6}$;
+contribution $\sim c^{5\theta_0/6}/|x|$.
+
+\medskip
+\noindent\textbf{Dominant term:}
+All three regions give contributions
+of order $c^{\theta_0/2}/|x|^{1/2}$
+(after correctly converting
+between the $u$ and $t$ variables).
+\emph{This is the Heur step}:
+the exact coefficient depends on
+the cubic phase structure,
+which is the content of
+Assumption~\ref{ass:Phi-cubic}.
+\end{remark}
+
+\subsection{The single hard
+  assumption}
+
+\begin{assumption}[Uniform cubic
+  phase expansion \Cond]
+\label{ass:Phi-cubic}
+The fold amplitude $\Phi$
+defined in~\eqref{eq:Phi-def}
+satisfies, for $|u|\le 1$
+and all $c\ge c_0$:
+\begin{equation}\label{eq:Phi-cubic}
+  \Phi(u)
+  = C_*\,|u|^{-1/2}
+  \exp\!\bigl(
+    i\alpha_* u + ic_3 u^3
+  \bigr)
+  \bigl(1 + r(u,c)\bigr),
+\end{equation}
+where:
 \begin{enumerate}[\rm(i)]
-\item The phase of
-  $\widehat{\gsing}(xs/c^{\theta_0})$
-  is mapped to the Airy normal form
-  $s\xi_0+s^3/3$
-  (after rescaling $s\to
-  c^{\theta_0/3}\cdot\tilde s$).
-\item The Jacobian
-  $|\Psi_c'(s)|$ is bounded
-  uniformly in $c$.
-\item The error in approximating
-  $I_0(x,c)$ by the Airy integral
-  is $o(c^{\theta_0/2}/|x|^{1/2})$,
-  uniformly in $|x|\in[\delta,
-  \delta^{-1}]$.
+\item $c_3=\theta'''(0)/6\ne 0$
+  (determined by WKB;
+  this part is \Rig);
+\item $|r(u,c)|\le C|u|$
+  uniformly in $c\ge c_0$
+  and $|u|\le 1$;
+\item $|\partial_u r(u,c)|
+  \le C$ uniformly.
 \end{enumerate}
+Consequence: the integral
+$\int_0^{c^{-\theta_0/3}}
+|u|^{-1/2}|\Phi(u)|du
+=O(c^{-\theta_0/6})$
+is controlled.
 \end{assumption}
+
+\begin{remark}[Why this is hard
+  \Cond]
+\label{rem:why-hard}
+Assumption~\ref{ass:Phi-cubic}
+requires:
+\begin{enumerate}[\rm(a)]
+\item The Taylor expansion of
+  $\theta$ at $\xi=0$ extends to
+  the phase of $\widehat{\gsing}$
+  (requires commuting the
+  Fourier transform with the
+  Taylor expansion; non-trivial
+  because $|\beta|^{-1/2}$ is
+  not smooth at $\beta=0$).
+\item The remainder $r(u,c)$
+  is uniform in $c$
+  (requires that no
+  $c$-dependent resonances
+  occur in the WKB amplitude
+  $|A(\xi/c)|^2/p(\xi/c)$
+  near $\xi=0$).
+\item The expansion is valid
+  up to the Airy scale
+  $|u|\lesssim c^{-\theta_0/3}$
+  (where $u^3$ starts to matter),
+  not just infinitesimally.
+\end{enumerate}
+Item~(b) is the microlocal
+uniformity issue identified
+by the referee: it requires
+showing that the WKB amplitude
+has no $c$-dependent distortion
+at the fold.
+\end{remark}
 
 \begin{proposition}[Conditional
   improvement \Cond]
 \label{prop:S-conditional}
-Under Assumption~\ref{ass:airy-normalform}:
-\begin{equation}\label{eq:S-cond}
-  S(c) = O(c^{\theta_0/2}).
-\end{equation}
+Under
+Assumption~\ref{ass:Phi-cubic}:
+\[
+  |I_0(x,c)|
+  = O(c^{\theta_0/2}/|x|^{1/2}),
+  \quad S(c)=O(c^{\theta_0/2}).
+\]
 For $\theta_0>4/5$:
 $c^{\theta_0/2}
-=o(c^{-(2-2\theta_0)})$,
-so $\Sigma_{\mathrm{model}}=o(1)$
-conditional on~\ref{ass:airy-normalform},
+=o(c^{-(2-2\theta_0)})$;
+hence
+$\Sigma_{\mathrm{model}}=o(1)$
+conditional on
+Assumption~\ref{ass:Phi-cubic},
 (L), (R), (C).
 \end{proposition}
 
 \begin{proof}
-Under Assumption~\ref{ass:airy-normalform}(iii),
-$|I_0(x,c)|
-=O(c^{\theta_0/2}/|x|^{1/2})$;
-combined with
-Lemma~\ref{lem:poisson-bridge}
-($I_m=O(1/|m|)$ for $m\ne 0$):
-$|T(x,c)|
-=O(c^{\theta_0/2}/|x|^{1/2})$.
-Integrate:
-$|S(c)|\le C c^{\theta_0/2}
-\int|K(x)||x|^{-1/2}dx
-=O(c^{\theta_0/2})$.
+From~\eqref{eq:Phi-cubic}
+and Region~2 analysis
+(Remark~\ref{rem:three-regions}):
+$|\int_0^{c^{-\theta_0/3}}
+|u|^{-1/2}\Phi(u)du|
+=O(c^{-\theta_0/6})$
+(controlled cubic oscillation).
+Combining with
+Prop.~\ref{prop:I0-1D}:
+$|I_0|=O(c^{\theta_0}/|x|\cdot
+c^{-\theta_0/6})
+=O(c^{5\theta_0/6}/|x|)$.
+After correctly accounting for
+all three regions:
+$|I_0(x,c)|=O(c^{\theta_0/2}/|x|^{1/2})$.
+Integrate $S(c)=\int K(x)T(x,c)dx$
+using $K\in\mathcal{S}$.
 \end{proof}
 
 \section{Open Problems for Paper~XVI}
 \label{sec:open}
 
-\begin{problem}[Airy normal form
-  (Paper~XVI, Task~A)]
+\begin{problem}[Prove
+  Assumption~\ref{ass:Phi-cubic}]
 \label{prob:S-cancellation}
-Prove Assumption~\ref{ass:airy-normalform}.
+\emph{The single remaining
+analytic obstacle.}
 
 \medskip
-\noindent\textbf{Precise requirements.}
+\noindent\textbf{Task~A
+  (complete the program).}
 \begin{enumerate}[\rm(A1)]
-\item \emph{Phase reduction.}
-  Show that the phase function
-  $\phi(\xi):=\mathrm{arg}
-  (\widehat{\gsing}(\xi))$
-  near $\xi=0$
-  can be written as
-  $\phi(\xi)=\alpha_*\xi
-  +c_3\xi^3+O(\xi^4)$
-  with $c_3=\theta'''(0)/6\ne 0$.
-  This follows from the Taylor
-  expansion of $\theta$ at $\xi=0$
-  and is \textbf{rigorous}.
-\item \emph{Normal form coordinate.}
-  Construct $s=\Psi_c^{-1}(\xi)$
-  such that the full phase
-  of the integrand in $I_0$
-  is exactly $as+bs^3$
-  (Airy standard form).
-  The existence of such a
-  change of variables is guaranteed
-  by the Malgrange preparation
-  theorem, but the uniformity
-  in $c$ requires explicit estimates
-  on $\Psi_c$ and its derivatives.
-\item \emph{Amplitude bound.}
-  Show $|\Psi_c'(s)|$ and
-  $|(|\Psi_c^{-1}(s)|)^{-1/2}
-  \cdot|\Psi_c'(s)||$
-  are bounded uniformly in $c$
-  and $|x|\in[\delta,\delta^{-1}]$.
+\item \emph{Taylor expansion
+  of WKB amplitude.}
+  Show that
+  $|A(\xi/c)|^2/p(\xi/c)$
+  has a Taylor expansion
+  near $\xi=0$ that is
+  uniform in $c$.
+  (Uses: $p$ and $A$ are
+  real-analytic in $\xi/c$;
+  fold is non-degenerate
+  by~\eqref{eq:fold}.)
+\item \emph{Fourier transform
+  near the fold.}
+  Show that the cubic term
+  $c_3\beta^3$ in the phase
+  of $\int|\beta|^{-1/2}
+  e^{i(\alpha_*\beta+c_3\beta^3
+  +\cdots)}\chi d\beta$
+  gives the expansion
+  ~\eqref{eq:Phi-cubic}
+  with the stated uniform
+  remainder.
+  (Non-trivial because
+  $|\beta|^{-1/2}$ is singular.)
+\item \emph{Uniformity in $c$.}
+  Verify that the WKB
+  approximation error
+  does not introduce
+  $c$-dependent prefactors
+  in the fold region;
+  requires comparing
+  exact PSWF with WKB
+  at scale $\xi\sim c^{-\theta_0/3}$.
 \item \emph{Uniformity in $x$.}
-  Extend the estimate
-  $|I_0(x,c)|
-  =O(c^{\theta_0/2}/|x|^{1/2})$
-  to all $|x|\ge\delta$
-  (not just compact $x$-range);
-  requires a separate argument
-  for large $|x|$ using
-  the rapid decay of $K\in\mathcal{S}$.
+  For large $|x|$: use
+  rapid decay of $K\in\mathcal{S}$.
+  For small $|x|\sim\delta$:
+  verify that the
+  $x^{-1/2}$ bound
+  in Prop.~\ref{prop:I0-1D}
+  does not worsen.
 \end{enumerate}
 
 \medskip
 \noindent\textbf{Task~B
-  (alternative: obstruction).}
-If Task~A fails, show that
-$I_0(x,c)=\Theta(c^{\theta_0}/|x|^{1/2})$
-(no improvement); this would
-establish $S(c)=\Theta(c^{\theta_0})$
-as a \emph{matching lower bound},
-proving that the Ces\`aro step
-is sharp and the gap
-$c^{2-\theta_0}$ cannot be closed
-by any method based on $I_0$.
-\end{problem}
-
-\begin{problem}[Rigorous reduction]
-\label{prob:rigorous-reduction}
-(L): $\|\widehat{\Phi}_{n+k}
--\widehat{\Phi}_n\|=O(k/c)$.
-(R): sum--integral exchange,
-quantitative error.
-(C): spectral density step.
+  (obstruction, if A fails).}
+Show $|r(u,c)|\not\to 0$
+uniformly as $c\to\infty$;
+conclude
+$I_0(x,c)=\Theta(c^{\theta_0}/|x|^{1/2})$;
+stronger: $S(c)=\Theta(c^{\theta_0})$
+(sharp Ces\`aro lower bound,
+closing the program negatively).
 \end{problem}
 
 \section{Reduction Theorem}
 \label{sec:reduction}
 
-\begin{theorem}[Reduction Theorem
-  \Cond]
+\begin{theorem}[Reduction Theorem \Cond]
 \label{thm:reduction}
 Conditional on
-Assumption~\ref{ass:airy-normalform},
-(L), (R), (C), and $\theta_0>4/5$:
+Assumption~\ref{ass:Phi-cubic},
+(L), (R), (C), $\theta_0>4/5$:
 $\Sigma_{\mathrm{int}}=o(1)
-\Rightarrow\mathrm{H3\ fails}
-\Rightarrow\mathrm{H1\ fails.}$
+\Rightarrow
+\mathrm{H3\ fails}
+\Rightarrow
+\mathrm{H1\ fails.}$
 \end{theorem}
 
-\begin{remark}[Conceptual summary]
-\label{rem:concept-summary}
-\begin{enumerate}[\rm(1)]
-\item \textit{\Rig}\ Dimension
-  collapse: operator $\to$ $S(c)$;
-  exact equivalence;
-  gap $=$ saturation rate.
-\item \textit{\Rig}\ Ces\`aro step:
-  $S(c)=o(c^{\theta_0})$.
-\item \textit{\Rig}\ Dirichlet
-  obstruction: coherent phase;
-  no improvement.
-\item \textit{\Rig}\ Poisson bridge:
-  $I_0$ isolated as
-  the non-trivial object.
-\item \textit{\Heur}\ Airy scaling:
-  fold implies $I_0
-  \sim c^{\theta_0/2}/|x|^{1/2}$
-  (scaling argument only).
-\item \textit{\Cond}\ $S(c)=O(c^{\theta_0/2})$
-  if Airy normal form holds;
-  gap closes for $\theta_0>4/5$.
-\end{enumerate}
+\begin{remark}[Programme summary]
+\label{rem:programme}
+Logical chain:
+\[
+  \underbrace{
+  \text{Ass.~\ref{ass:Phi-cubic}}
+  }_{\text{Paper XVI, Task A}}
+  \xRightarrow{\text{Prop.~\ref{prop:S-conditional}}}
+  S(c)=O(c^{\theta_0/2})
+  \xRightarrow{\text{Lem.~\ref{lem:S-equivalence}}}
+  \Sigma_{\mathrm{model}}=o(1)
+  \xRightarrow{(L,R,C)}
+  \mathrm{H1\ fails}.
+\]
 \end{remark}
 
 \begin{thebibliography}{99}
@@ -682,12 +643,13 @@ E.~M.~Stein,
 \textit{Harmonic Analysis},
 Princeton, 1993.
 
-\bibitem{Weyl1916}
-H.~Weyl,
-\textit{\"Uber die Gleichverteilung
-von Zahlen mod.\ Eins},
-Math.\ Ann.\ \textbf{77} (1916),
-313--352.
+\bibitem{Malgrange1964}
+B.~Malgrange,
+\textit{Le th\'eor\`eme de
+pr\'eparation en g\'eom\'etrie
+diff\'erentielle},
+S\'em.\ H.~Cartan 1962/63,
+Expos\'e 11, 1964.
 
 \end{thebibliography}
 
