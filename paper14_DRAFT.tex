@@ -89,7 +89,7 @@ $Q_c^N(g)=\ip{\Ac g}{g}$
 where $\Ac:=\Bn^*\Bn\ge 0$, $0\le\Ac\le I$.
 
 H3 ($\sup_c S_N(c)\to 0$) implies H1.
-The gap between diagonal WOT-convergence
+The gap between quadratic-form convergence
 and operator norm convergence is identified
 as a problem of
 \emph{non-vanishing total spectral mass
@@ -235,10 +235,11 @@ transit between $\approx 1$ and $\approx 0$.
 \item Local Weyl law $\Rightarrow$ NC
 \item H3 $\Rightarrow$ H1
 \item H1 $\Rightarrow$ $\ip{\Ac g}{g}\to 0$
-  (diagonal WOT-type; each fixed $g$)
+  (quadratic-form convergence; each fixed $g$)
 \item Non-interchangeability of $\lim$ and
   $\sup_{\norm{g}=1}$ is the precise
-  obstruction to upgrading WOT to op-norm
+  obstruction to upgrading quadratic-form
+  convergence to op-norm
   (Remark~\ref{rem:lim-sup})
 \end{itemize}
 \textbf{Open / conditional:}
@@ -803,7 +804,7 @@ Slepian--Weyl
 $\mu_{n,c}$ equidistribution
   & NC
   & quasi-orthogonality \\
-(D-weak) pointwise uniform
+(D-weak) uniform pointwise
   & $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|=o(1/c)$
   & cumulative HS off-diagonal mass \\
 \bottomrule
@@ -842,7 +843,8 @@ inter-mode correlations in $[-c_0,c_0]$.
 \subsubsection*{Toeplitz structure and semiclassical symbol}
 
 The operator $\Ac$ behaves as a
-semiclassical Toeplitz operator.
+semiclassical Toeplitz-type operator
+with discontinuous symbol.
 Its symbol is most precisely understood
 as living on the energy surface
 $\{n/c \to \alpha\}$ in semiclassical
@@ -858,7 +860,8 @@ The relevant symbol is therefore:
 \]
 restricted to the energy slice
 $\{E = E_\alpha\}$, where
-$E_\alpha = \lim_{c\to\infty}\chi_{\lfloor\alpha c\rfloor}^{(c)}/c^2$.
+$E_\alpha = \lim_{c\to\infty}
+\chi_{\lfloor\alpha c\rfloor}^{(c)}/c^2$.
 The classical Szeg\H{o} theorem then predicts
 that the eigenvalue distribution of
 $\Ac^{(M)}$ converges, as $M,c\to\infty$
@@ -937,9 +940,8 @@ The double-scaling structure explains
 why \emph{collective} quasi-orthogonality
 (D-strong) is the key analytic obstruction,
 not merely pointwise decay (D-weak).
-The precise reason is as follows:
-with $O(c^2)$ off-diagonal pairs, each
-satisfying the \emph{uniform} bound
+With $O(c^2)$ off-diagonal pairs each
+satisfying the uniform bound
 $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|
 \le\varepsilon(c)/c$ with $\varepsilon(c)\to 0$,
 the Hilbert--Schmidt off-diagonal norm satisfies
@@ -953,6 +955,76 @@ $\varepsilon(c)\to 0$ over all pairs $(n,m)$;
 a merely pointwise $o(1/c)$ bound without
 uniform control is insufficient to conclude
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
+\end{remark}
+
+\begin{remark}[Regime decomposition and the near-diagonal obstruction]
+\label{rem:regime-decomposition}
+The uniform quasi-orthogonality
+condition~\eqref{eq:quasi-orth}
+must be established simultaneously over
+all index pairs $(n,m)$ in the transition
+zone $\mathcal{T}_{\alpha,\kappa}(c)$.
+A natural decomposition of the
+off-diagonal Hilbert--Schmidt mass is:
+\begin{equation}\label{eq:HS-regimes}
+  \|\Ac^{(M)} - D^{(M)}\|_{\mathrm{HS}}^2
+  = \sum_{\substack{n\ne m \\ N<n,m\le M}}
+  |(\Ac^{(M)})_{nm}|^2
+  = \Sigma_{\mathrm{near}}
+  + \Sigma_{\mathrm{int}}
+  + \Sigma_{\mathrm{far}},
+\end{equation}
+where:
+\begin{align*}
+  \Sigma_{\mathrm{near}} &:=
+    \sum_{\substack{n\ne m \\ |n-m|\le C}}
+    |(\Ac^{(M)})_{nm}|^2,\\
+  \Sigma_{\mathrm{int}} &:=
+    \sum_{\substack{n\ne m \\
+    C < |n-m| \le c^\theta}}
+    |(\Ac^{(M)})_{nm}|^2,\\
+  \Sigma_{\mathrm{far}} &:=
+    \sum_{\substack{n\ne m \\
+    |n-m| > c^\theta}}
+    |(\Ac^{(M)})_{nm}|^2,
+\end{align*}
+for some fixed $C>0$ and $0<\theta<1$.
+These regimes exhibit fundamentally
+different analytic behaviour:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Far off-diagonal
+  ($|n-m|>c^\theta$):}
+  the phase $(n-m)\theta(\xi)/c$ is
+  highly oscillatory, and standard
+  stationary phase yields strong decay.
+\item \textbf{Intermediate
+  ($C<|n-m|\le c^\theta$):}
+  oscillation is present but weaker,
+  requiring uniform transition estimates.
+\item \textbf{Near-diagonal
+  ($|n-m|\le C$):}
+  the phase is of size $O(1/c)$ and
+  provides essentially no oscillatory
+  cancellation.
+  In this regime, stationary phase alone
+  is insufficient; one must instead rely
+  on structural properties of the PSWFs
+  such as WKB asymptotics and
+  $L^2$-based orthogonality estimates.
+\end{itemize}
+The near-diagonal contribution
+$\Sigma_{\mathrm{near}}$ is therefore
+the critical obstruction to establishing
+the uniform bound~\eqref{eq:quasi-orth}.
+In particular, the obstruction is not due
+to insufficient oscillation at large index
+separation, but rather to the lack of
+oscillatory structure at bounded separations.
+This identifies the near-diagonal regime
+as the technically most delicate component
+of the double-scaling Szeg\H{o} problem,
+and the primary analytic challenge of
+Paper~XV.
 \end{remark}
 
 \subsubsection*{Correct scaling: accumulation of mass, not density}
@@ -1048,7 +1120,7 @@ $O(c^2)$ entries of the Gram matrix.}}
 \end{center}
 
 \medskip
-\textbf{(D-weak) Pointwise uniform quasi-orthogonality.}
+\textbf{(D-weak) Uniform pointwise quasi-orthogonality.}
 \begin{equation}\label{eq:quasi-orth}
   \sup_{\substack{n\ne m \\
   n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
@@ -1063,22 +1135,14 @@ $n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$,
 i.e.\ there exists $\varepsilon(c)\to 0$ such
 that~\eqref{eq:quasi-orth} holds for all
 such pairs simultaneously.
-This condition ensures qualitative asymptotic
-diagonal structure, but is \emph{insufficient}
-on its own to conclude
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$:
-with $O(c^2)$ off-diagonal pairs each bounded
-by $\varepsilon(c)/c$, one obtains only
+Under this uniform form, one obtains
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
 \le c^2\cdot\varepsilon(c)^2/c^2
-= \varepsilon(c)^2$,
-which vanishes \emph{if and only if}
-$\varepsilon(c)\to 0$ uniformly.
-Thus (D-weak) \emph{does} imply (D-strong)
-under the explicit uniform supremum
-form~\eqref{eq:quasi-orth}; the distinction
-is between a merely pointwise $o(1/c)$ bound
-(insufficient) and a uniform one (sufficient).
+= \varepsilon(c)^2\to 0$,
+so the uniform (D-weak) implies (D-strong).
+A merely pointwise $o(1/c)$ bound
+(without uniformity in $(n,m)$)
+is insufficient for this conclusion.
 
 \medskip
 \textbf{(D-strong) Collective quasi-orthogonality.}
@@ -1095,16 +1159,13 @@ equivalently:
   \quad\text{as }c\to\infty,\; M\sim\beta c,
 \end{equation}
 where $D^{(M)}:=\mathrm{diag}((\Ac^{(M)})_{nn})_{N<n\le M}$.
-Condition~(D-strong) is the operative
-requirement: it is implied by the
-uniform form of~(D-weak)
-(see Remark~\ref{rem:double-scaling}),
-and is sufficient to ensure that the
-spectral behaviour of $\Ac^{(M)}$ is
-asymptotically governed by its diagonal
-entries, in particular implying
+Condition~(D-strong) is implied by the
+uniform form of~(D-weak), and is sufficient
+to ensure that the spectral behaviour of
+$\Ac^{(M)}$ is asymptotically governed by
+its diagonal entries, implying
 Conjecture~\ref{conj:szego}
-(Proposition~\ref{prop:HS-reduction}).
+via Proposition~\ref{prop:HS-reduction}.
 
 \subsubsection*{Diagonal reduction under HS control}
 
@@ -1113,17 +1174,7 @@ Conjecture~\ref{conj:szego}
 Assume~(C) and~(D-strong).
 Then the spectrum of $\Ac^{(M(c))}$
 is collectively approximated by the
-multiset of diagonal values:
-for each $j$,
-\[
-  \left|\lambda_j^{(M(c))}
-  - d_{\sigma(j)}\right|
-  \le \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
-  \to 0,
-\]
-where $\{d_k = \mu_{k,c}([-c_0,c_0])\}_{N<k\le M}$
-are the diagonal eigenvalues of $D^{(M)}$
-and $\sigma$ is any ordering of indices.
+multiset of diagonal values.
 In particular, by trace continuity:
 \[
   S_N^{(M(c))}(c)
@@ -1143,25 +1194,23 @@ $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
 The Weyl perturbation inequality gives
 $|\lambda_j^{(M)}-d_{\sigma(j)}|\to 0$
 for each $j$ under any ordering $\sigma$.
-Note that since all diagonal values
-$d_k\sim c_0/c$ are asymptotically equal,
-no specific bijection is required:
-the spectrum is collectively well-approximated
-by the diagonal multiset.
-Summing via trace continuity yields the
-identity $S_N^{(M(c))}(c)
-=\mathrm{Tr}(\Ac^{(M(c))})
-\sim c_0\beta$.
+Since all diagonal values $d_k\sim c_0/c$
+are asymptotically equal, the spectrum is
+collectively well-approximated by the
+diagonal multiset without requiring a
+specific bijection.
+Summing via trace continuity yields
+$S_N^{(M(c))}(c)\sim c_0\beta$.
 \end{proof}
 
 \begin{remark}
 Proposition~\ref{prop:HS-reduction} is the
-missing bridge step between the open problem
-OP~\ref{prob:H1H3} and Conjecture~\ref{conj:szego}:
-it shows that~(C)$+$(D-strong) imply the
-conjecture, and that the operative condition
-is the uniform supremum form of~(D-weak)
-which forces~(D-strong).
+bridge between OP~\ref{prob:H1H3} and
+Conjecture~\ref{conj:szego}:
+(C)$+$(D-strong) imply the conjecture,
+and the uniform form of (D-weak) forces
+(D-strong) via
+Remark~\ref{rem:double-scaling}.
 \end{remark}
 
 \subsubsection*{Reformulation and conjecture}
@@ -1175,26 +1224,22 @@ truncated Gram operator $\Ac^{(M(c))}$
 converge to a non-degenerate distribution
 as $c\to\infty$, $M(c)\sim\beta c$?
 Equivalently: does the uniform pointwise
-bound~\eqref{eq:quasi-orth} hold with
-$\varepsilon(c)\to 0$, forcing
-collective quasi-orthogonality~%
-\eqref{eq:quasi-orth-strong}
-and total spectral mass
+bound~\eqref{eq:quasi-orth} hold,
+forcing (D-strong) and total spectral mass
 $S_N^{(M(c))}(c)\gtrsim 1$?}}
 \end{center}
 
 \begin{conjecture}[Double-scaling Szeg\H{o} behaviour]
 \label{conj:szego}
 For $M(c)\sim\beta c$, $\beta\in(0,1)$ fixed,
-assume~(C) and~(D-strong).
-Then:
+assume~(C) and~(D-strong). Then:
 \begin{enumerate}[\rm(i)]
 \item Mean density vanishes:
   $\bar\lambda^{(M(c))}(c)\sim c_0/c\to 0$.
 \item Total spectral mass is preserved:
   $S_N^{(M(c))}(c)\sim c_0\beta > 0$.
 \item Eigenvalue count diverges: for all
-  sufficiently small \emph{fixed} $\varepsilon>0$,
+  sufficiently small fixed $\varepsilon>0$,
   $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
   \to\infty$.
 \end{enumerate}
@@ -1202,9 +1247,7 @@ Parts~(i)--(iii) follow from~(C)$+$(D-strong)
 via Proposition~\ref{prop:HS-reduction}
 and Lemma~\ref{lem:no-single-mode}.
 A merely pointwise (non-uniform) $o(1/c)$
-bound on off-diagonal entries is
-\emph{insufficient}; the uniform supremum
-form~\eqref{eq:quasi-orth} is required.
+bound is \emph{insufficient}.
 \end{conjecture}
 
 \begin{remark}[Programme status]
@@ -1213,11 +1256,13 @@ not a proved statement.
 Its verification requires:
 (1)~the local Weyl law~(C)
 (target of Paper~XV);
-(2)~the uniform off-diagonal bound~%
-\eqref{eq:quasi-orth} with $\varepsilon(c)\to 0$,
-via double-scaling stationary phase
-(\textbf{key analytic obstruction};
-not yet established), which forces~(D-strong);
+(2)~the uniform off-diagonal
+bound~\eqref{eq:quasi-orth} with
+$\varepsilon(c)\to 0$, established via
+double-scaling stationary phase with
+separate treatment of the three regimes
+of Remark~\ref{rem:regime-decomposition}
+(\textbf{key analytic obstruction});
 (3)~the bridge Proposition~\ref{prop:HS-reduction}
 then closes the argument.
 \end{remark}
@@ -1246,8 +1291,11 @@ then closes the argument.
     \quad M\sim\beta c.
   \]
   \emph{The $o(1/c)$ bound must hold
-  uniformly over all pairs $(n,m)$;
-  a merely pointwise bound is insufficient.}
+  uniformly over all pairs $(n,m)$,
+  including the near-diagonal regime
+  $|n-m|=O(1)$ where stationary phase
+  provides no oscillatory cancellation
+  (see Remark~\ref{rem:regime-decomposition}).}
 \item[\rm(D-strong)] Collective quasi-orthogonality~%
   \eqref{eq:quasi-orth-strong}:
   $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
@@ -1290,44 +1338,39 @@ WKB in $|x|<x_0$ and stationary phase
 for $\xi\in[-c_0,c_0]$
 give (A)--(C) \cite{Osipov2013}.
 
-For (D-weak): the off-diagonal integral
-has phase $(n-m)\theta(\xi)/c$;
-for $|n-m|\ge 1$, rapid oscillation
-yields $o(1/c)$ by stationary phase.
-The critical requirement for Paper~XV is
-that this bound holds
-\emph{uniformly in $(n,m)$}:
-\[
-  \sup_{\substack{n\ne m \\
-  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
-  \left|\int_{-c_0}^{c_0}
-  e^{i(n-m)\theta(\xi)/c}
-  \cdot r_{nm}(\xi)\,d\xi
-  \right|
-  \le \frac{\varepsilon(c)}{c},
-  \quad \varepsilon(c)\to 0,
-\]
-where $r_{nm}(\xi)$ are the WKB amplitude
-factors.
-This requires uniform remainder estimates
-across all index pairs in the transition zone,
-not merely for fixed $(n,m)$.
+For (D-weak), the off-diagonal integral
+has phase $(n-m)\theta(\xi)/c$.
+The three regimes of
+Remark~\ref{rem:regime-decomposition}
+require separate treatment:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Far off-diagonal
+  ($|n-m|>c^\theta$):}
+  strong oscillation; standard stationary
+  phase gives $O(c^{-1}|n-m|^{-1/2})$,
+  sufficient for $\Sigma_{\mathrm{far}}=o(1)$.
+\item \textbf{Intermediate
+  ($C<|n-m|\le c^\theta$):}
+  uniform transition estimates required;
+  moderately oscillatory.
+\item \textbf{Near-diagonal
+  ($|n-m|\le C$):}
+  phase $O(1/c)$, no oscillatory gain.
+  Control requires WKB amplitude
+  orthogonality and $L^2$ estimates
+  on PSWF differences at adjacent indices.
+  This is the \textbf{primary technical
+  target of Paper~XV}.
+\end{itemize}
 
-For (D-strong): the uniform bound above
-implies
-\[
-  \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-  \le c^2\cdot\frac{\varepsilon(c)^2}{c^2}
-  = \varepsilon(c)^2\to 0.
-\]
-This is the primary technical target of
-Paper~XV: to establish the uniform stationary
-phase remainder estimate in the
-double-scaling regime of
-Definition~\ref{def:double-scaling},
-upgrading pointwise oscillatory integral
-bounds to a uniform supremum over the
-$O(c^2)$ off-diagonal index pairs.
+For (D-strong): establishing $o(1)$
+for all three regime sums simultaneously
+yields $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
+= \Sigma_{\mathrm{near}}
++ \Sigma_{\mathrm{int}}
++ \Sigma_{\mathrm{far}} = o(1)$,
+completing the double-scaling stationary
+phase programme.
 
 %%═══ 9. OPEN PROBLEMS
 \section{Open Problems}
@@ -1371,12 +1414,13 @@ condition~\eqref{eq:open-mass} is a
 It follows from~(C) combined with the
 uniform pointwise bound~(D-weak),
 which forces~(D-strong)
-via Proposition~\ref{prop:HS-reduction}.
+via Remark~\ref{rem:double-scaling}.
 The \textbf{key analytic obstruction}
-is the uniformity of the off-diagonal
-stationary phase estimate across all
-$O(c^2)$ index pairs; its proof is the
-primary target of Paper~XV.
+is the near-diagonal regime
+$|n-m|=O(1)$ identified in
+Remark~\ref{rem:regime-decomposition},
+where oscillatory methods fail and
+structural PSWF estimates are required.
 
 \textbf{Consequence if confirmed.}
 \eqref{eq:open-mass} combined with
@@ -1435,8 +1479,10 @@ Double-scaling Szeg\H{o} structure identified
 No single-mode dominance
   & \textbf{Identified} (Lem.~\ref{lem:no-single-mode};
     cond.\ Weyl) \\
-Pointwise-only $o(1/c)$ $\not\Rightarrow$ (D-strong)
-  & \textbf{Identified} (structural gap) \\
+Regime decomposition (near/int/far)
+  & \textbf{Identified} (Rem.~\ref{rem:regime-decomposition}) \\
+Near-diagonal as primary obstruction
+  & \textbf{Identified} (Rem.~\ref{rem:regime-decomposition}) \\
 Uniform (D-weak) $\Rightarrow$ (D-strong)
   & \textbf{Proved} (Rem.~\ref{rem:double-scaling}) \\
 Diagonal reduction under (D-strong)
@@ -1445,8 +1491,8 @@ Diagonal reduction under (D-strong)
 Total mass $S_N^{(M(c))}\sim c_0\beta>0$
   & Conjectured (\ref{conj:szego};
     follows from (C)+(D-strong)) \\
-Uniform (D-weak): $\sup_{n\ne m}
-  |(\Ac^{(M)})_{nm}|\le\varepsilon(c)/c$
+(D-weak) uniform: $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|
+  \le\varepsilon(c)/c$
   & Open (\textbf{key obstruction}; Paper~XV) \\
 $S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
   & Open (OP~\ref{prob:H1H3}) \\
@@ -1471,17 +1517,14 @@ The gap between quadratic-form convergence
 is identified as a \emph{double-scaling
 Szeg\H{o} problem}
 (Definition~\ref{def:double-scaling}).
-Its resolution requires the
-\emph{uniform} off-diagonal bound:
-\[
-  \sup_{\substack{n\ne m \\
-  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
-  \left|(\Ac^{(M)})_{nm}\right|
-  \le \frac{\varepsilon(c)}{c},
-  \quad \varepsilon(c)\to 0,
-\]
-which forces collective quasi-orthogonality~(D-strong)
+Its resolution requires not merely a
+pointwise $o(1/c)$ bound on individual
+Gram matrix entries, but a \emph{uniform}
+$o(1/c)$ bound across all pairs $(n,m)$
+in the transition zone --- which forces
+collective quasi-orthogonality~(D-strong):
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+for $M(c)\sim\beta c$
 via the computation
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
 \le c^2\cdot\varepsilon(c)^2/c^2
@@ -1498,18 +1541,17 @@ sufficient condition
 (Proposition~\ref{prop:HS-reduction}).
 The key analytic task of Paper~XV is
 therefore to establish the uniform
-off-diagonal bound
-\[
-  \sup_{\substack{n\ne m \\
-  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
-  \left|(\Ac^{(M)})_{nm}\right|
-  \le \frac{\varepsilon(c)}{c},
-  \quad \varepsilon(c)\to 0,
-  \quad M\sim\beta c,
-\]
-via a double-scaling stationary phase
-estimate with uniform remainder across
-all $O(c^2)$ off-diagonal index pairs.
+off-diagonal bound~\eqref{eq:quasi-orth}
+with $\varepsilon(c)\to 0$, treating the
+three regimes of
+Remark~\ref{rem:regime-decomposition}
+separately: the far and intermediate
+regimes are accessible via double-scaling
+stationary phase, while the near-diagonal
+regime $|n-m|=O(1)$ --- where oscillatory
+cancellation is absent --- requires WKB
+amplitude orthogonality and $L^2$-based
+structural estimates on adjacent PSWFs.
 Paper~XIV is logically complete up to
 two open problems.}
 
