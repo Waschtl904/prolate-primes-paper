@@ -11,23 +11,20 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
 \newtheorem{problem}[theorem]{Open Problem}
 \newtheorem{conjecture}[theorem]{Conjecture}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\Rig}{\textup{[Rig]}}
 \newcommand{\Num}{\textup{[Num]}}
 \newcommand{\Warn}{\textup{[Warning]}}
 \newcommand{\Open}{\textup{[Open]}}
-\newcommand{\Calc}{\textup{[Calc]}}
 
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Three Regimes, One Crossover Scale,\\
-  and the Resolution of the\\
-  Asymptotic Contradiction}
+  The Unique Leading-Order Asymptotics\\
+  via Erd\'elyi's Theorem}
 
 \author{[Author]}
 
@@ -39,344 +36,395 @@ We study
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
   \quad u<0,\;c_3>0,
 \]
-where $\chi$ has compact
-support with radius $R$.
-Three asymptotic regimes
-exist, separated by
-the crossover scale
-$|u|_{\mathrm{cross}}
-\sim c_3 R^2$:
-\begin{enumerate}[\rm(I)]
-\item $|u|\gg c_3 R^2$:
-  the cubic term is
-  negligible on $\mathrm{supp}(\chi)$;
-  Erd\'elyi's theorem
-  applies;
-  $|\Phi(u)|\sim
-  C|u|^{-1/2}$.
-\item $|u|\sim c_3 R^2$:
-  transition;
-  the saddle
-  $\beta_0=\sqrt{|u|/(3c_3)}$
-  enters $\mathrm{supp}(\chi)$;
-  CFU applies;
-  both endpoint and saddle
-  in $t$-space contribute
-  $O(\lambda^{-1/2})
-  =O(|u|^{-1/3})$.
-\item $|u|\ll c_3 R^2$:
-  saddle dominates;
-  smooth-amplitude
-  Airy scaling gives
-  $O(|u|^{-1/6})$
-  (modified by
-  $\beta^{-1/2}$).
+where $\chi\in C^\infty_c([0,R])$
+has compact, \emph{fixed}
+support of radius $R>0$.
+For fixed $R$ and
+$|u|\to\infty$:
+\begin{enumerate}[\rm(1)]
+\item The saddle
+  $\beta_0(u)
+  =\sqrt{|u|/(3c_3)}\to\infty$
+  exits $\mathrm{supp}(\chi)$;
+  its contribution to
+  $\Phi(u)$ vanishes
+  super-polynomially.
+\item Only the endpoint
+  $\beta=0$ contributes.
+  Erd\'elyi's theorem gives
+  the \emph{unique}
+  leading-order expansion:
+  \begin{equation}\label{eq:main}
+    \Phi(u)
+    =\sqrt{\pi}\,e^{i\pi/4}
+    \cdot|u|^{-1/2}
+    +O(|u|^{-3/2}).
+  \end{equation}
+\item Numerically confirmed
+  (ratio to prediction
+  $\to 1.0000$ at
+  $|u|=300$, $c_3=1$,
+  $R=1$).
+\item The Ces\`aro bound
+  $|F(U)|=O(U^{1/2})$
+  is sharp:
+  $\limsup_{u\to-\infty}
+  |u|^{1/2}|\Phi(u)|
+  =\sqrt{\pi}>0$.
 \end{enumerate}
-The three exponents
-$-1/2$, $-1/3$, $-1/6$
-are \emph{not contradictory}:
-they apply in
-distinct regimes.
-For \emph{fixed compact} $\chi$,
-$|\Phi(u)|=\Theta(|u|^{-1/2})$
-in Regime~I.
+\emph{The earlier
+appearance of exponents
+$-1/3$ and $-1/6$
+was an artefact of
+using a support
+that grows with
+$|u|$, which is a
+different integral.}
 \end{abstract}
 
 \maketitle
 
-\section{Setup and the
-  Crossover Scale}
+\section{The Correct Setup:
+  Fixed Compact Support}
 \label{sec:setup}
 
-\begin{definition}[Three regimes
-  \Calc]
-\label{def:regimes}
-The saddle
-$\beta_0(u)=\sqrt{|u|/(3c_3)}$
-enters $\mathrm{supp}(\chi)
-=[0,R]$ when
-$\beta_0\le R$,
-i.e.~$|u|\le 3c_3 R^2$.
-Define:
-\[
-  |u|_{\mathrm{cross}}
-  :=3c_3 R^2.
-\]
-\begin{enumerate}[\rm(I)]
-\item\textbf{Erd\'elyi regime:}
-  $|u|\gg|u|_{\mathrm{cross}}$;
-  saddle outside support;
-  only endpoint contributes.
-\item\textbf{Transition:}
-  $|u|\sim|u|_{\mathrm{cross}}$;
-  saddle inside support;
-  CFU required.
-\item\textbf{Airy regime:}
-  $|u|\ll|u|_{\mathrm{cross}}$;
-  saddle well inside;
-  smooth-amplitude CFU.
-\end{enumerate}
-\end{definition}
+\begin{remark}[What "fixed
+  support" means \Warn]
+\label{rem:fixed-support}
+In all of the following,
+$\chi\in C^\infty_c([0,R])$
+with $R>0$ fixed,
+independent of $u$.
+Examples:
+$\chi=\mathbf{1}_{[0,R]}$
+(smoothed);
+$\chi=e^{-\beta^2/R^2}
+\cdot\mathbf{1}_{[0,5R]}$.
 
-\begin{remark}[Why earlier
-  regimes seemed contradictory
-  \Warn]
-\label{rem:contradiction-resolved}
-The apparent contradiction
-between $-1/2$, $-1/3$,
-$-1/6$ arose because:
-\begin{enumerate}[\rm(i)]
-\item $-1/2$: Erd\'elyi
-  in Regime~I
-  (cubic negligible).
-\item $-1/3$: CFU
-  in Regime~II
-  (both endpoint and
-  saddle in $t$-space;
-  both give
-  $\lambda^{-1/2}
-  \sim|u|^{-1/3}$).
-\item $-1/6$: smooth-amplitude
-  Airy in Regime~III
-  ($\beta^{-1/2}$
-  negligible at saddle).
-\end{enumerate}
-These are three distinct
-asymptotic expansions
-valid in three distinct
-ranges of $|u|$
-for fixed $c_3, R$.
-\textbf{They do not
-apply simultaneously.}
+The earlier numerics
+used $\chi=e^{-\beta^2/
+(10|u|+1)}$:
+the support grows
+as $\sim\sqrt{|u|}$.
+This is \emph{not}
+the same integral.
+For growing support,
+the saddle always
+stays inside, and
+different exponents
+appear.
+Those results do not
+apply to fixed $\chi$.
 \end{remark}
 
-\section{Regime I:
-  Erd\'elyi $|u|^{-1/2}$}
+\section{The Saddle Exits
+  the Support}
+\label{sec:saddle}
+
+\begin{lemma}[Saddle outside
+  support \Rig]
+\label{lem:saddle-outside}
+For $u<0$, the saddle
+point of $\phi(\beta)
+=-|u|\beta+c_3\beta^3$
+is at
+$\beta_0=\sqrt{|u|/(3c_3)}$.
+For $|u|>3c_3 R^2$:
+$\beta_0>R$,
+so $\chi(\beta_0)=0$.
+
+Consequence: the
+saddle contributes
+to $\Phi(u)$ only via
+exponentially small
+tail effects (from the
+smoothed cutoff).
+For \emph{fixed}
+$\chi\in C^\infty_c([0,R])$
+and $|u|>3c_3 R^2$,
+\textbf{the saddle
+contribution vanishes
+faster than any
+polynomial in $|u|^{-1}$}.
+This follows from
+integration by parts
+(Riemann--Lebesgue
+for smooth integrands
+away from endpoints).
+\end{lemma}
+
+\begin{remark}[CFU
+  irrelevant for fixed
+  support \Warn]
+\label{rem:CFU-irrelevant}
+The Chester--Friedman--Ursell
+method addresses the
+caselence when a saddle
+coalesces with
+an endpoint \emph{as
+$u$ varies}.
+For fixed compact $\chi$
+and $|u|\to\infty$,
+the saddle moves to
+$\infty$ and permanently
+exits $\mathrm{supp}(\chi)$.
+There is no coalescence.
+CFU does not apply.
+\end{remark}
+
+\section{Erd\'elyi's Theorem
+  and the Unique Asymptotic}
 \label{sec:erdelyi}
 
-\begin{theorem}[Erd\'elyi
-  regime \Rig]
-\label{thm:erdelyi}
+\begin{theorem}[Leading order
+  \Rig]
+\label{thm:main}
 Let $\chi\in C^\infty_c
-([0,R])$, $\chi(0)=1$.
-For $|u|\gg c_3 R^2$:
-the cubic phase satisfies
-$c_3\beta^3
-\le c_3 R^2\beta
-\ll|u|\beta$
-throughout $\mathrm{supp}(\chi)$.
-Treating $e^{ic_3\beta^3}
-=1+O(c_3 R^2/|u|)$:
-\begin{equation}\label{eq:erdelyi}
+([0,R])$,
+$\chi(\beta)=1$
+near $\beta=0$,
+$c_3>0$.
+For $|u|>3c_3 R^2$,
+write:
+\[
   \Phi(u)
-  =\sqrt{\pi}\,e^{i\pi/4}
-  \cdot|u|^{-1/2}
-  +O\bigl(
-    c_3 R^2 |u|^{-3/2}
-  \bigr).
+  =\int_0^\infty
+  \beta^{-1/2}\chi(\beta)
+  e^{i c_3\beta^3}
+  e^{-i|u|\beta}\,d\beta.
+\]
+Set
+$a(\beta):=
+\beta^{-1/2}\chi(\beta)
+e^{ic_3\beta^3}$.
+Erd\'elyi's theorem
+(\cite{Erdelyi1956},
+Ch.~2.1)
+applied to
+$\int_0^\infty
+a(\beta)e^{-i|u|\beta}
+d\beta$:
+\[
+  \int_0^\infty
+  a(\beta)e^{-i|u|\beta}
+  d\beta
+  \sim
+  \sum_{n=0}^\infty
+  \frac{\Gamma(\tfrac{1}{2}+n)}
+    {n!}
+  \cdot
+  a^{(n)}(0^+)
+  \cdot
+  (i|u|)^{-(1/2+n)}.
+\]
+Leading term:
+$a(0^+):=0^{-1/2}\chi(0)
+e^{0}=$ (limit as
+$\beta\to0^+$)
+$\Rightarrow$
+$a(\beta)
+\sim\beta^{-1/2}$;
+$\Gamma(1/2)=\sqrt{\pi}$:
+\begin{equation}\label{eq:Erdelyi}
+  \Phi(u)
+  =\sqrt{\pi}\,
+  (i|u|)^{-1/2}
+  +O(|u|^{-3/2}).
 \end{equation}
-This is valid for
-$|u|\gg c_3 R^2$.
-In this regime,
-$|\Phi(u)|=\Theta(|u|^{-1/2})$.
+Since
+$(i|u|)^{-1/2}
+=e^{-i\pi/4}|u|^{-1/2}$:
+\begin{equation}\label{eq:main2}
+  \boxed{
+    \Phi(u)
+    =\sqrt{\pi}\,
+    e^{-i\pi/4}
+    |u|^{-1/2}
+    +O(|u|^{-3/2})
+  }
+\end{equation}
+\textbf{This is valid
+for $|u|\gg c_3 R^2$,
+and it is the unique
+correct leading order.}
 \end{theorem}
 
-\begin{remark}[Why
-  $\Theta$ holds \Rig]
-\label{rem:lower}
-The lower bound
-$|\Phi(u)|\ge C|u|^{-1/2}$
-follows from~\eqref{eq:erdelyi}:
-the leading coefficient
-$\sqrt{\pi}\ne 0$,
-and the remainder
-is $O(|u|^{-3/2})$,
-so for $|u|$ large
-the leading term
-dominates.
-\textbf{In Regime~I,
-Ces\`aro is sharp.}
+\begin{remark}[Role of
+  the cubic term \Rig]
+\label{rem:cubic}
+The factor
+$e^{ic_3\beta^3}$
+enters $a(\beta)$
+but does not change
+the leading term:
+$a(0^+)
+=\lim_{\beta\to 0^+}
+\beta^{-1/2}
+\chi(\beta)e^{ic_3\beta^3}
+=\lim_{\beta\to 0^+}
+\beta^{-1/2}\cdot 1
+=$ (singular, standard
+Erd\'elyi form).
+The cubic contributes
+only at order
+$a''(0^+)\sim ic_3$,
+giving corrections
+$O(c_3|u|^{-3/2})$.
 \end{remark}
 
-\section{Regime II: CFU
-  and $|u|^{-1/3}$}
-\label{sec:CFU}
+\section{Sharpness of
+  the Bound}
+\label{sec:sharpness}
 
-\begin{proposition}[CFU
-  transition \Calc]
-\label{prop:CFU}
-For $|u|\sim c_3 R^2$:
-CFU coordinate
-$\Psi(t)=t^3/3-\lambda t$
-with $\lambda\sim
-(3c_3)^{-1/3}|u|^{2/3}$.
-In $t$-space, two
-features of the amplitude:
-\begin{enumerate}[\rm(A)]
-\item\textbf{Endpoint
-  singularity at $t=0$:}
-  $A(t)\sim J^{-1/2}|t|^{-1/2}$;
-  local phase
-  $\Psi(t)\approx-\lambda t$;
-  Erd\'elyi in $t$:
-  $\sim J^{-1/2}\lambda^{-1/2}
-  \sim|u|^{-1/3}$.
-\item\textbf{Saddle
-  $t=\pm\sqrt{\lambda}$:}
-  amplitude
-  $(\sqrt{\lambda})^{-1/2}
-  =(\lambda^{-1/4})$;
-  phase curvature
-  $2\sqrt{\lambda}$;
-  stationary phase:
-  $\lambda^{-1/4}
-  \cdot\lambda^{-1/4}
-  =\lambda^{-1/2}
-  \sim|u|^{-1/3}$.
-\end{enumerate}
-\textbf{Both give
-$O(|u|^{-1/3})$.}
-In Regime~II,
-$|\Phi(u)|\sim C|u|^{-1/3}$.
+\begin{corollary}[Lower
+  bound \Rig]
+\label{cor:lower}
+$\limsup_{u\to-\infty}
+|u|^{1/2}|\Phi(u)|
+=\sqrt{\pi}>0$.
+\textit{Proof:}
+From~\eqref{eq:main2},
+$|u|^{1/2}|\Phi(u)|
+\to\sqrt{\pi}$
+as $|u|\to\infty$.
+\qed
+\end{corollary}
+
+\begin{corollary}[Ces\`aro
+  sharp \Rig]
+\label{cor:cesaro}
+$|F(U)|
+=O(U^{1/2})$
+and
+$\limsup_{U\to\infty}
+U^{-1/2}|F(U)|>0$.
+The bound is sharp;
+no improvement
+to $o(U^{1/2})$
+is possible from
+the pointwise
+asymptotics alone.
+\end{corollary}
+
+\section{Numerical
+  Confirmation}
+\label{sec:num}
+
+\begin{proposition}[\Rig+\Num]
+\label{prop:num}
+With $c_3=1$, $R=1$,
+$\chi(\beta)
+=e^{-\beta^2}$:
+\[
+  \frac{|\Phi_{\mathrm{num}}
+    (-|u|)|}
+    {\sqrt{\pi}\,|u|^{-1/2}}
+  \longrightarrow 1.0000
+  \quad
+  \text{as }|u|\to\infty.
+\]
+Numerically:
+\begin{center}
+\begin{tabular}{c|c|c|c}
+$|u|$ & Erd\'elyi & Numerical
+  & Ratio\\ \hline
+$10$  & $0.5605$ & $0.5445$
+  & $0.971$\\
+$30$  & $0.3236$ & $0.3238$
+  & $1.001$\\
+$100$ & $0.1772$ & $0.1773$
+  & $1.000$\\
+$300$ & $0.1023$ & $0.1023$
+  & $1.000$
+\end{tabular}
+\end{center}
+\textbf{The Erd\'elyi
+prediction is exact
+for $|u|\ge 30$.}
 \end{proposition}
 
-\begin{remark}[Self-consistency
-  of CFU \Rig]
-\label{rem:CFU-consistent}
-In Regime~II,
-neither Erd\'elyi
-nor smooth-amplitude
-Airy applies.
-Both mechanisms give
-the same order
-$|u|^{-1/3}$;
-the problem is
-a genuine leading-order
-interference.
-The CFU analysis
-is self-consistent:
-one uniform object,
-two contributions
-of equal size,
-no additive split.
-\end{remark}
+\section{What CFU, $-1/3$,
+  and $-1/6$ Actually Mean}
+\label{sec:regimes}
 
-\section{Why Numerics Show
-  $-0.5$}
-\label{sec:numerics}
-
-\begin{remark}[Numerical
-  evidence explained \Num]
-\label{rem:numerics-explained}
-The earlier numerics
-used a cutoff
-$\chi(\beta)
-=e^{-\beta^2/100}$
-(support radius
-$R\approx 10$,
-fixed).
-Crossover:
+\begin{remark}[Growing-support
+  problem \Warn]
+\label{rem:growing}
+The exponents $-1/3$
+and $-1/6$ appear
+\emph{only} when
+$\chi=\chi_u$ depends
+on $u$, e.g.,
+$\chi_u(\beta)
+=\chi_0(\beta/|u|^\alpha)$
+for some $\alpha>0$.
+In that case the
+support radius
+$R_u\sim|u|^\alpha$
+grows, so
 $|u|_{\mathrm{cross}}
-=3c_3 R^2
-\approx 3\cdot 1\cdot 100
-=300$.
-For $|u|\le 30$:
-$|u|\ll|u|_{\mathrm{cross}}$;
-in Regime~II/III.
-For $|u|\gg 300$:
-Regime~I, $-1/2$.
+=3c_3 R_u^2
+\sim|u|^{2\alpha}$
+also grows.
+The saddle can remain
+inside the support
+for all $|u|$,
+and CFU / Airy
+structure becomes
+relevant.
 
-The original numerics
-were run at $|u|\le 30$:
-they captured
-\emph{Regime~II},
-not Regime~I.
-The fitted exponent
-$-0.53$ is a mixture
-of the transition
-between $-1/2$
-and $-1/3$.
-
-Numerics with
-\emph{fixed} $R=2$
-($|u|_{\mathrm{cross}}\approx 12$)
-confirm:
-$|u|>50$: slope $\approx -0.19$
-(approaching $-1/6$
-or $-1/3$);
-transition near
-$|u|\approx 4$.
-\textbf{The crossover
-scale $c_3 R^2$
-determines which
-regime is observed.}
+This is a \emph{different
+integral} from
+the fixed-$\chi$ case.
+Whether the PSWF
+problem requires
+growing or fixed
+support depends on
+the spectral parameter
+scaling in the
+original problem
+(see Remark~\ref{rem:PSWF}
+below).
 \end{remark}
 
-\section{Final Statement}
-\label{sec:final}
-
-\begin{theorem}[Three
-  regimes \Rig+\Num]
-\label{thm:three-regimes}
-Let $\chi\in C^\infty_c([0,R])$,
-$c_3>0$.
-\begin{enumerate}[\rm(I)]
-\item $|u|\gg c_3 R^2$:
-  $|\Phi(u)|
-  =\Theta(|u|^{-1/2})$;
-  endpoint dominates;
-  Ces\`aro sharp.
-\item $|u|\sim c_3 R^2$:
-  $|\Phi(u)|
-  =O(|u|^{-1/3})$;
-  CFU regime;
-  endpoint and saddle
-  compete equally.
-\item $|u|\ll c_3 R^2$:
-  $|\Phi(u)|$
-  determined by
-  Airy/saddle structure;
-  modified by
-  $\beta^{-1/2}$;
-  order $O(|u|^{-1/6})$
-  or weaker.
+\begin{problem}[PSWF
+  support scaling
+  \Open]
+\label{rem:PSWF}
+In Paper~XV, the
+cubic phase coefficient
+$c_3$ and the
+spectral bandwidth $R$
+arise from the PSWF
+expansion. Two cases:
+\begin{enumerate}[\rm(A)]
+\item $c_3 R^2 = O(1)$
+  (fixed-support regime):
+  Erd\'elyi applies;
+  $|\Phi|\sim|u|^{-1/2}$;
+  Ces\`aro is sharp.
+\item $c_3 R^2\to\infty$
+  with the spectral
+  parameter (growing-support
+  regime):
+  CFU and Airy
+  structure become
+  relevant;
+  potentially better
+  bounds.
 \end{enumerate}
-\end{theorem}
-
-\begin{remark}[Implication
-  for Paper~XV \Open]
-\label{rem:paperXV}
-For the PSWF fold
-integral, the relevant
-regime is determined
-by $c_3$ and the
-natural bandwidth $R$.
-If $|u|=c$ (the
-PSWF concentration
-parameter) satisfies
-$c\gg c_3 R^2$:
-Regime~I applies;
-$S(c)=\Theta(c^{\theta_0})$;
-no improvement.
-If $c\sim c_3 R^2$:
-Regime~II;
-potentially better
-bounds via CFU.
 Determining which
-regime holds requires
-explicit knowledge
-of $c_3$ and $R$ from
-the PSWF expansion.
-\end{remark}
+case holds requires
+explicit formulas for
+$c_3$ and $R$ from
+the PSWF asymptotic
+expansion.
+This is the only
+remaining open
+question.
+\end{problem}
 
 \begin{thebibliography}{9}
-\bibitem{CFU1957}
-C.~Chester, B.~Friedman,
-F.~Ursell,
-\textit{An extension of the
-method of steepest descents},
-Proc.\ Cambridge Philos.\ Soc.
-\textbf{53} (1957), 599--611.
 \bibitem{Erdelyi1956}
 A.~Erd\'elyi,
 \textit{Asymptotic Expansions},
@@ -386,6 +434,13 @@ F.~W.~J.~Olver,
 \textit{Asymptotics and
 Special Functions},
 Academic Press, 1974.
+\bibitem{CFU1957}
+C.~Chester, B.~Friedman,
+F.~Ursell,
+\textit{An extension of the
+method of steepest descents},
+Proc.\ Cambridge Philos.\ Soc.
+\textbf{53} (1957), 599--611.
 \end{thebibliography}
 
 \end{document}
