@@ -39,7 +39,8 @@
   quantum ergodicity, WKB, spectral evacuation, quadratic forms,
   rank growth, Szeg\H{o} theory, Toeplitz operators,
   double-scaling Szeg\H{o} problem,
-  collective quasi-orthogonality}
+  collective quasi-orthogonality,
+  near-diagonal cancellation}
 
 \begin{document}
 
@@ -91,14 +92,7 @@ where $\Ac:=\Bn^*\Bn\ge 0$, $0\le\Ac\le I$.
 H3 ($\sup_c S_N(c)\to 0$) implies H1.
 The gap between quadratic-form convergence
 and operator norm convergence is identified
-as a problem of
-\emph{non-vanishing total spectral mass
-along linear truncation scales}:
-whether $S_N^{(M(c))}(c)\gtrsim 1$
-for $M(c)\sim\beta c$
-(Open Problem~\ref{prob:H1H3}),
-further identified as a
-\emph{double-scaling Szeg\H{o} problem}
+as a \emph{double-scaling Szeg\H{o} problem}
 (Definition~\ref{def:double-scaling})
 for the truncated Gram operator
 $\Ac^{(M)}=P_{V_M^{(c)}}P_{c_0}P_{V_M^{(c)}}$
@@ -107,9 +101,14 @@ The resolution requires not merely
 pointwise quasi-orthogonality~(D-weak)
 but \emph{collective quasi-orthogonality}~(D-strong):
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
-for $M(c)\sim\beta c$
-(Proposition~\ref{prop:HS-reduction},
-\S\ref{sec:PaperXV}).
+for $M(c)\sim\beta c$.
+The primary analytic obstruction is the
+\emph{near-diagonal regime} $|n-m|=O(1)$,
+where oscillatory methods fail and the
+problem reduces to amplitude orthogonality
+of adjacent PSWFs
+(Open Problem~\ref{prob:near-diagonal},
+Remark~\ref{rem:WKB-reduction}).
 \end{abstract}
 
 \maketitle
@@ -148,9 +147,7 @@ H1 splits into two components:
 \end{align}
 \eqref{eq:H1ip} is proved unconditionally
 (Prop.~\ref{prop:H1ip}).
-The obstruction is entirely in~\eqref{eq:H1norm},
-which is equivalent to H3
-(given OP~\ref{prob:H1H3}).
+The obstruction is entirely in~\eqref{eq:H1norm}.
 The core difficulty:
 $a^{(c)}\rightharpoonup a^{(\infty)}$
 does not imply norm convergence;
@@ -175,10 +172,6 @@ via the PSWF-ONB expansion:
   S_N(c) := \sum_{n>N}\mu_{n,c}([-c_0,c_0])
   = \sum_{n>N}\norm{\Pc\Phic{c}{n}}^2_{L^2}.
 \end{equation}
-This is a convergent series of non-negative
-terms (each bounded by 1 by Plancherel);
-no global operator-theoretic interpretation
-is required for this definition.
 The obstruction to H1 is
 \emph{spectral non-evacuation}:
 the failure of $S_N(c)$ to vanish
@@ -209,53 +202,28 @@ transit between $\approx 1$ and $\approx 0$.
 \item Tail reduction: $Q_c^N(g)\le\norm{g}^2 S_N(c)$
 \item \eqref{eq:H1ip}
 \item $\norm{\Bn}_{\mathrm{op}}\le 1$
-  (composition of orthogonal projections)
 \item $0\le\Ac\le I$
 \item $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-  (finite truncation + monotone limit;
-  no global trace-class assumption)
-\item $S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
-  (limit of finite-dimensional traces;
-  not a global trace on $L^2(\mathbb{R})$)
-\item $Q_c^N(g)=\ip{\Ac g}{g}$,
-  $\Ac=\Bn^*\Bn\ge 0$
-\item Finite-dimensional effective rank bound
-  (Lemma~\ref{lem:rank-lower}):
-  at each finite stage only;
-  never passed to the limit
-\item No single-mode dominance
-  (Lemma~\ref{lem:no-single-mode},
-  conditional on local Weyl law):
-  $\max_n(\Ac^{(M)})_{nn}=O(1/c)$
-\item $\sigma(c)\sim cc_0/\pi$
-  (classical Slepian--Weyl)
-\item NC $\Rightarrow$ H3 fails
-\item NC sufficient but not necessary
-  for H3 to fail (Prop.~\ref{prop:NC-not-H3})
-\item Local Weyl law $\Rightarrow$ NC
+  (finite truncation + monotone limit)
 \item H3 $\Rightarrow$ H1
 \item H1 $\Rightarrow$ $\ip{\Ac g}{g}\to 0$
-  (quadratic-form convergence; each fixed $g$)
-\item Non-interchangeability of $\lim$ and
-  $\sup_{\norm{g}=1}$ is the precise
-  obstruction to upgrading quadratic-form
-  convergence to op-norm
-  (Remark~\ref{rem:lim-sup})
+\item NC $\Rightarrow$ H3 fails
+\item Local Weyl $\Rightarrow$ NC
+\item NC sufficient not necessary
+\item lim/sup non-interchangeable
+\item Uniform (D-weak) $\Rightarrow$ (D-strong)
+\item Diagonal reduction under (D-strong)
 \end{itemize}
 \textbf{Open / conditional:}
 \begin{itemize}[leftmargin=*]
-\item Non-vanishing total spectral mass
-  along linear scales:
-  $S_N^{(M(c))}(c)\gtrsim 1$
-  for $M(c)\sim\beta c$
-  (OP~\ref{prob:H1H3});
-  identified as a double-scaling
-  Szeg\H{o} problem
-  (Def.~\ref{def:double-scaling},
-  \S\ref{sec:szego});
-  requires (D-strong), not merely (D-weak)
-\item NC holds (local Weyl law):
-  OP~\ref{prob:fourier-mass}
+\item $S_N^{(M(c))}(c)\gtrsim 1$,
+  $M(c)\sim\beta c$
+  (OP~\ref{prob:H1H3})
+\item Near-diagonal cancellation
+  (OP~\ref{prob:near-diagonal}):
+  \emph{primary analytic obstruction}
+\item NC holds
+  (OP~\ref{prob:fourier-mass})
 \end{itemize}}}
 \end{center}
 
@@ -309,8 +277,7 @@ By weak lower semicontinuity:
 $\liminf\norm{a^{(c)}}\ge\norm{a^{(\infty)}}$,
 so H1 $\Leftrightarrow$
 $\limsup_c\norm{a^{(c)}}\le\norm{a^{(\infty)}}$.
-The entire obstruction is in the norm
-upper bound~\eqref{eq:H1norm}.
+The entire obstruction is in~\eqref{eq:H1norm}.
 \end{remark}
 
 %%═══ 4. TAIL REDUCTION AND THE QUADRATIC FORM
@@ -320,21 +287,17 @@ upper bound~\eqref{eq:H1norm}.
 \begin{remark}[Foundational conventions]
 \label{rem:foundation}
 Throughout this section:
-\begin{itemize}[leftmargin=*]
-\item $S_N(c)$ is \emph{defined} by the
-  convergent series~\eqref{eq:SN-def};
-  not via a global operator trace.
-\item $P_{c_0}$ is \emph{not}
-  Hilbert--Schmidt on $L^2(\mathbb{R})$
-  ($\|P_{c_0}\|_{\mathrm{HS}}^2=\infty$);
-  no such property is used anywhere below.
-\item All operator norm inequalities are derived
-  via finite-dimensional truncations $\Ac^{(M)}$
-  followed by a monotone limit $M\to\infty$.
-  Eigenvalue-counting arguments are carried
-  out \emph{only} at finite truncation level
-  and are \emph{never} passed to the limit.
-\end{itemize}
+$S_N(c)$ is defined by the convergent
+series~\eqref{eq:SN-def}, not via a global
+operator trace.
+$P_{c_0}$ is not Hilbert--Schmidt on
+$L^2(\mathbb{R})$; no such property is used.
+All operator norm inequalities are derived
+via finite-dimensional truncations $\Ac^{(M)}$
+followed by a monotone limit $M\to\infty$.
+Eigenvalue-counting arguments are carried
+out only at finite truncation level and
+are never passed to the limit.
 \end{remark}
 
 \begin{definition}[$S_N(c)$, $\sigma(c)$, finite truncations]
@@ -342,29 +305,22 @@ Throughout this section:
 \begin{align*}
   S_N(c) &:= \sum_{n>N}\mu_{n,c}([-c_0,c_0]),\\
   S_N^{(M)}(c) &:= \sum_{n=N+1}^{M}
-            \mu_{n,c}([-c_0,c_0]),
-            \qquad M>N,\\
+            \mu_{n,c}([-c_0,c_0]),\\
   \sigma(c) &:= \sum_{n\ge 0}\mu_{n,c}([-c_0,c_0])
             \sim \frac{cc_0}{\pi}
-            \quad\text{(Slepian--Weyl \cite{Slepian1961})}.
+            \quad\text{(Slepian--Weyl
+            \cite{Slepian1961})}.
 \end{align*}
 $S_N^{(M)}(c)\nearrow S_N(c)$ monotonely.
-The divergence $\sigma(c)\to\infty$
-does not preclude $S_N(c)\to 0$:
-total spectral mass can grow while the
-tail $\{n>N\}$ evacuates.
 \end{definition}
 
 \begin{lemma}[Tail reduction]
 \label{lem:tail}
 For $g\in\PW_{c_0}^2$:
-\[
-  Q_c^N(g):=\sum_{n>N}|a_n^{(c)}|^2
-  \le\norm{g}^2\cdot S_N(c).
-\]
+$Q_c^N(g):=\sum_{n>N}|a_n^{(c)}|^2
+\le\norm{g}^2\cdot S_N(c).$
 \end{lemma}
 \begin{proof}
-Since $\operatorname{supp}\hat g\subseteq[-c_0,c_0]$,
 Cauchy--Schwarz gives
 $|a_n^{(c)}|^2
 \le\norm{g}^2\cdot\mu_{n,c}([-c_0,c_0])$.
@@ -390,52 +346,27 @@ Define:
 \end{align*}
 
 \textbf{(0) Contraction.}
-$\norm{\Bn}_{\mathrm{op}}\le 1$ (composition
-of orthogonal projections), so
-$0\le\Ac=\Bn^*\Bn\le I$,
-and likewise $0\le\Ac^{(M)}\le I$
-with eigenvalues $\lambda_j^{(M)}\in[0,1]$.
+$\norm{\Bn}_{\mathrm{op}}\le 1$,
+$0\le\Ac\le I$, $0\le\Ac^{(M)}\le I$.
 
 \medskip
 \textbf{(I) Spectral sum identity.}
-At each finite $M$:
-\begin{equation}\label{eq:trace-M}
-  \mathrm{Tr}(\Ac^{(M)})
-  = \sum_{j}\lambda_j^{(M)}
-  = S_N^{(M)}(c).
-\end{equation}
-Taking $M\to\infty$:
 \begin{equation}\label{eq:TrPSWF}
   \mathrm{Tr}_{\mathrm{PSWF}}(\Ac)
   := \lim_{M\to\infty}\mathrm{Tr}(\Ac^{(M)})
   = S_N(c).
 \end{equation}
-This is a limit of genuine finite-dimensional
-traces; it is \emph{not} a trace in
-$\mathfrak{S}_1(L^2(\mathbb{R}))$,
-nor a sum of eigenvalues of the global $\Ac$.
 
 \medskip
 \textbf{(II) Operator norm inequality.}
-Since $\lambda_j^{(M)}\in[0,1]$:
-$\norm{\Ac^{(M)}}_{\mathrm{op}}
-=\max_j\lambda_j^{(M)}
-\le\mathrm{Tr}(\Ac^{(M)})
-=S_N^{(M)}(c)$.
-Taking $M\to\infty$:
 \begin{equation}\label{eq:op-le-spectral}
-  \norm{\Ac}_{\mathrm{op}}
-  \le S_N(c).
+  \norm{\Ac}_{\mathrm{op}} \le S_N(c).
 \end{equation}
-No global trace-class or HS property is used.
 
 \medskip
 \textbf{(III) Quadratic form.}
 \begin{equation}\label{eq:Qc-key}
-  Q_c^N(g)
-  = \sum_{n>N}|\ip{g}{\Phic{c}{n}}|^2
-  = \norm{\Bn g}^2
-  = \ip{\Ac g}{g}.
+  Q_c^N(g) = \norm{\Bn g}^2 = \ip{\Ac g}{g}.
 \end{equation}
 
 \medskip
@@ -447,120 +378,40 @@ No global trace-class or HS property is used.
   \;\Rightarrow\;
   \text{H1}
   \;\Rightarrow\;
-  \ip{\Ac g}{g}\to 0\;(\text{each fixed }g).
+  \ip{\Ac g}{g}\to 0.
 \end{equation}
-
-\medskip
-\begin{center}
-\fbox{\parbox{0.84\linewidth}{
-\textbf{Key distinction.}
-The obstruction is not the size of the
-spectral mass $S_N(c)$, but the
-\emph{distribution of the spectral mass
-across eigenvalues} of $\Ac^{(M)}$.
-A large trace is compatible with all mass
-concentrated on a single eigenvalue;
-controlling the number of large eigenvalues
-requires spectral distribution input
-beyond the trace alone.
-This reflects that the relevant quantity is
-not density per mode, but the
-\emph{accumulation of spectral mass across
-a linearly growing family of modes}
-(see \S\ref{sec:szego}
-and OP~\ref{prob:H1H3}).}}
-\end{center}
 \end{theorem}
 
 \begin{remark}[Non-interchangeability of limit and supremum]
 \label{rem:lim-sup}
 The failure to upgrade
-$\ip{\Ac g}{g}\to 0$ (each fixed $g$)
-to $\norm{\Ac}_{\mathrm{op}}\to 0$
-stems from the non-interchangeability of
-$\lim_{c\to\infty}$ and $\sup_{\norm{g}=1}$:
-\[
-  \norm{\Ac}_{\mathrm{op}}
-  = \sup_{\norm{g}=1}\ip{\Ac g}{g},
-\]
-and pointwise convergence over the unit ball
-does not imply uniform convergence.
-This is the standard distinction between
-strong and uniform operator convergence,
-and is the precise functional-analytic
-obstruction here.
-A sequence of positive operators can satisfy
-$\ip{A_c g}{g}\to 0$ for each fixed $g$
-while $\norm{A_c}_{\mathrm{op}}$ remains
-bounded away from zero
-(e.g.\ rank-one operators $A_c=e_c\otimes e_c$
-with $e_c\rightharpoonup 0$).
+$\ip{\Ac g}{g}\to 0$ to $\norm{\Ac}_{\mathrm{op}}\to 0$
+is the non-interchangeability of
+$\lim_{c\to\infty}$ and $\sup_{\norm{g}=1}$.
 \end{remark}
 
 \begin{remark}[Convergence hierarchy]
 \label{rem:convergence-hierarchy}
-The chain~\eqref{eq:chain} distinguishes:
-\begin{enumerate}[\rm(1)]
-\item \emph{H3} ($S_N(c)\to 0$):
-  controls all spectral mass simultaneously.
-\item \emph{$\norm{\Ac}_{\mathrm{op}}\to 0$}:
-  controls the largest eigenvalue uniformly.
-\item \emph{$\ip{\Ac g}{g}\to 0$ each fixed $g$}
-  (quadratic-form convergence): weakest;
-  proved from H1.
-\end{enumerate}
-The gap between (3) and (2) is the content
-of OP~\ref{prob:H1H3}, identified in
-\S\ref{sec:szego} as a double-scaling
-Szeg\H{o} problem
-(Definition~\ref{def:double-scaling});
-its resolution requires
-collective quasi-orthogonality~(D-strong),
-not merely pointwise decay~(D-weak)
-(\S\ref{sec:PaperXV}).
-\end{remark}
-
-\begin{remark}[Spectral sum vs.\ spectral distribution]
-\label{rem:HS-trace}
-\begin{equation}\label{eq:op-SN-relation}
-  \norm{\Ac}_{\mathrm{op}} \le S_N(c),
-  \qquad
-  S_N^{(M)}(c)
-  \le \norm{\Ac^{(M)}}_{\mathrm{op}}\cdot(M-N).
-\end{equation}
-$S_N(c)$ controls the spectral sum.
-It does \emph{not} control how many
-eigenvalues are large, nor the total
-spectral mass $S_N^{(M(c))}(c)$
-at growing scales: both require
-spectral distribution input
-(OP~\ref{prob:H1H3}).
+(1)~H3 controls all spectral mass simultaneously.
+(2)~$\norm{\Ac}_{\mathrm{op}}\to 0$ controls
+the largest eigenvalue uniformly.
+(3)~$\ip{\Ac g}{g}\to 0$ each fixed $g$:
+weakest; proved from H1.
+The gap between (3) and (2) is
+OP~\ref{prob:H1H3}.
 \end{remark}
 
 \begin{lemma}[Finite-dimensional effective rank bound]
 \label{lem:rank-lower}
-For every $\varepsilon\in(0,1)$ and
-finite $M>N$:
-\begin{equation}\label{eq:eff-rank-M}
+For $\varepsilon\in(0,1)$ and finite $M>N$:
+\[
   \#\{j:\lambda_j^{(M)}\ge\varepsilon\}
-  \;\ge\;
+  \ge
   \frac{S_N^{(M)}(c)-\varepsilon(M-N)}{1-\varepsilon}.
-\end{equation}
-This bound is finite linear algebra at
-each stage $M$ and is never passed to
-the limit.
-It is non-trivial exactly when the
-mean spectral density
-$\bar\lambda^{(M)}(c):=S_N^{(M)}(c)/(M-N)$
-satisfies $\bar\lambda^{(M)}(c)>\varepsilon$.
+\]
 \end{lemma}
-
 \begin{proof}
-Split the trace at $\varepsilon$:
-$S_N^{(M)}(c)
-\le\#\{j:\lambda_j^{(M)}\ge\varepsilon\}
-+\varepsilon(M-N)$.
-Rearrange.
+Split trace at $\varepsilon$; rearrange.
 \end{proof}
 
 %%═══ 5. SPECTRAL MEASURES AND NC
@@ -569,13 +420,10 @@ Rearrange.
 
 \begin{definition}[No-Concentration (NC)]
 \label{def:NC}
-Fix $0<\alpha<\kappa<1$.
 NC holds if $\exists\, c_*>0$ such that
 for all large $c$:
-\[
-  \sum_{n\in\mathcal{T}_{\alpha,\kappa}(c)}
-  \mu_{n,c}([-c_0,c_0]) \ge c_*>0.
-\]
+$\sum_{n\in\mathcal{T}_{\alpha,\kappa}(c)}
+\mu_{n,c}([-c_0,c_0]) \ge c_*>0$.
 \end{definition}
 
 \begin{remark}[NC and semiclassical equidistribution]
@@ -583,68 +431,26 @@ for all large $c$:
 Under the local Weyl law,
 $\mu_{n,c}([-c_0,c_0])\sim c_0/c$
 for $n\in\mathcal{T}_{\alpha,\kappa}(c)$,
-giving band sum $\sim c_0(\kappa-\alpha)>0$.
-This exhibits QE-type behaviour in the
-sense of semiclassical equidistribution
-\cite{Zworski2012}: each mode contributes
-a share of frequency mass proportional to
-the relative bandwidth $c_0/c$, consistent
-with uniform phase-space spreading along
-the energy surface $\{n/c\to\alpha\}$.
+consistent with uniform phase-space spreading
+\cite{Zworski2012}.
 NC holds with $c_*=c_0(\kappa-\alpha)/2$.
-A sub-proportional band of width $c^\beta$
-($\beta<1$) gives sum $\sim c_0 c^{\beta-1}\to 0$:
-insufficient for NC.
 \end{remark}
 
 \begin{proposition}[Spectral Leakage Barrier]
 \label{prop:barrier}
-Under NC: for each fixed $N$,
-$\liminf_{c\to\infty}S_N(c)\ge c_*>0$,
-so H3 fails.
+Under NC: $\liminf_{c\to\infty}S_N(c)\ge c_*>0$.
 \end{proposition}
-\begin{proof}
-For large $c$: $\alpha c>N$,
-so $\mathcal{T}_{\alpha,\kappa}(c)\subseteq\{n>N\}$
-and $S_N(c)\ge c_*$.
-\end{proof}
 
-\begin{proposition}[NC$^c$ does not imply H3;
-  logical separation]
+\begin{proposition}[Logical separation]
 \label{prop:NC-not-H3}
-\emph{This is a logical separation result
-for abstract probability measure families
-$\{\mu_{n,c}\}$.
-The model below does not arise from
-$|\widehat{\Phi_n^{(c)}}|^2\,d\xi$;
-PSWF realizability is neither asserted
-nor needed.
-The model concentrates mass in a
-sub-proportional window of width
-$\sim\sqrt{c}$, incompatible with
-semiclassical equidistribution, confirming
-the abstract character of the separation.}
-
-\medskip\noindent
-There exists a family with
-$\mu_{n,c}\ge 0$, $\mu_{n,c}(\mathbb{R})=1$,
-such that NC fails yet H3 fails:
-$\liminf_{c\to\infty}S_N(c)\ge 1$
-for every fixed $N$.
-In particular, NC is sufficient but not
-necessary for H3 to fail.
+NC is sufficient but not necessary for H3 to fail.
 \end{proposition}
-
 \begin{proof}
 Set $I_c:=\{n:|n-\lfloor\alpha c\rfloor|
 \le\lfloor\sqrt{c}\rfloor\}$,
 $\mu_{n,c}([-c_0,c_0]):=1/|I_c|$
-for $n\in I_c$, $0$ otherwise.
-For large $c$, $I_c\subseteq\{n>N\}$
-so $S_N(c)\ge 1$.
-NC fails because $I_c$ lies in a
-sub-proportional window
-escaping every fixed proportional band.
+for $n\in I_c$. Then $S_N(c)\ge 1$
+but NC fails.
 \end{proof}
 
 %%═══ 6. H3 AND THE MAIN REDUCTION
@@ -661,24 +467,16 @@ $\sup_{c>c_0}S_N(c)\xrightarrow{N\to\infty}0$.
 H3 implies H1.
 \end{theorem}
 \begin{proof}
-Fix $\varepsilon>0$, $g\in\PW_{c_0}^2$.
-H3: choose $N$ with
+Fix $\varepsilon>0$. H3 gives $N$ with
 $\sup_c S_N(c)<\varepsilon/(2\norm{g}^2)$.
-Lemma~\ref{lem:tail}: $Q_c^N(g)<\varepsilon/2$
-for all $c$.
-Paper~XII: choose $c_\varepsilon$ with
-$\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
-<\varepsilon/2$ for $c>c_\varepsilon$.
-Adding gives H1.
+Lemma~\ref{lem:tail}: $Q_c^N(g)<\varepsilon/2$.
+Paper~XII: $\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
+<\varepsilon/2$ for large $c$. Adding gives H1.
 \end{proof}
 
 \begin{theorem}[H1 $\Rightarrow$ quadratic-form convergence]
 \label{thm:H1-H3-ptwise}
-Assume H1. For each fixed $g$ and $N$:
-$Q_c^N(g)=\ip{\Ac g}{g}\to 0$.
-This is quadratic-form convergence;
-it does not imply $\norm{\Ac}_{\mathrm{op}}\to 0$
-(Remark~\ref{rem:lim-sup}).
+Assume H1. Then $Q_c^N(g)\to 0$ each fixed $g,N$.
 \end{theorem}
 \begin{proof}
 $Q_c^N(g)
@@ -692,72 +490,30 @@ $Q_c^N(g)
 H3$\Rightarrow$H1,
 H1$\Rightarrow\ip{\Ac g}{g}\to 0$,
 NC$\Rightarrow$H3 fails,
-local Weyl$\Rightarrow$NC,
-NC sufficient not necessary.
+local Weyl$\Rightarrow$NC.
 
 \textup{(ii)} Open:
-$S_N^{(M(c))}(c)\gtrsim 1$ for $M(c)\sim\beta c$
-(OP~\ref{prob:H1H3};
-double-scaling Szeg\H{o} problem,
-Def.~\ref{def:double-scaling},
-\S\ref{sec:szego});
-NC holds (OP~\ref{prob:fourier-mass}).
+OP~\ref{prob:H1H3}, OP~\ref{prob:near-diagonal},
+OP~\ref{prob:fourier-mass}.
 
 \textup{(iii)} Conditional:
-local Weyl$\Rightarrow$NC$\Rightarrow$H3 fails$\Rightarrow$H1 fails.
+local Weyl$\Rightarrow$NC$\Rightarrow$H3
+fails$\Rightarrow$H1 fails.
 \end{theorem}
-
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{lll}
-\toprule
-Implication & Status & Note \\
-\midrule
-H3$\Rightarrow$H1 & \textbf{Proved} & --- \\
-H1$\Rightarrow\ip{\Ac g}{g}\to 0$
-  & \textbf{Proved} & quadratic-form conv. \\
-H1$\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
-  & Open & OP~\ref{prob:H1H3} \\
-lim/sup non-interchangeable
-  & \textbf{Proved} & Rem.~\ref{rem:lim-sup} \\
-$0\le\Ac\le I$
-  & \textbf{Proved} & projections compose \\
-$\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-  & \textbf{Proved} & fin.\ trunc.\ + limit \\
-$\Ac^{(M)}=P_{V_M}P_{c_0}P_{V_M}$
-  & \textbf{Identified} & Thm.~\ref{thm:SN-operator} \\
-Fin.-dim.\ eff.\ rank bound
-  & \textbf{Proved} & Lem.~\ref{lem:rank-lower}; level $M$ only \\
-No single-mode dominance
-  & \textbf{Identified} & Lem.~\ref{lem:no-single-mode}; cond.\ Weyl \\
-$S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
-  & Open & OP~\ref{prob:H1H3};
-    requires (D-strong) \\
-NC$\Rightarrow$H3 fails & \textbf{Proved} & --- \\
-NC sufficient, not necessary
-  & \textbf{Proved} & abstract \\
-Local Weyl$\Rightarrow$NC & \textbf{Proved} & --- \\
-NC holds & Open & OP~\ref{prob:fourier-mass} \\
-\bottomrule
-\end{tabular}
-\end{center}
 
 %%═══ 7. INTERPRETATION
 \section{Interpretation and Context}
 \label{sec:interp}
 
-\subsection{The true obstruction: spectral non-evacuation}
+\subsection{The true obstruction}
 
 \[
   \text{H1 fails}
   \;\Longleftrightarrow\;
   \text{spectral non-evacuation in }n\sim\alpha c
-  \quad(\text{cond.\ on OPs~\ref{prob:H1H3},
-  \ref{prob:fourier-mass}}).
+  \quad(\text{cond.\ on
+  OPs~\ref{prob:H1H3}, \ref{prob:fourier-mass}}).
 \]
-The model of Proposition~\ref{prop:NC-not-H3}
-shows mass can persist in $S_N(c)$
-without any single proportional band carrying it.
 
 \subsection{Two levels of the problem}
 
@@ -768,17 +524,11 @@ without any single proportional band carrying it.
 Level & Quantity & Status \\
 \midrule
 Energetic & $S_N(c)$ (spectral sum) & Controlled \\
-Geometric & $\#\{j:\lambda_j^{(M)}\ge\varepsilon\}$
-  (eigenvalue count) & Open \\
+Geometric & eigenvalue distribution of $\Ac^{(M)}$
+  & Open \\
 \bottomrule
 \end{tabular}
 \end{center}
-
-\noindent
-This is the exact distinction between
-trace control and spectral distribution control.
-The open problem lives entirely at the
-geometric level.
 
 \subsection{Why existing tools are insufficient}
 
@@ -793,20 +543,16 @@ Bessel
   & Tail; NC \\
 Paper~XII
   & quadratic-form conv.
-  & $\norm{\Ac}_{\mathrm{op}}$;
-    spectral distribution \\
+  & $\norm{\Ac}_{\mathrm{op}}$ \\
 Paper~VIII
   & $|\widehat{\Phi}|$ pointwise
   & $\mu_{n,c}([-c_0,c_0])$ integrated \\
 Slepian--Weyl
   & $\sigma(c)\sim cc_0/\pi$
   & Band distribution \\
-$\mu_{n,c}$ equidistribution
-  & NC
-  & quasi-orthogonality \\
-(D-weak) uniform pointwise
+(D-weak) uniform
   & $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|=o(1/c)$
-  & cumulative HS off-diagonal mass \\
+  & Near-diagonal cancellation \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -816,242 +562,126 @@ $\mu_{n,c}$ equidistribution
 
 \subsubsection*{Concrete operator form}
 
-The finite-dimensional compression is concretely:
 \begin{equation}\label{eq:AcM-concrete}
   \Ac^{(M)} = P_{V_M^{(c)}}P_{c_0}P_{V_M^{(c)}}
   \;:\; V_M^{(c)}\to V_M^{(c)},
 \end{equation}
-a finite-dimensional compression of the
-Fourier multiplier $P_{c_0}$ to the PSWF
-subspace $V_M^{(c)}$, placing it squarely
-in the class of semiclassical Toeplitz-type
-compressions to which Szeg\H{o}-type theorems
-apply \cite{BottcherSilbermann1990,Simon2011}.
-Its $(n,m)$-entry is:
+with entries
 \begin{equation}\label{eq:gram}
   (\Ac^{(M)})_{nm}
   = \int_{-c_0}^{c_0}
     \widehat{\Phi_n^{(c)}}(\xi)\,
     \overline{\widehat{\Phi_m^{(c)}}(\xi)}\,d\xi,
-  \quad N < n,m \le M,
+  \quad N < n,m \le M.
 \end{equation}
-with diagonal entries
-$\mu_{n,c}([-c_0,c_0])$
-and off-diagonal entries measuring
-inter-mode correlations in $[-c_0,c_0]$.
-
-\subsubsection*{Toeplitz structure and semiclassical symbol}
-
-The operator $\Ac$ behaves as a
-semiclassical Toeplitz-type operator
-with discontinuous symbol.
-Its symbol is most precisely understood
-as living on the energy surface
-$\{n/c \to \alpha\}$ in semiclassical
-phase space: the index $n$ is not a
-continuous phase-space parameter but rather
-an energy level accessed via the
-semiclassical limit $n/c\to\alpha\in(0,1)$.
-The relevant symbol is therefore:
-\[
-  a_\alpha(\xi)
-  = \mathbf{1}_{|\xi|\le c_0},
-  \qquad \xi\in\mathbb{R},
-\]
-restricted to the energy slice
-$\{E = E_\alpha\}$, where
-$E_\alpha = \lim_{c\to\infty}
-\chi_{\lfloor\alpha c\rfloor}^{(c)}/c^2$.
-The classical Szeg\H{o} theorem then predicts
-that the eigenvalue distribution of
-$\Ac^{(M)}$ converges, as $M,c\to\infty$
-simultaneously along the energy surface,
-to a distribution determined by this
-phase-space overlap.
 
 \subsubsection*{Double-scaling Szeg\H{o} regime}
 
-The operator family $\Ac^{(M(c))}$ does not
-fall under the classical Szeg\H{o} theorem
-framework, since both the semiclassical
-parameter $h=1/c\to 0$ and the effective
-dimension $M(c)\sim\beta c$ diverge
-simultaneously at commensurate rates.
-We therefore identify this as a
-\emph{double-scaling Szeg\H{o} problem}.
-
 \begin{definition}[Double-scaling Szeg\H{o} regime]
 \label{def:double-scaling}
-The family of compressed operators
-\[
-  \Ac^{(M(c))} = P_{V_{M(c)}^{(c)}}
-  P_{c_0} P_{V_{M(c)}^{(c)}}
-\]
-constitutes a \emph{double-scaling
-Szeg\H{o} problem} if
-\[
-  c\to\infty,\quad M(c)\sim\beta c,
-\]
-and both:
-\begin{enumerate}[\rm(i)]
-\item the symbol has a semiclassical limit
-  ($h=1/c\to 0$, symbol $\mathbf{1}_{|\xi|\le c_0}$
-  on the energy surface $\{n/c\to\alpha\}$
-  fixed), and
-\item the compression subspace grows at the
-  same scale ($\dim V_{M(c)}^{(c)}
-  =M(c)-N\sim\beta c$).
-\end{enumerate}
+The family $\Ac^{(M(c))}$ constitutes a
+\emph{double-scaling Szeg\H{o} problem} if
+$c\to\infty$, $M(c)\sim\beta c$, and both:
+(i)~the symbol has a semiclassical limit
+($h=1/c\to 0$, symbol $\mathbf{1}_{|\xi|\le c_0}$
+on the energy surface $\{n/c\to\alpha\}$), and
+(ii)~$\dim V_{M(c)}^{(c)}\sim\beta c$.
 \end{definition}
 
 \begin{remark}[Why double-scaling differs from classical Szeg\H{o}]
 \label{rem:double-scaling}
-In the classical Szeg\H{o} setting
-\cite{BottcherSilbermann1990,Simon2011},
-a single parameter controls the
-truncation level on a fixed Hilbert space.
-Here three features interact simultaneously:
-\begin{enumerate}[\rm(1)]
-\item \emph{Semiclassical limit:}
-  $h=1/c\to 0$ changes the eigenbasis
-  $\{\Phic{c}{n}\}$ itself.
-\item \emph{Dimension growth:}
-  $\dim V_{M(c)}^{(c)}\sim\beta c\to\infty$
-  at the same rate as the semiclassical
-  parameter.
-\item \emph{Non-commuting limits:}
-  \[
-    \lim_{c\to\infty}\lim_{M\to\infty}
-    \ne
-    \lim_{\substack{c\to\infty \\ M(c)\sim\beta c}};
-  \]
-  the quadratic-form limit ($c\to\infty$
-  first, then $M\to\infty$) does not
-  capture the coupled regime.
-\end{enumerate}
-This coupling is precisely why trace control
-of $S_N(c)$ does not suffice:
-the correct quantity is the
-\emph{accumulation of spectral mass across
-the linearly growing family}
-$\{V_{M(c)}^{(c)}\}_{c>0}$,
-not the density per mode.
-The double-scaling structure explains
-why \emph{collective} quasi-orthogonality
-(D-strong) is the key analytic obstruction,
-not merely pointwise decay (D-weak).
+Three features interact simultaneously:
+(1)~$h=1/c\to 0$ changes the eigenbasis;
+(2)~$\dim V_{M(c)}^{(c)}\sim\beta c\to\infty$
+at the same rate;
+(3)~$\lim_{c}\lim_{M}\ne
+\lim_{c,\,M(c)\sim\beta c}$.
 With $O(c^2)$ off-diagonal pairs each
-satisfying the uniform bound
-$\sup_{n\ne m}|(\Ac^{(M)})_{nm}|
-\le\varepsilon(c)/c$ with $\varepsilon(c)\to 0$,
-the Hilbert--Schmidt off-diagonal norm satisfies
+satisfying $|(\Ac^{(M)})_{nm}|\le\varepsilon(c)/c$,
 \[
   \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-  \le c^2 \cdot \frac{\varepsilon(c)^2}{c^2}
-  = \varepsilon(c)^2 \to 0.
+  \le c^2\cdot\frac{\varepsilon(c)^2}{c^2}
+  = \varepsilon(c)^2 \to 0,
 \]
-This vanishing requires the uniformity of
-$\varepsilon(c)\to 0$ over all pairs $(n,m)$;
-a merely pointwise $o(1/c)$ bound without
-uniform control is insufficient to conclude
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
+so uniform (D-weak) forces (D-strong).
+A merely pointwise $o(1/c)$ bound
+without uniformity is insufficient.
+\end{remark}
+
+\begin{remark}[WKB reduction of the near-diagonal regime]
+\label{rem:WKB-reduction}
+In the transition zone $n\sim\alpha c$,
+the Fourier transforms
+$\widehat{\Phi_n^{(c)}}(\xi)$ admit a
+semiclassical WKB-type representation
+\begin{equation}\label{eq:WKB-heuristic}
+  \widehat{\Phi_n^{(c)}}(\xi)
+  \approx A_n(\xi)\,e^{i n \theta(\xi)/c},
+  \qquad \xi\in[-c_0,c_0],
+\end{equation}
+where $\theta(\xi)$ is a smooth phase
+independent of $n$, and $A_n(\xi)$ is a
+slowly varying amplitude.
+Substituting into~\eqref{eq:gram}:
+\begin{equation}\label{eq:WKB-gram}
+  (\Ac^{(M)})_{nm}
+  \approx \int_{-c_0}^{c_0}
+  A_n(\xi)\,\overline{A_m(\xi)}\,
+  e^{i(n-m)\theta(\xi)/c}\,d\xi.
+\end{equation}
+For $|n-m|\gg 1$: oscillatory phase
+yields decay via stationary phase.
+For $|n-m|=O(1)$: phase is $O(1/c)$,
+no oscillatory cancellation.
+The near-diagonal regime thus reduces to:
+\begin{equation}\label{eq:amplitude-reduction}
+  (\Ac^{(M)})_{n,n+k}
+  \approx \int_{-c_0}^{c_0}
+  A_n(\xi)\,\overline{A_{n+k}(\xi)}\,d\xi,
+  \qquad k=O(1).
+\end{equation}
+The key obstruction is the lack of
+orthogonality of the amplitudes $\{A_n\}$
+on the restricted window $[-c_0,c_0]$.
+Establishing uniform $o(1/c)$ bounds here
+requires quantitative control of the
+$n$-dependence of $A_n(\xi)$ via the
+PSWF differential equation.
 \end{remark}
 
 \begin{remark}[Regime decomposition and the near-diagonal obstruction]
 \label{rem:regime-decomposition}
-The uniform quasi-orthogonality
-condition~\eqref{eq:quasi-orth}
-must be established simultaneously over
-all index pairs $(n,m)$ in the transition
-zone $\mathcal{T}_{\alpha,\kappa}(c)$.
-A natural decomposition of the
-off-diagonal Hilbert--Schmidt mass is:
 \begin{equation}\label{eq:HS-regimes}
   \|\Ac^{(M)} - D^{(M)}\|_{\mathrm{HS}}^2
-  = \sum_{\substack{n\ne m \\ N<n,m\le M}}
-  |(\Ac^{(M)})_{nm}|^2
   = \Sigma_{\mathrm{near}}
   + \Sigma_{\mathrm{int}}
   + \Sigma_{\mathrm{far}},
 \end{equation}
-where:
-\begin{align*}
-  \Sigma_{\mathrm{near}} &:=
-    \sum_{\substack{n\ne m \\ |n-m|\le C}}
-    |(\Ac^{(M)})_{nm}|^2,\\
-  \Sigma_{\mathrm{int}} &:=
-    \sum_{\substack{n\ne m \\
-    C < |n-m| \le c^\theta}}
-    |(\Ac^{(M)})_{nm}|^2,\\
-  \Sigma_{\mathrm{far}} &:=
-    \sum_{\substack{n\ne m \\
-    |n-m| > c^\theta}}
-    |(\Ac^{(M)})_{nm}|^2,
-\end{align*}
-for some fixed $C>0$ and $0<\theta<1$.
-These regimes exhibit fundamentally
-different analytic behaviour:
+where the sums run over
+$|n-m|\le C$,
+$C<|n-m|\le c^\theta$,
+$|n-m|>c^\theta$ respectively.
 \begin{itemize}[leftmargin=*]
-\item \textbf{Far off-diagonal
-  ($|n-m|>c^\theta$):}
-  the phase $(n-m)\theta(\xi)/c$ is
-  highly oscillatory, and standard
-  stationary phase yields strong decay.
-\item \textbf{Intermediate
-  ($C<|n-m|\le c^\theta$):}
-  oscillation is present but weaker,
-  requiring uniform transition estimates.
-\item \textbf{Near-diagonal
-  ($|n-m|\le C$):}
-  the phase is of size $O(1/c)$ and
-  provides essentially no oscillatory
-  cancellation.
-  In this regime, stationary phase alone
-  is insufficient; one must instead rely
-  on structural properties of the PSWFs
-  such as WKB asymptotics and
-  $L^2$-based orthogonality estimates.
+\item \textbf{Far ($|n-m|>c^\theta$):}
+  strong oscillation; standard stationary
+  phase gives decay.
+\item \textbf{Intermediate:}
+  weaker oscillation; uniform transition
+  estimates required.
+\item \textbf{Near-diagonal ($|n-m|\le C$):}
+  phase $O(1/c)$; stationary phase fails.
+  Requires WKB amplitude analysis
+  (Remark~\ref{rem:WKB-reduction}).
+  \emph{Primary technical obstruction.}
 \end{itemize}
-The near-diagonal contribution
-$\Sigma_{\mathrm{near}}$ is therefore
-the critical obstruction to establishing
-the uniform bound~\eqref{eq:quasi-orth}.
-In particular, the obstruction is not due
-to insufficient oscillation at large index
-separation, but rather to the lack of
-oscillatory structure at bounded separations.
-This identifies the near-diagonal regime
-as the technically most delicate component
-of the double-scaling Szeg\H{o} problem,
-and the primary analytic challenge of
-Paper~XV.
 \end{remark}
 
-\subsubsection*{Correct scaling: accumulation of mass, not density}
+\subsubsection*{Correct scaling}
 
-Under the local Weyl law
-(Remark~\ref{rem:NC-QE}),
-each diagonal entry satisfies
-$\mu_{n,c}([-c_0,c_0])\sim c_0/c\to 0$.
-The mean spectral density therefore
-\emph{vanishes}:
-\[
-  \bar\lambda^{(M)}(c)
-  := \frac{S_N^{(M)}(c)}{M-N}
-  \sim \frac{c_0}{c} \to 0.
-\]
-The correct quantity to track is the
-\emph{accumulation of spectral mass across
-a linearly growing family of modes}:
-for $M(c)\sim\beta c$,
-\begin{equation}\label{eq:total-mass}
-  S_N^{(M(c))}(c)
-  \sim \frac{c_0}{c}\cdot\beta c
-  = c_0\beta > 0.
-\end{equation}
-The open condition is therefore not
-non-vanishing mean density (which vanishes
-as $c_0/c\to 0$), but rather:
+Under the local Weyl law,
+$\mu_{n,c}([-c_0,c_0])\sim c_0/c$ and
+$\bar\lambda^{(M)}(c)\sim c_0/c\to 0$.
+The correct open condition is:
 \begin{equation}\label{eq:open-condition}
   S_N^{(M(c))}(c) \gtrsim 1
   \quad\text{for }M(c)\sim\beta c.
@@ -1061,211 +691,61 @@ as $c_0/c\to 0$), but rather:
 
 \begin{lemma}[No single-mode dominance]
 \label{lem:no-single-mode}
-Let $M(c)\sim\beta c$ with $\beta\in(0,1)$.
-Assume the local Weyl law:
-\[
-  \mu_{n,c}([-c_0,c_0]) \sim \frac{c_0}{c}
-  \quad\text{uniformly for }
-  n\in\mathcal{T}_{\alpha,\kappa}(c).
-\]
-Then no individual diagonal entry of
-$\Ac^{(M)}$ carries macroscopic spectral mass:
-\[
-  \max_{N<n\le M(c)} (\Ac^{(M)})_{nn}
-  = O\!\left(\frac{1}{c}\right).
-\]
-In particular, any non-vanishing total spectral
-mass $S_N^{(M(c))}(c)\gtrsim 1$ must arise
-from the cumulative contribution of $\sim c$
-modes.
+Under the local Weyl law and $M(c)\sim\beta c$:
+$\max_{N<n\le M(c)} (\Ac^{(M)})_{nn}
+= O(1/c)$.
+Any total mass $S_N^{(M(c))}(c)\gtrsim 1$
+must arise from $\sim c$ modes collectively.
 \end{lemma}
-
 \begin{proof}
-Immediate from the local Weyl law:
-each diagonal entry equals
-$\mu_{n,c}([-c_0,c_0])\sim c_0/c$,
-so the maximum is $O(1/c)$.
-The claim about collective accumulation
-follows since $S_N^{(M(c))}(c)
-\sim (c_0/c)\cdot\beta c = c_0\beta>0$
-requires $\sim\beta c$ modes each contributing
-$\sim c_0/c$.
+Each diagonal entry $\sim c_0/c = O(1/c)$.
 \end{proof}
 
-\begin{remark}
-This lemma shows that spectral mass cannot
-concentrate in a small number of modes:
-any macroscopic contribution to
-$S_N^{(M(c))}(c)$ must arise collectively
-across a linearly growing family of indices.
-This is the structural reason why
-collective quasi-orthogonality~(D-strong)
-is the appropriate condition:
-individual mode control~(D-weak) is
-insufficient precisely because mass is
-distributed across $\sim c$ modes.
-\end{remark}
+\subsubsection*{Quasi-orthogonality}
 
-\subsubsection*{Quasi-orthogonality: pointwise vs.\ collective}
-
-\begin{center}
-\fbox{\parbox{0.84\linewidth}{
-\textbf{Distinction between (D-weak) and (D-strong).}
-The distinction between pointwise and collective
-quasi-orthogonality is essential:
-while (D-weak) controls individual matrix entries
-uniformly, only (D-strong) controls the
-cumulative off-diagonal mass across the
-$O(c^2)$ entries of the Gram matrix.}}
-\end{center}
-
-\medskip
-\textbf{(D-weak) Uniform pointwise quasi-orthogonality.}
+\textbf{(D-weak) Uniform pointwise.}
 \begin{equation}\label{eq:quasi-orth}
   \sup_{\substack{n\ne m \\
   n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
   \left|(\Ac^{(M)})_{nm}\right|
   \le \frac{\varepsilon(c)}{c},
-  \qquad \varepsilon(c)\to 0
-  \quad(M\sim\beta c).
+  \quad \varepsilon(c)\to 0,
+  \quad M\sim\beta c.
 \end{equation}
-Here the $o(1/c)$ bound is understood
-\emph{uniformly over all pairs}
-$n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$,
-i.e.\ there exists $\varepsilon(c)\to 0$ such
-that~\eqref{eq:quasi-orth} holds for all
-such pairs simultaneously.
-Under this uniform form, one obtains
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-\le c^2\cdot\varepsilon(c)^2/c^2
-= \varepsilon(c)^2\to 0$,
-so the uniform (D-weak) implies (D-strong).
+Uniform (D-weak) implies (D-strong)
+via Remark~\ref{rem:double-scaling}.
 A merely pointwise $o(1/c)$ bound
-(without uniformity in $(n,m)$)
-is insufficient for this conclusion.
+without uniformity is insufficient.
 
 \medskip
-\textbf{(D-strong) Collective quasi-orthogonality.}
-\begin{equation}\label{eq:quasi-orth-strong}
-  \sum_{\substack{n\ne m \\
-  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
-  \left|(\Ac^{(M)})_{nm}\right|^2
-  = o(1)
-  \quad(M\sim\beta c),
-\end{equation}
-equivalently:
+\textbf{(D-strong) Collective.}
 \begin{equation}\label{eq:HS-diag}
   \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}} \to 0
-  \quad\text{as }c\to\infty,\; M\sim\beta c,
+  \quad(M\sim\beta c).
 \end{equation}
-where $D^{(M)}:=\mathrm{diag}((\Ac^{(M)})_{nn})_{N<n\le M}$.
-Condition~(D-strong) is implied by the
-uniform form of~(D-weak), and is sufficient
-to ensure that the spectral behaviour of
-$\Ac^{(M)}$ is asymptotically governed by
-its diagonal entries, implying
-Conjecture~\ref{conj:szego}
-via Proposition~\ref{prop:HS-reduction}.
 
-\subsubsection*{Diagonal reduction under HS control}
+\subsubsection*{Diagonal reduction}
 
 \begin{proposition}[Diagonal reduction under HS control]
 \label{prop:HS-reduction}
-Assume~(C) and~(D-strong).
-Then the spectrum of $\Ac^{(M(c))}$
-is collectively approximated by the
-multiset of diagonal values.
-In particular, by trace continuity:
+Assume~(C) and~(D-strong). Then:
 \[
   S_N^{(M(c))}(c)
-  = \mathrm{Tr}(\Ac^{(M(c))})
   \sim \sum_{n=N+1}^{M(c)}
   \mu_{n,c}([-c_0,c_0])
-  \sim c_0\beta.
+  \sim c_0\beta > 0.
 \]
 \end{proposition}
 
-\begin{proof}[Proof sketch]
-By~(D-strong),
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$,
-hence
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
-\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
-The Weyl perturbation inequality gives
-$|\lambda_j^{(M)}-d_{\sigma(j)}|\to 0$
-for each $j$ under any ordering $\sigma$.
-Since all diagonal values $d_k\sim c_0/c$
-are asymptotically equal, the spectrum is
-collectively well-approximated by the
-diagonal multiset without requiring a
-specific bijection.
-Summing via trace continuity yields
-$S_N^{(M(c))}(c)\sim c_0\beta$.
-\end{proof}
-
-\begin{remark}
-Proposition~\ref{prop:HS-reduction} is the
-bridge between OP~\ref{prob:H1H3} and
-Conjecture~\ref{conj:szego}:
-(C)$+$(D-strong) imply the conjecture,
-and the uniform form of (D-weak) forces
-(D-strong) via
-Remark~\ref{rem:double-scaling}.
-\end{remark}
-
-\subsubsection*{Reformulation and conjecture}
-
-\begin{center}
-\fbox{\parbox{0.84\linewidth}{
-\textbf{Double-scaling Szeg\H{o} reformulation
-of OP~\ref{prob:H1H3}.}
-Does the eigenvalue distribution of the
-truncated Gram operator $\Ac^{(M(c))}$
-converge to a non-degenerate distribution
-as $c\to\infty$, $M(c)\sim\beta c$?
-Equivalently: does the uniform pointwise
-bound~\eqref{eq:quasi-orth} hold,
-forcing (D-strong) and total spectral mass
-$S_N^{(M(c))}(c)\gtrsim 1$?}}
-\end{center}
-
 \begin{conjecture}[Double-scaling Szeg\H{o} behaviour]
 \label{conj:szego}
-For $M(c)\sim\beta c$, $\beta\in(0,1)$ fixed,
-assume~(C) and~(D-strong). Then:
-\begin{enumerate}[\rm(i)]
-\item Mean density vanishes:
-  $\bar\lambda^{(M(c))}(c)\sim c_0/c\to 0$.
-\item Total spectral mass is preserved:
-  $S_N^{(M(c))}(c)\sim c_0\beta > 0$.
-\item Eigenvalue count diverges: for all
-  sufficiently small fixed $\varepsilon>0$,
-  $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
-  \to\infty$.
-\end{enumerate}
-Parts~(i)--(iii) follow from~(C)$+$(D-strong)
-via Proposition~\ref{prop:HS-reduction}
-and Lemma~\ref{lem:no-single-mode}.
-A merely pointwise (non-uniform) $o(1/c)$
-bound is \emph{insufficient}.
+Assume~(C) and~(D-strong),
+$M(c)\sim\beta c$. Then:
+(i)~$\bar\lambda^{(M(c))}(c)\sim c_0/c\to 0$;
+(ii)~$S_N^{(M(c))}(c)\sim c_0\beta>0$;
+(iii)~$\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
+\to\infty$ for fixed small $\varepsilon>0$.
 \end{conjecture}
-
-\begin{remark}[Programme status]
-Conjecture~\ref{conj:szego} is a programme,
-not a proved statement.
-Its verification requires:
-(1)~the local Weyl law~(C)
-(target of Paper~XV);
-(2)~the uniform off-diagonal
-bound~\eqref{eq:quasi-orth} with
-$\varepsilon(c)\to 0$, established via
-double-scaling stationary phase with
-separate treatment of the three regimes
-of Remark~\ref{rem:regime-decomposition}
-(\textbf{key analytic obstruction});
-(3)~the bridge Proposition~\ref{prop:HS-reduction}
-then closes the argument.
-\end{remark}
 
 %%═══ 8. PROGRAMME FOR PAPER XV
 \section{Programme for Paper~XV}
@@ -1275,102 +755,42 @@ then closes the argument.
 
 \begin{enumerate}[\rm(A)]
 \item $\mu_{n,c}([-c_0,c_0])\le C/c$,
-  uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
+  uniform in $\mathcal{T}_{\alpha,\kappa}(c)$.
 \item $\mu_{n,c}([-c_0,c_0])\ge 1/(Cc)$,
-  uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
+  uniform in $\mathcal{T}_{\alpha,\kappa}(c)$.
 \item $\mu_{n,c}([-c_0,c_0])=c_0/c+o(1/c)$
   uniformly.
 \item[\rm(D-weak)] Uniform pointwise
-  quasi-orthogonality~\eqref{eq:quasi-orth}:
-  \[
-    \sup_{\substack{n\ne m \\
-    n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
-    \left|(\Ac^{(M)})_{nm}\right|
-    \le \frac{\varepsilon(c)}{c},
-    \quad \varepsilon(c)\to 0,
-    \quad M\sim\beta c.
-  \]
-  \emph{The $o(1/c)$ bound must hold
-  uniformly over all pairs $(n,m)$,
-  including the near-diagonal regime
-  $|n-m|=O(1)$ where stationary phase
-  provides no oscillatory cancellation
-  (see Remark~\ref{rem:regime-decomposition}).}
-\item[\rm(D-strong)] Collective quasi-orthogonality~%
-  \eqref{eq:quasi-orth-strong}:
-  $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
-  for $M\sim\beta c$.
-  \emph{Implied by the uniform form of~(D-weak);
-  sufficient for Conjecture~\ref{conj:szego}
-  via Proposition~\ref{prop:HS-reduction}.}
+  quasi-orthogonality~\eqref{eq:quasi-orth}
+  with $\varepsilon(c)\to 0$ uniform over
+  all pairs, including near-diagonal
+  $|n-m|=O(1)$ (OP~\ref{prob:near-diagonal}).
+\item[\rm(D-strong)] $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}
+  \to 0$; implied by uniform (D-weak).
 \end{enumerate}
 
-\medskip
-\begin{center}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{lll}
-\toprule
-Estimates & Implication & Target \\
-\midrule
-(A)+(B) & $\Rightarrow$ NC & Paper~XV \\
-(C) & $\Rightarrow$ equidistribution & Paper~XV \\
-(C)+(D-weak) pointwise only
-  & asymptotic diagonal structure
-  & \emph{insufficient for Conj.~\ref{conj:szego}} \\
-(C)+(D-weak) uniform $\Rightarrow$ (D-strong)
-  & $\Rightarrow$ Conj.~\ref{conj:szego}
-  & via Prop.~\ref{prop:HS-reduction} \\
-\bottomrule
-\end{tabular}
-\end{center}
+\subsection{Semiclassical approach and regime strategy}
 
-\subsection{Semiclassical approach}
-
-$h:=1/c\to 0$; the PSWF solves
-\[
-  -(1-x^2)\partial_x^2\psi
-  +2x\partial_x\psi
-  +c^2x^2\psi=\chi_n^{(c)}\psi
-\]
-with $E_n^{(h)}=\chi_n^{(c)}/c^2\to E_\alpha$
-for $n\sim\alpha c$.
-WKB in $|x|<x_0$ and stationary phase
-for $\xi\in[-c_0,c_0]$
-give (A)--(C) \cite{Osipov2013}.
-
-For (D-weak), the off-diagonal integral
-has phase $(n-m)\theta(\xi)/c$.
-The three regimes of
-Remark~\ref{rem:regime-decomposition}
+$h:=1/c\to 0$.
+WKB gives (A)--(C) \cite{Osipov2013}.
+The three regimes of~\eqref{eq:HS-regimes}
 require separate treatment:
 \begin{itemize}[leftmargin=*]
-\item \textbf{Far off-diagonal
-  ($|n-m|>c^\theta$):}
-  strong oscillation; standard stationary
-  phase gives $O(c^{-1}|n-m|^{-1/2})$,
-  sufficient for $\Sigma_{\mathrm{far}}=o(1)$.
-\item \textbf{Intermediate
-  ($C<|n-m|\le c^\theta$):}
-  uniform transition estimates required;
-  moderately oscillatory.
-\item \textbf{Near-diagonal
-  ($|n-m|\le C$):}
-  phase $O(1/c)$, no oscillatory gain.
-  Control requires WKB amplitude
-  orthogonality and $L^2$ estimates
-  on PSWF differences at adjacent indices.
-  This is the \textbf{primary technical
-  target of Paper~XV}.
+\item \textbf{Far ($|n-m|>c^\theta$):}
+  Standard stationary phase;
+  $\Sigma_{\mathrm{far}}=o(1)$.
+\item \textbf{Intermediate:}
+  Uniform transition estimates;
+  $\Sigma_{\mathrm{int}}=o(1)$.
+\item \textbf{Near-diagonal ($|n-m|\le C$):}
+  WKB amplitude orthogonality
+  (OP~\ref{prob:near-diagonal});
+  primary technical target.
 \end{itemize}
-
-For (D-strong): establishing $o(1)$
-for all three regime sums simultaneously
-yields $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-= \Sigma_{\mathrm{near}}
-+ \Sigma_{\mathrm{int}}
-+ \Sigma_{\mathrm{far}} = o(1)$,
-completing the double-scaling stationary
-phase programme.
+Establishing $\Sigma_{\mathrm{near}}
++\Sigma_{\mathrm{int}}+\Sigma_{\mathrm{far}}
+=o(1)$ yields (D-strong) and closes
+OP~\ref{prob:H1H3}.
 
 %%═══ 9. OPEN PROBLEMS
 \section{Open Problems}
@@ -1379,55 +799,78 @@ phase programme.
 \begin{problem}[Local Weyl law; Paper~XV]
 \label{prob:fourier-mass}
 \emph{(Priority: critical.)}
-Prove (A)--(C): $\mu_{n,c}([-c_0,c_0])
-\sim c_0/c$ uniformly in
-$n\in\mathcal{T}_{\alpha,\kappa}(c)$.
-The $\Phi_n^{(c)}$ are orthogonal in
-$L^2[-1,1]$ but not in the rescaled window,
-introducing off-diagonal correlations
-that must be controlled jointly with (D-strong).
+Prove (A)--(C):
+$\mu_{n,c}([-c_0,c_0])\sim c_0/c$
+uniformly in $\mathcal{T}_{\alpha,\kappa}(c)$.
 \end{problem}
 
 \begin{problem}[Total spectral mass along linear scales]
 \label{prob:H1H3}
 \emph{(Priority: high.)}
+Show $S_N^{(M(c))}(c)\gtrsim 1$
+for $M(c)\sim\beta c$.
+Follows from (C)+(D-strong)
+via Proposition~\ref{prop:HS-reduction}.
+The key step is OP~\ref{prob:near-diagonal}.
+\end{problem}
 
-\textbf{Setup.}
-The mean spectral density
-$\bar\lambda^{(M)}(c):=S_N^{(M)}(c)/(M-N)$
-vanishes as $c_0/c\to 0$ under the local
-Weyl law.
-The correct open condition is the
-\emph{accumulation of spectral mass across
-a linearly growing family of modes}:
-does there exist $\beta\in(0,1)$ such that
-\begin{equation}\label{eq:open-mass}
-  S_N^{(M(c))}(c) \gtrsim 1
-  \quad\text{for }M(c)\sim\beta c\;?
+\begin{problem}[Near-diagonal cancellation]
+\label{prob:near-diagonal}
+\emph{(Core analytic target; Paper~XV.)}
+
+Establish the uniform bound, for fixed $C>0$:
+\begin{equation}\label{eq:near-diagonal}
+  \int_{-c_0}^{c_0}
+  \widehat{\Phi_n^{(c)}}(\xi)\,
+  \overline{\widehat{\Phi_{n+k}^{(c)}}(\xi)}\,d\xi
+  = o\!\left(\frac{1}{c}\right),
 \end{equation}
+uniformly in $n\in\mathcal{T}_{\alpha,\kappa}(c)$
+and $|k|\le C$.
 
-\textbf{Double-scaling Szeg\H{o} formulation.}
-By Definition~\ref{def:double-scaling}
-and \S\ref{sec:szego},
-condition~\eqref{eq:open-mass} is a
-\emph{double-scaling Szeg\H{o} problem}.
-It follows from~(C) combined with the
-uniform pointwise bound~(D-weak),
-which forces~(D-strong)
-via Remark~\ref{rem:double-scaling}.
-The \textbf{key analytic obstruction}
-is the near-diagonal regime
-$|n-m|=O(1)$ identified in
-Remark~\ref{rem:regime-decomposition},
-where oscillatory methods fail and
-structural PSWF estimates are required.
+\medskip\noindent
+\textbf{Interpretation.}
+This is precisely $\Sigma_{\mathrm{near}}$
+in~\eqref{eq:HS-regimes}, and the primary
+obstruction to uniform (D-weak).
 
-\textbf{Consequence if confirmed.}
-\eqref{eq:open-mass} combined with
-$\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-closes the quadratic-form-to-op-norm gap
-and completes the reduction of H1 to
-the local Weyl law.
+\medskip\noindent
+\textbf{Heuristic reduction.}
+Under~\eqref{eq:WKB-heuristic},
+\eqref{eq:near-diagonal} reduces to:
+\begin{equation}\label{eq:amplitude-target}
+  \int_{-c_0}^{c_0}
+  A_n(\xi)\,\overline{A_{n+k}(\xi)}\,d\xi
+  = o\!\left(\frac{1}{c}\right),
+  \qquad k=O(1),
+\end{equation}
+uniformly in $n\sim\alpha c$.
+The obstruction is not insufficient
+oscillation but the lack of orthogonality
+of the amplitudes $\{A_n\}$ on $[-c_0,c_0]$.
+
+\medskip\noindent
+\textbf{Expected approach.}
+\begin{itemize}[leftmargin=*]
+\item WKB asymptotics for
+  $\widehat{\Phi_n^{(c)}}$,
+\item quantitative $n$-derivative control
+  of $A_n(\xi)$ via the PSWF ODE,
+\item $L^2([-c_0,c_0])$ estimates for
+  differences of adjacent modes,
+\item structural relations between
+  $\Phi_n^{(c)}$ and $\Phi_{n+1}^{(c)}$
+  induced by the differential equation.
+\end{itemize}
+
+\medskip\noindent
+\textbf{Role in the programme.}
+A positive resolution of~\eqref{eq:near-diagonal},
+combined with far and intermediate regime
+estimates, yields uniform (D-weak),
+hence (D-strong), and closes
+OP~\ref{prob:H1H3} via
+Proposition~\ref{prop:HS-reduction}.
 \end{problem}
 
 \begin{problem}[NC from Papers~VIII, XII]
@@ -1456,48 +899,32 @@ $0\le\Ac\le I$; $\norm{\Bn}_{\mathrm{op}}\le 1$
   & \textbf{Proved} \\
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
   & \textbf{Proved} \\
-$\Ac^{(M)}=P_{V_M}P_{c_0}P_{V_M}$
-  & \textbf{Identified} \\
 lim/sup non-interchangeable
-  & \textbf{Proved} (Rem.~\ref{rem:lim-sup}) \\
-Fin.-dim.\ eff.\ rank bound
-  & \textbf{Proved} (level $M$ only) \\
-H3 $\Rightarrow$ H1
   & \textbf{Proved} \\
-H1 $\Rightarrow$ quadratic-form convergence
+H3 $\Rightarrow$ H1 & \textbf{Proved} \\
+H1 $\Rightarrow$ quadratic-form conv.
   & \textbf{Proved} \\
-NC $\Rightarrow$ H3 fails
-  & \textbf{Proved} \\
-NC sufficient, not necessary
-  & \textbf{Proved} \\
-Local Weyl $\Rightarrow$ NC
-  & \textbf{Proved} \\
-Mean density $\bar\lambda^{(M(c))}\sim c_0/c\to 0$
-  & Identified (correct scaling) \\
-Double-scaling Szeg\H{o} structure identified
-  & \textbf{Identified} (Def.~\ref{def:double-scaling}) \\
-No single-mode dominance
-  & \textbf{Identified} (Lem.~\ref{lem:no-single-mode};
-    cond.\ Weyl) \\
-Regime decomposition (near/int/far)
-  & \textbf{Identified} (Rem.~\ref{rem:regime-decomposition}) \\
-Near-diagonal as primary obstruction
-  & \textbf{Identified} (Rem.~\ref{rem:regime-decomposition}) \\
+NC $\Rightarrow$ H3 fails & \textbf{Proved} \\
+NC sufficient, not necessary & \textbf{Proved} \\
+Local Weyl $\Rightarrow$ NC & \textbf{Proved} \\
 Uniform (D-weak) $\Rightarrow$ (D-strong)
-  & \textbf{Proved} (Rem.~\ref{rem:double-scaling}) \\
+  & \textbf{Proved} \\
 Diagonal reduction under (D-strong)
-  & \textbf{Proved} (Prop.~\ref{prop:HS-reduction};
-    cond.\ (C)+(D-strong)) \\
-Total mass $S_N^{(M(c))}\sim c_0\beta>0$
-  & Conjectured (\ref{conj:szego};
-    follows from (C)+(D-strong)) \\
-(D-weak) uniform: $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|
-  \le\varepsilon(c)/c$
-  & Open (\textbf{key obstruction}; Paper~XV) \\
-$S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
+  & \textbf{Proved} (cond.\ (C)+(D-strong)) \\
+Double-scaling Szeg\H{o} structure
+  & \textbf{Identified} \\
+Regime decomposition (near/int/far)
+  & \textbf{Identified} \\
+Near-diagonal = amplitude problem
+  & \textbf{Identified} (Rem.~\ref{rem:WKB-reduction}) \\
+Total mass $S_N^{(M(c))}\sim c_0\beta$
+  & Conjectured (\ref{conj:szego}) \\
+Near-diagonal cancellation
+  & Open (OP~\ref{prob:near-diagonal};
+    \textbf{primary obstruction}) \\
+$S_N^{(M(c))}\gtrsim 1$
   & Open (OP~\ref{prob:H1H3}) \\
-NC holds
-  & Open (OP~\ref{prob:fourier-mass}) \\
+NC holds & Open (OP~\ref{prob:fourier-mass}) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1507,53 +934,27 @@ NC holds
 \emph{The obstruction to coefficient stability
 is spectral non-evacuation.
 All operator-theoretic structure is
-established without global Hilbert--Schmidt
-or trace-class assumptions,
-via the concrete compression
-$\Ac^{(M)}=P_{V_M^{(c)}}P_{c_0}P_{V_M^{(c)}}$
-and monotone limit.
+established without global trace-class
+or Hilbert--Schmidt assumptions.
 The gap between quadratic-form convergence
-(proved from H1) and operator norm convergence
-is identified as a \emph{double-scaling
-Szeg\H{o} problem}
-(Definition~\ref{def:double-scaling}).
-Its resolution requires not merely a
-pointwise $o(1/c)$ bound on individual
-Gram matrix entries, but a \emph{uniform}
-$o(1/c)$ bound across all pairs $(n,m)$
-in the transition zone --- which forces
-collective quasi-orthogonality~(D-strong):
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
-for $M(c)\sim\beta c$
-via the computation
-$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-\le c^2\cdot\varepsilon(c)^2/c^2
-=\varepsilon(c)^2\to 0$.
-A merely pointwise (non-uniform) $o(1/c)$
-bound is insufficient.
-No single mode can carry macroscopic
-spectral mass (Lemma~\ref{lem:no-single-mode});
+and operator norm convergence is a
+\emph{double-scaling Szeg\H{o} problem}.
+Its resolution requires uniform (D-weak)
+across all pairs $(n,m)$, which forces
+(D-strong) and closes OP~\ref{prob:H1H3}.
+The primary analytic obstruction is the
+near-diagonal regime $|n-m|=O(1)$
+(OP~\ref{prob:near-diagonal}), where
+oscillatory methods fail and the problem
+reduces to amplitude orthogonality of
+adjacent PSWFs on $[-c_0,c_0]$
+(Remark~\ref{rem:WKB-reduction}).
+No single mode can carry macroscopic mass;
 mass accumulates collectively across $\sim c$
-modes, making the uniform Hilbert--Schmidt
-condition~(D-strong) both the natural
-analytic target and the operative
-sufficient condition
-(Proposition~\ref{prop:HS-reduction}).
-The key analytic task of Paper~XV is
-therefore to establish the uniform
-off-diagonal bound~\eqref{eq:quasi-orth}
-with $\varepsilon(c)\to 0$, treating the
-three regimes of
-Remark~\ref{rem:regime-decomposition}
-separately: the far and intermediate
-regimes are accessible via double-scaling
-stationary phase, while the near-diagonal
-regime $|n-m|=O(1)$ --- where oscillatory
-cancellation is absent --- requires WKB
-amplitude orthogonality and $L^2$-based
-structural estimates on adjacent PSWFs.
+modes, making (D-strong) both the natural
+target and the operative sufficient condition.
 Paper~XIV is logically complete up to
-two open problems.}
+three open problems.}
 
 \begin{thebibliography}{99}
 
