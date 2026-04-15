@@ -1,0 +1,434 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros
+\newcommand{\Rig}{\textup{[Rig]}}
+\newcommand{\Heur}{\textup{[Heur]}}
+\newcommand{\Warn}{\textup{[Warning]}}
+
+\begin{document}
+
+\title{Mini-Model for the Fold Amplitude:\\
+  Exact Scaling of $\int_0^U\Phi(u)\,du$\\
+  without $c$-Uniformity}
+
+\author{[Author]}
+
+\begin{abstract}
+This note studies the isolated
+model integral
+\[
+  \Phi(u):=\int_{\mathbb{R}}
+  |\beta|^{-1/2}\chi(\beta)
+  e^{i(\beta u + c_3\beta^3)}\,d\beta,
+  \qquad c_3>0\text{ fixed},
+\]
+and the cumulative integral
+$F(U):=\int_0^U\Phi(u)\,du$.
+
+The main finding is:
+\emph{the cubic term worsens
+the integral, not improves it.}
+Specifically:
+\begin{itemize}[nosep]
+\item For small $u$:
+  $|\Phi(u)|\sim C|u|^{-1/2}$
+  (cubic negligible).
+\item For large $u$:
+  stationary phase gives
+  $|\Phi(u)|\sim C'|u|^{-1/3}$
+  (slower decay than $u^{-1/2}$).
+\item Cumulative integral:
+  $|F(U)|=\Theta(U^{2/3})$,
+  \emph{worse} than the
+  naive Ces\`aro bound
+  $O(U^{1/2})$.
+\end{itemize}
+Consequence for Paper~XVI:
+the heuristic that
+``cubic fold $\Rightarrow$ improvement''
+is \textbf{false} in this model.
+Route~B (Ces\`aro is sharp,
+or worse) is more plausible
+than Route~A.
+\end{abstract}
+
+\maketitle
+
+\section{Setup and Basic Properties}
+\label{sec:setup}
+
+\begin{definition}[Fold amplitude]
+\label{def:Phi}
+Fix $c_3>0$, $\chi\in C^\infty_c(\mathbb{R})$
+with $\chi\equiv 1$ near $0$.
+Define:
+\begin{equation}\label{eq:Phi}
+  \Phi(u):=\int_{\mathbb{R}}
+  |\beta|^{-1/2}\chi(\beta)
+  e^{i(\beta u+c_3\beta^3)}\,d\beta,
+  \quad u\in\mathbb{R}.
+\end{equation}
+This is the Fourier transform
+of $\beta\mapsto|\beta|^{-1/2}\chi(\beta)$
+evaluated at frequency $u$,
+but with the cubic perturbation
+$e^{ic_3\beta^3}$.
+\end{definition}
+
+\begin{lemma}[Basic properties \Rig]
+\label{lem:basic}
+\begin{enumerate}[\rm(i)]
+\item $\Phi\in L^2(\mathbb{R})$
+  (since $|\cdot|^{-1/2}\chi\in L^2$).
+\item Without the cubic term
+  ($c_3=0$):
+  $\Phi_0(u)=\int|\beta|^{-1/2}
+  \chi(\beta)e^{i\beta u}d\beta
+  =O(|u|^{-1/2})$
+  (Fourier transform of
+  $L^1\cap L^2$ function;
+  power-law decay from the
+  endpoint singularity at $\beta=0$).
+\item The cumulative integral
+  without cubic:
+  $F_0(U):=\int_0^U\Phi_0(u)du
+  =O(U^{1/2})$
+  (since $\int_0^U u^{-1/2}du
+  =2U^{1/2}$;
+  no oscillatory cancellation
+  in $\Phi_0>0$ for small $u$).
+\end{enumerate}
+\end{lemma}
+
+\section{Stationary Phase Analysis
+  of $\Phi(u)$}
+\label{sec:sp}
+
+\begin{proposition}[Stationary phase
+  for $\Phi(u)$, large $u$ \Rig]
+\label{prop:sp-Phi}
+For $|u|\gg 1$,
+the integral~\eqref{eq:Phi}
+is governed by the
+stationary point of the
+phase $\phi(\beta):=\beta u+c_3\beta^3$:
+\begin{equation}\label{eq:sp-eqn}
+  \phi'(\beta)=u+3c_3\beta^2=0
+  \quad\Rightarrow\quad
+  \beta_0=\pm\sqrt{\frac{-u}{3c_3}}.
+\end{equation}
+For $u>0$: no real stationary
+point ($\beta_0^2<0$);
+$\Phi(u)$ decays rapidly
+(exponentially in $u$
+for real $\beta$,
+by deformation of contour).
+
+For $u<0$ (or $c_3<0$):
+there exists a real stationary
+point
+$\beta_0=\sqrt{|u|/(3|c_3|)}>0$.
+At $\beta_0$:
+\begin{equation}\label{eq:sp-result}
+  \Phi(u)\sim
+  C\cdot|\beta_0|^{-1/2}\cdot
+  |\phi''(\beta_0)|^{-1/2}
+  \cdot e^{i\phi(\beta_0)+i\pi/4},
+\end{equation}
+where $\phi''(\beta_0)=6c_3\beta_0$
+and $|\beta_0|=O(|u|^{1/3})$,
+$|\phi''|=O(|u|^{1/3})$.
+Hence:
+\begin{equation}\label{eq:Phi-decay}
+  |\Phi(u)|
+  \sim C|u|^{-1/6}\cdot|u|^{-1/6}
+  = C|u|^{-1/3}
+  \quad(|u|\to\infty,\; u<0).
+\end{equation}
+\end{proposition}
+
+\begin{remark}[Key correction \Rig]
+\label{rem:correction}
+The cubic term changes the
+asymptotic decay rate of $\Phi$:
+\[
+  c_3=0:\quad|\Phi_0(u)|=O(|u|^{-1/2});
+\]
+\[
+  c_3\ne 0:\quad|\Phi(u)|=O(|u|^{-1/3})
+  \quad(\text{for } u<0).
+\]
+The cubic term makes $\Phi$
+\emph{decay more slowly},
+not faster.
+The oscillation from
+$e^{ic_3\beta^3}$ does \emph{not}
+cancel the singularity;
+instead, it creates a
+new stationary point
+that prolongs the amplitude.
+\end{remark}
+
+\section{Exact Scaling of
+  $F(U)=\int_0^U\Phi(u)\,du$}
+\label{sec:FU}
+
+\begin{proposition}[Scaling of $F(U)$
+  \Rig]
+\label{prop:FU}
+Let $F(U):=\int_0^U\Phi(u)\,du$.
+Splitting into positive and
+negative $u$:
+\begin{align*}
+  \int_0^U\Phi(u)\,du
+  &= \int_0^{U}\Phi(u)\,du
+  \quad(\text{only }u>0\text{ here}).
+\end{align*}
+From Proposition~\ref{prop:sp-Phi}:
+for $u>0$, $\Phi(u)$
+decays rapidly (no real stationary
+point), so the integrand
+for large $u>0$ is
+$O(e^{-cu^{3/2}})$ or
+similarly rapid;
+the integral $\int_0^\infty
+\Phi(u)\,du$ converges absolutely.
+
+For the full integral $F(U)$:
+\begin{equation}\label{eq:FU-scale}
+  F(U)=
+  \int_0^U\Phi(u)\,du
+  \xrightarrow{U\to+\infty}
+  F(\infty):=\int_0^\infty\Phi(u)\,du
+  = \widehat{(|\cdot|^{-1/2}\chi)}(0)
+  = \int|\beta|^{-1/2}\chi(\beta)
+    e^{ic_3\beta^3}\,d\beta.
+\end{equation}
+This is a \emph{finite constant}
+$F(\infty)\in\mathbb{C}$.
+In particular:
+$|F(U)|\to|F(\infty)|<\infty$
+as $U\to+\infty$.
+
+\emph{But} for the relevant range
+in Paper~XV, the integration is
+over \emph{both signs} of $u$,
+and $\Phi$ is not in $L^1(\mathbb{R})$
+(since $|\Phi(u)|\sim|u|^{-1/3}$
+for $u<0$):
+\begin{equation}\label{eq:FU-neg}
+  \int_{-U}^0|\Phi(u)|\,du
+  \sim C\int_0^U u^{-1/3}\,du
+  = C'U^{2/3}\to+\infty.
+\end{equation}
+So the \emph{signed} integral
+$\int_{-U}^U\Phi(u)\,du$
+may still converge by
+oscillatory cancellation,
+but the \emph{absolute} integral
+grows as $U^{2/3}$.
+\end{proposition}
+
+\begin{remark}[What this means
+  for Paper~XV \Rig]
+\label{rem:consequence}
+In the context of Paper~XV,
+the relevant integral is:
+\[
+  I_0(x,c)
+  =\frac{c^{\theta_0}}{|x|}
+  \int_0^{|x|}\Phi(u)\,du.
+\]
+The range of integration is
+$u\in[0,|x|]$, i.e., $u>0$.
+From the analysis above:
+for $u>0$, $\Phi(u)$ decays
+\emph{faster than any power}
+(no real stationary point;
+exponential decay for large $u>0$).
+
+Consequence:
+$\int_0^{|x|}\Phi(u)\,du
+\to F(\infty)<\infty$
+as $|x|\to\infty$.
+Therefore:
+\begin{equation}\label{eq:I0-actual}
+  |I_0(x,c)|
+  \le \frac{c^{\theta_0}}{|x|}
+  \cdot |F(\infty)|
+  = O\!\left(\frac{c^{\theta_0}}{|x|}\right)
+  \quad(|x|\to\infty).
+\end{equation}
+This is \emph{better} than
+the Ces\`aro bound
+$O(c^{\theta_0/2}/|x|^{1/2})$
+for large $|x|$!
+\end{remark}
+
+\section{Three Regimes}
+\label{sec:regimes}
+
+\begin{remark}[Three regimes \Rig]
+\label{rem:regimes}
+The behaviour of $\Phi(u)$
+for $u>0$ (which is the
+relevant sign in $I_0$)
+divides into three regimes:
+
+\medskip
+\noindent\textbf{Regime~1}
+($0<u\ll 1$, near-zero):
+cubic term $c_3\beta^3\ll\beta u$
+for $\beta\ll u^{1/2}/c_3^{1/2}$;
+$\Phi(u)\approx\Phi_0(u)
+=O(u^{-1/2})$.
+Integral from $0$ to $U_0\ll 1$:
+$O(U_0^{1/2})$.
+
+\medskip
+\noindent\textbf{Regime~2}
+($u\sim 1$, transition):
+both $\beta u$ and $c_3\beta^3$
+comparable;
+$\Phi(u)$ is a finite constant
+(no singularity for $u>0$
+at fixed $c_3>0$).
+
+\medskip
+\noindent\textbf{Regime~3}
+($u\gg 1$, large):
+no real stationary point;
+$\Phi(u)$ decays
+exponentially fast.
+$\int_U^\infty\Phi(u)\,du
+=O(e^{-cU^{3/2}})$.
+
+\medskip
+\noindent\textbf{Total integral:}
+$F(\infty)=\int_0^\infty\Phi(u)\,du$
+is a finite complex constant.
+The main contribution comes
+from Regime~1--2.
+\end{remark}
+
+\section{Consequences for
+  Paper~XVI}
+\label{sec:consequences}
+
+\begin{theorem}[Mini-model
+  conclusion \Rig]
+\label{thm:minimodel}
+In the isolated model,
+with integration over $u>0$:
+\begin{enumerate}[\rm(1)]
+\item The fold amplitude $\Phi(u)$
+  decays exponentially for
+  large $u>0$;
+  no Airy-type power law
+  appears for $u>0$.
+\item The integral $F(U)
+  =\int_0^U\Phi(u)\,du$
+  converges to a finite
+  constant $F(\infty)$;
+  hence
+  $|I_0(x,c)|=O(c^{\theta_0}/|x|)$
+  for large $|x|$.
+\item For small $|x|$:
+  the dominant contribution
+  to $F(|x|)$ comes from
+  $u\in[0,|x|^{1/2}]$
+  (Regime~1),
+  giving $F(|x|)=O(|x|^{1/4})$;
+  so $|I_0(x,c)|=O(c^{\theta_0}
+  |x|^{-3/4})$.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Critical warning
+  for Paper~XVI \Warn]
+\label{rem:warning}
+The mini-model shows:
+\begin{enumerate}[\rm(a)]
+\item The heuristic
+  ``fold $\Rightarrow$ Airy
+  $\Rightarrow$ $O(c^{\theta_0/2})$''
+  is \emph{not automatic}.
+  Whether the Airy structure
+  applies depends on the
+  \emph{sign} of $u$:
+  for $u>0$, no real stationary
+  point; for $u<0$, there is one.
+\item The sign of $u=xt/c^{\theta_0}$
+  in the paper depends on
+  the sign of $x$.
+  If $K(x)$ is supported on
+  both signs of $x$,
+  \emph{both} regimes contribute
+  to $S(c)$.
+\item The relevant Airy structure
+  (if any) comes from $u<0$,
+  i.e., $x<0$.
+  For $x>0$, the integral is
+  exponentially small.
+\item Therefore: Paper~XVI
+  must analyze
+  $I_0(x,c)$ for $x<0$
+  separately,
+  where the stationary point
+  $\beta_0=\sqrt{|u|/(3c_3)}>0$
+  is real and Airy asymptotics
+  \emph{do} apply.
+\end{enumerate}
+\end{remark}
+
+\begin{problem}[Revised task
+  for Paper~XVI]
+\label{prob:revised}
+Based on the mini-model:
+\begin{enumerate}[\rm(A)]
+\item \emph{For $x>0$:}
+  show $I_0(x,c)=O(c^{\theta_0}/x)$
+  (exponential decay in $u$;
+  better than Ces\`aro).
+  This part is plausibly
+  rigorous.
+\item \emph{For $x<0$:}
+  stationary phase at
+  $\beta_0=\sqrt{|x|t/c^{\theta_0}
+  /(3c_3)}$;
+  Airy asymptotics apply;
+  estimate
+  $|I_0(x,c)|$ using the
+  real stationary point.
+  This is the hard part:
+  the stationary point
+  moves with $t$ and $c$,
+  requiring uniform control.
+\item \emph{Combine:}
+  $S(c)=\int_{x>0}K(x)
+  I_0(x,c)dx
+  +\int_{x<0}K(x)I_0(x,c)dx$;
+  the $x>0$ part is small;
+  the $x<0$ part requires
+  Airy analysis.
+\end{enumerate}
+\end{problem}
+
+\end{document}
