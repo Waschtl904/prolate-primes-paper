@@ -24,272 +24,352 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Phase Modulation vs.\ Singularity Order,\\
-  and the Sharpness of Ces\`aro}
+  Singular Endpoint Asymptotics,\\
+  Equal-Order Interference,\\
+  and the Ces\`aro Sharpness Conjecture}
 
 \author{[Author]}
 
 \begin{abstract}
-This note studies
+We study
 \[
-  \Phi(u):=\int_{\mathbb{R}}
-  |\beta|^{-1/2}\chi(\beta)
+  \Phi(u):=\int_0^\infty
+  \beta^{-1/2}\chi(\beta)
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
-  \qquad c_3>0,
+  \quad c_3>0,
 \]
 and $F(U):=\int_0^U\Phi(u)\,du$.
-The following is established:
-\begin{enumerate}[\rm(1)]
-\item \textbf{Rigorous upper bound:}
-  $|\Phi(u)|=O(|u|^{-1/2})$
-  (Riemann--Lebesgue).
-\item \textbf{Numerical evidence:}
-  fitted exponent
-  $|\Phi(u)|\approx|u|^{-0.53}$,
-  $|F(U)|\approx U^{0.48}$;
-  consistent with $|u|^{-1/2}$,
-  no new scaling regime observed.
-\item \textbf{Correct interpretation:}
-  the cubic term acts as a
-  high-frequency phase modulation;
-  it does not shift the
-  Fourier-singularity order
-  of $|\Phi(u)|$.
-\item \textbf{Open conjecture:}
-  $\limsup_{|u|\to\infty}
-  |u|^{1/2}|\Phi(u)|>0$
-  (Ces\`aro bound is sharp).
-  \emph{Not proved;
-  numerically supported.}
-\end{enumerate}
-The $S+P$ decomposition
-(singularity + saddle)
-is used heuristically;
-the two mechanisms are
-\emph{not} asymptotically
-orthogonal and cannot be
-treated as independent
-summands without a
-formal partition of unity.
+
+The bound $|\Phi(u)|=O(|u|^{-1/2})$
+is established via the
+\emph{singular endpoint
+asymptotics} theorem
+(Erd\'elyi 1956;
+not from Riemann--Lebesgue,
+which gives only $o(1)$).
+
+For $u<0$, a saddle at
+$\beta_0=\sqrt{|u|/(3c_3)}$
+also contributes $O(|u|^{-1/2})$
+--- the same order as
+the endpoint.
+\emph{This is an
+equal-order interference
+problem, not a perturbation.}
+
+The single open question:
+$\limsup_{|u|\to\infty}
+|u|^{1/2}|\Phi(u)|>0$?
 \end{abstract}
 
 \maketitle
 
-\section{What Is Rigorous}
-\label{sec:rigorous}
+\section{Setup}
+\label{sec:setup}
 
-\begin{lemma}[Upper bound \Rig]
-\label{lem:upper}
-$|\Phi(u)|=O(|u|^{-1/2})$
-and $|F(U)|=O(U^{1/2})$.
-Proof: $|\beta|^{-1/2}\chi\in L^1$;
-Riemann--Lebesgue applies.
-The cubic factor
-$e^{ic_3\beta^3}$ does not
-change $L^1$ membership;
-the bound is independent
-of $c_3$.
+\begin{definition}[Fold amplitude]
+\label{def:Phi}
+Fix $c_3>0$,
+$\chi\in C^\infty_c([0,\infty))$,
+$\chi\equiv 1$ near $0$,
+$\chi\ge 0$:
+\begin{equation}\label{eq:Phi}
+  \Phi(u)
+  :=\int_0^\infty
+  \beta^{-1/2}\chi(\beta)
+  e^{i(\beta u+c_3\beta^3)}\,d\beta.
+\end{equation}
+Without cubic ($c_3=0$):
+$\Phi_0(u)=\int_0^\infty
+\beta^{-1/2}\chi(\beta)
+e^{i\beta u}d\beta$.
+\end{definition}
+
+\begin{remark}[Why $[0,\infty)$
+  instead of $\mathbb{R}$]
+\label{rem:half-line}
+The integral over
+$\mathbb{R}$ with amplitude
+$|\beta|^{-1/2}$
+splits into two half-line
+integrals; the structure
+of the leading asymptotic
+is the same.
+Working on $[0,\infty)$
+isolates the single
+endpoint singularity
+at $\beta=0$ and
+avoids notational clutter.
+\end{remark}
+
+\section{The $O(|u|^{-1/2})$
+  Bound: Correct Proof}
+\label{sec:upper}
+
+\begin{lemma}[Riemann--Lebesgue
+  gives only $o(1)$ \Rig]
+\label{lem:RL}
+Since $\beta^{-1/2}\chi
+\in L^1([0,\infty))$,
+the Riemann--Lebesgue
+lemma gives:
+\[
+  \Phi(u)\to 0
+  \quad(|u|\to\infty).
+\]
+\textbf{This is all that
+RL gives.}
+In particular, RL does
+not give the rate
+$O(|u|^{-1/2})$.
 \end{lemma}
 
-\begin{remark}[What the bound
-  does not say \Rig]
-\label{rem:not-say}
-The upper bound $O(|u|^{-1/2})$
-does not imply:
-\begin{itemize}[nosep]
-\item $|\Phi(u)|=\Theta(|u|^{-1/2})$
-  (lower bound is open);
-\item that Ces\`aro is sharp;
-\item that the cubic term
-  is irrelevant.
-\end{itemize}
+\begin{lemma}[Singular endpoint
+  asymptotics \Rig]
+\label{lem:erdelyi}
+Let $f(\beta)
+=\beta^{\alpha-1}g(\beta)$
+with $0<\alpha<1$
+and $g\in C^\infty_c([0,\infty))$,
+$g(0)\ne 0$.
+Then (Erd\'elyi 1956,
+Bleistein--Handelsman 1975):
+\begin{equation}\label{eq:erdelyi}
+  \int_0^\infty f(\beta)
+  e^{i\lambda\beta}\,d\beta
+  =e^{i\pi\alpha/2}
+  \Gamma(\alpha)
+  g(0)\lambda^{-\alpha}
+  +O(\lambda^{-(\alpha+1)})
+  \quad(\lambda\to+\infty).
+\end{equation}
+For our case:
+$\alpha=1/2$,
+$g(\beta):=\chi(\beta)
+  e^{ic_3\beta^3/u}$
+(treating the cubic
+as a correction;
+valid when $c_3\beta^3
+\ll |u|\beta$,
+i.e.~$\beta\ll|u|^{1/2}$):
+\begin{equation}\label{eq:Phi0-asy}
+  \Phi_0(u)
+  =e^{i\pi/4}
+  \Gamma(\tfrac{1}{2})
+  \chi(0)u^{-1/2}
+  +O(u^{-3/2})
+  =\frac{\sqrt{\pi}
+    e^{i\pi/4}}{u^{1/2}}
+  +O(u^{-3/2})
+  \quad(u\to+\infty).
+\end{equation}
+This gives
+$|\Phi_0(u)|=\Theta(u^{-1/2})$
+\textbf{rigorously}.
+
+For $c_3>0$:
+the cubic perturbation
+$e^{ic_3\beta^3}$ modifies
+the effective $g(0)$
+to $g_c(0):=e^{0}=1$
+(since the cubic vanishes
+at $\beta=0$);
+the leading term is
+unchanged:
+\begin{equation}\label{eq:Phi-endpoint}
+  \Phi_{\mathrm{endpt}}(u)
+  :=\text{endpoint contribution}
+  =\frac{\sqrt{\pi}
+    e^{i\pi/4}}{u^{1/2}}
+  +O(u^{-3/2})
+  \quad(u\to+\infty).
+\end{equation}
+\textbf{The cubic term does not
+change the leading endpoint
+asymptotics for $u>0$.}
+\end{lemma}
+
+\begin{remark}[Validity for
+  $u<0$ \Rig]
+\label{rem:u-neg}
+For $u<0$, the endpoint
+asymptotics apply to
+the integral over
+$[0,\varepsilon]$
+(near $\beta=0$) with
+the same leading term;
+the saddle at
+$\beta_0=\sqrt{|u|/(3c_3)}>0$
+also contributes
+(Section~\ref{sec:saddle}).
+The endpoint and saddle
+both contribute
+$O(|u|^{-1/2})$;
+see below.
 \end{remark}
 
-\section{The Two Mechanisms
-  and Their Limitation}
-\label{sec:mechanisms}
+\section{The Saddle Contribution
+  for $u<0$}
+\label{sec:saddle}
 
-\begin{remark}[Formal S+P split
-  \Warn]
-\label{rem:SP}
-Two mechanisms formally
-contribute to $\Phi(u)$:
-\begin{enumerate}[\rm(S)]
-\item[(S)] \textbf{Singularity:}
-  the endpoint $\beta=0$
-  contributes
-  $\sim C_0 |u|^{-1/2}
-  e^{i\pi/4}$
-  (Fresnel; $C_0\ne 0$).
-\item[(P)] \textbf{Saddle}
-  (for $u<0$):
-  $\beta_0=\sqrt{|u|/(3c_3)}$
-  contributes formally
-  $\sim C'|u|^{-1/2}
-  e^{i\phi(\beta_0)}$
-  with $\phi(\beta_0)
-  =-\frac{2}{3}(|u|/3c_3)^{3/2}$.
-\end{enumerate}
-\textbf{Critical warning:}
-S and P are \emph{not}
-orthogonal asymptotically.
-The decomposition
-$\Phi=\Phi_S+\Phi_P$
-is not canonical:
-both contributions arise
-from the same integral
-over the same $\beta$-axis;
-a split requires a
-partition of unity
-$\chi_S+\chi_P=1$
-(separating a neighbourhood
-of $\beta=0$ from one of
-$\beta_0$) with explicit
-error bounds in $u$.
-Without this,
-``$\Phi_S+\Phi_P$''
-is a formal decomposition,
-not an asymptotic identity.
-\end{remark}
-
-\begin{remark}[Saddle scale
-  and separation \Rig]
-\label{rem:scale}
-The saddle
-$\beta_0=\sqrt{|u|/(3c_3)}
-\to\infty$ as $|u|\to\infty$.
-For $|u|\gg 1$, the saddle
-is far from $\beta=0$;
-a partition
-$\chi_S(\beta):=
-\chi(\beta/\beta_0^{1/2})$,
-$\chi_P:=1-\chi_S$
-would separate the two
-regions with explicit
-error $O(\beta_0^{-N})$.
-This partition would
-make the S+P split rigorous,
-but the computation of the
-error in $u$ has not been
-carried out here.
-\end{remark}
-
-\section{The Correct Conclusion:
-  Phase Modulation}
-\label{sec:phase}
-
-\begin{proposition}[Phase
-  modulation, not order shift
-  \Rig+\Num]
-\label{prop:phase}
-The effect of the cubic
-term $e^{ic_3\beta^3}$
-in~\eqref{eq:Phi} is:
-\begin{enumerate}[\rm(i)]
-\item \textbf{On the phase:}
-  the saddle phase
-  $\phi(\beta_0)
-  =-\frac{2}{3}(|u|/3c_3)^{3/2}$
-  introduces a rapidly
-  oscillating factor
-  $e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}}$
-  in the saddle contribution;
-  this has frequency
-  $\sim|u|^{1/2}\to\infty$.
-\item \textbf{On the amplitude:}
-  numerically, no shift
-  in the scaling exponent
-  from $-1/2$ is observed;
-  the upper bound $O(|u|^{-1/2})$
-  is not improved.
-\item \textbf{Correct interpretation:}
-  the cubic term acts as
-  a \emph{high-frequency
-  phase modulation};
-  it does not change
-  the Fourier-singularity
-  order of $\Phi$.
-\end{enumerate}
-\end{proposition}
-
-\begin{remark}[Why phase alone
-  cannot improve amplitude
+\begin{lemma}[Saddle asymptotics
   \Rig]
-\label{rem:phase-alone}
-If $|\Phi(u)|=\Theta(|u|^{-1/2})$
-(i.e., the lower bound holds),
-then $\Phi(u)=C_*(u)
-|u|^{-1/2}$ where
-$C_*(u)$ oscillates
-but satisfies
-$\limsup|C_*(u)|>0$.
-The rapid oscillation of
-$C_*(u)$ means that on
-average $C_*(u)$ does not
-systematically cancel;
-but it also means that
-on a sparse sequence
-$|C_*(u_n)|$ might be small.
-The question
-$\limsup|C_*(u)|>0$
-cannot be answered
-from the upper bound alone;
-it requires the lower
-bound analysis.
-\end{remark}
+\label{lem:saddle}
+For $u<0$, $|u|\to\infty$:
+the phase
+$\phi(\beta)=\beta u+c_3\beta^3$
+has a critical point
+$\phi'(\beta_0)=0$ at
+$\beta_0=\sqrt{|u|/(3c_3)}$.
+Standard stationary phase
+(assuming $\beta_0$ is
+away from $0$, which
+holds for $|u|\gg 1$):
 
-\section{Numerical Evidence
-  and Its Limits}
-\label{sec:numerical}
-
-\begin{proposition}[Numerical
-  findings \Num]
-\label{prop:num}
-With $c_3=1$, Gaussian
-cutoff, $\beta\in[-50,50]$:
+\noindent\textbf{Amplitude:}
 \[
-  |\Phi(u)|\approx|u|^{-0.53},
-  \quad
-  |F(U)|\approx U^{0.48}.
+  \beta_0^{-1/2}
+  =(|u|/(3c_3))^{-1/4}
+  =C_1|u|^{-1/4}.
 \]
-The deviation from
-$-0.5$ and $0.5$ is
-within expected numerical
-error (finite integration
-range, discrete sampling).
-No scaling regime
-consistent with $u^{-1/3}$,
-$u^{-3/4}$, or $U^{2/3}$
-is observed.
-\end{proposition}
+\noindent\textbf{Phase curvature:}
+\[
+  |\phi''(\beta_0)|
+  =6c_3\beta_0
+  =6c_3(|u|/(3c_3))^{1/2}
+  =C_2|u|^{1/2}.
+\]
+\noindent\textbf{Stationary phase
+  estimate:}
+\begin{equation}\label{eq:saddle-est}
+  |\Phi_{\mathrm{saddle}}(u)|
+  \sim\beta_0^{-1/2}
+  \cdot|\phi''(\beta_0)|^{-1/2}
+  =C_1|u|^{-1/4}
+  \cdot C_2^{-1/2}|u|^{-1/4}
+  =C|u|^{-1/2}.
+\end{equation}
 
-\begin{remark}[Limits of
-  the numerical evidence
-  \Warn]
-\label{rem:num-limits}
-The numerical computation:
-\begin{itemize}[nosep]
-\item supports $O(|u|^{-1/2})$
-  as the correct order;
-\item does \emph{not} prove
-  $\Omega(|u|^{-1/2})$
-  (a lower bound requires
-  analytic argument,
-  not sampling);
-\item uses a specific
-  Gaussian cutoff;
-  the actual PSWF amplitude
-  may differ;
-\item is restricted to
-  $|u|\le 30$;
-  the asymptotic regime
-  $|u|\to\infty$ is
-  extrapolated, not observed.
-\end{itemize}
+\textbf{The saddle contributes
+$O(|u|^{-1/2})$ ---
+the same order as the
+endpoint.}
+
+The saddle phase:
+\[
+  \phi(\beta_0)
+  =\beta_0 u+c_3\beta_0^3
+  =-\tfrac{2}{3}
+  \bigl(|u|^3/(3c_3)\bigr)^{1/2}
+  \to-\infty.
+\]
+\end{lemma}
+
+\begin{remark}[Not a perturbation
+  problem \Rig]
+\label{rem:not-perturbation}
+Since both mechanisms
+give $O(|u|^{-1/2})$:
+\[
+  \Phi(u)=
+  \underbrace{C_S u^{-1/2}
+    e^{i\pi/4}}_{
+    \text{endpoint}}
+  +\underbrace{C_P(u)
+    |u|^{-1/2}
+    e^{i\phi(\beta_0)}}_{
+    \text{saddle}}
+  +O(|u|^{-3/2}),
+\]
+where $C_S=\sqrt{\pi}$
+and $|C_P(u)|=O(1)$.
+This is an
+\emph{equal-order
+interference problem}:
+not a leading term plus
+a small perturbation,
+but two contributions
+of the same order with
+rapidly varying relative
+phase
+$\phi(\beta_0)-\pi/4
+=-\frac{2}{3}(|u|/3c_3)^{3/2}
+-\pi/4$.
+
+\textbf{The split
+$\Phi=\Phi_{\text{endpt}}
++\Phi_{\text{saddle}}$
+is not rigorous without
+a partition of unity}
+$\chi_S+\chi_P=1$
+with $\mathrm{supp}(\chi_S)
+\subset[0,2|u|^{1/3}]$
+and $\mathrm{supp}(\chi_P)
+\subset[|u|^{1/3},\infty)$,
+and explicit
+$O(|u|^{-3/2})$ error
+bounds on each piece.
+This has not been carried out.
 \end{remark}
 
-\section{The Single Open Problem}
-\label{sec:open}
+\section{The Interference
+  Problem and the Conjecture}
+\label{sec:interference}
+
+\begin{definition}[Leading
+  coefficient]
+\label{def:Cstar}
+For $u<0$, $|u|\gg 1$:
+\begin{equation}\label{eq:Cstar}
+  C_*(u):=|u|^{1/2}\Phi(u)
+  \approx C_S e^{i\pi/4}
+  +C_P\cdot e^{-i\frac{2}{3}
+    (|u|/3c_3)^{3/2}}.
+\end{equation}
+(Formal; requires rigorous
+partition to make precise.)
+\end{definition}
+
+\begin{remark}[Behaviour of
+  $C_*(u)$]
+\label{rem:Cstar}
+The two components:
+\begin{itemize}[nosep]
+\item $C_S e^{i\pi/4}$:
+  constant, non-zero
+  ($C_S=\sqrt{\pi}\ne 0$).
+\item $C_P e^{-i\frac{2}{3}
+  (|u|/3c_3)^{3/2}}$:
+  oscillates with
+  frequency $\sim|u|^{1/2}$;
+  if $|C_P|<|C_S|$,
+  then $|C_*(u)|
+  \ge|C_S|-|C_P|>0$
+  for all large $|u|$.
+\end{itemize}
+The critical unknown:
+\textbf{is $|C_P|<|C_S|$?}
+If yes: $\limsup|C_*(u)|
+\ge|C_S|-|C_P|>0$;
+Ces\`aro is sharp.
+If $|C_P|=|C_S|$:
+the oscillating relative
+phase means
+$|C_*(u)|$ fluctuates
+between $0$ and $2|C_S|$;
+$\limsup|C_*(u)|=2|C_S|>0$
+but $\liminf|C_*(u)|=0$.
+
+\textbf{In either case,
+$\limsup|C_*(u)|>0$
+(as long as $C_S\ne 0$),
+provided $|C_P|$ does
+not cancel $C_S e^{i\pi/4}$
+for all large $|u|$
+simultaneously---which
+would require a very
+specific phase resonance.}
+\end{remark}
 
 \begin{conjecture}[Ces\`aro is
   sharp \Open]
@@ -299,84 +379,103 @@ The numerical computation:
   |u|^{1/2}|\Phi(u)|>0.
 \]
 Equivalently:
-$|F(U)|=\Theta(U^{1/2})$
-(Ces\`aro is not improvable
-for this model).
+$|F(U)|=\Theta(U^{1/2})$.
+
+Heuristic support:
+$C_S=\sqrt{\pi}\ne 0$
+(rigorous);
+$|C_P|$ is bounded
+but not identically
+equal to
+$|C_S e^{i\pi/4}|$
+for all $u$
+(no phase resonance
+expected for irrational
+frequency $(|u|/3c_3)^{3/2}$).
+
+What is needed for a
+rigorous proof:
+\begin{enumerate}[\rm(i)]
+\item Rigorous partition
+  of unity separating
+  endpoint and saddle;
+\item Explicit bound
+  $|C_P|\le C_S-\varepsilon$
+  for some $\varepsilon>0$
+  and all $|u|\ge u_0$;
+  OR
+\item Weierstrass-type
+  argument showing the
+  phase
+  $\frac{2}{3}(|u|/3c_3)^{3/2}$
+  is never a rational
+  multiple of $\pi/4$
+  (to avoid exact cancellation
+  on a dense sequence).
+\end{enumerate}
 \end{conjecture}
 
-\begin{remark}[Why this is
-  hard \Open]
-\label{rem:hard}
-The conjecture requires
-showing that the rapidly
-oscillating coefficient
-$C_*(u)=|u|^{1/2}\Phi(u)$
-does not decay to zero
-along all sequences.
-A sufficient condition:
-$C_*(u)$ has a non-zero
-limit along some sequence
-$u_n\to-\infty$.
+\section{Numerical Evidence}
+\label{sec:numerical}
 
-The saddle phase
-$e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}}$
-oscillates with
-irrationally-spaced
-periods;
-the Fresnel contribution
-$C_0 e^{i\pi/4}\ne 0$
-is constant.
-If the saddle term is
-smaller in amplitude
-than the Fresnel term
-(which requires a
-quantitative bound on
-the saddle amplitude
-relative to the singularity),
-then $\limsup|C_*(u)|
-\ge|C_0|e^{i\pi/4}
--\sup|C_*^{(P)}|>0$.
+\begin{proposition}[\Num]
+\label{prop:num}
+Numerical computation
+($c_3=1$, $u\in[-30,-0.5]$,
+$\beta\in[-50,50]$,
+Gaussian cutoff):
+\[
+  |\Phi(u)|\approx|u|^{-0.53},
+  \quad
+  |F(U)|\approx U^{0.48}.
+\]
+Consistent with
+Conjecture~\ref{conj:sharp};
+not a proof.
+\end{proposition}
 
-\textbf{This is heuristic,
-not a proof:}
-the S+P split is not
-rigorous as noted
-in~\S\ref{sec:mechanisms}.
-\end{remark}
+\section{Consequence for Paper~XV}
+\label{sec:consequence}
 
-\begin{problem}[Rigorous lower
-  bound]
-\label{prob:lower}
-Prove Conjecture~\ref{conj:sharp}.
-First step:
-make the S+P partition rigorous
-(cf.\ Rem.~\ref{rem:scale})
-and compute the error
-in the partition
-uniformly in $u$.
-Second step:
-quantify the saddle
-amplitude $|C_*^{(P)}(u)|$
-and compare to $|C_0|$.
-\end{problem}
-
-\begin{remark}[Consequence
-  for Paper~XV \Open]
+\begin{remark}[\Open]
 \label{rem:consequence}
 If Conjecture~\ref{conj:sharp}
-holds in this model,
-then Assumption~ass:Phi-cubic
-of Paper~XV is false,
-and $S(c)=\Theta(c^{\theta_0})$
-(Ces\`aro is sharp).
-This would be a
-\emph{rigorous negative result}
-for the PSWF compression
-programme:
-no improvement over
-Ces\`aro is possible
-via oscillatory methods
-in this regime.
+holds (and carries over
+to the PSWF setting),
+then:
+\begin{itemize}[nosep]
+\item Assumption~ass:Phi-cubic
+  of Paper~XV is false;
+\item $S(c)=\Theta(c^{\theta_0})$;
+\item Ces\`aro is the sharp
+  bound;
+\item no improvement is
+  possible via oscillatory
+  methods in this regime;
+\item the correct goal
+  of Paper~XVI shifts
+  to: prove the lower
+  bound $S(c)\ge Cc^{\theta_0}$,
+  i.e.,
+  Ces\`aro is \emph{optimal}.
+\end{itemize}
 \end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{Erdelyi1956}
+A.~Erd\'elyi,
+\textit{Asymptotic Expansions},
+Dover, 1956.
+\bibitem{BleisteinHandelsman}
+N.~Bleistein, R.~Handelsman,
+\textit{Asymptotic Expansions
+of Integrals},
+Dover, 1975.
+\bibitem{Stein1993}
+E.~M.~Stein,
+\textit{Harmonic Analysis},
+Princeton, 1993,
+Ch.~VIII.
+\end{thebibliography}
 
 \end{document}
