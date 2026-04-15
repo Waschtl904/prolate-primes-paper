@@ -1,0 +1,630 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Open Problem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\Phic}[2]{\Phi_{#2}^{(#1)}}
+\newcommand{\Ac}{A_N^{(c)}}
+\newcommand{\AcM}{A_N^{(c),(M)}}
+
+\subjclass[2020]{47A10, 47B25, 42C05, 81Q20}
+\keywords{Prolate spheroidal wave functions,
+  intermediate regime, Dirichlet kernel,
+  mesoscopic scaling, Hilbert--Schmidt estimates,
+  WKB asymptotics, oscillatory integrals,
+  uniform stationary phase, collective
+  quasi-orthogonality}
+
+\begin{document}
+
+\title[Intermediate-Regime Kernel Estimates]{%
+  Intermediate-Regime Kernel Estimates
+  for the PSWF Compression Operator:\\
+  Mesoscopic Scaling and the Dirichlet
+  Kernel Problem}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\begin{abstract}
+Paper~XIV reduced the coefficient
+stability hypothesis~H1 to a single
+open problem: the intermediate-regime
+Hilbert--Schmidt estimate
+$\Sigma_{\mathrm{int}} = o(1)$
+for $M(c)\sim\beta c$
+(OP~\ref{prob:intermediate-XV}).
+This paper isolates the core
+analytic obstruction as a
+\emph{mesoscopic Dirichlet kernel
+summation problem}
+(Problem~\ref{prob:model-intermediate}),
+independent of PSWF structure,
+and develops the tools required
+for its resolution.
+
+The central object is the oscillatory
+kernel family
+\[
+  I_c(k)
+  := \int_{-c_0}^{c_0}
+     e^{ik\theta(\xi)/c}
+     w(\xi)\,d\xi,
+  \quad 1\le k\le c^{\theta_0},
+\]
+and the associated sum
+$\Sigma_{\mathrm{model}}(c)
+:= \sum_{k=1}^{\lfloor c^{\theta_0}\rfloor}
+|I_c(k)|^2$.
+The two-scale structure of
+$F_c(\xi,\eta)
+:= \sum_{k=1}^{K(c)}
+e^{ik(\theta(\xi)-\theta(\eta))/c}$
+is identified: off-diagonal cancellation
+is accessible by standard oscillatory
+methods, while the diagonal mesoscopic
+strip of width $\sim c^{1-\theta_0}$
+requires a Dirichlet kernel analysis
+at the critical scaling
+$K(c)\cdot h = 1$ ($h := c^{-\theta_0}$).
+Pointwise integration by parts is
+shown to be insufficient
+($\sum|I_c(k)|^2 = O(c^2)$ naively),
+and the obstruction is identified as
+a \emph{log-borderline} phenomenon
+under rescaling.
+
+The Lipschitz regularity
+$\norm{A_{n+k}-A_n}_{L^2} = O(k/c)$
+(to be established from the PSWF
+differential equation in \S\ref{sec:Lipschitz})
+reduces $\Sigma_{\mathrm{int}}=o(1)$
+to $\Sigma_{\mathrm{model}}(c)=o(1)$.
+\end{abstract}
+
+\maketitle
+
+%%═══ 1. INTRODUCTION
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Inherited structure from Paper~XIV}
+
+Paper~XIV established the following
+reduction chain:
+\begin{equation}\label{eq:chain-XIV}
+  \underbrace{(C) + (D\text{-strong})}
+  _{\text{Paper XV target}}
+  \;\Rightarrow\;
+  S_N^{(M(c))}(c)\sim c_0\beta > 0
+  \;\Rightarrow\;
+  \text{H3 fails}
+  \;\Rightarrow\;
+  \text{H1 fails}.
+\end{equation}
+The HS decomposition
+\begin{equation}\label{eq:HS-decomp}
+  \norm{\AcM - D^{(M)}}_{\mathrm{HS}}^2
+  = \Sigma_{\mathrm{near}}
+  + \Sigma_{\mathrm{int}}
+  + \Sigma_{\mathrm{far}}
+\end{equation}
+satisfies:
+$\Sigma_{\mathrm{near}} = O(1/c) = o(1)$
+(proved, Paper~XIV, conditional on~(C));
+$\Sigma_{\mathrm{far}} = o(1)$
+(accessible via stationary phase);
+and the sole remaining obstruction:
+\begin{equation}\label{eq:int-target}
+  \Sigma_{\mathrm{int}}
+  = \sum_{\substack{n\ne m\\
+      C<|n-m|\le c^{\theta_0}}}
+    \left|(\AcM)_{nm}\right|^2
+  \stackrel{?}{=} o(1),
+  \qquad M(c)\sim\beta c.
+\end{equation}
+
+\subsection{Three levels of decay}
+
+\begin{remark}[Three levels of $o(1)$]
+\label{rem:three-levels}
+The symbol $o(1)$ appears at three
+distinct levels throughout this paper;
+these are \emph{not} interchangeable:
+\begin{enumerate}[\rm(i)]
+\item \emph{Pointwise decay}:
+  $|(\AcM)_{nm}| = o(1/c)$
+  for each fixed pair $(n,m)$
+  with $|n-m|\ge C$.
+  This is (D-weak); it does not
+  imply HS-summability over
+  $O(c^2)$ pairs.
+\item \emph{HS-summated decay}:
+  $\Sigma_{\mathrm{near}}=o(1)$,
+  $\Sigma_{\mathrm{far}}=o(1)$,
+  $\Sigma_{\mathrm{int}}=o(1)$.
+  This is the operative level
+  for (D-strong).
+\item \emph{Uniform in $\theta_0$}:
+  the crude bound
+  $O(c^{\theta_0-1})=o(1)$
+  holds for each fixed $\theta_0<1$
+  but \emph{not} uniformly as
+  $\theta_0\to 1^-$.
+  This is the structural gap
+  of OP~\ref{prob:intermediate-XV}.
+\end{enumerate}
+The near-diagonal regime is controlled
+at level~(ii) without passing
+through~(i).
+The intermediate regime is controlled
+at~(ii) for each fixed $\theta_0$;
+the gap to uniform control is
+the core of this paper.
+\end{remark}
+
+\subsection{The model reduction}
+
+The Gram kernel takes the form
+\begin{equation}\label{eq:gram-kernel}
+  (\AcM)_{nm}
+  = \int_{-c_0}^{c_0}
+    \widehat{\Phi_n^{(c)}}(\xi)\,
+    \overline{\widehat{\Phi_m^{(c)}}(\xi)}
+    \,d\xi.
+\end{equation}
+Under assumption~(C) and the Lipschitz
+bound
+\begin{equation}\label{eq:Lipschitz-main}
+  \norm{A_{n+k}-A_n}_{L^2([-c_0,c_0])}
+  = O(k/c),
+  \qquad |k|\le c^{\theta_0},
+\end{equation}
+the amplitude correction
+$A_n\overline{A_m} - w$
+contributes $O(k/c)$ per entry,
+which is HS-summable.
+The leading term reduces to
+the model kernel:
+\begin{equation}\label{eq:model-reduction}
+  (\AcM)_{nm}
+  \approx I_c(|n-m|)
+  + O(|n-m|/c),
+  \qquad
+  I_c(k)
+  := \int_{-c_0}^{c_0}
+     e^{ik\theta(\xi)/c}
+     w(\xi)\,d\xi.
+\end{equation}
+Thus $\Sigma_{\mathrm{int}}=o(1)$
+follows from
+$\Sigma_{\mathrm{model}}(c)=o(1)$
+once~\eqref{eq:Lipschitz-main}
+is established (\S\ref{sec:Lipschitz}).
+
+\subsection{Logical status of Paper~XV}
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{
+\textbf{Targets:}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Primary:}
+  $\Sigma_{\mathrm{model}}(c)=o(1)$
+  (Problem~\ref{prob:model-intermediate}).
+\item \textbf{Secondary:}
+  Lipschitz regularity~\eqref{eq:Lipschitz-main}
+  via PSWF differential equation
+  (\S\ref{sec:Lipschitz}).
+\item \textbf{Tertiary:}
+  Local Weyl law~(C) uniformly in
+  $n\in\mathcal{T}_{\alpha,\kappa}(c)$
+  (\S\ref{sec:Weyl}).
+\end{itemize}
+\textbf{Output (conditional on all three):}
+$(D\text{-strong})$
+$\Rightarrow$
+Prop.~XIV.\ref{prop:HS-reduction}
+$\Rightarrow$
+$S_N^{(M(c))}\sim c_0\beta>0$
+$\Rightarrow$
+H3 fails
+$\Rightarrow$
+(cond.\ (C)) H1 fails.}}
+\end{center}
+
+%%═══ 2. THE MODEL PROBLEM
+\section{The Intermediate-Regime
+  Model Problem}
+\label{sec:model}
+
+\begin{problem}[Intermediate-regime
+  kernel summation;
+  model problem for Paper~XV]
+\label{prob:model-intermediate}
+
+Let $\theta\in C^\infty([-c_0,c_0])$
+satisfy $\theta'(\xi)\ne 0$ on
+$[-c_0,c_0]$, and let
+$w\in C^\infty([-c_0,c_0])$,
+$w>0$, with
+$\int_{-c_0}^{c_0}w(\xi)\,d\xi=1$.
+
+Define the oscillatory kernel
+coefficients
+\begin{equation}\label{eq:Ic-def}
+  I_c(k)
+  := \int_{-c_0}^{c_0}
+     e^{ik\theta(\xi)/c}
+     w(\xi)\,d\xi,
+  \qquad k\in\mathbb{Z}_{\ge 1}.
+\end{equation}
+Fix $\theta_0\in(0,1)$ and set
+$K(c):=\lfloor c^{\theta_0}\rfloor$.
+
+\medskip\noindent
+\textbf{Conjecture (Model-$\Sigma$).}
+\begin{equation}\label{eq:model-sigma}
+  \Sigma_{\mathrm{model}}(c)
+  := \sum_{k=1}^{K(c)}|I_c(k)|^2
+  \;=\; o(1)
+  \qquad(c\to\infty).
+\end{equation}
+
+\medskip\noindent
+\textbf{Failure of pointwise estimates.}
+Integration by parts gives for
+each fixed $k\ge 1$:
+\begin{equation}\label{eq:IBP}
+  I_c(k)
+  = \frac{c}{ik}
+    \int_{-c_0}^{c_0}
+    e^{ik\theta(\xi)/c}
+    \partial_\xi\!\left(
+      \frac{w(\xi)}{\theta'(\xi)}
+    \right)d\xi,
+  \qquad
+  |I_c(k)|=O\!\left(\frac{c}{k}\right).
+\end{equation}
+Applying this pointwise:
+\[
+  \sum_{k=1}^{K(c)}|I_c(k)|^2
+  \lesssim c^2\sum_{k=1}^{c^{\theta_0}}
+  \frac{1}{k^2}
+  = O(c^2).
+\]
+Pointwise oscillatory decay is
+therefore not the right tool.
+
+\medskip\noindent
+\textbf{Kernel reformulation.}
+\begin{equation}\label{eq:kernel-rewrite}
+  \Sigma_{\mathrm{model}}(c)
+  = \int_{-c_0}^{c_0}
+    \int_{-c_0}^{c_0}
+    w(\xi)\,w(\eta)\,
+    F_c(\xi,\eta)
+    \,d\xi\,d\eta,
+\end{equation}
+where
+\begin{equation}\label{eq:Fc}
+  F_c(\xi,\eta)
+  := \sum_{k=1}^{K(c)}
+     e^{ik(\theta(\xi)-\theta(\eta))/c}
+  = e^{i\phi/c}
+    \cdot
+    \frac{1-e^{iK(c)\phi/c}}
+         {1-e^{i\phi/c}},
+  \quad
+  \phi:=\theta(\xi)-\theta(\eta).
+\end{equation}
+Thus $F_c$ is a rescaled Dirichlet
+kernel in $\phi/c$.
+
+\medskip\noindent
+\textbf{Two-scale structure.}
+Let $\delta:=|\xi-\eta|$.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Off-diagonal}
+  ($\delta\gg c^{1-\theta_0}$):
+  $|\phi|\gg c^{1-\theta_0}$,
+  so $K(c)|\phi|/c\gg 1$;
+  oscillatory cancellation gives
+  $|F_c(\xi,\eta)|\lesssim
+  c/|\phi|\lesssim c/\delta$.
+\item \textbf{Diagonal mesoscopic strip}
+  ($\delta\lesssim c^{1-\theta_0}$):
+  $K(c)|\phi|/c = O(1)$;
+  no cancellation,
+  $|F_c(\xi,\eta)|\le K(c)
+  =c^{\theta_0}$.
+\end{itemize}
+
+\medskip\noindent
+\textbf{Critical obstruction.}
+The diagonal strip has measure
+$\sim c^{1-\theta_0}$, so:
+\[
+  \iint_{\delta\lesssim c^{1-\theta_0}}
+  w(\xi)w(\eta)|F_c(\xi,\eta)|
+  \,d\xi\,d\eta
+  \;\lesssim\;
+  c^{\theta_0}\cdot c^{1-\theta_0}
+  = O(1).
+\]
+Pointwise estimates alone do not
+give $o(1)$. New input is required.
+
+\medskip\noindent
+\textbf{Mesoscopic rescaling.}
+Fix $\xi_0\in[-c_0,c_0]$ and set
+$\xi=\xi_0+c^{1-\theta_0}u$,
+$\eta=\xi_0+c^{1-\theta_0}v$.
+Then
+\begin{equation}\label{eq:meso-F}
+  F_c(u,v)
+  = \sum_{k=1}^{K(c)}
+    \exp\!\left(
+      ik\,\theta'(\xi_0)
+      \frac{u-v}{c^{\theta_0}}
+    \right)
+  =: D_{K(c)}\!\big(
+       h\,\theta'(\xi_0)(u-v)
+     \big),
+\end{equation}
+where $h:=c^{-\theta_0}$ and
+$D_K(t):=\sum_{k=1}^K e^{ikt}$
+is the standard Dirichlet kernel.
+
+The critical scaling is:
+\begin{equation}\label{eq:critical-product}
+  K(c)\cdot h
+  = c^{\theta_0}\cdot c^{-\theta_0}
+  = 1.
+\end{equation}
+Both $K(c)\to\infty$ and $h\to 0$
+simultaneously, with critical
+product~$=1$.
+
+\medskip\noindent
+\textbf{Log-borderline phenomenon.}
+The classical bound
+$\norm{D_K}_{L^1(\mathbb{T})}
+\sim\log K\sim\theta_0\log c$
+is borderline under the rescaling:
+the diagonal strip has rescaled
+measure $O(1)$, so the contribution is
+\[
+  \sim
+  (\theta_0\log c)
+  \cdot c^{1-\theta_0}
+  \cdot c^{-(1-\theta_0)}
+  = \theta_0\log c \cdot O(1).
+\]
+Whether this logarithmic growth
+is $o(1)$ after full integration
+against $w(\xi)w(\eta)$ depends on
+cancellation \emph{across} $\xi_0$,
+which is the core of the problem.
+
+\medskip\noindent
+\textbf{Reduction statement.}
+Under the Lipschitz bound
+\eqref{eq:Lipschitz-main},
+the validity of
+$\Sigma_{\mathrm{model}}(c)=o(1)$
+implies
+$\Sigma_{\mathrm{int}}=o(1)$
+(OP~\ref{prob:intermediate-XV}),
+which together with
+$\Sigma_{\mathrm{near}}=o(1)$ (proved)
+and $\Sigma_{\mathrm{far}}=o(1)$
+(accessible) yields (D-strong)
+and closes OP~XIV.\ref{prob:H1H3}.
+
+\medskip\noindent
+\textbf{Proposed strategy.}
+\begin{enumerate}[\rm(S1)]
+\item Reduce to the diagonal strip
+  via off-diagonal stationary phase.
+\item Apply mesoscopic rescaling
+  to reduce to~\eqref{eq:meso-F}.
+\item Use $L^2$-orthogonality of the
+  exponential family
+  $\{e^{ik\cdot}\}_{k=1}^{K(c)}$
+  on the rescaled interval
+  $[0, c^{1-\theta_0}]$
+  to extract cancellation
+  \emph{across} the diagonal strip.
+\item Bound residuals via Lipschitz
+  regularity~\eqref{eq:Lipschitz-main}.
+\end{enumerate}
+\end{problem}
+
+\begin{remark}[Connection to
+  Toeplitz/Szeg\H{o} theory]
+\label{rem:toeplitz}
+The object $D_{K(c)}(h\,\theta'(\xi_0)(u-v))$
+is the kernel of a finite Toeplitz
+section with symbol
+$\mathbf{1}_{|\xi|\le c_0}$
+evaluated at mesoscopic scale.
+The double limit $K\to\infty$,
+$h\to 0$, $Kh=1$ is precisely the
+\emph{critical Szeg\H{o} regime}:
+neither the classical Szeg\H{o}
+theorem (fixed symbol, $N\to\infty$)
+nor the semiclassical limit
+(fixed $N$, $h\to 0$) applies
+directly.
+This is the double-scaling Szeg\H{o}
+regime of Definition~XIV.\ref{def:double-scaling}
+instantiated at the mesoscopic level.
+\end{remark}
+
+%%═══ 3. LIPSCHITZ REGULARITY
+\section{Lipschitz Regularity of the
+  PSWF Amplitude}
+\label{sec:Lipschitz}
+
+\begin{problem}[Lipschitz regularity;
+  Paper~XV]
+\label{prob:Lipschitz}
+\emph{Priority: critical.}
+
+Establish, uniformly in
+$n\in\mathcal{T}_{\alpha,\kappa}(c)$
+and $|k|\le c^{\theta_0}$:
+\begin{equation}\label{eq:Lip-prob}
+  \norm{
+    \widehat{\Phi_{n+k}^{(c)}}
+    -\widehat{\Phi_n^{(c)}}
+  }_{L^2([-c_0,c_0])}
+  = O\!\left(\frac{k}{c}\right).
+\end{equation}
+
+\medskip\noindent
+\textbf{Role.}
+Together with
+Problem~\ref{prob:model-intermediate},
+this closes $\Sigma_{\mathrm{int}}=o(1)$
+(OP~\ref{prob:intermediate-XV}).
+
+\medskip\noindent
+\textbf{Approach.}
+The PSWF differential equation
+\[
+  \frac{d}{dn}
+  \widehat{\Phi_n^{(c)}}
+  \approx
+  \frac{1}{c}
+  \frac{d}{d\alpha}
+  \widehat{\Phi_{\alpha c}^{(c)}}
+  \Big|_{\alpha=n/c},
+\]
+combined with semiclassical
+amplitude regularity in $\alpha$,
+is expected to yield~\eqref{eq:Lip-prob}
+at WKB level;
+rigorous justification requires
+$L^2$-control of the transport
+equation for $\alpha\mapsto
+\widehat{\Phi_{\alpha c}^{(c)}}$.
+\end{problem}
+
+%%═══ 4. LOCAL WEYL LAW
+\section{Local Weyl Law (C)}
+\label{sec:Weyl}
+
+\begin{problem}[Local Weyl law;
+  Paper~XV]
+\label{prob:Weyl-XV}
+\emph{Priority: critical.
+Inherited from OP~XIV.\ref{prob:fourier-mass}.}
+
+Prove uniformly in
+$n\in\mathcal{T}_{\alpha,\kappa}(c)$:
+\begin{equation}\label{eq:Weyl-uniform}
+  \mu_{n,c}([-c_0,c_0])
+  = \frac{c_0}{c}
+  + o\!\left(\frac{1}{c}\right).
+\end{equation}
+
+\medskip\noindent
+\textbf{Role.}
+Required for:
+frozen weight approximation
+$A_n(\xi)\overline{A_m(\xi)}\approx w(\xi)$;
+$\Sigma_{\mathrm{near}}=o(1)$;
+Prop.~XIV.\ref{prop:HS-reduction}.
+
+\medskip\noindent
+\textbf{Main difficulty.}
+Uniformity as $n/c\to\alpha$,
+where the classical turning point
+of the PSWF ODE approaches
+the boundary of $[-c,c]$.
+\end{problem}
+
+%%═══ 5. OPEN PROBLEMS
+\section{Open Problems for Paper~XV}
+\label{sec:open}
+
+\begin{problem}[Intermediate-regime
+  HS estimate]
+\label{prob:intermediate-XV}
+\emph{Primary target.}
+
+Under~(C) and~\eqref{eq:Lipschitz-main},
+establish:
+\[
+  \Sigma_{\mathrm{int}}
+  = \sum_{\substack{n\ne m\\
+      C<|n-m|\le c^{\theta_0}}}
+    |(\AcM)_{nm}|^2
+  = o(1),
+  \quad M(c)\sim\beta c.
+\]
+Follows from
+Problem~\ref{prob:model-intermediate}
+$+$ Problem~\ref{prob:Lipschitz}.
+\end{problem}
+
+\begin{thebibliography}{99}
+
+\bibitem{PaperXV-XIV}
+[Author], \textit{Paper~XIV}, 2026.
+
+\bibitem{PaperXV-XIII}
+[Author], \textit{Paper~XIII}, 2026.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave
+Functions of Order Zero},
+Springer, 2013.
+
+\bibitem{Zworski2012}
+M.~Zworski,
+\textit{Semiclassical Analysis},
+AMS, 2012.
+
+\bibitem{BottcherSilbermann1990}
+A.~B\"ottcher, B.~Silbermann,
+\textit{Analysis of Toeplitz
+Operators}, Springer, 1990.
+
+\bibitem{Simon2011}
+B.~Simon,
+\textit{Szeg\H{o}'s Theorem and Its
+Descendants},
+Princeton University Press, 2011.
+
+\bibitem{Stein1993}
+E.~M.~Stein,
+\textit{Harmonic Analysis},
+Princeton University Press, 1993.
+
+\end{thebibliography}
+
+\end{document}
