@@ -34,8 +34,9 @@
   intermediate regime, Dirichlet kernel,
   mesoscopic scaling, Hilbert--Schmidt estimates,
   WKB asymptotics, oscillatory integrals,
-  critical Toeplitz energy, Weyl equidistribution,
-  exponential sums, hidden orthogonality}
+  critical Toeplitz energy, Fourier sampling,
+  Weyl equidistribution, exponential sums,
+  hidden orthogonality}
 
 \begin{document}
 
@@ -106,23 +107,21 @@ phase freezing}
 (\S\ref{sec:toeplitz},
 Remark~\ref{rem:core-thesis}).
 
-Proposition~\ref{prop:model-limit}
-establishes the precise status:
-$\Sigma_{\mathrm{model}}$ reduces
-exactly to a critical Toeplitz energy
-at frozen phase, which is
-$\Theta(1)$ for generic phase
-and of \emph{unknown asymptotics}
-for the PSWF-specific phase.
-Three resolution strategies are
-formulated (\S\ref{sec:toeplitz}):
-coarea/microlocal splitting,
-phase-curvature averaging, and
-spectral reinterpretation via
-Szeg\H{o} asymptotics.
-The Toeplitz decay property~(T\textsuperscript{*})
-is identified as the decisive new
-target of the programme.
+Section~\ref{sec:toeplitz} develops
+the key structural reinterpretation:
+$\Sigma_{\mathrm{model}}$ is a
+\emph{superposition of shifted
+Fourier samplings} of $|\widehat{\psi}|^2$
+along the deformed grid
+$\{k\alpha_0(\xi_0)/c^{\theta_0}\}$
+(Remark~\ref{rem:sampling-rewrite}).
+This perspective yields a concrete
+sufficient condition for
+(T\textsuperscript{*}):
+Riemann--Lebesgue decay in the
+$\alpha$-direction, derived from
+a second Dirichlet-kernel identity
+(Proposition~\ref{prop:alpha-oscillation}).
 
 The main structural output is the
 \emph{Reduction Theorem}
@@ -269,7 +268,7 @@ is the subject of Paper~XVII.
   (Lemma~\ref{lem:WKB-phase}).
 \item $\theta'\ne 0$, $\theta''\ne 0$
   (Lemma~\ref{lem:phase-nondeg}).
-\item No-go for linear phase
+\item No-go for frozen phase
   (Corollary~\ref{cor:S3-negative}).
 \item Naive vdC insufficient
   (Corollary~\ref{cor:curvature-available}).
@@ -279,18 +278,20 @@ is the subject of Paper~XVII.
 \item $\Sigma_{\mathrm{model}}$ reduces
   to a critical Toeplitz energy
   (Proposition~\ref{prop:model-limit}).
-\item Generic model saturates at
-  $\Theta(1)$: obstruction is
-  lack of cancellation after
-  phase freezing, not analytic
-  weakness.
+\item $\Sigma_{\mathrm{model}}$ is a
+  superposition of shifted Fourier
+  samplings; Riemann--Lebesgue in
+  $\alpha$-direction is a concrete
+  sufficient condition for~(T\textsuperscript{*})
+  (Proposition~\ref{prop:alpha-oscillation}).
+\item Generic model saturates;
+  obstruction is lack of cancellation
+  after phase freezing.
 \end{itemize}
 \textbf{What is \emph{not} proved:}
 \begin{itemize}[leftmargin=*]
 \item $\Sigma_{\mathrm{model}}(c)=o(1)$.
-  Requires~(T\textsuperscript{*}):
-  PSWF-specific Toeplitz decay
-  (\S\ref{sec:toeplitz}).
+  Requires~(T\textsuperscript{*}).
 \end{itemize}
 \textbf{Conditional dependencies:}
 \begin{itemize}[leftmargin=*]
@@ -326,7 +327,7 @@ is the subject of Paper~XVII.
 \label{prob:model-intermediate}
 
 Let $\theta\in C^\infty([-c_0,c_0])$
-satisfy $\theta'(\xi)\ne 0$,
+satisfy $\theta'\ne 0$,
 and let $w\in C^\infty([-c_0,c_0])$,
 $w>0$, $\int w\,d\xi=1$.
 
@@ -348,8 +349,8 @@ $K(c):=\lfloor c^{\theta_0}\rfloor$.
   := \sum_{k=1}^{K(c)}|I_c(k)|^2
   \;\stackrel{?}{=}\; o(1).
 \end{equation}
-This is \emph{not} proved here.
-It is reduced to~(T\textsuperscript{*})
+This is \emph{not} proved here;
+reduced to~(T\textsuperscript{*})
 in \S\ref{sec:toeplitz}.
 
 \medskip\noindent
@@ -364,9 +365,7 @@ in \S\ref{sec:toeplitz}.
 \begin{equation}\label{eq:Fc}
   F_c(\xi,\eta)
   := \sum_{k=1}^{K(c)}
-     e^{ik(\theta(\xi)-\theta(\eta))/c},
-  \quad
-  \phi:=\theta(\xi)-\theta(\eta).
+     e^{ik(\theta(\xi)-\theta(\eta))/c}.
 \end{equation}
 This is a \emph{bilinear form};
 no separation into pointwise bounds
@@ -386,8 +385,7 @@ is admissible.
   strip area $\sim c^{2(1-\theta_0)}$,
   $|F_c|\le c^{\theta_0}$:
   contributes $O(1)$.
-  This is the critical Toeplitz
-  regime.
+  This is the critical Toeplitz regime.
 \end{itemize}
 
 \medskip\noindent
@@ -418,9 +416,7 @@ nor the semiclassical limit applies.
 \begin{definition}[Toeplitz--Dirichlet
   operator; Critical Toeplitz Energy]
 \label{def:TD-operator}
-For fixed $\xi_0$ and $c$, define
-the \emph{$c$-dependent}
-Toeplitz--Dirichlet operator:
+For fixed $\xi_0$ and $c$:
 \begin{equation}\label{eq:Dc-def}
   (\Dc f)(u)
   := \int_{\mathbb{R}}
@@ -431,8 +427,7 @@ where $\alpha_0 := \theta'(\xi_0)$,
 $h = c^{-\theta_0}$,
 $K(c) = \lfloor c^{\theta_0}\rfloor$.
 The \emph{critical Toeplitz energy
-functional} (depending on $c$
-through $K(c)$ and $h$) is
+functional} is:
 \begin{equation}\label{eq:Tc-def}
   \Tcc(\psi)
   := \ip{\Dc\psi}{\psi}
@@ -441,51 +436,30 @@ through $K(c)$ and $h$) is
       \frac{k\alpha_0}{c^{\theta_0}}
     \right)\right|^2,
 \end{equation}
-so that
+so
 $\Sigma_{\mathrm{strip}}(c)
 = c^{2(1-\theta_0)}\Tcc(\psi)$.
 \end{definition}
 
 \begin{proposition}[Critical
-  mesoscopic saturation]
+  mesoscopic saturation
+  (frozen $\xi_0$)]
 \label{prop:S3}
 For fixed $\xi_0$ and frozen
 $\alpha_0 = \theta'(\xi_0)$:
 
-\medskip
-\noindent\textbf{(i) Fourier representation.}
-\begin{equation}\label{eq:Sigma-fourier}
-  \Sigma_{\mathrm{strip}}(c)
-  = c^{2(1-\theta_0)}
-    \sum_{k=1}^{K(c)}
-    \left|
-      \widehat{\psi}\!\left(
-        \frac{k\alpha_0}{c^{\theta_0}}
-      \right)
-    \right|^2.
-\end{equation}
+\noindent\textbf{(i)}
+$\Sigma_{\mathrm{strip}}(c)
+= c^{2(1-\theta_0)}
+\sum_{k=1}^{K(c)}
+|\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2$.
 
-\noindent\textbf{(ii) Riemann sum
-  saturation.}
-\begin{equation}\label{eq:riemann}
-  \frac{\Tcc(\psi)}{c^{\theta_0}}
-  \;=\;
-  \frac{1}{c^{\theta_0}}
-  \sum_{k=1}^{K(c)}
-  \left|\widehat{\psi}\!\left(
-    \frac{k\alpha_0}{c^{\theta_0}}
-  \right)\right|^2
-  \;\longrightarrow\;
-  \frac{\norm{\psi}_{L^2}^2}{|\alpha_0|}
-  =: C(\psi,\alpha_0) > 0,
-\end{equation}
-hence
-$\Tcc(\psi)
-= c^{\theta_0}\cdot C(\psi,\alpha_0)
-+ o(c^{\theta_0})$.
+\noindent\textbf{(ii)}
+$\Tcc(\psi)/c^{\theta_0}
+\to C(\psi,\alpha_0)
+:= \norm{\psi}_{L^2}^2/|\alpha_0| > 0$.
 
-\noindent\textbf{(iii) Scaling
-  conclusion.}
+\noindent\textbf{(iii)}
 \begin{equation}\label{eq:strip-final}
   \Sigma_{\mathrm{strip}}(c)
   = c^{2-\theta_0}\cdot C(\psi,\alpha_0)
@@ -493,85 +467,71 @@ $\Tcc(\psi)
   = \Theta(c^{2-\theta_0}).
 \end{equation}
 
-\noindent\emph{Note:} this is the
-\textbf{frozen-$\xi_0$} behaviour
-at a single basepoint.
-The full $\xi_0$-integrated result
-is the subject of
-Proposition~\ref{prop:model-limit};
-cancellation between different
-values of $\alpha_0(\xi_0)$ is
-not captured here.
+\noindent\emph{Important scope.}
+This is the \textbf{frozen-$\xi_0$}
+behaviour at a single basepoint.
+Proposition~\ref{prop:S3}
+does \emph{not} describe the
+behaviour after integration over
+$\xi_0\in[-c_0,c_0]$:
+that integration is the subject
+of Proposition~\ref{prop:model-limit},
+and cancellation between different
+values of $\alpha_0(\xi_0)$ can
+only arise there.
 \end{proposition}
 
 \begin{proof}
-$\xi\mapsto|\widehat{\psi}(\xi)|^2$
-is $L^1\cap C^0$ with compact support;
-the sum is a Riemann sum with mesh
-$|\alpha_0|/c^{\theta_0}\to 0$.
-Part~(iii): $c^{2(1-\theta_0)}
-\cdot c^{\theta_0}
+Riemann sum with mesh
+$|\alpha_0|/c^{\theta_0}\to 0$
+applied to $|\widehat{\psi}|^2\in L^1\cap C^0$.
+Part~(iii): $c^{2(1-\theta_0)}\cdot c^{\theta_0}
 = c^{2-\theta_0}$.
 \end{proof}
 
-\begin{corollary}[No-go for frozen phase;
-  scale-balance obstruction]
+\begin{corollary}[No-go for frozen phase]
 \label{cor:S3-negative}
-For any fixed
-$\alpha_0 = \theta'(\xi_0)\ne 0$,
-the strip contribution at that
-$\xi_0$ satisfies
+For any fixed $\alpha_0\ne 0$:
 $\Sigma_{\mathrm{strip}}(c)
 =\Theta(c^{2-\theta_0})\to+\infty$.
-No oscillatory mechanism acting
-\emph{pointwise} in $\alpha_0$ can
-produce $o(1)$.
+No oscillatory mechanism
+\emph{pointwise} in $\alpha_0$
+produces $o(1)$.
 \end{corollary}
 
 \begin{remark}[Scale-balance
   obstruction]
 \label{rem:scale-balance}
-The Weyl/UDPL bound from
-Proposition~\ref{prop:W4-decoupling}
-gives $|T(c)|=O(c^{3\theta_0/4})$,
-but the strip-area prefactor is
+Weyl/UDPL gives
+$|T(c)|=O(c^{3\theta_0/4})$;
+strip-area prefactor is
 $c^{2(1-\theta_0)}$.
 Product:
-$c^{2(1-\theta_0)}\cdot c^{3\theta_0/4}
-= c^{2-5\theta_0/4} = \Omega(1)$
+$c^{2-5\theta_0/4} = \Omega(1)$
 for all $\theta_0\in(0,1)$.
-The Weyl/UDPL mechanism is correct
-but cannot close
-$\Sigma_{\mathrm{model}}=o(1)$ alone.
-The missing input is variation of
-$\alpha_0(\xi_0)=\theta'(\xi_0)$
-across $\xi_0$ ---
-a \emph{global}, not \emph{local},
-property.
+Missing input: variation of
+$\alpha_0(\xi_0)$ across $\xi_0$.
 \end{remark}
 
-\begin{remark}[Two escapes
-  (revised)]
+\begin{remark}[Two escapes]
 \label{rem:two-escapes}
-\textbf{Escape~A
-  (global phase variation):}
+\textbf{Escape~A (global phase
+  variation):}
 $\xi_0\mapsto\alpha_0(\xi_0)$
-is strictly monotone
+strictly monotone
 (Lemma~\ref{lem:phase-nondeg}(iv));
 integration over $\xi_0$ may
-produce cancellation in
-$\int\Tcc(\psi(\cdot;\xi_0))\,d\xi_0$.
+produce cancellation.
 
-\textbf{Escape~B
-  (hidden PSWF orthogonality):}
-The WKB amplitude $w(\xi)$
-encodes PSWF eigenstructure;
-hidden cancellation not visible
-in the model reduction may force
-$\Tcc(\psi)=o(c^{\theta_0})$.
+\textbf{Escape~B (hidden PSWF
+  orthogonality):}
+WKB amplitude $w(\xi)$ encodes
+PSWF eigenstructure; hidden
+cancellation not visible in
+the model reduction.
 
-Both escapes require PSWF-specific
-structure absent in the generic model.
+Both require PSWF-specific
+structure.
 \end{remark}
 
 %%═══ 4. WKB PHASE EXTRACTION
@@ -589,15 +549,13 @@ The PSWFs satisfy
   + \left[\chi_n(c)-c^2x^2\right]
     \Phi_n^{(c)} = 0.
 \end{equation}
-Setting $n=\alpha c$, $h=1/c$,
-$\xi=c\zeta$, the classical
-momentum is
+Classical momentum:
 \begin{equation}\label{eq:momentum}
   p(\zeta;\alpha)
   :=
   \sqrt{\frac{\lambda(\alpha)-\zeta^2}
              {1-\zeta^2}},
-  \qquad
+  \quad
   |\zeta|<\sqrt{\lambda(\alpha)}.
 \end{equation}
 
@@ -605,18 +563,6 @@ momentum is
 
 \begin{lemma}[WKB phase extraction]
 \label{lem:WKB-phase}
-In the classically allowed region:
-\begin{equation}\label{eq:WKB-ansatz}
-  \widehat{\Phi_n^{(c)}}(\xi)
-  \approx_{\mathrm{WKB}}
-  \frac{A(\xi/c;\alpha)}
-       {\sqrt{p(\xi/c;\alpha)}}
-  \exp\!\left(
-    ic\int_0^{\xi/c}
-    p(\zeta;\alpha)\,d\zeta
-  \right).
-\end{equation}
-The phase and weight are:
 \begin{equation}\label{eq:theta-def}
   \theta(\xi)
   := c\int_0^{\xi/c}
@@ -632,8 +578,8 @@ The phase and weight are:
 
 \begin{lemma}[Phase non-degeneracy]
 \label{lem:phase-nondeg}
-For $\alpha\in(0,1)$ and
-$|\xi|\le c_0<c\sqrt{\lambda(\alpha)}$:
+For $\alpha\in(0,1)$,
+$|\xi|\le c_0$:
 
 \noindent\textbf{(i)}
 $\theta'(\xi) = p(\xi/c;\alpha) > 0$.
@@ -649,57 +595,44 @@ $\theta''(\xi)
 \noindent\textbf{(iii)}
 $|\theta''(\xi)|\ge c_*|\xi|/c$
 for $|\xi|\ge\varepsilon$;
-$\theta''(0)=0$,
-$\theta'''(0)\ne 0$
-(cubic non-degeneracy).
+$\theta''(0)=0$, $\theta'''(0)\ne 0$.
 
 \noindent\textbf{(iv) Global variation:}
 $\xi_0\mapsto\alpha_0(\xi_0)
-:=\theta'(\xi_0)$ is strictly
-monotone on
-$[-c_0,c_0]\setminus\{0\}$
+:=\theta'(\xi_0)$ strictly monotone
 with $|\alpha_0'|=|\theta''|\ne 0$.
-This non-trivial variation is
-the structural basis for Escape~A.
+Structural basis for Escape~A.
 \end{lemma}
 
 \begin{proof}
 Direct differentiation of $p(\xi/c;\alpha)$.
 \end{proof}
 
-\begin{remark}[$\lambda(\alpha)$]
+\begin{remark}[$\lambda(\alpha)$;
+  $\theta''\ne 0$]
 \label{rem:lambda-alpha}
-At WKB order \cite{Osipov2013}:
 $\lambda(\alpha)
-= \sin^2(\pi\alpha/2)+O(1/c)$,
-confirming $\lambda(\alpha)\in(0,1)$
-and $\theta''\ne 0$.
+= \sin^2(\pi\alpha/2)+O(1/c)$
+\cite{Osipov2013}.
 \end{remark}
 
-\begin{remark}[Turning point
-  at $\xi=0$]
+\begin{remark}[Turning point]
 \label{rem:turning-zero}
-$\theta''(0)=0$ reflects PSWF symmetry;
-cubic non-degeneracy
-$\theta'''(0)\ne 0$ gives Airy control
-in a neighbourhood of $0$.
+$\theta''(0)=0$; cubic non-degeneracy
+$\theta'''(0)\ne 0$ gives Airy control.
 \end{remark}
 
 \subsection{van der Corput is
   insufficient}
 
-\begin{corollary}[Curvature available
-  but naive vdC insufficient]
+\begin{corollary}[vdC insufficient]
 \label{cor:curvature-available}
-With $|\theta''|\sim\varepsilon/c$,
-van~der~Corput gives
 $|I_c(k)|\lesssim\sqrt{c/(k\varepsilon)}$,
 hence
 $\sum_k|I_c(k)|^2\lesssim
 (c/\varepsilon)\log c = \Omega(c)$.
-The correct tool is the bilinear
-kernel~\eqref{eq:kernel-rewrite},
-not pointwise bounds.
+Correct tool: bilinear
+kernel~\eqref{eq:kernel-rewrite}.
 \end{corollary}
 
 %%═══ 5. WEYL EQUIDISTRIBUTION
@@ -707,145 +640,78 @@ not pointwise bounds.
   Decoupling}
 \label{sec:Weyl}
 
-\begin{remark}[Scope of the
-  Weyl/UDPL argument]
+\begin{remark}[Scope of Weyl/UDPL]
 \label{rem:what-proved}
 Proposition~\ref{prop:W4-decoupling}
 controls the \emph{linear} sum
 $T(c)=\sum_k\int
 e^{ik\theta'(\xi_0)/c^{\theta_0}}
-\psi\,d\xi_0$.
-It does \emph{not} directly control
-$\Sigma_{\mathrm{model}}
+\psi\,d\xi_0$,
+not $\Sigma_{\mathrm{model}}
 =\sum_k|I_c(k)|^2$.
-The Toeplitz saturation
-(Proposition~\ref{prop:S3})
-shows the step from $T$ to
-$\Sigma$ carries an irreducible
-prefactor $c^{2-5\theta_0/4}=\Omega(1)$.
+Gap exponent:
+$2-\theta_0 - 3\theta_0/4
+= 2-7\theta_0/4 > 0$
+for all $\theta_0\in(0,1)$.
 \end{remark}
 
 \subsection{Joint $k$/$\xi_0$
   decoupling}
-\label{subsec:joint-decoupling}
 
-\begin{lemma}[Uniform Degenerate
-  Phase Lemma (UDPL)]
+\begin{lemma}[UDPL]
 \label{lem:UDPL}
 Let $h\in(0,1]$,
-$\Phi_h\in C^3([-c_0,c_0])$, with:
-\begin{enumerate}[\rm(P1)]
-\item $|\Phi_h'|\ge\mu_1>0$
-  for $|\xi_0|\ge\delta$
-  (uniform in $h$).
-\item $|\Phi_h''(\xi_0)|\ge\mu_2|\xi_0|$
-  for $|\xi_0|\le r_0$
-  (uniform in $h$).
-\item $|\Phi_h'''|\ge\mu_3>0$
-  on $[-c_0,c_0]$
-  (uniform in $h$).
-\end{enumerate}
-For $\psi\in C_c^\infty((-c_0,c_0))$,
-optimising over $\delta$:
+$\Phi_h\in C^3([-c_0,c_0])$, with
+uniform bounds:
+(P1) $|\Phi_h'|\ge\mu_1>0$
+for $|\xi_0|\ge\delta$;
+(P2) $|\Phi_h''|\ge\mu_2|\xi_0|$
+near $0$;
+(P3) $|\Phi_h'''|\ge\mu_3>0$.
+Then:
 \begin{equation}\label{eq:UDPL-opt}
   \left|
     \int e^{i\Phi_h}\psi\,d\xi_0
   \right|
   \le
   C_\psi'\,\mu_1^{-3/5}\mu_3^{-1/5},
-  \qquad
+  \quad
   \text{uniformly in }h.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Split at $\pm\delta$:
-awy from $0$, first-derivative
-vdC \cite[Ch.~VIII, Prop.~2]{Stein1993}
-gives $C/(\mu_1\delta)$;
-near $0$, cubic non-degeneracy
-and Airy bound
-\cite[Ch.~VIII, Thm.~1]{Stein1993}
-give $C\mu_3^{-1/3}\delta^{2/3}$.
-Balance at $(\mu_1\delta)^{-1}
-=\mu_3^{-1/3}\delta^{2/3}$.
+Split at $\pm\delta$.
+Away from $0$: vdC~(P1) gives
+$C/(\mu_1\delta)$.
+Near $0$: Airy bound~(P3) gives
+$C\mu_3^{-1/3}\delta^{2/3}$.
+Balance.
 \end{proof}
 
-\begin{remark}[No extra critical
-  points]
-\label{rem:no-extra-crit}
-$\Phi_h'=0\Leftrightarrow\theta''=0$,
-which holds only at $\xi_0=0$
-by Lemma~\ref{lem:phase-nondeg}(ii).
-\end{remark}
-
-\begin{proposition}[Joint $k$/$\xi_0$
-  Decoupling]
+\begin{proposition}[Joint Decoupling
+  (W4)]
 \label{prop:W4-decoupling}
-For $T(c)
-:=\sum_{k=1}^{K(c)}
-\int e^{ik\theta'(\xi_0)/c^{\theta_0}}
-\psi\,d\xi_0$
-and any $\varepsilon>0$:
-\begin{equation}\label{eq:W4-rate}
-  |T(c)|
-  =
-  O\!\left(c^{3\theta_0/4+\varepsilon}\right)
-  =
-  o\!\left(c^{\theta_0}\right).
-\end{equation}
+$|T(c)|
+=O(c^{3\theta_0/4+\varepsilon})
+=o(c^{\theta_0})$.
 \end{proposition}
 
 \begin{proof}
-\textbf{Weyl differencing.}
-For $1\le H\le K(c)$:
-\[
-  |T(c)|^2
-  \lesssim
-  \frac{K(c)^2}{H}
-  +
-  \frac{K(c)}{H}
-  \sum_{h=1}^{H}|J(h,c)|,
-  \quad
-  J(h,c)
-  =\int e^{ih\theta'/c^{\theta_0}}
-  \psi\,d\xi_0.
-\]
-\textbf{UDPL bound.}
-With $\mu_1\sim h/c^{1+\theta_0}$,
-$\mu_3\sim h/c^{\theta_0}$:
-$|J(h,c)|\le C_\psi
-c^{(1+\theta_0)/2}/h^{1/2}$.
-\textbf{Optimisation.}
-Choose $H=\lfloor c^{(1+\theta_0)/2}\rfloor$;
-$\sum_{h=1}^H h^{-1/2}\le 2H^{1/2}$:
-$|T(c)|^2\lesssim
-c^{(3\theta_0-1)/2}+c^{3\theta_0/2}$.
-Dominant term $c^{3\theta_0/2}$
-gives $|T(c)|=O(c^{3\theta_0/4+\varepsilon})$.
+Weyl differencing gives
+$|T|^2
+\lesssim K^2/H
++(K/H)\sum_{h\le H}|J(h,c)|$
+with $|J(h,c)|\le C c^{(1+\theta_0)/2}/h^{1/2}$
+(UDPL).
+Choose $H=\lfloor c^{(1+\theta_0)/2}\rfloor$:
+$|T|^2\lesssim c^{3\theta_0/2}$.
 \end{proof}
 
-\begin{remark}[What W4 does not prove]
-\label{rem:W4-scope}
-W4 controls $|T(c)|=o(c^{\theta_0})$,
-not $\Sigma_{\mathrm{model}}=o(1)$.
-The gap exponent is
-$2-\theta_0 - 3\theta_0/4
-= 2-7\theta_0/4 > 0$
-for $\theta_0<8/7$;
-in particular for all
-$\theta_0\in(0,1)$.
-\end{remark}
-
-\begin{remark}[Exponent-pair
-  classification]
+\begin{remark}[Exponent-pair]
 \label{rem:exp-pair}
-$|T|=O(c^{3\theta_0/4})$:
-$A$-process $(0,1)\to(1/2,1/2)$
-then $B$-process $(1/2,1/2)\to(1/3,2/3)$.
-Improvement requires a mean-value
-theorem on a non-flat curve;
-not needed for the programme.
+$A$-process then $B$-process
+yields exponent $3\theta_0/4$.
 \end{remark}
 
 %%═══ 6. THE CRITICAL TOEPLITZ OBSTRUCTION
@@ -853,10 +719,8 @@ not needed for the programme.
   Obstruction}
 \label{sec:toeplitz}
 
-\begin{remark}[Core thesis of
-  Paper~XV]
+\begin{remark}[Core thesis]
 \label{rem:core-thesis}
-The central finding of this paper is:
 \begin{center}
 \emph{The obstruction to
 $\Sigma_{\mathrm{model}}=o(1)$
@@ -864,16 +728,177 @@ is not analytic weakness,
 but the absence of cancellation
 after phase freezing.}
 \end{center}
-Specifically: every individual
-analytic tool (vdC, IBP, Weyl,
-UDPL) is correctly applied;
-the failure is that these tools
-operate \emph{pointwise in $\xi_0$},
+Every individual tool (vdC, IBP,
+Weyl, UDPL) is correctly applied;
+the failure is that all these
+tools operate
+\emph{pointwise in $\xi_0$},
 while the necessary cancellation
-is \emph{global in $\xi_0$},
-requiring variation of
-$\alpha_0(\xi_0)=\theta'(\xi_0)$
-or hidden PSWF orthogonality.
+is \emph{global in $\xi_0$}.
+\end{remark}
+
+\begin{remark}[Sampling reinterpretation]
+\label{rem:sampling-rewrite}
+After the mesoscopic rescaling
+and Fourier representation
+(Definition~\ref{def:TD-operator}),
+one has:
+\begin{equation}\label{eq:sampling}
+  \Sigma_{\mathrm{model}}(c)
+  \approx
+  c^{2(1-\theta_0)}
+  \int_{-c_0}^{c_0}
+  \sum_{k=1}^{K(c)}
+  \left|\widehat{\psi}\!\left(
+    \frac{k\,\alpha_0(\xi_0)}{c^{\theta_0}}
+  \right)\right|^2
+  d\xi_0.
+\end{equation}
+This is \emph{not} a single Riemann sum
+(which would saturate at
+$\Theta(c^{2-\theta_0})$ per
+Proposition~\ref{prop:S3}),
+but a \emph{superposition of
+shifted Fourier samplings}
+of $|\widehat{\psi}|^2$:
+for each $\xi_0$, the grid
+$\{k\alpha_0(\xi_0)/c^{\theta_0}
+: k=1,\ldots,K(c)\}$
+is an arithmetic progression
+with step $\alpha_0(\xi_0)/c^{\theta_0}$,
+and since $\alpha_0(\xi_0)=\theta'(\xi_0)$
+varies strictly monotonely with $\xi_0$
+(Lemma~\ref{lem:phase-nondeg}(iv)),
+these progressions \emph{shift}
+as $\xi_0$ varies.
+The key question is whether this
+shift produces destructive interference
+upon integration.
+\end{remark}
+
+\begin{proposition}[Alpha-oscillation
+  strategy: sufficient condition
+  for (T\textsuperscript{*})]
+\label{prop:alpha-oscillation}
+Let $f_c(\alpha)
+:= \sum_{k=1}^{K(c)}
+|\widehat{\psi}(k\alpha/c^{\theta_0})|^2$
+for $\alpha\in[\alpha_{\min},\alpha_{\max}]$.
+Using $|\widehat{\psi}(\xi)|^2
+= \int e^{ix\xi}K(x)\,dx$
+(where $K = \psi * \widetilde\psi
+\in L^1(\mathbb{R})$ is the
+auto-correlation of $\psi$), one has:
+\begin{equation}\label{eq:fc-dirichlet}
+  f_c(\alpha)
+  = \int_{\mathbb{R}} K(x)\,
+    \underbrace{\sum_{k=1}^{K(c)}
+    e^{ixk\alpha/c^{\theta_0}}}
+    _{= D_{K(c)}(x\alpha/c^{\theta_0})}\,dx.
+\end{equation}
+Thus $f_c(\alpha)$
+is the \emph{integral transform
+of $K$ against the Dirichlet
+kernel $D_{K(c)}$ in the
+$\alpha$-direction}.
+
+Now integrate over $\alpha$
+under the substitution
+$\xi_0\mapsto\alpha
+= \alpha_0(\xi_0)$
+(which is admissible by
+Lemma~\ref{lem:phase-nondeg}(iv),
+with Jacobian
+$d\xi_0/d\alpha
+= 1/|\theta''(\xi_0(\alpha))|$):
+\begin{align}
+  \int_{-c_0}^{c_0}
+  f_c(\alpha_0(\xi_0))\,d\xi_0
+  &= \int_{\alpha_{\min}}^{\alpha_{\max}}
+     f_c(\alpha)\,
+     \frac{d\xi_0}{d\alpha}\,d\alpha
+  \notag\\
+  &= \int_{\mathbb{R}} K(x)
+     \int_{\alpha_{\min}}^{\alpha_{\max}}
+     D_{K(c)}\!\left(\frac{x\alpha}{c^{\theta_0}}\right)
+     g(\alpha)\,d\alpha\;dx,
+  \label{eq:alpha-integral}
+\end{align}
+where $g(\alpha):=d\xi_0/d\alpha
+= 1/|\theta''(\xi_0(\alpha))|\in C^0$.
+
+The inner integral over $\alpha$ is
+oscillatory: $D_{K(c)}(x\alpha/c^{\theta_0})
+= \sum_{k=1}^{K(c)}
+e^{ixk\alpha/c^{\theta_0}}$,
+so each term
+$\int e^{ixk\alpha/c^{\theta_0}}
+g(\alpha)\,d\alpha
+= \widehat{g}(xk/c^{\theta_0})$.
+By the Riemann--Lebesgue lemma,
+$\widehat{g}(\xi)\to 0$
+as $|\xi|\to\infty$.
+
+\medskip
+\noindent\textbf{Sufficient condition
+  for (T\textsuperscript{*}).}
+If
+\begin{equation}\label{eq:RL-condition}
+  \frac{1}{K(c)}
+  \sum_{k=1}^{K(c)}
+  \int_{\mathbb{R}}
+  |K(x)|\cdot|\widehat{g}(xk/c^{\theta_0})|\,dx
+  = o(1)
+  \qquad(c\to\infty),
+\end{equation}
+then $\int f_c(\alpha_0(\xi_0))\,d\xi_0
+= o(c^{\theta_0})$
+and hence (T\textsuperscript{*}) holds.
+Condition~\eqref{eq:RL-condition}
+holds whenever $K\in L^1$ and
+$g\in L^1\cap C^0$ with
+$|\widehat{g}(\xi)|=o(1)$
+as $|\xi|\to\infty$
+(which follows from
+$g\in L^1$),
+\emph{provided the average
+over $k$ converges to $0$}.
+This is guaranteed by dominated
+convergence if
+$x\mapsto|K(x)|\cdot\sup_k|\widehat{g}(xk/c^{\theta_0})|
+\in L^1$
+uniformly in $c$.
+\end{proposition}
+
+\begin{remark}[What the proposition
+  shows and does not show]
+\label{rem:alpha-osc-status}
+Proposition~\ref{prop:alpha-oscillation}
+\emph{does not} prove (T\textsuperscript{*}).
+It shows:
+\begin{enumerate}[\rm(i)]
+\item The integrated Toeplitz energy
+  rewrites as a double transform
+  involving $K(x)$ and
+  $\widehat{g}(xk/c^{\theta_0})$.
+\item A sufficient condition
+  (\ref{eq:RL-condition}) is expressed
+  entirely in terms of $K$, $g$,
+  and the scaling $c^{\theta_0}$.
+\item Condition~(\ref{eq:RL-condition})
+  is of Riemann--Lebesgue type and
+  is \emph{structurally accessible}:
+  it depends on regularity of
+  $g=1/|\theta''(\xi_0)|$,
+  which comes from WKB structure,
+  and decay of $K$,
+  which comes from $\psi\in L^2$.
+\end{enumerate}
+Establishing~(\ref{eq:RL-condition})
+quantitatively --- in particular,
+controlling the $L^1$-uniformity in $c$
+of the integrand in $x$ ---
+is the decisive task for Paper~XVI.
 \end{remark}
 
 \begin{proposition}[Model reduction
@@ -890,136 +915,109 @@ Then:
     \,d\xi_0
     + R(c),
 \end{equation}
-where $R(c)=O(c^{3\theta_0-2})=o(1)$
-is the off-diagonal contribution.
+where $R(c)=O(c^{3\theta_0-2})=o(1)$.
 
 \medskip
-\noindent
-\emph{Remark on the two levels.}
-Proposition~\ref{prop:S3} describes
-the \textbf{frozen-$\xi_0$} behaviour
-of $\Tcc(\psi(\cdot;\xi_0))$
-at a single basepoint:
-$\Tcc\sim c^{\theta_0}C(\psi,\alpha_0)$.
-The present formula performs the
-full \textbf{$\xi_0$-integration}.
-Cancellation between different
-values of $\alpha_0(\xi_0)$ can
-only arise at this integrated level,
-not at the frozen level.
+\noindent\emph{S3 vs.\ model-limit.}
+Proposition~\ref{prop:S3} gives
+the \textbf{frozen-$\xi_0$} asymptotics:
+$\Tcc\sim c^{\theta_0}C>0$.
+The present formula integrates
+over all $\xi_0$;
+the sampling interpretation
+(Remark~\ref{rem:sampling-rewrite})
+and the alpha-oscillation strategy
+(Proposition~\ref{prop:alpha-oscillation})
+show how the shift of the sampling
+grid can produce cancellation
+at the integrated level.
 
 \medskip
-\noindent\textbf{Generic model
-  behaviour.}
-For frozen $\alpha_0$,
-$\Tcc\sim c^{\theta_0}C>0$,
-so the integral is $\Theta(c^{\theta_0})$
-and $\Sigma_{\mathrm{model}}=\Theta(1)$.
-Thus $\Sigma_{\mathrm{model}}(c)\not\to 0$
-for generic phase.
+\noindent\textbf{Generic model.}
+For frozen $\alpha_0$:
+$\Sigma_{\mathrm{model}}=\Theta(1)$.
 
-\medskip
 \noindent\textbf{PSWF model.}
-The weight $w(\xi)$ depends on $\xi$
-through the WKB amplitude, and
-$\alpha_0(\xi_0)=\theta'(\xi_0)$
-varies with $\theta''\ne 0$.
-Whether this forces
+Variation of $\alpha_0(\xi_0)$
+($\theta''\ne 0$) is the
+PSWF-specific input;
+whether it forces
 $\Sigma_{\mathrm{model}}=o(1)$
 is the content of~(T\textsuperscript{*}).
 \end{proposition}
 
-\begin{definition}[PSWF Toeplitz
-  Decay Property~(T\textsuperscript{*})]
+\begin{definition}[(T\textsuperscript{*})]
 \label{def:Tstar}
-Property~(T\textsuperscript{*})
-holds if, for the PSWF-specific
-$\theta$ and $w$ of
-Lemma~\ref{lem:WKB-phase}:
 \begin{equation}\label{eq:Tstar}
   c^{2(1-\theta_0)}
   \int_{-c_0}^{c_0}
   \Tcc(\psi(\cdot;\xi_0))
   \,d\xi_0
-  = o(1)
-  \qquad(c\to\infty),
+  = o(1),
 \end{equation}
-or equivalently $\Sigma_{\mathrm{model}}(c)=o(1)$
-\textup{(}by Proposition~\ref{prop:model-limit}\textup{)}.
+or equivalently
+$\Sigma_{\mathrm{model}}(c)=o(1)$.
 \end{definition}
 
 \begin{problem}[Critical Toeplitz
   Energy; primary open target]
 \label{prob:Tstar}
-\emph{This is the central open
-problem of the programme
-after Paper~XV.}
+\emph{Central open problem
+of the programme after Paper~XV.}
 Establish~(T\textsuperscript{*}).
-Three strategies:
 
 \medskip
 \noindent\textbf{Option~1
-  (Phase-variation averaging).}
-The map $\xi_0\mapsto\alpha_0(\xi_0)$
-is strictly monotone
-(Lemma~\ref{lem:phase-nondeg}(iv)).
-A coarea formula gives
-\[
-  \int_{-c_0}^{c_0}
-  \Tcc(\psi(\cdot;\xi_0))\,d\xi_0
-  = \int_{\alpha_{\min}}^{\alpha_{\max}}
-    \Tcc(\psi(\cdot;\xi_0(\alpha)))
-    \frac{d\xi_0}{d\alpha}\,d\alpha.
-\]
-If $\alpha\mapsto\Tcc$ oscillates
-at scale $c^{\theta_0}$,
-Riemann--Lebesgue gives $o(c^{\theta_0})$.
+  (Alpha-oscillation / coarea).}
+Proposition~\ref{prop:alpha-oscillation}
+reduces~(T\textsuperscript{*}) to
+establishing~(\ref{eq:RL-condition}):
+Riemann--Lebesgue decay in $\alpha$
+of the Dirichlet-kernel transform
+of $K$ weighted by $g$.
+Concretely:
+\begin{itemize}[leftmargin=*]
+\item Show $K\in L^1$ with
+  sufficient decay
+  (follows from $\psi\in\mathcal{S}$
+  or $\psi\in H^1$).
+\item Show
+  $|\widehat{g}(\xi)|\to 0$
+  as $|\xi|\to\infty$
+  (follows from $g\in L^1$).
+\item Show the $L^1$-uniformity
+  in $c$ of the $x$-integrand:
+  this is the main analytic task.
+\end{itemize}
 
-\medskip
 \noindent\textbf{Option~2
   (Microlocal splitting).}
 Decompose $\xi_0$-space into level
-sets of $\theta'$; on each level set
-$\Tcc$ saturates but contributes
-measure zero. Quantitative coarea
-with Jacobian $|\theta''(\xi_0)|$
-may convert local saturation to
-global decay.
+sets of $\theta'$; quantitative
+coarea with Jacobian $|\theta''|$.
 
-\medskip
 \noindent\textbf{Option~3
-  (Szeg\H{o}/Simon reinterpretation).}
-Regard $\Dc$ as a Toeplitz operator;
-identify its limiting symbol as
-$c\to\infty$. If the symbol vanishes
-(spectral orthogonality of PSWFs
-in $n$-space),
-(T\textsuperscript{*}) follows
-from Szeg\H{o}'s theorem.
+  (Szeg\H{o}/Simon).}
+Identify the limiting symbol of
+$\Dc$ as $c\to\infty$;
+(T\textsuperscript{*}) via
+Szeg\H{o}'s theorem if symbol
+vanishes.
 \end{problem}
 
-\begin{remark}[Two levels of
-  reduction]
+\begin{remark}[Two levels of reduction]
 \label{rem:two-levels}
-Paper~XV provides two reductions:
 \begin{enumerate}[\rm(i)]
 \item \emph{Analytic:}
   $\Sigma_{\mathrm{int}}=o(1)$
-  follows from
-  $\Sigma_{\mathrm{model}}=o(1)$
+  from $\Sigma_{\mathrm{model}}=o(1)$
   under~(L).
 \item \emph{Structural:}
   $\Sigma_{\mathrm{model}}=o(1)$
-  $\Leftrightarrow$ (T\textsuperscript{*}):
-  the integrated Toeplitz energy
-  decays.
+  $\Leftrightarrow$ (T\textsuperscript{*});
+  accessible via
+  Proposition~\ref{prop:alpha-oscillation}.
 \end{enumerate}
-The problem is precisely localised:
-not ``prove oscillatory decay''
-but ``identify the global
-cancellation mechanism for
-Toeplitz energy in the PSWF
-system''.
 \end{remark}
 
 %%═══ 7. REDUCTION THEOREM
@@ -1028,31 +1026,15 @@ system''.
 
 \begin{theorem}[Reduction Theorem]
 \label{thm:reduction}
-Assume:
-\begin{enumerate}[\rm(i)]
-\item \textup{(T\textsuperscript{*})}
-  PSWF Toeplitz decay
-  \textup{(}Definition~\ref{def:Tstar}\textup{)},
-  i.e.\ $\Sigma_{\mathrm{model}}(c)=o(1)$.
-\item \textup{(L)} Lipschitz
-  regularity \textup{(}Paper~XVI\textup{)}:
-  $\norm{\widehat{\Phi_{n+k}^{(c)}}
-    -\widehat{\Phi_n^{(c)}}}_{L^2}
-  = O(k/c)$,
-  $|k|\le c^{\theta_0}$.
-\item \textup{(C)} Local Weyl law
-  \textup{(}Paper~XVII\textup{)}:
-  $\mu_{n,c}([-c_0,c_0])
-  = c_0/c + o(1/c)$
-  uniformly.
-\end{enumerate}
+Assume (T\textsuperscript{*}),
+(L), and (C).
 Then:
 \begin{equation}\label{eq:reduction-chain}
   \underbrace{
     \mathrm{(T^*)} + \mathrm{(L)}
   }_{\text{\rm Paper XVI}}
   \;\Longrightarrow\;
-  \Sigma_{\mathrm{int}}(c) = o(1)
+  \Sigma_{\mathrm{int}} = o(1)
   \;\underset{\mathrm{(C)}}{\Longrightarrow}\;
   \text{\rm (D-strong)}
   \;\Rightarrow\;
@@ -1063,44 +1045,24 @@ Then:
 \end{theorem}
 
 \begin{proof}
-Under~(T\textsuperscript{*}),
-$\Sigma_{\mathrm{model}}(c)=o(1)$.
-Under~(L), the amplitude correction
+(T\textsuperscript{*}) gives
+$\Sigma_{\mathrm{model}}=o(1)$.
+(L) gives
 $\Sigma_{\mathrm{amp}}
-\le\sum_{k=1}^{K(c)}(k/c)^2
 =O(c^{3\theta_0-2})=o(1)$.
-Therefore
-\[
-  \Sigma_{\mathrm{int}}(c)
-  \le
-  \Sigma_{\mathrm{model}}(c)
-  + \Sigma_{\mathrm{amp}}(c)
-  = o(1).
-\]
-The remaining implications
-$\Sigma_{\mathrm{int}}=o(1)
-\underset{\mathrm{(C)}}{\Rightarrow}
-\text{(D-strong)}
-\Rightarrow\text{H3 fails}
-\Rightarrow\text{H1 fails}$
-are the chain of Paper~XIV.
+Hence $\Sigma_{\mathrm{int}}=o(1)$.
+Remainder: Paper~XIV chain under~(C).
 \end{proof}
 
 \begin{remark}[Dependency structure]
 \label{rem:dependency}
-\begin{itemize}[leftmargin=*]
-\item (T\textsuperscript{*})
-  + (L): jointly close
-  $\Sigma_{\mathrm{int}}=o(1)$.
-  (L) is needed even given
-  (T\textsuperscript{*}): the
-  amplitude error is not covered
-  by the model reduction.
-\item (C): independently closes
-  the statistical spectral step
-  $\Sigma_{\mathrm{int}}=o(1)
-  \Rightarrow\text{(D-strong)}$.
-\end{itemize}
+(T\textsuperscript{*}) + (L)
+jointly close
+$\Sigma_{\mathrm{int}}=o(1)$;
+(L) is not covered by the model
+reduction alone.
+(C) independently closes the
+spectral density step.
 All three conditions are independent.
 \end{remark}
 
@@ -1116,19 +1078,12 @@ All three conditions are independent.
   \;\Longrightarrow\;
   \text{H1 fails}.
 \]
-Paper~XV has precisely located
-the core obstruction~(T\textsuperscript{*})
-and provided the full reduction toolkit
-(WKB, UDPL, Weyl, mesoscopic rescaling).
-Papers~XVI and~XVII proceed to:
-\begin{itemize}[leftmargin=*]
-\item \textbf{XVI:} Establish~(L);
-  investigate~(T\textsuperscript{*})
-  via Options~1--2.
-\item \textbf{XVII:} Establish~(C);
-  investigate~(T\textsuperscript{*})
-  via Option~3.
-\end{itemize}
+\textbf{XVI:} Establish~(L);
+prove~(\ref{eq:RL-condition})
+via Option~1 of
+Problem~\ref{prob:Tstar}.
+\textbf{XVII:} Establish~(C);
+investigate Option~3.
 \end{remark}
 
 \begin{thebibliography}{99}
