@@ -27,21 +27,22 @@
 \newcommand{\Ac}{A_N^{(c)}}
 \newcommand{\AcM}{A_N^{(c),(M)}}
 
-\subjclass[2020]{47A10, 47B25, 42C05, 81Q20}
+\subjclass[2020]{47A10, 47B25, 42C05, 81Q20, 11L07}
 \keywords{Prolate spheroidal wave functions,
   intermediate regime, Dirichlet kernel,
   mesoscopic scaling, Hilbert--Schmidt estimates,
   WKB asymptotics, oscillatory integrals,
   uniform stationary phase, collective
-  quasi-orthogonality}
+  quasi-orthogonality, Weyl equidistribution,
+  exponential sums}
 
 \begin{document}
 
 \title[Intermediate-Regime Kernel Estimates]{%
   Intermediate-Regime Kernel Estimates
   for the PSWF Compression Operator:\\
-  Mesoscopic Scaling and the Dirichlet
-  Kernel Problem}
+  Mesoscopic Scaling, WKB Phase Extraction,
+  and Weyl Equidistribution}
 
 \author{[Author]}
 \address{[Address]}
@@ -88,19 +89,39 @@ strip of width $\sim c^{1-\theta_0}$
 requires a Dirichlet kernel analysis
 at the critical scaling
 $K(c)\cdot h = 1$ ($h := c^{-\theta_0}$).
-Pointwise integration by parts is
-shown to be insufficient
-($\sum|I_c(k)|^2 = O(c^2)$ naively),
-and the obstruction is identified as
-a \emph{log-borderline} phenomenon
-under rescaling.
 
-The Lipschitz regularity
-$\norm{A_{n+k}-A_n}_{L^2} = O(k/c)$
-(to be established from the PSWF
-differential equation in \S\ref{sec:Lipschitz})
-reduces $\Sigma_{\mathrm{int}}=o(1)$
-to $\Sigma_{\mathrm{model}}(c)=o(1)$.
+The critical mesoscopic orthogonality
+proposition (Proposition~\ref{prop:S3})
+shows that the frozen-phase model
+yields $\Sigma_{\mathrm{strip}}
+= \Theta(c^{2-\theta_0})$,
+establishing a \emph{no-go result}
+for linear phase: the conjecture
+(Model-$\Sigma$) requires genuinely
+nonlinear phase ($\theta''\ne 0$).
+
+The WKB phase extraction
+(Lemma~\ref{lem:WKB-phase},
+Lemma~\ref{lem:phase-nondeg})
+identifies $\theta(\xi)$
+explicitly from the PSWF ODE,
+proves $\theta'\ne 0$ and
+$\theta''\ne 0$ for $\xi\ne 0$
+in the transition zone, and
+shows that naive van~der~Corput
+is insufficient
+(Corollary~\ref{cor:curvature-available}).
+The problem reduces to a
+\emph{Weyl equidistribution}
+problem for the phases
+$\{k\theta'(\xi_0)/c^{\theta_0}\}$
+(OP~\ref{prob:Weyl-equidist}),
+with sub-case~(W1) already
+giving $W(c)=O(c^{\theta_0/2})
+=o(c^{\theta_0})$.
+The final step is a decoupling
+of the $k$-sum and $\xi_0$-integral
+(W4).
 \end{abstract}
 
 \maketitle
@@ -239,7 +260,7 @@ is established (\S\ref{sec:Lipschitz}).
 \item \textbf{Tertiary:}
   Local Weyl law~(C) uniformly in
   $n\in\mathcal{T}_{\alpha,\kappa}(c)$
-  (\S\ref{sec:Weyl}).
+  (\S\ref{sec:WeylLaw}).
 \end{itemize}
 \textbf{Output (conditional on all three):}
 $(D\text{-strong})$
@@ -307,12 +328,9 @@ each fixed $k\ge 1$:
   |I_c(k)|=O\!\left(\frac{c}{k}\right).
 \end{equation}
 Applying this pointwise:
-\[
-  \sum_{k=1}^{K(c)}|I_c(k)|^2
-  \lesssim c^2\sum_{k=1}^{c^{\theta_0}}
-  \frac{1}{k^2}
-  = O(c^2).
-\]
+$\sum_{k=1}^{K(c)}|I_c(k)|^2
+\lesssim c^2\sum_{k=1}^{c^{\theta_0}}
+k^{-2} = O(c^2)$.
 Pointwise oscillatory decay is
 therefore not the right tool.
 
@@ -347,197 +365,571 @@ Let $\delta:=|\xi-\eta|$.
 \begin{itemize}[leftmargin=*]
 \item \textbf{Off-diagonal}
   ($\delta\gg c^{1-\theta_0}$):
-  $|\phi|\gg c^{1-\theta_0}$,
-  so $K(c)|\phi|/c\gg 1$;
   oscillatory cancellation gives
-  $|F_c(\xi,\eta)|\lesssim
-  c/|\phi|\lesssim c/\delta$.
+  $|F_c(\xi,\eta)|\lesssim c/|\phi|$.
 \item \textbf{Diagonal mesoscopic strip}
   ($\delta\lesssim c^{1-\theta_0}$):
-  $K(c)|\phi|/c = O(1)$;
-  no cancellation,
-  $|F_c(\xi,\eta)|\le K(c)
-  =c^{\theta_0}$.
+  $|F_c(\xi,\eta)|\le K(c)=c^{\theta_0}$;
+  no cancellation.
+  Strip measure $\sim c^{1-\theta_0}$
+  gives $O(1)$ contribution:
+  new input is required.
 \end{itemize}
 
 \medskip\noindent
-\textbf{Critical obstruction.}
-The diagonal strip has measure
-$\sim c^{1-\theta_0}$, so:
-\[
-  \iint_{\delta\lesssim c^{1-\theta_0}}
-  w(\xi)w(\eta)|F_c(\xi,\eta)|
-  \,d\xi\,d\eta
-  \;\lesssim\;
-  c^{\theta_0}\cdot c^{1-\theta_0}
-  = O(1).
-\]
-Pointwise estimates alone do not
-give $o(1)$. New input is required.
-
-\medskip\noindent
 \textbf{Mesoscopic rescaling.}
-Fix $\xi_0\in[-c_0,c_0]$ and set
+Fix $\xi_0$ and set
 $\xi=\xi_0+c^{1-\theta_0}u$,
-$\eta=\xi_0+c^{1-\theta_0}v$.
-Then
+$\eta=\xi_0+c^{1-\theta_0}v$:
 \begin{equation}\label{eq:meso-F}
   F_c(u,v)
-  = \sum_{k=1}^{K(c)}
-    \exp\!\left(
-      ik\,\theta'(\xi_0)
-      \frac{u-v}{c^{\theta_0}}
-    \right)
-  =: D_{K(c)}\!\big(
+  = D_{K(c)}\!\big(
        h\,\theta'(\xi_0)(u-v)
      \big),
-\end{equation}
-where $h:=c^{-\theta_0}$ and
-$D_K(t):=\sum_{k=1}^K e^{ikt}$
-is the standard Dirichlet kernel.
-
-The critical scaling is:
-\begin{equation}\label{eq:critical-product}
-  K(c)\cdot h
-  = c^{\theta_0}\cdot c^{-\theta_0}
-  = 1.
+  \qquad
+  h:=c^{-\theta_0},
+  \quad K(c)\cdot h = 1.
 \end{equation}
 Both $K(c)\to\infty$ and $h\to 0$
-simultaneously, with critical
-product~$=1$.
-
-\medskip\noindent
-\textbf{Log-borderline phenomenon.}
-The classical bound
-$\norm{D_K}_{L^1(\mathbb{T})}
-\sim\log K\sim\theta_0\log c$
-is borderline under the rescaling:
-the diagonal strip has rescaled
-measure $O(1)$, so the contribution is
-\[
-  \sim
-  (\theta_0\log c)
-  \cdot c^{1-\theta_0}
-  \cdot c^{-(1-\theta_0)}
-  = \theta_0\log c \cdot O(1).
-\]
-Whether this logarithmic growth
-is $o(1)$ after full integration
-against $w(\xi)w(\eta)$ depends on
-cancellation \emph{across} $\xi_0$,
-which is the core of the problem.
+simultaneously at critical product~$1$.
 
 \medskip\noindent
 \textbf{Reduction statement.}
-Under the Lipschitz bound
-\eqref{eq:Lipschitz-main},
-the validity of
+Under~\eqref{eq:Lipschitz-main},
 $\Sigma_{\mathrm{model}}(c)=o(1)$
-implies
+$\Rightarrow$
 $\Sigma_{\mathrm{int}}=o(1)$
-(OP~\ref{prob:intermediate-XV}),
-which together with
-$\Sigma_{\mathrm{near}}=o(1)$ (proved)
-and $\Sigma_{\mathrm{far}}=o(1)$
-(accessible) yields (D-strong)
-and closes OP~XIV.\ref{prob:H1H3}.
+$\Rightarrow$ (D-strong)
+$\Rightarrow$ closes OP~XIV.\ref{prob:H1H3}.
 
 \medskip\noindent
 \textbf{Proposed strategy.}
 \begin{enumerate}[\rm(S1)]
-\item Reduce to the diagonal strip
-  via off-diagonal stationary phase.
-\item Apply mesoscopic rescaling
-  to reduce to~\eqref{eq:meso-F}.
-\item Use $L^2$-orthogonality of the
-  exponential family
-  $\{e^{ik\cdot}\}_{k=1}^{K(c)}$
-  on the rescaled interval
-  $[0, c^{1-\theta_0}]$
-  to extract cancellation
-  \emph{across} the diagonal strip.
-\item Bound residuals via Lipschitz
-  regularity~\eqref{eq:Lipschitz-main}.
+\item Off-diagonal stationary phase.
+\item Mesoscopic rescaling
+  to~\eqref{eq:meso-F}.
+\item $L^2$-orthogonality / Weyl
+  equidistribution across
+  the diagonal strip.
+\item Residual bound via
+  Lipschitz~\eqref{eq:Lipschitz-main}.
 \end{enumerate}
 \end{problem}
 
 \begin{remark}[Connection to
   Toeplitz/Szeg\H{o} theory]
 \label{rem:toeplitz}
-The object $D_{K(c)}(h\,\theta'(\xi_0)(u-v))$
-is the kernel of a finite Toeplitz
-section with symbol
-$\mathbf{1}_{|\xi|\le c_0}$
-evaluated at mesoscopic scale.
-The double limit $K\to\infty$,
-$h\to 0$, $Kh=1$ is precisely the
-\emph{critical Szeg\H{o} regime}:
-neither the classical Szeg\H{o}
-theorem (fixed symbol, $N\to\infty$)
-nor the semiclassical limit
-(fixed $N$, $h\to 0$) applies
-directly.
-This is the double-scaling Szeg\H{o}
-regime of Definition~XIV.\ref{def:double-scaling}
-instantiated at the mesoscopic level.
+The kernel $D_{K(c)}(h\theta'(\xi_0)(u-v))$
+is a finite Toeplitz section at
+critical density $K(c)\cdot h=1$.
+This is the double-scaling
+Szeg\H{o} regime of
+Definition~XIV.\ref{def:double-scaling}
+instantiated at the mesoscopic level:
+neither the classical Szeg\H{o} theorem
+nor the semiclassical limit applies directly.
 \end{remark}
 
-%%═══ 3. LIPSCHITZ REGULARITY
+%%═══ 3. CRITICAL MESOSCOPIC ORTHOGONALITY
+\section{Critical Mesoscopic Orthogonality}
+\label{sec:S3}
+
+\subsection{The rescaled kernel operator}
+
+After the mesoscopic rescaling
+of \S\ref{sec:model}, the
+diagonal-strip contribution is
+\begin{equation}\label{eq:strip-contrib}
+  \Sigma_{\mathrm{strip}}(c)
+  := c^{2(1-\theta_0)}
+     \int_{\mathbb{R}}
+     \int_{\mathbb{R}}
+     \psi(u)\,\overline{\psi(v)}\,
+     D_{K(c)}\!\big(
+       h\,\alpha_0(u-v)
+     \big)
+     \,du\,dv,
+\end{equation}
+where $\alpha_0:=\theta'(\xi_0)\ne 0$,
+$\psi(u):=w(\xi_0+c^{1-\theta_0}u)
+\cdot\chi_{|u|\le c^{\theta_0-1/2}}$,
+$h=c^{-\theta_0}$, $K(c)=c^{\theta_0}$.
+
+\begin{definition}[Toeplitz--Dirichlet
+  operator at critical density]
+\label{def:TD-operator}
+\begin{equation}\label{eq:Dc-def}
+  (\mathcal{D}_c f)(u)
+  := \int_{\mathbb{R}}
+     D_{K(c)}\!\big(h\,\alpha_0(u-v)\big)
+     \psi(v)\,f(v)\,dv,
+  \qquad
+  \Sigma_{\mathrm{strip}}(c)
+  = c^{2(1-\theta_0)}
+    \ip{\mathcal{D}_c\psi}{\psi}.
+\end{equation}
+The kernel is a convolution with
+Fourier spectrum
+$\{\xi = k\alpha_0/c^{\theta_0}
+: k=1,\ldots,K(c)\}$
+at critical spacing $\alpha_0/c^{\theta_0}$.
+\end{definition}
+
+\subsection{The proposition}
+
+\begin{proposition}[Critical
+  mesoscopic orthogonality]
+\label{prop:S3}
+Let $\psi\in C_c^\infty(\mathbb{R})$,
+$\alpha_0\ne 0$, $h=c^{-\theta_0}$,
+$K(c)=\lfloor c^{\theta_0}\rfloor$.
+
+\medskip
+\noindent\textbf{(i) Fourier representation.}
+\begin{equation}\label{eq:Sigma-fourier}
+  \Sigma_{\mathrm{strip}}(c)
+  = c^{2(1-\theta_0)}
+    \sum_{k=1}^{K(c)}
+    \left|
+      \widehat{\psi}\!\left(
+        \frac{k\alpha_0}{c^{\theta_0}}
+      \right)
+    \right|^2.
+\end{equation}
+
+\noindent\textbf{(ii) Riemann sum structure.}
+\begin{equation}\label{eq:riemann}
+  \frac{1}{c^{\theta_0}}
+  \sum_{k=1}^{K(c)}
+  \left|\widehat{\psi}\!\left(
+    \frac{k\alpha_0}{c^{\theta_0}}
+  \right)\right|^2
+  \;\longrightarrow\;
+  \frac{1}{|\alpha_0|}
+  \int_0^{|\alpha_0|}
+  |\widehat{\psi}(\xi)|^2\,d\xi
+  \qquad(c\to\infty),
+\end{equation}
+hence
+$\sum_{k=1}^{K(c)}
+|\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2
+= c^{\theta_0}\cdot C(\psi,\alpha_0)
++ o(c^{\theta_0})$
+with $C(\psi,\alpha_0)
+:=\norm{\psi}^2_{L^2}/|\alpha_0|>0$.
+
+\noindent\textbf{(iii) Scaling conclusion.}
+\begin{equation}\label{eq:strip-final}
+  \Sigma_{\mathrm{strip}}(c)
+  = c^{2-\theta_0}\cdot C(\psi,\alpha_0)
+    + o(c^{2-\theta_0})
+  = \Theta(c^{2-\theta_0}).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Since $D_K(t)=\sum_{k=1}^K e^{ikt}$:
+\begin{align*}
+  \Sigma_{\mathrm{strip}}(c)
+  &= c^{2(1-\theta_0)}
+     \sum_{k=1}^{K(c)}
+     \left|\int\psi(u)
+       e^{ikh\alpha_0 u}\,du
+     \right|^2
+  = c^{2(1-\theta_0)}
+     \sum_{k=1}^{K(c)}
+     \left|\widehat{\psi}
+       (-k\alpha_0/c^{\theta_0})
+     \right|^2.
+\end{align*}
+Part~(ii) follows since
+$\xi\mapsto|\widehat{\psi}(\xi)|^2$
+is in $C_c^\infty$ and the sum is a
+Riemann sum with mesh
+$|\alpha_0|/c^{\theta_0}\to 0$.
+Part~(iii): $c^{2(1-\theta_0)}
+\cdot c^{\theta_0}
+= c^{2-\theta_0}$.
+\end{proof}
+
+\begin{corollary}[No-go for linear phase]
+\label{cor:S3-negative}
+Under the frozen-phase approximation
+$\theta(\xi)\approx\alpha_0\xi$
+(constant $\alpha_0$):
+$\Sigma_{\mathrm{strip}}(c)
+=\Theta(c^{2-\theta_0})\not\to 0$.
+Strategy~(S3) as formulated
+does not yield $\Sigma_{\mathrm{model}}=o(1)$
+without additional input.
+Conjecture~(Model-$\Sigma$) \emph{fails}
+for linear $\theta$.
+\end{corollary}
+
+\begin{remark}[Two escapes]
+\label{rem:two-escapes}
+Decay of $\Sigma_{\mathrm{model}}$
+requires one of:
+
+\medskip
+\noindent\textbf{Escape~A (phase curvature):}
+$\theta''\ne 0$ induces varying mesh
+$k|\theta''(\xi_0)|/c^{\theta_0}$
+in the Riemann sum, leading to
+stationary phase decay in the
+$\xi_0$-integral.
+
+\medskip
+\noindent\textbf{Escape~B (phase mixing):}
+Averaging over $\xi_0$ with
+varying $\alpha_0=\theta'(\xi_0)$
+produces Riemann--Lebesgue
+cancellation, again requiring
+$\theta''\ne 0$.
+
+\medskip
+\noindent\textbf{Common requirement:}
+$\theta''\not\equiv 0$ on $[-c_0,c_0]$.
+\end{remark}
+
+%%═══ 4. WKB PHASE EXTRACTION
+\section{WKB Phase Extraction}
+\label{sec:WKB}
+
+\subsection{The PSWF ODE and
+  semiclassical scaling}
+
+The PSWFs satisfy the
+Sturm--Liouville equation
+\begin{equation}\label{eq:PSWF-ODE}
+  \frac{d}{dx}\!\left[
+    (1-x^2)\Phi_n^{(c)\prime}
+  \right]
+  + \left[\chi_n(c)-c^2x^2\right]
+    \Phi_n^{(c)} = 0,
+  \quad x\in[-1,1].
+\end{equation}
+The Fourier transform
+$\widehat{\Phi_n^{(c)}}$ satisfies
+the dual ODE with $(c^2-\xi^2)$
+in place of $(1-x^2)$.
+Setting $n=\alpha c$, $h=1/c$,
+$\xi=c\zeta$, the semiclassical
+energy level is
+$\lambda(\alpha):=
+\lim_{c\to\infty}\chi_{\alpha c}(c)/c^2$,
+with classical momentum
+\begin{equation}\label{eq:momentum}
+  p(\zeta;\alpha)
+  :=
+  \sqrt{\frac{\lambda(\alpha)-\zeta^2}
+             {1-\zeta^2}},
+  \qquad
+  |\zeta|<\sqrt{\lambda(\alpha)}.
+\end{equation}
+
+\subsection{Phase function}
+
+\begin{lemma}[WKB phase extraction]
+\label{lem:WKB-phase}
+In the classically allowed region
+$|\xi|<c\sqrt{\lambda(\alpha)}$,
+the leading WKB approximation gives
+\begin{equation}\label{eq:WKB-ansatz}
+  \widehat{\Phi_n^{(c)}}(\xi)
+  \approx_{\mathrm{WKB}}
+  \frac{A(\xi/c;\alpha)}
+       {\sqrt{p(\xi/c;\alpha)}}
+  \exp\!\left(
+    ic\int_0^{\xi/c}
+    p(\zeta;\alpha)\,d\zeta
+  \right),
+\end{equation}
+with $A$ real, positive, smooth
+away from turning points.
+The phase function in the model
+kernel $I_c(k)$ is
+\begin{equation}\label{eq:theta-def}
+  \theta(\xi)
+  := c\int_0^{\xi/c}
+     p(\zeta;\alpha)\,d\zeta
+  = \int_0^{\xi/c}
+    \sqrt{\frac{\lambda(\alpha)-\zeta^2}
+               {1-\zeta^2}}\,
+    c\,d\zeta,
+\end{equation}
+so that $k\theta(\xi)/c
+= k\int_0^{\xi/c}p(\zeta;\alpha)\,d\zeta$.
+\end{lemma}
+
+\subsection{Non-degeneracy}
+
+\begin{lemma}[Phase non-degeneracy]
+\label{lem:phase-nondeg}
+For $\alpha\in(0,1)$ and
+$|\xi|\le c_0<c\sqrt{\lambda(\alpha)}$:
+
+\medskip
+\noindent\textbf{(i)} $\theta'(\xi)
+= p(\xi/c;\alpha)
+= \sqrt{(\lambda(\alpha)-(\xi/c)^2)
+/(1-(\xi/c)^2)} > 0$.
+
+\medskip
+\noindent\textbf{(ii)} For $\xi\ne 0$:
+\begin{equation}\label{eq:theta-pp}
+  \theta''(\xi)
+  = \frac{-(\xi/c)(1-\lambda(\alpha))}
+         {c(1-(\xi/c)^2)^{3/2}
+           \sqrt{\lambda(\alpha)-(\xi/c)^2}}
+  \ne 0,
+\end{equation}
+since $\lambda(\alpha)\in(0,1)$
+for all $\alpha\in(0,1)$.
+
+\medskip
+\noindent\textbf{(iii)} Quantitative bound:
+$|\theta''(\xi)|\ge
+c_*|\xi|/c$
+for $|\xi|\ge\varepsilon>0$,
+with $c_*=c_*(\alpha,c_0)>0$.
+Near $\xi=0$: $\theta''(0)=0$
+but $\theta'''(0)\ne 0$
+(cubic non-degeneracy;
+see Remark~\ref{rem:turning-zero}).
+\end{lemma}
+
+\begin{proof}
+Differentiate $\theta'(\xi)
+= p(\xi/c;\alpha)$ using the
+quotient rule; $\lambda(\alpha)\in(0,1)$
+gives the sign and non-vanishing.
+\end{proof}
+
+\begin{remark}[$\lambda(\alpha)$]
+\label{rem:lambda-alpha}
+At leading WKB order
+\cite{Osipov2013}:
+$\lambda(\alpha)
+= \sin^2(\pi\alpha/2)+O(1/c)$,
+so $\lambda(\alpha)\in(0,1)$
+for $\alpha\in(0,1)$,
+confirming $\theta''\ne 0$.
+\end{remark}
+
+\begin{remark}[Turning point at $\xi=0$]
+\label{rem:turning-zero}
+$\theta''(0)=0$ reflects the
+even/odd symmetry of PSWFs
+and is not a genuine obstruction:
+a neighbourhood $|\xi|\le\varepsilon$
+contributes $O(\varepsilon)$
+to integrals, which is $o(1)$
+for $\varepsilon\to 0$.
+The cubic non-degeneracy
+$\theta'''(0)\ne 0$ gives
+Airy-type control in that region.
+\end{remark}
+
+\subsection{van der Corput is insufficient}
+
+\begin{corollary}[Curvature available
+  but naive vdC insufficient]
+\label{cor:curvature-available}
+The PSWF phase satisfies
+$\theta''\ne 0$ (Lemma~\ref{lem:phase-nondeg}),
+so both Escape~A and Escape~B
+(Remark~\ref{rem:two-escapes}) are
+in principle available.
+However, applying van~der~Corput
+with $|\theta''|\sim\varepsilon/c$:
+\begin{equation}\label{eq:VdC-PSWF}
+  |R(k,c)|
+  \lesssim
+  \sqrt{\frac{c^{1+\theta_0}}
+             {k\varepsilon}},
+  \qquad
+  \sum_{k=1}^{c^{\theta_0}}|R(k,c)|
+  \sim
+  \frac{c^{(1+2\theta_0)/2}}
+       {\sqrt{\varepsilon}}
+  = \Omega(c^{\theta_0})
+  \quad(\theta_0>0).
+\end{equation}
+The curvature scale $1/c$ exactly
+matches the frequency scale
+$1/c^{\theta_0}$, and no gain
+results from naive vdC.
+The missing ingredient is
+the \emph{joint} summation in
+$k$ and $\xi_0$.
+\end{corollary}
+
+%%═══ 5. WEYL EQUIDISTRIBUTION
+\section{Reduction to Weyl
+  Equidistribution}
+\label{sec:Weyl}
+
+\begin{remark}[From curvature to
+  equidistribution]
+\label{rem:what-needed}
+After the mesoscopic rescaling,
+$\Sigma_{\mathrm{strip}}(c)$
+involves the sum
+$\sum_{k=1}^{K(c)}
+|\widehat{\psi}(k\theta'(\xi_0)/c^{\theta_0})|^2$
+integrated over $\xi_0$.
+For varying $\xi_0$ with
+$\alpha_0(\xi_0)=\theta'(\xi_0)$
+non-constant ($\theta''\ne 0$),
+the phases $k\alpha_0(\xi_0)/c^{\theta_0}$
+are equidistributed as $k$ varies
+(Weyl), giving
+\begin{equation}\label{eq:Weyl-sum}
+  \sum_{k=1}^{K(c)}
+  e^{2\pi i k\beta/c^{\theta_0}}
+  = o(K(c))
+  \quad\text{for irrational }\beta,
+\end{equation}
+with rate $O(c^{\theta_0/2})$
+via Weyl differencing.
+The problem is to make this
+uniform in $\xi_0$ and decouple
+the $k$-sum from the $\xi_0$-integral.
+\end{remark}
+
+\begin{problem}[Weyl equidistribution
+  for PSWF phase;
+  decisive open problem]
+\label{prob:Weyl-equidist}
+Let $\beta:=\theta'(\xi_0)
+=p(\xi_0/c;\alpha)\sim\sqrt{\lambda(\alpha)}$.
+Establish a useful bound for
+\begin{equation}\label{eq:Weyl-target}
+  W(c)
+  :=
+  \left|
+    \sum_{k=1}^{K(c)}
+    e^{2\pi ik\beta/c^{\theta_0}}
+  \right|
+  = o(K(c)).
+\end{equation}
+
+\medskip\noindent
+\textbf{Four sub-cases:}
+\begin{enumerate}[\rm(W1)]
+\item \emph{Fixed irrational $\beta$:}
+  $W(c)=O(c^{\theta_0/2})
+  =o(c^{\theta_0})$
+  by Weyl differencing.
+  \textbf{Available.}
+
+\item \emph{Slowly varying $\beta(c)$:}
+  $\beta(c)=\sqrt{\lambda(\alpha)}+O(1/c)$.
+  Perturbation shifts phases by
+  $O(k/c)=O(c^{\theta_0-1})=o(1)$.
+  Negligible for $\theta_0<1$.
+  \textbf{Controllable.}
+
+\item \emph{Averaging over $\xi_0$:}
+  Van~der~Corput with phase
+  $\phi(\xi_0)=k\theta'(\xi_0)/c^{\theta_0}$,
+  $|\phi''|=k|\theta''(\xi_0)|/c^{\theta_0}
+  \sim k/(c^{\theta_0+1})$ gives
+  $\int e^{2\pi i k\theta'(\xi_0)/c^{\theta_0}}
+  d\xi_0\lesssim c^{(\theta_0+1)/2}/k^{1/2}$.
+  Summing: $\sim c^{\theta_0+1/2}$.
+  Compare to main term $c^{\theta_0}$:
+  ratio $c^{1/2}\to\infty$.
+  \textbf{Not sufficient alone.}
+
+\item \emph{Joint $k$-and-$\xi_0$
+  decoupling (final step):}
+  Treat $\sum_{k=1}^{K(c)}
+  \int e^{ik\theta'(\xi_0)/c^{\theta_0}}
+  \psi(\xi_0)\,d\xi_0$
+  as a double exponential sum.
+  For $\theta''\ne 0$: the curve
+  $k\theta'(\xi_0)=\lambda c^{\theta_0}$
+  has curvature $\sim k\theta''/c^{\theta_0}$,
+  and Weyl differencing in both
+  $k$ and $\xi_0$ simultaneously
+  is expected to give the required gain.
+  \textbf{Open; primary target of Paper~XV.}
+\end{enumerate}
+
+\medskip\noindent
+\textbf{Key observation.}
+Sub-case~(W1) already gives
+$W(c)=O(c^{\theta_0/2})=o(c^{\theta_0})$
+for each fixed irrational $\beta$.
+If the $\xi_0$-integral can be
+decoupled from the $k$-sum,
+$\Sigma_{\mathrm{model}}=o(1)$ follows.
+This decoupling is the
+\emph{final technical step}.
+\end{problem}
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{
+\textbf{Final logical status.}
+\begin{itemize}[leftmargin=*]
+\item $\theta(\xi)$ identified:
+  \textbf{done} (Lem.~\ref{lem:WKB-phase}).
+\item $\theta'\ne 0$:
+  \textbf{proved} (Lem.~\ref{lem:phase-nondeg}(i)).
+\item $\theta''\ne 0$ ($\xi\ne 0$):
+  \textbf{proved} (Lem.~\ref{lem:phase-nondeg}(ii)).
+\item Linear phase $\Rightarrow$
+  Model-$\Sigma$ fails:
+  \textbf{proved}
+  (Cor.~\ref{cor:S3-negative}).
+\item Naive vdC insufficient:
+  \textbf{proved}
+  (Cor.~\ref{cor:curvature-available}).
+\item Weyl for fixed $\beta$:
+  $O(c^{\theta_0/2})$
+  \textbf{available} (W1).
+\item Joint $k$/$\xi_0$ decoupling:
+  \textbf{open; sole remaining step}
+  (W4).
+\item $\Sigma_{\mathrm{model}}=o(1)$:
+  \textbf{conditional on (W4)}.
+\end{itemize}}}
+\end{center}
+
+%%═══ 6. LIPSCHITZ REGULARITY
 \section{Lipschitz Regularity of the
   PSWF Amplitude}
 \label{sec:Lipschitz}
 
-\begin{problem}[Lipschitz regularity;
-  Paper~XV]
+\begin{problem}[Lipschitz regularity]
 \label{prob:Lipschitz}
 \emph{Priority: critical.}
 
-Establish, uniformly in
-$n\in\mathcal{T}_{\alpha,\kappa}(c)$
-and $|k|\le c^{\theta_0}$:
+Establish uniformly in
+$n\in\mathcal{T}_{\alpha,\kappa}(c)$,
+$|k|\le c^{\theta_0}$:
 \begin{equation}\label{eq:Lip-prob}
   \norm{
     \widehat{\Phi_{n+k}^{(c)}}
     -\widehat{\Phi_n^{(c)}}
   }_{L^2([-c_0,c_0])}
-  = O\!\left(\frac{k}{c}\right).
+  = O(k/c).
 \end{equation}
-
-\medskip\noindent
-\textbf{Role.}
-Together with
-Problem~\ref{prob:model-intermediate},
-this closes $\Sigma_{\mathrm{int}}=o(1)$
-(OP~\ref{prob:intermediate-XV}).
-
-\medskip\noindent
-\textbf{Approach.}
-The PSWF differential equation
-\[
-  \frac{d}{dn}
-  \widehat{\Phi_n^{(c)}}
-  \approx
-  \frac{1}{c}
-  \frac{d}{d\alpha}
-  \widehat{\Phi_{\alpha c}^{(c)}}
-  \Big|_{\alpha=n/c},
-\]
-combined with semiclassical
-amplitude regularity in $\alpha$,
-is expected to yield~\eqref{eq:Lip-prob}
-at WKB level;
+Follows at WKB level from
+smooth $n/c$-dependence of the
+amplitude $A(\zeta;\alpha)$;
 rigorous justification requires
-$L^2$-control of the transport
-equation for $\alpha\mapsto
-\widehat{\Phi_{\alpha c}^{(c)}}$.
+$L^2$-control of the semiclassical
+transport equation.
 \end{problem}
 
-%%═══ 4. LOCAL WEYL LAW
+%%═══ 7. LOCAL WEYL LAW
 \section{Local Weyl Law (C)}
-\label{sec:Weyl}
+\label{sec:WeylLaw}
 
-\begin{problem}[Local Weyl law;
-  Paper~XV]
+\begin{problem}[Local Weyl law]
 \label{prob:Weyl-XV}
 \emph{Priority: critical.
 Inherited from OP~XIV.\ref{prob:fourier-mass}.}
@@ -547,36 +939,23 @@ $n\in\mathcal{T}_{\alpha,\kappa}(c)$:
 \begin{equation}\label{eq:Weyl-uniform}
   \mu_{n,c}([-c_0,c_0])
   = \frac{c_0}{c}
-  + o\!\left(\frac{1}{c}\right).
+  + o(1/c).
 \end{equation}
-
-\medskip\noindent
-\textbf{Role.}
-Required for:
-frozen weight approximation
-$A_n(\xi)\overline{A_m(\xi)}\approx w(\xi)$;
-$\Sigma_{\mathrm{near}}=o(1)$;
-Prop.~XIV.\ref{prop:HS-reduction}.
-
-\medskip\noindent
-\textbf{Main difficulty.}
-Uniformity as $n/c\to\alpha$,
-where the classical turning point
-of the PSWF ODE approaches
-the boundary of $[-c,c]$.
+Required for frozen weight
+approximation, $\Sigma_{\mathrm{near}}=o(1)$,
+and Prop.~XIV.\ref{prop:HS-reduction}.
+Main difficulty: uniformity as
+$n/c\to\alpha$ near the turning point.
 \end{problem}
 
-%%═══ 5. OPEN PROBLEMS
-\section{Open Problems for Paper~XV}
+%%═══ 8. OPEN PROBLEMS
+\section{Open Problems}
 \label{sec:open}
 
 \begin{problem}[Intermediate-regime
-  HS estimate]
+  HS estimate; primary target]
 \label{prob:intermediate-XV}
-\emph{Primary target.}
-
-Under~(C) and~\eqref{eq:Lipschitz-main},
-establish:
+Under~(C) and~\eqref{eq:Lip-prob}:
 \[
   \Sigma_{\mathrm{int}}
   = \sum_{\substack{n\ne m\\
@@ -586,8 +965,11 @@ establish:
   \quad M(c)\sim\beta c.
 \]
 Follows from
-Problem~\ref{prob:model-intermediate}
-$+$ Problem~\ref{prob:Lipschitz}.
+Prob.~\ref{prob:model-intermediate}
+$+$ Prob.~\ref{prob:Lipschitz}.
+Prob.~\ref{prob:model-intermediate}
+conditional on
+OP~\ref{prob:Weyl-equidist}(W4).
 \end{problem}
 
 \begin{thebibliography}{99}
@@ -624,6 +1006,19 @@ Princeton University Press, 2011.
 E.~M.~Stein,
 \textit{Harmonic Analysis},
 Princeton University Press, 1993.
+
+\bibitem{Weyl1916}
+H.~Weyl,
+\textit{\"Uber die Gleichverteilung
+von Zahlen mod.\ Eins},
+Math.\ Ann.\ \textbf{77} (1916),
+313--352.
+
+\bibitem{Titchmarsh1986}
+E.~C.~Titchmarsh,
+\textit{The Theory of the
+Riemann Zeta-Function},
+2nd ed., Oxford, 1986.
 
 \end{thebibliography}
 
