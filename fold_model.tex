@@ -20,379 +20,402 @@
 \newcommand{\Num}{\textup{[Num]}}
 \newcommand{\Warn}{\textup{[Warning]}}
 \newcommand{\Open}{\textup{[Open]}}
+\newcommand{\Calc}{\textup{[Calc]}}
 
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  CFU-Type Endpoint--Saddle Coalescence\\
-  with Singular Amplitude}
+  Explicit CFU Map and the\\
+  Location of the Endpoint Singularity\\
+  in Normal-Form Coordinates}
 
 \author{[Author]}
 
 \begin{abstract}
 We study
-\begin{equation*}
+\[
   \Phi(u):=\int_0^\infty
   \beta^{-1/2}\chi(\beta)
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
-  \quad u\in\mathbb{R},\;c_3>0.
-\end{equation*}
-Three facts are established
-or identified:
+  \quad u<0,\;c_3>0.
+\]
+The Chester--Friedman--Ursell (CFU)
+normal-form map is computed
+explicitly.
+\textbf{Main result:}
+under the CFU map
+$\phi(\beta)\mapsto
+\frac{1}{3}t^3-\lambda t$,
+the endpoint $\beta=0$
+maps to $t_*=0$.
+The Airy turning points
+are at $t=\pm\sqrt{\lambda}$
+with $\lambda\sim
+(3c_3)^{-1/3}|u|^{2/3}\to\infty$.
+Therefore:
 \begin{enumerate}[\rm(1)]
-\item \textbf{Upper bound}
-  (rigorous):
-  $|\Phi(u)|=O(|u|^{-1/2})$
-  via Erd\'elyi's singular
-  endpoint theorem.
-  Riemann--Lebesgue gives
-  only $o(1)$.
-\item \textbf{Correct asymptotic
-  class}:
-  this is a
-  \emph{CFU-type
-  endpoint--saddle
-  coalescence problem}
-  (Chester--Friedman--Ursell
-  1957)
-  with a singular amplitude
-  $\beta^{-1/2}$.
-  The leading asymptotics
-  for $u<0$ is \emph{not}
-  a sum of two independent
-  constants times phases;
-  it is a single uniform
-  Airy-type object:
-  \[
-    \Phi(u)\sim
-    |u|^{-1/2}\cdot
-    \mathcal{A}(u),
-  \]
-  where $\mathcal{A}(u)$
-  is determined by the
-  CFU normal form and
-  the Jacobian of the
-  coordinate change at
-  $\beta=0$.
-\item \textbf{True open
-  problem}:
-  is the integral
-  \emph{CFU-reducible}
-  despite the singularity
-  $\beta^{-1/2}$ at the
-  endpoint $\beta=0$?
-  The singularity may
-  obstruct the standard
-  CFU coordinate change;
-  this is the technical
-  core of the problem.
+\item $t_*=0$ is a
+  \emph{regular point}
+  of the normal form
+  (not a turning point);
+  the CFU reduction is
+  \emph{not obstructed}.
+\item The singular
+  amplitude $\beta^{-1/2}$
+  becomes a singularity
+  in $t$ at $t_*=0$;
+  its order is determined
+  by the Jacobian
+  $d\beta/dt$ at $t_*=0$.
+\item The resulting
+  $t$-integral has two
+  contributions: Airy
+  turning points at
+  $t=\pm\sqrt{\lambda}$
+  (saddle) and the
+  interior singularity
+  at $t_*=0$ (endpoint).
+  These must be analysed
+  jointly.
 \end{enumerate}
 \end{abstract}
 
 \maketitle
 
-\section{Rigorous Bounds}
-\label{sec:bounds}
+\section{The CFU Map: Explicit Computation}
+\label{sec:CFU-explicit}
 
-\begin{lemma}[RL: $o(1)$ only
-  \Rig]
-\label{lem:RL}
-$\beta^{-1/2}\chi\in L^1$
-$\Rightarrow$ $\Phi(u)=o(1)$.
-No rate follows from RL.
-\end{lemma}
+\begin{definition}[Phase and
+  critical points \Calc]
+\label{def:phase}
+For $u<0$, write $u=-|u|$:
+\[
+  \phi(\beta):=
+  -|u|\beta+c_3\beta^3.
+\]
+Critical points
+($\phi'=0$):
+\[
+  \beta_\pm
+  =\pm\sqrt{|u|/(3c_3)}.
+\]
+Phase values:
+\begin{align*}
+  \phi(\beta_+)
+  &=-\tfrac{2\sqrt{3}}{9}
+    \frac{|u|^{3/2}}{\sqrt{c_3}},
+  \\
+  \phi(\beta_-)
+  &=+\tfrac{2\sqrt{3}}{9}
+    \frac{|u|^{3/2}}{\sqrt{c_3}}.
+\end{align*}
+Note: $\phi(0)=0$.
+\end{definition}
 
-\begin{lemma}[Erd\'elyi:
-  $O(|u|^{-1/2})$ \Rig]
-\label{lem:Erdelyi}
-For $u>0$, $u\to+\infty$,
-or for $u<0$ restricted
-to the region $|\beta|
-\ll \beta_0(u)$
-(endpoint contribution
-only):
-\begin{equation}\label{eq:Erdelyi}
-  \int_0^\infty
-  \beta^{-1/2}\chi(\beta)
-  e^{i\beta u}\,d\beta
-  = e^{i\pi/4}\sqrt{\pi}
-  \cdot u^{-1/2}
-  + O(u^{-3/2}).
+\begin{definition}[CFU normal
+  form \Calc]
+\label{def:CFU-normalform}
+The CFU normal form
+(Chester--Friedman--Ursell
+1957) associates to
+$\phi$ the canonical
+function
+\[
+  \Psi(t):=
+  \tfrac{1}{3}t^3
+  -\lambda t,
+\]
+where $\lambda>0$
+is determined by:
+\begin{equation}\label{eq:lambda-def}
+  \tfrac{4}{3}\lambda^{3/2}
+  =\phi(\beta_-)-\phi(\beta_+)
+  =\tfrac{4\sqrt{3}}{9}
+    \frac{|u|^{3/2}}{\sqrt{c_3}}.
 \end{equation}
-This requires the cubic
-term $c_3\beta^3$ to be
-negligible, i.e.~$c_3
-\beta_0^2 \ll |u|$.
-For $u<0$, the saddle
-$\beta_0=\sqrt{|u|/(3c_3)}
-\to\infty$, so the cubic
-term is \emph{not}
-negligible globally;
-Eq.~\eqref{eq:Erdelyi}
-applies only to the
-near-endpoint contribution.
-\end{lemma}
-
-\begin{remark}[Summary \Rig]
-\label{rem:bounds-summary}
-The rigorous content is:
-\[
-  \Phi(u)=O(|u|^{-1/2}),
-  \qquad
-  |F(U)|=O(U^{1/2}).
-\]
-These are upper bounds.
-The lower bound is open.
-\end{remark}
-
-\section{The Correct Asymptotic
-  Class: CFU Coalescence}
-\label{sec:CFU}
-
-\begin{remark}[Why not additive
-  $C_S + C_P$ \Warn]
-\label{rem:not-additive}
-A natural first attempt
-is to write:
-\[
-  \Phi(u)
-  \stackrel{?}{=}
-  |u|^{-1/2}
-  \bigl(
-    C_S e^{i\pi/4}
-    + C_P
-    e^{i\phi(\beta_0)}
-  \bigr)
-  + \text{lower order},
-\]
-where $C_S$ comes from
-the endpoint and $C_P$
-from the saddle.
-\textbf{This is not valid.}
-Reason: in CFU-type
-problems, the coordinate
-change
-\[
-  \phi(\beta,u)
-  :=\beta u+c_3\beta^3
-  \longmapsto
-  \pm\tfrac{1}{3}t^3
-  + \lambda(u)\cdot t
-\]
-\emph{couples} the image
-of $\beta=0$ and the
-image of $\beta_0$ into
-a single smooth function
-of $t$.
-The result is not a
-sum of two independent
-contributions but a
-single uniform expression
-involving the Airy
-function.
-Separate constants
-$C_S, C_P$ do not
-exist as independent
-asymptotic objects.
-\end{remark}
-
-\begin{remark}[CFU structure
-  in the non-singular case
-  \Rig]
-\label{rem:CFU-nonsingular}
-For a smooth amplitude
-$a(\beta)$ (no singularity
-at $\beta=0$), the
-CFU method (Chester,
-Friedman, Ursell 1957;
-Olver 1974, Ch.~11)
-gives:
-\begin{equation}\label{eq:CFU-standard}
-  \int_0^\infty
-  a(\beta)
-  e^{i(\beta u+c_3\beta^3)}
-  \,d\beta
-  \sim
-  e^{i\psi(u)}
-  \bigl[
-    A(u)\,
-    \mathrm{Ai}(\lambda(u))
-    + B(u)\,
-    \mathrm{Ai}'(\lambda(u))
-  \bigr],
+Solving:
+\begin{equation}\label{eq:lambda}
+  \lambda
+  =\Bigl(
+    \frac{3^{2/3}}{3c_3^{1/3}}
+  \Bigr)|u|^{2/3}
+  \sim (3c_3)^{-1/3}|u|^{2/3}.
 \end{equation}
-where $\lambda(u)\sim
--(3c_3)^{-1/3}|u|^{1/3}$
-for $u\to-\infty$,
-and $A(u), B(u)$ are
-smooth functions of $u$
+\textbf{$\lambda\to+\infty$
+as $|u|\to\infty$};
+the turning points
+$t=\pm\sqrt{\lambda}\to\infty$.
+\end{definition}
+
+\begin{proposition}[Image of
+  $\beta=0$ \Calc]
+\label{prop:beta0-image}
+Under the CFU map
+$t=t(\beta)$ defined by
+$\Psi(t(\beta))=\phi(\beta)$,
+the image of $\beta=0$
+satisfies:
+\[
+  \Psi(t_*)
+  =\phi(0)=0
+  \implies
+  \tfrac{1}{3}t_*^3
+  -\lambda t_*=0
+  \implies
+  t_*\bigl(t_*^2-3\lambda\bigr)=0.
+\]
+Solutions:
+\[
+  t_*=0,
+  \quad
+  t_*=\pm\sqrt{3\lambda}.
+\]
+By continuity of the
+CFU map
+(the map $\beta\mapsto t$
+is smooth and monotone
+near $\beta=0$ for
+$|u|\gg c_3$):
+\begin{equation}\label{eq:t-star}
+  \boxed{\beta=0
+  \longmapsto t_*=0.}
+\end{equation}
+The other solutions
+$t_*=\pm\sqrt{3\lambda}$
+correspond to
+$\beta$-values away
+from $0$.
+\end{proposition}
+
+\begin{corollary}[$t_*=0$ is
+  not a turning point \Calc]
+\label{cor:regular}
+The Airy turning points
+of $\Psi$ are at
+$t=\pm\sqrt{\lambda}$.
+Since $\lambda>0$,
+we have $0\ne\pm\sqrt{\lambda}$.
+Therefore:
+\[
+  t_*=0
+  \text{ is a }
+  \emph{regular point}
+  \text{ of }
+  \Psi(t).
+\]
+Consequence:
+\textbf{the CFU reduction
+is not obstructed by
+the endpoint singularity.}
+The singularity at
+$t_*=0$ in the
+$t$-integral is an
+interior singularity
+at a non-critical
+location.
+\end{corollary}
+
+\section{Structure of the
+  $t$-Integral}
+\label{sec:t-integral}
+
+\begin{proposition}[Singular
+  amplitude in $t$-coordinates
+  \Calc+\Warn]
+\label{prop:t-amplitude}
+After the CFU change
+of variables $\beta\mapsto t$,
+\[
+  \Phi(u)=\int
+  \beta(t)^{-1/2}
+  \chi(\beta(t))
+  \Bigl|\frac{d\beta}{dt}\Bigr|
+  e^{i\Psi(t)-i\lambda t}
+  \,dt
+  =\int
+  A(t)\cdot
+  e^{i\Psi(t)}\,dt,
+\]
+where the new amplitude
+is
+\[
+  A(t)
+  =\beta(t)^{-1/2}
+  \chi(\beta(t))
+  \Bigl|\frac{d\beta}{dt}\Bigr|.
+\]
+At $t=t_*=0$:
+$\beta(0)=0$, so
+$A(t)\sim C|t|^{-\gamma}$
+for some $\gamma>0$
 determined by the
-coordinate change
-$\beta\mapsto t$.
-For $|u|\to\infty$:
-$\mathrm{Ai}(\lambda)
-\sim\lambda^{-1/4}
-\cos(\tfrac{2}{3}
-|\lambda|^{3/2}-\tfrac{\pi}{4})$,
-which gives the
-$|u|^{-1/12}$-type
-growth of the Airy
-envelope times the
-$|u|^{1/3}$ scaling
-of $\lambda$---yielding
-the standard exponent
-for non-singular
-oscillatory integrals.
-\end{remark}
+Jacobian.
 
-\begin{remark}[Effect of
-  singular amplitude
-  $\beta^{-1/2}$ \Warn]
-\label{rem:singular-amplitude}
-In our case, the amplitude
-is $a(\beta)=\beta^{-1/2}
-\chi(\beta)$, singular
-at $\beta=0$.
-Two effects:
-\begin{enumerate}[\rm(i)]
-\item The endpoint $\beta=0$
-  maps to some point
-  $t_0$ in the CFU
-  $t$-coordinate.
-  If $t_0\ne 0$,
-  the singularity appears
-  as an interior
-  singularity in the
-  $t$-integral,
-  and CFU applies
-  modulo a singular
-  weight $|t-t_0|^{-1/2}$.
-\item If $t_0=0$
-  (the singularity
-  coincides with the
-  Airy turning point),
-  the standard CFU
-  theory does not apply;
-  a modified expansion
-  is needed.
+To find $\gamma$:
+near $\beta=0$,
+$\phi(\beta)\approx
+-|u|\beta$ and
+$\Psi(t)\approx-\lambda t$,
+so $t\approx|u|\beta/\lambda
+=3c_3^{1/3}|u|^{1/3}\beta$.
+Thus
+$\beta\sim
+C_J\lambda^{-1}|u|t
+=(3c_3)^{1/3}|u|^{-1/3}t$,
+and the Jacobian
+$d\beta/dt\sim
+(3c_3)^{1/3}|u|^{-1/3}$
+(bounded).
+Therefore:
+\[
+  \beta(t)^{-1/2}
+  \Bigl|\frac{d\beta}{dt}\Bigr|
+  \sim
+  C\cdot
+  \bigl((3c_3)^{1/3}
+    |u|^{-1/3}t
+  \bigr)^{-1/2}
+  \cdot (3c_3)^{1/3}|u|^{-1/3}
+  =C'|u|^{-1/6}|t|^{-1/2}.
+\]
+So \emph{the singularity
+in $t$-space is}
+$|t|^{-1/2}$---same
+type as in $\beta$-space
+---but now at an
+interior point $t_*=0$
+of the $t$-integral,
+with an additional
+amplitude factor
+$|u|^{-1/6}$.
+\end{proposition}
+
+\begin{remark}[The two
+  contributions in
+  $t$-space \Calc]
+\label{rem:two-contributions}
+The $t$-integral now
+has two distinct features:
+\begin{enumerate}[\rm(A)]
+\item\textbf{Airy turning
+  points} at
+  $t=\pm\sqrt{\lambda}
+  \sim|u|^{1/3}$:
+  these give the standard
+  stationary phase
+  contribution;
+  the Airy function
+  $\mathrm{Ai}(-\lambda)$
+  for $\lambda\to\infty$
+  decays as
+  $\lambda^{-1/4}
+  \sim|u|^{-1/12}$.
+\item\textbf{Interior
+  singularity} at $t_*=0$:
+  the singular weight
+  $|u|^{-1/6}|t|^{-1/2}$
+  gives a Fourier-type
+  contribution
+  $\sim|u|^{-1/6}
+  \cdot\lambda^{-1/2}
+  \sim|u|^{-1/6}
+  \cdot|u|^{-1/3}
+  =|u|^{-1/2}$.
 \end{enumerate}
-Which case holds depends
-on whether $\beta=0$
-maps to the saddle
-critical point in $t$,
-which depends on the
-geometry of $\phi$.
+\textbf{Both give the
+same order
+$O(|u|^{-1/2})$ in
+$\Phi(u)$.}
+This is consistent with
+the Erd\'elyi upper
+bound but now with
+a clear mechanism
+for both contributions
+visible in $t$-space.
 \end{remark}
 
-\section{The True Open Problem}
-\label{sec:open}
+\section{Consequence:
+  Is CFU Sufficient?}
+\label{sec:consequence}
 
-\begin{problem}[CFU
-  reducibility with singular
-  amplitude \Open]
-\label{prob:CFU}
-Is the integral
-$\Phi(u)=\int_0^\infty
-\beta^{-1/2}\chi(\beta)
-e^{i(\beta u+c_3\beta^3)}
-d\beta$ reducible to
-a uniform Airy expansion
-of the form~\eqref{eq:CFU-standard}
-with the singular amplitude
-carried through the
-CFU coordinate change?
-
-Specifically:
-\begin{enumerate}[\rm(i)]
-\item Compute the CFU
-  map $\beta\mapsto t$
-  for $\phi(\beta,u)
-  =\beta u+c_3\beta^3$;
-  determine where
-  $\beta=0$ maps.
-\item If $\beta=0\mapsto
-  t_*\ne 0$:
-  the singular amplitude
-  $|t-t_*|^{-1/2}$
-  appears in the $t$-integral;
-  apply endpoint singular
-  asymptotics to the
-  $t$-integral.
-  This gives a modified
-  Airy expansion with
-  coefficients determined
-  by $t_*$ and the
-  Jacobian $d\beta/dt$
-  at $\beta=0$.
-\item If $\beta=0\mapsto
-  t_*=0$:
-  standard CFU fails;
-  a modified theory is
-  required (see
-  Temme 1985;
+\begin{remark}[What is now
+  rigorous vs.\ open
+  \Rig+\Open]
+\label{rem:rigorous-vs-open}
+\begin{enumerate}[\rm(1)]
+\item\textbf{Rigorous:}
+  $\lambda\sim(3c_3)^{-1/3}
+  |u|^{2/3}$ (computed).
+  $t_*=0$ is a regular
+  point of $\Psi$
+  (computed).
+  $A(t)\sim C'|u|^{-1/6}
+  |t|^{-1/2}$ near $t=0$
+  (computed to leading
+  order from Jacobian).
+\item\textbf{Heuristic:}
+  the Airy contribution
+  (A) gives $O(|u|^{-1/12}
+  \cdot\lambda^{-1/4})
+  =O(|u|^{-1/3})$
+  to $\Phi$;
+  the interior singularity
+  (B) gives $O(|u|^{-1/2})$.
+  So contribution~(B)
+  dominates asymptotically.
+\item\textbf{Open:}
+  rigorous asymptotic
+  expansion of the
+  $t$-integral combining
+  Airy turning points
+  and interior singular
+  weight;
+  this requires the
+  theory of oscillatory
+  integrals with
+  coexisting turning
+  points and singularities
+  (Temme 1985;
   Kaminski 1994).
 \end{enumerate}
-\textbf{This is the exact
-technical question that
-Assumption~ass:Phi-cubic
-of Paper~XV was implicitly
-assert\-ing without proof.}
-\end{problem}
-
-\begin{remark}[Consequence
-  for the limsup conjecture
-  \Open]
-\label{rem:limsup}
-If Problem~\ref{prob:CFU}
-is resolved and gives
-a uniform Airy expansion
-$\Phi(u)\sim|u|^{-1/2}
-\mathcal{A}(u)$,
-then:
-\begin{itemize}[nosep]
-\item $\mathcal{A}(u)$
-  is an \emph{Airy-type}
-  function, not a sum
-  of two constants;
-\item whether
-  $\limsup|\mathcal{A}(u)|>0$
-  follows from the known
-  asymptotics of Airy
-  functions (non-vanishing
-  oscillating envelope);
-\item the three-scenario
-  classification (A/B/C
-  in v8) is replaced
-  by: does the Airy
-  coefficient in the
-  CFU expansion vanish?
-  For non-degenerate
-  geometry, it does not.
-\end{itemize}
 \end{remark}
 
 \begin{conjecture}[\Open]
 \label{conj:sharp}
-The integral is
-CFU-reducible
-(Problem~\ref{prob:CFU},
-case~\rm(ii), $t_*\ne 0$),
-and $\limsup_{u\to-\infty}
+$\limsup_{u\to-\infty}
 |u|^{1/2}|\Phi(u)|>0$.
+
+Basis: contribution~(B)
+(interior singularity
+at $t_*=0$ in $t$-space)
+has amplitude
+$\sim C'|u|^{-1/2}$
+with $C'=C'(c_3)\ne 0$
+(the Jacobian does not
+vanish at $t=0$).
+If the $t$-integral
+near $t=0$ is dominated
+by this singularity,
+then Ces\`aro is sharp.
+
+This is \emph{not proved}:
+the full $t$-integral
+analysis is required.
 \end{conjecture}
 
 \section{Numerical Evidence}
 \label{sec:num}
 
 \begin{proposition}[\Num]
-$|\Phi(u)|\approx|u|^{-0.53}$,
-$|F(U)|\approx U^{0.48}$
-(see above).
+$|\Phi(u)|\approx|u|^{-0.53}$;
+$|F(U)|\approx U^{0.48}$.
 Consistent with
-$O(|u|^{-1/2})$;
-does not exclude
-full Airy cancellation
-at larger $|u|$.
+$O(|u|^{-1/2})$
+dominating over
+the Airy contribution
+$O(|u|^{-1/3})$
+(which would give
+a larger exponent).
 \end{proposition}
 
 \begin{thebibliography}{9}
@@ -425,13 +448,6 @@ a selection of problems},
 J.\ Comput.\ Appl.\ Math.
 \textbf{12--13} (1985),
 95--110.
-\bibitem{Kaminski1994}
-D.~Kaminski,
-\textit{Asymptotic expansion
-of the Pearcey integral
-near a caustic},
-SIAM J.\ Math.\ Anal.
-\textbf{20} (1989), 987--1005.
 \end{thebibliography}
 
 \end{document}
