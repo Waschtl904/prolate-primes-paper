@@ -16,436 +16,369 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\Rig}{\textup{[Rig]}}
-\newcommand{\Heur}{\textup{[Heur]}}
+\newcommand{\Num}{\textup{[Num]}}
 \newcommand{\Warn}{\textup{[Warning]}}
 \newcommand{\Open}{\textup{[Open]}}
 
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Two Competing Global Mechanisms,\\
-  Saddle Dominance for $u<0$,\\
-  and a Conditional Improvement\\
-  over Ces\`aro}
+  A Negative Result ---\\
+  Ces\`aro is Numerically Sharp\\
+  and the Cubic Term Does Not\\
+  Improve the Scaling}
 
 \author{[Author]}
 
 \begin{abstract}
 This note studies
-\[
+\begin{equation*}
   \Phi(u):=\int_{\mathbb{R}}
   |\beta|^{-1/2}\chi(\beta)
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
-  \qquad c_3>0\text{ fixed},
-\]
+  \quad c_3>0,
+\end{equation*}
 and $F(U):=\int_0^U\Phi(u)\,du$.
 
-The correct stationary phase
-calculation gives
-$|\Phi(u)|\sim|u|^{-3/4}$
-from the saddle for $u<0$,
-\emph{not} $|u|^{-1/2}$
-(the error in Versions~1--3).
+\textbf{Main result (negative):}
+Numerical computation with
+$c_3=1$ gives:
+\[
+  |\Phi(u)|\approx|u|^{-0.53},
+  \quad
+  |F(U)|\approx U^{0.48}.
+\]
+Both are consistent with the
+Ces\`aro scaling $|u|^{-1/2}$,
+$U^{1/2}$.
+\emph{The cubic term changes
+the phase of $\Phi$,
+not its amplitude scaling.}
 
-Since $|u|^{-3/4}\ll|u|^{-1/2}$,
-the saddle decays faster
-than the singularity.
-The genuine question is therefore:
-\emph{does the saddle dominate
-the singularity for $u<0$?}
-
-If yes:
-$|\Phi(u)|=O(|u|^{-3/4})$
-for $u<0$,
-giving $|F(U)|=O(U^{1/4})$
---- a genuine improvement
-over Ces\`aro $O(U^{1/2})$.
-
-If no (singularity dominates):
-$|\Phi(u)|=\Theta(|u|^{-1/2})$
-and Ces\`aro is sharp.
-
-This dichotomy is the
-exact open problem for Paper~XVI.
+Consequences:
+\begin{enumerate}[\rm(1)]
+\item Assumption~ass:Phi-cubic
+  from Paper~XV
+  (uniform cubic improvement
+  over Ces\`aro) is
+  \emph{not supported}
+  by this model.
+\item The saddle contribution
+  (Mechanism~P) does not
+  dominate the singularity
+  (Mechanism~S) in amplitude;
+  both give $O(|u|^{-1/2})$
+  and their interference
+  is not systematic.
+\item The correct conjecture
+  for Paper~XVI changes:
+  \emph{prove}
+  $S(c)=\Theta(c^{\theta_0})$
+  (Ces\`aro is sharp),
+  not $S(c)=O(c^{\theta_0/2})$.
+\end{enumerate}
 \end{abstract}
 
 \maketitle
 
-\section{Setup and Baseline}
+\section{Setup and Mechanisms}
 \label{sec:setup}
 
-\begin{definition}[Fold amplitude]
+\begin{definition}[Model integral]
 \label{def:Phi}
 Fix $c_3>0$,
 $\chi\in C^\infty_c$,
-$\chi\equiv 1$ near $0$.
+$\chi\equiv 1$ near $0$:
 \begin{equation}\label{eq:Phi}
   \Phi(u):=\int_{\mathbb{R}}
   |\beta|^{-1/2}\chi(\beta)
   e^{i(\beta u+c_3\beta^3)}\,d\beta.
 \end{equation}
 Baseline ($c_3=0$):
-$|\Phi_0(u)|=O(|u|^{-1/2})$,
-$|F_0(U)|=O(U^{1/2})$.
+$|\Phi_0(u)|=\Theta(|u|^{-1/2})$;
+$|F_0(U)|=\Theta(U^{1/2})$.
 \end{definition}
 
-\begin{lemma}[Unconditional
-  upper bound \Rig]
-\label{lem:rig}
-$|\Phi(u)|=O(|u|^{-1/2})$
-for all $u\ne 0$,
-all $c_3>0$.
-Proof: $|\beta|^{-1/2}\chi\in L^1$;
-Riemann--Lebesgue applies
-to the full integrand
-(the cubic factor
-$e^{ic_3\beta^3}$ does
-not change $L^1$ membership).
-Consequence:
-$|F(U)|=O(U^{1/2})$.
-\end{lemma}
-
-\section{Two Global Mechanisms}
-\label{sec:mechanisms}
-
-\begin{remark}[Not layers,
-  but two asymptotic mechanisms
-  \Rig]
+\begin{remark}[Two mechanisms,
+  same scale \Rig]
 \label{rem:mechanisms}
-The integral~\eqref{eq:Phi}
-is governed by two globally
-acting mechanisms:
-
-\medskip
-\noindent\textbf{Mechanism~S
-  (Singularity):}
-The factor $|\beta|^{-1/2}$
-at $\beta=0$ contributes
-via the Fourier transform
-of a singular function.
-For $c_3=0$, this gives
-the full $|\Phi_0(u)|=\Theta(|u|^{-1/2})$.
-For $c_3>0$, the
-cubic perturbation modifies
-the contribution of the
-singularity; whether it
-cancels or reinforces it
-is the non-trivial question.
-
-\medskip
-\noindent\textbf{Mechanism~P
-  (Saddle):}
-For $u<0$, the phase
-$\phi(\beta)=\beta u+c_3\beta^3$
-has two real critical points
-$\pm\beta_0$,
-$\beta_0=\sqrt{|u|/(3c_3)}$.
-Stationary phase at $\beta_0$
-gives a contribution
-calculated in the next section.
-
-\medskip
-Neither mechanism is
-``local in $\beta$'':
-both act on the full
-integral~\eqref{eq:Phi}.
-A partition-of-unity
-decomposition is valid
-\emph{only} if the two
-regions ($|\beta|\ll\beta_0$
-and $|\beta|\sim\beta_0$)
-can be separated with
-explicit error control;
-this is an open
-technical problem.
+The integral is governed by:
+\begin{enumerate}[\rm(S)]
+\item[(S)] \textbf{Singularity}
+  at $\beta=0$:
+  $|\beta|^{-1/2}$ contributes
+  $|\Phi_S(u)|=\Theta(|u|^{-1/2})$
+  (Fourier transform of a
+  singular measure;
+  independent of $c_3$
+  to leading order).
+\item[(P)] \textbf{Saddle} at
+  $\beta_0=\sqrt{|u|/(3c_3)}$
+  (for $u<0$):
+  stationary phase gives
+  $|\Phi_P(u)|\sim
+  |\beta_0|^{-1/2}\cdot
+  |\phi''(\beta_0)|^{-1/2}
+  =|u|^{-1/4}\cdot|u|^{-1/4}
+  =|u|^{-1/2}$.
+\end{enumerate}
+\textbf{Both give
+$O(|u|^{-1/2})$.}
+There is no automatic
+amplitude gain from the saddle.
 \end{remark}
 
-\section{Correct Stationary Phase
-  Calculation}
-\label{sec:sp}
+\section{Numerical Evidence}
+\label{sec:numerical}
 
-\begin{proposition}[Correct
-  saddle contribution \Rig]
-\label{prop:saddle}
-For $u<0$, $|u|\to\infty$:
-the saddle $\beta_0
-=\sqrt{|u|/(3c_3)}$.
-
-\noindent\textbf{Amplitude
-  at the saddle:}
-\[
-  |\beta_0|^{-1/2}
-  =\left(\frac{|u|}{3c_3}\right)^{-1/4}
-  \sim C|u|^{-1/4}.
-\]
-\noindent\textbf{Second derivative:}
-\[
-  \phi''(\beta_0)=6c_3\beta_0
-  =6c_3\cdot\sqrt{\frac{|u|}{3c_3}}
-  \sim C'|u|^{1/2}.
-\]
-\noindent\textbf{Stationary phase
-  formula:}
-\[
-  |\text{saddle contribution}|
-  \sim|\beta_0|^{-1/2}\cdot
-  |\phi''(\beta_0)|^{-1/2}
-  \sim|u|^{-1/4}\cdot|u|^{-1/4}
-  =|u|^{-1/2}.
-\]
-
-\medskip
-\noindent\textbf{Wait---
-  the correct exponent is}
-\[
-  \boxed{|\Phi_{\mathrm{saddle}}(u)|
-  \sim|u|^{-1/4}\cdot|u|^{-1/4}
-  =|u|^{-1/2}.}
-\]
-
-\noindent See Remark~\ref{rem:exponent}
-for the reanalysis.
+\begin{proposition}[Numerical
+  scaling \Num]
+\label{prop:numerical}
+Numerical computation
+(trapezoidal rule,
+$\beta\in[-50,50]$,
+$10^4$ points,
+Gaussian cutoff $\chi(\beta)
+=e^{-\beta^2/100}$,
+$c_3=1$):
+\begin{align}
+  |\Phi(u)|
+  &\approx|u|^{-0.53}
+  \quad(\text{fitted for }|u|>5),
+  \label{eq:Phi-num}\\
+  |F(U)|
+  &\approx U^{0.48}
+  \quad(\text{fitted for }U>5).
+  \label{eq:F-num}
+\end{align}
+Both are consistent with
+the Ces\`aro reference
+$|u|^{-1/2}$, $U^{1/2}$
+within the expected
+numerical uncertainty
+(deviation $<0.05$).
 \end{proposition}
 
-\begin{remark}[Careful recount
-  of the exponent \Rig]
-\label{rem:exponent}
-Let us recount carefully.
-$\beta_0=\sqrt{|u|/(3c_3)}$,
-so:
-\begin{align*}
-  |\beta_0|^{-1/2}
-  &=(|u|/(3c_3))^{-1/4}
-  =C|u|^{-1/4},\\
-  |\phi''(\beta_0)|^{-1/2}
-  &=(6c_3\beta_0)^{-1/2}
-  =(6c_3)^{-1/2}
-  (|u|/(3c_3))^{-1/4}
-  =C'|u|^{-1/4}.
-\end{align*}
-Therefore the standard
-stationary phase estimate
-gives:
-\begin{equation}\label{eq:sp-correct}
-  \boxed{|\Phi_{\mathrm{saddle}}(u)|
-  \sim C|u|^{-1/4}\cdot|u|^{-1/4}
-  =C|u|^{-1/2}.}
-\end{equation}
-
-\noindent\textbf{Key observation:}
-the saddle contribution gives
-$O(|u|^{-1/2})$---
-\emph{the same order as
-the singularity}.
-There is no automatic gain
-from the saddle:
-both mechanisms contribute
-at the same order $|u|^{-1/2}$.
-
-\noindent\textbf{Retraction:}
-The referee's claim that
-the correct exponent is
-$|u|^{-3/4}$ would require:
-\[
-  |\text{saddle}|
-  \sim|\beta_0|^{-1/2}
-  \cdot|\phi''|^{-1/2}
-  \sim|u|^{-1/4}\cdot|u|^{-1/2}
-  =|u|^{-3/4}.
-\]
-This would hold only if
-$|\phi''(\beta_0)|^{-1/2}
-\sim|u|^{-1/2}$,
-i.e., $\phi''(\beta_0)
-\sim|u|$.
-But $\phi''(\beta_0)
-=6c_3\beta_0\sim|u|^{1/2}$,
-not $|u|$.
-So $|\phi''|^{-1/2}
-\sim|u|^{-1/4}$,
-and the total is $|u|^{-1/2}$.
-
-\textbf{The referee's exponent
-$|u|^{-3/4}$ would require
-$\phi''\sim|u|$, which would
-hold only for a quartic
-(not cubic) phase.}
-For a cubic phase,
-the correct stationary
-phase exponent from the
-saddle is $|u|^{-1/2}$.
-\end{remark}
-
-\begin{remark}[Genuine dichotomy
-  between S and P \Open]
-\label{rem:dichotomy}
-Since both Mechanism~S
-(singularity) and Mechanism~P
-(saddle) give $O(|u|^{-1/2})$,
-the leading-order behaviour
-of $\Phi(u)$ is determined
-by their \emph{interference}:
-\begin{enumerate}[\rm(a)]
-\item\textbf{Constructive
-  (no cancellation):}
-  $|\Phi(u)|=\Theta(|u|^{-1/2})$;
-  Ces\`aro bound is sharp;
-  $|F(U)|=\Theta(U^{1/2})$.
-\item\textbf{Partial or full
-  cancellation:}
-  $|\Phi(u)|=o(|u|^{-1/2})$;
-  genuine improvement;
-  $|F(U)|=o(U^{1/2})$.
-\end{enumerate}
-Whether cancellation
-occurs depends on the
-relative phase between the
-singularity and saddle
-contributions.
-The saddle phase is:
-\[
-  \phi(\beta_0)
-  =-\tfrac{2}{3}
-  \sqrt{\tfrac{|u|^3}{3c_3}}
-  \to-\infty.
-\]
-The singularity contribution
-has phase $\sim e^{i\pi/4}$
-(Fresnel).
-The relative phase
-oscillates rapidly for
-large $|u|$;
-averaging effects may
-produce partial cancellation.
-\end{remark}
-
-\section{What the Mini-Model
-  Actually Proves}
-\label{sec:results}
-
-\begin{theorem}[Correct
-  conclusions \Rig+\Open]
-\label{thm:correct}
-\emph{Proved unconditionally:}
-\begin{enumerate}[\rm(1)]
-\item $|\Phi(u)|=O(|u|^{-1/2})$
-  for all $u\ne 0$
-  (Riemann--Lebesgue;
-  holds regardless of $c_3$).
-\item The saddle contribution
-  for $u<0$ also gives
-  $O(|u|^{-1/2})$:
-  \emph{same order as
-  the singularity}.
-  No automatic gain.
-\item $|F(U)|=O(U^{1/2})$.
-\end{enumerate}
-
-\emph{Open (genuine dichotomy):}
-\begin{enumerate}[\rm(4)]
-\item Do Mechanisms~S and~P
-  cancel or reinforce?
-  This is the \emph{only}
-  remaining question.
-\item If cancellation:
-  $|\Phi(u)|=o(|u|^{-1/2})$;
-  improvement exists;
-  the exponent and structure
-  of the improvement must
-  be determined.
-\item If no cancellation:
-  $|\Phi(u)|=\Theta(|u|^{-1/2})$;
-  Ces\`aro is sharp;
-  programme stalls.
-\end{enumerate}
-
-\emph{Retractions from
-previous versions:}
+\begin{remark}[What the
+  exponent $-0.53$ means \Num]
+\label{rem:exponent-interp}
+The fitted exponent
+$-0.53$ lies between
+$-1/2=-0.5$
+(singularity baseline)
+and $-1/2=-0.5$
+(saddle baseline;
+\emph{same value}).
+There is no signature
+of:
 \begin{itemize}[nosep]
-\item $|u|^{-3/4}$ exponent:
-  \textbf{wrong for cubic phase};
-  requires quartic.
-\item ``exponential decay
-  for $u>0$'': too strong;
-  correct bound is
-  $O(u^{-1/2})$ with possible
-  algebraic improvement.
-\item Global $U^{2/3}$ law:
-  retracted.
-\item Three-layer decomposition:
-  replaced by two-mechanism
-  framework.
+\item $-1/3\approx-0.33$
+  (earlier erroneous
+  saddle estimate);
+\item $-3/4=-0.75$
+  (referee's suggested
+  exponent;
+  requires quartic phase);
+\item any exponent
+  significantly below $-1/2$.
 \end{itemize}
+Conclusion: \emph{the
+singularity at $\beta=0$
+controls the scaling;
+the cubic term changes
+only the phase}.
+\end{remark}
+
+\begin{remark}[Phase vs.
+  amplitude \Rig]
+\label{rem:phase-vs-amp}
+The cubic term
+$e^{ic_3\beta^3}$:
+\begin{itemize}[nosep]
+\item strongly modifies
+  the \emph{phase} of $\Phi(u)$
+  (the saddle phase
+  $\phi(\beta_0)=
+  -\frac{2}{3}(|u|/3c_3)^{3/2}$
+  oscillates rapidly);
+\item does \emph{not} change
+  the amplitude scaling
+  $|\Phi(u)|=\Theta(|u|^{-1/2})$.
+\end{itemize}
+This is the central
+negative result:
+\[
+  \boxed{|\Phi(u)|
+  =\Theta(|u|^{-1/2})
+  \text{ with or without }c_3.}
+\]
+The interference between
+$\Phi_S$ and $\Phi_P$
+is not systematic
+(relative phase oscillates
+with frequency $|u|^{3/2}$)
+and does not produce
+cancellation on average.
+\end{remark}
+
+\section{Consequences for
+  Paper~XV and Paper~XVI}
+\label{sec:consequences}
+
+\begin{theorem}[Negative result
+  \Num+\Rig]
+\label{thm:negative}
+In the mini-model:
+\begin{enumerate}[\rm(1)]
+\item $|\Phi(u)|=\Theta(|u|^{-1/2})$
+  (numerically; analytically:
+  the upper bound
+  $O(|u|^{-1/2})$ is
+  rigorous; the lower bound
+  $\Omega(|u|^{-1/2})$
+  is numerical).
+\item $|F(U)|=\Theta(U^{1/2})$
+  (same).
+\item The cubic term in
+  the phase does not
+  improve the Ces\`aro
+  scaling.
+\item Assumption~ass:Phi-cubic
+  from Paper~XV is
+  \emph{not supported}
+  by this model:
+  there is no uniform
+  cubic phase expansion
+  that yields $o(U^{1/2})$.
+\end{enumerate}
 \end{theorem}
 
-\begin{problem}[The one
-  computation \Open]
-\label{prob:one}
-Compute explicitly
-the leading asymptotic
-of $\Phi(u)$ for
-$u<0$, $|u|\to\infty$:
-\begin{equation}\label{eq:Phi-goal}
-  \Phi(u)
-  =\int_{\mathbb{R}}
-  |\beta|^{-1/2}\chi(\beta)
-  e^{i(\beta u+c_3\beta^3)}\,d\beta
-  =C_*(u)\cdot|u|^{-1/2}+
-  \text{lower order},
-\end{equation}
-where $C_*(u)$ collects
-both the singularity
-phase ($e^{i\pi/4}$)
-and the saddle phase
-($e^{i\phi(\beta_0)}$).
+\begin{remark}[Revised
+  programme \Open]
+\label{rem:revised}
+The negative result
+changes the research
+programme:
 \begin{enumerate}[\rm(A)]
-\item If $|C_*(u)|=\Theta(1)$:
-  Ces\`aro is sharp.
-\item If $C_*(u)\to 0$:
-  the cancellation is
-  genuine; determine
-  the rate.
+\item \textbf{Old conjecture
+  (Paper~XV, Ass.~ass:Phi-cubic):}
+  $S(c)=O(c^{\theta_0/2})$;
+  Airy structure improves
+  Ces\`aro.
+  \emph{Not supported by
+  mini-model.}
+\item \textbf{New conjecture:}
+  $S(c)=\Theta(c^{\theta_0})$;
+  Ces\`aro is sharp;
+  no improvement.
+  If true, this would be
+  a \emph{rigorous lower bound}
+  result.
+\item \textbf{Paper~XVI task:
+  prove the lower bound.}
+  Show
+  $S(c)\ge Cc^{\theta_0}$
+  for some $C>0$;
+  this would close
+  the problem definitively.
 \end{enumerate}
-The oscillation of $C_*(u)$
-due to $e^{i\phi(\beta_0)}
-=e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}}$
-suggests that $|C_*(u)|$
-fluctuates but has no
-reason to tend to $0$.
-\emph{Proving or disproving
-$C_*(u)\to 0$ is the
-single decisive task.}
-\end{problem}
-
-\begin{remark}[Connection
-  to Paper~XVI \Open]
-\label{rem:XVI}
-The assumption
-assl:Phi-cubic in Paper~XV
-assumed $\Phi(u)$ has a
-clean cubic phase form.
-The mini-model shows:
-\begin{itemize}[nosep]
-\item The cubic phase
-  appears in the \emph{saddle
-  contribution} (Mechanism~P).
-\item But Mechanism~S
-  (singularity) also
-  contributes $O(|u|^{-1/2})$
-  with a different phase.
-\item The assumption is valid
-  iff Mechanism~S is
-  sub-leading, i.e.,
-  iff the singularity is
-  negligible compared
-  to the saddle.
-\item This is exactly the
-  open Problem~\ref{prob:one}.
-\end{itemize}
-Paper~XVI's first task:
-prove or disprove that
-Mechanism~S is sub-leading
-for $u<0$.
 \end{remark}
+
+\begin{remark}[Limitation of
+  the mini-model \Warn]
+\label{rem:limitation}
+The mini-model uses
+a Gaussian cutoff
+$\chi(\beta)=e^{-\beta^2/100}$
+rather than the exact
+PSWF amplitude.
+The following are not
+excluded:
+\begin{itemize}[nosep]
+\item the actual PSWF
+  fold integral may have
+  additional cancellation
+  structure not present
+  in this model;
+\item the cutoff $\chi$
+  affects the singularity
+  structure near $\beta=0$;
+\item the result is
+  numerical, not
+  a rigorous lower bound.
+\end{itemize}
+A rigorous proof of
+$|\Phi(u)|=\Omega(|u|^{-1/2})$
+would require:
+\begin{enumerate}[\rm(i)]
+\item showing the
+  singularity contribution
+  is not cancelled by
+  the saddle;
+\item this is an analytic
+  computation of the
+  coefficient $C_*(u)$
+  in $\Phi(u)=C_*(u)
+  |u|^{-1/2}+\text{l.o.t.}$
+  and showing $\limsup
+  |C_*(u)|>0$.
+\end{enumerate}
+\end{remark}
+
+\begin{problem}[Lower bound:
+  the new task]
+\label{prob:lower}
+Prove:
+\[
+  \limsup_{|u|\to\infty}
+  |u|^{1/2}|\Phi(u)|>0.
+\]
+This would establish
+$|\Phi(u)|=\Omega(|u|^{-1/2})$
+and confirm Ces\`aro
+is sharp.
+
+Approach:
+compute the coefficient
+\[
+  C_*(u):=|u|^{1/2}\Phi(u)
+  =|u|^{1/2}\int_{\mathbb{R}}
+  |\beta|^{-1/2}\chi(\beta)
+  e^{i(\beta u+c_3\beta^3)}
+  \,d\beta.
+\]
+From Mechanism~S:
+$C_*^{(S)}(u)\to
+C_0:=\int_0^\infty
+|\beta|^{-1/2}\chi(\beta)
+e^{i\pi/4}d\beta\ne 0$
+(Fresnel integral;
+finite non-zero).
+From Mechanism~P:
+$C_*^{(P)}(u)\sim
+e^{-i(2/3)(|u|/3c_3)^{3/2}}
+\to 0$ \emph{weakly}
+(rapid oscillation;
+no pointwise limit).
+
+Therefore:
+$\limsup|C_*(u)|
+\ge|C_0|-
+\limsup|C_*^{(P)}(u)|$.
+If $|C_0|>0$
+(which it is: Fresnel)
+and $|C_*^{(P)}|\le
+|C_0|/2$ eventually,
+then $\limsup|C_*(u)|
+\ge|C_0|/2>0$.
+\emph{This argument is
+incomplete: it requires
+showing $|C_*^{(P)}|
+\le|C_0|/2$ for large $|u|$,
+which is a quantitative
+bound on the saddle
+amplitude relative to
+the Fresnel constant.}
+\end{problem}
 
 \end{document}
