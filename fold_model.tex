@@ -24,433 +24,375 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  A Leading-Order Cancellation Problem\\
-  between Endpoint and Saddle}
+  CFU-Type Endpoint--Saddle Coalescence\\
+  with Singular Amplitude}
 
 \author{[Author]}
 
 \begin{abstract}
-We study the oscillatory integral
+We study
 \begin{equation*}
   \Phi(u):=\int_0^\infty
   \beta^{-1/2}\chi(\beta)
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
-  \quad u\in\mathbb{R},\;c_3>0,
+  \quad u\in\mathbb{R},\;c_3>0.
 \end{equation*}
-and $F(U):=\int_0^U\Phi(u)\,du$.
-
-\textbf{The central finding:}
-this is a
-\emph{leading-order cancellation
-problem}, not an upper-bound problem.
-Two mechanisms---the endpoint
-singularity at $\beta=0$
-and the saddle at $\beta_0
-=\sqrt{|u|/(3c_3)}$
-(for $u<0$)---both contribute
-exactly $O(|u|^{-1/2})$,
-and their sum cannot be
-analysed by treating them
-as independent.
-
-The structure belongs to
-the class of
-\emph{coalescing endpoint--saddle}
-problems
-(Chester--Friedman--Ursell 1957;
-Bleistein--Handelsman 1975),
-for which uniform asymptotic
-expansions require tools beyond
-standard stationary phase.
-
-Three things are established:
+Three facts are established
+or identified:
 \begin{enumerate}[\rm(1)]
-\item $\Phi(u)=o(1)$
-  (Riemann--Lebesgue only;
-  gives no rate).
-\item $|\Phi(u)|=O(|u|^{-1/2})$
-  (singular endpoint theorem,
-  Erd\'elyi 1956).
-\item The problem reduces to:
-  \emph{does the leading-order
-  coefficient $C_*(u)
-  :=|u|^{1/2}\Phi(u)$
-  vanish, stay bounded away
-  from zero, or oscillate
-  through zero?}
-  This is open.
+\item \textbf{Upper bound}
+  (rigorous):
+  $|\Phi(u)|=O(|u|^{-1/2})$
+  via Erd\'elyi's singular
+  endpoint theorem.
+  Riemann--Lebesgue gives
+  only $o(1)$.
+\item \textbf{Correct asymptotic
+  class}:
+  this is a
+  \emph{CFU-type
+  endpoint--saddle
+  coalescence problem}
+  (Chester--Friedman--Ursell
+  1957)
+  with a singular amplitude
+  $\beta^{-1/2}$.
+  The leading asymptotics
+  for $u<0$ is \emph{not}
+  a sum of two independent
+  constants times phases;
+  it is a single uniform
+  Airy-type object:
+  \[
+    \Phi(u)\sim
+    |u|^{-1/2}\cdot
+    \mathcal{A}(u),
+  \]
+  where $\mathcal{A}(u)$
+  is determined by the
+  CFU normal form and
+  the Jacobian of the
+  coordinate change at
+  $\beta=0$.
+\item \textbf{True open
+  problem}:
+  is the integral
+  \emph{CFU-reducible}
+  despite the singularity
+  $\beta^{-1/2}$ at the
+  endpoint $\beta=0$?
+  The singularity may
+  obstruct the standard
+  CFU coordinate change;
+  this is the technical
+  core of the problem.
 \end{enumerate}
-
-Both $\Phi(u)=o(|u|^{-1/2})$
-(full cancellation) and
-$\limsup|u|^{1/2}|\Phi(u)|>0$
-(Ces\`aro sharp) are
-consistent with current
-evidence.
 \end{abstract}
 
 \maketitle
 
-\section{Setup and Two Lemmas}
-\label{sec:setup}
+\section{Rigorous Bounds}
+\label{sec:bounds}
 
-\begin{definition}[Fold amplitude
-  on $[0,\infty)$]
-\label{def:Phi}
-$\chi\in C^\infty_c([0,\infty))$,
-$\chi(0)=1$, $\chi\ge 0$:
-\begin{equation}\label{eq:Phi}
-  \Phi(u)
-  :=\int_0^\infty
-  \beta^{-1/2}\chi(\beta)
-  e^{i(\beta u+c_3\beta^3)}
-  \,d\beta.
-\end{equation}
-\end{definition}
-
-\begin{lemma}[Riemann--Lebesgue
-  gives $o(1)$ only \Rig]
-\label{lem:RL}
-$\beta^{-1/2}\chi\in L^1$,
-so $\Phi(u)\to 0$
-as $|u|\to\infty$.
-\textbf{No rate follows
-from RL.}
-\end{lemma}
-
-\begin{lemma}[Singular endpoint
-  rate $O(|u|^{-1/2})$ \Rig]
-\label{lem:erdelyi}
-By the singular endpoint
-asymptotics theorem
-(Erd\'elyi 1956, p.~48;
-Bleistein--Handelsman 1975,
-Ch.~4):
-for $\alpha\in(0,1)$,
-$g\in C^\infty_c([0,\infty))$,
-$g(0)\ne 0$:
-\begin{equation}\label{eq:Erdelyi}
-  \int_0^\infty\beta^{\alpha-1}
-  g(\beta)e^{i\lambda\beta}
-  d\beta
-  =e^{i\pi\alpha/2}\Gamma(\alpha)
-  g(0)\lambda^{-\alpha}
-  +O(\lambda^{-(\alpha+1)}).
-\end{equation}
-For $\alpha=1/2$,
-$g_c(\beta):=\chi(\beta)
-e^{ic_3\beta^3}$,
-$g_c(0)=1$:
-\begin{equation}\label{eq:rate}
-  \Phi(u)
-  =e^{i\pi/4}\sqrt{\pi}
-  \cdot u^{-1/2}
-  +R(u,c_3),
-\end{equation}
-where the remainder $R$
-satisfies $|R(u,c_3)|
-=O(u^{-3/2})$
-\textbf{only when the
-cubic term is negligible},
-i.e.~when
-$c_3\beta^3\ll\beta u$
-throughout the support
-of $g_c$.
-This holds for $u\gg c_3$,
-but \emph{not} uniformly
-in $c_3$ or for $u<0$
-where the saddle
-enters.
-\end{lemma}
-
-\begin{remark}[Scope of
-  Lemma~\ref{lem:erdelyi}
-  \Warn]
-\label{rem:scope}
-Equation~\eqref{eq:rate}
-\textbf{does not apply}
-for $u<0$ when the saddle
-$\beta_0=\sqrt{|u|/(3c_3)}$
-lies inside the support
-of $\chi$.
-For $u<0$, the cubic
-term is not a small
-perturbation of
-$e^{i\beta u}$;
-it changes the global
-behaviour of the integrand.
-\end{remark}
-
-\section{The Saddle and the
-  Coalescing Problem}
-\label{sec:saddle}
-
-\begin{lemma}[Saddle for $u<0$
+\begin{lemma}[RL: $o(1)$ only
   \Rig]
-\label{lem:saddle}
-For $u<0$:
-phase $\phi(\beta)
-=\beta u+c_3\beta^3$
-has saddle at
-$\beta_0=\sqrt{|u|/(3c_3)}$,
-with $\phi(\beta_0)
-=-\frac{2}{3}(|u|^3/(3c_3))^{1/2}$
-and
-$\phi''(\beta_0)
-=6c_3\beta_0
-\sim C|u|^{1/2}$.
-Standard stationary phase
-(valid when $\beta_0$
-is \emph{away from} $0$,
-i.e.~$|u|\gg c_3$):
-\begin{equation}\label{eq:saddle}
-  \Phi_{\mathrm{sp}}(u)
-  \sim \beta_0^{-1/2}
-  (2\pi/|\phi''(\beta_0)|)^{1/2}
-  e^{i\phi(\beta_0)+i\pi/4}
-  = C|u|^{-1/4}
-  \cdot C'|u|^{-1/4}
-  \cdot e^{i(\cdots)}
-  = C''|u|^{-1/2}
-  e^{i\phi(\beta_0)}.
-\end{equation}
-\textbf{The saddle contributes
-$O(|u|^{-1/2})$ ---
-the same order as the
-endpoint in
-Lemma~\ref{lem:erdelyi}.}
+\label{lem:RL}
+$\beta^{-1/2}\chi\in L^1$
+$\Rightarrow$ $\Phi(u)=o(1)$.
+No rate follows from RL.
 \end{lemma}
 
-\begin{remark}[The coalescing
-  regime \Warn]
-\label{rem:coalescing}
-The standard stationary phase
-in Lemma~\ref{lem:saddle}
-requires $\beta_0\gg 0$,
-i.e.~$|u|\gg c_3$.
-For $|u|\sim c_3$,
-the saddle $\beta_0
-=O(1)$ is \emph{near}
-the endpoint $\beta=0$;
-the two mechanisms
-\emph{coalesce}.
-This is the regime studied
-by Chester--Friedman--Ursell
-(1957) and Olver (1974):
-the uniform asymptotic
-expansion in the
-coalescing regime
-involves Airy functions,
-not elementary stationary
-phase.
+\begin{lemma}[Erd\'elyi:
+  $O(|u|^{-1/2})$ \Rig]
+\label{lem:Erdelyi}
+For $u>0$, $u\to+\infty$,
+or for $u<0$ restricted
+to the region $|\beta|
+\ll \beta_0(u)$
+(endpoint contribution
+only):
+\begin{equation}\label{eq:Erdelyi}
+  \int_0^\infty
+  \beta^{-1/2}\chi(\beta)
+  e^{i\beta u}\,d\beta
+  = e^{i\pi/4}\sqrt{\pi}
+  \cdot u^{-1/2}
+  + O(u^{-3/2}).
+\end{equation}
+This requires the cubic
+term $c_3\beta^3$ to be
+negligible, i.e.~$c_3
+\beta_0^2 \ll |u|$.
+For $u<0$, the saddle
+$\beta_0=\sqrt{|u|/(3c_3)}
+\to\infty$, so the cubic
+term is \emph{not}
+negligible globally;
+Eq.~\eqref{eq:Erdelyi}
+applies only to the
+near-endpoint contribution.
+\end{lemma}
 
-For $|u|\gg c_3$:
-saddle and endpoint are
-well-separated;
-but they still contribute
-at the same order
-$O(|u|^{-1/2})$,
-so their sum requires
-a \emph{uniform treatment}
-even in the separated
-regime.
+\begin{remark}[Summary \Rig]
+\label{rem:bounds-summary}
+The rigorous content is:
+\[
+  \Phi(u)=O(|u|^{-1/2}),
+  \qquad
+  |F(U)|=O(U^{1/2}).
+\]
+These are upper bounds.
+The lower bound is open.
 \end{remark}
 
-\section{The Leading-Order
-  Cancellation Problem}
-\label{sec:cancellation}
+\section{The Correct Asymptotic
+  Class: CFU Coalescence}
+\label{sec:CFU}
 
-\begin{proposition}[Structure
-  of the problem \Rig+\Warn]
-\label{prop:structure}
-For $u<0$, $|u|\gg c_3$,
-the integral $\Phi(u)$
-receives contributions
-from (at least) two
-sources of size
-$O(|u|^{-1/2})$:
+\begin{remark}[Why not additive
+  $C_S + C_P$ \Warn]
+\label{rem:not-additive}
+A natural first attempt
+is to write:
 \[
   \Phi(u)
-  = C_S\cdot|u|^{-1/2}
-    e^{i\pi/4}
-  + C_P\cdot|u|^{-1/2}
+  \stackrel{?}{=}
+  |u|^{-1/2}
+  \bigl(
+    C_S e^{i\pi/4}
+    + C_P
     e^{i\phi(\beta_0)}
-  + O(|u|^{-3/2}),
+  \bigr)
+  + \text{lower order},
 \]
-where $C_S,C_P$ are
-non-zero constants
-(from endpoint and saddle
-respectively).
+where $C_S$ comes from
+the endpoint and $C_P$
+from the saddle.
+\textbf{This is not valid.}
+Reason: in CFU-type
+problems, the coordinate
+change
+\[
+  \phi(\beta,u)
+  :=\beta u+c_3\beta^3
+  \longmapsto
+  \pm\tfrac{1}{3}t^3
+  + \lambda(u)\cdot t
+\]
+\emph{couples} the image
+of $\beta=0$ and the
+image of $\beta_0$ into
+a single smooth function
+of $t$.
+The result is not a
+sum of two independent
+contributions but a
+single uniform expression
+involving the Airy
+function.
+Separate constants
+$C_S, C_P$ do not
+exist as independent
+asymptotic objects.
+\end{remark}
 
-\textbf{Critical warning:}
-this decomposition is
-\emph{formal}.
-The two contributions
-arise from the same
-integral; separating
-them requires a partition
-of unity with explicit
-error bounds, which
-has not been carried out.
-
-The leading coefficient is:
-\begin{equation}\label{eq:Cstar}
-  C_*(u):=|u|^{1/2}\Phi(u)
-  \approx C_S e^{i\pi/4}
-  + C_P
-  e^{-i\frac{2}{3}
-  (|u|/3c_3)^{3/2}}.
+\begin{remark}[CFU structure
+  in the non-singular case
+  \Rig]
+\label{rem:CFU-nonsingular}
+For a smooth amplitude
+$a(\beta)$ (no singularity
+at $\beta=0$), the
+CFU method (Chester,
+Friedman, Ursell 1957;
+Olver 1974, Ch.~11)
+gives:
+\begin{equation}\label{eq:CFU-standard}
+  \int_0^\infty
+  a(\beta)
+  e^{i(\beta u+c_3\beta^3)}
+  \,d\beta
+  \sim
+  e^{i\psi(u)}
+  \bigl[
+    A(u)\,
+    \mathrm{Ai}(\lambda(u))
+    + B(u)\,
+    \mathrm{Ai}'(\lambda(u))
+  \bigr],
 \end{equation}
-\end{proposition}
+where $\lambda(u)\sim
+-(3c_3)^{-1/3}|u|^{1/3}$
+for $u\to-\infty$,
+and $A(u), B(u)$ are
+smooth functions of $u$
+determined by the
+coordinate change
+$\beta\mapsto t$.
+For $|u|\to\infty$:
+$\mathrm{Ai}(\lambda)
+\sim\lambda^{-1/4}
+\cos(\tfrac{2}{3}
+|\lambda|^{3/2}-\tfrac{\pi}{4})$,
+which gives the
+$|u|^{-1/12}$-type
+growth of the Airy
+envelope times the
+$|u|^{1/3}$ scaling
+of $\lambda$---yielding
+the standard exponent
+for non-singular
+oscillatory integrals.
+\end{remark}
 
-\begin{remark}[Three scenarios
-  for $C_*(u)$]
-\label{rem:scenarios}
-\begin{enumerate}[\rm(A)]
-\item\textbf{No cancellation:}
-  $|C_*(u)|\ge c>0$
-  for all large $|u|$;
-  $|\Phi(u)|=\Theta(|u|^{-1/2})$;
-  Ces\`aro is sharp.
-\item\textbf{Oscillatory,
-  no collapse:}
-  $\limsup|C_*(u)|>0$
-  but $\liminf|C_*(u)|=0$;
-  Ces\`aro is sharp
-  ($\limsup$) but
-  $F(U)$ may grow slower
-  on subsequences.
-\item\textbf{Full cancellation:}
-  $C_*(u)\to 0$;
-  $|\Phi(u)|=o(|u|^{-1/2})$;
-  Ces\`aro is \emph{not}
-  sharp;
-  genuine improvement
-  possible.
+\begin{remark}[Effect of
+  singular amplitude
+  $\beta^{-1/2}$ \Warn]
+\label{rem:singular-amplitude}
+In our case, the amplitude
+is $a(\beta)=\beta^{-1/2}
+\chi(\beta)$, singular
+at $\beta=0$.
+Two effects:
+\begin{enumerate}[\rm(i)]
+\item The endpoint $\beta=0$
+  maps to some point
+  $t_0$ in the CFU
+  $t$-coordinate.
+  If $t_0\ne 0$,
+  the singularity appears
+  as an interior
+  singularity in the
+  $t$-integral,
+  and CFU applies
+  modulo a singular
+  weight $|t-t_0|^{-1/2}$.
+\item If $t_0=0$
+  (the singularity
+  coincides with the
+  Airy turning point),
+  the standard CFU
+  theory does not apply;
+  a modified expansion
+  is needed.
 \end{enumerate}
-All three are consistent
-with the upper bound
-$O(|u|^{-1/2})$.
-The numerical exponent
-$-0.53\approx-1/2$
-is consistent with
-Scenarios~(A) and~(B),
-but does not exclude~(C)
-(full cancellation would
-require a different
-numerical signature).
+Which case holds depends
+on whether $\beta=0$
+maps to the saddle
+critical point in $t$,
+which depends on the
+geometry of $\phi$.
 \end{remark}
 
-\begin{remark}[Why $|C_P|$
-  cannot be bounded
-  by $|C_S|/2$ trivially
-  \Warn]
-\label{rem:no-trivial}
-The coefficient $C_P$
-in~\eqref{eq:Cstar}
-is determined by the
-near-saddle behaviour
-of $\beta^{-1/2}\chi$;
-it depends on $c_3$
-and on the cutoff $\chi$.
-Without an explicit
-computation, we cannot
-assert $|C_P|<|C_S|$.
-The relative magnitude
-of $C_P$ vs $C_S$ is
-not a perturbation
-effect; it is an $O(1)$
-quantity determined by
-the geometry of the
-integral at $\beta_0$.
-\end{remark}
-
-\section{The Correct Open Problem}
+\section{The True Open Problem}
 \label{sec:open}
 
-\begin{problem}[Compute
-  $C_*(u)$ uniformly
-  \Open]
-\label{prob:Cstar}
-Compute the leading
-asymptotic of $C_*(u)
-=|u|^{1/2}\Phi(u)$
-for $u<0$, $|u|\to\infty$,
-using a \emph{uniform}
-asymptotic expansion
-that treats both the
-endpoint $\beta=0$ and
-the saddle $\beta_0$
-simultaneously.
+\begin{problem}[CFU
+  reducibility with singular
+  amplitude \Open]
+\label{prob:CFU}
+Is the integral
+$\Phi(u)=\int_0^\infty
+\beta^{-1/2}\chi(\beta)
+e^{i(\beta u+c_3\beta^3)}
+d\beta$ reducible to
+a uniform Airy expansion
+of the form~\eqref{eq:CFU-standard}
+with the singular amplitude
+carried through the
+CFU coordinate change?
 
-The correct framework
-is the Chester--Friedman--Ursell
-(1957) method:
-transform
-$\phi(\beta)=\beta u+c_3\beta^3$
-to the normal form
-$\pm\frac{1}{3}t^3+\lambda t$
-via $\beta\mapsto t$,
-carrying the singular
-amplitude $\beta^{-1/2}$
-through the transformation.
-The result will be
-an Airy-type expansion
-with a coefficient
-determined by the
-Jacobian of the
-transformation at
-$\beta=0$.
-
-\textbf{This is exactly
-what Assumption~ass:Phi-cubic
-of Paper~XV was attempting
-to assume without proof.}
-The CFU method is the
-correct tool.
-Whether it applies
-here (given the
-singularity at $\beta=0$)
-is the key technical
-question.
+Specifically:
+\begin{enumerate}[\rm(i)]
+\item Compute the CFU
+  map $\beta\mapsto t$
+  for $\phi(\beta,u)
+  =\beta u+c_3\beta^3$;
+  determine where
+  $\beta=0$ maps.
+\item If $\beta=0\mapsto
+  t_*\ne 0$:
+  the singular amplitude
+  $|t-t_*|^{-1/2}$
+  appears in the $t$-integral;
+  apply endpoint singular
+  asymptotics to the
+  $t$-integral.
+  This gives a modified
+  Airy expansion with
+  coefficients determined
+  by $t_*$ and the
+  Jacobian $d\beta/dt$
+  at $\beta=0$.
+\item If $\beta=0\mapsto
+  t_*=0$:
+  standard CFU fails;
+  a modified theory is
+  required (see
+  Temme 1985;
+  Kaminski 1994).
+\end{enumerate}
+\textbf{This is the exact
+technical question that
+Assumption~ass:Phi-cubic
+of Paper~XV was implicitly
+assert\-ing without proof.}
 \end{problem}
+
+\begin{remark}[Consequence
+  for the limsup conjecture
+  \Open]
+\label{rem:limsup}
+If Problem~\ref{prob:CFU}
+is resolved and gives
+a uniform Airy expansion
+$\Phi(u)\sim|u|^{-1/2}
+\mathcal{A}(u)$,
+then:
+\begin{itemize}[nosep]
+\item $\mathcal{A}(u)$
+  is an \emph{Airy-type}
+  function, not a sum
+  of two constants;
+\item whether
+  $\limsup|\mathcal{A}(u)|>0$
+  follows from the known
+  asymptotics of Airy
+  functions (non-vanishing
+  oscillating envelope);
+\item the three-scenario
+  classification (A/B/C
+  in v8) is replaced
+  by: does the Airy
+  coefficient in the
+  CFU expansion vanish?
+  For non-degenerate
+  geometry, it does not.
+\end{itemize}
+\end{remark}
 
 \begin{conjecture}[\Open]
 \label{conj:sharp}
-$\limsup_{u\to-\infty}
+The integral is
+CFU-reducible
+(Problem~\ref{prob:CFU},
+case~\rm(ii), $t_*\ne 0$),
+and $\limsup_{u\to-\infty}
 |u|^{1/2}|\Phi(u)|>0$.
-
-Heuristic basis:
-the rapidly oscillating
-saddle phase
-$e^{-i\frac{2}{3}(|u|/3c_3)^{3/2}}$
-cannot cancel the
-constant endpoint
-contribution $C_S e^{i\pi/4}$
-for \emph{all}
-$u<0$---that would require
-a global phase resonance
-condition with irrational
-frequency.
-
-This is \emph{not proved};
-Scenario~(C) (full
-cancellation) is not
-excluded.
 \end{conjecture}
 
 \section{Numerical Evidence}
-\label{sec:numerical}
+\label{sec:num}
 
 \begin{proposition}[\Num]
-For $c_3=1$, $u\in[-30,-0.5]$:
 $|\Phi(u)|\approx|u|^{-0.53}$,
-$|F(U)|\approx U^{0.48}$.
+$|F(U)|\approx U^{0.48}$
+(see above).
 Consistent with
-Scenarios~(A)--(B);
-does not exclude~(C)
-(full cancellation
-would require $|u|\gg 30$).
+$O(|u|^{-1/2})$;
+does not exclude
+full Airy cancellation
+at larger $|u|$.
 \end{proposition}
 
 \begin{thebibliography}{9}
@@ -475,6 +417,21 @@ F.~W.~J.~Olver,
 \textit{Asymptotics and
 Special Functions},
 Academic Press, 1974.
+\bibitem{Temme1985}
+N.~M.~Temme,
+\textit{Uniform asymptotic
+expansions of integrals;
+a selection of problems},
+J.\ Comput.\ Appl.\ Math.
+\textbf{12--13} (1985),
+95--110.
+\bibitem{Kaminski1994}
+D.~Kaminski,
+\textit{Asymptotic expansion
+of the Pearcey integral
+near a caustic},
+SIAM J.\ Math.\ Anal.
+\textbf{20} (1989), 987--1005.
 \end{thebibliography}
 
 \end{document}
