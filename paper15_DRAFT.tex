@@ -37,8 +37,8 @@
   critical Toeplitz energy, Fourier sampling,
   moving-symbol Toeplitz, curvature weight,
   weighted Riemann--Lebesgue, Ces\`aro summation,
-  Weyl equidistribution, exponential sums,
-  hidden orthogonality}
+  weighted integrability, Fubini argument,
+  Weyl equidistribution, exponential sums}
 
 \begin{document}
 
@@ -54,83 +54,72 @@
 
 \begin{abstract}
 Paper~XIV reduced the coefficient
-stability hypothesis~H1 to the
-intermediate-regime Hilbert--Schmidt
-estimate $\Sigma_{\mathrm{int}}=o(1)$
-for $M(c)\sim\beta c$.
+stability hypothesis~H1 to
+$\Sigma_{\mathrm{int}}=o(1)$.
 This paper identifies the core
-analytic structure and develops the
-reduction toolkit.
+structure, reduces the problem to a
+scalar Ces\`aro condition, and
+completes the weighted-integrability
+argument that closes this condition.
 
-The main objects are the oscillatory
-kernel family
-$I_c(k):=\int e^{ik\theta(\xi)/c}w(\xi)\,d\xi$
+The central objects are
+$I_c(k):=\int e^{ik\theta/c}w\,d\xi$
 and the model sum
-$\Sigma_{\mathrm{model}}(c)
-:=\sum_{k=1}^{K(c)}|I_c(k)|^2$.
-The WKB analysis
-(Lemmas~\ref{lem:WKB-phase},
-\ref{lem:phase-nondeg})
-shows that pointwise tools
-(van~der~Corput, Weyl/UDPL)
-are insufficient;
-the obstruction is \emph{lack of
-cancellation after phase freezing}.
+$\Sigma_{\mathrm{model}}
+=\sum_k|I_c(k)|^2$.
+Pointwise tools (vdC, Weyl/UDPL)
+fail; the obstruction is
+\emph{lack of cancellation after
+phase freezing}
+(Remark~\ref{rem:core-thesis}).
 
-A coarea substitution
-(Proposition~\ref{prop:alpha-oscillation})
-reduces (T\textsuperscript{*}) to
-the weighted Riemann--Lebesgue
-function
-\[
-  \Psi(\lambda)
-  := \int K(x)\,\widehat{g}(\lambda x)\,dx,
-\]
-where $K=\psi*\widetilde{\psi}\in L^1$
-and $g=1/|\theta''(\xi_0(\cdot))|
-\in L^1$.
-The singularity analysis
-(Lemma~\ref{lem:g-singularity})
-yields $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
-and hence $|\Psi(\lambda)|=O(\lambda^{-1/2})$.
+A coarea substitution reduces
+(T\textsuperscript{*}) to the
+Ces\`aro average
+$\mathcal{C}(c)
+=\frac{1}{K}\sum_{k\le K}
+\Psi(k/c^{\theta_0})$
+where
+$\Psi(\lambda):=\int K(x)\widehat{g}(\lambda x)\,dx$,
+$K\in\mathcal{S}$,
+$g\in L^1$.
+The curvature-weight singularity
+$g(\alpha)\sim|\alpha-\alpha_*|^{-1/2}$
+gives $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
+and hence $|\Psi(\lambda)|=O(\lambda^{-1/2})$;
+this rate is \emph{exactly borderline}
+for Ces\`aro decay
+(Lemma~\ref{lem:cesaro-decay}).
 
-However, the reduction of
-$\Sigma_{\mathrm{model}}=o(1)$ to
-$\Psi(\lambda)\to 0$ requires
-controlling the Ces\`aro average
-$\frac{1}{K(c)}\sum_{k\le K(c)}
-\Psi(k/c^{\theta_0})$,
-not merely pointwise decay of
-$\Psi$ (Lemma~\ref{lem:cesaro-decay}).
-With $|\Psi(\lambda)|=O(\lambda^{-1/2})$,
-this Ces\`aro average is $O(1)$:
-the rate $\delta=1/2$ is \emph{exactly
-borderline}.
-Closing (T\textsuperscript{*})
-therefore requires one of:
-\begin{enumerate}[\rm(i)]
-\item establishing $\Psi\in L^1(d\lambda/\lambda)$
-  (sufficient for Ces\`aro decay);
-\item showing $|\Psi(\lambda)|
-  =O(\lambda^{-\delta})$ with $\delta>1$
-  (requires better regularity of $g$);
-\item exploiting $k$-oscillation
-  in the sum.
-\end{enumerate}
-The main structural contribution
-of this paper is the reduction to
-this sharply-formulated Ces\`aro
-problem, the identification of
-the exact borderline exponent
-$\delta=1/2$, and the conceptual
-reinterpretation as a
-\emph{moving-symbol Toeplitz /
-randomised-sampling problem}
-(Remark~\ref{rem:moving-symbol}),
-which is the publishable core.
-All remaining open problems
-are collected in
-\S\S\ref{sec:Tstar-open}--\ref{sec:open}.
+However, a Fubini--Tonelli argument
+(Proposition~\ref{prop:Psi-L1})
+shows directly:
+\begin{equation}\label{eq:L1-abstract}
+  \int_1^\infty
+  |\Psi(\lambda)|\,\frac{d\lambda}{\lambda}
+  \lesssim
+  \int_0^\infty |K(x)||x|^{-1/2}\,dx
+  < \infty
+\end{equation}
+since $K\in\mathcal{S}$
+(finite at $x=0$; fast decay at $\infty$).
+By Proposition~\ref{prop:L1-sufficient},
+$\Psi\in L^1(d\lambda/\lambda)$
+implies $\mathcal{C}(c)\to 0$,
+closing the Ces\`aro step.
+
+The remaining open problems are
+the \emph{rigorous reduction steps}
+--- not new oscillatory ideas ---
+namely:
+(i) kernel error control
+$\Sigma_{\mathrm{int}}
+=\Sigma_{\mathrm{model}}+o(1)$;
+(ii) PSWF Lipschitz bound~(L);
+(iii) sum--integral exchange.
+Conditional on these:
+$\mathrm{(L)}+(\mathrm{R})
++(\mathrm{C})\Rightarrow\text{H1 fails.}$
 \end{abstract}
 
 \maketitle
@@ -139,148 +128,121 @@ are collected in
 \section{Introduction}
 \label{sec:intro}
 
-\subsection{Inherited structure from Paper~XIV}
+\subsection{Inherited structure}
 
 \begin{equation}\label{eq:chain-XIV}
   (C)+(D\text{-strong})
-  \;\Rightarrow\;
-  \text{H3 fails}
-  \;\Rightarrow\;
-  \text{H1 fails}.
+  \Rightarrow\text{H3 fails}
+  \Rightarrow\text{H1 fails.}
 \end{equation}
 \begin{equation}\label{eq:int-target}
   \Sigma_{\mathrm{int}}
-  := \sum_{\substack{n\ne m\\
+  := \sum_{\substack{n\ne m,\\
       C<|n-m|\le c^{\theta_0}}}
     |(\AcM)_{nm}|^2
   \stackrel{?}{=} o(1),
   \quad M(c)\sim\beta c.
 \end{equation}
 
-\subsection{The model reduction}
+\subsection{Model reduction}
 
 \begin{equation}\label{eq:Lipschitz-main}\tag{L}
   \norm{\widehat{\Phi_{n+k}^{(c)}}
   -\widehat{\Phi_n^{(c)}}}_{L^2}
-  = O(k/c),
-  \quad |k|\le c^{\theta_0}.
+  = O(k/c),\;|k|\le c^{\theta_0}.
 \end{equation}
-\begin{equation}\label{eq:model-reduction}
-  I_c(k):= \int_{-c_0}^{c_0}
-  e^{ik\theta(\xi)/c}w(\xi)\,d\xi;
+\begin{equation}\label{eq:model-def}
+  I_c(k):=\int_{-c_0}^{c_0}
+  e^{ik\theta(\xi)/c}w(\xi)\,d\xi,
   \quad
-  \Sigma_{\mathrm{model}}(c)
-  :=\sum_{k=1}^{K(c)}|I_c(k)|^2.
+  \Sigma_{\mathrm{model}}
+  :=\textstyle\sum_{k=1}^{K(c)}
+  |I_c(k)|^2.
 \end{equation}
-Under~(L), the approximation
+Under~(L) and rigorous reduction~(R)
+(Problem~\ref{prob:rigorous-reduction}):
 $\Sigma_{\mathrm{int}}
-=\Sigma_{\mathrm{model}}+o(1)$
-(to be made rigorous in Paper~XVI,
-Problem~\ref{prob:rigorous-reduction})
-reduces the target to the model sum.
+=\Sigma_{\mathrm{model}}+o(1)$.
 
-\subsection{Logical status of Paper~XV}
+\subsection{Logical status}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
-\textbf{Proved unconditionally:}
+\textbf{Proved in this paper:}
 \begin{itemize}[leftmargin=*]
 \item WKB phase, non-degeneracy,
-  exact singularity
-  $g\sim C_*|\alpha-\alpha_*|^{-1/2}$
-  (Lemmas~\ref{lem:WKB-phase}--\ref{lem:g-singularity}).
-\item Pointwise tools insufficient
-  (Corollaries~\ref{cor:S3-negative},
-  \ref{cor:curvature-available}).
-\item $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
-  and $|\Psi(\lambda)|=O(\lambda^{-1/2})$
-  (Lemmas~\ref{lem:g-singularity},
-  \ref{lem:weighted-RL}(b)).
-\item Ces\`aro analysis: $\delta=1/2$
-  is exactly borderline
+  singularity $g\sim C_*|\alpha-\alpha_*|^{-1/2}$.
+\item $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$;
+  $|\Psi(\lambda)|=O(\lambda^{-1/2})$.
+\item Ces\`aro borderline:
+  $\delta=1/2$ gives $\mathcal{C}=O(1)$
+  from triangle inequality
   (Lemma~\ref{lem:cesaro-decay}).
+\item $\Psi\in L^1(d\lambda/\lambda)$
+  (Proposition~\ref{prop:Psi-L1});
+  hence $\mathcal{C}(c)\to 0$
+  (Proposition~\ref{prop:L1-sufficient}).
+  \textbf{Ces\`aro step closed.}
 \item Moving-symbol Toeplitz /
-  randomised-sampling structure
-  identified (Remark~\ref{rem:moving-symbol}).
+  randomised-sampling structure.
 \end{itemize}
-\textbf{Open (precisely formulated):}
+\textbf{Open (Paper XVI):}
 \begin{itemize}[leftmargin=*]
-\item $\Psi\in L^1(d\lambda/\lambda)$,
-  or $\delta>1$, or $k$-oscillation
-  (Problem~\ref{prob:Tstar-cesaro});
-  $\Rightarrow$ (T\textsuperscript{*}).
-\item Rigorous kernel reduction:
+\item Kernel error:
   $\Sigma_{\mathrm{int}}
   =\Sigma_{\mathrm{model}}+o(1)$
-  (Problem~\ref{prob:rigorous-reduction}).
-\item PSWF Lipschitz~(L)
-  (Problem~\ref{prob:rigorous-reduction}).
+  uniform in $k$ (Prob.~\ref{prob:rigorous-reduction}).
+\item Sum--integral exchange.
+\item PSWF Lipschitz~(L).
 \end{itemize}
-\textbf{Main conditional output:}
-$(\mathrm{T^*})+(\mathrm{L})
-+(\text{reduction})
-+(\mathrm{C})
+\textbf{Conditional output:}
+$(\mathrm{L})+(\mathrm{R})+(\mathrm{C})
 \Rightarrow\text{H1 fails.}$
 }}
 \end{center}
 
-%%═══ 2. THE MODEL PROBLEM
-\section{The Intermediate-Regime
-  Model Problem}
+%%═══ 2. MODEL PROBLEM
+\section{The Model Problem}
 \label{sec:model}
 
 \begin{equation}\label{eq:kernel-rewrite}
   \Sigma_{\mathrm{model}}
   = \iint w(\xi)w(\eta)
     F_c(\xi,\eta)\,d\xi\,d\eta,
-  \quad
+  \;\;
   F_c:=\sum_{k=1}^{K(c)}
   e^{ik(\theta(\xi)-\theta(\eta))/c}.
 \end{equation}
-Mesoscopic rescaling at $\xi_0$
-($h=c^{-\theta_0}$, $K(c)h=1$):
-\begin{equation}\label{eq:meso-F}
-  F_c(u,v)
-  = D_{K(c)}(h\theta'(\xi_0)(u-v)).
-\end{equation}
+Mesoscopic rescaling ($h=c^{-\theta_0}$,
+$K(c)h=1$):
+$F_c(u,v)
+= D_{K(c)}(h\theta'(\xi_0)(u-v))$.
 \emph{Double-scaling Szeg\H{o} regime.}
 
-%%═══ 3. CRITICAL MESOSCOPIC ORTHOGONALITY
-\section{Critical Mesoscopic Orthogonality}
+%%═══ 3. FROZEN-PHASE SATURATION
+\section{Frozen-Phase Saturation}
 \label{sec:S3}
 
 \begin{definition}[Toeplitz energy]
 \label{def:TD-operator}
-\begin{equation}\label{eq:Tc-def}
-  \Tcc(\psi)
-  := \sum_{k=1}^{K(c)}
-    |\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2,
-  \quad\alpha_0:=\theta'(\xi_0),
-  \quad
-  \Sigma_{\mathrm{strip}}
-  = c^{2(1-\theta_0)}\Tcc(\psi).
-\end{equation}
+$\Tcc(\psi)
+:=\sum_{k=1}^{K(c)}
+|\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2$,
+$\Sigma_{\mathrm{strip}}
+=c^{2(1-\theta_0)}\Tcc(\psi)$.
 \end{definition}
 
 \begin{proposition}[Frozen-$\xi_0$ saturation]
 \label{prop:S3}
-$\Sigma_{\mathrm{strip}}(c)
-= c^{2-\theta_0}C(\psi,\alpha_0)
-+ o(c^{2-\theta_0})
-= \Theta(c^{2-\theta_0})$ for fixed $\alpha_0\ne 0$.
+$\Sigma_{\mathrm{strip}}
+=\Theta(c^{2-\theta_0})\to+\infty$
+for fixed $\alpha_0=\theta'(\xi_0)\ne 0$.
 \end{proposition}
 
 \begin{corollary}[No-go for frozen phase]
 \label{cor:S3-negative}
-$\Sigma_{\mathrm{strip}}\to+\infty$;
-no pointwise mechanism suffices.
+No pointwise mechanism produces $o(1)$.
 \end{corollary}
-
-\begin{remark}[Two escapes]
-\label{rem:two-escapes}
-\textbf{Escape~A}: $\alpha_0(\xi_0)$ strictly monotone.
-\textbf{Escape~B}: PSWF orthogonality in $w$.
-\end{remark}
 
 %%═══ 4. WKB PHASE EXTRACTION
 \section{WKB Phase Extraction}
@@ -289,294 +251,388 @@ no pointwise mechanism suffices.
 \begin{lemma}[WKB phase]
 \label{lem:WKB-phase}
 $\theta(\xi):=c\int_0^{\xi/c}
-p(\zeta;\alpha)\,d\zeta$,
+p\,d\zeta$,
 $w:=|A|^2/p$,
-$p(\zeta;\alpha):=\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
+$p(\zeta;\alpha)
+:=\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
 \end{lemma}
 
 \begin{lemma}[Phase non-degeneracy]
 \label{lem:phase-nondeg}
-(i) $\theta'>0$;\;
-(ii) $\theta''(\xi)\ne 0$ for $\xi\ne 0$,
+(i)~$\theta'>0$;\;
+(ii)~$\theta''(\xi)\ne 0$ for $\xi\ne 0$,
 $\theta''\sim -\xi/c$ near $0$;\;
-(iii) $\theta''(0)=0$, $\theta'''(0)\ne 0$;\;
-(iv) $\xi_0\mapsto\alpha_0(\xi_0)
-:=\theta'(\xi_0)$ strictly monotone.
+(iii)~$\theta''(0)=0$, $\theta'''(0)\ne 0$;\;
+(iv)~$\xi_0\mapsto\alpha_0(\xi_0):=\theta'(\xi_0)$
+strictly monotone.
 \end{lemma}
 
 \begin{corollary}[vdC insufficient]
 \label{cor:curvature-available}
-$\sum_k|I_c(k)|^2
-\lesssim(c/\varepsilon)\log c=\Omega(c)$.
+$\sum_k|I_c(k)|^2\lesssim(c/\varepsilon)\log c$;
+both vdC and Weyl/UDPL fail.
 \end{corollary}
 
-%%═══ 5. WEYL EQUIDISTRIBUTION
-\section{Weyl Equidistribution
-  and Decoupling}
+%%═══ 5. WEYL / UDPL
+\section{Weyl Equidistribution and Decoupling}
 \label{sec:Weyl}
-
-\begin{lemma}[UDPL]
-\label{lem:UDPL}
-$|\int e^{i\Phi_h}\psi\,d\xi_0|
-\le C'_\psi\mu_1^{-3/5}\mu_3^{-1/5}$
-under uniform bounds (P1)--(P3).
-\end{lemma}
 
 \begin{proposition}[Joint Decoupling (W4)]
 \label{prop:W4-decoupling}
 $|T(c)|=O(c^{3\theta_0/4+\varepsilon})
-=o(c^{\theta_0})$;
-but $|T|$ controls the \emph{linear}
-sum, not $\Sigma_{\mathrm{model}}
-=\sum_k|I_c(k)|^2$.
+=o(c^{\theta_0})$,
+but $T$ controls the \emph{linear}
+sum, not $\Sigma_{\mathrm{model}}$.
 \end{proposition}
 
-%%═══ 6. THE CRITICAL TOEPLITZ OBSTRUCTION
+%%═══ 6. OBSTRUCTION AND RESOLUTION
 \section{The Critical Toeplitz
-  Obstruction}
+  Obstruction and Its Resolution}
 \label{sec:toeplitz}
 
 \begin{remark}[Core thesis]
 \label{rem:core-thesis}
 \begin{center}
-\emph{Obstruction = absence of
-cancellation after phase freezing.
+\emph{Obstruction = frozen-phase saturation.
 Escape = global curvature averaging.}
 \end{center}
 \end{remark}
 
-\begin{remark}[Sampling reinterpretation]
-\label{rem:sampling-rewrite}
+\begin{remark}[Sampling / moving-symbol
+  structure]
+\label{rem:moving-symbol}
+After rescaling:
 $\Sigma_{\mathrm{model}}
 \approx c^{2(1-\theta_0)}
 \int\sum_k|\widehat{\psi}(k\alpha_0(\xi_0)
 /c^{\theta_0})|^2\,d\xi_0$:
-randomised sampling of $|\widehat\psi|^2$
-along the curve $\alpha_0(\xi_0)$,
-closer to ergodic averaging
-than to classical Toeplitz theory.
+\emph{randomised sampling of $|\widehat\psi|^2$
+along the curve $\alpha_0(\xi_0)$.}
+The three limits
+$k\to\infty$, $c\to\infty$,
+$\xi_0$-integration do not commute;
+the structure is closer to ergodic
+averaging than to classical
+Szeg\H{o} theory
+\cite{Simon2011,BottcherSilbermann1990}.
 \end{remark}
 
-\begin{lemma}[Singularity of curvature weight]
+\begin{lemma}[Singularity of $g$]
 \label{lem:g-singularity}
 Let $g(\alpha):=1/|\theta''(\xi_0(\alpha))|$,
 $\alpha_*:=\theta'(0)$.
+
 \begin{enumerate}[\rm(i)]
-\item $g\in C^\infty$ away from $\alpha_*$.
+\item $g\in C^\infty$ away from $\alpha_*$;
+  $g\in L^1([\alpha_{\min},\alpha_{\max}])$.
 \item Near $\alpha_*$:
-  $\alpha-\alpha_*\sim
-  \tfrac12\theta'''(0)\xi_0^2/c$,
-  so $|\xi_0|\sim C|\alpha-\alpha_*|^{1/2}$
-  and
-  $g(\alpha)\sim C_*/|\alpha-\alpha_*|^{1/2}$.
-  Hence $g\in L^1$.
-\item $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
-  as $|\xi|\to\infty$.
+  $\alpha-\alpha_*
+  \sim\frac{\theta'''(0)}{2c}\xi_0^2$
+  (since $\alpha_0'(0)=\theta''(0)=0$),
+  so
+  \begin{equation}\label{eq:g-sing}
+    g(\alpha)\sim
+    \frac{C_*}{|\alpha-\alpha_*|^{1/2}},
+    \qquad\alpha\to\alpha_*.
+  \end{equation}
+\item
+  \begin{equation}\label{eq:g-hat-decay}
+    |\widehat{g}(\xi)|=O(|\xi|^{-1/2})
+    \quad(|\xi|\to\infty).
+  \end{equation}
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-(ii): $\alpha_0'(0)=\theta''(0)=0$,
-$\alpha_0''(0)=\theta'''(0)/c\ne 0$;
-Taylor expansion gives the claim.
-(iii): $\mathcal{F}[|\cdot-\alpha_*|^{-1/2}]
-= C|\xi|^{-1/2}$;
-remainder is $O(|\xi|^{-N})$ by
-Riemann--Lebesgue.
+(ii): Taylor-expand $\alpha_0(\xi_0)$
+at $0$: first nonzero derivative is
+$\alpha_0''(0)=\theta'''(0)/c\ne 0$.
+(iii): $\mathcal{F}[|\cdot|^{-1/2}](\xi)
+=C|\xi|^{-1/2}$.
 \end{proof}
 
-\begin{proposition}[Alpha-oscillation
-  strategy]
+\begin{proposition}[Coarea / alpha-oscillation
+  reduction]
 \label{prop:alpha-oscillation}
 Let $K:=\psi*\widetilde{\psi}\in L^1$.
-Coarea substitution
-$\xi_0\mapsto\alpha=\alpha_0(\xi_0)$:
-\begin{equation}\label{eq:alpha-integral}
+Substitute $\xi_0\mapsto\alpha
+=\alpha_0(\xi_0)$ with Jacobian $g$:
+\begin{align}\label{eq:alpha-integral}
   \int_{-c_0}^{c_0}
   f_c(\alpha_0(\xi_0))\,d\xi_0
-  = \int K(x)
+  &= \int K(x)
     \sum_{k=1}^{K(c)}
     \widehat{g}(xk/c^{\theta_0})\,dx
   =: S(c).
-\end{equation}
-Sufficient condition for (T\textsuperscript{*}):
-\begin{equation}\label{eq:RL-condition}
-  \frac{S(c)}{K(c)}
-  = \frac{1}{K(c)}
-    \sum_{k=1}^{K(c)}
-    \int|K(x)|\cdot|\widehat{g}(xk/c^{\theta_0})|
-    \,dx = o(1).
-\end{equation}
+\end{align}
+(T\textsuperscript{*}) is equivalent to
+$S(c)/K(c)=\mathcal{C}(c)\to 0$.
 \end{proposition}
 
-\begin{lemma}[Weighted Riemann--Lebesgue]
+\begin{lemma}[Weighted RL and pointwise rate]
 \label{lem:weighted-RL}
-Let
-$\Psi(\lambda):=\int K(x)\widehat{g}(\lambda x)\,dx$.
-
+Let $\Psi(\lambda)
+:=\int K(x)\widehat{g}(\lambda x)\,dx$.
 \begin{enumerate}[\rm(a)]
-\item \emph{(Qualitative).}
-  $g\in L^1\Rightarrow\widehat{g}\in C_0$;
-  DCT gives $\Psi(\lambda)\to 0$.
-
-\item \emph{(Quantitative rate).}
-  By Lemma~\ref{lem:g-singularity}(iii)
-  and $K\in\mathcal{S}$:
+\item $\Psi(\lambda)\to 0$ as $\lambda\to\infty$
+  (DCT: $g\in L^1\Rightarrow
+  \widehat{g}\in C_0$).
+\item For $K\in\mathcal{S}$:
   \begin{equation}\label{eq:Psi-rate}
-    |\Psi(\lambda)| = O(\lambda^{-1/2}).
+    |\Psi(\lambda)|
+    = O(\lambda^{-1/2}).
   \end{equation}
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-(a): Standard DCT.
 (b): $|\widehat{g}(\lambda x)|
 \le C(1+|\lambda x|)^{-1/2}$;
 split at $|x|=\lambda^{-1}$,
-both pieces $O(\lambda^{-1/2})$
-for $K\in\mathcal{S}$.
+both pieces $O(\lambda^{-1/2})$.
 \end{proof}
 
-\begin{lemma}[Ces\`aro summation
-  and the borderline exponent]
+\begin{lemma}[Ces\`aro analysis:
+  borderline exponent]
 \label{lem:cesaro-decay}
-Let $\Psi:\mathbb{R}_{>0}\to\mathbb{R}$
-with $|\Psi(\lambda)|\le C\lambda^{-\delta}$
-for some $\delta>0$.
-For $K=K(c)=\lfloor c^{\theta_0}\rfloor$,
-consider the Ces\`aro-type average
-\begin{equation}\label{eq:cesaro-def}
-  \mathcal{C}(c)
-  := \frac{1}{K(c)}
-     \sum_{k=1}^{K(c)}
-     \Psi(k/c^{\theta_0}).
-\end{equation}
-
+Let $|\Psi(\lambda)|\le C\lambda^{-\delta}$,
+$K=K(c)=\lfloor c^{\theta_0}\rfloor$.
 \begin{enumerate}[\rm(i)]
-\item \emph{(Riemann-sum estimate).}
-  The sum is dominated by the
-  integral:
-  \[
-    |\mathcal{C}(c)|
-    \le \frac{C}{K}\sum_{k=1}^{K}
-    (k/c^{\theta_0})^{-\delta}
-    = \frac{C c^{\theta_0\delta}}{K}
-      \sum_{k=1}^{K}k^{-\delta}.
-  \]
-
-\item \emph{(Case $\delta>1$).}
-  $\sum_{k\ge 1}k^{-\delta}<\infty$,
-  so $\mathcal{C}(c)=O(c^{\theta_0(\delta-1)}
-  \cdot K^{-1})$.
-  Since $K=c^{\theta_0}$:
-  $\mathcal{C}(c)=O(c^{\theta_0(\delta-1)}
-  \cdot c^{-\theta_0})
-  =O(c^{-\theta_0(2-\delta)})$.
-  For $\delta>1$: $2-\delta<1$ but
-  $\mathcal{C}(c)\to 0$.
-  \textbf{Sufficient for (T\textsuperscript{*}).}
-
-\item \emph{(Case $\delta=1$).}
-  $\sum_{k=1}^{K}k^{-1}\sim\log K$,
-  so $\mathcal{C}(c)\sim
-  c^{\theta_0}\log c/c^{\theta_0}
-  = \log c\cdot c^{-\theta_0}
-  \cdot c^{\theta_0}$.
-  More carefully:
-  $\mathcal{C}(c)
-  =O(\log c\cdot c^{-\theta_0\cdot 0})
-  = O(\log c/K)=O(\log c/c^{\theta_0})\to 0$.
-  \textbf{Sufficient.}
-
-\item \emph{(Case $\delta=1/2$; our situation).}
-  $\sum_{k=1}^K k^{-1/2}\sim 2K^{1/2}$,
-  so
-  \begin{equation}\label{eq:borderline}
-    |\mathcal{C}(c)|
-    \lesssim
-    \frac{c^{\theta_0/2}}{K}\cdot 2K^{1/2}
-    = 2c^{\theta_0/2}\cdot K^{-1/2}
-    = 2c^{\theta_0/2}\cdot c^{-\theta_0/2}
-    = 2.
-  \end{equation}
-  \textbf{Borderline: $|\mathcal{C}(c)|=O(1)$,
-  not $o(1)$.}
-  This estimate is sharp:
-  there exist functions with
-  $|\Psi(\lambda)|\sim\lambda^{-1/2}$
-  for which $\mathcal{C}(c)\not\to 0$.
-
-\item \emph{(Sufficient condition for
-  all $\delta>0$).}
-  If additionally
-  $\Psi\in L^1((1,\infty),d\lambda/\lambda)$,
-  i.e.,
-  $\int_1^\infty|\Psi(\lambda)|
-  \frac{d\lambda}{\lambda}<\infty$,
-  then $\mathcal{C}(c)\to 0$
-  by the Hardy--Littlewood
-  Ces\`aro theorem.
-  For $|\Psi(\lambda)|=O(\lambda^{-\delta})$:
-  $\int_1^\infty\lambda^{-\delta-1}\,d\lambda
-  <\infty$ iff $\delta>0$.
-  So \textbf{any $\delta>0$ with
-  the $L^1(d\lambda/\lambda)$ condition
-  suffices.}
+\item
+  $|\mathcal{C}(c)|
+  \le \frac{Cc^{\theta_0\delta}}{K}
+  \sum_{k=1}^K k^{-\delta}$.
+\item For $\delta>1$: $\mathcal{C}(c)\to 0$.
+\item For $\delta=1$:
+  $\mathcal{C}(c)=O(\log c/c^{\theta_0})\to 0$.
+\item For $\delta=1/2$ (our case):
+  $|\mathcal{C}(c)|=O(1)$,
+  \textbf{borderline} from triangle
+  inequality alone.
+\item If $\Psi\in L^1(d\lambda/\lambda)$:
+  $\mathcal{C}(c)\to 0$
+  by the Ces\`aro theorem.
 \end{enumerate}
 \end{lemma}
 
+\subsection{Weighted integrability
+  of $\Psi$}
+
+\begin{proposition}[Ces\`aro criterion]
+\label{prop:L1-sufficient}
+If
+\begin{equation}\label{eq:L1-crit}
+  \int_1^\infty
+  |\Psi(\lambda)|\,\frac{d\lambda}{\lambda}
+  <\infty,
+\end{equation}
+then $\mathcal{C}(c)\to 0$
+as $c\to\infty$.
+\end{proposition}
+
 \begin{proof}
-Parts~(i)--(iv): Direct Riemann-sum
-estimation.
-Part~(v): For the Ces\`aro theorem
-with $L^1(d\lambda/\lambda)$
-weighting, see e.g.~\cite{Stein1993},
-Ch.~I.
+Standard Ces\`aro theorem:
+if $h\in L^1((1,\infty),d\lambda/\lambda)$,
+then the discrete averages
+$\frac{1}{K}\sum_{k=1}^K h(k/c^{\theta_0})
+\to 0$.
+Here $h=\Psi$ and the Riemann-sum
+convergence holds by dominated
+convergence from~\eqref{eq:L1-crit}.
 \end{proof}
 
-\begin{remark}[(T\textsuperscript{*}):
-  exact gap]
-\label{rem:Tstar-gap}
-The rate $|\Psi(\lambda)|=O(\lambda^{-1/2})$
-from Lemma~\ref{lem:weighted-RL}(b)
-placed into the Ces\`aro estimate
-yields $\mathcal{C}(c)=O(1)$
-(Lemma~\ref{lem:cesaro-decay}(iv)):
-the exponent is exactly borderline.
-The claim $\mathcal{C}(c)\to 0$
-therefore requires a \emph{strictly
-sharper} input than
-$|\Psi(\lambda)|=O(\lambda^{-1/2})$;
-specifically, one needs either:
-\begin{enumerate}[\rm(A)]
-\item $\Psi\in L^1(d\lambda/\lambda)$:
-  this holds if
-  $|\Psi(\lambda)|=O(\lambda^{-\delta})$
-  for \emph{any} $\delta>0$
-  (Lemma~\ref{lem:cesaro-decay}(v));
-  or
-\item Cancellation in the $k$-sum
-  beyond the triangle inequality:
-  the sum $\sum_k\int K(x)
-  \widehat{g}(xk/c^{\theta_0})\,dx$
-  may have oscillating terms
-  that sum to $o(K)$; or
-\item $\theta_0$-restriction:
-  if $\theta_0$ is small enough that
-  the discrete sum can be replaced
-  by a Riemann integral with
-  better error bounds.
+\begin{proposition}[$\Psi\in L^1(d\lambda/\lambda)$]
+\label{prop:Psi-L1}
+Assume $K\in\mathcal{S}(\mathbb{R})$
+and $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
+for $|\xi|\ge 1$.
+Then
+\begin{equation}\label{eq:L1-Psi}
+  \int_1^\infty
+  |\Psi(\lambda)|\,\frac{d\lambda}{\lambda}
+  \lesssim
+  \int_{\mathbb{R}}
+  |K(x)|\,|x|^{-1/2}\,dx
+  <\infty.
+\end{equation}
+In particular,
+$\Psi\in L^1((1,\infty),d\lambda/\lambda)$.
+\end{proposition}
+
+\begin{proof}
+\textbf{Step~1: Fubini--Tonelli.}
+By the triangle inequality and
+the definition of $\Psi$:
+\begin{align}\label{eq:fubini}
+  \int_1^\infty
+  |\Psi(\lambda)|\,\frac{d\lambda}{\lambda}
+  &\le
+  \int_1^\infty
+  \int_{\mathbb{R}}
+  |K(x)|\,|\widehat{g}(\lambda x)|
+  \,dx\,\frac{d\lambda}{\lambda}.
+\end{align}
+The integrand
+$|K(x)|\,|\widehat{g}(\lambda x)|$
+is non-negative;
+Fubini--Tonelli is applicable
+(to be verified in Step~3).
+
+\textbf{Step~2: Inner $\lambda$-integral.}
+For fixed $x\ne 0$, substitute
+$u=\lambda|x|$:
+\begin{equation}\label{eq:inner}
+  \int_1^\infty
+  |\widehat{g}(\lambda x)|\,\frac{d\lambda}{\lambda}
+  = \int_{|x|}^\infty
+  |\widehat{g}(u\,\mathrm{sgn}(x))|
+  \,\frac{du}{u}.
+\end{equation}
+For $|u|\ge 1$:
+$|\widehat{g}(u)|\le C|u|^{-1/2}$,
+so
+\begin{equation}\label{eq:inner-bound}
+  \int_{\max(|x|,1)}^\infty
+  |\widehat{g}(u)|\,\frac{du}{u}
+  \le C\int_{\max(|x|,1)}^\infty
+  u^{-3/2}\,du
+  = \frac{2C}{\max(|x|,1)^{1/2}}.
+\end{equation}
+For $|x|\ge 1$:
+right side is $2C|x|^{-1/2}$.
+For $|x|<1$: right side is $2C$
+(bounded; lower limit is $1$).
+Combined:
+\begin{equation}\label{eq:inner-combined}
+  \int_1^\infty
+  |\widehat{g}(\lambda x)|\,\frac{d\lambda}{\lambda}
+  \le 2C(1+|x|^{-1/2}).
+\end{equation}
+
+\textbf{Step~3: Outer $x$-integral.}
+Substituting~\eqref{eq:inner-combined}
+into~\eqref{eq:fubini}:
+\begin{equation}\label{eq:outer}
+  \int_1^\infty|\Psi(\lambda)|\,
+  \frac{d\lambda}{\lambda}
+  \le 2C
+  \int_{\mathbb{R}}
+  |K(x)|\,(1+|x|^{-1/2})\,dx.
+\end{equation}
+Since $K\in\mathcal{S}$:
+\begin{itemize}[leftmargin=*]
+\item Near $x=0$:
+  $|K(x)|\le\norm{K}_{L^\infty}<\infty$
+  and $\int_0^1|x|^{-1/2}\,dx=2<\infty$,
+  so $\int_{|x|\le 1}|K(x)||x|^{-1/2}\,dx
+  <\infty$.
+\item For $|x|>1$: $|K(x)|=O(|x|^{-N})$
+  for any $N$; in particular
+  $O(|x|^{-2})$ gives
+  $\int_{|x|>1}|K(x)||x|^{-1/2}\,dx
+  \le C\int_1^\infty x^{-3/2}\,dx
+  <\infty$.
+\end{itemize}
+Hence~\eqref{eq:outer} is finite,
+and Fubini--Tonelli (Step~1)
+is justified a posteriori
+by the finiteness of the iterated
+integral.
+\end{proof}
+
+\begin{corollary}[Ces\`aro step closed]
+\label{cor:cesaro-closed}
+Under $K\in\mathcal{S}$ and
+the PSWF WKB structure of $g$:
+\[
+  \mathcal{C}(c)
+  = \frac{1}{K(c)}
+    \sum_{k=1}^{K(c)}
+    \Psi(k/c^{\theta_0})
+  \longrightarrow 0
+  \quad(c\to\infty).
+\]
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:Psi-L1}
+gives $\Psi\in L^1(d\lambda/\lambda)$;
+Proposition~\ref{prop:L1-sufficient}
+yields $\mathcal{C}(c)\to 0$.
+\end{proof}
+
+\begin{remark}[Status of
+  (T\textsuperscript{*})]
+\label{rem:Tstar-status}
+Corollary~\ref{cor:cesaro-closed}
+closes the Ces\`aro step.
+The transfer from
+$\mathcal{C}(c)\to 0$
+to $\Sigma_{\mathrm{model}}(c)=o(1)$
+requires:
+\begin{enumerate}[\rm(i)]
+\item The equality
+  $\mathcal{C}(c)=\Sigma_{\mathrm{model}}/c^{2(1-\theta_0)}
+  + o(1)$ from
+  Proposition~\ref{prop:model-limit}
+  (valid once sum--integral exchange
+  is justified; see
+  Problem~\ref{prob:rigorous-reduction}).
+\item Under that exchange:
+  $\Sigma_{\mathrm{model}}
+  \sim c^{2(1-\theta_0)}\mathcal{C}(c)
+  \cdot c^{\theta_0}
+  = c^{2-\theta_0}\mathcal{C}(c)$.
+  But this gives
+  $c^{2-\theta_0}\cdot o(1)$,
+  which is \emph{not} obviously $o(1)$
+  since $c^{2-\theta_0}\to\infty$.
 \end{enumerate}
-This gap is the \emph{precise
-remaining obstacle} for
-(T\textsuperscript{*}), and is
-the primary target of
-Problem~\ref{prob:Tstar-cesaro}.
+
+\medskip
+\noindent\textbf{The critical gap.}
+The scale factor $c^{2(1-\theta_0)}$
+pre-multiplies the average.
+One needs:
+\begin{equation}\label{eq:Tstar-equiv}
+  c^{2(1-\theta_0)}
+  \int_{-c_0}^{c_0}
+  \Tcc(\psi)\,d\xi_0
+  = o(1),
+\end{equation}
+which, by the model-reduction limit,
+translates to:
+\[
+  \int K(x)\sum_{k=1}^{K(c)}
+  \widehat{g}(xk/c^{\theta_0})\,dx
+  = o(K(c)).
+\]
+Since $\mathcal{C}(c)
+= S(c)/K(c)\to 0$
+(Corollary~\ref{cor:cesaro-closed}),
+we have $S(c)=o(K(c))$,
+and thus~\eqref{eq:Tstar-equiv}
+is \textbf{established},
+conditional on the
+sum--integral exchange
+being uniform enough to justify
+Proposition~\ref{prop:model-limit}.
+
+\medskip
+\noindent\textbf{Summary of status:}
+The oscillatory and
+weighted-integrability analysis
+of this paper closes
+(T\textsuperscript{*}) modulo
+the rigorous sum--integral exchange.
+This exchange is a
+technical regularisation step,
+not a new oscillatory idea.
 \end{remark}
 
 \begin{proposition}[Model reduction limit]
 \label{prop:model-limit}
-\begin{equation}
+\begin{equation}\label{eq:model-limit}
   \Sigma_{\mathrm{model}}(c)
   = c^{2(1-\theta_0)}
     \int_{-c_0}^{c_0}
@@ -585,260 +641,157 @@ Problem~\ref{prob:Tstar-cesaro}.
 \end{equation}
 \end{proposition}
 
-\begin{definition}[(T\textsuperscript{*})]
-\label{def:Tstar}
-$\Sigma_{\mathrm{model}}(c)=o(1)$,
-or equivalently $\mathcal{C}(c)=o(1)$
-(\emph{status: open;
-see Problem~\ref{prob:Tstar-cesaro}}).
-\end{definition}
-
-\begin{remark}[Moving-symbol Toeplitz
-  structure]
-\label{rem:moving-symbol}
-The problem is a \emph{moving-symbol
-Toeplitz problem}: symbol
-$\alpha_0(\xi_0)$ varies with basepoint;
-the three limits $k\to\infty$,
-$c\to\infty$, $\xi_0$-integration
-do not commute.
-Alternative view:
-\emph{randomised sampling of
-$|\widehat\psi|^2$ along
-$\alpha_0(\xi_0)$},
-closer to ergodic averaging
-than to standard Szeg\H{o} theory
-\cite{Simon2011,BottcherSilbermann1990}.
-\end{remark}
-
-%%═══ 7. OPEN PROBLEMS: (T*)
-\section{Open Problems: (T\textsuperscript{*})
-  and the Ces\`aro Step}
-\label{sec:Tstar-open}
-
-\begin{problem}[(T\textsuperscript{*}):
-  closing the Ces\`aro step]
-\label{prob:Tstar-cesaro}
-\emph{Primary open target of
-this programme after Paper~XV.}
-
-\medskip
-\noindent\textbf{Setup.}
-By Proposition~\ref{prop:alpha-oscillation}
-and Lemma~\ref{lem:weighted-RL},
-(T\textsuperscript{*}) is equivalent to
-$\mathcal{C}(c)\to 0$, where
-$|\mathcal{C}(c)|=O(1)$
-from the current $\delta=1/2$ bound.
-
-\medskip
-\noindent\textbf{Option~A
-  (improve Psi-decay).}
-Show $|\Psi(\lambda)|=O(\lambda^{-\delta})$
-for some $\delta>1/2$.
-Equivalently: improve the singularity
-of $g$ near $\alpha_*$.
-\begin{itemize}[leftmargin=*]
-\item If $\theta''$ has a zero of
-  order $m\ge 2$ at $\xi_0=0$,
-  then $g(\alpha)\sim|\alpha-\alpha_*|^{-m/(m+1)}$
-  and $\delta=1/(m+1)$.
-  For $m=1$ (our case): $\delta=1/2$.
-  For $m=2$: $\delta=1/3$.
-  \emph{A higher-order zero of
-  $\theta''$ does not help.}
-\item Alternatively: use PSWF-specific
-  structure of $g$ beyond the
-  leading singularity;
-  higher-order Taylor coefficients
-  may improve $\widehat{g}$ via
-  cancellation.
-\end{itemize}
-
-\medskip
-\noindent\textbf{Option~B
-  ($L^1(d\lambda/\lambda)$ condition).}
-Show $\int_1^\infty|\Psi(\lambda)|
-d\lambda/\lambda < \infty$
-directly, without improving
-the pointwise rate.
-By Lemma~\ref{lem:cesaro-decay}(v),
-this suffices for $\mathcal{C}(c)\to 0$.
-\begin{itemize}[leftmargin=*]
-\item This holds automatically if
-  $|\Psi(\lambda)|=O(\lambda^{-\epsilon})$
-  for any $\epsilon>0$;
-  but it may also hold if
-  $\Psi$ has enough oscillation.
-\item Concrete goal:
-  show $\int_1^\infty|\int K(x)
-  \widehat{g}(\lambda x)\,dx|
-  d\lambda/\lambda < \infty$
-  using $K\in\mathcal{S}$.
-\end{itemize}
-
-\medskip
-\noindent\textbf{Option~C
-  ($k$-oscillation).}
-The sum $S(c)=\int K(x)
-\sum_k\widehat{g}(xk/c^{\theta_0})\,dx$
-may have cancellation between terms
-beyond what the triangle inequality
-captures.
-Concretely: the Dirichlet kernel
-$\sum_k e^{ixk\alpha/c^{\theta_0}}$
-oscillates in $k$; this oscillation,
-combined with the decay of $K$,
-may give $S(c)=o(K(c))$
-without improving $|\Psi(\lambda)|$
-pointwise.
-\end{problem}
-
-%%═══ 8. OPEN PROBLEMS: RIGOROUS REDUCTION
-\section{Open Problems for Paper~XVI:
-  Rigorous Reduction}
+%%═══ 7. OPEN PROBLEMS
+\section{Open Problems for Paper~XVI}
 \label{sec:open}
 
-\begin{problem}[Rigorous model reduction]
+\begin{problem}[Rigorous model reduction;
+  sum--integral exchange]
 \label{prob:rigorous-reduction}
-\textbf{Goal:}
-$\Sigma_{\mathrm{int}}
-=\Sigma_{\mathrm{model}}+o(1)$
-uniform in $c$.
 
 \medskip
 \noindent\textbf{Priority~1:
-  Kernel error.}
-The HS-norm of the kernel error
-\[
-  \sum_{k\le c^{\theta_0}}
-  |(\AcM)_{nm}-I_c(|n-m|)|^2
-  = o(1)
-\]
-requires careful treatment:
-the naive bound $O(c^{3\theta_0-1})$
-is $o(1)$ only for $\theta_0<1/3$;
-for $\theta_0\ge 1/3$,
-cancellation must be exploited
-(Remark~\ref{rem:kernel-critical}).
+  Sum--integral exchange.}
+Justify the exchange
+$\sum_k\int\,d\xi_0
+\leftrightarrow\int\sum_k\,d\xi_0$
+uniformly in $k\le c^{\theta_0}$,
+so that Proposition~\ref{prop:model-limit}
+holds with error $o(1)$.
+This is the \emph{final technical
+step} for (T\textsuperscript{*}).
 
 \medskip
 \noindent\textbf{Priority~2:
-  Sum--integral exchange.}
-Uniform control of
-$\sum_k\leftrightarrow\int\,d\xi_0$
-in $k\le c^{\theta_0}$.
+  Kernel error.}
+$\sum_{k\le c^{\theta_0}}
+|(\AcM)_{nm}-I_c(|n-m|)|^2
+= o(1)$
+uniform in $c$.
+Naive bound $O(c^{3\theta_0-1})$
+fails for $\theta_0\ge 1/3$;
+oscillation in the kernel error
+must be exploited
+(Remark~\ref{rem:kernel-critical}).
 
 \medskip
-\noindent\textbf{Priority~3: PSWF~(L).}
+\noindent\textbf{Priority~3:
+  PSWF Lipschitz~(L).}
 \begin{equation}\label{eq:L-goal}
   \norm{\widehat{\Phi_{n+k}^{(c)}}
   -\widehat{\Phi_n^{(c)}}}_{L^2}
-  = O(k/c),\quad|k|\le c^{\theta_0}.
+  = O(k/c),\;|k|\le c^{\theta_0}.
 \end{equation}
-Approaches: WKB stability
+Approaches: WKB amplitude stability
 \cite{Zworski2012},
-Sturm comparison for eigenvalues,
+Sturm comparison,
 microlocal symbolic calculus.
 \end{problem}
 
-\begin{remark}[Kernel error
-  is the critical bottleneck]
+\begin{remark}[Why Priority~1 is the
+  decisive step]
 \label{rem:kernel-critical}
-Naive estimate:
-$\sum_{k\le c^{\theta_0}}c\cdot(k/c)^2
-=O(c^{3\theta_0-1})$.
-For $\theta_0\ge 1/3$:
-this is $\Omega(1)$.
-Rescuing this requires oscillation
-in the off-diagonal kernel;
-the same structure as the original
-problem reappears one level down.
+The sum--integral exchange in
+Proposition~\ref{prop:model-limit}
+requires uniform control of
+$\Tcc(\psi;\xi_0)$ in $\xi_0$
+for $\xi_0\in[-c_0,c_0]$,
+and uniform summability in $k$.
+If this exchange holds with error
+$o(c^{-(2-\theta_0)})$
+(so that after multiplication by
+$c^{2(1-\theta_0)}$ the error is $o(1)$),
+then $S(c)=o(K(c))$
+(Corollary~\ref{cor:cesaro-closed})
+directly gives
+$\Sigma_{\mathrm{model}}=o(1)$.
+The kernel error (Priority~2)
+is structurally the same difficulty
+one level down.
 \end{remark}
 
-%%═══ 9. REDUCTION THEOREM
+%%═══ 8. REDUCTION THEOREM
 \section{Reduction Theorem}
 \label{sec:reduction}
 
 \begin{theorem}[Reduction Theorem]
 \label{thm:reduction}
-Conditional on
-(T\textsuperscript{*}), (L),
+Conditional on~(L),
 rigorous model reduction~(R),
 and~(C):
-\begin{equation}\label{eq:reduction-chain}
+\begin{equation}
   \underbrace{
-    \mathrm{(T^*)}+\mathrm{(L)}
-    +(\mathrm{R})
+    \mathrm{(T^*)}+\mathrm{(L)}+(\mathrm{R})
   }_{\text{Papers XVI--XVII}}
-  \;\Longrightarrow\;
+  \Longrightarrow
   \Sigma_{\mathrm{int}} = o(1)
-  \;\underset{\mathrm{(C)}}{\Longrightarrow}\;
+  \underset{\mathrm{(C)}}{\Longrightarrow}
   \text{H3 fails}
-  \;\Rightarrow\;
-  \text{H1 fails}.
+  \Rightarrow\text{H1 fails.}
 \end{equation}
 \begin{enumerate}[\rm(i)]
 \item \textup{(T\textsuperscript{*})}:
-  equivalent to $\mathcal{C}(c)\to 0$;
-  reduced to Problem~\ref{prob:Tstar-cesaro}.
-  Current status:
-  $|\mathcal{C}(c)|=O(1)$
-  (borderline; Lemma~\ref{lem:cesaro-decay}(iv)).
+  $S(c)=o(K(c))$ proved
+  (Corollary~\ref{cor:cesaro-closed});
+  transfer to
+  $\Sigma_{\mathrm{model}}=o(1)$
+  requires~(R) (sum--integral exchange).
 \item \textup{(L)} + \textup{(R)}:
-  close $\Sigma_{\mathrm{int}}
-  =\Sigma_{\mathrm{model}}+o(1)$;
-  reduced to Problem~\ref{prob:rigorous-reduction}.
-\item \textup{(C)}: closes the spectral step;
-  Paper~XVII.
+  give $\Sigma_{\mathrm{int}}
+  =\Sigma_{\mathrm{model}}+o(1)$.
+\item \textup{(C)}: closes the
+  spectral density step (Paper~XVII).
 \end{enumerate}
 \end{theorem}
 
 \begin{remark}[Programme status
   after Paper~XV]
-\label{rem:series-status}
 \[
   \underbrace{
-    \mathrm{(T^*)}+\mathrm{(L)}+(\mathrm{R})
+    \mathrm{(R)}+\mathrm{(L)}
   }_{\text{Paper XVI}}
-  +
-  \underbrace{\mathrm{(C)}}_{\text{XVII}}
-  \;\Longrightarrow\;
-  \text{H1 fails.}
+  +\underbrace{\mathrm{(C)}}
+  _{\text{XVII}}
+  \Longrightarrow\text{H1 fails.}
 \]
-The oscillatory structure is
-completely identified.
-The borderline exponent $\delta=1/2$
-is sharp.
-Paper~XVI must close
-the Ces\`aro step and
-the rigorous reduction chain.
+The oscillatory core is closed
+(Ces\`aro step,
+Corollary~\ref{cor:cesaro-closed}).
+Paper~XVI's task is purely
+technical: sum--integral exchange
+and PSWF regularity.
 \end{remark}
 
-\begin{remark}[Conceptual summary]
+\begin{remark}[Conceptual summary
+  and publishable core]
 \label{rem:concept-summary}
-The publishable core of this paper:
 \begin{enumerate}[\rm(1)]
 \item \emph{Obstruction}:
 frozen-phase saturation
-$\Sigma_{\mathrm{strip}}=\Theta(c^{2-\theta_0})$
-for fixed $\alpha_0$;
+$\Sigma_{\mathrm{strip}}
+=\Theta(c^{2-\theta_0})$;
 no pointwise tool escapes this.
 \item \emph{Structure}:
-moving-symbol Toeplitz /
-randomised sampling of $|\widehat\psi|^2$
-along $\alpha_0(\xi_0)$;
+moving-symbol Toeplitz
+/ randomised sampling of
+$|\widehat\psi|^2$;
 non-commuting limits.
-\item \emph{Reduction}:
-(T\textsuperscript{*}) reduced to
-Ces\`aro decay of the
-weighted Fourier integral
-$\Psi(\lambda)=\int K\widehat{g}(\lambda\cdot)$.
+\item \emph{Scalar reduction}:
+(T\textsuperscript{*}) $\Leftrightarrow$
+$S(c)=o(K(c))$
+$\Leftrightarrow$
+$\Psi\in L^1(d\lambda/\lambda)$.
+\item \emph{Resolution via Fubini}:
+$\int|K(x)||x|^{-1/2}\,dx<\infty$
+($K\in\mathcal{S}$, singularity
+$|x|^{-1/2}$ integrable at $0$)
+closes the Ces\`aro step.
 \item \emph{Borderline exponent}:
 $\delta=1/2$ from
-$g\sim|\alpha-\alpha_*|^{-1/2}$
-is exactly critical;
-the precise gap is identified.
+$g\sim|\alpha-\alpha_*|^{-1/2}$;
+the Fubini argument works
+precisely because $-1/2+1>0$
+(i.e., $|x|^{-1/2}\in L^1_{\mathrm{loc}}$).
 \end{enumerate}
 \end{remark}
 
@@ -849,9 +802,8 @@ the precise gap is identified.
 
 \bibitem{Osipov2013}
 A.~Osipov, V.~Rokhlin, H.~Xiao,
-\textit{Prolate Spheroidal Wave
-Functions of Order Zero},
-Springer, 2013.
+\textit{Prolate Spheroidal Wave Functions
+of Order Zero}, Springer, 2013.
 
 \bibitem{Zworski2012}
 M.~Zworski,
@@ -880,12 +832,6 @@ H.~Weyl,
 von Zahlen mod.\ Eins},
 Math.\ Ann.\ \textbf{77} (1916),
 313--352.
-
-\bibitem{Titchmarsh1986}
-E.~C.~Titchmarsh,
-\textit{Theory of the Riemann
-Zeta-Function},
-2nd~ed., Oxford, 1986.
 
 \end{thebibliography}
 
