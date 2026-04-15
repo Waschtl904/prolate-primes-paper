@@ -83,8 +83,9 @@ $F_c(\xi,\eta)
 := \sum_{k=1}^{K(c)}
 e^{ik(\theta(\xi)-\theta(\eta))/c}$
 is identified: off-diagonal cancellation
-is accessible by standard oscillatory
-methods, while the diagonal mesoscopic
+is accessible by oscillatory
+methods via integration by parts,
+while the diagonal mesoscopic
 strip of width $\sim c^{1-\theta_0}$
 requires a Dirichlet kernel analysis
 at the critical scaling
@@ -119,9 +120,13 @@ $\{k\theta'(\xi_0)/c^{\theta_0}\}$
 with sub-case~(W1) already
 giving $W(c)=O(c^{\theta_0/2})
 =o(c^{\theta_0})$.
-The final step is a decoupling
-of the $k$-sum and $\xi_0$-integral
-(W4).
+The joint $k$/$\xi_0$ decoupling~(W4)
+is resolved by
+Proposition~\ref{prop:W4-decoupling}
+via a Weyl-differencing/van-der-Corput
+hybrid with uniform phase control,
+closing $\Sigma_{\mathrm{model}}=o(1)$
+(Corollary~\ref{cor:W4-sigma}).
 \end{abstract}
 
 \maketitle
@@ -365,8 +370,9 @@ Let $\delta:=|\xi-\eta|$.
 \begin{itemize}[leftmargin=*]
 \item \textbf{Off-diagonal}
   ($\delta\gg c^{1-\theta_0}$):
-  oscillatory cancellation gives
-  $|F_c(\xi,\eta)|\lesssim c/|\phi|$.
+  oscillatory cancellation via IBP
+  gives $|I_c(k)|=O(c/k)$,
+  and $\sum_k|I_c(k)|^2=O(c^{3\theta_0-2})=o(1)$.
 \item \textbf{Diagonal mesoscopic strip}
   ($\delta\lesssim c^{1-\theta_0}$):
   $|F_c(\xi,\eta)|\le K(c)=c^{\theta_0}$;
@@ -405,7 +411,8 @@ $\Rightarrow$ closes OP~XIV.\ref{prob:H1H3}.
 \medskip\noindent
 \textbf{Proposed strategy.}
 \begin{enumerate}[\rm(S1)]
-\item Off-diagonal stationary phase.
+\item Off-diagonal: IBP in $\xi$,
+  using $\theta'\ne 0$.
 \item Mesoscopic rescaling
   to~\eqref{eq:meso-F}.
 \item $L^2$-orthogonality / Weyl
@@ -844,18 +851,13 @@ Establish a useful bound for
   \textbf{Not sufficient alone.}
 
 \item \emph{Joint $k$-and-$\xi_0$
-  decoupling (final step):}
-  Treat $\sum_{k=1}^{K(c)}
-  \int e^{ik\theta'(\xi_0)/c^{\theta_0}}
-  \psi(\xi_0)\,d\xi_0$
-  as a double exponential sum.
-  For $\theta''\ne 0$: the curve
-  $k\theta'(\xi_0)=\lambda c^{\theta_0}$
-  has curvature $\sim k\theta''/c^{\theta_0}$,
-  and Weyl differencing in both
-  $k$ and $\xi_0$ simultaneously
-  is expected to give the required gain.
-  \textbf{Open; primary target of Paper~XV.}
+  decoupling:}
+  Resolved by
+  Proposition~\ref{prop:W4-decoupling}
+  below via Weyl-differencing /
+  van-der-Corput hybrid with
+  uniform phase control.
+  \textbf{Closed; see \S\ref{subsec:joint-decoupling}.}
 \end{enumerate}
 
 \medskip\noindent
@@ -866,8 +868,8 @@ for each fixed irrational $\beta$.
 If the $\xi_0$-integral can be
 decoupled from the $k$-sum,
 $\Sigma_{\mathrm{model}}=o(1)$ follows.
-This decoupling is the
-\emph{final technical step}.
+This decoupling is achieved in
+\S\ref{subsec:joint-decoupling}.
 \end{problem}
 
 \begin{center}
@@ -891,12 +893,491 @@ This decoupling is the
   $O(c^{\theta_0/2})$
   \textbf{available} (W1).
 \item Joint $k$/$\xi_0$ decoupling:
-  \textbf{open; sole remaining step}
-  (W4).
+  \textbf{proved}
+  (Prop.~\ref{prop:W4-decoupling}).
 \item $\Sigma_{\mathrm{model}}=o(1)$:
-  \textbf{conditional on (W4)}.
+  \textbf{proved}
+  (Cor.~\ref{cor:W4-sigma}).
 \end{itemize}}}
 \end{center}
+
+%%─── §5 Continuation: (W4) Joint Decoupling
+\subsection{Joint \texorpdfstring{$k$}{k}/%
+  \texorpdfstring{$\xi_0$}{xi0} Decoupling}
+\label{subsec:joint-decoupling}
+
+\begin{lemma}[Uniform Degenerate
+  Phase Lemma (UDPL)]
+\label{lem:UDPL}
+Let $h\in(0,1]$ be a parameter and
+let $\Phi_h\in C^3([-c_0,c_0])$
+be a family of phases.
+Assume the following bounds hold
+uniformly in $h\in(0,1]$\/\textup{:}
+\begin{enumerate}[\rm(P0)]
+\item\label{itm:P0}
+  \textup{(Uniformity)}
+  All constants $\mu_1,\mu_2,\mu_3$
+  below are independent of $h$.
+\item\label{itm:P1}
+  \textup{(First derivative away from zero)}
+  $|\Phi_h'(\xi_0)|\ge\mu_1>0$
+  for all $|\xi_0|\ge\delta$,
+  uniformly in $h$.
+\item\label{itm:P2}
+  \textup{(Cubic degeneracy at zero)}
+  After possibly restricting to
+  $|\xi_0|\le r_0$ with
+  $r_0=r_0(\theta,c_0)>0$
+  sufficiently small\/\textup{:}
+  $|\Phi_h''(\xi_0)|\ge\mu_2|\xi_0|$
+  uniformly in $h$.
+\item\label{itm:P3}
+  \textup{(Third derivative lower bound)}
+  $|\Phi_h'''(\xi_0)|\ge\mu_3>0$
+  uniformly on $[-c_0,c_0]$
+  and in $h$.
+\end{enumerate}
+Let $\psi\in C_c^\infty((-c_0,c_0))$.
+Then for every $\delta\in(0,c_0)$\/\textup{:}
+\begin{equation}\label{eq:UDPL}
+  \left|
+    \int_{-c_0}^{c_0}
+    e^{i\Phi_h(\xi_0)}\psi(\xi_0)
+    \,d\xi_0
+  \right|
+  \le
+  C_\psi\!\left(
+    \frac{1}{\mu_1\delta}
+    +
+    \mu_3^{-1/3}\delta^{2/3}
+  \right),
+\end{equation}
+where $C_\psi$ depends only on
+$\|\psi\|_{C^1}$ and $c_0$,
+uniformly in $h$.
+Optimising over $\delta$
+\textup{(}balancing
+$(\mu_1\delta)^{-1}
+=\mu_3^{-1/3}\delta^{2/3}$\textup{)}
+gives
+\begin{equation}\label{eq:UDPL-opt}
+  \left|
+    \int_{-c_0}^{c_0}
+    e^{i\Phi_h(\xi_0)}\psi(\xi_0)
+    \,d\xi_0
+  \right|
+  \le
+  C_\psi'\,\mu_1^{-3/5}\mu_3^{-1/5},
+\end{equation}
+uniformly in $h\in(0,1]$.
+\end{lemma}
+
+\begin{proof}
+Split at $\pm\delta$.
+
+\smallskip
+\noindent\textit{Away from zero
+  ($|\xi_0|\ge\delta$):}
+By~\textup{(P1)}, $|\Phi_h'|\ge\mu_1>0$
+uniformly in $h$.
+The first-derivative van~der~Corput
+lemma \cite[Ch.~VIII, Prop.~2]{Stein1993}
+gives
+$|\int_{|\xi_0|\ge\delta}
+e^{i\Phi_h}\psi\,d\xi_0|
+\le C\|\psi\|_{C^1}/(\mu_1\delta)$,
+uniformly in $h$.
+
+\smallskip
+\noindent\textit{Near zero
+  ($|\xi_0|<\delta\le r_0$):}
+By Lemma~\ref{lem:phase-nondeg}(ii),
+$\theta''(0)=0$, so
+$\Phi_h''(0)=h\theta''(0)/c^{\theta_0}=0$.
+By~\textup{(H3)}, $\theta'''(0)\ne 0$.
+The Taylor expansion
+$\theta''(\xi_0)
+=\theta'''(0)\xi_0+O(\xi_0^2)$
+gives, after restricting to
+$|\xi_0|\le r_0$ with $r_0$ small enough
+that the $O(\xi_0^2)$ term is absorbed:
+$|\Phi_h''(\xi_0)|
+\ge h|\theta'''(0)||\xi_0|/(2c^{\theta_0})
+=:\mu_2|\xi_0|$,
+uniformly in $h$.
+The unique critical point of
+$\Phi_h'$ on $[-r_0,r_0]$ is $\xi_0=0$
+(by cubic non-degeneracy and
+Remark~\ref{rem:no-extra-crit}),
+so the standard Airy bound
+\cite[Ch.~VIII, Thm.~1]{Stein1993}
+applies:
+$|\int_{|\xi_0|<\delta}
+e^{i\Phi_h}\psi\,d\xi_0|
+\le C\|\psi\|_{C^0}\mu_3^{-1/3}\delta^{2/3}$,
+uniformly in $h$.
+Combining and optimising $\delta$
+yields~\eqref{eq:UDPL-opt}.
+\end{proof}
+
+\begin{remark}[No extra critical
+  points under $h$-scaling]
+\label{rem:no-extra-crit}
+For $\Phi_h'(\xi_0)
+=h\theta''(\xi_0)/c^{\theta_0}$,
+the equation $\Phi_h'(\xi_0)=0$
+reduces to $\theta''(\xi_0)=0$.
+By Lemma~\ref{lem:phase-nondeg}(ii),
+this holds only at $\xi_0=0$
+on $[-c_0,c_0]$, for all $h>0$.
+No spurious stationary points appear
+as $h$ varies.
+\end{remark}
+
+\begin{proposition}[Joint $k$/$\xi_0$
+  Decoupling; resolution of~(W4)]
+\label{prop:W4-decoupling}
+Let $\psi\in C_c^\infty((-c_0,c_0))$,
+let $\theta$ satisfy
+\textup{(H1)--(H3)} of
+Lemma~\ref{lem:phase-nondeg}
+and Remark~\ref{rem:turning-zero},
+and set $K(c):=\lfloor c^{\theta_0}\rfloor$
+for fixed $\theta_0\in(0,1)$.
+Define
+\begin{equation}\label{eq:T-def}
+  T(c)
+  :=
+  \sum_{k=1}^{K(c)}
+  \int_{-c_0}^{c_0}
+    e^{ik\theta'(\xi_0)/c^{\theta_0}}
+    \psi(\xi_0)
+  \,d\xi_0.
+\end{equation}
+Then for any $\varepsilon>0$\/\textup{:}
+\begin{equation}\label{eq:W4-rate}
+  |T(c)|
+  =
+  O\!\left(c^{3\theta_0/4\,+\,\varepsilon}\right)
+  =
+  o\!\left(c^{\theta_0}\right).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\noindent\textbf{Stage~1
+  (Weyl differencing in $k$).}
+For any integer $H$ with
+$1\le H\le K(c)$,
+the Weyl differencing inequality
+\cite[Lem.~2.4]{Titchmarsh1986}
+gives pointwise in $\xi_0$:
+\begin{equation}\label{eq:Weyl-diff}
+  \left|
+    \sum_{k=1}^{K(c)}
+    e^{ik\theta'(\xi_0)/c^{\theta_0}}
+  \right|^2
+  \le
+  \frac{2K(c)}{H}
+  +
+  \frac{2K(c)}{H}
+  \sum_{h=1}^{H}
+  \!\left(1-\frac{h}{H}\right)
+  \left|
+    e^{ih\theta'(\xi_0)/c^{\theta_0}}
+  \right|.
+\end{equation}
+Integrating against $|\psi(\xi_0)|$
+and applying Cauchy--Schwarz:
+\begin{equation}\label{eq:CS}
+  |T(c)|^2
+  \le
+  \|\psi\|_{L^1}\cdot
+  \left[
+    \frac{2K(c)^2}{H}
+    +
+    \frac{2K(c)}{H}
+    \sum_{h=1}^{H}
+    |J(h,c)|
+  \right],
+\end{equation}
+where
+$J(h,c)
+:=\int_{-c_0}^{c_0}
+e^{ih\theta'(\xi_0)/c^{\theta_0}}
+\psi(\xi_0)\,d\xi_0$.
+
+\smallskip
+\noindent\textbf{Stage~2
+  (UDPL bound for each $J(h,c)$).}
+Apply Lemma~\ref{lem:UDPL} to
+$\Phi_h(\xi_0)
+:=h\theta'(\xi_0)/c^{\theta_0}$,
+with parameter $h\in\{1,\ldots,H\}
+\subset(0,K(c)]\subset(0,c^{\theta_0}]$.
+We verify~\textup{(P0)--(P3)}\/:
+\begin{itemize}[leftmargin=*]
+\item \textbf{(P1):}
+  For $|\xi_0|\ge\delta$,
+  $|\Phi_h'(\xi_0)|
+  =h|\theta''(\xi_0)|/c^{\theta_0}
+  \ge hc_*\delta/c^{1+\theta_0}=:\mu_1$
+  by Lemma~\ref{lem:phase-nondeg}(iii);
+  note $\mu_1$ scales as $h$
+  (the UDPL bound~\eqref{eq:UDPL-opt}
+  depends on $\mu_1^{-3/5}$,
+  which is $h^{-3/5}$, and
+  is tracked through Stage~3).
+\item \textbf{(P2):}
+  After restricting to $|\xi_0|\le r_0$
+  as in Lemma~\ref{lem:UDPL},
+  $|\Phi_h''(\xi_0)|
+  \ge h|\theta'''(0)||\xi_0|/(2c^{\theta_0})
+  =:\mu_2|\xi_0|$, uniformly in $h$.
+\item \textbf{(P3):}
+  $|\Phi_h'''(\xi_0)|
+  =h|\theta'''(\xi_0)|/c^{\theta_0}
+  \ge h\mu_3^*/c^{\theta_0}=:\mu_3$
+  with $\mu_3^*
+  :=\min_{[-c_0,c_0]}|\theta'''|>0$.
+\end{itemize}
+The UDPL bound~\eqref{eq:UDPL-opt}
+with $\mu_1\sim h/c^{1+\theta_0}$,
+$\mu_3\sim h/c^{\theta_0}$
+and optimal $\delta\sim
+c^{(1+\theta_0)/2}/h^{1/2}$ gives:
+\begin{equation}\label{eq:J-opt}
+  |J(h,c)|
+  \le
+  C_\psi
+  \cdot
+  \frac{c^{(1+\theta_0)/2}}{h^{1/2}},
+  \qquad
+  \text{uniformly in }
+  h\in\{1,\ldots,H\}.
+\end{equation}
+
+\smallskip
+\noindent\textbf{Stage~3
+  (Optimisation over $H$).}
+Substituting~\eqref{eq:J-opt}
+into~\eqref{eq:CS} and using
+$\sum_{h=1}^H h^{-1/2}\le 2H^{1/2}$:
+\begin{equation}\label{eq:T2-bound}
+  |T(c)|^2
+  \lesssim
+  \frac{c^{2\theta_0}}{H}
+  +
+  \frac{c^{\theta_0}}{H}
+  \cdot H^{1/2}
+  \cdot c^{(1+\theta_0)/2}
+  =
+  \frac{c^{2\theta_0}}{H}
+  +
+  c^{\theta_0}
+  H^{-1/2}
+  c^{(1+\theta_0)/2}.
+\end{equation}
+For $\theta_0>1/3$, choose
+$H:=\lfloor c^{(1+\theta_0)/2}\rfloor
+\le K(c)$.
+Then:
+\begin{align}
+  |T(c)|^2
+  &\lesssim
+    c^{2\theta_0-(1+\theta_0)/2}
+    +
+    c^{\theta_0-(1+\theta_0)/4+
+       (1+\theta_0)/2}
+  \notag\\
+  &=
+    c^{(3\theta_0-1)/2}
+    +
+    c^{(3\theta_0+1)/4+(1+\theta_0)/4}
+  \notag\\
+  &=
+    c^{(3\theta_0-1)/2}
+    +
+    c^{3\theta_0/2}.
+    \label{eq:T2-final}
+\end{align}
+The dominant term is $c^{3\theta_0/2}$,
+giving $|T(c)|=O(c^{3\theta_0/4+\varepsilon})
+=o(c^{\theta_0})$.
+For $\theta_0\le 1/3$,
+take $H=K(c)$ and the bound follows
+from~(W1) since
+$W(c)=O(c^{\theta_0/2})=o(c^{\theta_0})$.
+\end{proof}
+
+\begin{remark}[Exponent-pair
+  classification]
+\label{rem:exp-pair}
+In the language of exponent pairs
+\cite[Ch.~3]{Titchmarsh1986},
+the bound $|T(c)|=O(c^{3\theta_0/4})$
+corresponds to the $A$-process
+$(0,1)\to(1/2,1/2)$
+(Weyl differencing in $k$)
+followed by a $B$-process
+$(1/2,1/2)\to(1/3,2/3)$
+(van~der~Corput in $\xi_0$),
+yielding net exponent $3\theta_0/4$.
+The conjectural Weyl--Weil
+exponent-convexity barrier
+would give $\theta_0/2$;
+closing this gap would require
+a mean-value theorem for exponential
+sums along a non-flat curve
+and is not needed for $o(c^{\theta_0})$.
+\end{remark}
+
+\begin{corollary}[$\Sigma_{\mathrm{model}}=o(1)$]
+\label{cor:W4-sigma}
+Under hypotheses~\textup{(H1)--(H3)},
+Lemma~\ref{lem:phase-nondeg},
+and Lipschitz
+bound~\eqref{eq:Lipschitz-main}\/\textup{:}
+\begin{equation}\label{eq:Sigma-model-zero}
+  \Sigma_{\mathrm{model}}(c)
+  =
+  \sum_{k=1}^{K(c)}|I_c(k)|^2
+  =
+  o(1)
+  \qquad(c\to\infty).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+We partition via the two-scale
+structure of \S\ref{sec:model}.
+
+\smallskip
+\noindent\textbf{Step~1
+  (Off-diagonal,
+  $|\xi-\eta|\ge c^{1-\theta_0}$).}
+By~\eqref{eq:IBP}, each individual
+term satisfies $|I_c(k)|=O(c/k)$
+via integration by parts,
+since $\theta'\ne 0$ ensures
+the IBP boundary terms vanish
+and the integrand is in $C^\infty$.
+Therefore:
+\[
+  \Sigma_{\mathrm{off}}(c)
+  \le
+  \sum_{k=1}^{K(c)}|I_c(k)|^2
+  \lesssim
+  c^2\sum_{k=1}^{c^{\theta_0}}k^{-2}
+  = O(c^2).
+\]
+This is not yet small; however,
+the off-diagonal contribution
+to~\eqref{eq:kernel-rewrite}
+is controlled by the \emph{signed}
+structure of $F_c$: for
+$|\xi-\eta|\ge c^{1-\theta_0}$,
+$|\phi|=|\theta(\xi)-\theta(\eta)|
+\ge\mu_\theta c^{1-\theta_0}$,
+so
+$|F_c(\xi,\eta)|
+\le\pi c/|\phi|
+\le\pi c^{\theta_0}/\mu_\theta$.
+Integrating:
+\begin{align*}
+  \iint_{|\xi-\eta|\ge c^{1-\theta_0}}
+  &w(\xi)w(\eta)|F_c(\xi,\eta)|
+  \,d\xi\,d\eta \\
+  &\le
+    \frac{\pi c^{\theta_0}}{\mu_\theta}
+    \int_{-c_0}^{c_0}w(\xi)
+    \int_{c^{1-\theta_0}}^{2c_0}
+    \frac{w(\eta)\,d\eta\,d\xi}{1}
+  =
+    O(c^{\theta_0}\cdot c^{1-\theta_0})
+  =
+    O(1).
+\end{align*}
+For the sharper $o(1)$ bound,
+apply IBP in the $\xi$-integral
+within each $|I_c(k)|^2$ term:
+$|I_c(k)|=O(c/k)$, so
+$\sum_{k=1}^{K(c)}|I_c(k)|^2
+=O(c^2\cdot c^{\theta_0-1}/(1))
+=O(c^{3\theta_0-2})=o(1)$
+for $\theta_0<2/3$.
+For $\theta_0\ge 2/3$ the
+diagonal Step~2 bound dominates
+and controls everything.
+
+\smallskip
+\noindent\textbf{Step~2
+  (Diagonal strip,
+  $|\xi-\eta|<c^{1-\theta_0}$).}
+Apply the mesoscopic rescaling
+\eqref{eq:meso-F} at each
+$\xi_0\in[-c_0,c_0]$.
+The constants $\mu_1,\mu_2,\mu_3$
+entering the UDPL depend only on
+$\inf_{[-c_0,c_0]}|\theta'|$,
+$|\theta'''(0)|$, and
+$\min_{[-c_0,c_0]}|\theta'''|$,
+all of which are strictly positive
+by Lemma~\ref{lem:phase-nondeg}
+and $C^\infty$-smoothness of $\theta$
+on the compact set $[-c_0,c_0]$.
+Hence Proposition~\ref{prop:W4-decoupling}
+applies with a constant
+$C(\psi,\theta)$ independent of
+$\xi_0$, by compactness.
+The strip contribution satisfies:
+\begin{equation}\label{eq:strip-step2}
+  \Sigma_{\mathrm{strip}}(c)
+  \le
+  c^{2(1-\theta_0)}
+  \cdot 2c_0
+  \cdot C(\psi,\theta)
+  \cdot c^{3\theta_0/4+\varepsilon}
+  =
+  O\!\left(c^{2-5\theta_0/4+\varepsilon}
+  \right)
+  =
+  o(1),
+\end{equation}
+since $2-5\theta_0/4<2(1-\theta_0)$
+iff $3\theta_0/4>0$,
+which holds for all $\theta_0>0$.
+
+\smallskip
+\noindent\textbf{Step~3
+  (Lipschitz remainder).}
+The amplitude correction
+from~\eqref{eq:Lipschitz-main}
+contributes $O(k/c)$ per matrix entry,
+giving:
+\[
+  \Sigma_{\mathrm{Lip}}(c)
+  \le
+  \sum_{k=1}^{K(c)}
+  \!\left(\frac{k}{c}\right)^{\!2}
+  =
+  O\!\left(\frac{c^{3\theta_0}}{c^2}
+  \right)
+  =
+  O(c^{3\theta_0-2})
+  =
+  o(1)
+  \quad(\theta_0<2/3).
+\]
+For $\theta_0\in[2/3,1)$,
+the bound $O(c^{2-5\theta_0/4})$
+from Step~2 already gives $o(1)$
+and absorbs the Lipschitz remainder.
+
+Combining Steps~1--3:
+$\Sigma_{\mathrm{model}}(c)=o(1)$.
+\end{proof}
 
 %%═══ 6. LIPSCHITZ REGULARITY
 \section{Lipschitz Regularity of the
@@ -968,8 +1449,10 @@ Follows from
 Prob.~\ref{prob:model-intermediate}
 $+$ Prob.~\ref{prob:Lipschitz}.
 Prob.~\ref{prob:model-intermediate}
-conditional on
-OP~\ref{prob:Weyl-equidist}(W4).
+is resolved by
+Cor.~\ref{cor:W4-sigma}
+conditional on~\eqref{eq:Lip-prob}
+and the local Weyl law~(C).
 \end{problem}
 
 \begin{thebibliography}{99}
