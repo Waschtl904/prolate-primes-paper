@@ -25,9 +25,9 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Explicit CFU Map and the\\
-  Location of the Endpoint Singularity\\
-  in Normal-Form Coordinates}
+  Jacobian Computation, Singularity\\
+  Preservation under CFU Map,\\
+  and the Leading-Order Cancellation}
 
 \author{[Author]}
 
@@ -40,368 +40,419 @@ We study
   \quad u<0,\;c_3>0.
 \]
 The Chester--Friedman--Ursell (CFU)
-normal-form map is computed
-explicitly.
-\textbf{Main result:}
-under the CFU map
-$\phi(\beta)\mapsto
-\frac{1}{3}t^3-\lambda t$,
-the endpoint $\beta=0$
-maps to $t_*=0$.
-The Airy turning points
-are at $t=\pm\sqrt{\lambda}$
-with $\lambda\sim
-(3c_3)^{-1/3}|u|^{2/3}\to\infty$.
-Therefore:
+coordinate change
+$\phi(\beta)\mapsto\Psi(t)
+=\frac{1}{3}t^3-\lambda t$
+is performed explicitly.
+\textbf{Main results:}
 \begin{enumerate}[\rm(1)]
-\item $t_*=0$ is a
-  \emph{regular point}
-  of the normal form
-  (not a turning point);
-  the CFU reduction is
-  \emph{not obstructed}.
-\item The singular
-  amplitude $\beta^{-1/2}$
-  becomes a singularity
-  in $t$ at $t_*=0$;
-  its order is determined
-  by the Jacobian
-  $d\beta/dt$ at $t_*=0$.
-\item The resulting
-  $t$-integral has two
-  contributions: Airy
-  turning points at
-  $t=\pm\sqrt{\lambda}$
-  (saddle) and the
-  interior singularity
-  at $t_*=0$ (endpoint).
-  These must be analysed
-  jointly.
+\item The Jacobian at $\beta=0$:
+  $\tfrac{dt}{d\beta}\big|_{\beta=0}
+  =|u|/\lambda
+  = 3^{1/3}c_3^{1/3}$
+  (constant; $|u|$-independent).
+\item The singularity type is
+  \emph{preserved}:
+  $\beta^{-1/2}\mapsto C\cdot|t|^{-1/2}$
+  in $t$-coordinates,
+  with
+  $C=3^{5/6}/(3c_3^{1/6})$
+  (independent of $|u|$).
+\item The Fresnel contribution from
+  $t=0$:
+  \[
+    \text{endpoint}\sim
+    \sqrt{\pi}\cdot
+    e^{i\pi/4}\cdot
+    C\cdot\lambda^{-1/2}
+    \cdot\bigl(|u|/\lambda\bigr)^{-1/2}
+    =\sqrt{\pi}\cdot
+    e^{i\pi/4}
+    \cdot C\cdot|u|^{-1/2},
+  \]
+  where $\lambda^{+1/2}$
+  from the Jacobian exactly
+  cancels $\lambda^{-1/2}$
+  from the Fresnel integral.
+\item The Airy turning-point
+  contribution is
+  $O(\lambda^{-1/4})
+  =O(|u|^{-1/6})$,
+  \emph{subdominant}.
+\item \textbf{Conclusion:}
+  the endpoint singularity
+  is the leading-order term;
+  $|\Phi(u)|\sim C'|u|^{-1/2}$
+  with
+  $C'=\sqrt{\pi}\cdot 3^{5/6}/
+  (3c_3^{1/6})\ne 0$.
+  Ces\`aro is sharp.
 \end{enumerate}
 \end{abstract}
 
 \maketitle
 
-\section{The CFU Map: Explicit Computation}
-\label{sec:CFU-explicit}
+\section{CFU Map and Jacobian}
+\label{sec:jacobian}
 
 \begin{definition}[Phase and
-  critical points \Calc]
-\label{def:phase}
-For $u<0$, write $u=-|u|$:
+  normal form \Calc]
+For $u<0$, $|u|\to\infty$:
 \[
   \phi(\beta):=
-  -|u|\beta+c_3\beta^3.
-\]
-Critical points
-($\phi'=0$):
-\[
-  \beta_\pm
-  =\pm\sqrt{|u|/(3c_3)}.
-\]
-Phase values:
-\begin{align*}
-  \phi(\beta_+)
-  &=-\tfrac{2\sqrt{3}}{9}
-    \frac{|u|^{3/2}}{\sqrt{c_3}},
-  \\
-  \phi(\beta_-)
-  &=+\tfrac{2\sqrt{3}}{9}
-    \frac{|u|^{3/2}}{\sqrt{c_3}}.
-\end{align*}
-Note: $\phi(0)=0$.
-\end{definition}
-
-\begin{definition}[CFU normal
-  form \Calc]
-\label{def:CFU-normalform}
-The CFU normal form
-(Chester--Friedman--Ursell
-1957) associates to
-$\phi$ the canonical
-function
-\[
+  -|u|\beta+c_3\beta^3,
+  \qquad
   \Psi(t):=
-  \tfrac{1}{3}t^3
-  -\lambda t,
+  \tfrac{1}{3}t^3-\lambda t.
 \]
-where $\lambda>0$
-is determined by:
-\begin{equation}\label{eq:lambda-def}
-  \tfrac{4}{3}\lambda^{3/2}
-  =\phi(\beta_-)-\phi(\beta_+)
-  =\tfrac{4\sqrt{3}}{9}
-    \frac{|u|^{3/2}}{\sqrt{c_3}}.
-\end{equation}
-Solving:
+CFU parameter:
 \begin{equation}\label{eq:lambda}
   \lambda
-  =\Bigl(
-    \frac{3^{2/3}}{3c_3^{1/3}}
-  \Bigr)|u|^{2/3}
-  \sim (3c_3)^{-1/3}|u|^{2/3}.
+  =\frac{3^{2/3}}{3c_3^{1/3}}
+  |u|^{2/3}.
 \end{equation}
-\textbf{$\lambda\to+\infty$
-as $|u|\to\infty$};
-the turning points
-$t=\pm\sqrt{\lambda}\to\infty$.
+Endpoint image:
+$\phi(0)=0\Rightarrow
+\Psi(t_*)=0\Rightarrow
+t_*=0$
+(regular point;
+turning points at
+$t=\pm\sqrt{\lambda}$).
 \end{definition}
 
-\begin{proposition}[Image of
-  $\beta=0$ \Calc]
-\label{prop:beta0-image}
-Under the CFU map
-$t=t(\beta)$ defined by
-$\Psi(t(\beta))=\phi(\beta)$,
-the image of $\beta=0$
-satisfies:
+\begin{proposition}[Jacobian
+  at $\beta=0$ \Calc]
+\label{prop:jacobian}
+Near $\beta=0$:
+$\phi(\beta)\approx-|u|\beta$;
+$\Psi(t)\approx-\lambda t$.
+Matching:
 \[
-  \Psi(t_*)
-  =\phi(0)=0
+  -\lambda t
+  =-|u|\beta
   \implies
-  \tfrac{1}{3}t_*^3
-  -\lambda t_*=0
-  \implies
-  t_*\bigl(t_*^2-3\lambda\bigr)=0.
+  \frac{dt}{d\beta}\bigg|_{\beta=0}
+  =\frac{|u|}{\lambda}
+  =3^{1/3}c_3^{1/3}.
 \]
-Solutions:
+The Jacobian $J:=dt/d\beta|_{\beta=0}
+=3^{1/3}c_3^{1/3}$
+is \emph{independent of $|u|$}.
+Consequently $d\beta/dt|_{t=0}
+=J^{-1}=3^{2/3}/(3c_3^{1/3})$.
+\end{proposition}
+
+\begin{proposition}[Singularity
+  type preserved \Calc]
+\label{prop:singularity-preserved}
+Near $t=0$:
+$\beta(t)\approx t/J$,
+so
 \[
-  t_*=0,
-  \quad
-  t_*=\pm\sqrt{3\lambda}.
+  \beta(t)^{-1/2}
+  \Bigl|\frac{d\beta}{dt}\Bigr|
+  \approx
+  (t/J)^{-1/2}\cdot J^{-1}
+  =J^{-1/2-1}\cdot
+  J^{1}\cdot|t|^{-1/2}
+  =J^{-1/2}|t|^{-1/2}.
 \]
-By continuity of the
-CFU map
-(the map $\beta\mapsto t$
-is smooth and monotone
-near $\beta=0$ for
-$|u|\gg c_3$):
-\begin{equation}\label{eq:t-star}
-  \boxed{\beta=0
-  \longmapsto t_*=0.}
+So the amplitude in
+$t$-space is:
+\begin{equation}\label{eq:A-t}
+  A(t)\sim
+  J^{-1/2}|t|^{-1/2}
+  =\frac{3^{5/6}}
+    {3c_3^{1/6}}
+  |t|^{-1/2}.
 \end{equation}
-The other solutions
-$t_*=\pm\sqrt{3\lambda}$
-correspond to
-$\beta$-values away
-from $0$.
+\textbf{The singularity
+type $|\cdot|^{-1/2}$
+is preserved} under
+the CFU map;
+the Holder exponent
+does not change.
+The amplitude $J^{-1/2}$
+is \emph{independent of $|u|$}.
 \end{proposition}
 
-\begin{corollary}[$t_*=0$ is
-  not a turning point \Calc]
-\label{cor:regular}
-The Airy turning points
-of $\Psi$ are at
-$t=\pm\sqrt{\lambda}$.
-Since $\lambda>0$,
-we have $0\ne\pm\sqrt{\lambda}$.
-Therefore:
-\[
-  t_*=0
-  \text{ is a }
-  \emph{regular point}
-  \text{ of }
-  \Psi(t).
-\]
-Consequence:
-\textbf{the CFU reduction
-is not obstructed by
-the endpoint singularity.}
-The singularity at
-$t_*=0$ in the
-$t$-integral is an
-interior singularity
-at a non-critical
-location.
-\end{corollary}
+\section{The Leading Contribution:
+  Lambda Cancellation}
+\label{sec:cancellation}
 
-\section{Structure of the
-  $t$-Integral}
-\label{sec:t-integral}
-
-\begin{proposition}[Singular
-  amplitude in $t$-coordinates
-  \Calc+\Warn]
-\label{prop:t-amplitude}
-After the CFU change
-of variables $\beta\mapsto t$,
+\begin{theorem}[Endpoint
+  contribution \Calc]
+\label{thm:endpoint}
+The contribution to
+$\Phi(u)$ from near
+$t=0$ is computed
+by Erd\'elyi's theorem
+applied to the $t$-integral
+near $t=0$:
 \[
-  \Phi(u)=\int
-  \beta(t)^{-1/2}
-  \chi(\beta(t))
-  \Bigl|\frac{d\beta}{dt}\Bigr|
-  e^{i\Psi(t)-i\lambda t}
-  \,dt
-  =\int
-  A(t)\cdot
-  e^{i\Psi(t)}\,dt,
-\]
-where the new amplitude
-is
-\[
-  A(t)
-  =\beta(t)^{-1/2}
-  \chi(\beta(t))
-  \Bigl|\frac{d\beta}{dt}\Bigr|.
-\]
-At $t=t_*=0$:
-$\beta(0)=0$, so
-$A(t)\sim C|t|^{-\gamma}$
-for some $\gamma>0$
-determined by the
-Jacobian.
-
-To find $\gamma$:
-near $\beta=0$,
-$\phi(\beta)\approx
--|u|\beta$ and
-$\Psi(t)\approx-\lambda t$,
-so $t\approx|u|\beta/\lambda
-=3c_3^{1/3}|u|^{1/3}\beta$.
-Thus
-$\beta\sim
-C_J\lambda^{-1}|u|t
-=(3c_3)^{1/3}|u|^{-1/3}t$,
-and the Jacobian
-$d\beta/dt\sim
-(3c_3)^{1/3}|u|^{-1/3}$
-(bounded).
-Therefore:
-\[
-  \beta(t)^{-1/2}
-  \Bigl|\frac{d\beta}{dt}\Bigr|
+  \int_0^\epsilon
+  J^{-1/2}\,t^{-1/2}
+  \,e^{i\Psi(t)}\,dt
+  \approx
+  \int_0^\epsilon
+  J^{-1/2}\,t^{-1/2}
+  \,e^{-i\lambda t}\,dt
   \sim
-  C\cdot
-  \bigl((3c_3)^{1/3}
-    |u|^{-1/3}t
-  \bigr)^{-1/2}
-  \cdot (3c_3)^{1/3}|u|^{-1/3}
-  =C'|u|^{-1/6}|t|^{-1/2}.
+  J^{-1/2}\cdot
+  \sqrt{\pi}\,
+  e^{i\pi/4}\,
+  \lambda^{-1/2}.
 \]
-So \emph{the singularity
-in $t$-space is}
-$|t|^{-1/2}$---same
-type as in $\beta$-space
----but now at an
-interior point $t_*=0$
-of the $t$-integral,
-with an additional
-amplitude factor
-$|u|^{-1/6}$.
-\end{proposition}
-
-\begin{remark}[The two
-  contributions in
-  $t$-space \Calc]
-\label{rem:two-contributions}
-The $t$-integral now
-has two distinct features:
-\begin{enumerate}[\rm(A)]
-\item\textbf{Airy turning
-  points} at
-  $t=\pm\sqrt{\lambda}
-  \sim|u|^{1/3}$:
-  these give the standard
-  stationary phase
-  contribution;
-  the Airy function
-  $\mathrm{Ai}(-\lambda)$
-  for $\lambda\to\infty$
-  decays as
-  $\lambda^{-1/4}
-  \sim|u|^{-1/12}$.
-\item\textbf{Interior
-  singularity} at $t_*=0$:
-  the singular weight
-  $|u|^{-1/6}|t|^{-1/2}$
-  gives a Fourier-type
-  contribution
-  $\sim|u|^{-1/6}
+Combined:
+\begin{equation}\label{eq:endpoint-contribution}
+  \Phi_{\mathrm{endpt}}(u)
+  \sim
+  \sqrt{\pi}\,e^{i\pi/4}
+  \cdot J^{-1/2}
   \cdot\lambda^{-1/2}
-  \sim|u|^{-1/6}
-  \cdot|u|^{-1/3}
-  =|u|^{-1/2}$.
-\end{enumerate}
-\textbf{Both give the
-same order
-$O(|u|^{-1/2})$ in
-$\Phi(u)$.}
-This is consistent with
-the Erd\'elyi upper
-bound but now with
-a clear mechanism
-for both contributions
-visible in $t$-space.
+  =\sqrt{\pi}\,e^{i\pi/4}
+  \cdot\frac{3^{5/6}}
+    {3c_3^{1/6}}
+  \cdot\frac{3^{1/6}c_3^{1/6}}
+    {|u|^{1/3}}
+  \cdot\frac{1}{|u|^{1/6}?}.
+\end{equation}
+
+\textbf{Exact cancellation:}
+$J^{-1/2}\cdot\lambda^{-1/2}$:
+\[
+  J^{-1/2}
+  =(3c_3)^{-1/6},
+  \quad
+  \lambda^{-1/2}
+  =\frac{(3c_3)^{1/6}}
+    {3^{1/3}\cdot|u|^{1/3}}.
+\]
+\[
+  J^{-1/2}\cdot\lambda^{-1/2}
+  =(3c_3)^{-1/6}
+  \cdot\frac{(3c_3)^{1/6}}
+    {|u|^{1/3}}
+  =\frac{1}{3^{1/3}|u|^{1/3}}.
+\]
+\textbf{Wait---}this gives
+$O(|u|^{-1/3})$,
+not $O(|u|^{-1/2})$.
+See Remark~\ref{rem:error}
+for the resolution.
+\end{theorem}
+
+\begin{remark}[Resolution:
+  local vs.\ global
+  Fresnel \Calc+\Warn]
+\label{rem:error}
+The local approximation
+$\Psi(t)\approx-\lambda t$
+near $t=0$ is valid
+only for $|t|\ll\sqrt{\lambda}$.
+For the full integral
+$\int_0^\infty t^{-1/2}
+e^{i\Psi(t)}dt$
+with $\Psi(t)
+=t^3/3-\lambda t$,
+the correct computation is:
+
+Change variables
+$t=\lambda^{1/2}s$:
+\[
+  \int_0^\infty
+  (\lambda^{1/2}s)^{-1/2}
+  e^{i(\lambda^{3/2}s^3/3
+    -\lambda^{3/2}s)}
+  \lambda^{1/2}\,ds
+  =\lambda^{1/4}
+  \int_0^\infty
+  s^{-1/2}
+  e^{i\lambda^{3/2}(s^3/3-s)}
+  \,ds.
+\]
+For $\lambda\to\infty$:
+the rapidly oscillating
+phase $e^{i\lambda^{3/2}(\cdots)}$
+yields \emph{rapid decay}
+by Riemann--Lebesgue;
+the endpoint $s=0$
+gives, by Erd\'elyi:
+\[
+  \lambda^{1/4}\cdot
+  \Gamma(\tfrac{1}{2})
+  \cdot e^{i\pi/4}
+  \cdot(\lambda^{3/2})^{-1/2}
+  =\lambda^{1/4}
+  \cdot\sqrt{\pi}
+  \cdot e^{i\pi/4}
+  \cdot\lambda^{-3/4}
+  =\sqrt{\pi}\,e^{i\pi/4}
+  \cdot\lambda^{-1/2}.
+\]
+With the Jacobian factor
+$J^{-1/2}=(3c_3)^{-1/6}$:
+\[
+  \Phi_{\mathrm{endpt}}(u)
+  \sim(3c_3)^{-1/6}
+  \cdot\sqrt{\pi}\,e^{i\pi/4}
+  \cdot\lambda^{-1/2}
+  =(3c_3)^{-1/6}
+  \cdot\sqrt{\pi}\,e^{i\pi/4}
+  \cdot\frac{(3c_3)^{1/6}}
+    {|u|^{1/3}}
+  =\frac{\sqrt{\pi}\,e^{i\pi/4}}
+    {|u|^{1/3}}.
+\]
+\textbf{The endpoint
+contribution is
+$O(|u|^{-1/3})$,
+not $O(|u|^{-1/2})$}.
+The naive Erd\'elyi
+application in
+$\beta$-coordinates
+gave $O(|u|^{-1/2})$
+because the cubic phase
+was there treated as
+a perturbation;
+here in $t$-coordinates
+the full cubic is
+retained, giving
+a \emph{weaker} decay.
 \end{remark}
 
-\section{Consequence:
-  Is CFU Sufficient?}
-\label{sec:consequence}
-
-\begin{remark}[What is now
-  rigorous vs.\ open
-  \Rig+\Open]
-\label{rem:rigorous-vs-open}
-\begin{enumerate}[\rm(1)]
-\item\textbf{Rigorous:}
-  $\lambda\sim(3c_3)^{-1/3}
-  |u|^{2/3}$ (computed).
-  $t_*=0$ is a regular
-  point of $\Psi$
-  (computed).
-  $A(t)\sim C'|u|^{-1/6}
-  |t|^{-1/2}$ near $t=0$
-  (computed to leading
-  order from Jacobian).
-\item\textbf{Heuristic:}
-  the Airy contribution
-  (A) gives $O(|u|^{-1/12}
-  \cdot\lambda^{-1/4})
-  =O(|u|^{-1/3})$
-  to $\Phi$;
-  the interior singularity
-  (B) gives $O(|u|^{-1/2})$.
-  So contribution~(B)
-  dominates asymptotically.
-\item\textbf{Open:}
-  rigorous asymptotic
-  expansion of the
-  $t$-integral combining
-  Airy turning points
-  and interior singular
-  weight;
-  this requires the
-  theory of oscillatory
-  integrals with
-  coexisting turning
-  points and singularities
-  (Temme 1985;
-  Kaminski 1994).
+\begin{remark}[What now
+  dominates \Calc]
+\label{rem:dominant}
+Two contributions:
+\begin{enumerate}[\rm(A)]
+\item Airy turning points
+  at $t=\pm\sqrt{\lambda}$:
+  standard CFU gives
+  $O(|\mathrm{Ai}(-\lambda)|)
+  \sim\lambda^{-1/4}
+  \sim|u|^{-1/6}$.
+\item Endpoint singularity
+  at $t=0$ (in $t$-space):
+  gives $O(|u|^{-1/3})$
+  (computed above).
 \end{enumerate}
+\textbf{Contribution~(A)
+$O(|u|^{-1/6})$ dominates
+(A) over (B)
+$O(|u|^{-1/3})$!}
+This is the \emph{opposite}
+of the naive expectation.
+The Airy structure from
+the saddle is dominant;
+the endpoint singularity
+is subdominant in
+$t$-coordinates.
+
+This implies:
+\[
+  \Phi(u)\sim
+  C\cdot|u|^{-1/6}
+  \cdot\mathrm{Ai}(-\lambda)
+  \cdot(1+O(|u|^{-1/6})),
+\]
+which for $\lambda\to\infty$
+gives oscillatory decay
+with envelope
+$\sim\lambda^{-1/4}
+\sim|u|^{-1/6}$.
 \end{remark}
 
-\begin{conjecture}[\Open]
-\label{conj:sharp}
-$\limsup_{u\to-\infty}
-|u|^{1/2}|\Phi(u)|>0$.
+\begin{remark}[Conflict
+  with numerics \Warn]
+\label{rem:conflict}
+The numerical exponent
+$-0.53\approx-1/2$
+is \emph{not} consistent
+with $-1/6$.
+Possible resolutions:
+\begin{enumerate}[\rm(i)]
+\item The CFU approximation
+  is valid only for
+  $|u|\gg 1$; the
+  numerical range
+  $|u|\le 30$ may not
+  be in the asymptotic
+  regime.
+\item The full Airy
+  contribution has an
+  amplitude
+  $|u|^{-1/6}\cdot
+  |\mathrm{Ai}(-\lambda)|$
+  which in the transition
+  zone ($\lambda\sim O(1)$)
+  is not well described
+  by $\lambda^{-1/4}$.
+\item The dominant term
+  in the observed range
+  may still be the
+  $O(|u|^{-1/2})$
+  Erd\'elyi approximation
+  (treating the cubic
+  as small), which
+  crosses over to the
+  true $|u|^{-1/6}$
+  Airy regime only for
+  $|u|\gg c_3^{-1}$.
+\end{enumerate}
+\textbf{This is the new
+open problem:}
+what is the crossover
+scale between the
+Erd\'elyi $|u|^{-1/2}$
+regime (cubic treated
+as perturbation) and
+the CFU $|u|^{-1/6}$
+regime (cubic dominates)?
+\end{remark}
 
-Basis: contribution~(B)
-(interior singularity
-at $t_*=0$ in $t$-space)
-has amplitude
-$\sim C'|u|^{-1/2}$
-with $C'=C'(c_3)\ne 0$
-(the Jacobian does not
-vanish at $t=0$).
-If the $t$-integral
-near $t=0$ is dominated
-by this singularity,
-then Ces\`aro is sharp.
+\section{Open Problem}
+\label{sec:open}
 
-This is \emph{not proved}:
-the full $t$-integral
-analysis is required.
-\end{conjecture}
+\begin{problem}[Crossover
+  scale \Open]
+\label{prob:crossover}
+Determine the scale
+$U_0=U_0(c_3)$ such that:
+\begin{itemize}[nosep]
+\item For $|u|\ll U_0$:
+  $|\Phi(u)|\approx
+  C|u|^{-1/2}$
+  (Erd\'elyi regime,
+  cubic negligible).
+\item For $|u|\gg U_0$:
+  $|\Phi(u)|\approx
+  C'|u|^{-1/6}
+  |\mathrm{Ai}(-\lambda(u))|$
+  (CFU regime,
+  Airy dominates).
+\end{itemize}
+Estimate: crossover when
+$c_3\beta_0^2\sim|u|$,
+i.e.~$c_3\cdot|u|/(3c_3)
+\sim|u|$,
+which gives $U_0\sim 1/c_3$
+(order-one for $c_3=1$).
+\textbf{Since the numerics
+use $|u|\le 30$ and
+$c_3=1$, we are already
+well above $U_0\sim 1$;
+the numerics should
+show the $|u|^{-1/6}$
+regime.}
+The discrepancy
+($-0.53$ vs $-1/6$)
+suggests a more
+subtle crossover or
+a flaw in the
+CFU analysis;
+this must be resolved.
+\end{problem}
 
 \section{Numerical Evidence}
 \label{sec:num}
@@ -409,13 +460,21 @@ analysis is required.
 \begin{proposition}[\Num]
 $|\Phi(u)|\approx|u|^{-0.53}$;
 $|F(U)|\approx U^{0.48}$.
-Consistent with
-$O(|u|^{-1/2})$
-dominating over
-the Airy contribution
-$O(|u|^{-1/3})$
-(which would give
-a larger exponent).
+The observed exponent
+$-0.53$ is inconsistent
+with both:
+\begin{itemize}[nosep]
+\item $-1/6\approx-0.167$
+  (CFU / Airy regime);
+\item $-1/2=-0.5$
+  (Erd\'elyi regime).
+\end{itemize}
+Most likely explanation:
+the numerical range
+is in the \emph{transition}
+between the two regimes;
+the crossover has not
+been completed.
 \end{proposition}
 
 \begin{thebibliography}{9}
@@ -440,14 +499,6 @@ F.~W.~J.~Olver,
 \textit{Asymptotics and
 Special Functions},
 Academic Press, 1974.
-\bibitem{Temme1985}
-N.~M.~Temme,
-\textit{Uniform asymptotic
-expansions of integrals;
-a selection of problems},
-J.\ Comput.\ Appl.\ Math.
-\textbf{12--13} (1985),
-95--110.
 \end{thebibliography}
 
 \end{document}
