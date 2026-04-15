@@ -81,10 +81,12 @@ $\sum_{n>N}|a_n^{(c)}|^2\le\norm{g}^2 S_N(c)$;
 (iii)~the operator $\Bn:=(I-\Pi_N^{(c)})\Pc$
 satisfies $\norm{\Bn}_{\mathrm{op}}\le 1$;
 the inequality $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-is established via finite-dimensional
-truncation $\Ac^{(M)}$ and monotone limit
-$M\to\infty$, without any global
-trace-class or Hilbert--Schmidt assumption;
+is established via the quadratic-form identity
+$\ip{\Ac f}{f}=\lim_M\ip{\Ac^{(M)}f}{f}$,
+SOT-convergence, and monotone majorisation
+$S_N^{(M)}(c)\nearrow S_N(c)$,
+without any global trace-class or
+Hilbert--Schmidt assumption;
 (iv)~the quadratic form
 $Q_c^N(g)=\ip{\Ac g}{g}$
 where $\Ac:=\Bn^*\Bn\ge 0$, $0\le\Ac\le I$.
@@ -220,7 +222,7 @@ transit between $\approx 1$ and $\approx 0$.
   (composition of orthogonal projections)
 \item $0\le\Ac\le I$
 \item $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-  (finite truncation + monotone limit;
+  (quadratic-form + SOT + monotone majorisation;
   no global trace-class assumption)
 \item $S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
   (limit of finite-dimensional traces)
@@ -331,12 +333,15 @@ Throughout this section:
   Hilbert--Schmidt on $L^2(\mathbb{R})$
   ($\|P_{c_0}\|_{\mathrm{HS}}^2=\infty$);
   no such property is used anywhere below.
-\item All operator norm inequalities are derived
-  via finite-dimensional truncations $\Ac^{(M)}$
-  followed by a monotone limit $M\to\infty$.
-  Eigenvalue-counting arguments are carried
-  out \emph{only} at finite truncation level
-  and are \emph{never} passed to the limit.
+\item The inequality
+  $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
+  is derived via the quadratic form of
+  the monotone SOT-limit, not via
+  convergence of operator norms.
+  Eigenvalue-counting arguments are
+  carried out \emph{only} at finite
+  truncation level and are \emph{never}
+  passed to the limit.
 \end{itemize}
 \end{remark}
 
@@ -423,17 +428,45 @@ nor a sum of eigenvalues of the global $\Ac$.
 
 \medskip
 \textbf{(II) Operator norm inequality.}
-Since $\lambda_j^{(M)}\in[0,1]$:
+Since $P_{V_M^{(c)}}\to P_{V^{(c)}}$
+strongly as $M\to\infty$,
+we have $\Ac^{(M)}\to\Ac$ in the strong
+operator topology (SOT).
+For each $f\in L^2(\mathbb{R})$:
+\begin{align}
+  \ip{\Ac f}{f}
+  &= \lim_{M\to\infty}
+     \ip{\Ac^{(M)} f}{f}
+  \nonumber\\
+  &\le \lim_{M\to\infty}
+     \norm{\Ac^{(M)}}_{\mathrm{op}}
+     \norm{f}^2
+  \nonumber\\
+  &\le \lim_{M\to\infty}
+     S_N^{(M)}(c)\cdot\norm{f}^2
+  = S_N(c)\cdot\norm{f}^2.
+  \label{eq:qf-bound}
+\end{align}
+The first equality uses SOT-convergence
+($\Ac^{(M)}f\to\Ac f$ in norm,
+hence inner products converge);
+the second inequality uses the
+finite-dimensional bound
 $\norm{\Ac^{(M)}}_{\mathrm{op}}
 =\max_j\lambda_j^{(M)}
-\le\mathrm{Tr}(\Ac^{(M)})
-=S_N^{(M)}(c)$.
-Taking $M\to\infty$:
+\le\mathrm{Tr}(\Ac^{(M)})=S_N^{(M)}(c)$;
+the final equality uses
+$S_N^{(M)}(c)\nearrow S_N(c)$.
+Taking $\sup_{\norm{f}=1}$:
 \begin{equation}\label{eq:op-le-spectral}
   \norm{\Ac}_{\mathrm{op}}
   \le S_N(c).
 \end{equation}
-No global trace-class or HS property is used.
+The argument is entirely via quadratic
+forms and SOT-monotone majorisation;
+no norm-convergence of $\Ac^{(M)}$
+and no trace-class identification
+of $\Ac$ is used or claimed.
 
 \medskip
 \textbf{(III) Quadratic form.}
@@ -731,7 +764,8 @@ lim/sup non-interchangeable
 $0\le\Ac\le I$
   & \textbf{Proved} & projections compose \\
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-  & \textbf{Proved} & fin.\ trunc.\ + limit \\
+  & \textbf{Proved}
+  & QF + SOT + monotone majorisation \\
 $\Ac^{(M)}=P_{V_M}P_{c_0}P_{V_M}$
   & \textbf{Identified}
   & Thm.~\ref{thm:SN-operator} \\
@@ -1029,7 +1063,7 @@ according to $|n-m|$.
   The bound is sufficient for each
   fixed $\theta_0$;
   the obstruction is structural, not
-  quantitative — it arises from the
+  quantitative --- it arises from the
   instability of the transition kernel
   under summation as $|n-m|/c\to 0$,
   reflecting the non-commutativity of
@@ -1547,7 +1581,7 @@ $0\le\Ac\le I$
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
   & \textbf{Proved}
   & Thm.~\ref{thm:SN-operator} \\
-$S_N(c)=\mathrm{Tr}(\Ac)$
+$S_N(c)=\mathrm{Tr}_{\mathrm{PSWF}}(\Ac)$
   & \textbf{Proved}
   & Thm.~\ref{thm:SN-operator} \\
 H3$\Rightarrow$H1
@@ -1606,7 +1640,8 @@ established without global trace-class
 or Hilbert--Schmidt assumptions,
 via the concrete compression
 $\Ac^{(M)}=P_{V_M^{(c)}}P_{c_0}
-P_{V_M^{(c)}}$ and monotone limit.
+P_{V_M^{(c)}}$, SOT-convergence,
+and quadratic-form monotone majorisation.
 The gap between quadratic-form
 convergence (proved from H1) and
 spectral distribution control is
@@ -1620,11 +1655,7 @@ subcritical in HS scaling and
 automatically controlled under~(C);
 the far regime is amenable to
 standard stationary phase; and
-all other regimes are either
-automatically controlled or
-accessible via standard semiclassical
-methods.
-The entire obstruction is genuinely
+the entire obstruction is genuinely
 localised in the intermediate scale
 $C<|n-m|\le c^{\theta_0}$, where the
 structural difficulty is the
