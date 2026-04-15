@@ -505,7 +505,8 @@ The chain~\eqref{eq:chain} distinguishes:
 \item \emph{$\norm{\Ac}_{\mathrm{op}}\to 0$}:
   controls the largest eigenvalue uniformly.
 \item \emph{$\ip{\Ac g}{g}\to 0$ each fixed $g$}
-  (diagonal WOT-type): weakest; proved from H1.
+  (quadratic-form convergence): weakest;
+  proved from H1.
 \end{enumerate}
 The gap between (3) and (2) is the content
 of OP~\ref{prob:H1H3}, identified in
@@ -576,14 +577,19 @@ for all large $c$:
 \]
 \end{definition}
 
-\begin{remark}[NC as quantum ergodicity]
+\begin{remark}[NC and semiclassical equidistribution]
 \label{rem:NC-QE}
 Under the local Weyl law,
 $\mu_{n,c}([-c_0,c_0])\sim c_0/c$
 for $n\in\mathcal{T}_{\alpha,\kappa}(c)$,
 giving band sum $\sim c_0(\kappa-\alpha)>0$.
-This is a one-dimensional quantum ergodicity
-statement \cite{Zworski2012}.
+This exhibits QE-type behaviour in the
+sense of semiclassical equidistribution
+\cite{Zworski2012}: each mode contributes
+a share of frequency mass proportional to
+the relative bandwidth $c_0/c$, consistent
+with uniform phase-space spreading along
+the energy surface $\{n/c\to\alpha\}$.
 NC holds with $c_*=c_0(\kappa-\alpha)/2$.
 A sub-proportional band of width $c^\beta$
 ($\beta<1$) gives sum $\sim c_0 c^{\beta-1}\to 0$:
@@ -665,11 +671,11 @@ $\sum_{n\le N}|a_n^{(c)}-a_n^{(\infty)}|^2
 Adding gives H1.
 \end{proof}
 
-\begin{theorem}[H1 $\Rightarrow$ diagonal WOT]
+\begin{theorem}[H1 $\Rightarrow$ quadratic-form convergence]
 \label{thm:H1-H3-ptwise}
 Assume H1. For each fixed $g$ and $N$:
 $Q_c^N(g)=\ip{\Ac g}{g}\to 0$.
-This is diagonal WOT-type convergence;
+This is quadratic-form convergence;
 it does not imply $\norm{\Ac}_{\mathrm{op}}\to 0$
 (Remark~\ref{rem:lim-sup}).
 \end{theorem}
@@ -708,7 +714,7 @@ Implication & Status & Note \\
 \midrule
 H3$\Rightarrow$H1 & \textbf{Proved} & --- \\
 H1$\Rightarrow\ip{\Ac g}{g}\to 0$
-  & \textbf{Proved} & diagonal WOT \\
+  & \textbf{Proved} & quadratic-form conv. \\
 H1$\Rightarrow\norm{\Ac}_{\mathrm{op}}\to 0$
   & Open & OP~\ref{prob:H1H3} \\
 lim/sup non-interchangeable
@@ -785,7 +791,7 @@ Bessel
   & $\sum_{n\le N}\mu_{n,c}\le N+1$
   & Tail; NC \\
 Paper~XII
-  & diagonal WOT
+  & quadratic-form conv.
   & $\norm{\Ac}_{\mathrm{op}}$;
     spectral distribution \\
 Paper~VIII
@@ -797,9 +803,9 @@ Slepian--Weyl
 $\mu_{n,c}$ equidistribution
   & NC
   & quasi-orthogonality \\
-(D-weak) pointwise
-  & individual entries $o(1/c)$
-  & cumulative off-diagonal mass \\
+(D-weak) pointwise uniform
+  & $\sup_{n\ne m}|(\Ac^{(M)})_{nm}|=o(1/c)$
+  & cumulative HS off-diagonal mass \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -833,28 +839,32 @@ $\mu_{n,c}([-c_0,c_0])$
 and off-diagonal entries measuring
 inter-mode correlations in $[-c_0,c_0]$.
 
-\subsubsection*{Toeplitz structure and phase space symbol}
+\subsubsection*{Toeplitz structure and semiclassical symbol}
 
 The operator $\Ac$ behaves as a
-semiclassical Toeplitz operator whose
-symbol is the phase space overlap between
-frequency restriction and PSWF index
-localisation:
+semiclassical Toeplitz operator.
+Its symbol is most precisely understood
+as living on the energy surface
+$\{n/c \to \alpha\}$ in semiclassical
+phase space: the index $n$ is not a
+continuous phase-space parameter but rather
+an energy level accessed via the
+semiclassical limit $n/c\to\alpha\in(0,1)$.
+The relevant symbol is therefore:
 \[
-  a(x,\xi)
-  = \mathbf{1}_{|\xi|\le c_0}
-  \cdot \mathbf{1}_{n>\alpha c},
-  \qquad (x,\xi)\in\mathbb{R}^2,
+  a_\alpha(\xi)
+  = \mathbf{1}_{|\xi|\le c_0},
+  \qquad \xi\in\mathbb{R},
 \]
-where the index $n$ plays the role of an
-energy level in the semiclassical
-$(x,\xi)$-phase space, not merely a
-frequency variable.
+restricted to the energy slice
+$\{E = E_\alpha\}$, where
+$E_\alpha = \lim_{c\to\infty}\chi_{\lfloor\alpha c\rfloor}^{(c)}/c^2$.
 The classical Szeg\H{o} theorem then predicts
 that the eigenvalue distribution of
 $\Ac^{(M)}$ converges, as $M,c\to\infty$
-simultaneously, to a distribution determined
-by this phase space overlap.
+simultaneously along the energy surface,
+to a distribution determined by this
+phase-space overlap.
 
 \subsubsection*{Double-scaling Szeg\H{o} regime}
 
@@ -883,6 +893,7 @@ and both:
 \begin{enumerate}[\rm(i)]
 \item the symbol has a semiclassical limit
   ($h=1/c\to 0$, symbol $\mathbf{1}_{|\xi|\le c_0}$
+  on the energy surface $\{n/c\to\alpha\}$
   fixed), and
 \item the compression subspace grows at the
   same scale ($\dim V_{M(c)}^{(c)}
@@ -911,7 +922,7 @@ Here three features interact simultaneously:
     \ne
     \lim_{\substack{c\to\infty \\ M(c)\sim\beta c}};
   \]
-  the diagonal WOT limit ($c\to\infty$
+  the quadratic-form limit ($c\to\infty$
   first, then $M\to\infty$) does not
   capture the coupled regime.
 \end{enumerate}
@@ -925,12 +936,22 @@ not the density per mode.
 The double-scaling structure explains
 why \emph{collective} quasi-orthogonality
 (D-strong) is the key analytic obstruction,
-not merely pointwise decay (D-weak):
-the $O(c^2)$ off-diagonal entries each
-contribute $o(1/c)$, yielding a cumulative
-off-diagonal mass $c^2\cdot o(1/c)=o(c)$
-that is controlled only by the
-Hilbert--Schmidt condition
+not merely pointwise decay (D-weak).
+The precise reason is as follows:
+with $O(c^2)$ off-diagonal pairs, each
+satisfying the \emph{uniform} bound
+$\sup_{n\ne m}|(\Ac^{(M)})_{nm}|
+\le\varepsilon(c)/c$ with $\varepsilon(c)\to 0$,
+the Hilbert--Schmidt off-diagonal norm satisfies
+\[
+  \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
+  \le c^2 \cdot \frac{\varepsilon(c)^2}{c^2}
+  = \varepsilon(c)^2 \to 0.
+\]
+This vanishing requires the uniformity of
+$\varepsilon(c)\to 0$ over all pairs $(n,m)$;
+a merely pointwise $o(1/c)$ bound without
+uniform control is insufficient to conclude
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
 \end{remark}
 
@@ -1020,31 +1041,44 @@ distributed across $\sim c$ modes.
 \textbf{Distinction between (D-weak) and (D-strong).}
 The distinction between pointwise and collective
 quasi-orthogonality is essential:
-while (D-weak) controls individual matrix entries,
-only (D-strong) controls the cumulative
-off-diagonal mass across the $O(c^2)$ entries
-of the Gram matrix.}}
+while (D-weak) controls individual matrix entries
+uniformly, only (D-strong) controls the
+cumulative off-diagonal mass across the
+$O(c^2)$ entries of the Gram matrix.}}
 \end{center}
 
 \medskip
-\textbf{(D-weak) Pointwise quasi-orthogonality.}
+\textbf{(D-weak) Pointwise uniform quasi-orthogonality.}
 \begin{equation}\label{eq:quasi-orth}
-  \left|\int_{-c_0}^{c_0}
-  \widehat{\Phi_n^{(c)}}(\xi)\,
-  \overline{\widehat{\Phi_m^{(c)}}(\xi)}\,d\xi
-  \right| = o\!\left(\frac{1}{c}\right)
-  \quad(n\ne m,\; n,m\in\mathcal{T}_{\alpha,\kappa}(c)).
+  \sup_{\substack{n\ne m \\
+  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+  \left|(\Ac^{(M)})_{nm}\right|
+  \le \frac{\varepsilon(c)}{c},
+  \qquad \varepsilon(c)\to 0
+  \quad(M\sim\beta c).
 \end{equation}
+Here the $o(1/c)$ bound is understood
+\emph{uniformly over all pairs}
+$n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$,
+i.e.\ there exists $\varepsilon(c)\to 0$ such
+that~\eqref{eq:quasi-orth} holds for all
+such pairs simultaneously.
 This condition ensures qualitative asymptotic
 diagonal structure, but is \emph{insufficient}
-to control the cumulative effect of off-diagonal
-terms across a linearly growing index set:
+on its own to conclude
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$:
 with $O(c^2)$ off-diagonal pairs each bounded
-by $o(1/c)$, the Hilbert--Schmidt off-diagonal
-norm satisfies only
+by $\varepsilon(c)/c$, one obtains only
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
-\le c^2\cdot o(1/c^2) = o(1)$,
-which \emph{does} vanish --- see (D-strong) below.
+\le c^2\cdot\varepsilon(c)^2/c^2
+= \varepsilon(c)^2$,
+which vanishes \emph{if and only if}
+$\varepsilon(c)\to 0$ uniformly.
+Thus (D-weak) \emph{does} imply (D-strong)
+under the explicit uniform supremum
+form~\eqref{eq:quasi-orth}; the distinction
+is between a merely pointwise $o(1/c)$ bound
+(insufficient) and a uniform one (sufficient).
 
 \medskip
 \textbf{(D-strong) Collective quasi-orthogonality.}
@@ -1061,10 +1095,14 @@ equivalently:
   \quad\text{as }c\to\infty,\; M\sim\beta c,
 \end{equation}
 where $D^{(M)}:=\mathrm{diag}((\Ac^{(M)})_{nn})_{N<n\le M}$.
-Condition~(D-strong) is sufficient to ensure
-that the spectral behaviour of $\Ac^{(M)}$
-is asymptotically governed by its diagonal
-entries, and in particular implies
+Condition~(D-strong) is the operative
+requirement: it is implied by the
+uniform form of~(D-weak)
+(see Remark~\ref{rem:double-scaling}),
+and is sufficient to ensure that the
+spectral behaviour of $\Ac^{(M)}$ is
+asymptotically governed by its diagonal
+entries, in particular implying
 Conjecture~\ref{conj:szego}
 (Proposition~\ref{prop:HS-reduction}).
 
@@ -1073,21 +1111,23 @@ Conjecture~\ref{conj:szego}
 \begin{proposition}[Diagonal reduction under HS control]
 \label{prop:HS-reduction}
 Assume~(C) and~(D-strong).
-Then the eigenvalue distribution of
-$\Ac^{(M(c))}$ is asymptotically determined
-by its diagonal entries: there exists a
-bijection $j\mapsto n_j$ such that
+Then the spectrum of $\Ac^{(M(c))}$
+is collectively approximated by the
+multiset of diagonal values:
+for each $j$,
 \[
-  \lambda_j^{(M(c))}
-  = \mu_{n_j,c}([-c_0,c_0])
-  + o\!\left(\frac{1}{c}\right)
+  \left|\lambda_j^{(M(c))}
+  - d_{\sigma(j)}\right|
+  \le \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
+  \to 0,
 \]
-up to a negligible perturbation in
-Hilbert--Schmidt norm.
-In particular:
+where $\{d_k = \mu_{k,c}([-c_0,c_0])\}_{N<k\le M}$
+are the diagonal eigenvalues of $D^{(M)}$
+and $\sigma$ is any ordering of indices.
+In particular, by trace continuity:
 \[
   S_N^{(M(c))}(c)
-  = \sum_j \lambda_j^{(M(c))}
+  = \mathrm{Tr}(\Ac^{(M(c))})
   \sim \sum_{n=N+1}^{M(c)}
   \mu_{n,c}([-c_0,c_0])
   \sim c_0\beta.
@@ -1095,19 +1135,23 @@ In particular:
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-By~(D-strong), $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
-Since $D^{(M)}$ has eigenvalues
-$\mu_{n,c}([-c_0,c_0])\sim c_0/c$
-by~(C), and the gap between consecutive
-eigenvalues of $D^{(M)}$ is $o(1/c)$
-only when modes cluster, the Weyl
-perturbation inequality
-$|\lambda_j^{(M)}-d_j|\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}$
-combined with
+By~(D-strong),
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$,
+hence
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
-\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
-gives the claimed eigenvalue approximation.
-Summing yields the trace identity.
+\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
+The Weyl perturbation inequality gives
+$|\lambda_j^{(M)}-d_{\sigma(j)}|\to 0$
+for each $j$ under any ordering $\sigma$.
+Note that since all diagonal values
+$d_k\sim c_0/c$ are asymptotically equal,
+no specific bijection is required:
+the spectrum is collectively well-approximated
+by the diagonal multiset.
+Summing via trace continuity yields the
+identity $S_N^{(M(c))}(c)
+=\mathrm{Tr}(\Ac^{(M(c))})
+\sim c_0\beta$.
 \end{proof}
 
 \begin{remark}
@@ -1115,8 +1159,9 @@ Proposition~\ref{prop:HS-reduction} is the
 missing bridge step between the open problem
 OP~\ref{prob:H1H3} and Conjecture~\ref{conj:szego}:
 it shows that~(C)$+$(D-strong) imply the
-conjecture, whereas~(C)$+$(D-weak) alone
-do not.
+conjecture, and that the operative condition
+is the uniform supremum form of~(D-weak)
+which forces~(D-strong).
 \end{remark}
 
 \subsubsection*{Reformulation and conjecture}
@@ -1129,11 +1174,12 @@ Does the eigenvalue distribution of the
 truncated Gram operator $\Ac^{(M(c))}$
 converge to a non-degenerate distribution
 as $c\to\infty$, $M(c)\sim\beta c$?
-Equivalently: does collective
-quasi-orthogonality~\eqref{eq:quasi-orth-strong}
-hold, so that $\Ac^{(M(c))}$ is
-asymptotically diagonal in the PSWF basis
-with total spectral mass
+Equivalently: does the uniform pointwise
+bound~\eqref{eq:quasi-orth} hold with
+$\varepsilon(c)\to 0$, forcing
+collective quasi-orthogonality~%
+\eqref{eq:quasi-orth-strong}
+and total spectral mass
 $S_N^{(M(c))}(c)\gtrsim 1$?}}
 \end{center}
 
@@ -1155,10 +1201,10 @@ Then:
 Parts~(i)--(iii) follow from~(C)$+$(D-strong)
 via Proposition~\ref{prop:HS-reduction}
 and Lemma~\ref{lem:no-single-mode}.
-In particular, (D-weak) alone is
-\emph{insufficient}: the conjecture requires
-the collective Hilbert--Schmidt control
-of~(D-strong).
+A merely pointwise (non-uniform) $o(1/c)$
+bound on off-diagonal entries is
+\emph{insufficient}; the uniform supremum
+form~\eqref{eq:quasi-orth} is required.
 \end{conjecture}
 
 \begin{remark}[Programme status]
@@ -1167,15 +1213,13 @@ not a proved statement.
 Its verification requires:
 (1)~the local Weyl law~(C)
 (target of Paper~XV);
-(2)~collective quasi-orthogonality~(D-strong)
-via off-diagonal stationary phase
+(2)~the uniform off-diagonal bound~%
+\eqref{eq:quasi-orth} with $\varepsilon(c)\to 0$,
+via double-scaling stationary phase
 (\textbf{key analytic obstruction};
-not yet established);
+not yet established), which forces~(D-strong);
 (3)~the bridge Proposition~\ref{prop:HS-reduction}
 then closes the argument.
-Note that pointwise decay~(D-weak) alone
-does \emph{not} suffice for the conjecture;
-see the discussion following~\eqref{eq:quasi-orth}.
 \end{remark}
 
 %%═══ 8. PROGRAMME FOR PAPER XV
@@ -1191,19 +1235,25 @@ see the discussion following~\eqref{eq:quasi-orth}.
   uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
 \item $\mu_{n,c}([-c_0,c_0])=c_0/c+o(1/c)$
   uniformly.
-\item[\rm(D-weak)] Pointwise quasi-orthogonality~%
-  \eqref{eq:quasi-orth}:
-  $|(\Ac^{(M)})_{nm}|=o(1/c)$ for
-  $n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$.
-  \emph{This controls individual entries
-  but not the cumulative off-diagonal mass.}
+\item[\rm(D-weak)] Uniform pointwise
+  quasi-orthogonality~\eqref{eq:quasi-orth}:
+  \[
+    \sup_{\substack{n\ne m \\
+    n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+    \left|(\Ac^{(M)})_{nm}\right|
+    \le \frac{\varepsilon(c)}{c},
+    \quad \varepsilon(c)\to 0,
+    \quad M\sim\beta c.
+  \]
+  \emph{The $o(1/c)$ bound must hold
+  uniformly over all pairs $(n,m)$;
+  a merely pointwise bound is insufficient.}
 \item[\rm(D-strong)] Collective quasi-orthogonality~%
   \eqref{eq:quasi-orth-strong}:
   $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
   for $M\sim\beta c$.
-  \emph{This controls the full off-diagonal
-  Hilbert--Schmidt norm and is sufficient
-  for Conjecture~\ref{conj:szego}
+  \emph{Implied by the uniform form of~(D-weak);
+  sufficient for Conjecture~\ref{conj:szego}
   via Proposition~\ref{prop:HS-reduction}.}
 \end{enumerate}
 
@@ -1216,9 +1266,11 @@ Estimates & Implication & Target \\
 \midrule
 (A)+(B) & $\Rightarrow$ NC & Paper~XV \\
 (C) & $\Rightarrow$ equidistribution & Paper~XV \\
-(C)+(D-weak) & asymptotic diagonal structure
+(C)+(D-weak) pointwise only
+  & asymptotic diagonal structure
   & \emph{insufficient for Conj.~\ref{conj:szego}} \\
-(C)+(D-strong) & $\Rightarrow$ Conj.~\ref{conj:szego}
+(C)+(D-weak) uniform $\Rightarrow$ (D-strong)
+  & $\Rightarrow$ Conj.~\ref{conj:szego}
   & via Prop.~\ref{prop:HS-reduction} \\
 \bottomrule
 \end{tabular}
@@ -1241,35 +1293,41 @@ give (A)--(C) \cite{Osipov2013}.
 For (D-weak): the off-diagonal integral
 has phase $(n-m)\theta(\xi)/c$;
 for $|n-m|\ge 1$, rapid oscillation
-yields $o(1/c)$ by stationary phase with
-uniform remainder.
-This gives pointwise control but not
-the Hilbert--Schmidt sum.
-
-For (D-strong): one needs in addition
+yields $o(1/c)$ by stationary phase.
+The critical requirement for Paper~XV is
+that this bound holds
+\emph{uniformly in $(n,m)$}:
 \[
-  \sum_{\substack{n\ne m \\
+  \sup_{\substack{n\ne m \\
   n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
   \left|\int_{-c_0}^{c_0}
   e^{i(n-m)\theta(\xi)/c}
   \cdot r_{nm}(\xi)\,d\xi
-  \right|^2 = o(1),
+  \right|
+  \le \frac{\varepsilon(c)}{c},
+  \quad \varepsilon(c)\to 0,
 \]
 where $r_{nm}(\xi)$ are the WKB amplitude
 factors.
-This requires a \emph{uniform} remainder
-estimate in the double-scaling regime of
-Definition~\ref{def:double-scaling}:
-the coupling of $h=1/c\to 0$ and
-$M(c)\sim\beta c$ means that summing
-$O(c^2)$ stationary phase remainders
-requires control beyond single-parameter
-asymptotic expansion.
+This requires uniform remainder estimates
+across all index pairs in the transition zone,
+not merely for fixed $(n,m)$.
+
+For (D-strong): the uniform bound above
+implies
+\[
+  \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
+  \le c^2\cdot\frac{\varepsilon(c)^2}{c^2}
+  = \varepsilon(c)^2\to 0.
+\]
 This is the primary technical target of
-Paper~XV beyond estimates (A)--(C):
-to upgrade (D-weak) to (D-strong) via
-a double-scaling stationary phase estimate
-with explicit $\ell^2$-summable remainders.
+Paper~XV: to establish the uniform stationary
+phase remainder estimate in the
+double-scaling regime of
+Definition~\ref{def:double-scaling},
+upgrading pointwise oscillatory integral
+bounds to a uniform supremum over the
+$O(c^2)$ off-diagonal index pairs.
 
 %%═══ 9. OPEN PROBLEMS
 \section{Open Problems}
@@ -1296,8 +1354,7 @@ The mean spectral density
 $\bar\lambda^{(M)}(c):=S_N^{(M)}(c)/(M-N)$
 vanishes as $c_0/c\to 0$ under the local
 Weyl law.
-The correct open condition is not
-non-vanishing mean density, but the
+The correct open condition is the
 \emph{accumulation of spectral mass across
 a linearly growing family of modes}:
 does there exist $\beta\in(0,1)$ such that
@@ -1311,18 +1368,20 @@ By Definition~\ref{def:double-scaling}
 and \S\ref{sec:szego},
 condition~\eqref{eq:open-mass} is a
 \emph{double-scaling Szeg\H{o} problem}.
-It follows from~(C)$+$(D-strong)
-via Proposition~\ref{prop:HS-reduction};
-(D-weak) alone is \emph{insufficient}.
-Collective quasi-orthogonality~(D-strong)
-is the \textbf{key analytic obstruction}:
-its proof via double-scaling stationary phase
-is the primary target of Paper~XV.
+It follows from~(C) combined with the
+uniform pointwise bound~(D-weak),
+which forces~(D-strong)
+via Proposition~\ref{prop:HS-reduction}.
+The \textbf{key analytic obstruction}
+is the uniformity of the off-diagonal
+stationary phase estimate across all
+$O(c^2)$ index pairs; its proof is the
+primary target of Paper~XV.
 
 \textbf{Consequence if confirmed.}
 \eqref{eq:open-mass} combined with
 $\norm{\Ac}_{\mathrm{op}}\le S_N(c)$
-closes the diagonal-WOT-to-op-norm gap
+closes the quadratic-form-to-op-norm gap
 and completes the reduction of H1 to
 the local Weyl law.
 \end{problem}
@@ -1361,7 +1420,7 @@ Fin.-dim.\ eff.\ rank bound
   & \textbf{Proved} (level $M$ only) \\
 H3 $\Rightarrow$ H1
   & \textbf{Proved} \\
-H1 $\Rightarrow$ diagonal WOT
+H1 $\Rightarrow$ quadratic-form convergence
   & \textbf{Proved} \\
 NC $\Rightarrow$ H3 fails
   & \textbf{Proved} \\
@@ -1376,15 +1435,18 @@ Double-scaling Szeg\H{o} structure identified
 No single-mode dominance
   & \textbf{Identified} (Lem.~\ref{lem:no-single-mode};
     cond.\ Weyl) \\
-(D-weak)$\not\Rightarrow$Conj.~\ref{conj:szego}
+Pointwise-only $o(1/c)$ $\not\Rightarrow$ (D-strong)
   & \textbf{Identified} (structural gap) \\
+Uniform (D-weak) $\Rightarrow$ (D-strong)
+  & \textbf{Proved} (Rem.~\ref{rem:double-scaling}) \\
 Diagonal reduction under (D-strong)
   & \textbf{Proved} (Prop.~\ref{prop:HS-reduction};
     cond.\ (C)+(D-strong)) \\
 Total mass $S_N^{(M(c))}\sim c_0\beta>0$
   & Conjectured (\ref{conj:szego};
     follows from (C)+(D-strong)) \\
-(D-strong): $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+Uniform (D-weak): $\sup_{n\ne m}
+  |(\Ac^{(M)})_{nm}|\le\varepsilon(c)/c$
   & Open (\textbf{key obstruction}; Paper~XV) \\
 $S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
   & Open (OP~\ref{prob:H1H3}) \\
@@ -1404,29 +1466,50 @@ or trace-class assumptions,
 via the concrete compression
 $\Ac^{(M)}=P_{V_M^{(c)}}P_{c_0}P_{V_M^{(c)}}$
 and monotone limit.
-The gap between diagonal WOT-convergence
+The gap between quadratic-form convergence
 (proved from H1) and operator norm convergence
 is identified as a \emph{double-scaling
 Szeg\H{o} problem}
 (Definition~\ref{def:double-scaling}).
-Its resolution requires not merely
-pointwise quasi-orthogonality~(D-weak),
-which controls individual Gram matrix entries,
-but \emph{collective quasi-orthogonality}~(D-strong):
+Its resolution requires the
+\emph{uniform} off-diagonal bound:
+\[
+  \sup_{\substack{n\ne m \\
+  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+  \left|(\Ac^{(M)})_{nm}\right|
+  \le \frac{\varepsilon(c)}{c},
+  \quad \varepsilon(c)\to 0,
+\]
+which forces collective quasi-orthogonality~(D-strong)
 $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
-for $M(c)\sim\beta c$.
-The structural reason is that
-$O(c^2)$ off-diagonal entries,
-each $o(1/c)$, accumulate to $o(1)$
-in Hilbert--Schmidt norm only under
-uniform summability across the
-double-scaling regime.
+via the computation
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
+\le c^2\cdot\varepsilon(c)^2/c^2
+=\varepsilon(c)^2\to 0$.
+A merely pointwise (non-uniform) $o(1/c)$
+bound is insufficient.
 No single mode can carry macroscopic
 spectral mass (Lemma~\ref{lem:no-single-mode});
 mass accumulates collectively across $\sim c$
-modes, making the Hilbert--Schmidt condition
-both necessary in spirit and sufficient
-in practice (Proposition~\ref{prop:HS-reduction}).
+modes, making the uniform Hilbert--Schmidt
+condition~(D-strong) both the natural
+analytic target and the operative
+sufficient condition
+(Proposition~\ref{prop:HS-reduction}).
+The key analytic task of Paper~XV is
+therefore to establish the uniform
+off-diagonal bound
+\[
+  \sup_{\substack{n\ne m \\
+  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+  \left|(\Ac^{(M)})_{nm}\right|
+  \le \frac{\varepsilon(c)}{c},
+  \quad \varepsilon(c)\to 0,
+  \quad M\sim\beta c,
+\]
+via a double-scaling stationary phase
+estimate with uniform remainder across
+all $O(c^2)$ off-diagonal index pairs.
 Paper~XIV is logically complete up to
 two open problems.}
 
