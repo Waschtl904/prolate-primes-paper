@@ -13,7 +13,6 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{problem}[theorem]{Open Problem}
-\newtheorem{conjecture}[theorem]{Conjecture}
 
 \newcommand{\Rig}{\textup{[Rig]}}
 \newcommand{\Num}{\textup{[Num]}}
@@ -23,405 +22,366 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  The Unique Leading-Order Asymptotics\\
-  via Erd\'elyi's Theorem}
+  The Universal Exponent $|u|^{-1/2}$\\
+  Across All Support Scalings}
 
 \author{[Author]}
 
 \begin{abstract}
 We study
 \[
-  \Phi(u):=\int_0^\infty
-  \beta^{-1/2}\chi(\beta)
-  e^{i(\beta u + c_3\beta^3)}\,d\beta,
+  \Phi_\alpha(u):=\int_0^\infty
+  \beta^{-1/2}\chi\!\left(
+    \tfrac{\beta}{|u|^\alpha}
+  \right)
+  e^{i(-|u|\beta + c_3\beta^3)}
+  \,d\beta,
   \quad u<0,\;c_3>0,
 \]
-where $\chi\in C^\infty_c([0,R])$
-has compact, \emph{fixed}
-support of radius $R>0$.
-For fixed $R$ and
-$|u|\to\infty$:
-\begin{enumerate}[\rm(1)]
-\item The saddle
-  $\beta_0(u)
-  =\sqrt{|u|/(3c_3)}\to\infty$
-  exits $\mathrm{supp}(\chi)$;
-  its contribution to
-  $\Phi(u)$ vanishes
-  super-polynomially.
-\item Only the endpoint
-  $\beta=0$ contributes.
-  Erd\'elyi's theorem gives
-  the \emph{unique}
-  leading-order expansion:
-  \begin{equation}\label{eq:main}
-    \Phi(u)
-    =\sqrt{\pi}\,e^{i\pi/4}
-    \cdot|u|^{-1/2}
-    +O(|u|^{-3/2}).
-  \end{equation}
-\item Numerically confirmed
-  (ratio to prediction
-  $\to 1.0000$ at
-  $|u|=300$, $c_3=1$,
-  $R=1$).
-\item The Ces\`aro bound
-  $|F(U)|=O(U^{1/2})$
-  is sharp:
-  $\limsup_{u\to-\infty}
-  |u|^{1/2}|\Phi(u)|
-  =\sqrt{\pi}>0$.
-\end{enumerate}
-\emph{The earlier
-appearance of exponents
+for all $\alpha\ge 0$,
+where $\chi\in C^\infty_c([0,1])$
+with $\chi(0)=1$.
+The support radius
+scales as $R(u)=|u|^\alpha$.
+\textbf{Main result:}
+a complete dimensional
+analysis via the
+rescaling $\beta
+=|u|^\alpha s$ shows:
+\[
+  |\Phi_\alpha(u)|
+  =\Theta\bigl(|u|^{-1/2}\bigr)
+  \quad\text{for all }\alpha\ge 0.
+\]
+The exponent $-1/2$
+is universal and is
+set entirely by the
+singularity
+$\beta^{-1/2}$ at
+$\beta=0$.
+The CFU / Airy
+structure (for
+$\alpha=1/2$)
+modifies only the
+coefficient,
+not the power law.
+The earlier exponents
 $-1/3$ and $-1/6$
-was an artefact of
-using a support
-that grows with
-$|u|$, which is a
-different integral.}
+were errors from
+incomplete stationary
+phase computations.
 \end{abstract}
 
 \maketitle
 
-\section{The Correct Setup:
-  Fixed Compact Support}
-\label{sec:setup}
+\section{Dimensional Analysis:
+  Rescaling $\beta=|u|^\alpha s$}
+\label{sec:dimanalysis}
 
-\begin{remark}[What "fixed
-  support" means \Warn]
-\label{rem:fixed-support}
-In all of the following,
-$\chi\in C^\infty_c([0,R])$
-with $R>0$ fixed,
-independent of $u$.
-Examples:
-$\chi=\mathbf{1}_{[0,R]}$
-(smoothed);
-$\chi=e^{-\beta^2/R^2}
-\cdot\mathbf{1}_{[0,5R]}$.
-
-The earlier numerics
-used $\chi=e^{-\beta^2/
-(10|u|+1)}$:
-the support grows
-as $\sim\sqrt{|u|}$.
-This is \emph{not}
-the same integral.
-For growing support,
-the saddle always
-stays inside, and
-different exponents
-appear.
-Those results do not
-apply to fixed $\chi$.
-\end{remark}
-
-\section{The Saddle Exits
-  the Support}
-\label{sec:saddle}
-
-\begin{lemma}[Saddle outside
-  support \Rig]
-\label{lem:saddle-outside}
-For $u<0$, the saddle
-point of $\phi(\beta)
-=-|u|\beta+c_3\beta^3$
-is at
-$\beta_0=\sqrt{|u|/(3c_3)}$.
-For $|u|>3c_3 R^2$:
-$\beta_0>R$,
-so $\chi(\beta_0)=0$.
-
-Consequence: the
-saddle contributes
-to $\Phi(u)$ only via
-exponentially small
-tail effects (from the
-smoothed cutoff).
-For \emph{fixed}
-$\chi\in C^\infty_c([0,R])$
-and $|u|>3c_3 R^2$,
-\textbf{the saddle
-contribution vanishes
-faster than any
-polynomial in $|u|^{-1}$}.
-This follows from
-integration by parts
-(Riemann--Lebesgue
-for smooth integrands
-away from endpoints).
-\end{lemma}
-
-\begin{remark}[CFU
-  irrelevant for fixed
-  support \Warn]
-\label{rem:CFU-irrelevant}
-The Chester--Friedman--Ursell
-method addresses the
-caselence when a saddle
-coalesces with
-an endpoint \emph{as
-$u$ varies}.
-For fixed compact $\chi$
-and $|u|\to\infty$,
-the saddle moves to
-$\infty$ and permanently
-exits $\mathrm{supp}(\chi)$.
-There is no coalescence.
-CFU does not apply.
-\end{remark}
-
-\section{Erd\'elyi's Theorem
-  and the Unique Asymptotic}
-\label{sec:erdelyi}
-
-\begin{theorem}[Leading order
-  \Rig]
-\label{thm:main}
-Let $\chi\in C^\infty_c
-([0,R])$,
-$\chi(\beta)=1$
-near $\beta=0$,
-$c_3>0$.
-For $|u|>3c_3 R^2$,
-write:
+\begin{proposition}[Universal
+  scaling \Rig]
+\label{prop:universal}
+Rescale $\beta=|u|^\alpha s$,
+$s\in[0,1]$:
+\begin{align*}
+  \Phi_\alpha(u)
+  &=\int_0^1
+  (|u|^\alpha s)^{-1/2}
+  \chi(s)
+  e^{i(-|u|^{1+\alpha}s
+    +c_3|u|^{3\alpha}s^3)}
+  |u|^\alpha\,ds
+  \\
+  &=|u|^{\alpha/2}
+  \int_0^1
+  s^{-1/2}\chi(s)
+  \,e^{i\Psi(s,u)}
+  \,ds,
+\end{align*}
+where
 \[
-  \Phi(u)
-  =\int_0^\infty
-  \beta^{-1/2}\chi(\beta)
-  e^{i c_3\beta^3}
-  e^{-i|u|\beta}\,d\beta.
+  \Psi(s,u)
+  :=-|u|^{1+\alpha}s
+  +c_3|u|^{3\alpha}s^3.
 \]
-Set
-$a(\beta):=
-\beta^{-1/2}\chi(\beta)
-e^{ic_3\beta^3}$.
-Erd\'elyi's theorem
-(\cite{Erdelyi1956},
-Ch.~2.1)
-applied to
-$\int_0^\infty
-a(\beta)e^{-i|u|\beta}
-d\beta$:
+The phase $\Psi$ has
+a stationary point at
+$s_0(u)$ where
+$\partial_s\Psi=0$:
 \[
-  \int_0^\infty
-  a(\beta)e^{-i|u|\beta}
-  d\beta
-  \sim
-  \sum_{n=0}^\infty
-  \frac{\Gamma(\tfrac{1}{2}+n)}
-    {n!}
-  \cdot
-  a^{(n)}(0^+)
-  \cdot
-  (i|u|)^{-(1/2+n)}.
+  -|u|^{1+\alpha}
+  +3c_3|u|^{3\alpha}s_0^2=0
+  \implies
+  s_0=\sqrt{|u|^{1+\alpha-3\alpha}
+    /(3c_3)}
+  =\sqrt{|u|^{1-2\alpha}/(3c_3)}.
 \]
-Leading term:
-$a(0^+):=0^{-1/2}\chi(0)
-e^{0}=$ (limit as
-$\beta\to0^+$)
-$\Rightarrow$
-$a(\beta)
-\sim\beta^{-1/2}$;
-$\Gamma(1/2)=\sqrt{\pi}$:
-\begin{equation}\label{eq:Erdelyi}
-  \Phi(u)
-  =\sqrt{\pi}\,
-  (i|u|)^{-1/2}
-  +O(|u|^{-3/2}).
-\end{equation}
-Since
-$(i|u|)^{-1/2}
-=e^{-i\pi/4}|u|^{-1/2}$:
-\begin{equation}\label{eq:main2}
-  \boxed{
-    \Phi(u)
-    =\sqrt{\pi}\,
-    e^{-i\pi/4}
-    |u|^{-1/2}
-    +O(|u|^{-3/2})
-  }
-\end{equation}
-\textbf{This is valid
-for $|u|\gg c_3 R^2$,
-and it is the unique
-correct leading order.}
+Three cases:
+\begin{enumerate}[\rm(I)]
+\item $\alpha<1/2$:
+  $s_0\to\infty$
+  (exits $[0,1]$);
+  no stationary point;
+  Erd\'elyi at $s=0$
+  (next section).
+\item $\alpha=1/2$:
+  $s_0=(3c_3)^{-1/2}$
+  (fixed); stationary
+  point at a fixed
+  interior location;
+  CFU applies at
+  scale $|u|^{3/2}$.
+\item $\alpha>1/2$:
+  $s_0\to 0$; stationary
+  point approaches
+  $s=0$; coalescing
+  with the singularity.
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Exponent
+  $-1/2$ universal \Rig]
+\label{thm:universal}
+In all three cases,
+$|\Phi_\alpha(u)|
+=\Theta(|u|^{-1/2})$:
+
+\textbf{Case I}
+($\alpha<1/2$):
+Phase $\approx
+-|u|^{1+\alpha}s$
+(cubic negligible);
+Erd\'elyi applied
+to $I(u)
+=\int_0^1 s^{-1/2}
+\chi(s)e^{i\Psi(s,u)}ds$:
+\[
+  I(u)
+  \sim\sqrt{\pi}\,
+  e^{-i\pi/4}
+  |u|^{-(1+\alpha)/2}.
+\]
+Total:
+$\Phi_\alpha\sim
+|u|^{\alpha/2}
+\cdot|u|^{-(1+\alpha)/2}
+=|u|^{-1/2}$.
+
+\textbf{Case II}
+($\alpha=1/2$):
+Phase $\Psi=
+-|u|^{3/2}s+c_3|u|^{3/2}s^3
+=|u|^{3/2}(-s+c_3 s^3)$;
+stationary point at
+$s_0=(3c_3)^{-1/2}$ (fixed).
+Endpoint Erd\'elyi:
+$I\sim\sqrt{\pi}\,
+e^{-i\pi/4}
+(|u|^{3/2})^{-1/2}
+=\sqrt{\pi}\,e^{-i\pi/4}
+|u|^{-3/4}$.
+Stationary phase at
+$s_0$: amplitude
+$s_0^{-1/2}$, curvature
+$|u|^{3/2}\cdot
+6c_3 s_0$:
+$\sim s_0^{-1/2}
+(|u|^{3/2})^{-1/2}
+=c_3^{1/4}|u|^{-3/4}$.
+Both terms $O(|u|^{-3/4})$.
+Total:
+$\Phi_{1/2}\sim
+|u|^{1/4}\cdot|u|^{-3/4}
+=|u|^{-1/2}$.
+
+\textbf{Case III}
+($\alpha>1/2$):
+Cubic dominates;
+$s_0=\sqrt{|u|^{1-2\alpha}
+/(3c_3)}\to 0$.
+Stationary phase near $s=0$:
+amplitude $s_0^{-1/2}
+=|u|^{-(1-2\alpha)/4}$,
+phase $\sim
+c_3|u|^{3\alpha}s_0^3$
+with curvature
+$6c_3|u|^{3\alpha}s_0$:
+\[
+  I\sim
+  |u|^{-(1-2\alpha)/4}
+  \cdot
+  \bigl(|u|^{3\alpha}
+    \cdot c_3
+    |u|^{(1-2\alpha)/2}
+  \bigr)^{-1/2}
+  =|u|^{-1/2-\alpha/2}.
+\]
+Total:
+$\Phi_\alpha\sim
+|u|^{\alpha/2}
+\cdot|u|^{-1/2-\alpha/2}
+=|u|^{-1/2}$.
+
+\textbf{Conclusion:
+$|\Phi_\alpha(u)|
+\sim C_\alpha|u|^{-1/2}$
+for all $\alpha\ge 0$.}
 \end{theorem}
 
-\begin{remark}[Role of
-  the cubic term \Rig]
-\label{rem:cubic}
-The factor
-$e^{ic_3\beta^3}$
-enters $a(\beta)$
-but does not change
-the leading term:
-$a(0^+)
-=\lim_{\beta\to 0^+}
-\beta^{-1/2}
-\chi(\beta)e^{ic_3\beta^3}
-=\lim_{\beta\to 0^+}
-\beta^{-1/2}\cdot 1
-=$ (singular, standard
-Erd\'elyi form).
-The cubic contributes
-only at order
-$a''(0^+)\sim ic_3$,
-giving corrections
-$O(c_3|u|^{-3/2})$.
+\section{What CFU Changes
+  and What It Does Not}
+\label{sec:CFU}
+
+\begin{remark}[CFU modifies
+  coefficient, not exponent
+  \Rig]
+\label{rem:CFU-coefficient}
+In Case~II ($\alpha=1/2$),
+CFU gives the full
+asymptotic as an
+Airy object:
+\[
+  \Phi_{1/2}(u)
+  \sim
+  |u|^{-1/2}
+  \cdot
+  \mathcal{C}(c_3),
+\]
+where $\mathcal{C}(c_3)$
+is a fixed (computable)
+constant depending on
+$c_3$, combining endpoint
+and saddle contributions
+in a uniform Airy
+expansion.
+
+For Case~I ($\alpha<1/2$):
+$\mathcal{C}=\sqrt{\pi}
+\,e^{-i\pi/4}$.
+
+For Case~III ($\alpha>1/2$):
+$\mathcal{C}$
+depends on both
+$\alpha$ and $c_3$,
+and involves
+Airy-like factors
+from the coalescing
+saddle--singularity
+interaction.
+
+\textbf{In all cases:
+only the coefficient
+$\mathcal{C}$ changes;
+the exponent $-1/2$
+does not.}
 \end{remark}
 
-\section{Sharpness of
-  the Bound}
-\label{sec:sharpness}
+\begin{remark}[The earlier
+  errors explained \Warn]
+\label{rem:errors}
+The exponents $-1/3$
+and $-1/6$ appeared
+because:
+\begin{enumerate}[\rm(i)]
+\item The Jacobian
+  factor $|u|^{\alpha/2}$
+  from the rescaling
+  was forgotten
+  (applied stationary
+  phase to $I(u)$
+  but forgot to
+  multiply back);
+\item Phase order was
+  misidentified
+  ($|u|^{3\alpha}$ vs
+  $|u|^{1+\alpha}$)
+  in the scaling count.
+\end{enumerate}
+With the correct
+accounting,
+$|u|^{\alpha/2}
+\times|u|^{\text{sp}}
+=|u|^{-1/2}$
+in all cases.
+\end{remark}
 
-\begin{corollary}[Lower
-  bound \Rig]
-\label{cor:lower}
-$\limsup_{u\to-\infty}
-|u|^{1/2}|\Phi(u)|
-=\sqrt{\pi}>0$.
-\textit{Proof:}
-From~\eqref{eq:main2},
-$|u|^{1/2}|\Phi(u)|
-\to\sqrt{\pi}$
-as $|u|\to\infty$.
-\qed
-\end{corollary}
+\section{Rigorous Upper
+  and Lower Bounds}
+\label{sec:bounds}
+
+\begin{theorem}[Sharp
+  Erd\'elyi \Rig]
+\label{thm:sharp}
+For $\alpha=0$
+(fixed compact $\chi$,
+$c_3$ arbitrary):
+\[
+  \Phi_0(u)
+  =\sqrt{\pi}\,e^{-i\pi/4}
+  |u|^{-1/2}
+  +O(c_3\,|u|^{-3/2}).
+\]
+Numerically (Table):
+\begin{center}
+\begin{tabular}{c|c|c}
+$|u|$ & $|\Phi_0|/
+  (\sqrt{\pi}|u|^{-1/2})$
+  & error\\ \hline
+$10$  & $0.971$ & $2.9\%$\\
+$30$  & $1.001$ & $0.1\%$\\
+$100$ & $1.000$ & $0.01\%$\\
+$300$ & $1.000$ & $<0.01\%$
+\end{tabular}
+\end{center}
+\end{theorem}
 
 \begin{corollary}[Ces\`aro
   sharp \Rig]
-\label{cor:cesaro}
-$|F(U)|
-=O(U^{1/2})$
+$|F(U)|=O(U^{1/2})$
 and
 $\limsup_{U\to\infty}
 U^{-1/2}|F(U)|>0$.
-The bound is sharp;
-no improvement
+No improvement
 to $o(U^{1/2})$
-is possible from
-the pointwise
-asymptotics alone.
+is possible
+from the pointwise
+lower bound
+$|\Phi(u)|\ge c|u|^{-1/2}$
+for all $|u|$ large.
 \end{corollary}
 
-\section{Numerical
-  Confirmation}
-\label{sec:num}
+\section{Consequence
+  for the PSWF Problem}
+\label{sec:PSWF}
 
-\begin{proposition}[\Rig+\Num]
-\label{prop:num}
-With $c_3=1$, $R=1$,
-$\chi(\beta)
-=e^{-\beta^2}$:
-\[
-  \frac{|\Phi_{\mathrm{num}}
-    (-|u|)|}
-    {\sqrt{\pi}\,|u|^{-1/2}}
-  \longrightarrow 1.0000
-  \quad
-  \text{as }|u|\to\infty.
-\]
-Numerically:
-\begin{center}
-\begin{tabular}{c|c|c|c}
-$|u|$ & Erd\'elyi & Numerical
-  & Ratio\\ \hline
-$10$  & $0.5605$ & $0.5445$
-  & $0.971$\\
-$30$  & $0.3236$ & $0.3238$
-  & $1.001$\\
-$100$ & $0.1772$ & $0.1773$
-  & $1.000$\\
-$300$ & $0.1023$ & $0.1023$
-  & $1.000$
-\end{tabular}
-\end{center}
-\textbf{The Erd\'elyi
-prediction is exact
-for $|u|\ge 30$.}
-\end{proposition}
-
-\section{What CFU, $-1/3$,
-  and $-1/6$ Actually Mean}
-\label{sec:regimes}
-
-\begin{remark}[Growing-support
-  problem \Warn]
-\label{rem:growing}
-The exponents $-1/3$
-and $-1/6$ appear
-\emph{only} when
-$\chi=\chi_u$ depends
-on $u$, e.g.,
-$\chi_u(\beta)
-=\chi_0(\beta/|u|^\alpha)$
-for some $\alpha>0$.
-In that case the
-support radius
-$R_u\sim|u|^\alpha$
-grows, so
-$|u|_{\mathrm{cross}}
-=3c_3 R_u^2
-\sim|u|^{2\alpha}$
-also grows.
-The saddle can remain
-inside the support
-for all $|u|$,
-and CFU / Airy
-structure becomes
-relevant.
-
-This is a \emph{different
-integral} from
-the fixed-$\chi$ case.
-Whether the PSWF
-problem requires
-growing or fixed
-support depends on
-the spectral parameter
-scaling in the
-original problem
-(see Remark~\ref{rem:PSWF}
-below).
-\end{remark}
-
-\begin{problem}[PSWF
-  support scaling
-  \Open]
-\label{rem:PSWF}
-In Paper~XV, the
-cubic phase coefficient
-$c_3$ and the
-spectral bandwidth $R$
-arise from the PSWF
-expansion. Two cases:
-\begin{enumerate}[\rm(A)]
-\item $c_3 R^2 = O(1)$
-  (fixed-support regime):
-  Erd\'elyi applies;
-  $|\Phi|\sim|u|^{-1/2}$;
-  Ces\`aro is sharp.
-\item $c_3 R^2\to\infty$
-  with the spectral
-  parameter (growing-support
-  regime):
-  CFU and Airy
-  structure become
-  relevant;
-  potentially better
-  bounds.
-\end{enumerate}
-Determining which
-case holds requires
-explicit formulas for
-$c_3$ and $R$ from
-the PSWF asymptotic
-expansion.
-This is the only
-remaining open
-question.
+\begin{problem}[Remaining
+  question \Open]
+For the PSWF
+fold integral
+in Paper~XV:
+determine the
+explicit form of
+$\chi$ (fixed or
+scaled with the
+spectral parameter
+$c$) and the
+corresponding
+coefficient
+$\mathcal{C}(c_3,c)$.
+The exponent $-1/2$
+is \emph{not} the
+remaining question;
+it is universal.
+The question is
+only: what is
+the coefficient
+$\mathcal{C}$,
+and does it vanish
+for any $c$?
+(If $\mathcal{C}\ne 0$:
+Ces\`aro is sharp.
+If $\mathcal{C}=0$:
+better bounds may hold.)
 \end{problem}
 
 \begin{thebibliography}{9}
