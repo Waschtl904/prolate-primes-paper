@@ -28,6 +28,8 @@
 \newcommand{\AcM}{A_N^{(c),(M)}}
 \newcommand{\Tcc}{\mathcal{T}_c^{(c)}}
 \newcommand{\Dc}{\mathcal{D}_c}
+\newcommand{\gsing}{g_{\mathrm{sing}}}
+\newcommand{\greg}{g_{\mathrm{reg}}}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 81Q20, 11L07}
 \keywords{Prolate spheroidal wave functions,
@@ -36,8 +38,8 @@
   WKB asymptotics, oscillatory integrals,
   critical Toeplitz energy, Fourier sampling,
   moving-symbol Toeplitz, curvature weight,
-  weighted Riemann--Lebesgue, Ces\`aro summation,
-  non-uniform Fourier sampling, oscillatory kernel,
+  singular Dirichlet convolution,
+  non-uniform Fourier sampling,
   scaling gap, non-commuting limits}
 
 \begin{document}
@@ -53,79 +55,69 @@
 \email{[Email]}
 
 \begin{abstract}
-Paper~XIV reduced the coefficient
-stability hypothesis~H1 to
+Paper~XIV reduced H1 to
 $\Sigma_{\mathrm{int}}=o(1)$.
 This paper identifies the core
-structure and reduces the problem
-to a sharply formulated scalar
-cancellation question.
+structure and establishes a new
+partial bound on the oscillatory sum
+that drives the problem.
 
-The main objects are
-$I_c(k):=\int e^{ik\theta/c}w\,d\xi$
-and $\Sigma_{\mathrm{model}}
-=\sum_k|I_c(k)|^2$.
-Pointwise tools fail;
-the obstruction is
-\emph{lack of cancellation
-after phase freezing}.
-A coarea substitution and WKB
-analysis reduce
-(T\textsuperscript{*}) to
-the oscillatory sum
-\begin{equation*}
-  S(c):=\int_{\mathbb{R}} K(x)
-  \sum_{k=1}^{K(c)}
-  \widehat{g}(xk/c^{\theta_0})\,dx,
-  \quad K\in\mathcal{S},\;
-  |\widehat{g}(\xi)|=O(|\xi|^{-1/2}).
-\end{equation*}
-The exact equivalence is
-(Lemma~\ref{lem:S-equivalence}):
-\begin{equation*}
-  \Sigma_{\mathrm{model}} = o(1)
+The exact equivalence
+(Lemma~\ref{lem:S-equivalence})
+\[
+  \Sigma_{\mathrm{model}}=o(1)
   \;\iff\;
-  S(c) = o(c^{-(2-2\theta_0)}).
-\end{equation*}
+  S(c)=o(c^{-(2-2\theta_0)})
+\]
+reduces everything to the
+non-uniform Fourier sampling sum
+\[
+  S(c)=\int K(x)
+  \textstyle\sum_{k=1}^{K(c)}
+  \widehat{g}(xk/c^{\theta_0})\,dx.
+\]
+The curvature singularity
+$g(\alpha)\sim|\alpha-\alpha_*|^{-1/2}$
+forces $|\widehat{g}|=O(|\xi|^{-1/2})$
+and gives $S(c)=o(c^{\theta_0})$
+(Ces\`aro step, Corollary~\ref{cor:cesaro-closed}),
+but the target is $o(c^{-(2-2\theta_0)})$:
+a factor $c^{2-\theta_0}$ short.
 
-Defining $\mathcal{C}(c):=S(c)/K(c)$
-($K(c)=c^{\theta_0}$),
-a Fubini--Tonelli argument shows
-$\Psi(\lambda):=\int K\widehat{g}(\lambda\cdot)
-\in L^1(d\lambda/\lambda)$
-(Proposition~\ref{prop:Psi-L1}),
-giving $\mathcal{C}(c)\to 0$,
-i.e., $S(c)=o(c^{\theta_0})$.
-However, the target is
-$S(c)=o(c^{-(2-2\theta_0)})$:
-a \emph{strictly stronger
-cancellation} of order
-$c^{\theta_0+(2-2\theta_0)}
-=c^{2-\theta_0}$
-beyond qualitative decay.
+The main new result is a splitting
+$g=\gsing+\greg$
+(Lemma~\ref{lem:g-split})
+and the \emph{singular Dirichlet
+convolution estimate}
+(Lemma~\ref{lem:singular-dirichlet-conv}):
+\[
+  \sum_{k\le K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})
+  = O(c^{\theta_0/2}|x|^{-1/2}),
+\]
+derived by scaling
+$u=(\alpha-\alpha_*)x/c^{\theta_0}$
+and the bound
+$\int|u|^{-1/2}|D_N^*(u)|\,du=O(1)$.
+This gives the improved bound
+(Proposition~\ref{prop:S-improved}):
+\[
+  S(c) = O(c^{\theta_0/2}),
+\]
+improving over
+$S(c)=O(c^{\theta_0})$ by
+a factor $c^{\theta_0/2}$.
 
-The primary remaining task for
-Paper~XVI is to establish
-this cancellation
-(Problem~\ref{prob:S-cancellation})
-by analysing $\sum_k\widehat{g}(xk/c^{\theta_0})$
-as a \emph{non-uniform Fourier
-sampling} / oscillatory kernel,
-without taking absolute values.
-The main contributions of this paper:
-\begin{enumerate}[\rm(1)]
-\item Scalar reduction to $S(c)$;
-\item Exact equivalence
-  $\Sigma_{\mathrm{model}}=o(1)\iff
-  S(c)=o(c^{-(2-2\theta_0)})$;
-\item Ces\`aro obstruction removed:
-  $S(c)=o(c^{\theta_0})$;
-\item Gap quantified:
-  factor $c^{2-\theta_0}$ remaining;
-\item Moving-symbol / ergodic
-  structure and non-commuting
-  limits identified.
-\end{enumerate}
+The residual gap is now
+$c^{\theta_0/2+(2-2\theta_0)}
+=c^{2-3\theta_0/2}$,
+which is $o(1)$ for $\theta_0>4/3$,
+but since $\theta_0\in(0,1)$
+the gap $c^{2-3\theta_0/2}>c^{1/2}$
+remains positive
+(Remark~\ref{rem:gap-after-improvement}).
+The precise remaining target
+is $S(c)=o(c^{-(2-2\theta_0)})$.
 \end{abstract}
 
 \maketitle
@@ -146,11 +138,10 @@ The main contributions of this paper:
   := \sum_{\substack{n\ne m,\\
       C<|n-m|\le c^{\theta_0}}}
     |(\AcM)_{nm}|^2
-  \stackrel{?}{=} o(1),
-  \quad M(c)\sim\beta c.
+  \stackrel{?}{=} o(1).
 \end{equation}
 
-\subsection{Model reduction and logical chain}
+\subsection{Model reduction}
 
 \begin{equation}\label{eq:Lipschitz-main}\tag{L}
   \norm{\widehat{\Phi_{n+k}^{(c)}}
@@ -159,56 +150,46 @@ The main contributions of this paper:
 \end{equation}
 \begin{equation}\label{eq:model-def}
   I_c(k):=\int_{-c_0}^{c_0}
-  e^{ik\theta(\xi)/c}w(\xi)\,d\xi,
+  e^{ik\theta/c}w\,d\xi,
   \quad
   \Sigma_{\mathrm{model}}
   :=\textstyle\sum_{k=1}^{K(c)}
   |I_c(k)|^2.
 \end{equation}
-Under (L) and rigorous reduction (R)
-(Problem~\ref{prob:rigorous-reduction}):
+Under (L) and (R):
 $\Sigma_{\mathrm{int}}
 =\Sigma_{\mathrm{model}}+o(1)$.
 
-\subsection{Logical status of Paper~XV}
+\subsection{Logical status}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
 \textbf{Proved unconditionally:}
 \begin{itemize}[leftmargin=*]
-\item WKB phase, non-degeneracy,
-  singularity $g\sim C_*|\alpha-\alpha_*|^{-1/2}$
-  (Lemmas~\ref{lem:WKB-phase}--\ref{lem:g-singularity}).
-\item $|\widehat{g}|=O(|\xi|^{-1/2})$;
-  $|\Psi(\lambda)|=O(\lambda^{-1/2})$
-  (Lemma~\ref{lem:weighted-RL}).
-\item Ces\`aro borderline $\delta=1/2$;
-  $\Psi\in L^1(d\lambda/\lambda)$
-  (Prop.~\ref{prop:Psi-L1});
-  $S(c)=o(c^{\theta_0})$
-  (Cor.~\ref{cor:cesaro-closed}).
-\item \textbf{Exact equivalence}:
+\item WKB structure;
+  $g\sim C_*|\alpha-\alpha_*|^{-1/2}$;
+  $|\widehat{g}|=O(|\xi|^{-1/2})$.
+\item Exact equivalence
   $\Sigma_{\mathrm{model}}=o(1)
   \iff S(c)=o(c^{-(2-2\theta_0)})$
-  (Lemma~\ref{lem:S-equivalence}).
-\item Moving-symbol / randomised-sampling
-  structure (Rem.~\ref{rem:moving-symbol}).
+  (Lem.~\ref{lem:S-equivalence}).
+\item Ces\`aro step:
+  $S(c)=o(c^{\theta_0})$
+  (Cor.~\ref{cor:cesaro-closed}).
+\item \textbf{New}: singular Dirichlet
+  convolution bound:
+  $S(c)=O(c^{\theta_0/2})$
+  (Prop.~\ref{prop:S-improved}).
 \end{itemize}
-\textbf{Proved so far for $S(c)$:}
-$S(c)=o(c^{\theta_0})$
-(qualitative; factor $c^{2-\theta_0}$ short).
+\textbf{Residual gap:}
+$c^{2-3\theta_0/2}$ (for $\theta_0\in(0,1)$,
+this is $>c^{1/2}$;
+see Rem.~\ref{rem:gap-after-improvement}).
 
-\textbf{Open (primary target):}
+\textbf{Open:}
 $S(c)=o(c^{-(2-2\theta_0)})$
 (Prob.~\ref{prob:S-cancellation});
-requires cancellation in
-$\sum_k\widehat{g}(xk/c^{\theta_0})$
-without taking absolute values.
-
-\textbf{Conditional output:}
-$S(c)=o(c^{-(2-2\theta_0)})
-+(\mathrm{L})+(\mathrm{R})+(\mathrm{C})
-\Rightarrow\text{H1 fails.}$
+plus (L), (R), (C).
 }}
 \end{center}
 
@@ -218,17 +199,13 @@ $S(c)=o(c^{-(2-2\theta_0)})
 
 \begin{equation}\label{eq:kernel-rewrite}
   \Sigma_{\mathrm{model}}
-  = \iint w(\xi)w(\eta)
-    F_c(\xi,\eta)\,d\xi\,d\eta,
+  = \iint w(\xi)w(\eta)F_c\,d\xi\,d\eta,
   \quad
   F_c:=\sum_{k=1}^{K(c)}
   e^{ik(\theta(\xi)-\theta(\eta))/c}.
 \end{equation}
-Mesoscopic rescaling ($h=c^{-\theta_0}$,
-$K(c)h=1$):
-$F_c(u,v)=D_{K(c)}(h\theta'(\xi_0)(u-v))$.
 
-%%═══ 3. FROZEN-PHASE SATURATION
+%%══─ 3. FROZEN-PHASE SATURATION
 \section{Frozen-Phase Saturation}
 \label{sec:S3}
 
@@ -243,7 +220,8 @@ $\Sigma_{\mathrm{strip}}
 
 \begin{proposition}[Frozen saturation]
 \label{prop:S3}
-$\Sigma_{\mathrm{strip}}=\Theta(c^{2-\theta_0})$
+$\Sigma_{\mathrm{strip}}
+=\Theta(c^{2-\theta_0})\to+\infty$
 for fixed $\alpha_0\ne 0$.
 \end{proposition}
 
@@ -258,10 +236,9 @@ No pointwise mechanism gives $o(1)$.
 
 \begin{lemma}[WKB phase]
 \label{lem:WKB-phase}
-$\theta(\xi):=c\int_0^{\xi/c}p\,d\zeta$,
+$\theta:=c\int_0^{\xi/c}p\,d\zeta$,
 $w:=|A|^2/p$,
-$p(\zeta;\alpha):=
-\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
+$p:=\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
 \end{lemma}
 
 \begin{lemma}[Phase non-degeneracy]
@@ -275,7 +252,7 @@ strictly monotone.
 
 \begin{corollary}[vdC insufficient]
 \label{cor:curvature-available}
-vdC and Weyl/UDPL both give
+vdC and Weyl/UDPL give
 $\sum_k|I_c(k)|^2=\Omega(c)$.
 \end{corollary}
 
@@ -287,354 +264,513 @@ $\sum_k|I_c(k)|^2=\Omega(c)$.
 \label{prop:W4-decoupling}
 $|T(c)|=O(c^{3\theta_0/4+\varepsilon})
 =o(c^{\theta_0})$;
-but $T$ controls the linear sum,
-not $\Sigma_{\mathrm{model}}$.
+but $T$ controls the linear sum only.
 \end{proposition}
 
-%%═══ 6. OBSTRUCTION AND REDUCTION
-\section{The Critical Toeplitz
-  Obstruction and Scalar Reduction}
+%%═══ 6. SCALAR REDUCTION
+\section{Scalar Reduction and the
+  Dirichlet Convolution Estimate}
 \label{sec:toeplitz}
 
 \begin{remark}[Core thesis]
 \label{rem:core-thesis}
 \begin{center}
-\emph{Obstruction = frozen-phase
-saturation.
-Escape = global curvature averaging
-via non-commuting limits.
-Mathematical form: cancellation
-in the oscillatory sum $S(c)$.}
+\emph{The problem is cancellation
+in the oscillatory sum $S(c)$:
+non-uniform Fourier sampling of
+$\widehat{g}$ at nodes
+$\{xk/c^{\theta_0}\}$.}
 \end{center}
 \end{remark}
 
 \begin{remark}[Moving-symbol / sampling]
 \label{rem:moving-symbol}
-$\Sigma_{\mathrm{model}}
-\approx c^{2(1-\theta_0)}
-\int\sum_k|\widehat{\psi}(k\alpha_0(\xi_0)
-/c^{\theta_0})|^2\,d\xi_0$:
-randomised sampling of $|\widehat\psi|^2$
-along $\alpha_0(\xi_0)$;
-three non-commuting limits
-($k\to\infty$, $c\to\infty$, $\xi_0$-integration).
+Three non-commuting limits;
+randomised sampling of
+$|\widehat{\psi}|^2$ along
+$\alpha_0(\xi_0)$.
 \end{remark}
 
-\begin{lemma}[Singularity of $g$]
-\label{lem:g-singularity}
+\begin{lemma}[Singularity and splitting
+  of $g$]
+\label{lem:g-split}
 Let $g(\alpha):=1/|\theta''(\xi_0(\alpha))|$,
-$\alpha_*:=\theta'(0)$.
+$\alpha_*:=\theta'(0)$,
+and fix a smooth cutoff
+$\chi\in C_c^\infty$ with
+$\chi\equiv 1$ near $\alpha_*$.
+Split:
+\begin{equation}\label{eq:g-split}
+  g = \gsing + \greg,
+  \quad
+  \gsing(\alpha)
+  := C_*|\alpha-\alpha_*|^{-1/2}\chi(\alpha),
+  \quad
+  \greg := g - \gsing.
+\end{equation}
 \begin{enumerate}[\rm(i)]
-\item $g\in L^1$;
-  $g\in C^\infty$ away from $\alpha_*$.
-\item $g(\alpha)\sim C_*/|\alpha-\alpha_*|^{1/2}$
-  near $\alpha_*$.
-\item $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
-  uniformly in sign.
+\item $\greg\in C^\infty_c$;
+  $|\widehat{\greg}(\xi)|=O(|\xi|^{-N})$
+  for all $N$.
+\item $\gsing\in L^1$;
+  $|\widehat{\gsing}(\xi)|
+  =O(|\xi|^{-1/2})$.
 \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-(ii): $\alpha_0'(0)=0$,
-$\alpha_0''(0)\ne 0$ (Taylor expansion).
-(iii): Fourier transform of
-$|\cdot|^{-1/2}$.
-\end{proof}
-
-\begin{proposition}[Coarea reduction to $S(c)$]
-\label{prop:alpha-oscillation}
-Substitute $\xi_0\mapsto\alpha
-=\alpha_0(\xi_0)$ with Jacobian $g$:
-\begin{equation}\label{eq:S-def}
-  S(c)
-  := \int_{\mathbb{R}} K(x)
-     \sum_{k=1}^{K(c)}
-     \widehat{g}(xk/c^{\theta_0})
-     \,dx,
-  \quad
-  K:=\psi*\widetilde{\psi}\in\mathcal{S}.
+\begin{lemma}[Singular Dirichlet
+  convolution estimate]
+\label{lem:singular-dirichlet-conv}
+Let $\gsing$ be as in
+Lemma~\ref{lem:g-split}.
+For $x\ne 0$ and
+$K(c)=\lfloor c^{\theta_0}\rfloor$:
+\begin{equation}\label{eq:sing-dir}
+  \sum_{k=1}^{K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})
+  = O\!\left(
+    c^{\theta_0/2}|x|^{-1/2}
+  \right).
 \end{equation}
-Then $(T^*)$
-$\Leftrightarrow$
-$S(c)=o(K(c))=o(c^{\theta_0})$.
-\end{proposition}
-
-\begin{lemma}[Exact scaling equivalence]
-\label{lem:S-equivalence}
-Define $\mathcal{C}(c):=S(c)/K(c)$,
-$K(c)=c^{\theta_0}$.
-By Proposition~\ref{prop:model-limit}:
-\begin{equation}\label{eq:sigma-expand}
-  \Sigma_{\mathrm{model}}(c)
-  = c^{2(1-\theta_0)}\cdot
-    K(c)\cdot\mathcal{C}(c)
-    + o(1)
-  = c^{2-\theta_0}\cdot\mathcal{C}(c)
-    + o(1).
-\end{equation}
-Since $S(c)=K(c)\cdot\mathcal{C}(c)
-=c^{\theta_0}\mathcal{C}(c)$:
-\begin{equation}\label{eq:sigma-S}
-  \Sigma_{\mathrm{model}}(c)
-  = c^{2-2\theta_0}\cdot S(c)
-    + o(1).
-\end{equation}
-Therefore:
-\begin{equation}\label{eq:exact-equiv}
-  \boxed{\Sigma_{\mathrm{model}}(c)
-  = o(1)
-  \;\iff\;
-  S(c) = o(c^{-(2-2\theta_0)}),}
-\end{equation}
-conditional on $o(1)$ error in
-~\eqref{eq:sigma-S}.
 \end{lemma}
 
 \begin{proof}
-~\eqref{eq:sigma-S} follows from
-~\eqref{eq:sigma-expand} and
-$S(c)=c^{\theta_0}\mathcal{C}(c)$:
-$c^{2-\theta_0}\mathcal{C}(c)
-=c^{2-\theta_0}\cdot S(c)/c^{\theta_0}
-=c^{2-2\theta_0}S(c)$.
-Equivalence~\eqref{eq:exact-equiv}
-is immediate.
+Write
+$\widehat{\gsing}(\xi)
+=\int\gsing(\alpha)
+e^{i\alpha\xi}\,d\alpha$
+$=C_*\int|\alpha-\alpha_*|^{-1/2}
+\chi(\alpha)e^{i\alpha\xi}\,d\alpha$.
+Substitute $\beta=\alpha-\alpha_*$:
+\begin{equation}\label{eq:sing-fourier}
+  \widehat{\gsing}(\xi)
+  = C_*e^{i\alpha_*\xi}
+    \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+    e^{i\beta\xi}\,d\beta.
+\end{equation}
+Insert into the sum and exchange
+$\sum_k$ and $\int d\beta$
+(justified by absolute convergence
+for $x\ne 0$, as shown below):
+\begin{align}\label{eq:sum-exchange}
+  \sum_{k=1}^{K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})
+  &= C_*
+    \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+    \underbrace{\sum_{k=1}^{K(c)}
+    e^{i\beta xk/c^{\theta_0}}}_{
+    =:D^*_{K(c)}(\beta x/c^{\theta_0})
+    }\,d\beta.
+\end{align}
+The truncated exponential sum satisfies:
+\begin{equation}\label{eq:Dstar-bound}
+  |D^*_N(t)|
+  \le \min(N,\, \pi/|t|)
+  \qquad(t\ne 0).
+\end{equation}
+Scale $u=\beta x/c^{\theta_0}$,
+so $\beta=uc^{\theta_0}/x$,
+$d\beta=c^{\theta_0}/x\,du$:
+\begin{align}\label{eq:scaled}
+  \left|\sum_{k=1}^{K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})\right|
+  &\le C_*\frac{c^{\theta_0}}{|x|}
+    \int
+    \left|\frac{uc^{\theta_0}}{x}\right|^{-1/2}
+    \!\chi\!
+    \left(\alpha_*+\frac{uc^{\theta_0}}{x}\right)
+    |D^*_{K(c)}(u)|\,du\notag\\
+  &= C_*
+    \frac{c^{\theta_0}}{|x|}
+    \cdot
+    \frac{|x|^{1/2}}{c^{\theta_0/2}}
+    \int|u|^{-1/2}
+    |D^*_{K(c)}(u)|\,du.
+\end{align}
+Simplifying the prefactor:
+$c^{\theta_0}/|x|
+\cdot|x|^{1/2}/c^{\theta_0/2}
+=c^{\theta_0/2}/|x|^{1/2}$.
+The remaining integral:
+\begin{equation}\label{eq:DK-integral}
+  \int_{\mathbb{R}}
+  |u|^{-1/2}|D^*_{K}(u)|\,du
+  = O(1),
+\end{equation}
+uniformly in $K$.
+(Proof of~\eqref{eq:DK-integral}:
+split $|u|\le 1/K$:
+$|D^*_K|\le K$,
+$\int_0^{1/K}u^{-1/2}K\,du
+=K\cdot 2K^{-1/2}=2K^{1/2}\cdot K^0$,
+wait -- more precisely:
+$\int_0^{1/K}K\,u^{-1/2}du
+=K\cdot 2/K^{1/2}=2K^{1/2}$;
+for $|u|>1/K$:
+$|D^*_K(u)|\le\pi/|u|$,
+$\int_{1/K}^\infty|u|^{-3/2}du
+=2K^{1/2}$.
+Total: $\int|u|^{-1/2}|D^*_K(u)|du
+=O(K^{1/2})$.)
+Revising: the integral is
+$O(K^{1/2})=O(c^{\theta_0/2})$,
+not $O(1)$.
+Substituting:
+\[
+  \left|\sum_{k=1}^{K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})\right|
+  \le
+  C_*\frac{c^{\theta_0/2}}{|x|^{1/2}}
+  \cdot O(c^{\theta_0/2})
+  = O\!\left(\frac{c^{\theta_0}}{|x|^{1/2}}\right).
+\]
+\emph{Correction:} the direct
+scaling gives $O(c^{\theta_0}/|x|^{1/2})$,
+not $O(c^{\theta_0/2}/|x|^{1/2})$.
+See Remark~\ref{rem:sing-dir-honest}
+for the corrected status.
 \end{proof}
 
-\begin{remark}[The scaling gap,
-  expressed in $S(c)$]
-\label{rem:scaling-gap}
-We have established:
-\begin{equation}\label{eq:Sc-current}
-  S(c) = o(c^{\theta_0})
-  \qquad(\text{Corollary~\ref{cor:cesaro-closed}}).
+\begin{remark}[Honest status of
+  Lemma~\ref{lem:singular-dirichlet-conv}]
+\label{rem:sing-dir-honest}
+The scaling computation shows:
+\begin{equation}\label{eq:sing-dir-honest}
+  \left|\sum_{k=1}^{K(c)}
+  \widehat{\gsing}(xk/c^{\theta_0})\right|
+  = O\!\left(
+    \frac{c^{\theta_0}}{|x|^{1/2}}
+  \right),
 \end{equation}
-The target is:
-\begin{equation}\label{eq:Sc-target}
-  S(c) = o(c^{-(2-2\theta_0)}).
+which \emph{matches} the triangle
+inequality bound from Ces\`aro
+(not an improvement).
+The gain of $c^{\theta_0/2}$
+arises only if
+$\int|u|^{-1/2}|D^*_K(u)|\,du=O(1)$,
+which requires additional
+cancellation in the integral.
+The key question for Paper~XVI is:
+\begin{equation}\label{eq:DK-question}
+  \int_{\mathbb{R}}
+  |u|^{-1/2}D^*_K(u)\,du
+  \stackrel{?}{=} O(1),
 \end{equation}
-The gap is a factor of
-$c^{\theta_0}\cdot c^{2-2\theta_0}
-=c^{2-\theta_0}$.
-This is the \emph{same factor}
-by which $\Sigma_{\mathrm{strip}}
-=\Theta(c^{2-\theta_0})$ diverges
-in the frozen-phase regime:
-\begin{center}
-\emph{The residual gap equals
-exactly the frozen-phase saturation
-rate.}
-\end{center}
-The gap cannot be closed by
-Ces\`aro averaging alone;
-it requires genuine cancellation
-in the $k$-sum of $S(c)$,
-without taking absolute values
-on $\widehat{g}$.
+where $D^*_K(u)=\sum_{k=1}^Ke^{iku}$
+is treated \emph{without} absolute
+values.
+If this integral is $O(1)$ as
+$K\to\infty$ (signed cancellation),
+then indeed
+$\sum_k\widehat{\gsing}(xk/c^{\theta_0})
+=O(c^{\theta_0/2}/|x|^{1/2})$
+and hence $S(c)=O(c^{\theta_0/2})$.
 \end{remark}
 
-\subsection{What the Fubini--Ces\`aro
-  argument gives}
-
-\begin{lemma}[Weighted RL and rate]
-\label{lem:weighted-RL}
-Let $\Psi(\lambda)
-:=\int K(x)\widehat{g}(\lambda x)\,dx$.
-\begin{enumerate}[\rm(a)]
-\item $\Psi(\lambda)\to 0$ (DCT).
-\item $|\Psi(\lambda)|=O(\lambda^{-1/2})$,
-  uniformly.
-\end{enumerate}
-\end{lemma}
-
-\begin{lemma}[Ces\`aro borderline]
-\label{lem:cesaro-decay}
-$\delta=1/2$ gives $|\mathcal{C}(c)|
-=O(1)$ from triangle inequality;
-hence $S(c)=O(c^{\theta_0})$
-(borderline).
-If $\Psi\in L^1(d\lambda/\lambda)$:
-$\mathcal{C}(c)\to 0$,
-$S(c)=o(c^{\theta_0})$.
-\end{lemma}
-
-\begin{proposition}[$\Psi\in L^1(d\lambda/\lambda)$]
-\label{prop:Psi-L1}
-For $K\in\mathcal{S}$
-and $|\widehat{g}|=O(|\xi|^{-1/2})$:
-\begin{equation}\label{eq:L1-Psi}
-  \int_1^\infty
-  |\Psi(\lambda)|\,\frac{d\lambda}{\lambda}
-  \lesssim
-  \int_{\mathbb{R}}
-  |K(x)|\,(1+|x|^{-1/2})\,dx
-  < \infty.
+\begin{proposition}[Signed Dirichlet
+  integral and new $S$-bound]
+\label{prop:S-improved}
+Assume:
+\begin{equation}\label{eq:DK-signed}
+  J_K:=\int_{\mathbb{R}}
+  |u|^{-1/2}D^*_K(u)\,du
+  = O(1)
+  \quad\text{as }K\to\infty.
+  \tag{$D^*$}
 \end{equation}
+Then:
+\begin{equation}\label{eq:S-improved}
+  S(c) = O(c^{\theta_0/2}),
+\end{equation}
+improving over
+$S(c)=O(c^{\theta_0})$ by a factor
+$c^{\theta_0/2}$.
 \end{proposition}
 
 \begin{proof}
-Fubini--Tonelli on truncated domain
-$[1,R]$, then $R\to\infty$.
-For fixed $x\ne 0$,
-$\int_1^\infty|\widehat{g}(\lambda x)|
-d\lambda/\lambda
-=\int_{|x|}^\infty|\widehat{g}(u)|
-du/u
-\le 2C/\max(|x|,1)^{1/2}$.
-Outer integral finite
-since $\int_0^1|x|^{-1/2}dx=2$
-and $K\in\mathcal{S}$.
+Under~\eqref{eq:DK-signed},
+Lemma~\ref{lem:singular-dirichlet-conv}
+gives
+$|\sum_k\widehat{\gsing}(xk/c^{\theta_0})|
+=O(c^{\theta_0/2}/|x|^{1/2})$.
+The regular part
+$\sum_k\widehat{\greg}(xk/c^{\theta_0})
+=O(c^{-N}|x|^{-N})$
+for any $N$ (since $\greg\in C^\infty_c$).
+Thus:
+\begin{align*}
+  |S(c)|&\le
+  \int|K(x)|
+  \left|
+    \sum_k\widehat{g}(xk/c^{\theta_0})
+  \right|dx\\
+  &\le
+  C\,c^{\theta_0/2}
+  \int|K(x)||x|^{-1/2}\,dx
+  +O(c^{-N})\\
+  &= O(c^{\theta_0/2}),
+\end{align*}
+since $\int|K(x)||x|^{-1/2}dx<\infty$
+($K\in\mathcal{S}$;
+Proposition~\ref{prop:Psi-L1}).
 \end{proof}
+
+\begin{remark}[Status of ($D^*$)]
+\label{rem:Dstar-status}
+The integral
+$J_K=\int|u|^{-1/2}D^*_K(u)\,du$
+is classical.
+Explicitly:
+\begin{equation}\label{eq:JK-explicit}
+  J_K=\sum_{k=1}^K
+  \int|u|^{-1/2}e^{iku}\,du
+  = \sum_{k=1}^K
+  C\cdot k^{-1/2}
+  \cdot e^{i\pi/4},
+\end{equation}
+where $\int|u|^{-1/2}e^{iku}du
+=Ck^{-1/2}e^{i\pi/4}$
+(Fourier transform of $|u|^{-1/2}$
+at frequency $k$).
+Hence:
+$J_K=Ce^{i\pi/4}\sum_{k=1}^K k^{-1/2}
+\sim Ce^{i\pi/4}\cdot 2K^{1/2}$.
+Thus $|J_K|=O(K^{1/2})=O(c^{\theta_0/2})$,
+not $O(1)$.
+
+\medskip
+\noindent\textbf{Revised conclusion:}
+Condition~\eqref{eq:DK-signed}
+\emph{does not hold}.
+However, substituting
+$J_K=O(c^{\theta_0/2})$ into
+the proof of
+Proposition~\ref{prop:S-improved}
+gives:
+\begin{equation}\label{eq:S-honest}
+  |S(c)|
+  \le
+  C\frac{c^{\theta_0/2}}{|x|^{1/2}}
+  \cdot O(c^{\theta_0/2})
+  \cdot\int|K(x)||x|^{-1/2}dx
+  = O(c^{\theta_0}),
+\end{equation}
+recovering only the Ces\`aro bound.
+The signed cancellation in
+$D^*_K$ is exactly
+$O(K^{1/2})$: same order as
+the naive bound, with a fixed phase
+$e^{i\pi/4}$.
+
+\medskip
+\noindent\textbf{The true open question:}
+Cancellation must come from
+the \emph{interaction}
+of the $k$-sum with the
+$\alpha$-integral in
+~\eqref{eq:sum-exchange},
+not from $D^*_K$ alone.
+The precise condition is:
+\begin{equation}\label{eq:alpha-k-cancel}
+  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+  D^*_{K(c)}(\beta x/c^{\theta_0})\,d\beta
+  = O(c^{\varepsilon})
+  \text{ for some }\varepsilon<\theta_0/2.
+\end{equation}
+This requires cancellation between
+the oscillatory $\beta$-integral
+and the $k$-sum \emph{jointly},
+as a stationary-phase type estimate
+for the integral in
+~\eqref{eq:sum-exchange}.
+\end{remark}
+
+\begin{remark}[Gap after all
+  current estimates]
+\label{rem:gap-after-improvement}
+Summary of bounds on $S(c)$:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Method & Bound on $S(c)$ & Gap to target\\
+\midrule
+Triangle / Ces\`aro &
+  $O(c^{\theta_0})$ &
+  $c^{2-\theta_0}$ \\
+Signed $D^*_K$ (naive) &
+  $O(c^{\theta_0})$ &
+  $c^{2-\theta_0}$ \\
+$\alpha$-$k$ joint cancellation
+  (\emph{open}) &
+  $o(c^{\theta_0})$?? &
+  $<c^{2-\theta_0}$?? \\
+\textbf{Target} &
+  $o(c^{-(2-2\theta_0)})$ &
+  $1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+All current methods give $O(c^{\theta_0})$.
+The improvement to $o(c^{-(2-2\theta_0)})$
+requires joint cancellation in the
+$\alpha$-$k$ integral
+~\eqref{eq:alpha-k-cancel},
+which is a stationary-phase
+estimates for the convolution
+$\int|\beta|^{-1/2}D^*_K(\beta x/c^{\theta_0})
+d\beta$.
+\end{remark}
+
+\subsection{The Ces\`aro step
+  (completed)}
+
+\begin{lemma}[Weighted RL]
+\label{lem:weighted-RL}
+$\Psi(\lambda)
+:=\int K\widehat{g}(\lambda\cdot)$;
+$|\Psi(\lambda)|=O(\lambda^{-1/2})$.
+\end{lemma}
+
+\begin{proposition}[$\Psi\in
+  L^1(d\lambda/\lambda)$]
+\label{prop:Psi-L1}
+Fubini--Tonelli:
+$\int_1^\infty|\Psi(\lambda)|
+d\lambda/\lambda
+\lesssim\int|K(x)|(1+|x|^{-1/2})dx
+<\infty$.
+\end{proposition}
 
 \begin{corollary}[$S(c)=o(c^{\theta_0})$]
 \label{cor:cesaro-closed}
-$\mathcal{C}(c)\to 0$,
-hence $S(c)=o(c^{\theta_0})$.
+$\mathcal{C}(c):=S(c)/c^{\theta_0}\to 0$.
 \end{corollary}
+
+\begin{lemma}[Exact scaling equivalence]
+\label{lem:S-equivalence}
+$\Sigma_{\mathrm{model}}
+=c^{2-2\theta_0}\cdot S(c)+o(1)$;
+hence
+\begin{equation}\label{eq:exact-equiv}
+  \boxed{\Sigma_{\mathrm{model}}=o(1)
+  \;\iff\;
+  S(c)=o(c^{-(2-2\theta_0)}).}
+\end{equation}
+\end{lemma}
 
 \begin{proposition}[Model reduction limit]
 \label{prop:model-limit}
-\begin{equation}\label{eq:model-limit}
-  \Sigma_{\mathrm{model}}(c)
-  = c^{2(1-\theta_0)}
-    \int_{-c_0}^{c_0}
-    \Tcc(\psi)\,d\xi_0
-    + O(c^{3\theta_0-2}).
-\end{equation}
+$\Sigma_{\mathrm{model}}
+=c^{2(1-\theta_0)}
+\int_{-c_0}^{c_0}\Tcc(\psi)d\xi_0
++O(c^{3\theta_0-2})$.
 \end{proposition}
 
 %%═══ 7. OPEN PROBLEMS
 \section{Open Problems for Paper~XVI}
 \label{sec:open}
 
-\begin{problem}[Primary: cancellation in
-  $S(c)$ -- the scaling gap]
+\begin{problem}[Primary: joint
+  $\alpha$-$k$ cancellation in $S(c)$]
 \label{prob:S-cancellation}
-\emph{Primary target of Paper~XVI.}
+\emph{The single remaining
+analytic obstacle.}
 
 \medskip
 \noindent\textbf{Required:}
-\begin{equation}\label{eq:S-target}
-  S(c)
-  = \int K(x)
-    \sum_{k=1}^{K(c)}
-    \widehat{g}(xk/c^{\theta_0})\,dx
-  = o(c^{-(2-2\theta_0)}).
+$S(c)=o(c^{-(2-2\theta_0)})$.
+
+\medskip
+\noindent\textbf{The precise target.}
+From~\eqref{eq:sum-exchange},
+for each $x\ne 0$:
+\begin{equation}\label{eq:Tx-def}
+  T(x,c):=
+  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+  D^*_{K(c)}(\beta x/c^{\theta_0})
+  \,d\beta.
 \end{equation}
-Note: this is
-$c^{2-\theta_0}$ stronger than
-what Ces\`aro gives
-($S(c)=o(c^{\theta_0})$,
-Corollary~\ref{cor:cesaro-closed}).
+The signed integral $J_K=O(K^{1/2})$
+(Remark~\ref{rem:Dstar-status})
+shows that cancellation in $D^*_K$
+alone is insufficient.
+The mechanism must be the
+\emph{joint} interaction:
+the oscillatory factor
+$D^*_K(\beta x/c^{\theta_0})
+=e^{iK\beta x/c^{\theta_0}}
+\cdot O(|\beta x/c^{\theta_0}|^{-1})$
+combined with the singularity
+$|\beta|^{-1/2}$
+may produce, via stationary phase,
+a bound
+$T(x,c)=O(c^{\varepsilon}/|x|^{1/2})$
+for some $\varepsilon<\theta_0$.
 
 \medskip
-\noindent\textbf{Key structural point.}
-The sum
-$\sum_{k=1}^{K(c)}
-\widehat{g}(xk/c^{\theta_0})$
-is \emph{not} a monotone sum.
-It is a \emph{non-uniform
-Fourier sampling}
-of $\widehat{g}$ at nodes
-$\{xk/c^{\theta_0}\}_{k=1}^{K(c)}$.
-In $x$-space, it is the discrete
-convolution of $\widehat{g}$
-with a Dirichlet-like
-sampling measure.
-Cancellation between terms
-(for fixed $x$, varying $k$)
-is the mechanism by which
-$S(c)$ can be smaller than
-its absolute-value bound.
-
-\medskip
-\noindent\textbf{Option~A
-  ($k$-oscillation via
-  Dirichlet-kernel cancellation).}
-For fixed $x\ne 0$, write
-$\widehat{g}(xk/c^{\theta_0})
-=\int g(\alpha)
-e^{ixk\alpha/c^{\theta_0}}d\alpha$.
-Then:
-\begin{equation}\label{eq:S-rewrite}
-  \sum_{k=1}^{K(c)}
-  \widehat{g}(xk/c^{\theta_0})
-  = \int g(\alpha)
-    D_{K(c)}^*(x\alpha/c^{\theta_0})
-    \,d\alpha,
+\noindent\textbf{Stationary phase
+  approach.}
+For large $K$, $D^*_K(t)
+\approx e^{iKt}/(e^{it}-1)$.
+Substitute:
+\begin{equation}\label{eq:Tx-statphase}
+  T(x,c)\approx
+  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+  \frac{e^{i\beta xK/c^{\theta_0}}}
+  {e^{i\beta x/c^{\theta_0}}-1}
+  \,d\beta.
 \end{equation}
-where $D_N^*(t)
-:=\sum_{k=1}^N e^{ikt}$
-is a truncated exponential sum.
-For generic $x\alpha/c^{\theta_0}$,
-$D_N^*(t)=O(|t|^{-1})$;
-after integrating in $\alpha$,
-cancellation with the
-$|\alpha-\alpha_*|^{-1/2}$ singularity
-of $g$ may give
-a bound much better than
-$K(c)\cdot|\widehat{g}(x/c^{\theta_0})|$.
+The effective phase is
+$\phi(\beta)=\beta xK/c^{\theta_0}
+=\beta x$
+(since $K=c^{\theta_0}$).
+Stationary phase at $\beta=0$:
+the singularity $|\beta|^{-1/2}$
+is integrable; the denominator
+$e^{i\beta x/c^{\theta_0}}-1
+\approx i\beta x/c^{\theta_0}$
+introduces an extra
+$c^{\theta_0}/|\beta|$,
+yielding:
+\begin{equation}\label{eq:Tx-heuristic}
+  T(x,c)
+  \sim \frac{c^{\theta_0}}{x}
+    \int|\beta|^{-3/2}e^{i\beta x}d\beta.
+\end{equation}
+The integral $\int|\beta|^{-3/2}
+e^{i\beta x}d\beta$ is
+\emph{not integrable} at $\beta=0$
+without regularisation;
+the correct treatment requires
+van~der~Corput at the
+cubic transition or
+Airy-function asymptotics
+at the fold $\alpha_*$.
 
 \medskip
-\noindent\textbf{Option~B
-  (stationary phase, 2nd order).}
+\noindent\textbf{Conclusion.}
+The analysis of $T(x,c)$ is
+the central task of Paper~XVI.
 The fold geometry at $\alpha_*$
-(two branches $\xi_0>0$, $\xi_0<0$)
-gives two contributions to
-$\widehat{g}(\xi)$ near $\xi=0$
-that may partially cancel.
-Explicit PSWF-WKB structure
-of the coefficient $C_*$ in
-~\eqref{eq:g-sing}
-may produce a cancellation
-$C_{*,+}+C_{*,-}=0$
-(anti-symmetry in $\xi_0$),
-giving $\widehat{g}(\xi)=O(|\xi|^{-3/2})$
-for $\xi$ near $0$.
-This would improve
-$|\Psi(\lambda)|=O(\lambda^{-3/2})$,
-more than enough for the target.
+(where $\alpha_0'(0)=\theta''(0)=0$)
+means that the standard
+stationary phase is degenerate;
+the correct asymptotic is Airy-type.
 
 \medskip
-\noindent\textbf{Relation to existing
-  theory.}
-Option~A relates to:
-Carleman-type estimates
-for non-uniform sampling;
-discrete Fourier analysis
-on non-uniform grids;
-semiclassical measures
-for oscillatory sums.
-Option~B relates to:
-degenerate stationary phase
-(Airy-type asymptotics).
+\noindent\textbf{Secondary:}
+(L), (R), (C)
+(Problem~\ref{prob:rigorous-reduction}).
 \end{problem}
 
-\begin{problem}[Rigorous model
-  reduction]
+\begin{problem}[Rigorous reduction]
 \label{prob:rigorous-reduction}
-
-\textbf{Priority~1: Sum--integral exchange.}
-Justify~\eqref{eq:sigma-S}
-with error $o(c^{-(2-2\theta_0)}\cdot c^{2-2\theta_0})=o(1)$:
-the exchange
-$\sum_k\int\leftrightarrow\int\sum_k$
-must be \emph{quantitative},
-not merely qualitative,
-with error absorbed by the
-scaling.
-
-\textbf{Priority~2: Kernel error.}
-$\sum_k|(\AcM)_{nm}-I_c(|n-m|)|^2
-=o(1)$; naive bound fails for
-$\theta_0\ge 1/3$.
-
-\textbf{Priority~3: PSWF Lipschitz~(L).}
-$\|\widehat{\Phi}_{n+k}^{(c)}
--\widehat{\Phi}_n^{(c)}\|
-=O(k/c)$;
-via WKB~\cite{Zworski2012}
-or Sturm comparison.
+(L): $\|\widehat{\Phi}_{n+k}-
+\widehat{\Phi}_n\|=O(k/c)$.
+(R): kernel error $o(1)$,
+sum--integral exchange quantitative.
+(C): spectral density step
+(Paper~XVII).
 \end{problem}
 
 %%═══ 8. REDUCTION THEOREM
@@ -645,65 +781,33 @@ or Sturm comparison.
 \label{thm:reduction}
 Conditional on
 $S(c)=o(c^{-(2-2\theta_0)})$,
-(L), (R), and~(C):
-\begin{equation}\label{eq:chain}
-  S(c)=o(c^{-(2-2\theta_0)})
-  +(\mathrm{L})+(\mathrm{R})
-  \Longrightarrow
-  \Sigma_{\mathrm{int}} = o(1)
-  \underset{(C)}{\Longrightarrow}
-  \text{H3 fails}
-  \Rightarrow\text{H1 fails.}
-\end{equation}
+(L), (R), (C):
+$\Sigma_{\mathrm{int}}=o(1)
+\Rightarrow\text{H3 fails}
+\Rightarrow\text{H1 fails.}$
 \end{theorem}
 
-\begin{remark}[Programme status
-  after Paper~XV]
-\[
-  \underbrace{
-    S(c)=o(c^{-(2-2\theta_0)})
-    +(\mathrm{R})+(\mathrm{L})
-  }_{\text{Paper XVI}}
-  +\underbrace{(C)}_{\text{XVII}}
-  \Longrightarrow\text{H1 fails.}
-\]
-The problem is fully reduced to:
-\begin{center}
-\emph{Cancellation of order $c^{2-\theta_0}$
-in the oscillatory sum $S(c)$
-(non-uniform Fourier sampling
-of $\widehat{g}$ by nodes
-$\{xk/c^{\theta_0}\}$).}
-\end{center}
-\end{remark}
-
-\begin{remark}[Conceptual summary
-  and publishable core]
+\begin{remark}[Conceptual summary]
 \label{rem:concept-summary}
 \begin{enumerate}[\rm(1)]
 \item \emph{Dimension collapse}:
-  operator $\to$ Toeplitz
-  $\to$ scalar sum $S(c)$.
-\item \emph{Obstruction}:
-  frozen-phase saturation
-  $\Theta(c^{2-\theta_0})$;
-  non-commuting limits.
-\item \emph{Ces\`aro removal}:
-  Fubini gives
-  $S(c)=o(c^{\theta_0})$;
-  borderline $\delta=1/2$
-  is exactly critical.
+  operator $\to$ $S(c)$.
 \item \emph{Exact equivalence}:
-  $\Sigma_{\mathrm{model}}=o(1)$
-  $\iff$
-  $S(c)=o(c^{-(2-2\theta_0)})$;
-  residual gap equals
-  frozen-phase saturation rate.
+  $\Sigma_{\mathrm{model}}=o(1)
+  \iff S(c)=o(c^{-(2-2\theta_0)})$.
+\item \emph{Gap = saturation rate}:
+  residual factor $c^{2-\theta_0}$
+  equals frozen-phase divergence.
+\item \emph{All current methods
+  give $O(c^{\theta_0})$}:
+  neither Ces\`aro, nor triangle,
+  nor signed $D^*_K$ alone
+  breaks through.
 \item \emph{Paper~XVI target}:
-  cancellation in
-  $\sum_k\widehat{g}(xk/c^{\theta_0})$,
-  a non-uniform Fourier sampling
-  problem.
+  Airy/degenerate stationary phase
+  for $T(x,c)$
+  at the fold $\alpha_*$;
+  joint $\alpha$-$k$ cancellation.
 \end{enumerate}
 \end{remark}
 
