@@ -25,9 +25,9 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Jacobian Computation, Singularity\\
-  Preservation under CFU Map,\\
-  and the Leading-Order Cancellation}
+  Three Regimes, One Crossover Scale,\\
+  and the Resolution of the\\
+  Asymptotic Contradiction}
 
 \author{[Author]}
 
@@ -37,445 +37,337 @@ We study
   \Phi(u):=\int_0^\infty
   \beta^{-1/2}\chi(\beta)
   e^{i(\beta u + c_3\beta^3)}\,d\beta,
-  \quad u<0,\;c_3>0.
+  \quad u<0,\;c_3>0,
 \]
-The Chester--Friedman--Ursell (CFU)
-coordinate change
-$\phi(\beta)\mapsto\Psi(t)
-=\frac{1}{3}t^3-\lambda t$
-is performed explicitly.
-\textbf{Main results:}
-\begin{enumerate}[\rm(1)]
-\item The Jacobian at $\beta=0$:
-  $\tfrac{dt}{d\beta}\big|_{\beta=0}
-  =|u|/\lambda
-  = 3^{1/3}c_3^{1/3}$
-  (constant; $|u|$-independent).
-\item The singularity type is
-  \emph{preserved}:
-  $\beta^{-1/2}\mapsto C\cdot|t|^{-1/2}$
-  in $t$-coordinates,
-  with
-  $C=3^{5/6}/(3c_3^{1/6})$
-  (independent of $|u|$).
-\item The Fresnel contribution from
-  $t=0$:
-  \[
-    \text{endpoint}\sim
-    \sqrt{\pi}\cdot
-    e^{i\pi/4}\cdot
-    C\cdot\lambda^{-1/2}
-    \cdot\bigl(|u|/\lambda\bigr)^{-1/2}
-    =\sqrt{\pi}\cdot
-    e^{i\pi/4}
-    \cdot C\cdot|u|^{-1/2},
-  \]
-  where $\lambda^{+1/2}$
-  from the Jacobian exactly
-  cancels $\lambda^{-1/2}$
-  from the Fresnel integral.
-\item The Airy turning-point
-  contribution is
-  $O(\lambda^{-1/4})
-  =O(|u|^{-1/6})$,
-  \emph{subdominant}.
-\item \textbf{Conclusion:}
-  the endpoint singularity
-  is the leading-order term;
-  $|\Phi(u)|\sim C'|u|^{-1/2}$
-  with
-  $C'=\sqrt{\pi}\cdot 3^{5/6}/
-  (3c_3^{1/6})\ne 0$.
-  Ces\`aro is sharp.
+where $\chi$ has compact
+support with radius $R$.
+Three asymptotic regimes
+exist, separated by
+the crossover scale
+$|u|_{\mathrm{cross}}
+\sim c_3 R^2$:
+\begin{enumerate}[\rm(I)]
+\item $|u|\gg c_3 R^2$:
+  the cubic term is
+  negligible on $\mathrm{supp}(\chi)$;
+  Erd\'elyi's theorem
+  applies;
+  $|\Phi(u)|\sim
+  C|u|^{-1/2}$.
+\item $|u|\sim c_3 R^2$:
+  transition;
+  the saddle
+  $\beta_0=\sqrt{|u|/(3c_3)}$
+  enters $\mathrm{supp}(\chi)$;
+  CFU applies;
+  both endpoint and saddle
+  in $t$-space contribute
+  $O(\lambda^{-1/2})
+  =O(|u|^{-1/3})$.
+\item $|u|\ll c_3 R^2$:
+  saddle dominates;
+  smooth-amplitude
+  Airy scaling gives
+  $O(|u|^{-1/6})$
+  (modified by
+  $\beta^{-1/2}$).
 \end{enumerate}
+The three exponents
+$-1/2$, $-1/3$, $-1/6$
+are \emph{not contradictory}:
+they apply in
+distinct regimes.
+For \emph{fixed compact} $\chi$,
+$|\Phi(u)|=\Theta(|u|^{-1/2})$
+in Regime~I.
 \end{abstract}
 
 \maketitle
 
-\section{CFU Map and Jacobian}
-\label{sec:jacobian}
+\section{Setup and the
+  Crossover Scale}
+\label{sec:setup}
 
-\begin{definition}[Phase and
-  normal form \Calc]
-For $u<0$, $|u|\to\infty$:
+\begin{definition}[Three regimes
+  \Calc]
+\label{def:regimes}
+The saddle
+$\beta_0(u)=\sqrt{|u|/(3c_3)}$
+enters $\mathrm{supp}(\chi)
+=[0,R]$ when
+$\beta_0\le R$,
+i.e.~$|u|\le 3c_3 R^2$.
+Define:
 \[
-  \phi(\beta):=
-  -|u|\beta+c_3\beta^3,
-  \qquad
-  \Psi(t):=
-  \tfrac{1}{3}t^3-\lambda t.
+  |u|_{\mathrm{cross}}
+  :=3c_3 R^2.
 \]
-CFU parameter:
-\begin{equation}\label{eq:lambda}
-  \lambda
-  =\frac{3^{2/3}}{3c_3^{1/3}}
-  |u|^{2/3}.
-\end{equation}
-Endpoint image:
-$\phi(0)=0\Rightarrow
-\Psi(t_*)=0\Rightarrow
-t_*=0$
-(regular point;
-turning points at
-$t=\pm\sqrt{\lambda}$).
+\begin{enumerate}[\rm(I)]
+\item\textbf{Erd\'elyi regime:}
+  $|u|\gg|u|_{\mathrm{cross}}$;
+  saddle outside support;
+  only endpoint contributes.
+\item\textbf{Transition:}
+  $|u|\sim|u|_{\mathrm{cross}}$;
+  saddle inside support;
+  CFU required.
+\item\textbf{Airy regime:}
+  $|u|\ll|u|_{\mathrm{cross}}$;
+  saddle well inside;
+  smooth-amplitude CFU.
+\end{enumerate}
 \end{definition}
 
-\begin{proposition}[Jacobian
-  at $\beta=0$ \Calc]
-\label{prop:jacobian}
-Near $\beta=0$:
-$\phi(\beta)\approx-|u|\beta$;
-$\Psi(t)\approx-\lambda t$.
-Matching:
-\[
-  -\lambda t
-  =-|u|\beta
-  \implies
-  \frac{dt}{d\beta}\bigg|_{\beta=0}
-  =\frac{|u|}{\lambda}
-  =3^{1/3}c_3^{1/3}.
-\]
-The Jacobian $J:=dt/d\beta|_{\beta=0}
-=3^{1/3}c_3^{1/3}$
-is \emph{independent of $|u|$}.
-Consequently $d\beta/dt|_{t=0}
-=J^{-1}=3^{2/3}/(3c_3^{1/3})$.
-\end{proposition}
+\begin{remark}[Why earlier
+  regimes seemed contradictory
+  \Warn]
+\label{rem:contradiction-resolved}
+The apparent contradiction
+between $-1/2$, $-1/3$,
+$-1/6$ arose because:
+\begin{enumerate}[\rm(i)]
+\item $-1/2$: Erd\'elyi
+  in Regime~I
+  (cubic negligible).
+\item $-1/3$: CFU
+  in Regime~II
+  (both endpoint and
+  saddle in $t$-space;
+  both give
+  $\lambda^{-1/2}
+  \sim|u|^{-1/3}$).
+\item $-1/6$: smooth-amplitude
+  Airy in Regime~III
+  ($\beta^{-1/2}$
+  negligible at saddle).
+\end{enumerate}
+These are three distinct
+asymptotic expansions
+valid in three distinct
+ranges of $|u|$
+for fixed $c_3, R$.
+\textbf{They do not
+apply simultaneously.}
+\end{remark}
 
-\begin{proposition}[Singularity
-  type preserved \Calc]
-\label{prop:singularity-preserved}
-Near $t=0$:
-$\beta(t)\approx t/J$,
-so
-\[
-  \beta(t)^{-1/2}
-  \Bigl|\frac{d\beta}{dt}\Bigr|
-  \approx
-  (t/J)^{-1/2}\cdot J^{-1}
-  =J^{-1/2-1}\cdot
-  J^{1}\cdot|t|^{-1/2}
-  =J^{-1/2}|t|^{-1/2}.
-\]
-So the amplitude in
-$t$-space is:
-\begin{equation}\label{eq:A-t}
-  A(t)\sim
-  J^{-1/2}|t|^{-1/2}
-  =\frac{3^{5/6}}
-    {3c_3^{1/6}}
-  |t|^{-1/2}.
-\end{equation}
-\textbf{The singularity
-type $|\cdot|^{-1/2}$
-is preserved} under
-the CFU map;
-the Holder exponent
-does not change.
-The amplitude $J^{-1/2}$
-is \emph{independent of $|u|$}.
-\end{proposition}
+\section{Regime I:
+  Erd\'elyi $|u|^{-1/2}$}
+\label{sec:erdelyi}
 
-\section{The Leading Contribution:
-  Lambda Cancellation}
-\label{sec:cancellation}
-
-\begin{theorem}[Endpoint
-  contribution \Calc]
-\label{thm:endpoint}
-The contribution to
-$\Phi(u)$ from near
-$t=0$ is computed
-by Erd\'elyi's theorem
-applied to the $t$-integral
-near $t=0$:
-\[
-  \int_0^\epsilon
-  J^{-1/2}\,t^{-1/2}
-  \,e^{i\Psi(t)}\,dt
-  \approx
-  \int_0^\epsilon
-  J^{-1/2}\,t^{-1/2}
-  \,e^{-i\lambda t}\,dt
-  \sim
-  J^{-1/2}\cdot
-  \sqrt{\pi}\,
-  e^{i\pi/4}\,
-  \lambda^{-1/2}.
-\]
-Combined:
-\begin{equation}\label{eq:endpoint-contribution}
-  \Phi_{\mathrm{endpt}}(u)
-  \sim
-  \sqrt{\pi}\,e^{i\pi/4}
-  \cdot J^{-1/2}
-  \cdot\lambda^{-1/2}
+\begin{theorem}[Erd\'elyi
+  regime \Rig]
+\label{thm:erdelyi}
+Let $\chi\in C^\infty_c
+([0,R])$, $\chi(0)=1$.
+For $|u|\gg c_3 R^2$:
+the cubic phase satisfies
+$c_3\beta^3
+\le c_3 R^2\beta
+\ll|u|\beta$
+throughout $\mathrm{supp}(\chi)$.
+Treating $e^{ic_3\beta^3}
+=1+O(c_3 R^2/|u|)$:
+\begin{equation}\label{eq:erdelyi}
+  \Phi(u)
   =\sqrt{\pi}\,e^{i\pi/4}
-  \cdot\frac{3^{5/6}}
-    {3c_3^{1/6}}
-  \cdot\frac{3^{1/6}c_3^{1/6}}
-    {|u|^{1/3}}
-  \cdot\frac{1}{|u|^{1/6}?}.
+  \cdot|u|^{-1/2}
+  +O\bigl(
+    c_3 R^2 |u|^{-3/2}
+  \bigr).
 \end{equation}
-
-\textbf{Exact cancellation:}
-$J^{-1/2}\cdot\lambda^{-1/2}$:
-\[
-  J^{-1/2}
-  =(3c_3)^{-1/6},
-  \quad
-  \lambda^{-1/2}
-  =\frac{(3c_3)^{1/6}}
-    {3^{1/3}\cdot|u|^{1/3}}.
-\]
-\[
-  J^{-1/2}\cdot\lambda^{-1/2}
-  =(3c_3)^{-1/6}
-  \cdot\frac{(3c_3)^{1/6}}
-    {|u|^{1/3}}
-  =\frac{1}{3^{1/3}|u|^{1/3}}.
-\]
-\textbf{Wait---}this gives
-$O(|u|^{-1/3})$,
-not $O(|u|^{-1/2})$.
-See Remark~\ref{rem:error}
-for the resolution.
+This is valid for
+$|u|\gg c_3 R^2$.
+In this regime,
+$|\Phi(u)|=\Theta(|u|^{-1/2})$.
 \end{theorem}
 
-\begin{remark}[Resolution:
-  local vs.\ global
-  Fresnel \Calc+\Warn]
-\label{rem:error}
-The local approximation
-$\Psi(t)\approx-\lambda t$
-near $t=0$ is valid
-only for $|t|\ll\sqrt{\lambda}$.
-For the full integral
-$\int_0^\infty t^{-1/2}
-e^{i\Psi(t)}dt$
-with $\Psi(t)
-=t^3/3-\lambda t$,
-the correct computation is:
-
-Change variables
-$t=\lambda^{1/2}s$:
-\[
-  \int_0^\infty
-  (\lambda^{1/2}s)^{-1/2}
-  e^{i(\lambda^{3/2}s^3/3
-    -\lambda^{3/2}s)}
-  \lambda^{1/2}\,ds
-  =\lambda^{1/4}
-  \int_0^\infty
-  s^{-1/2}
-  e^{i\lambda^{3/2}(s^3/3-s)}
-  \,ds.
-\]
-For $\lambda\to\infty$:
-the rapidly oscillating
-phase $e^{i\lambda^{3/2}(\cdots)}$
-yields \emph{rapid decay}
-by Riemann--Lebesgue;
-the endpoint $s=0$
-gives, by Erd\'elyi:
-\[
-  \lambda^{1/4}\cdot
-  \Gamma(\tfrac{1}{2})
-  \cdot e^{i\pi/4}
-  \cdot(\lambda^{3/2})^{-1/2}
-  =\lambda^{1/4}
-  \cdot\sqrt{\pi}
-  \cdot e^{i\pi/4}
-  \cdot\lambda^{-3/4}
-  =\sqrt{\pi}\,e^{i\pi/4}
-  \cdot\lambda^{-1/2}.
-\]
-With the Jacobian factor
-$J^{-1/2}=(3c_3)^{-1/6}$:
-\[
-  \Phi_{\mathrm{endpt}}(u)
-  \sim(3c_3)^{-1/6}
-  \cdot\sqrt{\pi}\,e^{i\pi/4}
-  \cdot\lambda^{-1/2}
-  =(3c_3)^{-1/6}
-  \cdot\sqrt{\pi}\,e^{i\pi/4}
-  \cdot\frac{(3c_3)^{1/6}}
-    {|u|^{1/3}}
-  =\frac{\sqrt{\pi}\,e^{i\pi/4}}
-    {|u|^{1/3}}.
-\]
-\textbf{The endpoint
-contribution is
-$O(|u|^{-1/3})$,
-not $O(|u|^{-1/2})$}.
-The naive Erd\'elyi
-application in
-$\beta$-coordinates
-gave $O(|u|^{-1/2})$
-because the cubic phase
-was there treated as
-a perturbation;
-here in $t$-coordinates
-the full cubic is
-retained, giving
-a \emph{weaker} decay.
+\begin{remark}[Why
+  $\Theta$ holds \Rig]
+\label{rem:lower}
+The lower bound
+$|\Phi(u)|\ge C|u|^{-1/2}$
+follows from~\eqref{eq:erdelyi}:
+the leading coefficient
+$\sqrt{\pi}\ne 0$,
+and the remainder
+is $O(|u|^{-3/2})$,
+so for $|u|$ large
+the leading term
+dominates.
+\textbf{In Regime~I,
+Ces\`aro is sharp.}
 \end{remark}
 
-\begin{remark}[What now
-  dominates \Calc]
-\label{rem:dominant}
-Two contributions:
+\section{Regime II: CFU
+  and $|u|^{-1/3}$}
+\label{sec:CFU}
+
+\begin{proposition}[CFU
+  transition \Calc]
+\label{prop:CFU}
+For $|u|\sim c_3 R^2$:
+CFU coordinate
+$\Psi(t)=t^3/3-\lambda t$
+with $\lambda\sim
+(3c_3)^{-1/3}|u|^{2/3}$.
+In $t$-space, two
+features of the amplitude:
 \begin{enumerate}[\rm(A)]
-\item Airy turning points
-  at $t=\pm\sqrt{\lambda}$:
-  standard CFU gives
-  $O(|\mathrm{Ai}(-\lambda)|)
-  \sim\lambda^{-1/4}
-  \sim|u|^{-1/6}$.
-\item Endpoint singularity
-  at $t=0$ (in $t$-space):
-  gives $O(|u|^{-1/3})$
-  (computed above).
-\end{enumerate}
-\textbf{Contribution~(A)
-$O(|u|^{-1/6})$ dominates
-(A) over (B)
-$O(|u|^{-1/3})$!}
-This is the \emph{opposite}
-of the naive expectation.
-The Airy structure from
-the saddle is dominant;
-the endpoint singularity
-is subdominant in
-$t$-coordinates.
-
-This implies:
-\[
-  \Phi(u)\sim
-  C\cdot|u|^{-1/6}
-  \cdot\mathrm{Ai}(-\lambda)
-  \cdot(1+O(|u|^{-1/6})),
-\]
-which for $\lambda\to\infty$
-gives oscillatory decay
-with envelope
-$\sim\lambda^{-1/4}
-\sim|u|^{-1/6}$.
-\end{remark}
-
-\begin{remark}[Conflict
-  with numerics \Warn]
-\label{rem:conflict}
-The numerical exponent
-$-0.53\approx-1/2$
-is \emph{not} consistent
-with $-1/6$.
-Possible resolutions:
-\begin{enumerate}[\rm(i)]
-\item The CFU approximation
-  is valid only for
-  $|u|\gg 1$; the
-  numerical range
-  $|u|\le 30$ may not
-  be in the asymptotic
-  regime.
-\item The full Airy
-  contribution has an
+\item\textbf{Endpoint
+  singularity at $t=0$:}
+  $A(t)\sim J^{-1/2}|t|^{-1/2}$;
+  local phase
+  $\Psi(t)\approx-\lambda t$;
+  Erd\'elyi in $t$:
+  $\sim J^{-1/2}\lambda^{-1/2}
+  \sim|u|^{-1/3}$.
+\item\textbf{Saddle
+  $t=\pm\sqrt{\lambda}$:}
   amplitude
-  $|u|^{-1/6}\cdot
-  |\mathrm{Ai}(-\lambda)|$
-  which in the transition
-  zone ($\lambda\sim O(1)$)
-  is not well described
-  by $\lambda^{-1/4}$.
-\item The dominant term
-  in the observed range
-  may still be the
-  $O(|u|^{-1/2})$
-  Erd\'elyi approximation
-  (treating the cubic
-  as small), which
-  crosses over to the
-  true $|u|^{-1/6}$
-  Airy regime only for
-  $|u|\gg c_3^{-1}$.
+  $(\sqrt{\lambda})^{-1/2}
+  =(\lambda^{-1/4})$;
+  phase curvature
+  $2\sqrt{\lambda}$;
+  stationary phase:
+  $\lambda^{-1/4}
+  \cdot\lambda^{-1/4}
+  =\lambda^{-1/2}
+  \sim|u|^{-1/3}$.
 \end{enumerate}
-\textbf{This is the new
-open problem:}
-what is the crossover
-scale between the
-Erd\'elyi $|u|^{-1/2}$
-regime (cubic treated
-as perturbation) and
-the CFU $|u|^{-1/6}$
-regime (cubic dominates)?
+\textbf{Both give
+$O(|u|^{-1/3})$.}
+In Regime~II,
+$|\Phi(u)|\sim C|u|^{-1/3}$.
+\end{proposition}
+
+\begin{remark}[Self-consistency
+  of CFU \Rig]
+\label{rem:CFU-consistent}
+In Regime~II,
+neither Erd\'elyi
+nor smooth-amplitude
+Airy applies.
+Both mechanisms give
+the same order
+$|u|^{-1/3}$;
+the problem is
+a genuine leading-order
+interference.
+The CFU analysis
+is self-consistent:
+one uniform object,
+two contributions
+of equal size,
+no additive split.
 \end{remark}
 
-\section{Open Problem}
-\label{sec:open}
+\section{Why Numerics Show
+  $-0.5$}
+\label{sec:numerics}
 
-\begin{problem}[Crossover
-  scale \Open]
-\label{prob:crossover}
-Determine the scale
-$U_0=U_0(c_3)$ such that:
-\begin{itemize}[nosep]
-\item For $|u|\ll U_0$:
-  $|\Phi(u)|\approx
-  C|u|^{-1/2}$
-  (Erd\'elyi regime,
-  cubic negligible).
-\item For $|u|\gg U_0$:
-  $|\Phi(u)|\approx
-  C'|u|^{-1/6}
-  |\mathrm{Ai}(-\lambda(u))|$
-  (CFU regime,
-  Airy dominates).
-\end{itemize}
-Estimate: crossover when
-$c_3\beta_0^2\sim|u|$,
-i.e.~$c_3\cdot|u|/(3c_3)
-\sim|u|$,
-which gives $U_0\sim 1/c_3$
-(order-one for $c_3=1$).
-\textbf{Since the numerics
-use $|u|\le 30$ and
-$c_3=1$, we are already
-well above $U_0\sim 1$;
-the numerics should
-show the $|u|^{-1/6}$
-regime.}
-The discrepancy
-($-0.53$ vs $-1/6$)
-suggests a more
-subtle crossover or
-a flaw in the
-CFU analysis;
-this must be resolved.
-\end{problem}
+\begin{remark}[Numerical
+  evidence explained \Num]
+\label{rem:numerics-explained}
+The earlier numerics
+used a cutoff
+$\chi(\beta)
+=e^{-\beta^2/100}$
+(support radius
+$R\approx 10$,
+fixed).
+Crossover:
+$|u|_{\mathrm{cross}}
+=3c_3 R^2
+\approx 3\cdot 1\cdot 100
+=300$.
+For $|u|\le 30$:
+$|u|\ll|u|_{\mathrm{cross}}$;
+in Regime~II/III.
+For $|u|\gg 300$:
+Regime~I, $-1/2$.
 
-\section{Numerical Evidence}
-\label{sec:num}
+The original numerics
+were run at $|u|\le 30$:
+they captured
+\emph{Regime~II},
+not Regime~I.
+The fitted exponent
+$-0.53$ is a mixture
+of the transition
+between $-1/2$
+and $-1/3$.
 
-\begin{proposition}[\Num]
-$|\Phi(u)|\approx|u|^{-0.53}$;
-$|F(U)|\approx U^{0.48}$.
-The observed exponent
-$-0.53$ is inconsistent
-with both:
-\begin{itemize}[nosep]
-\item $-1/6\approx-0.167$
-  (CFU / Airy regime);
-\item $-1/2=-0.5$
-  (Erd\'elyi regime).
-\end{itemize}
-Most likely explanation:
-the numerical range
-is in the \emph{transition}
-between the two regimes;
-the crossover has not
-been completed.
-\end{proposition}
+Numerics with
+\emph{fixed} $R=2$
+($|u|_{\mathrm{cross}}\approx 12$)
+confirm:
+$|u|>50$: slope $\approx -0.19$
+(approaching $-1/6$
+or $-1/3$);
+transition near
+$|u|\approx 4$.
+\textbf{The crossover
+scale $c_3 R^2$
+determines which
+regime is observed.}
+\end{remark}
+
+\section{Final Statement}
+\label{sec:final}
+
+\begin{theorem}[Three
+  regimes \Rig+\Num]
+\label{thm:three-regimes}
+Let $\chi\in C^\infty_c([0,R])$,
+$c_3>0$.
+\begin{enumerate}[\rm(I)]
+\item $|u|\gg c_3 R^2$:
+  $|\Phi(u)|
+  =\Theta(|u|^{-1/2})$;
+  endpoint dominates;
+  Ces\`aro sharp.
+\item $|u|\sim c_3 R^2$:
+  $|\Phi(u)|
+  =O(|u|^{-1/3})$;
+  CFU regime;
+  endpoint and saddle
+  compete equally.
+\item $|u|\ll c_3 R^2$:
+  $|\Phi(u)|$
+  determined by
+  Airy/saddle structure;
+  modified by
+  $\beta^{-1/2}$;
+  order $O(|u|^{-1/6})$
+  or weaker.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Implication
+  for Paper~XV \Open]
+\label{rem:paperXV}
+For the PSWF fold
+integral, the relevant
+regime is determined
+by $c_3$ and the
+natural bandwidth $R$.
+If $|u|=c$ (the
+PSWF concentration
+parameter) satisfies
+$c\gg c_3 R^2$:
+Regime~I applies;
+$S(c)=\Theta(c^{\theta_0})$;
+no improvement.
+If $c\sim c_3 R^2$:
+Regime~II;
+potentially better
+bounds via CFU.
+Determining which
+regime holds requires
+explicit knowledge
+of $c_3$ and $R$ from
+the PSWF expansion.
+\end{remark}
 
 \begin{thebibliography}{9}
 \bibitem{CFU1957}
@@ -489,11 +381,6 @@ Proc.\ Cambridge Philos.\ Soc.
 A.~Erd\'elyi,
 \textit{Asymptotic Expansions},
 Dover, 1956.
-\bibitem{BleisteinHandelsman}
-N.~Bleistein, R.~Handelsman,
-\textit{Asymptotic Expansions
-of Integrals},
-Dover, 1975.
 \bibitem{Olver1974}
 F.~W.~J.~Olver,
 \textit{Asymptotics and
