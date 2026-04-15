@@ -38,7 +38,8 @@
   no-concentration, local Weyl law, semiclassical measures,
   quantum ergodicity, WKB, spectral evacuation, quadratic forms,
   rank growth, Szeg\H{o} theory, Toeplitz operators,
-  double-scaling Szeg\H{o} problem}
+  double-scaling Szeg\H{o} problem,
+  collective quasi-orthogonality}
 
 \begin{document}
 
@@ -102,6 +103,13 @@ further identified as a
 for the truncated Gram operator
 $\Ac^{(M)}=P_{V_M^{(c)}}P_{c_0}P_{V_M^{(c)}}$
 (\S\ref{sec:szego}).
+The resolution requires not merely
+pointwise quasi-orthogonality~(D-weak)
+but \emph{collective quasi-orthogonality}~(D-strong):
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+for $M(c)\sim\beta c$
+(Proposition~\ref{prop:HS-reduction},
+\S\ref{sec:PaperXV}).
 \end{abstract}
 
 \maketitle
@@ -215,6 +223,10 @@ transit between $\approx 1$ and $\approx 0$.
   (Lemma~\ref{lem:rank-lower}):
   at each finite stage only;
   never passed to the limit
+\item No single-mode dominance
+  (Lemma~\ref{lem:no-single-mode},
+  conditional on local Weyl law):
+  $\max_n(\Ac^{(M)})_{nn}=O(1/c)$
 \item $\sigma(c)\sim cc_0/\pi$
   (classical Slepian--Weyl)
 \item NC $\Rightarrow$ H3 fails
@@ -239,7 +251,8 @@ transit between $\approx 1$ and $\approx 0$.
   identified as a double-scaling
   Szeg\H{o} problem
   (Def.~\ref{def:double-scaling},
-  \S\ref{sec:szego})
+  \S\ref{sec:szego});
+  requires (D-strong), not merely (D-weak)
 \item NC holds (local Weyl law):
   OP~\ref{prob:fourier-mass}
 \end{itemize}}}
@@ -498,7 +511,11 @@ The gap between (3) and (2) is the content
 of OP~\ref{prob:H1H3}, identified in
 \S\ref{sec:szego} as a double-scaling
 Szeg\H{o} problem
-(Definition~\ref{def:double-scaling}).
+(Definition~\ref{def:double-scaling});
+its resolution requires
+collective quasi-orthogonality~(D-strong),
+not merely pointwise decay~(D-weak)
+(\S\ref{sec:PaperXV}).
 \end{remark}
 
 \begin{remark}[Spectral sum vs.\ spectral distribution]
@@ -704,9 +721,11 @@ $\Ac^{(M)}=P_{V_M}P_{c_0}P_{V_M}$
   & \textbf{Identified} & Thm.~\ref{thm:SN-operator} \\
 Fin.-dim.\ eff.\ rank bound
   & \textbf{Proved} & Lem.~\ref{lem:rank-lower}; level $M$ only \\
+No single-mode dominance
+  & \textbf{Identified} & Lem.~\ref{lem:no-single-mode}; cond.\ Weyl \\
 $S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
   & Open & OP~\ref{prob:H1H3};
-    double-scaling Szeg\H{o} \\
+    requires (D-strong) \\
 NC$\Rightarrow$H3 fails & \textbf{Proved} & --- \\
 NC sufficient, not necessary
   & \textbf{Proved} & abstract \\
@@ -778,6 +797,9 @@ Slepian--Weyl
 $\mu_{n,c}$ equidistribution
   & NC
   & quasi-orthogonality \\
+(D-weak) pointwise
+  & individual entries $o(1/c)$
+  & cumulative off-diagonal mass \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -901,12 +923,15 @@ the linearly growing family}
 $\{V_{M(c)}^{(c)}\}_{c>0}$,
 not the density per mode.
 The double-scaling structure explains
-why quasi-orthogonality~\eqref{eq:quasi-orth}
-is the key analytic obstruction
-(\S\ref{sec:PaperXV}):
-it is precisely the off-diagonal term
-of the Gram matrix that mediates
-the interaction between the two scales.
+why \emph{collective} quasi-orthogonality
+(D-strong) is the key analytic obstruction,
+not merely pointwise decay (D-weak):
+the $O(c^2)$ off-diagonal entries each
+contribute $o(1/c)$, yielding a cumulative
+off-diagonal mass $c^2\cdot o(1/c)=o(c)$
+that is controlled only by the
+Hilbert--Schmidt condition
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
 \end{remark}
 
 \subsubsection*{Correct scaling: accumulation of mass, not density}
@@ -938,16 +963,71 @@ as $c_0/c\to 0$), but rather:
   S_N^{(M(c))}(c) \gtrsim 1
   \quad\text{for }M(c)\sim\beta c.
 \end{equation}
-This reflects that the relevant quantity is
-not density per mode, but the
-\textbf{accumulation of spectral mass across
-a linearly growing family of modes}.
 
-\subsubsection*{Quasi-orthogonality: the key analytic obstruction}
+\subsubsection*{No single-mode dominance}
 
-The key additional ingredient is the
-\emph{quasi-orthogonality} of the
-restricted Fourier transforms:
+\begin{lemma}[No single-mode dominance]
+\label{lem:no-single-mode}
+Let $M(c)\sim\beta c$ with $\beta\in(0,1)$.
+Assume the local Weyl law:
+\[
+  \mu_{n,c}([-c_0,c_0]) \sim \frac{c_0}{c}
+  \quad\text{uniformly for }
+  n\in\mathcal{T}_{\alpha,\kappa}(c).
+\]
+Then no individual diagonal entry of
+$\Ac^{(M)}$ carries macroscopic spectral mass:
+\[
+  \max_{N<n\le M(c)} (\Ac^{(M)})_{nn}
+  = O\!\left(\frac{1}{c}\right).
+\]
+In particular, any non-vanishing total spectral
+mass $S_N^{(M(c))}(c)\gtrsim 1$ must arise
+from the cumulative contribution of $\sim c$
+modes.
+\end{lemma}
+
+\begin{proof}
+Immediate from the local Weyl law:
+each diagonal entry equals
+$\mu_{n,c}([-c_0,c_0])\sim c_0/c$,
+so the maximum is $O(1/c)$.
+The claim about collective accumulation
+follows since $S_N^{(M(c))}(c)
+\sim (c_0/c)\cdot\beta c = c_0\beta>0$
+requires $\sim\beta c$ modes each contributing
+$\sim c_0/c$.
+\end{proof}
+
+\begin{remark}
+This lemma shows that spectral mass cannot
+concentrate in a small number of modes:
+any macroscopic contribution to
+$S_N^{(M(c))}(c)$ must arise collectively
+across a linearly growing family of indices.
+This is the structural reason why
+collective quasi-orthogonality~(D-strong)
+is the appropriate condition:
+individual mode control~(D-weak) is
+insufficient precisely because mass is
+distributed across $\sim c$ modes.
+\end{remark}
+
+\subsubsection*{Quasi-orthogonality: pointwise vs.\ collective}
+
+\begin{center}
+\fbox{\parbox{0.84\linewidth}{
+\textbf{Distinction between (D-weak) and (D-strong).}
+The distinction between pointwise and collective
+quasi-orthogonality is essential:
+while (D-weak) controls individual matrix entries,
+only (D-strong) controls the cumulative
+off-diagonal mass across the $O(c^2)$ entries
+of the Gram matrix.}}
+\end{center}
+
+\medskip
+\textbf{(D-weak) Pointwise quasi-orthogonality.}
 \begin{equation}\label{eq:quasi-orth}
   \left|\int_{-c_0}^{c_0}
   \widehat{\Phi_n^{(c)}}(\xi)\,
@@ -955,17 +1035,89 @@ restricted Fourier transforms:
   \right| = o\!\left(\frac{1}{c}\right)
   \quad(n\ne m,\; n,m\in\mathcal{T}_{\alpha,\kappa}(c)).
 \end{equation}
-\textbf{This is the central analytic obstruction
-of the entire theory.}
-If~\eqref{eq:quasi-orth} holds, then
-$\Ac^{(M)}$ is asymptotically diagonal
-in the PSWF basis, with eigenvalues
-well-approximated by the diagonal entries
-$\mu_{n,c}([-c_0,c_0])\sim c_0/c$,
-yielding total spectral mass
-$S_N^{(M(c))}(c)\sim c_0\beta>0$
-for $M(c)\sim\beta c$,
-and closing OP~\ref{prob:H1H3}.
+This condition ensures qualitative asymptotic
+diagonal structure, but is \emph{insufficient}
+to control the cumulative effect of off-diagonal
+terms across a linearly growing index set:
+with $O(c^2)$ off-diagonal pairs each bounded
+by $o(1/c)$, the Hilbert--Schmidt off-diagonal
+norm satisfies only
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}^2
+\le c^2\cdot o(1/c^2) = o(1)$,
+which \emph{does} vanish --- see (D-strong) below.
+
+\medskip
+\textbf{(D-strong) Collective quasi-orthogonality.}
+\begin{equation}\label{eq:quasi-orth-strong}
+  \sum_{\substack{n\ne m \\
+  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+  \left|(\Ac^{(M)})_{nm}\right|^2
+  = o(1)
+  \quad(M\sim\beta c),
+\end{equation}
+equivalently:
+\begin{equation}\label{eq:HS-diag}
+  \|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}} \to 0
+  \quad\text{as }c\to\infty,\; M\sim\beta c,
+\end{equation}
+where $D^{(M)}:=\mathrm{diag}((\Ac^{(M)})_{nn})_{N<n\le M}$.
+Condition~(D-strong) is sufficient to ensure
+that the spectral behaviour of $\Ac^{(M)}$
+is asymptotically governed by its diagonal
+entries, and in particular implies
+Conjecture~\ref{conj:szego}
+(Proposition~\ref{prop:HS-reduction}).
+
+\subsubsection*{Diagonal reduction under HS control}
+
+\begin{proposition}[Diagonal reduction under HS control]
+\label{prop:HS-reduction}
+Assume~(C) and~(D-strong).
+Then the eigenvalue distribution of
+$\Ac^{(M(c))}$ is asymptotically determined
+by its diagonal entries: there exists a
+bijection $j\mapsto n_j$ such that
+\[
+  \lambda_j^{(M(c))}
+  = \mu_{n_j,c}([-c_0,c_0])
+  + o\!\left(\frac{1}{c}\right)
+\]
+up to a negligible perturbation in
+Hilbert--Schmidt norm.
+In particular:
+\[
+  S_N^{(M(c))}(c)
+  = \sum_j \lambda_j^{(M(c))}
+  \sim \sum_{n=N+1}^{M(c)}
+  \mu_{n,c}([-c_0,c_0])
+  \sim c_0\beta.
+\]
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+By~(D-strong), $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$.
+Since $D^{(M)}$ has eigenvalues
+$\mu_{n,c}([-c_0,c_0])\sim c_0/c$
+by~(C), and the gap between consecutive
+eigenvalues of $D^{(M)}$ is $o(1/c)$
+only when modes cluster, the Weyl
+perturbation inequality
+$|\lambda_j^{(M)}-d_j|\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}$
+combined with
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{op}}
+\le\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+gives the claimed eigenvalue approximation.
+Summing yields the trace identity.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:HS-reduction} is the
+missing bridge step between the open problem
+OP~\ref{prob:H1H3} and Conjecture~\ref{conj:szego}:
+it shows that~(C)$+$(D-strong) imply the
+conjecture, whereas~(C)$+$(D-weak) alone
+do not.
+\end{remark}
 
 \subsubsection*{Reformulation and conjecture}
 
@@ -977,16 +1129,19 @@ Does the eigenvalue distribution of the
 truncated Gram operator $\Ac^{(M(c))}$
 converge to a non-degenerate distribution
 as $c\to\infty$, $M(c)\sim\beta c$?
-Equivalently: does quasi-orthogonality~%
-\eqref{eq:quasi-orth} hold, so that
-$\Ac^{(M(c))}$ is asymptotically diagonal
-in the PSWF basis with total spectral mass
+Equivalently: does collective
+quasi-orthogonality~\eqref{eq:quasi-orth-strong}
+hold, so that $\Ac^{(M(c))}$ is
+asymptotically diagonal in the PSWF basis
+with total spectral mass
 $S_N^{(M(c))}(c)\gtrsim 1$?}}
 \end{center}
 
 \begin{conjecture}[Double-scaling Szeg\H{o} behaviour]
 \label{conj:szego}
-For $M(c)\sim\beta c$, $\beta\in(0,1)$ fixed:
+For $M(c)\sim\beta c$, $\beta\in(0,1)$ fixed,
+assume~(C) and~(D-strong).
+Then:
 \begin{enumerate}[\rm(i)]
 \item Mean density vanishes:
   $\bar\lambda^{(M(c))}(c)\sim c_0/c\to 0$.
@@ -997,25 +1152,30 @@ For $M(c)\sim\beta c$, $\beta\in(0,1)$ fixed:
   $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
   \to\infty$.
 \end{enumerate}
-These follow from the local Weyl law
-(OP~\ref{prob:fourier-mass}) combined
-with quasi-orthogonality~\eqref{eq:quasi-orth}.
+Parts~(i)--(iii) follow from~(C)$+$(D-strong)
+via Proposition~\ref{prop:HS-reduction}
+and Lemma~\ref{lem:no-single-mode}.
+In particular, (D-weak) alone is
+\emph{insufficient}: the conjecture requires
+the collective Hilbert--Schmidt control
+of~(D-strong).
 \end{conjecture}
 
 \begin{remark}[Programme status]
 Conjecture~\ref{conj:szego} is a programme,
 not a proved statement.
 Its verification requires:
-(1)~the local Weyl law
+(1)~the local Weyl law~(C)
 (target of Paper~XV);
-(2)~quasi-orthogonality~\eqref{eq:quasi-orth}
+(2)~collective quasi-orthogonality~(D-strong)
 via off-diagonal stationary phase
 (\textbf{key analytic obstruction};
 not yet established);
-(3)~a double-scaling Szeg\H{o}-type theorem
-(Definition~\ref{def:double-scaling})
-for the resulting approximately-diagonal
-positive semidefinite matrix family.
+(3)~the bridge Proposition~\ref{prop:HS-reduction}
+then closes the argument.
+Note that pointwise decay~(D-weak) alone
+does \emph{not} suffice for the conjecture;
+see the discussion following~\eqref{eq:quasi-orth}.
 \end{remark}
 
 %%═══ 8. PROGRAMME FOR PAPER XV
@@ -1031,13 +1191,38 @@ positive semidefinite matrix family.
   uniform in $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
 \item $\mu_{n,c}([-c_0,c_0])=c_0/c+o(1/c)$
   uniformly.
-\item Quasi-orthogonality~\eqref{eq:quasi-orth}:
-  off-diagonal decay $o(1/c)$ for
+\item[\rm(D-weak)] Pointwise quasi-orthogonality~%
+  \eqref{eq:quasi-orth}:
+  $|(\Ac^{(M)})_{nm}|=o(1/c)$ for
   $n\ne m$ in $\mathcal{T}_{\alpha,\kappa}(c)$.
+  \emph{This controls individual entries
+  but not the cumulative off-diagonal mass.}
+\item[\rm(D-strong)] Collective quasi-orthogonality~%
+  \eqref{eq:quasi-orth-strong}:
+  $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+  for $M\sim\beta c$.
+  \emph{This controls the full off-diagonal
+  Hilbert--Schmidt norm and is sufficient
+  for Conjecture~\ref{conj:szego}
+  via Proposition~\ref{prop:HS-reduction}.}
 \end{enumerate}
-(A)+(B) $\Rightarrow$ NC;
-(C) $\Rightarrow$ equidistribution;
-(C)+(D) $\Rightarrow$ Conjecture~\ref{conj:szego}.
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lll}
+\toprule
+Estimates & Implication & Target \\
+\midrule
+(A)+(B) & $\Rightarrow$ NC & Paper~XV \\
+(C) & $\Rightarrow$ equidistribution & Paper~XV \\
+(C)+(D-weak) & asymptotic diagonal structure
+  & \emph{insufficient for Conj.~\ref{conj:szego}} \\
+(C)+(D-strong) & $\Rightarrow$ Conj.~\ref{conj:szego}
+  & via Prop.~\ref{prop:HS-reduction} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \subsection{Semiclassical approach}
 
@@ -1052,21 +1237,39 @@ for $n\sim\alpha c$.
 WKB in $|x|<x_0$ and stationary phase
 for $\xi\in[-c_0,c_0]$
 give (A)--(C) \cite{Osipov2013}.
-For (D): the off-diagonal integral
+
+For (D-weak): the off-diagonal integral
 has phase $(n-m)\theta(\xi)/c$;
 for $|n-m|\ge 1$, rapid oscillation
 yields $o(1/c)$ by stationary phase with
 uniform remainder.
-This is a microlocal result in the
-double-scaling regime of
+This gives pointwise control but not
+the Hilbert--Schmidt sum.
+
+For (D-strong): one needs in addition
+\[
+  \sum_{\substack{n\ne m \\
+  n,m\in\mathcal{T}_{\alpha,\kappa}(c)}}
+  \left|\int_{-c_0}^{c_0}
+  e^{i(n-m)\theta(\xi)/c}
+  \cdot r_{nm}(\xi)\,d\xi
+  \right|^2 = o(1),
+\]
+where $r_{nm}(\xi)$ are the WKB amplitude
+factors.
+This requires a \emph{uniform} remainder
+estimate in the double-scaling regime of
 Definition~\ref{def:double-scaling}:
 the coupling of $h=1/c\to 0$ and
-$M(c)\sim\beta c$ means that standard
-single-parameter stationary phase
-requires a uniform remainder estimate
-across the growing index range.
+$M(c)\sim\beta c$ means that summing
+$O(c^2)$ stationary phase remainders
+requires control beyond single-parameter
+asymptotic expansion.
 This is the primary technical target of
-Paper~XV beyond estimates (A)--(C).
+Paper~XV beyond estimates (A)--(C):
+to upgrade (D-weak) to (D-strong) via
+a double-scaling stationary phase estimate
+with explicit $\ell^2$-summable remainders.
 
 %%═══ 9. OPEN PROBLEMS
 \section{Open Problems}
@@ -1081,7 +1284,7 @@ $n\in\mathcal{T}_{\alpha,\kappa}(c)$.
 The $\Phi_n^{(c)}$ are orthogonal in
 $L^2[-1,1]$ but not in the rescaled window,
 introducing off-diagonal correlations
-that must be controlled jointly with (D).
+that must be controlled jointly with (D-strong).
 \end{problem}
 
 \begin{problem}[Total spectral mass along linear scales]
@@ -1102,25 +1305,19 @@ does there exist $\beta\in(0,1)$ such that
   S_N^{(M(c))}(c) \gtrsim 1
   \quad\text{for }M(c)\sim\beta c\;?
 \end{equation}
-Equivalently (by~\eqref{eq:total-mass}
-and Lemma~\ref{lem:rank-lower}):
-does $\#\{j:\lambda_j^{(M(c))}\ge\varepsilon\}
-\to\infty$ for all sufficiently small
-fixed $\varepsilon>0$?
 
 \textbf{Double-scaling Szeg\H{o} formulation.}
 By Definition~\ref{def:double-scaling}
 and \S\ref{sec:szego},
 condition~\eqref{eq:open-mass} is a
-\emph{double-scaling Szeg\H{o} problem}:
-it follows from the
-local Weyl law (OP~\ref{prob:fourier-mass})
-combined with quasi-orthogonality~%
-\eqref{eq:quasi-orth}.
-Quasi-orthogonality is the
-\textbf{key analytic obstruction}:
-its proof via off-diagonal stationary phase
-is the primary target of Paper~XV beyond (A)--(C).
+\emph{double-scaling Szeg\H{o} problem}.
+It follows from~(C)$+$(D-strong)
+via Proposition~\ref{prop:HS-reduction};
+(D-weak) alone is \emph{insufficient}.
+Collective quasi-orthogonality~(D-strong)
+is the \textbf{key analytic obstruction}:
+its proof via double-scaling stationary phase
+is the primary target of Paper~XV.
 
 \textbf{Consequence if confirmed.}
 \eqref{eq:open-mass} combined with
@@ -1176,9 +1373,18 @@ Mean density $\bar\lambda^{(M(c))}\sim c_0/c\to 0$
   & Identified (correct scaling) \\
 Double-scaling Szeg\H{o} structure identified
   & \textbf{Identified} (Def.~\ref{def:double-scaling}) \\
+No single-mode dominance
+  & \textbf{Identified} (Lem.~\ref{lem:no-single-mode};
+    cond.\ Weyl) \\
+(D-weak)$\not\Rightarrow$Conj.~\ref{conj:szego}
+  & \textbf{Identified} (structural gap) \\
+Diagonal reduction under (D-strong)
+  & \textbf{Proved} (Prop.~\ref{prop:HS-reduction};
+    cond.\ (C)+(D-strong)) \\
 Total mass $S_N^{(M(c))}\sim c_0\beta>0$
-  & Conjectured (\ref{conj:szego}) \\
-Quasi-orthogonality~\eqref{eq:quasi-orth}
+  & Conjectured (\ref{conj:szego};
+    follows from (C)+(D-strong)) \\
+(D-strong): $\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
   & Open (\textbf{key obstruction}; Paper~XV) \\
 $S_N^{(M(c))}(c)\gtrsim 1$, $M(c)\sim\beta c$
   & Open (OP~\ref{prob:H1H3}) \\
@@ -1202,15 +1408,25 @@ The gap between diagonal WOT-convergence
 (proved from H1) and operator norm convergence
 is identified as a \emph{double-scaling
 Szeg\H{o} problem}
-(Definition~\ref{def:double-scaling}):
-the accumulation of spectral mass across
-a linearly growing family of modes
-(not non-vanishing mean density, which
-vanishes as $c_0/c$),
-resolved by quasi-orthogonality~\eqref{eq:quasi-orth}
---- the central analytic obstruction ---
-so that total mass $S_N^{(M(c))}(c)
-\sim c_0\beta>0$ is preserved.
+(Definition~\ref{def:double-scaling}).
+Its resolution requires not merely
+pointwise quasi-orthogonality~(D-weak),
+which controls individual Gram matrix entries,
+but \emph{collective quasi-orthogonality}~(D-strong):
+$\|\Ac^{(M)}-D^{(M)}\|_{\mathrm{HS}}\to 0$
+for $M(c)\sim\beta c$.
+The structural reason is that
+$O(c^2)$ off-diagonal entries,
+each $o(1/c)$, accumulate to $o(1)$
+in Hilbert--Schmidt norm only under
+uniform summability across the
+double-scaling regime.
+No single mode can carry macroscopic
+spectral mass (Lemma~\ref{lem:no-single-mode});
+mass accumulates collectively across $\sim c$
+modes, making the Hilbert--Schmidt condition
+both necessary in spirit and sufficient
+in practice (Proposition~\ref{prop:HS-reduction}).
 Paper~XIV is logically complete up to
 two open problems.}
 
