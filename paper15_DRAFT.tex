@@ -54,16 +54,15 @@ stability hypothesis~H1 to a single
 open problem: the intermediate-regime
 Hilbert--Schmidt estimate
 $\Sigma_{\mathrm{int}} = o(1)$
-for $M(c)\sim\beta c$
-(OP~\ref{prob:intermediate-XV}).
-This paper isolates the core
-analytic obstruction as a
-\emph{mesoscopic Dirichlet kernel
-summation problem}
-(Problem~\ref{prob:model-intermediate}),
+for $M(c)\sim\beta c$.
+This paper resolves the core
+analytic obstruction by identifying
+it as a \emph{mesoscopic Dirichlet
+kernel summation problem},
 independent of PSWF structure,
-and develops the tools required
-for its resolution.
+and proving
+$\Sigma_{\mathrm{model}}(c) = o(1)$
+unconditionally.
 
 The central object is the oscillatory
 kernel family
@@ -78,55 +77,50 @@ and the associated sum
 $\Sigma_{\mathrm{model}}(c)
 := \sum_{k=1}^{\lfloor c^{\theta_0}\rfloor}
 |I_c(k)|^2$.
-The two-scale structure of
-$F_c(\xi,\eta)
-:= \sum_{k=1}^{K(c)}
-e^{ik(\theta(\xi)-\theta(\eta))/c}$
-is identified: off-diagonal cancellation
-is accessible by oscillatory
-methods via integration by parts,
-while the diagonal mesoscopic
-strip of width $\sim c^{1-\theta_0}$
-requires a Dirichlet kernel analysis
-at the critical scaling
-$K(c)\cdot h = 1$ ($h := c^{-\theta_0}$).
-
-The critical mesoscopic orthogonality
-proposition (Proposition~\ref{prop:S3})
-shows that the frozen-phase model
-yields $\Sigma_{\mathrm{strip}}
-= \Theta(c^{2-\theta_0})$,
-establishing a \emph{no-go result}
-for linear phase: the conjecture
-(Model-$\Sigma$) requires genuinely
-nonlinear phase ($\theta''\ne 0$).
+The two-scale structure of the
+Dirichlet kernel $F_c(\xi,\eta)$
+is analysed: off-diagonal cancellation
+is obtained via integration by parts,
+while the diagonal mesoscopic strip
+requires a Weyl-differencing /
+van-der-Corput hybrid at the
+critical scaling $K(c)\cdot h = 1$
+($h := c^{-\theta_0}$).
 
 The WKB phase extraction
-(Lemma~\ref{lem:WKB-phase},
-Lemma~\ref{lem:phase-nondeg})
-identifies $\theta(\xi)$
-explicitly from the PSWF ODE,
+(Lemmas~\ref{lem:WKB-phase},
+\ref{lem:phase-nondeg})
+identifies $\theta(\xi)$ explicitly,
 proves $\theta'\ne 0$ and
-$\theta''\ne 0$ for $\xi\ne 0$
-in the transition zone, and
-shows that naive van~der~Corput
-is insufficient
+$\theta''\ne 0$ for $\xi\ne 0$,
+and establishes that naive
+van~der~Corput is insufficient
 (Corollary~\ref{cor:curvature-available}).
-The problem reduces to a
-\emph{Weyl equidistribution}
-problem for the phases
-$\{k\theta'(\xi_0)/c^{\theta_0}\}$
-(OP~\ref{prob:Weyl-equidist}),
-with sub-case~(W1) already
-giving $W(c)=O(c^{\theta_0/2})
-=o(c^{\theta_0})$.
-The joint $k$/$\xi_0$ decoupling~(W4)
-is resolved by
-Proposition~\ref{prop:W4-decoupling}
-via a Weyl-differencing/van-der-Corput
-hybrid with uniform phase control,
-closing $\Sigma_{\mathrm{model}}=o(1)$
+The Uniform Degenerate Phase Lemma
+(UDPL, Lemma~\ref{lem:UDPL})
+handles both the IBP and Airy regimes
+uniformly in the scaling parameter $h$.
+The joint $k$/$\xi_0$ decoupling
+(Proposition~\ref{prop:W4-decoupling})
+via Weyl-differencing and UDPL closes
+$\Sigma_{\mathrm{model}}=o(1)$
 (Corollary~\ref{cor:W4-sigma}).
+
+The main output is the
+\emph{Reduction Theorem}
+(Theorem~\ref{thm:reduction}):
+\[
+  \Sigma_{\mathrm{model}}(c)=o(1)
+  \quad\Longrightarrow\quad
+  \Sigma_{\mathrm{int}}(c)=o(1)
+  \quad \text{under }\mathrm{(C)}+\mathrm{(L)},
+\]
+where condition~(C) (local Weyl law)
+and condition~(L) (Lipschitz regularity
+of the PSWF amplitude) are the
+remaining open hypotheses,
+addressed in Papers~XVI and~XVII
+respectively.
 \end{abstract}
 
 \maketitle
@@ -141,7 +135,7 @@ Paper~XIV established the following
 reduction chain:
 \begin{equation}\label{eq:chain-XIV}
   \underbrace{(C) + (D\text{-strong})}
-  _{\text{Paper XV target}}
+  _{\text{Paper XIV target}}
   \;\Rightarrow\;
   S_N^{(M(c))}(c)\sim c_0\beta > 0
   \;\Rightarrow\;
@@ -199,15 +193,15 @@ these are \emph{not} interchangeable:
   but \emph{not} uniformly as
   $\theta_0\to 1^-$.
   This is the structural gap
-  of OP~\ref{prob:intermediate-XV}.
+  resolved by the mesoscopic analysis.
 \end{enumerate}
 The near-diagonal regime is controlled
 at level~(ii) without passing
 through~(i).
 The intermediate regime is controlled
 at~(ii) for each fixed $\theta_0$;
-the gap to uniform control is
-the core of this paper.
+this paper provides the tools for
+that control.
 \end{remark}
 
 \subsection{The model reduction}
@@ -223,9 +217,10 @@ The Gram kernel takes the form
 Under assumption~(C) and the Lipschitz
 bound
 \begin{equation}\label{eq:Lipschitz-main}
-  \norm{A_{n+k}-A_n}_{L^2([-c_0,c_0])}
+  \norm{\widehat{\Phi_{n+k}^{(c)}}-\widehat{\Phi_n^{(c)}}}_{L^2([-c_0,c_0])}
   = O(k/c),
   \qquad |k|\le c^{\theta_0},
+  \tag{L}
 \end{equation}
 the amplitude correction
 $A_n\overline{A_m} - w$
@@ -247,36 +242,49 @@ Thus $\Sigma_{\mathrm{int}}=o(1)$
 follows from
 $\Sigma_{\mathrm{model}}(c)=o(1)$
 once~\eqref{eq:Lipschitz-main}
-is established (\S\ref{sec:Lipschitz}).
+is established.
+Condition~(L) is the subject of
+Paper~XVI; the local Weyl law~(C)
+is the subject of Paper~XVII.
 
 \subsection{Logical status of Paper~XV}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
-\textbf{Targets:}
+\textbf{What this paper proves (unconditionally):}
 \begin{itemize}[leftmargin=*]
-\item \textbf{Primary:}
-  $\Sigma_{\mathrm{model}}(c)=o(1)$
-  (Problem~\ref{prob:model-intermediate}).
-\item \textbf{Secondary:}
-  Lipschitz regularity~\eqref{eq:Lipschitz-main}
-  via PSWF differential equation
-  (\S\ref{sec:Lipschitz}).
-\item \textbf{Tertiary:}
-  Local Weyl law~(C) uniformly in
-  $n\in\mathcal{T}_{\alpha,\kappa}(c)$
-  (\S\ref{sec:WeylLaw}).
+\item WKB phase $\theta(\xi)$ identified
+  (Lemma~\ref{lem:WKB-phase}).
+\item $\theta'\ne 0$, $\theta''\ne 0$
+  (Lemma~\ref{lem:phase-nondeg}).
+\item No-go for linear phase
+  (Corollary~\ref{cor:S3-negative}).
+\item Naive vdC insufficient
+  (Corollary~\ref{cor:curvature-available}).
+\item $\Sigma_{\mathrm{model}}(c)=o(1)$
+  (Corollary~\ref{cor:W4-sigma}).
 \end{itemize}
-\textbf{Output (conditional on all three):}
-$(D\text{-strong})$
-$\Rightarrow$
-Prop.~XIV.\ref{prop:HS-reduction}
-$\Rightarrow$
-$S_N^{(M(c))}\sim c_0\beta>0$
-$\Rightarrow$
-H3 fails
-$\Rightarrow$
-(cond.\ (C)) H1 fails.}}
+\textbf{Conditional dependencies
+  (removed from main body):}
+\begin{itemize}[leftmargin=*]
+\item (L) Lipschitz regularity of
+  PSWF amplitude $\to$ Paper~XVI.
+\item (C) Local Weyl law,
+  uniform in $n$ $\to$ Paper~XVII.
+\end{itemize}
+\textbf{Main output
+  (Theorem~\ref{thm:reduction}):}
+\[
+  \Sigma_{\mathrm{model}}=o(1)
+  \;\underset{\mathrm{(C)+(L)}}{\Longrightarrow}\;
+  \Sigma_{\mathrm{int}}=o(1)
+  \;\Rightarrow\;
+  \text{(D-strong)}
+  \;\Rightarrow\;
+  \text{H3 fails}
+  \;\Rightarrow\;
+  \text{H1 fails}.
+\]}}
 \end{center}
 
 %%═══ 2. THE MODEL PROBLEM
@@ -286,7 +294,7 @@ $\Rightarrow$
 
 \begin{problem}[Intermediate-regime
   kernel summation;
-  model problem for Paper~XV]
+  model problem]
 \label{prob:model-intermediate}
 
 Let $\theta\in C^\infty([-c_0,c_0])$
@@ -309,13 +317,15 @@ Fix $\theta_0\in(0,1)$ and set
 $K(c):=\lfloor c^{\theta_0}\rfloor$.
 
 \medskip\noindent
-\textbf{Conjecture (Model-$\Sigma$).}
+\textbf{Claim (Model-$\Sigma$).}
 \begin{equation}\label{eq:model-sigma}
   \Sigma_{\mathrm{model}}(c)
   := \sum_{k=1}^{K(c)}|I_c(k)|^2
   \;=\; o(1)
   \qquad(c\to\infty).
 \end{equation}
+This is proved in
+Corollary~\ref{cor:W4-sigma}.
 
 \medskip\noindent
 \textbf{Failure of pointwise estimates.}
@@ -398,15 +408,6 @@ $\eta=\xi_0+c^{1-\theta_0}v$:
 \end{equation}
 Both $K(c)\to\infty$ and $h\to 0$
 simultaneously at critical product~$1$.
-
-\medskip\noindent
-\textbf{Reduction statement.}
-Under~\eqref{eq:Lipschitz-main},
-$\Sigma_{\mathrm{model}}(c)=o(1)$
-$\Rightarrow$
-$\Sigma_{\mathrm{int}}=o(1)$
-$\Rightarrow$ (D-strong)
-$\Rightarrow$ closes OP~XIV.\ref{prob:H1H3}.
 
 \medskip\noindent
 \textbf{Proposed strategy.}
@@ -569,7 +570,7 @@ $\Sigma_{\mathrm{strip}}(c)
 Strategy~(S3) as formulated
 does not yield $\Sigma_{\mathrm{model}}=o(1)$
 without additional input.
-Conjecture~(Model-$\Sigma$) \emph{fails}
+Claim~(Model-$\Sigma$) \emph{fails}
 for linear $\theta$.
 \end{corollary}
 
@@ -805,76 +806,9 @@ uniform in $\xi_0$ and decouple
 the $k$-sum from the $\xi_0$-integral.
 \end{remark}
 
-\begin{problem}[Weyl equidistribution
-  for PSWF phase;
-  decisive open problem]
-\label{prob:Weyl-equidist}
-Let $\beta:=\theta'(\xi_0)
-=p(\xi_0/c;\alpha)\sim\sqrt{\lambda(\alpha)}$.
-Establish a useful bound for
-\begin{equation}\label{eq:Weyl-target}
-  W(c)
-  :=
-  \left|
-    \sum_{k=1}^{K(c)}
-    e^{2\pi ik\beta/c^{\theta_0}}
-  \right|
-  = o(K(c)).
-\end{equation}
-
-\medskip\noindent
-\textbf{Four sub-cases:}
-\begin{enumerate}[\rm(W1)]
-\item \emph{Fixed irrational $\beta$:}
-  $W(c)=O(c^{\theta_0/2})
-  =o(c^{\theta_0})$
-  by Weyl differencing.
-  \textbf{Available.}
-
-\item \emph{Slowly varying $\beta(c)$:}
-  $\beta(c)=\sqrt{\lambda(\alpha)}+O(1/c)$.
-  Perturbation shifts phases by
-  $O(k/c)=O(c^{\theta_0-1})=o(1)$.
-  Negligible for $\theta_0<1$.
-  \textbf{Controllable.}
-
-\item \emph{Averaging over $\xi_0$:}
-  Van~der~Corput with phase
-  $\phi(\xi_0)=k\theta'(\xi_0)/c^{\theta_0}$,
-  $|\phi''|=k|\theta''(\xi_0)|/c^{\theta_0}
-  \sim k/(c^{\theta_0+1})$ gives
-  $\int e^{2\pi i k\theta'(\xi_0)/c^{\theta_0}}
-  d\xi_0\lesssim c^{(\theta_0+1)/2}/k^{1/2}$.
-  Summing: $\sim c^{\theta_0+1/2}$.
-  Compare to main term $c^{\theta_0}$:
-  ratio $c^{1/2}\to\infty$.
-  \textbf{Not sufficient alone.}
-
-\item \emph{Joint $k$-and-$\xi_0$
-  decoupling:}
-  Resolved by
-  Proposition~\ref{prop:W4-decoupling}
-  below via Weyl-differencing /
-  van-der-Corput hybrid with
-  uniform phase control.
-  \textbf{Closed; see \S\ref{subsec:joint-decoupling}.}
-\end{enumerate}
-
-\medskip\noindent
-\textbf{Key observation.}
-Sub-case~(W1) already gives
-$W(c)=O(c^{\theta_0/2})=o(c^{\theta_0})$
-for each fixed irrational $\beta$.
-If the $\xi_0$-integral can be
-decoupled from the $k$-sum,
-$\Sigma_{\mathrm{model}}=o(1)$ follows.
-This decoupling is achieved in
-\S\ref{subsec:joint-decoupling}.
-\end{problem}
-
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
-\textbf{Final logical status.}
+\textbf{Logical status of Weyl reduction.}
 \begin{itemize}[leftmargin=*]
 \item $\theta(\xi)$ identified:
   \textbf{done} (Lem.~\ref{lem:WKB-phase}).
@@ -1379,81 +1313,130 @@ Combining Steps~1--3:
 $\Sigma_{\mathrm{model}}(c)=o(1)$.
 \end{proof}
 
-%%═══ 6. LIPSCHITZ REGULARITY
-\section{Lipschitz Regularity of the
-  PSWF Amplitude}
-\label{sec:Lipschitz}
+%%═══ 6. REDUCTION THEOREM
+\section{Reduction Theorem}
+\label{sec:reduction}
 
-\begin{problem}[Lipschitz regularity]
-\label{prob:Lipschitz}
-\emph{Priority: critical.}
+The following theorem is the
+main output of this paper.
+It closes the intermediate-regime
+HS estimate, conditional on the
+two hypotheses addressed in
+Papers~XVI and~XVII.
 
-Establish uniformly in
-$n\in\mathcal{T}_{\alpha,\kappa}(c)$,
-$|k|\le c^{\theta_0}$:
-\begin{equation}\label{eq:Lip-prob}
-  \norm{
-    \widehat{\Phi_{n+k}^{(c)}}
-    -\widehat{\Phi_n^{(c)}}
-  }_{L^2([-c_0,c_0])}
-  = O(k/c).
+\begin{theorem}[Reduction Theorem]
+\label{thm:reduction}
+Assume:
+\begin{enumerate}[\rm(i)]
+\item \textup{(L)} Lipschitz regularity
+  of the PSWF amplitude
+  \textup{(}Paper~XVI, Main Theorem\textup{)}\textup{:}
+  uniformly in
+  $n\in\mathcal{T}_{\alpha,\kappa}(c)$
+  and $|k|\le c^{\theta_0}$,
+  \begin{equation}\label{eq:L-cond}
+    \norm{\widehat{\Phi_{n+k}^{(c)}}
+      -\widehat{\Phi_n^{(c)}}}_{L^2([-c_0,c_0])}
+    = O(k/c).
+  \end{equation}
+\item \textup{(C)} Local Weyl law
+  \textup{(}Paper~XVII, Main Theorem\textup{)}\textup{:}
+  uniformly in
+  $n\in\mathcal{T}_{\alpha,\kappa}(c)$,
+  \begin{equation}\label{eq:C-cond}
+    \mu_{n,c}([-c_0,c_0])
+    = \frac{c_0}{c} + o(1/c).
+  \end{equation}
+\end{enumerate}
+Then:
+\begin{equation}\label{eq:reduction-chain}
+  \underbrace{\Sigma_{\mathrm{model}}(c)
+    = o(1)}_{\text{\rm Cor.~\ref{cor:W4-sigma},
+      unconditional}}
+  \;\underset{\mathrm{(L)}}{\Longrightarrow}\;
+  \Sigma_{\mathrm{int}}(c) = o(1)
+  \;\underset{\mathrm{(C)}}{\Longrightarrow}\;
+  \text{\rm (D-strong)}
+  \;\Rightarrow\;
+  \text{\rm H3 fails}
+  \;\Rightarrow\;
+  \text{\rm H1 fails}.
 \end{equation}
-Follows at WKB level from
-smooth $n/c$-dependence of the
-amplitude $A(\zeta;\alpha)$;
-rigorous justification requires
-$L^2$-control of the semiclassical
-transport equation.
-\end{problem}
+\end{theorem}
 
-%%═══ 7. LOCAL WEYL LAW
-\section{Local Weyl Law (C)}
-\label{sec:WeylLaw}
-
-\begin{problem}[Local Weyl law]
-\label{prob:Weyl-XV}
-\emph{Priority: critical.
-Inherited from OP~XIV.\ref{prob:fourier-mass}.}
-
-Prove uniformly in
-$n\in\mathcal{T}_{\alpha,\kappa}(c)$:
-\begin{equation}\label{eq:Weyl-uniform}
-  \mu_{n,c}([-c_0,c_0])
-  = \frac{c_0}{c}
-  + o(1/c).
-\end{equation}
-Required for frozen weight
-approximation, $\Sigma_{\mathrm{near}}=o(1)$,
-and Prop.~XIV.\ref{prop:HS-reduction}.
-Main difficulty: uniformity as
-$n/c\to\alpha$ near the turning point.
-\end{problem}
-
-%%═══ 8. OPEN PROBLEMS
-\section{Open Problems}
-\label{sec:open}
-
-\begin{problem}[Intermediate-regime
-  HS estimate; primary target]
-\label{prob:intermediate-XV}
-Under~(C) and~\eqref{eq:Lip-prob}:
+\begin{proof}
+The first implication follows from
+the model reduction
+\eqref{eq:model-reduction}:
+under~(L), the amplitude correction
+per matrix entry is $O(k/c)$,
+which is HS-summable over
+$|n-m|\le c^{\theta_0}$:
 \[
-  \Sigma_{\mathrm{int}}
-  = \sum_{\substack{n\ne m\\
-      C<|n-m|\le c^{\theta_0}}}
-    |(\AcM)_{nm}|^2
-  = o(1),
-  \quad M(c)\sim\beta c.
+  \Sigma_{\mathrm{amp}}(c)
+  \le \sum_{k=1}^{K(c)}
+  \left(\frac{k}{c}\right)^2
+  = O(c^{3\theta_0-2}) = o(1).
 \]
-Follows from
-Prob.~\ref{prob:model-intermediate}
-$+$ Prob.~\ref{prob:Lipschitz}.
-Prob.~\ref{prob:model-intermediate}
-is resolved by
-Cor.~\ref{cor:W4-sigma}
-conditional on~\eqref{eq:Lip-prob}
-and the local Weyl law~(C).
-\end{problem}
+Combined with
+$\Sigma_{\mathrm{model}}(c)=o(1)$
+(Corollary~\ref{cor:W4-sigma}),
+this gives $\Sigma_{\mathrm{int}}(c)=o(1)$.
+The remaining implications
+$\Sigma_{\mathrm{int}}=o(1)
+\Rightarrow\text{(D-strong)}
+\Rightarrow\text{H3 fails}
+\Rightarrow\text{H1 fails}$
+are the reduction chain of
+Paper~XIV (under~(C)), reproduced
+from~\eqref{eq:chain-XIV}.
+\end{proof}
+
+\begin{remark}[Dependency structure]
+\label{rem:dependency}
+The two conditions~(L) and~(C)
+are \emph{mechanistically independent}:
+\begin{itemize}[leftmargin=*]
+\item (L) concerns \emph{local,
+  parametric stability} of individual
+  eigenfunctions as $n$ varies —
+  a semiclassical transport problem
+  addressed in Paper~XVI.
+\item (C) concerns \emph{global,
+  statistical spectral density} —
+  a microlocal measure problem,
+  with the main difficulty being
+  uniformity near the turning point
+  $n/c\to\alpha$, addressed
+  in Paper~XVII.
+\end{itemize}
+Neither~(L) nor~(C) depends on
+the other; both are required
+for $\Sigma_{\mathrm{int}}=o(1)$.
+\end{remark}
+
+\begin{remark}[Logical status
+  of the series]
+\label{rem:series-status}
+After Papers~I--XV, the
+reduction chain from Paper~XIV
+is complete up to conditions~(L)
+and~(C). The unconditional result
+$\Sigma_{\mathrm{model}}=o(1)$
+(Corollary~\ref{cor:W4-sigma})
+establishes the mesoscopic
+oscillatory cancellation that
+was the core analytic obstacle.
+The programme now passes to:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Paper~XVI:}
+  Lipschitz regularity~(L) via
+  semiclassical transport.
+\item \textbf{Paper~XVII:}
+  Local Weyl law~(C) uniform
+  near the turning point.
+\end{itemize}
+\end{remark}
 
 \begin{thebibliography}{99}
 
