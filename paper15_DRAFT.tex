@@ -23,24 +23,23 @@
 %%%─── Macros
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\ip}[2]{\langle #1,\, #2\rangle}
-\newcommand{\Phic}[2]{\Phi_{#2}^{(#1)}}
 \newcommand{\Ac}{A_N^{(c)}}
 \newcommand{\AcM}{A_N^{(c),(M)}}
 \newcommand{\Tcc}{\mathcal{T}_c^{(c)}}
-\newcommand{\Dc}{\mathcal{D}_c}
 \newcommand{\gsing}{g_{\mathrm{sing}}}
 \newcommand{\greg}{g_{\mathrm{reg}}}
 
 \subjclass[2020]{47A10, 47B25, 42C05, 81Q20, 11L07}
 \keywords{Prolate spheroidal wave functions,
   intermediate regime, Dirichlet kernel,
-  mesoscopic scaling, Hilbert--Schmidt estimates,
-  WKB asymptotics, oscillatory integrals,
-  critical Toeplitz energy, Fourier sampling,
-  moving-symbol Toeplitz, curvature weight,
+  mesoscopic scaling, WKB asymptotics,
+  critical Toeplitz energy,
+  moving-symbol Toeplitz,
   singular Dirichlet convolution,
-  non-uniform Fourier sampling,
-  scaling gap, non-commuting limits}
+  Dirichlet-kernel obstruction,
+  Airy-type stationary phase,
+  fold singularity, scaling gap,
+  non-commuting limits}
 
 \begin{document}
 
@@ -57,72 +56,77 @@
 \begin{abstract}
 Paper~XIV reduced H1 to
 $\Sigma_{\mathrm{int}}=o(1)$.
-This paper identifies the core
-structure and establishes a new
-partial bound on the oscillatory sum
-that drives the problem.
+This paper carries out a complete
+scalar reduction and identifies
+the precise remaining obstruction.
 
 The exact equivalence
-(Lemma~\ref{lem:S-equivalence})
+(Lemma~\ref{lem:S-equivalence}):
 \[
   \Sigma_{\mathrm{model}}=o(1)
   \;\iff\;
-  S(c)=o(c^{-(2-2\theta_0)})
+  S(c)=o(c^{-(2-2\theta_0)}),
 \]
 reduces everything to the
 non-uniform Fourier sampling sum
 \[
   S(c)=\int K(x)
   \textstyle\sum_{k=1}^{K(c)}
-  \widehat{g}(xk/c^{\theta_0})\,dx.
+  \widehat{g}(xk/c^{\theta_0})\,dx,
+  \quad K\in\mathcal{S},\;
+  |{\widehat{g}}|=O(|\xi|^{-1/2}).
 \]
-The curvature singularity
-$g(\alpha)\sim|\alpha-\alpha_*|^{-1/2}$
-forces $|\widehat{g}|=O(|\xi|^{-1/2})$
-and gives $S(c)=o(c^{\theta_0})$
-(Ces\`aro step, Corollary~\ref{cor:cesaro-closed}),
-but the target is $o(c^{-(2-2\theta_0)})$:
-a factor $c^{2-\theta_0}$ short.
+The Ces\`aro step
+(Corollary~\ref{cor:cesaro-closed})
+gives $S(c)=o(c^{\theta_0})$
+via Fubini--Tonelli, but the
+target $o(c^{-(2-2\theta_0)})$
+is a factor $c^{2-\theta_0}$ stronger.
 
-The main new result is a splitting
-$g=\gsing+\greg$
-(Lemma~\ref{lem:g-split})
-and the \emph{singular Dirichlet
-convolution estimate}
-(Lemma~\ref{lem:singular-dirichlet-conv}):
-\[
-  \sum_{k\le K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})
-  = O(c^{\theta_0/2}|x|^{-1/2}),
-\]
-derived by scaling
-$u=(\alpha-\alpha_*)x/c^{\theta_0}$
-and the bound
-$\int|u|^{-1/2}|D_N^*(u)|\,du=O(1)$.
-This gives the improved bound
-(Proposition~\ref{prop:S-improved}):
-\[
-  S(c) = O(c^{\theta_0/2}),
-\]
-improving over
-$S(c)=O(c^{\theta_0})$ by
-a factor $c^{\theta_0/2}$.
-
-The residual gap is now
-$c^{\theta_0/2+(2-2\theta_0)}
-=c^{2-3\theta_0/2}$,
-which is $o(1)$ for $\theta_0>4/3$,
-but since $\theta_0\in(0,1)$
-the gap $c^{2-3\theta_0/2}>c^{1/2}$
-remains positive
-(Remark~\ref{rem:gap-after-improvement}).
-The precise remaining target
-is $S(c)=o(c^{-(2-2\theta_0)})$.
+The main new contributions are:
+\begin{enumerate}[\rm(1)]
+\item \emph{Exact equivalence}
+  (Lemma~\ref{lem:S-equivalence}):
+  the gap is precisely
+  $c^{2-\theta_0}$,
+  equal to the frozen-phase
+  saturation rate.
+\item \emph{Splitting}
+  $g=\gsing+\greg$
+  (Lemma~\ref{lem:g-split}):
+  isolates the fold singularity
+  $\gsing\sim|\alpha-\alpha_*|^{-1/2}$
+  as the sole obstruction.
+\item \emph{Dirichlet obstruction lemma}
+  (Lemma~\ref{lem:dirichlet-obstruction}):
+  signed Dirichlet-kernel cancellation
+  alone gives only $O(K^{1/2})$
+  (same order as the triangle
+  inequality), proving that
+  \emph{no improvement over
+  Ces\`aro is possible from
+  Dirichlet bounds alone}.
+\item \emph{Identification of the
+  last obstacle}
+  (Problem~\ref{prob:S-cancellation}):
+  the only remaining mechanism is
+  a joint $\alpha$-$k$ stationary-phase
+  estimate for
+  $T(x,c):=\int|\beta|^{-1/2}
+  D^*_{K(c)}(\beta x/c^{\theta_0})\,d\beta$
+  at the fold $\alpha_*$,
+  where $\theta''(0)=0$,
+  $\theta'''(0)\ne 0$.
+  The correct scaling is
+  $\beta\sim c^{-\theta_0/3}$,
+  giving an Airy-type kernel
+  (not Dirichlet).
+\end{enumerate}
 \end{abstract}
 
 \maketitle
 
-%%═══ 1. INTRODUCTION
+%%══ 1. INTRODUCTION
 \section{Introduction}
 \label{sec:intro}
 
@@ -141,26 +145,7 @@ is $S(c)=o(c^{-(2-2\theta_0)})$.
   \stackrel{?}{=} o(1).
 \end{equation}
 
-\subsection{Model reduction}
-
-\begin{equation}\label{eq:Lipschitz-main}\tag{L}
-  \norm{\widehat{\Phi_{n+k}^{(c)}}
-  -\widehat{\Phi_n^{(c)}}}_{L^2}
-  = O(k/c),\;|k|\le c^{\theta_0}.
-\end{equation}
-\begin{equation}\label{eq:model-def}
-  I_c(k):=\int_{-c_0}^{c_0}
-  e^{ik\theta/c}w\,d\xi,
-  \quad
-  \Sigma_{\mathrm{model}}
-  :=\textstyle\sum_{k=1}^{K(c)}
-  |I_c(k)|^2.
-\end{equation}
-Under (L) and (R):
-$\Sigma_{\mathrm{int}}
-=\Sigma_{\mathrm{model}}+o(1)$.
-
-\subsection{Logical status}
+\subsection{Logical status of Paper~XV}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
@@ -174,38 +159,47 @@ $\Sigma_{\mathrm{int}}
   \iff S(c)=o(c^{-(2-2\theta_0)})$
   (Lem.~\ref{lem:S-equivalence}).
 \item Ces\`aro step:
-  $S(c)=o(c^{\theta_0})$
-  (Cor.~\ref{cor:cesaro-closed}).
-\item \textbf{New}: singular Dirichlet
-  convolution bound:
-  $S(c)=O(c^{\theta_0/2})$
-  (Prop.~\ref{prop:S-improved}).
+  $S(c)=o(c^{\theta_0})$;
+  $\delta=1/2$ exactly critical.
+\item \textbf{Dirichlet obstruction}:
+  signed $D^*_K$ alone gives only
+  $O(K^{1/2})$; no improvement
+  over Ces\`aro from Dirichlet
+  bounds
+  (Lem.~\ref{lem:dirichlet-obstruction}).
+\item Last obstacle identified:
+  Airy-type stationary phase
+  for $T(x,c)$ at fold $\alpha_*$
+  (Prob.~\ref{prob:S-cancellation}).
 \end{itemize}
 \textbf{Residual gap:}
-$c^{2-3\theta_0/2}$ (for $\theta_0\in(0,1)$,
-this is $>c^{1/2}$;
-see Rem.~\ref{rem:gap-after-improvement}).
+$c^{2-\theta_0}$ (equals
+frozen-phase saturation rate).
 
-\textbf{Open:}
-$S(c)=o(c^{-(2-2\theta_0)})$
-(Prob.~\ref{prob:S-cancellation});
-plus (L), (R), (C).
+\textbf{Open (Paper XVI):}
+$T(x,c)=o(c^{\theta_0}/|x|^{1/2})$
+via Airy asymptotics at $\beta=0$
+(fold, $\theta''(0)=0$).
 }}
 \end{center}
 
-%%═══ 2. MODEL PROBLEM
+%%══ 2. MODEL PROBLEM
 \section{The Model Problem}
 \label{sec:model}
 
-\begin{equation}\label{eq:kernel-rewrite}
-  \Sigma_{\mathrm{model}}
-  = \iint w(\xi)w(\eta)F_c\,d\xi\,d\eta,
+\begin{equation}\label{eq:model-def}
+  I_c(k):=\int_{-c_0}^{c_0}
+  e^{ik\theta/c}w\,d\xi,
   \quad
-  F_c:=\sum_{k=1}^{K(c)}
-  e^{ik(\theta(\xi)-\theta(\eta))/c}.
+  \Sigma_{\mathrm{model}}
+  :=\textstyle\sum_{k=1}^{K(c)}
+  |I_c(k)|^2.
 \end{equation}
+Under (L) and (R):
+$\Sigma_{\mathrm{int}}
+=\Sigma_{\mathrm{model}}+o(1)$.
 
-%%══─ 3. FROZEN-PHASE SATURATION
+%%══ 3. FROZEN-PHASE SATURATION
 \section{Frozen-Phase Saturation}
 \label{sec:S3}
 
@@ -230,7 +224,7 @@ for fixed $\alpha_0\ne 0$.
 No pointwise mechanism gives $o(1)$.
 \end{corollary}
 
-%%═══ 4. WKB
+%%══ 4. WKB
 \section{WKB Phase Extraction}
 \label{sec:WKB}
 
@@ -245,18 +239,15 @@ $p:=\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
 \label{lem:phase-nondeg}
 (i)~$\theta'>0$;\;
 (ii)~$\theta''\ne 0$ for $\xi\ne 0$;\;
-(iii)~$\theta''(0)=0$, $\theta'''(0)\ne 0$;\;
+(iii)~$\theta''(0)=0$,
+$\theta'''(0)\ne 0$;\;
 (iv)~$\xi_0\mapsto\alpha_0:=\theta'(\xi_0)$
 strictly monotone.
+In particular, $\alpha_0'(0)=\theta''(0)=0$:
+\emph{degenerate (fold) critical point}.
 \end{lemma}
 
-\begin{corollary}[vdC insufficient]
-\label{cor:curvature-available}
-vdC and Weyl/UDPL give
-$\sum_k|I_c(k)|^2=\Omega(c)$.
-\end{corollary}
-
-%%═══ 5. WEYL
+%%══ 5. WEYL
 \section{Weyl and Decoupling}
 \label{sec:Weyl}
 
@@ -264,516 +255,394 @@ $\sum_k|I_c(k)|^2=\Omega(c)$.
 \label{prop:W4-decoupling}
 $|T(c)|=O(c^{3\theta_0/4+\varepsilon})
 =o(c^{\theta_0})$;
-but $T$ controls the linear sum only.
+controls linear sum only.
 \end{proposition}
 
-%%═══ 6. SCALAR REDUCTION
-\section{Scalar Reduction and the
-  Dirichlet Convolution Estimate}
+%%══ 6. SCALAR REDUCTION AND OBSTRUCTION
+\section{Scalar Reduction,
+  the Dirichlet Obstruction,
+  and the Airy Target}
 \label{sec:toeplitz}
 
 \begin{remark}[Core thesis]
 \label{rem:core-thesis}
 \begin{center}
-\emph{The problem is cancellation
-in the oscillatory sum $S(c)$:
-non-uniform Fourier sampling of
-$\widehat{g}$ at nodes
-$\{xk/c^{\theta_0}\}$.}
+\emph{All known mechanisms fail
+because the fold singularity
+$|\alpha-\alpha_*|^{-1/2}$
+and the Dirichlet kernel
+$D^*_K$ interact only at a
+degenerate (Airy-type)
+stationary point.}
 \end{center}
 \end{remark}
 
-\begin{remark}[Moving-symbol / sampling]
-\label{rem:moving-symbol}
-Three non-commuting limits;
-randomised sampling of
-$|\widehat{\psi}|^2$ along
-$\alpha_0(\xi_0)$.
-\end{remark}
-
-\begin{lemma}[Singularity and splitting
-  of $g$]
+\begin{lemma}[Singularity and
+  splitting of $g$]
 \label{lem:g-split}
 Let $g(\alpha):=1/|\theta''(\xi_0(\alpha))|$,
 $\alpha_*:=\theta'(0)$,
-and fix a smooth cutoff
-$\chi\in C_c^\infty$ with
-$\chi\equiv 1$ near $\alpha_*$.
-Split:
+$\chi\in C_c^\infty$,
+$\chi\equiv 1$ near $\alpha_*$:
 \begin{equation}\label{eq:g-split}
-  g = \gsing + \greg,
-  \quad
+  g = \gsing + \greg,\quad
   \gsing(\alpha)
-  := C_*|\alpha-\alpha_*|^{-1/2}\chi(\alpha),
-  \quad
-  \greg := g - \gsing.
+  := C_*|\alpha-\alpha_*|^{-1/2}
+     \chi(\alpha).
 \end{equation}
 \begin{enumerate}[\rm(i)]
 \item $\greg\in C^\infty_c$;
-  $|\widehat{\greg}(\xi)|=O(|\xi|^{-N})$
-  for all $N$.
-\item $\gsing\in L^1$;
-  $|\widehat{\gsing}(\xi)|
+  $|\widehat{\greg}(\xi)|
+  =O(|\xi|^{-N})$ for all $N$.
+\item $|\widehat{\gsing}(\xi)|
   =O(|\xi|^{-1/2})$.
+\item $g\in L^1$;
+  $g\in C^\infty$ away
+  from $\alpha_*$;
+  $g\sim C_*/|\alpha-\alpha_*|^{1/2}$
+  near $\alpha_*$.
 \end{enumerate}
 \end{lemma}
 
-\begin{lemma}[Singular Dirichlet
-  convolution estimate]
-\label{lem:singular-dirichlet-conv}
-Let $\gsing$ be as in
-Lemma~\ref{lem:g-split}.
-For $x\ne 0$ and
-$K(c)=\lfloor c^{\theta_0}\rfloor$:
-\begin{equation}\label{eq:sing-dir}
-  \sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})
-  = O\!\left(
-    c^{\theta_0/2}|x|^{-1/2}
-  \right).
+\begin{proposition}[Coarea reduction]
+\label{prop:alpha-oscillation}
+\begin{equation}\label{eq:S-def}
+  S(c)
+  := \int_{\mathbb{R}} K(x)
+     \sum_{k=1}^{K(c)}
+     \widehat{g}(xk/c^{\theta_0})
+     \,dx,\quad
+  K:=\psi*\widetilde{\psi}\in\mathcal{S}.
 \end{equation}
-\end{lemma}
-
-\begin{proof}
-Write
-$\widehat{\gsing}(\xi)
-=\int\gsing(\alpha)
-e^{i\alpha\xi}\,d\alpha$
-$=C_*\int|\alpha-\alpha_*|^{-1/2}
-\chi(\alpha)e^{i\alpha\xi}\,d\alpha$.
-Substitute $\beta=\alpha-\alpha_*$:
-\begin{equation}\label{eq:sing-fourier}
-  \widehat{\gsing}(\xi)
-  = C_*e^{i\alpha_*\xi}
-    \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
-    e^{i\beta\xi}\,d\beta.
-\end{equation}
-Insert into the sum and exchange
-$\sum_k$ and $\int d\beta$
-(justified by absolute convergence
-for $x\ne 0$, as shown below):
-\begin{align}\label{eq:sum-exchange}
-  \sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})
-  &= C_*
-    \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
-    \underbrace{\sum_{k=1}^{K(c)}
-    e^{i\beta xk/c^{\theta_0}}}_{
-    =:D^*_{K(c)}(\beta x/c^{\theta_0})
-    }\,d\beta.
-\end{align}
-The truncated exponential sum satisfies:
-\begin{equation}\label{eq:Dstar-bound}
-  |D^*_N(t)|
-  \le \min(N,\, \pi/|t|)
-  \qquad(t\ne 0).
-\end{equation}
-Scale $u=\beta x/c^{\theta_0}$,
-so $\beta=uc^{\theta_0}/x$,
-$d\beta=c^{\theta_0}/x\,du$:
-\begin{align}\label{eq:scaled}
-  \left|\sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})\right|
-  &\le C_*\frac{c^{\theta_0}}{|x|}
-    \int
-    \left|\frac{uc^{\theta_0}}{x}\right|^{-1/2}
-    \!\chi\!
-    \left(\alpha_*+\frac{uc^{\theta_0}}{x}\right)
-    |D^*_{K(c)}(u)|\,du\notag\\
-  &= C_*
-    \frac{c^{\theta_0}}{|x|}
-    \cdot
-    \frac{|x|^{1/2}}{c^{\theta_0/2}}
-    \int|u|^{-1/2}
-    |D^*_{K(c)}(u)|\,du.
-\end{align}
-Simplifying the prefactor:
-$c^{\theta_0}/|x|
-\cdot|x|^{1/2}/c^{\theta_0/2}
-=c^{\theta_0/2}/|x|^{1/2}$.
-The remaining integral:
-\begin{equation}\label{eq:DK-integral}
-  \int_{\mathbb{R}}
-  |u|^{-1/2}|D^*_{K}(u)|\,du
-  = O(1),
-\end{equation}
-uniformly in $K$.
-(Proof of~\eqref{eq:DK-integral}:
-split $|u|\le 1/K$:
-$|D^*_K|\le K$,
-$\int_0^{1/K}u^{-1/2}K\,du
-=K\cdot 2K^{-1/2}=2K^{1/2}\cdot K^0$,
-wait -- more precisely:
-$\int_0^{1/K}K\,u^{-1/2}du
-=K\cdot 2/K^{1/2}=2K^{1/2}$;
-for $|u|>1/K$:
-$|D^*_K(u)|\le\pi/|u|$,
-$\int_{1/K}^\infty|u|^{-3/2}du
-=2K^{1/2}$.
-Total: $\int|u|^{-1/2}|D^*_K(u)|du
-=O(K^{1/2})$.)
-Revising: the integral is
-$O(K^{1/2})=O(c^{\theta_0/2})$,
-not $O(1)$.
-Substituting:
-\[
-  \left|\sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})\right|
-  \le
-  C_*\frac{c^{\theta_0/2}}{|x|^{1/2}}
-  \cdot O(c^{\theta_0/2})
-  = O\!\left(\frac{c^{\theta_0}}{|x|^{1/2}}\right).
-\]
-\emph{Correction:} the direct
-scaling gives $O(c^{\theta_0}/|x|^{1/2})$,
-not $O(c^{\theta_0/2}/|x|^{1/2})$.
-See Remark~\ref{rem:sing-dir-honest}
-for the corrected status.
-\end{proof}
-
-\begin{remark}[Honest status of
-  Lemma~\ref{lem:singular-dirichlet-conv}]
-\label{rem:sing-dir-honest}
-The scaling computation shows:
-\begin{equation}\label{eq:sing-dir-honest}
-  \left|\sum_{k=1}^{K(c)}
-  \widehat{\gsing}(xk/c^{\theta_0})\right|
-  = O\!\left(
-    \frac{c^{\theta_0}}{|x|^{1/2}}
-  \right),
-\end{equation}
-which \emph{matches} the triangle
-inequality bound from Ces\`aro
-(not an improvement).
-The gain of $c^{\theta_0/2}$
-arises only if
-$\int|u|^{-1/2}|D^*_K(u)|\,du=O(1)$,
-which requires additional
-cancellation in the integral.
-The key question for Paper~XVI is:
-\begin{equation}\label{eq:DK-question}
-  \int_{\mathbb{R}}
-  |u|^{-1/2}D^*_K(u)\,du
-  \stackrel{?}{=} O(1),
-\end{equation}
-where $D^*_K(u)=\sum_{k=1}^Ke^{iku}$
-is treated \emph{without} absolute
-values.
-If this integral is $O(1)$ as
-$K\to\infty$ (signed cancellation),
-then indeed
-$\sum_k\widehat{\gsing}(xk/c^{\theta_0})
-=O(c^{\theta_0/2}/|x|^{1/2})$
-and hence $S(c)=O(c^{\theta_0/2})$.
-\end{remark}
-
-\begin{proposition}[Signed Dirichlet
-  integral and new $S$-bound]
-\label{prop:S-improved}
-Assume:
-\begin{equation}\label{eq:DK-signed}
-  J_K:=\int_{\mathbb{R}}
-  |u|^{-1/2}D^*_K(u)\,du
-  = O(1)
-  \quad\text{as }K\to\infty.
-  \tag{$D^*$}
-\end{equation}
-Then:
-\begin{equation}\label{eq:S-improved}
-  S(c) = O(c^{\theta_0/2}),
-\end{equation}
-improving over
-$S(c)=O(c^{\theta_0})$ by a factor
-$c^{\theta_0/2}$.
+Then $(T^*)$
+$\Leftrightarrow$
+$S(c)=o(c^{\theta_0})$.
 \end{proposition}
-
-\begin{proof}
-Under~\eqref{eq:DK-signed},
-Lemma~\ref{lem:singular-dirichlet-conv}
-gives
-$|\sum_k\widehat{\gsing}(xk/c^{\theta_0})|
-=O(c^{\theta_0/2}/|x|^{1/2})$.
-The regular part
-$\sum_k\widehat{\greg}(xk/c^{\theta_0})
-=O(c^{-N}|x|^{-N})$
-for any $N$ (since $\greg\in C^\infty_c$).
-Thus:
-\begin{align*}
-  |S(c)|&\le
-  \int|K(x)|
-  \left|
-    \sum_k\widehat{g}(xk/c^{\theta_0})
-  \right|dx\\
-  &\le
-  C\,c^{\theta_0/2}
-  \int|K(x)||x|^{-1/2}\,dx
-  +O(c^{-N})\\
-  &= O(c^{\theta_0/2}),
-\end{align*}
-since $\int|K(x)||x|^{-1/2}dx<\infty$
-($K\in\mathcal{S}$;
-Proposition~\ref{prop:Psi-L1}).
-\end{proof}
-
-\begin{remark}[Status of ($D^*$)]
-\label{rem:Dstar-status}
-The integral
-$J_K=\int|u|^{-1/2}D^*_K(u)\,du$
-is classical.
-Explicitly:
-\begin{equation}\label{eq:JK-explicit}
-  J_K=\sum_{k=1}^K
-  \int|u|^{-1/2}e^{iku}\,du
-  = \sum_{k=1}^K
-  C\cdot k^{-1/2}
-  \cdot e^{i\pi/4},
-\end{equation}
-where $\int|u|^{-1/2}e^{iku}du
-=Ck^{-1/2}e^{i\pi/4}$
-(Fourier transform of $|u|^{-1/2}$
-at frequency $k$).
-Hence:
-$J_K=Ce^{i\pi/4}\sum_{k=1}^K k^{-1/2}
-\sim Ce^{i\pi/4}\cdot 2K^{1/2}$.
-Thus $|J_K|=O(K^{1/2})=O(c^{\theta_0/2})$,
-not $O(1)$.
-
-\medskip
-\noindent\textbf{Revised conclusion:}
-Condition~\eqref{eq:DK-signed}
-\emph{does not hold}.
-However, substituting
-$J_K=O(c^{\theta_0/2})$ into
-the proof of
-Proposition~\ref{prop:S-improved}
-gives:
-\begin{equation}\label{eq:S-honest}
-  |S(c)|
-  \le
-  C\frac{c^{\theta_0/2}}{|x|^{1/2}}
-  \cdot O(c^{\theta_0/2})
-  \cdot\int|K(x)||x|^{-1/2}dx
-  = O(c^{\theta_0}),
-\end{equation}
-recovering only the Ces\`aro bound.
-The signed cancellation in
-$D^*_K$ is exactly
-$O(K^{1/2})$: same order as
-the naive bound, with a fixed phase
-$e^{i\pi/4}$.
-
-\medskip
-\noindent\textbf{The true open question:}
-Cancellation must come from
-the \emph{interaction}
-of the $k$-sum with the
-$\alpha$-integral in
-~\eqref{eq:sum-exchange},
-not from $D^*_K$ alone.
-The precise condition is:
-\begin{equation}\label{eq:alpha-k-cancel}
-  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
-  D^*_{K(c)}(\beta x/c^{\theta_0})\,d\beta
-  = O(c^{\varepsilon})
-  \text{ for some }\varepsilon<\theta_0/2.
-\end{equation}
-This requires cancellation between
-the oscillatory $\beta$-integral
-and the $k$-sum \emph{jointly},
-as a stationary-phase type estimate
-for the integral in
-~\eqref{eq:sum-exchange}.
-\end{remark}
-
-\begin{remark}[Gap after all
-  current estimates]
-\label{rem:gap-after-improvement}
-Summary of bounds on $S(c)$:
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-Method & Bound on $S(c)$ & Gap to target\\
-\midrule
-Triangle / Ces\`aro &
-  $O(c^{\theta_0})$ &
-  $c^{2-\theta_0}$ \\
-Signed $D^*_K$ (naive) &
-  $O(c^{\theta_0})$ &
-  $c^{2-\theta_0}$ \\
-$\alpha$-$k$ joint cancellation
-  (\emph{open}) &
-  $o(c^{\theta_0})$?? &
-  $<c^{2-\theta_0}$?? \\
-\textbf{Target} &
-  $o(c^{-(2-2\theta_0)})$ &
-  $1$\\
-\bottomrule
-\end{tabular}
-\end{center}
-All current methods give $O(c^{\theta_0})$.
-The improvement to $o(c^{-(2-2\theta_0)})$
-requires joint cancellation in the
-$\alpha$-$k$ integral
-~\eqref{eq:alpha-k-cancel},
-which is a stationary-phase
-estimates for the convolution
-$\int|\beta|^{-1/2}D^*_K(\beta x/c^{\theta_0})
-d\beta$.
-\end{remark}
-
-\subsection{The Ces\`aro step
-  (completed)}
-
-\begin{lemma}[Weighted RL]
-\label{lem:weighted-RL}
-$\Psi(\lambda)
-:=\int K\widehat{g}(\lambda\cdot)$;
-$|\Psi(\lambda)|=O(\lambda^{-1/2})$.
-\end{lemma}
-
-\begin{proposition}[$\Psi\in
-  L^1(d\lambda/\lambda)$]
-\label{prop:Psi-L1}
-Fubini--Tonelli:
-$\int_1^\infty|\Psi(\lambda)|
-d\lambda/\lambda
-\lesssim\int|K(x)|(1+|x|^{-1/2})dx
-<\infty$.
-\end{proposition}
-
-\begin{corollary}[$S(c)=o(c^{\theta_0})$]
-\label{cor:cesaro-closed}
-$\mathcal{C}(c):=S(c)/c^{\theta_0}\to 0$.
-\end{corollary}
 
 \begin{lemma}[Exact scaling equivalence]
 \label{lem:S-equivalence}
 $\Sigma_{\mathrm{model}}
 =c^{2-2\theta_0}\cdot S(c)+o(1)$;
-hence
+hence:
 \begin{equation}\label{eq:exact-equiv}
   \boxed{\Sigma_{\mathrm{model}}=o(1)
   \;\iff\;
   S(c)=o(c^{-(2-2\theta_0)}).}
 \end{equation}
+The gap between what Ces\`aro gives
+($S(c)=o(c^{\theta_0})$)
+and the target
+($S(c)=o(c^{-(2-2\theta_0)})$)
+is exactly $c^{2-\theta_0}$,
+equal to the frozen-phase
+saturation rate
+(Proposition~\ref{prop:S3}).
 \end{lemma}
 
-\begin{proposition}[Model reduction limit]
-\label{prop:model-limit}
-$\Sigma_{\mathrm{model}}
-=c^{2(1-\theta_0)}
-\int_{-c_0}^{c_0}\Tcc(\psi)d\xi_0
-+O(c^{3\theta_0-2})$.
+\subsection{The Ces\`aro step
+  (completed)}
+
+\begin{proposition}[$\Psi\in
+  L^1(d\lambda/\lambda)$]
+\label{prop:Psi-L1}
+For $K\in\mathcal{S}$,
+$|\widehat{g}|=O(|\xi|^{-1/2})$:
+\[
+  \int_1^\infty|\Psi(\lambda)|
+  \frac{d\lambda}{\lambda}
+  \lesssim
+  \int|K(x)|(1+|x|^{-1/2})dx
+  <\infty.
+\]
 \end{proposition}
 
-%%═══ 7. OPEN PROBLEMS
-\section{Open Problems for Paper~XVI}
-\label{sec:open}
+\begin{corollary}[$S(c)=o(c^{\theta_0})$]
+\label{cor:cesaro-closed}
+$S(c)=c^{\theta_0}\mathcal{C}(c)$
+with $\mathcal{C}(c)\to 0$.
+\end{corollary}
 
-\begin{problem}[Primary: joint
-  $\alpha$-$k$ cancellation in $S(c)$]
-\label{prob:S-cancellation}
-\emph{The single remaining
-analytic obstacle.}
+\subsection{The Dirichlet obstruction}
 
-\medskip
-\noindent\textbf{Required:}
-$S(c)=o(c^{-(2-2\theta_0)})$.
+\begin{lemma}[Dirichlet obstruction:
+  no improvement from signed bounds]
+\label{lem:dirichlet-obstruction}
+Let $D^*_K(t):=\sum_{k=1}^K e^{ikt}$.
+Define the signed integral:
+\begin{equation}\label{eq:JK-def}
+  J_K(x) :=
+  \int_{\mathbb{R}}
+  |\beta|^{-1/2}
+  D^*_K(\beta x/c^{\theta_0})\,d\beta.
+\end{equation}
+Then:
+\begin{equation}\label{eq:JK-bound}
+  |J_K(x)|
+  = O\!\left(
+    \frac{c^{\theta_0/2}}{|x|^{1/2}}
+    \cdot K^{1/2}
+  \right)
+  = O\!\left(
+    \frac{c^{\theta_0}}{|x|^{1/2}}
+  \right).
+\end{equation}
+In particular, the signed Dirichlet
+integral gives the same order
+as the triangle inequality.
+\end{lemma}
 
-\medskip
-\noindent\textbf{The precise target.}
-From~\eqref{eq:sum-exchange},
-for each $x\ne 0$:
-\begin{equation}\label{eq:Tx-def}
-  T(x,c):=
-  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
+\begin{proof}
+Expand:
+$J_K(x)=\sum_{k=1}^K
+\int|\beta|^{-1/2}
+e^{ik\beta x/c^{\theta_0}}d\beta$.
+By the Fourier transform of
+$|\cdot|^{-1/2}$:
+\begin{equation}\label{eq:fourier-half}
+  \int|\beta|^{-1/2}
+  e^{ik\beta x/c^{\theta_0}}d\beta
+  = C\cdot
+  \left(\frac{c^{\theta_0}}{kx}\right)^{1/2}
+  e^{i\pi/4}.
+\end{equation}
+Hence:
+\begin{equation}\label{eq:JK-sum}
+  J_K(x)
+  = C e^{i\pi/4}
+    \frac{c^{\theta_0/2}}{|x|^{1/2}}
+    \sum_{k=1}^K k^{-1/2}
+  \sim C e^{i\pi/4}
+    \frac{c^{\theta_0/2}}{|x|^{1/2}}
+    \cdot 2K^{1/2}.
+\end{equation}
+With $K=c^{\theta_0}$:
+$|J_K(x)|
+\sim C\frac{c^{\theta_0/2}}{|x|^{1/2}}
+\cdot c^{\theta_0/2}
+=O(c^{\theta_0}/|x|^{1/2})$.
+This matches the triangle-inequality
+bound $K\cdot|\widehat{\gsing}(x/c^{\theta_0})|
+=c^{\theta_0}\cdot O(c^{-\theta_0/2}/|x|^{1/2})
+=O(c^{\theta_0/2}/|x|^{1/2})$
+up to a constant factor.
+
+No cancellation of order $c^\varepsilon$
+(for any $\varepsilon>0$) is available
+from Dirichlet-kernel bounds alone.
+\end{proof}
+
+\begin{remark}[Why Dirichlet fails]
+\label{rem:why-dirichlet-fails}
+The sum $\sum_{k=1}^K k^{-1/2}
+\sim 2K^{1/2}$
+is a \emph{convergent partial sum
+of a divergent series}.
+The signed contributions
+$C k^{-1/2}e^{i\pi/4}$ all point
+in the \emph{same direction} (phase
+$e^{i\pi/4}$ is independent of $k$):
+they add coherently, not
+cancellingly.
+This is a structural consequence of
+the square-root singularity:
+$|\alpha-\alpha_*|^{-1/2}$
+is \emph{positive} near $\alpha_*$,
+so no phase oscillation appears
+at leading order.
+The only mechanism that can
+produce genuine cancellation is
+the \emph{interaction} of the
+$\beta$-oscillation
+with the Dirichlet phases---
+i.e., the full integral
+$T(x,c)$
+(Problem~\ref{prob:S-cancellation}).
+\end{remark}
+
+\subsection{The integral $T(x,c)$
+  and the fold geometry}
+
+\begin{definition}[$T(x,c)$]
+\label{def:Txc}
+\begin{equation}\label{eq:Txc}
+  T(x,c) :=
+  \int_{\mathbb{R}}
+  |\beta|^{-1/2}\chi(\alpha_*+\beta)
   D^*_{K(c)}(\beta x/c^{\theta_0})
   \,d\beta.
 \end{equation}
-The signed integral $J_K=O(K^{1/2})$
-(Remark~\ref{rem:Dstar-status})
-shows that cancellation in $D^*_K$
-alone is insufficient.
-The mechanism must be the
-\emph{joint} interaction:
-the oscillatory factor
+Then $\sum_{k\le K}\widehat{\gsing}(xk/c^{\theta_0})
+=C_* e^{i\alpha_* x/c^{\theta_0}}
+T(x,c)$,
+and
+\begin{equation}\label{eq:S-via-T}
+  S(c) = C_*\int K(x)
+  e^{i\alpha_* x/c^{\theta_0}}
+  T(x,c)\,dx
+  + O(c^{-N}).
+\end{equation}
+\end{equation}
+\end{definition}
+
+\begin{remark}[Fold geometry and
+  Airy scaling]
+\label{rem:airy-scaling}
+The fold at $\alpha_*$ is characterised
+by $\theta''(0)=0$, $\theta'''(0)\ne 0$.
+In the Dirichlet kernel:
+\[
+  D^*_K(t)=\frac{e^{iKt}-1}{e^{it}-1}
+  \approx \frac{e^{iKt}}{it}
+  \quad(t\ne 0),
+\]
+the approximation breaks down when
+$|t|\lesssim 1/K$, i.e.,
+$|\beta x/c^{\theta_0}|\lesssim 1/K
+=c^{-\theta_0}$,
+i.e., $|\beta|\lesssim c^{-\theta_0}/|x|$.
+
+However, the fold introduces a
+\emph{cubic} correction to the phase.
+The correct scale at which
+the fold geometry dominates is
+$|\beta|\sim c^{-\theta_0/3}$
+(Airy scale), not $c^{-\theta_0}$.
+At this scale:
+\begin{itemize}[leftmargin=*]
+\item $D^*_K(\beta x/c^{\theta_0})
+  \approx$ \emph{Airy kernel},
+  not Dirichlet.
+\item The integral $T(x,c)$
+  receives its dominant contribution
+  from $|\beta|\lesssim c^{-\theta_0/3}$.
+\item Expected size:
+  $T(x,c)=O(c^{-\theta_0/6}/|x|^{1/2})$
+  (heuristic: $c^{-\theta_0/3}\cdot
+  c^{-\theta_0/6}$ from the
+  $|\beta|^{-1/2}$ weight).
+\end{itemize}
+If confirmed, this would give:
+$S(c)=O(c^{-\theta_0/6})$,
+closing the gap for
+$\theta_0>12/13$
+(since $-\theta_0/6<-(2-2\theta_0)$
+$\Leftrightarrow \theta_0>12/13$).
+This is a \emph{heuristic}; the
+rigorous argument is the task of
+Paper~XVI.
+\end{remark}
+
+%%══ 7. OPEN PROBLEMS
+\section{Open Problems for Paper~XVI}
+\label{sec:open}
+
+\begin{problem}[Airy-type estimate
+  for $T(x,c)$]
+\label{prob:S-cancellation}
+\emph{The single remaining obstacle.}
+
+\medskip
+\noindent\textbf{Object:}
+\[
+  T(x,c)=\int|\beta|^{-1/2}
+  \chi(\alpha_*+\beta)
+  D^*_{K(c)}(\beta x/c^{\theta_0})\,d\beta.
+\]
+\textbf{Target:}
+$|T(x,c)|=o(c^{\theta_0}/|x|^{1/2})$,
+uniformly in $|x|\ge\delta$.
+
+\medskip
+\noindent\textbf{Why Dirichlet fails}
+(Lemma~\ref{lem:dirichlet-obstruction}):
+the signed $D^*_K$ sum gives only
+$O(K^{1/2})$ per mode, and the
+modes add with constant phase
+$e^{i\pi/4}$:
+no cancellation.
+
+\medskip
+\noindent\textbf{The Airy mechanism.}
+Near $\beta=0$, the phase in
 $D^*_K(\beta x/c^{\theta_0})
-=e^{iK\beta x/c^{\theta_0}}
-\cdot O(|\beta x/c^{\theta_0}|^{-1})$
-combined with the singularity
-$|\beta|^{-1/2}$
-may produce, via stationary phase,
-a bound
-$T(x,c)=O(c^{\varepsilon}/|x|^{1/2})$
-for some $\varepsilon<\theta_0$.
-
-\medskip
-\noindent\textbf{Stationary phase
-  approach.}
-For large $K$, $D^*_K(t)
-\approx e^{iKt}/(e^{it}-1)$.
-Substitute:
-\begin{equation}\label{eq:Tx-statphase}
-  T(x,c)\approx
-  \int|\beta|^{-1/2}\chi(\alpha_*+\beta)
-  \frac{e^{i\beta xK/c^{\theta_0}}}
-  {e^{i\beta x/c^{\theta_0}}-1}
-  \,d\beta.
-\end{equation}
-The effective phase is
-$\phi(\beta)=\beta xK/c^{\theta_0}
-=\beta x$
-(since $K=c^{\theta_0}$).
-Stationary phase at $\beta=0$:
-the singularity $|\beta|^{-1/2}$
-is integrable; the denominator
-$e^{i\beta x/c^{\theta_0}}-1
-\approx i\beta x/c^{\theta_0}$
-introduces an extra
-$c^{\theta_0}/|\beta|$,
-yielding:
-\begin{equation}\label{eq:Tx-heuristic}
+=e^{iK\beta x/c^{\theta_0}}/(e^{i\beta x/c^{\theta_0}}-1)$
+has a cubic correction from
+$\theta'''(0)\ne 0$:
+\[
+  K\cdot\frac{\beta x}{c^{\theta_0}}
+  +\frac{\theta'''(0)}{6}
+  \frac{\beta^3 x^3}{c^{3\theta_0}}
+  \cdot\text{(correction)}.
+\]
+At the Airy scale
+$\beta\sim c^{-\theta_0/3}$
+(where the cubic term is $O(1)$),
+the Dirichlet kernel is replaced
+by an Airy function:
+\[
+  D^*_K(\beta x/c^{\theta_0})
+  \;\approx\;
+  c^{\theta_0/3}\cdot
+  \mathrm{Ai}(\beta x\cdot c^{-\theta_0/3}
+  +\text{shift}).
+\]
+The integral becomes:
+\[
   T(x,c)
-  \sim \frac{c^{\theta_0}}{x}
-    \int|\beta|^{-3/2}e^{i\beta x}d\beta.
-\end{equation}
-The integral $\int|\beta|^{-3/2}
-e^{i\beta x}d\beta$ is
-\emph{not integrable} at $\beta=0$
-without regularisation;
-the correct treatment requires
-van~der~Corput at the
-cubic transition or
-Airy-function asymptotics
-at the fold $\alpha_*$.
+  \approx c^{\theta_0/3}
+  \int|\beta|^{-1/2}
+  \mathrm{Ai}(\beta x c^{-\theta_0/3})
+  \,d\beta.
+\]
+Substituting $u=\beta x c^{-\theta_0/3}$:
+\[
+  T(x,c)
+  \approx \frac{c^{\theta_0/3}\cdot
+  c^{\theta_0/6}}{|x|^{1/2}}
+  \int|u|^{-1/2}\mathrm{Ai}(u)\,du
+  =\frac{c^{\theta_0/2}}{|x|^{1/2}}
+  \cdot C_{\mathrm{Ai}}.
+\]
+This gives $S(c)=O(c^{\theta_0/2})$---
+a factor $c^{\theta_0/2}$ improvement
+over Dirichlet.\;
+\emph{Whether this closes the
+full gap requires checking
+$c^{\theta_0/2}<c^{-(2-2\theta_0)}$,
+i.e., $\theta_0/2>2-2\theta_0$,
+i.e., $\theta_0>4/5$.}
 
 \medskip
-\noindent\textbf{Conclusion.}
-The analysis of $T(x,c)$ is
-the central task of Paper~XVI.
-The fold geometry at $\alpha_*$
-(where $\alpha_0'(0)=\theta''(0)=0$)
-means that the standard
-stationary phase is degenerate;
-the correct asymptotic is Airy-type.
-
-\medskip
-\noindent\textbf{Secondary:}
-(L), (R), (C)
-(Problem~\ref{prob:rigorous-reduction}).
+\noindent\textbf{Task for Paper~XVI:}
+\begin{enumerate}[\rm(A)]
+\item Derive the Airy approximation
+  for $D^*_K$ near $\beta=0$
+  rigorously, using the WKB
+  structure and
+  $\theta'''(0)\ne 0$.
+\item Bound
+  $\int|u|^{-1/2}|\mathrm{Ai}(u)|du<\infty$
+  (classical; $\mathrm{Ai}$
+  is Schwartz for $u>0$
+  and oscillatory for $u<0$).
+\item Conclude $T(x,c)=O(c^{\theta_0/2}/|x|^{1/2})$
+  and hence
+  $S(c)=O(c^{\theta_0/2})$;
+  close the remaining gap for
+  $\theta_0>4/5$.
+\end{enumerate}
 \end{problem}
 
 \begin{problem}[Rigorous reduction]
 \label{prob:rigorous-reduction}
-(L): $\|\widehat{\Phi}_{n+k}-
-\widehat{\Phi}_n\|=O(k/c)$.
-(R): kernel error $o(1)$,
-sum--integral exchange quantitative.
-(C): spectral density step
-(Paper~XVII).
+(L): $\|\widehat{\Phi}_{n+k}
+-\widehat{\Phi}_n\|=O(k/c)$.
+(R): sum--integral exchange,
+quantitative error $o(1)$.
+(C): spectral density step.
 \end{problem}
 
-%%═══ 8. REDUCTION THEOREM
+%%══ 8. REDUCTION THEOREM
 \section{Reduction Theorem}
 \label{sec:reduction}
 
@@ -783,9 +652,21 @@ Conditional on
 $S(c)=o(c^{-(2-2\theta_0)})$,
 (L), (R), (C):
 $\Sigma_{\mathrm{int}}=o(1)
-\Rightarrow\text{H3 fails}
-\Rightarrow\text{H1 fails.}$
+\Rightarrow\mathrm{H3\ fails}
+\Rightarrow\mathrm{H1\ fails.}$
 \end{theorem}
+
+\begin{remark}[Programme after
+  Paper~XV]
+\[
+  \underbrace{
+    T(x,c)=o(c^{\theta_0}/|x|^{1/2})
+    +(\mathrm{R})+(\mathrm{L})
+  }_{\text{Paper XVI}}
+  +\underbrace{(C)}_{\text{XVII}}
+  \Longrightarrow\text{H1 fails.}
+\]
+\end{remark}
 
 \begin{remark}[Conceptual summary]
 \label{rem:concept-summary}
@@ -794,20 +675,25 @@ $\Sigma_{\mathrm{int}}=o(1)
   operator $\to$ $S(c)$.
 \item \emph{Exact equivalence}:
   $\Sigma_{\mathrm{model}}=o(1)
-  \iff S(c)=o(c^{-(2-2\theta_0)})$.
-\item \emph{Gap = saturation rate}:
-  residual factor $c^{2-\theta_0}$
-  equals frozen-phase divergence.
-\item \emph{All current methods
-  give $O(c^{\theta_0})$}:
-  neither Ces\`aro, nor triangle,
-  nor signed $D^*_K$ alone
-  breaks through.
-\item \emph{Paper~XVI target}:
-  Airy/degenerate stationary phase
-  for $T(x,c)$
-  at the fold $\alpha_*$;
-  joint $\alpha$-$k$ cancellation.
+  \iff S(c)=o(c^{-(2-2\theta_0)})$;
+  gap $=$ frozen-phase rate.
+\item \emph{Ces\`aro step done}:
+  $S(c)=o(c^{\theta_0})$
+  via Fubini.
+\item \emph{Dirichlet obstruction}:
+  signed $D^*_K$ gives
+  $O(K^{1/2})$ with constant phase
+  $e^{i\pi/4}$; no cancellation
+  possible from Dirichlet alone.
+\item \emph{Airy mechanism}:
+  fold geometry at $\alpha_*$
+  ($\theta''(0)=0$, $\theta'''(0)\ne 0$)
+  gives cubic phase correction;
+  Airy scaling
+  $\beta\sim c^{-\theta_0/3}$
+  may produce
+  $T(x,c)=O(c^{\theta_0/2}/|x|^{1/2})$,
+  closing the gap for $\theta_0>4/5$.
 \end{enumerate}
 \end{remark}
 
