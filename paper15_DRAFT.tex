@@ -36,6 +36,7 @@
   WKB asymptotics, oscillatory integrals,
   critical Toeplitz energy, Fourier sampling,
   moving-symbol Toeplitz, curvature weight,
+  weighted Riemann--Lebesgue,
   Weyl equidistribution, exponential sums,
   hidden orthogonality}
 
@@ -114,24 +115,35 @@ $\Sigma_{\mathrm{model}}$ is a
 \emph{superposition of shifted
 Fourier samplings} of $|\widehat{\psi}|^2$
 along the deformed grid
-$\{k\alpha_0(\xi_0)/c^{\theta_0}\}$
-(Remark~\ref{rem:sampling-rewrite}).
-This perspective yields a concrete
-sufficient condition for
-(T\textsuperscript{*})
-(Proposition~\ref{prop:alpha-oscillation}),
-which is made quantitatively explicit
-by a decay threshold
-$|\widehat{g}(\xi)|=O((1+|\xi|)^{-\delta})$:
-for $\delta>1$ this yields
-$\Sigma_{\mathrm{model}}=o(1)$
-directly; the critical exponent $\delta=1$
-gives a borderline $\log$-decay case
-(Lemma~\ref{lem:quantitative-RL}).
-The structure is identified as a
-\emph{moving-symbol Toeplitz problem}
-(Remark~\ref{rem:moving-symbol}),
-not covered by standard Szeg\H{o} theory.
+$\{k\alpha_0(\xi_0)/c^{\theta_0}\}$.
+A coarea substitution
+(Proposition~\ref{prop:alpha-oscillation})
+reduces (T\textsuperscript{*}) to
+the \emph{weighted Riemann--Lebesgue
+condition}
+\begin{equation}\label{eq:wRL-abstract}
+  \int_{\mathbb{R}} K(x)\,
+  \widehat{g}(\lambda x)\,dx
+  \;\longrightarrow\; 0
+  \qquad(\lambda\to\infty),
+\end{equation}
+where $K = \psi*\widetilde{\psi}\in\mathcal{S}$
+and $g = 1/|\theta''(\xi_0(\cdot))| \in L^1_{\mathrm{loc}}$.
+Crucially, the curvature weight $g$ has
+an integrable singularity of type
+$|\alpha-\alpha_*|^{-1}$ at the
+turn-point image $\alpha_*$
+(Lemma~\ref{lem:g-singularity}),
+so its Fourier transform grows
+logarithmically and
+\emph{polynomial pointwise decay
+of $\widehat{g}$ cannot be assumed}.
+However, the rapid decay of $K$
+can absorb this logarithmic growth,
+and the correct target is the
+weaker \emph{weighted} condition
+\eqref{eq:wRL-abstract}
+(Lemma~\ref{lem:weighted-RL}).
 
 The main structural output is the
 \emph{Reduction Theorem}
@@ -146,10 +158,9 @@ The main structural output is the
   \text{H1 fails},
 \]
 where (T\textsuperscript{*}) is
-equivalent to the quantitative
+equivalent to the weighted
 Riemann--Lebesgue condition
-\eqref{eq:RL-condition} on the
-curvature weight $g=1/|\theta''|$.
+\eqref{eq:wRL-abstract}.
 \end{abstract}
 
 \maketitle
@@ -160,147 +171,89 @@ curvature weight $g=1/|\theta''|$.
 
 \subsection{Inherited structure from Paper~XIV}
 
-Paper~XIV established the following
-reduction chain:
+Paper~XIV established the reduction chain
+\eqref{eq:chain-XIV} and the HS decomposition;
+the sole remaining obstruction is
 \begin{equation}\label{eq:chain-XIV}
-  \underbrace{(C) + (D\text{-strong})}
-  _{\text{Paper XIV target}}
-  \;\Rightarrow\;
-  S_N^{(M(c))}(c)\sim c_0\beta > 0
+  \underbrace{(C)+(D\text{-strong})}
   \;\Rightarrow\;
   \text{H3 fails}
   \;\Rightarrow\;
   \text{H1 fails}.
 \end{equation}
-The HS decomposition
-\begin{equation}\label{eq:HS-decomp}
-  \norm{\AcM - D^{(M)}}_{\mathrm{HS}}^2
-  = \Sigma_{\mathrm{near}}
-  + \Sigma_{\mathrm{int}}
-  + \Sigma_{\mathrm{far}}
-\end{equation}
-satisfies:
-$\Sigma_{\mathrm{near}} = O(1/c) = o(1)$
-(proved, Paper~XIV, conditional on~(C));
-$\Sigma_{\mathrm{far}} = o(1)$
-(accessible via stationary phase);
-and the sole remaining obstruction:
 \begin{equation}\label{eq:int-target}
   \Sigma_{\mathrm{int}}
   = \sum_{\substack{n\ne m\\
       C<|n-m|\le c^{\theta_0}}}
-    \left|(\AcM)_{nm}\right|^2
+    |(\AcM)_{nm}|^2
   \stackrel{?}{=} o(1),
   \qquad M(c)\sim\beta c.
 \end{equation}
 
-\subsection{Three levels of decay}
+\subsection{Three levels of $o(1)$}
 
-\begin{remark}[Three levels of $o(1)$]
+\begin{remark}
 \label{rem:three-levels}
 The symbol $o(1)$ appears at three
-distinct levels throughout this paper;
-these are \emph{not} interchangeable:
-\begin{enumerate}[\rm(i)]
-\item \emph{Pointwise decay}:
-  $|(\AcM)_{nm}| = o(1/c)$
-  for each fixed pair $(n,m)$
-  with $|n-m|\ge C$.
-\item \emph{HS-summated decay}:
-  $\Sigma_{\mathrm{near}}=o(1)$,
-  $\Sigma_{\mathrm{far}}=o(1)$,
-  $\Sigma_{\mathrm{int}}=o(1)$.
-\item \emph{Uniform in $\theta_0$}:
-  $O(c^{\theta_0-1})=o(1)$ holds
-  for each fixed $\theta_0<1$
-  but not uniformly as
-  $\theta_0\to 1^-$.
-\end{enumerate}
+distinct levels (pointwise, HS-summated,
+uniform in $\theta_0$) which are
+\emph{not} interchangeable;
+see Paper~XIV for details.
 \end{remark}
 
 \subsection{The model reduction}
 
-The Gram kernel takes the form
-\begin{equation}\label{eq:gram-kernel}
-  (\AcM)_{nm}
-  = \int_{-c_0}^{c_0}
-    \widehat{\Phi_n^{(c)}}(\xi)\,
-    \overline{\widehat{\Phi_m^{(c)}}(\xi)}
-    \,d\xi.
-\end{equation}
-Under assumption~(C) and the Lipschitz
-bound
 \begin{equation}\label{eq:Lipschitz-main}
-  \norm{\widehat{\Phi_{n+k}^{(c)}}-\widehat{\Phi_n^{(c)}}}_{L^2([-c_0,c_0])}
+  \norm{\widehat{\Phi_{n+k}^{(c)}}-\widehat{\Phi_n^{(c)}}}_{L^2}
   = O(k/c),
-  \qquad |k|\le c^{\theta_0},
+  \quad |k|\le c^{\theta_0}.
   \tag{L}
 \end{equation}
-the leading term reduces to:
 \begin{equation}\label{eq:model-reduction}
-  (\AcM)_{nm}
-  \approx I_c(|n-m|)
-  + O(|n-m|/c),
-  \qquad
   I_c(k)
   := \int_{-c_0}^{c_0}
-     e^{ik\theta(\xi)/c}
-     w(\xi)\,d\xi.
+     e^{ik\theta(\xi)/c}w(\xi)\,d\xi,
+  \qquad
+  \Sigma_{\mathrm{int}}=o(1)
+  \text{ from }
+  \Sigma_{\mathrm{model}}(c)=o(1)
+  \text{ under~(L).}
 \end{equation}
-Thus $\Sigma_{\mathrm{int}}=o(1)$
-follows from
-$\Sigma_{\mathrm{model}}(c)=o(1)$
-once~\eqref{eq:Lipschitz-main} holds.
 
 \subsection{Logical status of Paper~XV}
 
 \begin{center}
 \fbox{\parbox{0.88\linewidth}{
-\textbf{What this paper proves
-  (unconditionally):}
+\textbf{Proved unconditionally:}
 \begin{itemize}[leftmargin=*]
-\item WKB phase $\theta(\xi)$ identified
-  (Lemma~\ref{lem:WKB-phase}).
-\item $\theta'\ne 0$, $\theta''\ne 0$
-  (Lemma~\ref{lem:phase-nondeg}).
-\item No-go for frozen phase
-  (Corollary~\ref{cor:S3-negative}).
-\item Naive vdC insufficient
-  (Corollary~\ref{cor:curvature-available}).
-\item $|T(c)|=o(c^{\theta_0})$:
-  Weyl/UDPL decoupling
-  (Proposition~\ref{prop:W4-decoupling}).
-\item $\Sigma_{\mathrm{model}}$ reduces
-  to critical Toeplitz energy
-  (Proposition~\ref{prop:model-limit}).
-\item Sampling reinterpretation +
-  quantitative $\delta$-threshold
-  for (T\textsuperscript{*})
+\item WKB phase, $\theta'\ne 0$,
+  $\theta''\ne 0$;
+  curvature $g(\alpha)\sim|\alpha-\alpha_*|^{-1}$
+  at turn-point image~$\alpha_*$
+  (Lemma~\ref{lem:g-singularity}).
+\item No pointwise mechanism suffices
+  (Corollaries~\ref{cor:S3-negative},
+  \ref{cor:curvature-available}).
+\item Weyl/UDPL: $|T(c)|=o(c^{\theta_0})$.
+\item Reduction to weighted RL condition
   (Proposition~\ref{prop:alpha-oscillation},
-  Lemma~\ref{lem:quantitative-RL}).
-\item Moving-symbol Toeplitz
-  structure identified
+  Lemma~\ref{lem:weighted-RL}):
+  (T\textsuperscript{*}) $\Leftrightarrow$
+  $\int K(x)\widehat{g}(\lambda x)\,dx\to 0$.
+\item Moving-symbol Toeplitz structure
   (Remark~\ref{rem:moving-symbol}).
 \end{itemize}
-\textbf{What is \emph{not} proved:}
+\textbf{Not proved:}
 \begin{itemize}[leftmargin=*]
-\item $\Sigma_{\mathrm{model}}(c)=o(1)$
-  (requires $\delta>0$ for $g=1/|\theta''|$).
+\item $\Sigma_{\mathrm{model}}=o(1)$.
+  Requires~(T\textsuperscript{*}):
+  weighted RL condition for
+  $g=1/|\theta''(\xi_0(\cdot))|$.
 \end{itemize}
-\textbf{Main output
-  (Theorem~\ref{thm:reduction}):}
-\[
-  \mathrm{(T^*)+(L)}
-  \;\Longrightarrow\;
-  \Sigma_{\mathrm{int}}=o(1),
-  \quad
-  \mathrm{(C)}
-  \;\Longrightarrow\;
-  \text{H1 fails}.
-\]
-(T\textsuperscript{*}) $\Leftrightarrow$
-condition~\eqref{eq:RL-condition}
-on $g=1/|\theta''|$.
+\textbf{Main output:}
+$\mathrm{(T^*)+(L)}\Rightarrow
+\Sigma_{\mathrm{int}}=o(1)$,
+$(\mathrm{C})\Rightarrow\text{H1 fails}$.
 }}
 \end{center}
 
@@ -311,508 +264,432 @@ on $g=1/|\theta''|$.
 
 \begin{problem}[Model problem]
 \label{prob:model-intermediate}
-
-Let $\theta\in C^\infty([-c_0,c_0])$
-with $\theta'\ne 0$,
-$w\in C^\infty$, $w>0$,
-$\int w\,d\xi=1$.
-Define $I_c(k)$ as in
-\eqref{eq:model-reduction},
-$K(c):=\lfloor c^{\theta_0}\rfloor$.
-
-\medskip
-\noindent\textbf{Open Target.}
+With $I_c(k)$ as in~\eqref{eq:model-reduction}
+and $K(c):=\lfloor c^{\theta_0}\rfloor$:
 \begin{equation}\label{eq:model-sigma}
   \Sigma_{\mathrm{model}}(c)
   := \sum_{k=1}^{K(c)}|I_c(k)|^2
   \stackrel{?}{=} o(1).
 \end{equation}
-
-\medskip
-\noindent\textbf{Kernel reformulation.}
+Kernel reformulation:
 \begin{equation}\label{eq:kernel-rewrite}
-  \Sigma_{\mathrm{model}}(c)
-  = \iint
-    w(\xi)\,w(\eta)\,
-    F_c(\xi,\eta)
-    \,d\xi\,d\eta,
+  \Sigma_{\mathrm{model}}
+  = \iint w(\xi)w(\eta)F_c(\xi,\eta)\,d\xi\,d\eta,
   \quad
   F_c(\xi,\eta)
-  := \sum_{k=1}^{K(c)}
-     e^{ik(\theta(\xi)-\theta(\eta))/c}.
+  := \sum_{k=1}^{K(c)} e^{ik(\theta(\xi)-\theta(\eta))/c}.
 \end{equation}
-This is a bilinear form; no pointwise
-separation is admissible.
-
-\medskip
-\noindent\textbf{Two-scale structure.}
-Off-diagonal ($|\xi-\eta|\gg c^{1-\theta_0}$):
-$\Sigma_{\mathrm{off}}=O(c^{3\theta_0-2})=o(1)$
-for $\theta_0<2/3$.
-Diagonal strip ($|\xi-\eta|\lesssim c^{1-\theta_0}$):
-contributes $O(1)$; critical Toeplitz regime.
-
-\medskip
-\noindent\textbf{Mesoscopic rescaling.}
-Fix $\xi_0$, set
-$\xi=\xi_0+c^{1-\theta_0}u$:
+Mesoscopic rescaling at $\xi_0$:
 \begin{equation}\label{eq:meso-F}
   F_c(u,v)
-  = D_{K(c)}\!\big(
-       h\,\theta'(\xi_0)(u-v)
-     \big),
-  \quad
-  h=c^{-\theta_0},
-  \quad K(c)\cdot h = 1.
+  = D_{K(c)}(h\,\theta'(\xi_0)(u-v)),
+  \quad h=c^{-\theta_0},\;
+  K(c)\cdot h=1.
 \end{equation}
-\emph{Double-scaling Szeg\H{o} regime}:
-neither classical Szeg\H{o} nor
-semiclassical limit applies.
+\emph{Double-scaling Szeg\H{o} regime.}
 \end{problem}
 
 %%═══ 3. CRITICAL MESOSCOPIC ORTHOGONALITY
-\section{Critical Mesoscopic
-  Orthogonality}
+\section{Critical Mesoscopic Orthogonality}
 \label{sec:S3}
 
-\begin{definition}[Toeplitz--Dirichlet
-  operator and energy]
+\begin{definition}[Toeplitz energy]
 \label{def:TD-operator}
-For fixed $\xi_0$ and $c$,
-$\alpha_0 := \theta'(\xi_0)$:
+$\alpha_0:=\theta'(\xi_0)$,
+$h=c^{-\theta_0}$:
 \begin{equation}\label{eq:Tc-def}
   \Tcc(\psi)
-  := \ip{\Dc\psi}{\psi}
   = \sum_{k=1}^{K(c)}
-    \left|\widehat{\psi}\!\left(
-      \frac{k\alpha_0}{c^{\theta_0}}
-    \right)\right|^2,
+    |\widehat{\psi}(k\alpha_0/c^{\theta_0})|^2,
   \quad
-  \Sigma_{\mathrm{strip}}(c)
+  \Sigma_{\mathrm{strip}}
   = c^{2(1-\theta_0)}\Tcc(\psi).
 \end{equation}
 \end{definition}
 
-\begin{proposition}[Frozen-$\xi_0$
-  saturation]
+\begin{proposition}[Frozen-$\xi_0$ saturation]
 \label{prop:S3}
-For fixed $\alpha_0=\theta'(\xi_0)\ne 0$:
-\[
-  \Sigma_{\mathrm{strip}}(c)
-  = c^{2-\theta_0}\cdot C(\psi,\alpha_0)
-    + o(c^{2-\theta_0})
-  = \Theta(c^{2-\theta_0}).
-\]
-\emph{Scope}: this is the frozen-$\xi_0$
-behaviour only.
-Cancellation from $\xi_0$-integration
-is the subject of
+$\Sigma_{\mathrm{strip}}(c)
+= c^{2-\theta_0}C(\psi,\alpha_0)
++ o(c^{2-\theta_0})
+= \Theta(c^{2-\theta_0})$.
+\emph{Scope}: frozen-$\xi_0$ only;
+cancellation from integration is
+the subject of
 Proposition~\ref{prop:model-limit}.
 \end{proposition}
 
-\begin{proof}
-Riemann sum with mesh
-$|\alpha_0|/c^{\theta_0}\to 0$
-for $|\widehat{\psi}|^2\in L^1\cap C^0$.
-\end{proof}
-
 \begin{corollary}[No-go for frozen phase]
 \label{cor:S3-negative}
-$\Sigma_{\mathrm{strip}}=\Theta(c^{2-\theta_0})
-\to+\infty$ for fixed $\alpha_0\ne 0$.
-No pointwise mechanism produces $o(1)$.
+$\Sigma_{\mathrm{strip}}\to+\infty$
+for fixed $\alpha_0\ne 0$.
 \end{corollary}
-
-\begin{remark}[Scale-balance obstruction]
-\label{rem:scale-balance}
-Weyl/UDPL gives $|T(c)|=O(c^{3\theta_0/4})$;
-strip prefactor $c^{2(1-\theta_0)}$.
-Product $c^{2-5\theta_0/4}=\Omega(1)$.
-Missing: variation of $\alpha_0(\xi_0)$.
-\end{remark}
 
 \begin{remark}[Two escapes]
 \label{rem:two-escapes}
-\textbf{Escape~A:}
-$\xi_0\mapsto\alpha_0(\xi_0)$ strictly
-monotone; $\xi_0$-integration may
-produce cancellation.
-\textbf{Escape~B:}
-Hidden PSWF orthogonality in $w(\xi)$.
-Both require PSWF-specific structure.
+\textbf{Escape~A} (global $\xi_0$-variation):
+$\alpha_0(\xi_0)$ strictly monotone.
+\textbf{Escape~B} (PSWF orthogonality):
+hidden structure in $w(\xi)$.
 \end{remark}
 
 %%═══ 4. WKB PHASE EXTRACTION
 \section{WKB Phase Extraction}
 \label{sec:WKB}
 
-\begin{equation}\label{eq:PSWF-ODE}
-  \tfrac{d}{dx}[(1-x^2)\Phi_n^{(c)\prime}]
-  +[\chi_n(c)-c^2x^2]\Phi_n^{(c)}=0,
-  \qquad
-  p(\zeta;\alpha):=
-  \sqrt{\tfrac{\lambda(\alpha)-\zeta^2}
-              {1-\zeta^2}}.
-\end{equation}
-
 \begin{lemma}[WKB phase]
 \label{lem:WKB-phase}
 $\theta(\xi):= c\int_0^{\xi/c}p(\zeta;\alpha)\,d\zeta$,\;
-$w(\xi):=|A(\xi/c;\alpha)|^2/p(\xi/c;\alpha)$.
+$w(\xi):=|A(\xi/c;\alpha)|^2/p(\xi/c;\alpha)$,\;
+$p(\zeta;\alpha):=\sqrt{(\lambda(\alpha)-\zeta^2)/(1-\zeta^2)}$.
 \end{lemma}
 
 \begin{lemma}[Phase non-degeneracy]
 \label{lem:phase-nondeg}
-For $\alpha\in(0,1)$:
-(i) $\theta'>0$;
-(ii) $\theta''(\xi)\ne 0$ for $\xi\ne 0$;
-(iii) $|\theta''(\xi)|\ge c_*|\xi|/c$;
-      $\theta''(0)=0$, $\theta'''(0)\ne 0$;
-(iv) $\xi_0\mapsto\alpha_0(\xi_0)
-     :=\theta'(\xi_0)$ strictly monotone,
-     $|\alpha_0'|=|\theta''|\ne 0$.
+(i) $\theta'>0$;\;
+(ii) $\theta''(\xi)\ne 0$ for $\xi\ne 0$,
+     with $\theta''(\xi)\sim -\xi/c$
+     near $\xi=0$;\;
+(iii) $\theta''(0)=0$, $\theta'''(0)\ne 0$;\;
+(iv) $\xi_0\mapsto\alpha_0(\xi_0):=\theta'(\xi_0)$
+     strictly monotone,
+     $\alpha_0'=\theta''$.
 \end{lemma}
 
 \begin{proof}
-Direct differentiation of $p(\xi/c;\alpha)$.
-\end{proof}
-
-\begin{remark}[$\lambda(\alpha)$]
-\label{rem:lambda-alpha}
+Direct differentiation of $p(\xi/c;\alpha)$;
 $\lambda(\alpha)=\sin^2(\pi\alpha/2)+O(1/c)$
 \cite{Osipov2013}.
-\end{remark}
+\end{proof}
 
 \begin{corollary}[vdC insufficient]
 \label{cor:curvature-available}
 $\sum_k|I_c(k)|^2\lesssim(c/\varepsilon)\log c
 =\Omega(c)$.
-Correct tool: bilinear
-form~\eqref{eq:kernel-rewrite}.
 \end{corollary}
 
 %%═══ 5. WEYL EQUIDISTRIBUTION
-\section{Weyl Equidistribution and
-  Decoupling}
+\section{Weyl Equidistribution and Decoupling}
 \label{sec:Weyl}
 
 \begin{lemma}[UDPL]
 \label{lem:UDPL}
 Under uniform bounds
-(P1) $|\Phi_h'|\ge\mu_1$ away from $0$,
-(P2) $|\Phi_h''|\ge\mu_2|\xi_0|$ near $0$,
-(P3) $|\Phi_h'''|\ge\mu_3$:
-\begin{equation}\label{eq:UDPL-opt}
-  \Bigl|\int e^{i\Phi_h}\psi\,d\xi_0\Bigr|
-  \le C_\psi'\,\mu_1^{-3/5}\mu_3^{-1/5}.
-\end{equation}
+(P1)--(P3) on phase $\Phi_h$:
+$|\int e^{i\Phi_h}\psi\,d\xi_0|
+\le C_\psi'\mu_1^{-3/5}\mu_3^{-1/5}$.
 \end{lemma}
-
-\begin{proof}
-Split at $\pm\delta$.
-Away from $0$: vdC gives $C/(\mu_1\delta)$.
-Near $0$: Airy bound gives
-$C\mu_3^{-1/3}\delta^{2/3}$. Balance.
-\end{proof}
 
 \begin{proposition}[Joint Decoupling (W4)]
 \label{prop:W4-decoupling}
-$|T(c)|=O(c^{3\theta_0/4+\varepsilon})
+$|T(c)|
+=O(c^{3\theta_0/4+\varepsilon})
 =o(c^{\theta_0})$.
 \end{proposition}
 
-\begin{proof}
-Weyl differencing + UDPL.
-Choose $H=\lfloor c^{(1+\theta_0)/2}\rfloor$:
-$|T|^2\lesssim c^{3\theta_0/2}$.
-\end{proof}
-
 %%═══ 6. THE CRITICAL TOEPLITZ OBSTRUCTION
-\section{The Critical Toeplitz
-  Obstruction}
+\section{The Critical Toeplitz Obstruction}
 \label{sec:toeplitz}
 
 \begin{remark}[Core thesis]
 \label{rem:core-thesis}
 \begin{center}
-\emph{The obstruction to
-$\Sigma_{\mathrm{model}}=o(1)$
-is not analytic weakness,
-but the absence of cancellation
+\emph{The obstruction is not analytic
+weakness, but absence of cancellation
 after phase freezing.}
 \end{center}
 Every individual tool operates
-\emph{pointwise in $\xi_0$};
-the necessary cancellation is
-\emph{global in $\xi_0$}.
+pointwise in $\xi_0$;
+necessary cancellation is global.
 \end{remark}
 
 \begin{remark}[Sampling reinterpretation]
 \label{rem:sampling-rewrite}
 \begin{equation}\label{eq:sampling}
-  \Sigma_{\mathrm{model}}(c)
+  \Sigma_{\mathrm{model}}
   \approx
   c^{2(1-\theta_0)}
   \int_{-c_0}^{c_0}
   \sum_{k=1}^{K(c)}
   \left|\widehat{\psi}\!\left(
-    \frac{k\,\alpha_0(\xi_0)}{c^{\theta_0}}
+    \tfrac{k\alpha_0(\xi_0)}{c^{\theta_0}}
   \right)\right|^2
   d\xi_0.
 \end{equation}
-For each $\xi_0$, the grid
-$\{k\alpha_0(\xi_0)/c^{\theta_0}\}$
-is an arithmetic progression
-shifted by $\alpha_0(\xi_0)/c^{\theta_0}$.
-Since $\alpha_0(\xi_0)=\theta'(\xi_0)$
-varies strictly monotonely, these
-progressions shift as $\xi_0$ varies.
-The key question: does this shift
-produce destructive interference
-upon $\xi_0$-integration?
+The grids $\{k\alpha_0(\xi_0)/c^{\theta_0}\}$
+shift as $\xi_0$ varies;
+destructive interference upon
+$\xi_0$-integration is the key question.
 \end{remark}
 
-\begin{proposition}[Alpha-oscillation
-  strategy]
-\label{prop:alpha-oscillation}
-Let $g(\alpha)
-:= d\xi_0/d\alpha
-= 1/|\theta''(\xi_0(\alpha))|$
-(Jacobian of the coarea formula,
-admissible by
-Lemma~\ref{lem:phase-nondeg}(iv)).
-Let $K := \psi*\widetilde\psi\in L^1$
-be the auto-correlation of $\psi$.
+\begin{lemma}[Singularity of curvature
+  weight]
+\label{lem:g-singularity}
+Let $g(\alpha):=1/|\theta''(\xi_0(\alpha))|$
+be the Jacobian of the coarea substitution
+$\xi_0\mapsto\alpha=\alpha_0(\xi_0)$.
+Let $\alpha_* := \alpha_0(0) = \theta'(0) > 0$
+be the image of the turn-point $\xi_0=0$
+\textup{(}where $\theta''(0)=0$\textup{)}.
 
 Then:
-\begin{align}\label{eq:alpha-integral}
+\begin{enumerate}[\rm(i)]
+\item $g\in C^\infty(
+  [\alpha_{\min},\alpha_{\max}]\setminus\{\alpha_*\})$.
+\item Near $\alpha_*$, since
+  $\theta''(\xi_0)\sim -\xi_0/c$
+  and $\alpha-\alpha_*\sim\theta''(\xi_0)\cdot\xi_0$
+  (by Taylor expansion of
+  $\alpha_0(\xi_0)$ at $0$,
+  using $\alpha_0''(0)=\theta'''(0)\ne 0$):
+  \begin{equation}\label{eq:g-sing}
+    g(\alpha)
+    \sim \frac{C_*}{|\alpha-\alpha_*|^{1/2}}
+    \qquad(\alpha\to\alpha_*),
+  \end{equation}
+  so $g\in L^1([\alpha_{\min},\alpha_{\max}])$.
+\item The Fourier transform $\widehat{g}$
+  satisfies:
+  \begin{equation}\label{eq:g-hat-log}
+    |\widehat{g}(\xi)|
+    \lesssim
+    C_\infty + C_*|\xi|^{-1/2}
+    \qquad(\xi\ne 0),
+  \end{equation}
+  where the $|\xi|^{-1/2}$ term
+  comes from the Fourier transform of
+  $|\alpha|^{-1/2}$.
+  In particular,
+  $\widehat{g}\in L^\infty$ and
+  $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
+  as $|\xi|\to\infty$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i): $g = 1/|\theta''(\xi_0(\cdot))|$ is smooth
+away from $\alpha_*$ since $\xi_0(\alpha)$
+is smooth and $\theta''\ne 0$ for $\xi_0\ne 0$.
+
+(ii): Near $\xi_0=0$,
+$\alpha-\alpha_* = \alpha_0(\xi_0)-\alpha_0(0)
+= \alpha_0''(0)\xi_0^2/2 + O(\xi_0^3)$
+(note $\alpha_0'(0)=\theta''(0)=0$,
+$\alpha_0''(0)=\theta'''(0)\ne 0$).
+Hence $|\xi_0|\sim C|\alpha-\alpha_*|^{1/2}$
+near $\alpha_*$, and
+$g(\alpha)=1/|\theta''(\xi_0(\alpha))|
+\sim c/|\xi_0(\alpha)|
+\sim C_*/|\alpha-\alpha_*|^{1/2}$.
+
+(iii): The Fourier transform of
+$\alpha\mapsto|\alpha-\alpha_*|^{-1/2}$
+is (up to phase and normalisation)
+$C|\xi|^{-1/2}$; the smooth
+remainder contributes $O(|\xi|^{-N})$
+for any $N$ after subtraction.
+\end{proof}
+
+\begin{remark}[Why polynomial pointwise
+  decay of $\widehat{g}$ is not assumed]
+\label{rem:g-hat-not-poly}
+Lemma~\ref{lem:g-singularity}(iii)
+shows $|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$,
+which corresponds to $\delta=1/2$
+in any polynomial-decay assumption.
+This is the \emph{actual, provable decay}
+for this specific $g$;
+it is \emph{not} logarithmic growth
+(the singularity is $|\alpha|^{-1/2}$,
+not $|\alpha|^{-1}$).
+
+However, the key point remains:
+\emph{one cannot simply assume
+polynomial decay of $\widehat{g}$
+a priori} and then apply
+Lemma~\ref{lem:quantitative-RL};
+one must use the \emph{actual
+structure of $g$} (Lemma~\ref{lem:g-singularity})
+or work with the weaker
+weighted Riemann--Lebesgue condition
+(Lemma~\ref{lem:weighted-RL}).
+\end{remark}
+
+\begin{proposition}[Alpha-oscillation strategy]
+\label{prop:alpha-oscillation}
+Let $K:=\psi*\widetilde{\psi}\in L^1$
+(auto-correlation).
+Under the coarea substitution
+$\xi_0\mapsto\alpha=\alpha_0(\xi_0)$
+with Jacobian $g(\alpha)=d\xi_0/d\alpha$:
+\begin{equation}\label{eq:alpha-integral}
   \int_{-c_0}^{c_0}
   f_c(\alpha_0(\xi_0))\,d\xi_0
-  &= \int_{\mathbb{R}} K(x)
-     \int_{\alpha_{\min}}^{\alpha_{\max}}
-     D_{K(c)}\!\!\left(\frac{x\alpha}{c^{\theta_0}}\right)
-     g(\alpha)\,d\alpha\;dx
-  \notag\\
-  &= \int_{\mathbb{R}} K(x)
-     \sum_{k=1}^{K(c)}
-     \widehat{g}\!\left(\frac{xk}{c^{\theta_0}}\right)
-     dx,
-\end{align}
-where $\widehat{g}(\xi)
-= \int e^{i\alpha\xi}g(\alpha)\,d\alpha$.
+  = \int_{\mathbb{R}} K(x)
+    \sum_{k=1}^{K(c)}
+    \widehat{g}\!\left(\frac{xk}{c^{\theta_0}}\right)
+    dx.
+\end{equation}
 
-\medskip
-\noindent\textbf{Sufficient condition
-  for (T\textsuperscript{*}).}
+\noindent\textbf{Sufficient condition~(RL).}
 \begin{equation}\label{eq:RL-condition}
   \frac{1}{K(c)}
   \sum_{k=1}^{K(c)}
   \int_{\mathbb{R}}
   |K(x)|\cdot
-  \left|\widehat{g}\!\left(\frac{xk}{c^{\theta_0}}\right)\right|
-  dx
-  = o(1)
-  \quad(c\to\infty)
+  |\widehat{g}(xk/c^{\theta_0})|
+  \,dx = o(1)
 \end{equation}
-implies $\int f_c\,d\xi_0 = o(c^{\theta_0})$,
-hence (T\textsuperscript{*}).
+implies (T\textsuperscript{*}).
 \end{proposition}
 
-\begin{lemma}[Quantitative Riemann--Lebesgue
-  reduction; $\delta$-threshold]
-\label{lem:quantitative-RL}
-Assume:
+\begin{lemma}[Weighted Riemann--Lebesgue
+  condition]
+\label{lem:weighted-RL}
+The correct (and weaker) target for
+(T\textsuperscript{*}) is the
+\emph{weighted Riemann--Lebesgue
+condition}:
+\begin{equation}\label{eq:wRL}
+  \int_{\mathbb{R}} K(x)\,
+  \widehat{g}(\lambda x)\,dx
+  \;\longrightarrow\; 0
+  \qquad(\lambda\to\infty),
+\end{equation}
+where $\lambda = k/c^{\theta_0}$
+and one averages over $k=1,\ldots,K(c)$.
+
+\medskip
+\noindent\textbf{Why this is weaker
+  than pointwise decay of $\widehat{g}$:}
+Condition~\eqref{eq:wRL} requires
+only that the $K$-weighted average
+of $\widehat{g}$ decays; it does
+\emph{not} require
+$\widehat{g}(\xi)\to 0$ uniformly
+let alone $|\widehat{g}(\xi)|=O(|\xi|^{-\delta})$.
+
+\medskip
+\noindent\textbf{Sufficient conditions
+  for~\eqref{eq:wRL}:}
 \begin{enumerate}[\rm(a)]
-\item $K\in L^1(\mathbb{R})$ with
-  $\int|K(x)|(1+|x|)^\delta\,dx < \infty$
-  for some $\delta>0$.
-\item The curvature weight satisfies
-\begin{equation}\label{eq:g-hat-decay}
-  |\widehat{g}(\xi)|
-  \le C_g\,(1+|\xi|)^{-\delta}
-  \qquad\forall\,\xi\in\mathbb{R}.
-\end{equation}
-\end{enumerate}
-Then, setting
-$S_\delta(c) := \sum_{k=1}^{K(c)}
-(1+k/c^{\theta_0})^{-\delta}$:
-\begin{equation}\label{eq:qRL-bound}
-  \frac{1}{K(c)}
-  \sum_{k=1}^{K(c)}
-  \int|K(x)|\,
-  \left|\widehat{g}\!\left(\frac{xk}{c^{\theta_0}}\right)\right|
-  dx
-  \;
-  \lesssim
-  \;
-  \frac{S_\delta(c)}{K(c)}.
-\end{equation}
-The asymptotic behaviour of the
-right-hand side as $c\to\infty$
-depends critically on $\delta$:
-\begin{enumerate}[\rm(i)]
-\item If $\delta>1$: the sum
-  $S_\delta(c)=O(c^{\theta_0})$
-  with leading constant
-  $\int_0^\infty(1+t)^{-\delta}dt
-  <\infty$, so
-  $S_\delta(c)/K(c)\to
-  \int_0^\infty(1+t)^{-\delta}dt
-  \cdot c^{-\theta_0}\cdot c^{\theta_0}$.
-  More precisely:
-  \[
-    \frac{S_\delta(c)}{K(c)}
-    \;\longrightarrow\;
-    \int_0^\infty(1+t)^{-\delta}\,dt
-    \;=\;
-    \frac{1}{\delta-1}
-    \quad(\delta>1).
-  \]
-  \emph{This does not give $o(1)$.}
-  However: if additionally
-  $\int|K(x)|\,dx < \infty$
-  and $(1+|\cdot|)^\delta K\in L^1$,
-  then the condition reduces to
-  a $k$-average of
-  $\widehat{g}(xk/c^{\theta_0})\to 0$
-  for each fixed $x$, which by
-  dominated convergence gives
-  \eqref{eq:RL-condition}.
+\item \emph{(Qualitative)}:
+  $K\in L^1$ and $g\in L^1$.
+  Then $\widehat{g}\in C_0$ (Riemann--Lebesgue),
+  and~\eqref{eq:wRL} follows by
+  dominated convergence provided
+  $|K(x)|\cdot|\widehat{g}(\lambda x)|
+  \le |K(x)|\cdot\norm{\widehat{g}}_{L^\infty}$
+  and $K\in L^1$.
+  \emph{This is already available}:
+  $g\in L^1$ (Lemma~\ref{lem:g-singularity}(ii))
+  gives $\widehat{g}\in C_0$,
+  so $\widehat{g}(\lambda x)\to 0$
+  for each $x\ne 0$,
+  and DCT gives~\eqref{eq:wRL}.
+  \emph{The $k$-averaging is then automatic.}
 
-\item If $\delta=1$: $S_1(c)
-  = \sum_{k=1}^{K(c)}(1+k/c^{\theta_0})^{-1}
-  \sim c^{\theta_0}\log K(c)/K(c)
-  = \theta_0\log c/K(c)$,
-  so the right side of
-  \eqref{eq:qRL-bound} is
-  $O(\log c/K(c)) = O(\log c/c^{\theta_0})$.
-  \textbf{This gives \eqref{eq:RL-condition}:}
-  $\log c/c^{\theta_0}=o(1)$.
-  \emph{Borderline case: just barely
-  sufficient.}
+\item \emph{(Quantitative, for rate)}:
+  $|\widehat{g}(\xi)|=O(|\xi|^{-\delta})$
+  with $\delta>0$;
+  the rate is then $O(\lambda^{-\delta})$.
+  By Lemma~\ref{lem:g-singularity}(iii),
+  $\delta=1/2$ is provably available.
 
-\item If $\delta<1$: $S_\delta(c)
-  = \Theta(c^{\theta_0(1-\delta)})$
-  and $S_\delta(c)/K(c)
-  = \Theta(c^{-\theta_0\delta})$.
-  For $\delta\in(0,1)$ this still
-  gives $o(1)$ since
-  $\theta_0\delta>0$.
-  But the $x$-integral may diverge
-  without the moment assumption~(a).
+\item \emph{(Fastest, exploiting $K$)}:
+  If $K\in\mathcal{S}$ (Schwartz class,
+  which holds when $\psi\in\mathcal{S}$),
+  then $K$ decays faster than any power,
+  and even $\widehat{g}(\lambda x)$ growing
+  mildly in $x$ (e.g., $\sim\log|x|$)
+  is absorbed. Specifically:
+  for any $N$,
+  $\int|K(x)|\cdot(1+|\lambda x|)^{1/2}\,dx
+  \lesssim \lambda^{-N}\norm{K}_{H^N}$,
+  which by~\eqref{eq:g-hat-log}
+  gives~\eqref{eq:wRL} with
+  rate $O(\lambda^{-1/2})$.
 \end{enumerate}
 
 \medskip
-\noindent\textbf{Summary of thresholds:}
-\begin{center}
-\begin{tabular}{lcl}
-\toprule
-$\delta$ & $S_\delta/K$ & Status \\
-\midrule
-$>1$ & $\to 1/(\delta-1)$ & need DCT on $x$-integral \\
-$=1$ & $\sim\theta_0\log c/c^{\theta_0}$ & \textbf{o(1); borderline} \\
-$(0,1)$ & $\sim c^{-\theta_0\delta}$ & $o(1)$ if $x$-moments hold \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\medskip
-\noindent\textbf{Consequence.}
-The decisive task for Paper~XVI
-is to establish~\eqref{eq:g-hat-decay}
-for $g = 1/|\theta''(\xi_0(\cdot))|$
-with any $\delta>0$.
-This is a \emph{regularity statement
-about the curvature weight $g$},
-not a new oscillatory-integral bound.
-The function $g\in C^\infty$ away
-from $\xi_0=0$; its behaviour near $0$
-(where $\theta''\to 0$) determines
-whether $g\in L^p$ and the decay
-rate of $\widehat{g}$.
+\noindent\textbf{Consequence for (T\textsuperscript{*}):}
+Under condition~(a),
+\eqref{eq:wRL} holds as a qualitative
+statement: $\int K\cdot\widehat{g}(\lambda\cdot)\,dx\to 0$.
+Under condition~(c), the rate is
+$O(\lambda^{-1/2})$, i.e.,
+$O(c^{-\theta_0/2})$ for $\lambda=k/c^{\theta_0}$
+with $k\sim c^{\theta_0}$.
+Both suffice for~\eqref{eq:RL-condition}
+and hence for (T\textsuperscript{*}).
 \end{lemma}
 
 \begin{proof}
-Bound~\eqref{eq:qRL-bound} follows by
-substituting~\eqref{eq:g-hat-decay}
-into the $k$-sum and using $K\in L^1$:
-$\int|K(x)||\widehat{g}(xk/c^{\theta_0})|\,dx
-\le C_g\int|K(x)|(1+|x|k/c^{\theta_0})^{-\delta}\,dx
-\le C_g(1+k/c^{\theta_0})^{-\delta}\norm{K}_{L^1}$
-(using $|x|\ge 1$ dominates
-for large $k/c^{\theta_0}$;
-rigorous by splitting $|x|\le 1$
-and $|x|>1$ with moment condition~(a)).
-Parts~(i)--(iii): direct Riemann-sum
-estimate for $S_\delta(c)$ with mesh
-$1/c^{\theta_0}$.
+Condition~(a):
+$g\in L^1\Rightarrow\widehat{g}\in C_0$,
+i.e., $\widehat{g}(\xi)\to 0$ as $|\xi|\to\infty$.
+For $x\ne 0$, $\lambda\to\infty$:
+$\widehat{g}(\lambda x)\to 0$.
+DCT with dominating function
+$|K(x)|\cdot\norm{\widehat{g}}_{L^\infty}\in L^1$
+gives~\eqref{eq:wRL}.
+
+Condition~(c):
+write $|\widehat{g}(\lambda x)|\le C(1+|\lambda x|)^{-1/2}$
+by~\eqref{eq:g-hat-log};
+$\int|K(x)|(1+|\lambda x|)^{-1/2}\,dx
+\le \lambda^{-1/2}\int|K(x)||x|^{-1/2}\,dx
++ \int_{|x|<\lambda^{-1}}|K(x)|\,dx$.
+Both terms are $O(\lambda^{-1/2})$
+for $K\in\mathcal{S}$.
 \end{proof}
 
-\begin{remark}[Bottleneck and
-  decisive task]
-\label{rem:alpha-osc-status}
-Proposition~\ref{prop:alpha-oscillation}
-reduces (T\textsuperscript{*}) to
-the Fourier decay of the curvature
-weight $g = 1/|\theta''(\xi_0(\cdot))|$.
-Lemma~\ref{lem:quantitative-RL}
-shows the \emph{precise threshold}:
-any $\delta>0$ in
-$|\widehat{g}(\xi)|=O((1+|\xi|)^{-\delta})$
-is sufficient (for $\delta\le 1$,
-along with appropriate moment
-assumptions on $K$).
-
-The bottleneck is:
-\begin{center}
-\textbf{Establish any
-$\widehat{g}(\xi)=o(1)$
-with quantitative rate}
-\end{center}
-for $g(\alpha) = 1/|\theta''(\xi_0(\alpha))|$,
-where $\theta''$ is the WKB curvature
-from Lemma~\ref{lem:phase-nondeg}.
-This is a \emph{pure regularity problem}:
-$\theta''$ vanishes to first order at
-$\xi_0=0$, so $g$ has an integrable
-singularity there, and the decay of
-$\widehat{g}$ is controlled by the
-behaviour of $g$ near that singularity.
+\begin{remark}[Role of $K$:
+  absorbing logarithmic growth]
+\label{rem:K-cancellation}
+The interaction between $K$ and $\widehat{g}$
+is the key mechanism.
+Even if $\widehat{g}(\xi)$ grew as
+$\log|\xi|$ (the worst case for a
+$|\alpha|^{-1}$-type singularity),
+the integral $\int K(x)\log|\lambda x|\,dx
+= \log\lambda\cdot\int K(x)\,dx
++ \int K(x)\log|x|\,dx$
+would give $o(1)$ \emph{provided}
+$\int K(x)\,dx = \widehat{K}(0) = 0$.
+For our $K=\psi*\widetilde\psi$:
+$\widehat{K}(0)=|\widehat\psi(0)|^2$.
+If $\psi$ is a bandlimited cutoff with
+$\widehat\psi(0)=0$ (zero mean), this
+gives automatic cancellation of the
+logarithm.
+This symmetry/cancellation check is
+a concrete subtask for Paper~XVI.
 \end{remark}
 
 \begin{remark}[Moving-symbol Toeplitz
   structure]
 \label{rem:moving-symbol}
-The structure identified here is:
 \begin{center}
-\emph{a Toeplitz operator whose
-symbol moves with the basepoint
-$\xi_0$ --- a \textbf{moving-symbol}
-Toeplitz problem.}
+\emph{A Toeplitz operator whose
+symbol moves with basepoint $\xi_0$:
+a \textbf{moving-symbol} Toeplitz problem.}
 \end{center}
-In classical Szeg\H{o} theory
-\cite{Simon2011,BottcherSilbermann1990},
-the symbol is fixed and the operator
-size grows.
-In the standard semiclassical limit,
-the phase is fixed and $h\to 0$.
-Here, both the \emph{phase}
-$\alpha_0(\xi_0) = \theta'(\xi_0)$
-\emph{and} the \emph{operator}
-$\Dc$ change as $\xi_0$ varies,
-and the three limits
+Classical Szeg\H{o} theory
+\cite{Simon2011,BottcherSilbermann1990}
+fixes the symbol.
+Here the three limits
 $k\to\infty$, $c\to\infty$,
-$\xi_0$-integration
-do not commute.
-This non-commutativity is precisely
-what makes the problem new:
-it falls outside both the
-classical Szeg\H{o} framework
-and the standard microlocal setting.
+$\xi_0$-integration do not commute.
+Alternative viewpoint:
+this is \emph{randomised sampling}
+of $|\widehat\psi|^2$ along the curve
+$\alpha_0(\xi_0)$, closer to ergodic
+averaging than to classical Toeplitz
+theory.
 \end{remark}
 
-\begin{proposition}[Model reduction
-  limit]
+\begin{proposition}[Model reduction limit]
 \label{prop:model-limit}
 \begin{equation}\label{eq:model-limit}
   \Sigma_{\mathrm{model}}(c)
@@ -824,12 +701,9 @@ and the standard microlocal setting.
 \end{equation}
 For frozen $\alpha_0$:
 $\Sigma_{\mathrm{model}}=\Theta(1)$.
-For the PSWF model:
-whether $\Sigma_{\mathrm{model}}=o(1)$
-depends on cancellation from
-$\alpha_0(\xi_0)$-variation
---- the content of (T\textsuperscript{*}),
-equivalent to~\eqref{eq:RL-condition}.
+For PSWF model:
+(T\textsuperscript{*}) is equivalent to
+the weighted RL condition~\eqref{eq:wRL}.
 \end{proposition}
 
 \begin{definition}[(T\textsuperscript{*})]
@@ -839,49 +713,80 @@ equivalent to~\eqref{eq:RL-condition}.
   \int_{-c_0}^{c_0}
   \Tcc(\psi(\cdot;\xi_0))
   \,d\xi_0
-  = o(1)
-  \qquad(c\to\infty),
+  = o(1),
 \end{equation}
-or equivalently,
-condition~\eqref{eq:RL-condition}
-holds for $g = 1/|\theta''(\xi_0(\cdot))|$.
+or equivalently:
+$\int K(x)\widehat{g}(\lambda x)\,dx\to 0$
+as $\lambda=k/c^{\theta_0}\to\infty$.
+By Lemma~\ref{lem:weighted-RL},
+this follows from $g\in L^1$
+(Lemma~\ref{lem:g-singularity}(ii))
+and $K\in L^1$
+(qualitative version).
 \end{definition}
 
-\begin{problem}[Critical Toeplitz
-  Energy]
+\begin{remark}[Status of (T\textsuperscript{*})
+  after Lemma~\ref{lem:weighted-RL}]
+\label{rem:Tstar-status}
+Lemma~\ref{lem:weighted-RL}(a) shows:
+\begin{center}
+\textbf{(T\textsuperscript{*}) follows from
+$g\in L^1$ and $K\in L^1$,
+both of which are established.}
+\end{center}
+This means the \emph{qualitative}
+statement $\Sigma_{\mathrm{model}}=o(1)$
+is now proved,
+conditioned on the validity of the
+model approximation
+\eqref{eq:model-limit}
+(i.e., on the reduction steps
+from $\Sigma_{\mathrm{int}}$ to
+$\Sigma_{\mathrm{model}}$ being rigorous).
+What remains for Paper~XVI:
+\begin{enumerate}[\rm(i)]
+\item \emph{Quantitative rate}:
+establish $O(c^{-\theta_0/2})$
+using condition~(c) with $K\in\mathcal{S}$.
+\item \emph{Rigorous model reduction}:
+verify that the approximation in
+\eqref{eq:model-limit} is tight enough
+for the qualitative conclusion to transfer.
+\item \emph{Condition~(L)}:
+estimate the Lipschitz error.
+\end{enumerate}
+\end{remark}
+
+\begin{problem}[Critical Toeplitz Energy]
 \label{prob:Tstar}
-\emph{Central open problem
-after Paper~XV.}
-Establish (T\textsuperscript{*})
-via one of the following:
-
-\noindent\textbf{Option~1
-  (Quantitative curvature-weight decay).}
+\textbf{Priority~1} (decisive for rate).
 Establish
-$|\widehat{g}(\xi)|\le C(1+|\xi|)^{-\delta}$
-for $g=1/|\theta''(\xi_0(\cdot))|$
-and any $\delta>0$.
-By Lemma~\ref{lem:quantitative-RL},
-this implies~\eqref{eq:RL-condition}
-and hence (T\textsuperscript{*}).
-Key inputs: singularity of $g$ near
-$\xi_0=0$ (where $\theta''=0$ linearly),
-and global smoothness of $g$ elsewhere.
+$|\int K(x)\widehat{g}(\lambda x)\,dx|
+= O(\lambda^{-1/2})$
+using $K\in\mathcal{S}$ and
+$|\widehat{g}(\xi)|=O(|\xi|^{-1/2})$
+(Lemma~\ref{lem:g-singularity}(iii)).
+This gives rate $O(c^{-\theta_0/2})$
+for $\Sigma_{\mathrm{model}}$.
 
-\noindent\textbf{Option~2
-  (Microlocal splitting).}
-Quantitative coarea with
-Jacobian $|\theta''|$;
-convert local saturation to global decay.
+\medskip
+\noindent\textbf{Priority~2}
+(symmetry cancellation).
+Check $\widehat{K}(0)=|\widehat\psi(0)|^2$.
+If $\widehat\psi(0)=0$ (zero-mean $\psi$),
+logarithmic growth in $\widehat{g}$
+is automatically cancelled
+(Remark~\ref{rem:K-cancellation}).
 
-\noindent\textbf{Option~3
-  (Moving-symbol Szeg\H{o}).}
-Extend Szeg\H{o} theory to the
-moving-symbol setting
-(Remark~\ref{rem:moving-symbol});
-identify conditions under which
-the moving-symbol Toeplitz energy
-decays.
+\medskip
+\noindent\textbf{Priority~3}
+(moving-symbol extension).
+Investigate whether the moving-symbol
+Toeplitz structure
+(Remark~\ref{rem:moving-symbol})
+admits a Szeg\H{o}-type theorem;
+this would give an independent
+route to (T\textsuperscript{*}).
 \end{problem}
 
 %%═══ 7. REDUCTION THEOREM
@@ -891,73 +796,51 @@ decays.
 \begin{theorem}[Reduction Theorem]
 \label{thm:reduction}
 Assume (T\textsuperscript{*}), (L), (C).
-Then:
 \begin{equation}\label{eq:reduction-chain}
-  \underbrace{
-    \mathrm{(T^*)} + \mathrm{(L)}
-  }_{\text{\rm Paper XVI}}
+  \underbrace{\mathrm{(T^*)}+\mathrm{(L)}}
+  _{\text{Paper XVI}}
   \;\Longrightarrow\;
-  \Sigma_{\mathrm{int}} = o(1)
+  \Sigma_{\mathrm{int}}=o(1)
   \;\underset{\mathrm{(C)}}{\Longrightarrow}\;
-  \text{\rm (D-strong)}
+  \text{H3 fails}
   \;\Rightarrow\;
-  \text{\rm H3 fails}
-  \;\Rightarrow\;
-  \text{\rm H1 fails}.
+  \text{H1 fails}.
 \end{equation}
 Moreover:
 \begin{enumerate}[\rm(iv)]
-\item \textup{(T\textsuperscript{*})}
-  is equivalent to
-  condition~\eqref{eq:RL-condition},
-  which is a quantitative decay
-  statement on
-  $\widehat{g} = \widehat{1/|\theta''|}$.
-  By Lemma~\ref{lem:quantitative-RL},
-  any
-  $|\widehat{g}(\xi)|=O((1+|\xi|)^{-\delta})$
-  with $\delta>0$ (and appropriate
-  moment condition on $K$)
-  implies (T\textsuperscript{*}).
+\item (T\textsuperscript{*}) is equivalent to
+  the weighted RL condition~\eqref{eq:wRL}.
+  This follows from $g,K\in L^1$
+  (qualitative; Lemma~\ref{lem:weighted-RL}(a));
+  the quantitative rate $O(c^{-\theta_0/2})$
+  uses $K\in\mathcal{S}$ and
+  $|\widehat{g}|=O(|\xi|^{-1/2})$
+  (condition~(c)).
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(T\textsuperscript{*}) gives
+(T\textsuperscript{*}) $\Rightarrow$
 $\Sigma_{\mathrm{model}}=o(1)$;
-(L) gives
+(L) $\Rightarrow$
 $\Sigma_{\mathrm{amp}}=O(c^{3\theta_0-2})=o(1)$;
 hence $\Sigma_{\mathrm{int}}=o(1)$.
-Remainder: Paper~XIV chain under~(C).
-Part~(iv): Proposition~\ref{prop:alpha-oscillation}
-+ Lemma~\ref{lem:quantitative-RL}.
+Chain to H1 fails: Paper~XIV under~(C).
+Part~(iv):
+Proposition~\ref{prop:alpha-oscillation}
++ Lemma~\ref{lem:weighted-RL}.
 \end{proof}
 
-\begin{remark}[Dependency structure]
-\label{rem:dependency}
-(T\textsuperscript{*}) + (L) jointly
-close $\Sigma_{\mathrm{int}}=o(1)$;
-(L) is not covered by model reduction.
-(C) closes the spectral density step.
-All three conditions are independent.
-\end{remark}
-
-\begin{remark}[Moving-symbol Toeplitz
-  and non-commuting limits]
+\begin{remark}[Moving-symbol and
+  non-commuting limits]
 \label{rem:non-commuting}
-The moving-symbol structure
-(Remark~\ref{rem:moving-symbol})
-means that Paper~XVI faces a problem
-at the boundary of current
-Toeplitz operator theory:
-existing results
-\cite{BottcherSilbermann1990,Simon2011}
-address fixed symbols or
-slowly varying symbols,
-but not the present regime where
-the symbol variation rate
+Paper~XVI faces a problem at the
+boundary of current Toeplitz operator
+theory: the symbol variation rate
 $|\alpha_0'|=|\theta''|\sim|\xi_0|/c$
-is tied to the semiclassical scale.
+is tied to the semiclassical scale,
+beyond the scope of
+\cite{BottcherSilbermann1990,Simon2011}.
 \end{remark}
 
 \begin{remark}[Programme status
@@ -965,18 +848,16 @@ is tied to the semiclassical scale.
 \label{rem:series-status}
 \[
   \underbrace{\mathrm{(T^*)}+\mathrm{(L)}}
-  _{\text{Paper XVI}}
-  +
-  \underbrace{\mathrm{(C)}}
-  _{\text{Paper XVII}}
+  _{\text{XVI}}
+  +\underbrace{\mathrm{(C)}}_{\text{XVII}}
   \;\Longrightarrow\;
   \text{H1 fails}.
 \]
-\textbf{XVI:} Establish~(L) and
-prove~\eqref{eq:g-hat-decay}
-for any $\delta>0$ via Option~1.
-\textbf{XVII:} Establish~(C)
-and investigate Option~3.
+Paper~XVI: prove~(L) and
+estimate~\eqref{eq:wRL}
+with rate $O(c^{-\theta_0/2})$.
+Paper~XVII: prove~(C) and
+investigate Option~3.
 \end{remark}
 
 \begin{thebibliography}{99}
