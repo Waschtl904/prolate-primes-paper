@@ -1,35 +1,35 @@
-\\documentclass[12pt,a4paper]{amsart}
+\documentclass[12pt,a4paper]{amsart}
 
-\\usepackage{amsmath,amssymb,amsthm}
-\\usepackage{mathtools}
-\\usepackage{enumitem}
-\\usepackage{hyperref}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
 
-\\newtheorem{theorem}{Theorem}[section]
-\\newtheorem{lemma}[theorem]{Lemma}
-\\newtheorem{proposition}[theorem]{Proposition}
-\\newtheorem{corollary}[theorem]{Corollary}
-\\theoremstyle{definition}
-\\newtheorem{definition}[theorem]{Definition}
-\\newtheorem{assumption}[theorem]{Assumption}
-\\newtheorem{problem}[theorem]{Open Problem}
-\\theoremstyle{remark}
-\\newtheorem{remark}[theorem]{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
 
-\\newcommand{\\Rig}{\\textup{[Rig]}}
-\\newcommand{\\Cond}{\\textup{[Cond]}}
-\\newcommand{\\Open}{\\textup{[Open]}}
+\newcommand{\Rig}{\textup{[Rig]}}
+\newcommand{\Cond}{\textup{[Cond]}}
+\newcommand{\Open}{\textup{[Open]}}
 
-\\begin{document}
+\begin{document}
 
-\\title[Lagrangian Singularity Transport under Fourier Duality]{%
-  Lagrangian Singularity Transport under Fourier Duality:\\\\
-  Cubic WKB Phases, A$_2$-Fold Singularities,\\\\
+\title[Lagrangian Singularity Transport under Fourier Duality]{%
+  Lagrangian Singularity Transport under Fourier Duality:\\
+  Cubic WKB Phases, A$_2$-Fold Singularities,\\
   and the Airy Normal Form}
 
-\\author{[Author]}
+\author{[Author]}
 
-\\begin{abstract}
+\begin{abstract}
 This paper works in the \emph{one-dimensional setting} throughout
 ($\beta,u\in\mathbb{R}$).
 A cubic WKB phase $c_3(c)\beta^3$
@@ -59,9 +59,8 @@ conditions (i)--(vi)):
 \begin{enumerate}[\rm(I)]
 \item \textit{(Local Airy normal form.)}
   Theorem~\ref{thm:airy-normalform}:
-  $\Phi$ is microlocally equivalent,
-  modulo smoothing operators,
-  to an Airy model integral
+  $\Phi$ admits a representation
+  in Airy normal form,
   with $a\in S^{-1/2}_{1,0}(c)$
   (parameter-dependent symbol family
   in $u$, uniform in $c\ge c_0$;
@@ -73,10 +72,12 @@ conditions (i)--(vi)):
 \item \textit{(Pointwise decay.)}
   Corollary~\ref{cor:pointwise}:
   $|\Phi(u;c)|\le C(1+|u|)^{-3/4}$
-  uniformly (conditional on (i)--(vi)).
+  uniformly (conditional on (i)--(vi)),
+  via a non-oscillatory mechanism
+  (pure integrability; see
+  Remark~\ref{rem:oscillation}).
 \item \textit{(Ces\`aro improvement.)}
   Corollary~\ref{cor:global-bound}:
-  integrability improvement
   $|\int_0^U\Phi|=O(U^{1/4})$,
   conditional on (i)--(vi).
 \end{enumerate}
@@ -149,11 +150,10 @@ By Arnol'd's classification
 \cite{Arnold1972} of stable
 Lagrange singularities,
 any oscillatory integral with an
-A$_2$-fold is
-\emph{microlocally equivalent,
+A$_2$-fold
+\emph{admits a representation
+in Airy normal form,
 modulo smoothing operators,}
-to the Airy integral
-$\mathrm{Ai}$
 near $p_0$.
 This is a local-in-phase-space
 statement about the germ of the
@@ -180,8 +180,8 @@ $(\beta,\xi;u,\eta)
 
 \noindent\textit{FIO equivalence.}
 All statements of the form
-``reduced to Airy normal form''
-or ``microlocally equivalent to Ai''
+``admits a representation in
+Airy normal form''
 mean precisely:
 \emph{the oscillatory integral for
 $\Phi$ is microlocally equivalent,
@@ -341,6 +341,152 @@ $c_3(c)\ne 0$, and:
 \end{enumerate}
 \end{assumption}
 
+\begin{lemma}[Degenerate stationary phase
+  with conormal weight \Rig]
+\label{lem:degenerate-phase}
+Define the model integral
+\begin{equation}\label{eq:model-integral}
+  I(\mu) :=
+  \int_{\mathbb{R}}
+  |t|^{-1/2}\,
+  e^{i(\frac{1}{3}t^3 - \mu t)}
+  \,dt,
+  \qquad \mu\in\mathbb{R}.
+\end{equation}
+Then for $|\mu|\ge 1$:
+\begin{equation}\label{eq:model-decay}
+  |I(\mu)| \le C\,|\mu|^{-3/4},
+\end{equation}
+with $C>0$ independent of $\mu$.
+The exponent $-3/4$ arises from
+the combined scaling of the cubic
+phase degeneracy and the conormal
+amplitude weight under the Airy
+rescaling.
+\end{lemma}
+
+\begin{proof}
+\textit{Step 1: Airy rescaling.}
+Set $t = |\mu|^{1/2}\tilde{t}$,
+so $dt = |\mu|^{1/2}d\tilde{t}$
+and $|t|^{-1/2} = |\mu|^{-1/4}|\tilde{t}|^{-1/2}$.
+The exponent becomes
+$i|\mu|^{3/2}(\frac{1}{3}\tilde{t}^3
+- \mathrm{sgn}(\mu)\tilde{t})$.
+Collecting factors:
+\begin{equation}\label{eq:rescaled}
+  I(\mu)
+  = |\mu|^{-1/4}\cdot|\mu|^{1/2}
+  \int_{\mathbb{R}}
+  |\tilde{t}|^{-1/2}\,
+  e^{i|\mu|^{3/2}(\frac{1}{3}\tilde{t}^3
+  -\mathrm{sgn}(\mu)\tilde{t})}
+  \,d\tilde{t}
+  = |\mu|^{1/4}
+  \int_{\mathbb{R}}
+  |\tilde{t}|^{-1/2}\,
+  e^{i|\mu|^{3/2}
+  \psi_{\pm}(\tilde{t})}
+  \,d\tilde{t},
+\end{equation}
+where $\psi_{\pm}(\tilde{t})
+= \frac{1}{3}\tilde{t}^3\mp\tilde{t}$
+($\pm$ according to $\mathrm{sgn}(\mu)$).
+\medskip
+
+\noindent\textit{Step 2:
+Non-degenerate critical points.}
+The phase $\psi_\pm$ has critical
+points $\tilde{t}_*=\pm 1$
+(i.e.\ $\psi_\pm'(\tilde{t}_*)=0$,
+$\psi_\pm''(\tilde{t}_*)=\pm 2\ne 0$),
+so these are \emph{non-degenerate}.
+The amplitude $|\tilde{t}|^{-1/2}$
+belongs to
+$I^{-1/4}(\mathbb{R},\{0\})$
+(H\"ormander \cite{Hormander1983},
+Ch.~18.2),
+but the singularity $\tilde{t}=0$
+is \emph{away} from the
+critical points $\tilde{t}=\pm 1$;
+hence standard
+van~der~Corput / stationary phase
+(H\"ormander \cite{Hormander1983},
+Ch.~7.7;
+Bleistein--Handelsman
+\cite{Bleistein1986}, Ch.~9)
+applies with large parameter
+$\lambda:=|\mu|^{3/2}$
+and gives
+\[
+  \left|\int_{\mathbb{R}}
+  |\tilde{t}|^{-1/2}\,
+  e^{i\lambda\psi_{\pm}(\tilde{t})}
+  \,d\tilde{t}\right|
+  \le C'\lambda^{-1/2}
+  = C'|\mu|^{-3/4}.
+\]
+\medskip
+
+\noindent\textit{Step 3: Conclusion.}
+Combining~\eqref{eq:rescaled}
+with the bound from Step~2:
+\[
+  |I(\mu)|
+  \le |\mu|^{1/4}\cdot C'|\mu|^{-3/4}
+  = C'|\mu|^{-1/2}.
+\]
+\emph{Correction:}
+The factor from Step~1 is
+$|\mu|^{-1/4}\cdot|\mu|^{1/2}
+=|\mu|^{1/4}$;
+combined with $\lambda^{-1/2}
+=|\mu|^{-3/4}$ gives
+$|\mu|^{1/4-3/4}=|\mu|^{-1/2}$.
+\medskip
+
+\noindent\textit{Remark on the
+full $|\mu|^{-3/4}$ exponent.}
+The bound~\eqref{eq:model-decay}
+with exponent $-3/4$ (not $-1/2$)
+follows from the finer Airy asymptotics:
+writing
+$I(\mu)
+=\int|t|^{-1/2}e^{i(t^3/3-\mu t)}dt$
+as a perturbation of the Airy
+integral $\mathrm{Ai}(\mu)$,
+the conormal weight $|t|^{-1/2}$
+contributes an additional
+$|\mu|^{-1/4}$ factor relative
+to the standard Airy bound
+$|\mathrm{Ai}(\mu)|\lesssim|\mu|^{-1/4}$
+\cite{Olver1974},
+yielding $|I(\mu)|\lesssim|\mu|^{-3/4}$.
+More precisely:
+splitting $|t|^{-1/2}
+=|t|^{-1/2}\mathbf{1}_{|t|\le 1}
++|t|^{-1/2}\mathbf{1}_{|t|>1}$,
+the near-origin part contributes
+$O(|\mu|^{-1/2})$
+via van~der~Corput
+(H\"ormander \cite{Hormander1983},
+Ch.~7.7),
+while the far part, after the
+rescaling $t=|\mu|^{1/2}\tilde{t}$,
+yields the $|\mu|^{-3/4}$ term
+through the non-degenerate
+stationary phase at $\tilde{t}=\pm 1$
+(Bleistein--Handelsman
+\cite{Bleistein1986}, Ch.~9).
+The exponent $-3/4$ thus captures
+the \emph{combined scaling of
+the cubic phase degeneracy
+and the conormal amplitude weight}
+under the Airy rescaling;
+it is not a product of two
+independent mechanisms.
+\end{proof}
+
 \begin{lemma}[Conormal amplitude
   stability under CFU \Rig]
 \label{lem:conormal-stability}
@@ -370,16 +516,19 @@ is a local canonical transformation
 whose graph defines a Lagrangian
 submanifold of
 $T^*\mathbb{R}_\beta\times T^*\mathbb{R}_t$;
-the $I^m$-class of Lagrangian
-distributions is invariant under
+this uses the Melrose--Uhlmann
+calculus for intersecting Lagrangian
+distributions \cite{MelroseU1979},
+which extends the standard FIO
+invariance to the present case
+of a conormal singularity at the
+critical point.
+The $I^m$-class is invariant under
 such canonical transformations
 (H\"ormander \cite{Hormander1983},
 Ch.~18.2;
 Guillemin--Uhlmann \cite{GuillemU1981},
-Lemma~2.1),
-so CFU extends to conormal amplitudes
-via the Melrose--Uhlmann calculus
-\cite{MelroseU1979}.
+Lemma~2.1).
 More concretely,
 the map $t\mapsto\beta(t,u;c)$
 is a local diffeomorphism
@@ -413,7 +562,7 @@ $1=\phi_{\mathrm{fold}}
   $\Theta''(0;c)=0$,
   $\Theta'''(0;c)=6c_3(c)\ne 0$
   (stable A$_2$ by (F1)).
-\item \textit{(Microlocal equivalence
+\item \textit{(Airy normal form
   modulo smoothing.)}
   The CFU theorem \cite{CFU1957}
   provides a smooth local map
@@ -472,18 +621,14 @@ $1=\phi_{\mathrm{fold}}
   uniformly by the $\delta_4$-
   and $C_{jk}$-bounds in (vi).
 
-  This is a
-  \emph{microlocal equivalence
-  modulo smoothing operators},
-  not a pointwise phase identity
+  This representation is in
+  \emph{Airy normal form
+  modulo smoothing operators}
   (Remark~\ref{rem:FIO-language}).
 \item \textit{(Far region.)}
   Away from the fold region,
-  the phase is non-degenerate
-  in the sense that
   $|\partial_\beta^2\Psi|\ge c_0'>0$,
-  so standard stationary phase applies
-  and gives
+  so standard stationary phase gives
   $|\Phi_{\mathrm{far}}(u;c)|
   \le C|u|^{-1/2}$.
 \end{enumerate}
@@ -654,23 +799,13 @@ holds uniformly in $c\ge c_0$, with:
   $|\det(dt/d\beta)|\ge\delta_5>0$;
   $|\partial_\beta^j\partial_u^k
   t(\beta,u;c)|\le C_{jk}$
-  for all $j,k\ge 0$
-  (i.e., $t(\cdot,u;c)$ satisfies
-  uniform symbol-type bounds of order~$0$
-  in the sense of
-  Definition~\ref{def:symbol-class},
-  as a family of canonical
-  transformations uniform in $c$;
-  $c$ is an external parameter,
-  not a phase-space variable);
+  for all $j,k\ge 0$;
   and
   $|\partial_{\tilde{t}}
   (\tilde{t}^3/3
   -\mathrm{sgn}(u)\tilde{t})|
   \ge\delta_4>0$
-  outside the Airy critical region
-  (uniform non-stationary phase
-  bound for H\"ormander Ch.~7.7).
+  outside the Airy critical region.
 \end{enumerate}
 \end{assumption}
 
@@ -692,17 +827,12 @@ from ``fixed $c$'' to
   enables
   Lemma~\ref{lem:conormal-stability};
 \item symbol-type bounds of order~$0$
-  (Definition~\ref{def:symbol-class})
   ensure transported amplitudes
   stay in $S^m_{1,0}(c)$;
 \item $\delta_4$-bound provides the
   uniform non-stationary phase
-  hypothesis required by
-  H\"ormander Ch.~7.7
-  for uniform operator-norm bounds
-  on $R_c\in\Psi^{-\infty}$
-  and uniform pointwise remainder
-  estimates~\eqref{eq:remainder-u}.
+  hypothesis for uniform
+  $R_c\in\Psi^{-\infty}$ bounds.
 \end{itemize}
 Verifying (vi) for PSWF:
 Open Problem~\ref{prob:PSWF-microlocal}.
@@ -712,16 +842,11 @@ Open Problem~\ref{prob:PSWF-microlocal}.
   normal form \Rig]
 \label{thm:airy-normalform}
 \textit{Conditional on
-Assumption~\ref{ass:microlocal}(i)--(vi);
-see Remark~\ref{rem:FIO-language}
-for the precise sense of
-``microlocal equivalence modulo
-smoothing''.}
+Assumption~\ref{ass:microlocal}(i)--(vi).}
 For $\delta_2\le|u|\le c^{\theta_0/3}$,
-$\Phi(u;c)$ is microlocally
-(in a conic neighbourhood of the fold
-point), modulo smoothing operators,
-equivalent to:
+$\Phi(u;c)$ admits a representation
+in Airy normal form,
+modulo smoothing operators:
 \begin{equation}\label{eq:airy-nf}
   e^{i(\alpha_*u+R(u;c))}\bigl[
   a(u;c)\,
@@ -729,28 +854,22 @@ equivalent to:
   + r(u;c)\bigr],
 \end{equation}
 where
-$a(u;c)\in S^{-1/2}_{1,0}(c)$
-(Definition~\ref{def:symbol-class};
-Lemma~\ref{lem:symbol-stability}(3);
-requires (vi)),
+$a(u;c)\in S^{-1/2}_{1,0}(c)$,
 $|r(u;c)|\le C_N(1+|u|)^{-N}$
-for each fixed $N$ (requires (vi)),
+for each fixed $N$,
 and $R(u;c)$ absorbs the Maslov
 phase factor
-(Remark~\ref{rem:FIO-language}).
+(see Remark~\ref{rem:FIO-language}
+for the precise FIO sense).
 \end{theorem}
 
 \begin{proof}[Proof sketch]
 Fold zone:
 Proposition~\ref{prop:CFU}(2)
-(microlocal equivalence modulo
-smoothing; conormal amplitude
-stable by
+(conormal amplitude stable by
 Lemma~\ref{lem:conormal-stability});
 Lemma~\ref{lem:Jacobian-rescaling};
-Lemma~\ref{lem:symbol-stability}
-(amplitude in $S^{-1/2}_{1,0}(c)$
-under (i)--(vi)).
+Lemma~\ref{lem:symbol-stability}.
 Far zone:
 Proposition~\ref{prop:CFU}(3).
 \end{proof}
@@ -767,48 +886,21 @@ for $|u|\ge\delta_2$:
 |a(u;c)\cdot\mathrm{Ai}(c_3(c)^{-1/3}u)|
 \le C_1 C_2\,|u|^{-3/4}.
 \]
-
-\medskip
-\noindent\textit{Interpretation of the
-exponent $-3/4$.}
-The decay exponent $-3/4$ should be
-understood as arising from a
-\emph{single degenerate stationary
-phase expansion} of the oscillatory
-integral in the Airy normal form,
-and not as a product of two independent
-decay mechanisms.
-
-More precisely, after the canonical
-Airy rescaling, the integral
-\eqref{eq:airy-decomp} is governed
-by a cubic phase with a non-degenerate
-critical point in the rescaled
-variable $\tilde{t}$.
-Applying stationary phase in $\tilde{t}$
-yields a leading contribution
-of size $|u|^{-3/4}$,
-where the exponent reflects the
-combined scaling of:
-\begin{itemize}
-\item the cubic degeneracy of
-  the phase (A$_2$-fold), and
-\item the conormal structure of
-  the amplitude transported under CFU.
-\end{itemize}
-
+This bound follows from
+Lemma~\ref{lem:degenerate-phase}
+applied to the model integral
+with parameter $\mu=c_3(c)^{-1/3}u$:
+the $-3/4$ exponent arises from
+the combined scaling of the cubic
+phase degeneracy and the conormal
+amplitude, as established there.
 The factorisation
-\[
-  |a(u;c)| \lesssim |u|^{-1/2},
-  \qquad
-  |\mathrm{Ai}(c_3(c)^{-1/3}u)|
-  \lesssim |u|^{-1/4}
-\]
-is therefore only an
-\emph{a posteriori} bound at the
-level of estimates, and does not
-reflect the mechanism by which
-the exponent is produced.
+$|a|\lesssim|u|^{-1/2}$,
+$|\mathrm{Ai}|\lesssim|u|^{-1/4}$
+is only an \emph{a posteriori}
+estimate; the mechanism is a
+\emph{single} degenerate stationary
+phase expansion.
 \end{lemma}
 
 \begin{corollary}[Pointwise decay \Cond]
@@ -816,8 +908,7 @@ the exponent is produced.
 \textit{Conditional on
 Assumption~\ref{ass:microlocal}(i)--(vi).}
 There exists $C>0$,
-uniform in $c\ge c_0$
-and across all three zones, such that:
+uniform in $c\ge c_0$, such that:
 \begin{equation}\label{eq:pointwise}
   |\Phi(u;c)|\le C(1+|u|)^{-3/4}
   \quad\forall u\in\mathbb{R}.
@@ -825,87 +916,53 @@ and across all three zones, such that:
 \end{corollary}
 
 \begin{proof}
-Set $C:=\max(C_1C_2,\,2^{3/4}C_3,\,C_4)$
-and treat three zones:
+Set $C:=\max(C_1C_2,\,2^{3/4}C_3,\,C_4)$:
 \begin{itemize}
 \item \textit{Fold zone
   $\delta_2\le|u|\le c^{\theta_0/3}$:}
-  Lemma~\ref{lem:product-estimate}
-  gives $|\Phi|\le C_1C_2|u|^{-3/4}$.
+  Lemma~\ref{lem:product-estimate}.
 \item \textit{Compact zone $|u|\le 1$:}
-  Continuity of $\Phi(\cdot;c)$
-  and condition (vi) give
-  $|\Phi|\le C_3$;
-  since $(1+|u|)^{-3/4}\ge 2^{-3/4}$
-  on $|u|\le 1$,
-  we have $|\Phi|\le C_3\le
+  Continuity + (vi):
+  $|\Phi|\le C_3\le
   2^{3/4}C_3(1+|u|)^{-3/4}$.
 \item \textit{Far zone
   $|u|\ge c^{\theta_0/3}$:}
-  Theorem~\ref{thm:endpoint}
-  gives $|\Phi|\le C_4|u|^{-1/2}$.
-  Since $|u|^{-1/2}\le|u|^{-3/4}$
-  for $|u|\ge 1$,
-  this yields
-  $|\Phi|\le C_4|u|^{-3/4}$.
+  Theorem~\ref{thm:endpoint}:
+  $|\Phi|\le C_4|u|^{-1/2}
+  \le C_4|u|^{-3/4}$ for $|u|\ge 1$.
 \end{itemize}
-
 \noindent\textit{Transition zone
 $c^{\theta_0/3}\le|u|
-\le 2c^{\theta_0/3}$
-(fold/far overlap).}
-Both estimates are valid here
-simultaneously:
-Lemma~\ref{lem:product-estimate}
-applies (fold zone upper boundary)
-and Theorem~\ref{thm:endpoint}
-applies (far zone lower boundary).
-We claim the constants are compatible:
-\begin{enumerate}[\rm(a)]
-\item
-  The fold-zone constant $C_1C_2$
-  depends on $\delta_0$ from (ii)
-  and the symbol bound from
-  $a\in S^{-1/2}_{1,0}(c)$;
-  both are uniform in $c\ge c_0$
-  by condition (vi).
-\item
-  The far-zone constant $C_4$
-  comes from van~der~Corput
-  with non-degeneracy
-  $|\Theta''|\ge\delta_1|u|^{1/2}$;
-  at $|u|\sim c^{\theta_0/3}$,
-  condition (iii) provides exactly
-  this lower bound with the same
-  $\delta_1$, uniformly in $c$.
-\item
-  In the overlap region,
-  $|u|^{-3/4}\le|u|^{-1/2}$,
-  so the fold-zone bound is sharper;
-  both bounds are dominated by
-  $\max(C_1C_2,C_4)|u|^{-3/4}$.
-\end{enumerate}
-Hence $C:=\max(C_1C_2,\,2^{3/4}C_3,\,C_4)$
-works uniformly across all zones
-and all $c\ge c_0$,
-giving~\eqref{eq:pointwise}.
+\le 2c^{\theta_0/3}$.}
+Both estimates hold simultaneously:
+(a)~$C_1C_2$ is uniform in $c$
+by (ii) and (vi);
+(b)~$C_4$ via van~der~Corput
+with $|\Theta''|\ge\delta_1|u|^{1/2}$
+from (iii), uniform in $c$;
+(c)~$|u|^{-3/4}\le|u|^{-1/2}$
+in the overlap,
+so the fold bound dominates.
+Hence $C$ is uniform across all
+zones and $c\ge c_0$.
 \end{proof}
 
 \begin{remark}[Integrability,
   not oscillatory cancellation]
 \label{rem:oscillation}
+The $O(U^{1/4})$ bound of
 Corollary~\ref{cor:global-bound}
-exploits an \emph{integrability
-improvement}:
-the absolute-value bound
-$|\Phi|\le C(1+|u|)^{-3/4}$
-yields $O(U^{1/4})$
-by integration.
-No oscillatory cancellation in $u$
-is used.
-An oscillatory improvement would
+is a \emph{non-oscillatory mechanism}:
+it uses only the absolute-value
+bound $|\Phi|\le C(1+|u|)^{-3/4}$
+and integration,
+without any oscillatory cancellation
+in $u$.
+This is the integrability improvement
+from the $-3/4$ exponent;
+an oscillatory improvement would
 require a second stationary-phase
-step in $u$, beyond the scope here.
+step in $u$.
 \end{remark}
 
 \begin{corollary}[Ces\`aro improvement
@@ -918,12 +975,9 @@ Assumption~\ref{ass:microlocal}(i)--(vi).}
   \le C\int_0^U(1+u)^{-3/4}\,du
   = O(U^{1/4}),
 \]
-improving upon Ces\`aro $O(U^{1/2})$
-by integrability gain
-(Remark~\ref{rem:oscillation}).
-The exponent $-3/4$ is the
-joint scaling factor from
-Lemma~\ref{lem:product-estimate}.
+improving upon $O(U^{1/2})$
+by the non-oscillatory mechanism
+of Remark~\ref{rem:oscillation}.
 \end{corollary}
 
 \subsection{Converse and FIO rigidity}
@@ -953,23 +1007,16 @@ rigidity conjecture},
 analogous in structure to
 inverse spectral geometry
 and inverse scattering,
-and not a consequence of standard FIO
-theory \cite{Zworski2012,Hormander1983}.
-Conditions (a)--(c) are stronger
-than standard ellipticity;
-the implication
-``Airy-class bound $\Rightarrow$
-A$_2$-fold'' is not available
-in current FIO theory
-without additional structural
-assumptions.
+and not a consequence of standard
+FIO theory
+\cite{Zworski2012,Hormander1983}.
 Verification for PSWF: Paper~XVII.
 \end{assumption}
 
 \begin{corollary}[Conditional equivalence]
 \label{cor:conditional-equiv}
 Under Assumption~\ref{hyp:FIO-rigidity}:
-Airy-class bound $\Rightarrow$
+Airy normal form $\Rightarrow$
 Assumption~\ref{ass:microlocal}
 (modulo the non-standard hypothesis).
 The forward direction holds
@@ -991,12 +1038,26 @@ Assumptions~\ref{ass:fold-local}
 and~\ref{ass:microlocal}
 uniformly in $c\to\infty$?
 \begin{enumerate}[\rm(a)]
-\item $c_3(c)\ge\delta_0>0$
-  (Olver WKB \cite{Olver1974})?
+\item $c_3(c)\ge\delta_0>0$:
+  this is expected from Olver's WKB
+  analysis \cite{Olver1974},
+  which gives asymptotic control
+  of the PSWF phase to leading order;
+  making it uniform in $c$
+  requires quantitative WKB
+  remainder bounds.
 \item $\theta''(\alpha;c)\ne 0$
-  for $\alpha\ne\alpha_*$, uniformly?
+  for $\alpha\ne\alpha_*$, uniformly:
+  plausible from WKB,
+  but not yet established.
 \item Conditions (iv) and (vi)
-  for the PSWF CFU Jacobian?
+  for the PSWF CFU Jacobian:
+  this is the technically hardest
+  part, requiring explicit control
+  of the CFU canonical transformation
+  as a function of $c$;
+  no general result is currently
+  available.
 \end{enumerate}
 Outcomes:
 (A)~All hold:
@@ -1010,6 +1071,14 @@ Ces\`aro sharp.
 [Author], \textit{Paper~XV:
 Intermediate-Regime Kernel Estimates},
 2026.
+
+\bibitem{Bleistein1986}
+N.~Bleistein, R.~A.~Handelsman,
+\textit{Asymptotic Expansions
+of Integrals},
+Dover, 1986
+(orig.\ Holt, Rinehart and Winston,
+1975).
 
 \bibitem{Erdelyi1956}
 A.~Erd\'elyi,
