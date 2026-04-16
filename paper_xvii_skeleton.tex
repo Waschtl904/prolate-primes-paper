@@ -34,25 +34,24 @@ This is the \emph{Level~0--1 proof architecture skeleton} for Paper~XVII.
 \noindent\textbf{Objective.}
 Verify Hypothesis~\textup{hyp:rigidity} from Paper~XVI:
 the PSWF amplitude satisfies Assumption~A2 of Paper~XVI
-(conditions (A1)--(A3)) uniformly as $h := c^{-1} \to 0$.
+(conditions (A1)--(A3)) uniformly as $h:=c^{-1}\to 0$.
 
 \medskip
 \noindent\textbf{Recall (Assumption~A2).}
 A Lagrangian $\Lambda_h$ satisfies Assumption~A2 if:
 (A1) the cubic coefficient of the A$_2$-normal form is
   $c_3(h)\ge\delta_0>0$ uniformly;
-(A2) the CFU Jacobian satisfies $|\det(dt/d\beta)|\ge\delta_1>0$ uniformly;
-(A3) there is a unique fold on $\mathrm{supp}\,\chi$.
-In 1D the fold condition means: a unique turning point where
-$\partial_\xi\sigma=0$ and $\partial^2_\xi\sigma\ne 0$ (A$_2$-type).
+(A2) $|\det(dt/d\beta)|\ge\delta_1>0$ uniformly;
+(A3) unique fold on $\mathrm{supp}\,\chi$.
+In 1D: a unique turning point with $\partial_\xi\sigma=0$,
+$\partial^2_\xi\sigma\ne 0$ (A$_2$-type).
 
 \medskip
 \noindent\textbf{Main technical contribution.}
 Lemmas~\ref{lem:energy-comparison}--\ref{lem:phi-C1}
-establish uniform $C^1$-control of the Olver phase $\phi(x;h)$
-via the integral representation
+establish uniform $C^1$-control of the Olver phase
 \[
-  \phi(x;h)=\mathrm{sgn}(x-x_0(h))\cdot
+  \phi(x;h)=\mathrm{sgn}(x{-}x_0(h))\cdot
   \Bigl(\tfrac{3}{2}\int_{x_0(h)}^x p(s;h)\,ds\Bigr)^{2/3},
   \quad p:=\sqrt{E_n(h)-V(x)}.
 \]
@@ -72,12 +71,11 @@ No ODE, no Gr\"onwall, no Wasow expansion.
 \item \textbf{thm:CFU-symbol}:
   $I^{-1/4,0}(\Lambda_0,\Lambda_1)\to S^{-1/2}_{1,0}(h)$, uniform.
 \item \textbf{Assumption~A2}: see Abstract.
-\item \textbf{hyp:rigidity}: Airy class $\Rightarrow$ A$_2$-fold uniform;
-  verified here for PSWF.
+\item \textbf{hyp:rigidity}: Airy class $\Rightarrow$ A$_2$-fold uniform.
 \end{itemize}
 
 \begin{remark}[Airy $\not\Rightarrow$ CFU]
-Airy is local; CFU admissibility is global and uniform in $h$.
+Airy is local; CFU admissibility is global and uniform.
 The gap is closed by
 Proposition~\ref{prop:branch-selection},
 Assumption~\ref{ass:boundary-away},
@@ -95,53 +93,76 @@ with $V(x)=x^2/(1-x^2)$, $E_n(h):=\chi_n h^2$.
 Turning points: $V(x_\pm(h))=E_n(h)$.
 \end{definition}
 
+\begin{remark}[Shape of $V$ and unique turning point]
+\label{rem:V-shape}
+$V(x)=x^2/(1-x^2)$ satisfies:
+\begin{enumerate}[{\rm(i)}]
+\item $V(0)=0$, $V(x)\to+\infty$ as $x\to\pm 1$.
+\item $V$ is \emph{strictly increasing} on $(0,1)$
+  and \emph{strictly decreasing} on $(-1,0)$
+  (hence symmetric: $V(-x)=V(x)$).
+\item For any $\lambda_n>0$,
+  the equation $V(x)=\lambda_n$ has exactly one solution
+  in $(0,1-\delta_{\rm bdy})$ and exactly one in $(-1+\delta_{\rm bdy},0)$,
+  provided $\lambda_n<V(1-\delta_{\rm bdy})$.
+  The latter condition is guaranteed by Assumption~\ref{ass:boundary-away}
+  and the fact that $\lambda_n\in(0,1)$ while
+  $V(1-\delta_{\rm bdy})>1$ for small $\delta_{\rm bdy}$.
+\item If $\mathrm{supp}\,\chi$ is contained in one half-interval
+  $(0,1-\delta_{\rm bdy})$ or $(-1+\delta_{\rm bdy},0)$,
+  there is a unique turning point on $\mathrm{supp}\,\chi$.
+  For the general case (supp $\chi$ crossing 0),
+  the two turning points are on opposite sides of $0$
+  and are treated as separate A$_2$-folds.
+\end{enumerate}
+\end{remark}
+
 \begin{remark}[Geometric and spectral positivity of $p$]
 \label{rem:p-positivity}
-The positivity $p(x;h)>0$ on $K_\varepsilon$ has two independent components:
+Positivity $p(x;h)>0$ on $K_\varepsilon$ has two components:
 
 \medskip
 \noindent\textit{(i) Geometric part (\Rig).}
-Since $V$ is continuous and $K_\varepsilon=\mathrm{supp}\,\chi\setminus U_\varepsilon$
-excludes an $\varepsilon$-neighborhood of the limiting turning point $x_0^{(0)}$:
+Let $x_0^{(0)}$ be the limiting turning point on the relevant half-interval.
+$K_\varepsilon=\mathrm{supp}\,\chi\setminus U_\varepsilon$ excludes a
+neighborhood of $x_0^{(0)}$, so by strict monotonicity of $V$
+(Remark~\ref{rem:V-shape}(ii)):
 \[
-  \inf_{x\in K_\varepsilon}(\lambda_n-V(x))\ge c_\varepsilon^{\rm geo}>0.
+  \inf_{x\in K_\varepsilon}|\lambda_n-V(x)|\ge c_\varepsilon^{\rm geo}>0.
 \]
-This depends only on $\lambda_n$, $V$, and $\varepsilon$, not on $h$.
+Since $\lambda_n-V(x)>0$ on the classically allowed region,
+this gives $\lambda_n-V(x)\ge c_\varepsilon^{\rm geo}$ on $K_\varepsilon$.
 
 \medskip
 \noindent\textit{(ii) Spectral part (\Cond).}
-$E_n(h)\to\lambda_n$ smoothly (SL analyticity), so for $h\le h_0$:
-\[
-  \inf_{h\le h_0,\,x\in K_\varepsilon}(E_n(h)-V(x))
-  \ge c_\varepsilon^{\rm geo}-|E_n(h)-\lambda_n|
-  \ge\tfrac{1}{2}c_\varepsilon^{\rm geo}>0.
-\]
-Define $\delta_\xi(\varepsilon):=\sqrt{c_\varepsilon^{\rm geo}/2}>0$;
-then $p(x;h)=\sqrt{E_n(h)-V(x)}\ge\delta_\xi>0$ on $K_\varepsilon$
-for all $h\le h_0$.
+$E_n(h)\to\lambda_n$ smoothly, so for $h\le h_0$:
+$E_n(h)-V(x)\ge\tfrac{1}{2}c_\varepsilon^{\rm geo}>0$.
+Define $\delta_\xi(\varepsilon):=\sqrt{c_\varepsilon^{\rm geo}/2}$;
+then $p(x;h)\ge\delta_\xi>0$ on $K_\varepsilon$ for $h\le h_0$.
 
 \medskip
-\textbf{All constants below are independent of $h$
-(depending only on $\varepsilon,V,\lambda_n$)
-and all bounds hold on $K_\varepsilon$ unless stated otherwise.}
+\textbf{All constants
+$c_\varepsilon^{\rm geo},\delta_\xi,c_\varepsilon,c_\varepsilon',c_\varepsilon'',d_\varepsilon,L_\varepsilon$
+are independent of $h$.}
 \end{remark}
 
 \begin{remark}[Turning-point shift]
 \label{rem:eigenbranch}
-$E_n(h)\to\lambda_n\in(0,1)$ smoothly;
-$x_0(h)\to x_0^{(0)}$ smoothly by IFT
-($V(x_0(h))=E_n(h)$, $V'(x_0^{(0)})\ne 0$).
+$E_n(h)\to\lambda_n$ smoothly;
+$V(x_0(h))=E_n(h)$, $V'(x_0^{(0)})\ne 0$ (strict monotonicity on the
+half-interval) $\Rightarrow$ $x_0(h)\to x_0^{(0)}$ smoothly (IFT).
 \end{remark}
 
 \begin{assumption}[Boundary-away cutoff]
 \label{ass:boundary-away}
 $\mathrm{supp}\,\chi\subset[-1+\delta_{\rm bdy},1-\delta_{\rm bdy}]$
 independently of $h$.
-Consequences: $V,V',V''\in L^\infty$; boundary layers excluded.
+Consequences: $V,V',V''\in L^\infty$; boundary layers excluded;
+$\lambda_n<V(1-\delta_{\rm bdy})$ (ensures turning point exists).
 \end{assumption}
 
 %% ============================================================
-\section{Olver's Scheme and the CFU Gap}
+\section{Olver and the CFU Gap}
 \label{sec:olver}
 %% ============================================================
 
@@ -150,11 +171,8 @@ $\psi_n\sim h^{-1/4}a\,\mathrm{Ai}(h^{-2/3}\phi)+\mathcal{O}(h^\infty)$,
 uniform on $\mathrm{supp}\,\chi$.
 
 \begin{remark}[Olver--CFU gap]
-\label{rem:olver-gap}
-Olver does not provide Lagrangian/FIO structure,
-global geometry of $\Lambda_h$, or uniform $C^1$-control of $\phi$.
-Classical warning: $f_h=x+h\sin(x/h)\to x$ uniformly
-but $f_h'$ does not.
+Olver does not provide Lagrangian/FIO structure or uniform $C^1$-control of $\phi$.
+Warning: $f_h=x+h\sin(x/h)\to x$ uniformly but $f_h'$ does not.
 \end{remark}
 
 %% ============================================================
@@ -165,15 +183,13 @@ but $f_h'$ does not.
 \begin{proposition}[Branch selection, \Cond]
 \label{prop:branch-selection}
 Fix $\varepsilon>0$.
-Since $\psi_n$ is an eigenfunction,
-semiclassical propagation gives
 $\mathrm{WF}_h(\psi_n)\subset\{\xi^2+V=E_n(h)\}=\Lambda_h^+\cup\Lambda_h^-$
 (\cite{Zworski2012} Ch.~12).
-On $K_\varepsilon$: $\Lambda_h^\pm\subset\{\pm\xi\ge\delta_\xi\}$ (uniform gap $2\delta_\xi$).
-A microlocal partition of unity yields $\Pi^+=\mathrm{Op}_h(\sigma^+)$ such that:
-(i) $\chi\psi_n=\Pi^+(\chi\psi_n)+\mathcal{O}(h^\infty)$ in $L^2$;
+On $K_\varepsilon$: $\Lambda_h^\pm\subset\{\pm\xi\ge\delta_\xi\}$.
+Microlocal partition of unity yields $\Pi^+=\mathrm{Op}_h(\sigma^+)$ with:
+(i) $\chi\psi_n=\Pi^+(\chi\psi_n)+\mathcal{O}(h^\infty)$;
 (ii) $\Pi^+(\chi\psi_n)\in I^{-1/4,0}(\Lambda_h^+)$.
-\textit{Caveat:} branch separation holds only on $K_\varepsilon$.
+\textit{Caveat:} holds only on $K_\varepsilon$.
 \end{proposition}
 
 %% ============================================================
@@ -182,21 +198,32 @@ A microlocal partition of unity yields $\Pi^+=\mathrm{Op}_h(\sigma^+)$ such that
 %% ============================================================
 
 \begin{remark}[(P1)]
-$\xi=p>0$ single-valued on $K_\varepsilon\Rightarrow\phi$ global generating function. \Cond.
+$\xi=p>0$ on $K_\varepsilon$ $\Rightarrow$ $\phi$ global generating function. \Cond.
 \end{remark}
 
-\begin{remark}[(P3): one turning point; spectral gap]
+\begin{remark}[(P3): unique turning point; spectral gap]
 \label{rem:p3}
-\textit{Unique turning point (\Rig, geometric).}
-$V$ is strictly monotone on $\mathrm{supp}\,\chi$,
-so $E_n(h)-V(x)=0$ has exactly one solution $x_0(h)$.
+\textit{Unique turning point (\Rig).}
+On each half-interval,
+$V$ is strictly monotone (Remark~\ref{rem:V-shape}(ii)--(iii)),
+so $E_n(h)-V(x)=0$ has exactly one solution $x_0(h)$
+on $\mathrm{supp}\,\chi\cap(0,1-\delta_{\rm bdy})$
+(resp.\ on the left half;
+Assumption~\ref{ass:boundary-away} ensures $\lambda_n<V(1-\delta_{\rm bdy})$).
 
 \medskip
-\noindent\textit{Spectral gap (\Cond, for frequency-overlap exclusion).}
+\noindent\textit{Spectral gap (\Cond).}
 \begin{equation}\label{eq:specgap}
   \mathrm{dist}(E_n(h),\sigma(\mathcal{L}_h)\setminus\{E_n(h)\})\ge Ch.
 \end{equation}
-Follows from SL asymptotics \cite{Olver1974} Ch.~12.
+The quantitative bound $E_{n+1}(h)-E_n(h)\sim Ch$ follows from
+the \emph{Bohr--Sommerfeld quantization rule} for $\mathcal{L}_h$:
+\[
+  \int_{x_-(h)}^{x_+(h)} p(x;h)\,dx = (n+\tfrac{1}{2})\pi h + \mathcal{O}(h^2),
+\]
+which gives $E_{n+1}-E_n = 2\pi h/T(E_n)+\mathcal{O}(h^2)$
+where $T(E_n)=\int_{x_-}^{x_+}p^{-1}\,dx$ is the classical period;
+see \cite{Zworski2012} Ch.~9.
 \end{remark}
 
 %% ============================================================
@@ -224,17 +251,15 @@ and $|\det d\pi_h^+|\ge\delta_2>0$.
 
 \begin{remark}[CFU on each component]
 \label{rem:cfu-components}
-$K_\varepsilon$ has two connected components:
+$K_\varepsilon$ has two components
 $K_\varepsilon^\pm:=K_\varepsilon\cap\{\pm(x-x_0(h))>0\}$.
-On $K_\varepsilon^+$: $I(x;h)>0$,
-so $\phi=(\tfrac{3}{2}I)^{2/3}$ is positive and smooth.
-On $K_\varepsilon^-$: $I(x;h)<0$,
-so $\phi=-(\tfrac{3}{2}|I|)^{2/3}$ is negative and smooth.
-The CFU construction of \cite{CFU1957} is performed
+On $K_\varepsilon^+$: $I>0$, $\phi=(\tfrac{3}{2}I)^{2/3}>0$, smooth.
+On $K_\varepsilon^-$: $I<0$, $\phi=-(\tfrac{3}{2}|I|)^{2/3}<0$, smooth.
+The CFU construction \cite{CFU1957} is performed
 \emph{separately on each component};
-no global branch of $z^{2/3}$ over the turning point is needed.
-The two branches are matched at $x_0(h)$ by the Airy transition,
-which is handled by Paper~XVI's thm:CFU-geom.
+no global branch of $z^{2/3}$ across the turning point is needed.
+The two branches are matched at $x_0(h)$ by
+\textbf{thm:CFU-geom} (Paper~XVI).
 \end{remark}
 
 %% ============================================================
@@ -246,82 +271,71 @@ which is handled by Paper~XVI's thm:CFU-geom.
 \label{lem:I-monotone}
 $p>0$ on $K_\varepsilon$, so $I(x;h)=\int_{x_0(h)}^x p\,ds$ is strictly monotone,
 $\mathrm{sgn}(I)=\mathrm{sgn}(x-x_0(h))$,
-$|I(x;h)|\ge\delta_\xi\cdot|x-x_0(h)|$.
+$|I|\ge\delta_\xi|x-x_0(h)|$.
 \end{lemma}
 
 \begin{lemma}[Energy comparison, \Cond]
 \label{lem:energy-comparison}
-Since $p,p_0\ge\delta_\xi,c_\varepsilon>0$:
+Since $p,p_0\ge\delta_\xi,c_\varepsilon>0$
+(Remark~\ref{rem:p-positivity}):
 \[
-  |p(x;h)-p_0(x)|
-  =\frac{|E_n(h)-\lambda_n|}{p+p_0}
-  \le\frac{|E_n(h)-\lambda_n|}{\delta_\xi+c_\varepsilon}
+  |p-p_0|=\frac{|E_n(h)-\lambda_n|}{p+p_0}
+  \le\frac{|E_n-\lambda_n|}{\delta_\xi+c_\varepsilon}
   =:A_\varepsilon(h)=\mathcal{O}(h).
 \]
-(Lipschitz of $\sqrt{\,\cdot\,}$ fails at $p_0=0$;
-rationalization is the correct argument.)
+(Lipschitz of $\sqrt{\cdot}$ fails at $p_0=0$;
+rationalization via $p+p_0\ge\delta_\xi+c_\varepsilon$ is the correct argument.)
 \end{lemma}
 
 \begin{lemma}[Integral stability, \Cond]
 \label{lem:integral-stability}
 \[
-  |I(x;h)-I_0(x)|
-  \le\|p\|_{C^0}\cdot|x_0(h)-x_0^{(0)}|
-  +|K_\varepsilon|\cdot A_\varepsilon(h)
-  =:\tilde A_\varepsilon(h)=\mathcal{O}(h),
+  |I(x;h)-I_0(x)|\le\|p\|_{C^0}|x_0(h)-x_0^{(0)}|
+  +|K_\varepsilon|A_\varepsilon(h)=:\tilde A_\varepsilon(h)=\mathcal{O}(h).
 \]
-using Remark~\ref{rem:eigenbranch} and Lemma~\ref{lem:energy-comparison}.
 \end{lemma}
 
-\begin{lemma}[Non-degeneracy of $I$ and $\phi$, \Cond]
+\begin{lemma}[Non-degeneracy, \Cond]
 \label{lem:nondeg}
-By Lemma~\ref{lem:I-monotone} and $|x-x_0(h)|\ge\varepsilon/2$ on $K_\varepsilon$:
+By Lemma~\ref{lem:I-monotone} and $|x-x_0(h)|\ge\varepsilon/2$:
 \[
-  |I(x;h)|,|I_0(x)|\ge c_\varepsilon':=\delta_\xi\varepsilon/2>0;
+  |I|,|I_0|\ge c_\varepsilon':=\delta_\xi\varepsilon/2>0;
   \quad
-  |\phi(x;h)|\ge c_\varepsilon'':=(\tfrac{3}{4}\delta_\xi\varepsilon)^{2/3};
+  |\phi|\ge c_\varepsilon'':=(\tfrac{3}{4}\delta_\xi\varepsilon)^{2/3};
   \quad
-  |\phi_0(x)|\ge d_\varepsilon:=(\tfrac{3}{4}c_\varepsilon\varepsilon)^{2/3}>0.
+  |\phi_0|\ge d_\varepsilon:=(\tfrac{3}{4}c_\varepsilon\varepsilon)^{2/3}>0.
 \]
 \end{lemma}
 
 \begin{lemma}[$C^0$-stability of $\phi$, \Cond]
 \label{lem:phi-C0}
-On each component $K_\varepsilon^\pm$ (Remark~\ref{rem:cfu-components}),
-$I(x;h)$ has fixed sign,
+On each $K_\varepsilon^\pm$, $I$ has fixed sign
+(Remark~\ref{rem:cfu-components}),
 so $I\mapsto(\tfrac{3}{2}I)^{2/3}$ is smooth.
 Since $|I|,|I_0|\ge c_\varepsilon'>0$ (Lemma~\ref{lem:nondeg}),
 this map is Lipschitz on $[c_\varepsilon',\infty)$
-(resp.\ $(-\infty,-c_\varepsilon']$)
 with constant
-\[
-  L_\varepsilon=\tfrac{2}{3}\bigl(\tfrac{3}{2}\bigr)^{2/3}(c_\varepsilon')^{-1/3}.
-\]
+$L_\varepsilon=\tfrac{2}{3}(\tfrac{3}{2})^{2/3}(c_\varepsilon')^{-1/3}$.
 Therefore:
 \[
-  B_\varepsilon(h):=\|\phi(\cdot;h)-\phi_0\|_{C^0(K_\varepsilon)}
-  \le L_\varepsilon\cdot\tilde A_\varepsilon(h)=\mathcal{O}(h).
+  B_\varepsilon(h):=\|\phi-\phi_0\|_{C^0(K_\varepsilon)}
+  \le L_\varepsilon\tilde A_\varepsilon(h)=\mathcal{O}(h).
 \]
 \end{lemma}
 
 \begin{lemma}[$C^1$-stability of $\phi$, \Cond]
 \label{lem:phi-C1}
-On each $K_\varepsilon^\pm$,
-differentiating $\phi^3=(\tfrac{3}{2})^3 I^2$ gives
-$\phi'=p/\phi$ and $\phi_0'=p_0/\phi_0$
+On each $K_\varepsilon^\pm$:
+$\phi'=p/\phi$, $\phi_0'=p_0/\phi_0$
 (well-defined: $|\phi|\ge c_\varepsilon''>0$, $|\phi_0|\ge d_\varepsilon>0$).
 \[
   |\phi'-\phi_0'|
-  \le\frac{A_\varepsilon(h)}{c_\varepsilon''}
-  +\frac{p_0^{\max}\cdot B_\varepsilon(h)}{c_\varepsilon''\cdot d_\varepsilon}
-  \to 0
+  \le\frac{A_\varepsilon}{c_\varepsilon''}
+  +\frac{p_0^{\max}B_\varepsilon}{c_\varepsilon''d_\varepsilon}\to 0
 \]
-uniformly (Lemmas~\ref{lem:energy-comparison} and \ref{lem:phi-C0}).
-Since $\phi_0'=p_0/\phi_0\ge c_\varepsilon/d_\varepsilon>0$:
-\[
-  \inf_{h\le h_0,\,x\in K_\varepsilon}|\phi'(x;h)|
-  \ge\tfrac{1}{2}\inf_{K_\varepsilon}|\phi_0'|>0.
-\]
+uniformly (Lemmas~\ref{lem:energy-comparison},~\ref{lem:phi-C0}).
+Since $\phi_0'\ge c_\varepsilon/d_\varepsilon>0$:
+$\inf_{K_\varepsilon}|\phi'(\cdot;h)|\ge\tfrac{1}{2}\inf|\phi_0'|>0$.
 \end{lemma}
 
 %% ============================================================
@@ -331,31 +345,24 @@ Since $\phi_0'=p_0/\phi_0\ge c_\varepsilon/d_\varepsilon>0$:
 
 \begin{lemma}[CFU Jacobian reduction in 1D, \Cond]
 \label{lem:cfu-jacobian-1d}
-In the 1D A$_2$ setting,
-the CFU Jacobian $|\det(dt/d\beta)|$
-is the absolute Jacobian of the map
-$(x,\xi)\mapsto(\phi(x;h),p(x;h)/\phi(x;h))$
-restricted to $\Lambda_h^+$.
-On $\Lambda_h^+$ with parametrisation $x\mapsto(x,p(x;h))$:
-\[
-  |\det(dt/d\beta)|
-  = \left|\frac{d}{dx}\phi(x;h)\right|
-  = |\phi'(x;h)|.
-\]
-Lemma~\ref{lem:phi-C1} gives
-$|\phi'(x;h)|\ge\delta>0$ uniformly on $K_\varepsilon$,
-hence $|\det(dt/d\beta)|\ge\delta_1:=\delta>0$.
+In the 1D A$_2$ setting with
+generating function $\Phi(x,\theta)=\phi(x;h)\theta-\tfrac{1}{3}\theta^3$,
+the mixed Hessian is
+$\partial^2_{x\theta}\Phi=\phi'(x;h)$.
+Hence $|\det(dt/d\beta)|=|\phi'(x;h)|\ge\delta_1>0$ on $K_\varepsilon$
+(Lemma~\ref{lem:phi-C1}).
 \end{lemma}
 
-\begin{remark}[Why 1D reduces to $|\phi'|$]
-\label{rem:jacobian-reduction}
-In 1D, the Lagrangian $\Lambda_h^+$ is a curve
-parametrised by $x$; the projection $\pi:T^*\mathbb{R}\to\mathbb{R}$
-restricts to a map $x\mapsto\phi(x;h)$.
-The CFU Jacobian (determinant of the mixed Hessian
-$\partial^2_{x\theta}\Phi$ of the generating function $\Phi$)
-reduces to $\phi'(x;h)$ because $\Phi(x,\theta)=\phi(x;h)\theta-\tfrac{1}{3}\theta^3$
-and $\partial^2_{x\theta}\Phi=\phi'(x;h)$.
+\begin{remark}[Normalization of CFU coordinates]
+\label{rem:cfu-coords}
+The identification $|\det(dt/d\beta)|=|\phi'|$ holds in the
+\emph{normalized CFU phase coordinates} in which the generating function
+takes the Airy form $\Phi=\phi\theta-\tfrac{1}{3}\theta^3$.
+This normalization is provided by \textbf{thm:CFU-geom} of Paper~XVI,
+which produces precisely these coordinates on each $K_\varepsilon^\pm$.
+In other coordinate systems the Jacobian acquires an additional
+bounded and bounded-away-from-zero factor coming from the
+coordinate change, which does not affect the uniform positivity of (A2).
 \end{remark}
 
 %% ============================================================
@@ -365,11 +372,9 @@ and $\partial^2_{x\theta}\Phi=\phi'(x;h)$.
 
 \begin{proposition}[Assumption~A2, \Cond]
 \label{prop:a2-from-lemmas}
-Under all preceding lemmas:
-(A1) $c_3(h)\ge\delta_0>0$: Lemma~\ref{lem:olver-fio-lift-micro}.
-(A2) $|\det(dt/d\beta)|\ge\delta_1>0$:
-  Lemma~\ref{lem:cfu-jacobian-1d} via Lemma~\ref{lem:phi-C1}.
-(A3) unique fold: Remark~\ref{rem:p3} (monotone $V$).
+(A1): Lemma~\ref{lem:olver-fio-lift-micro}.
+(A2): Lemma~\ref{lem:cfu-jacobian-1d} via Lemma~\ref{lem:phi-C1}.
+(A3): Remark~\ref{rem:V-shape}(ii)--(iii).
 \end{proposition}
 
 %% ============================================================
@@ -383,43 +388,43 @@ Under all preceding lemmas:
 \hline
 Statement & Status & Source \\
 \hline
-A$_2$ definition (fold + Jacobian) & \Rig & Sec.~\ref{sec:input} \\
-(A3) unique fold & \Rig & monotone $V$ \\
+A$_2$ definition & \Rig & Sec.~\ref{sec:input} \\
+$V$ strictly monotone on $(0,1)$, $(-1,0)$ & \Rig & direct computation \\
+$\lambda_n < V(1-\delta_{\rm bdy})$ (cut exists) & \Rig & Ass.~\ref{ass:boundary-away} \\
+(A3) unique TP on each half-interval & \Rig & Rem.~\ref{rem:V-shape} \\
 Airy scaling locally & \Rig & Olver Ch.~11 \\
 Boundary-away & \Rig\ (by assumption) & Ass.~\ref{ass:boundary-away} \\
-$\lambda_n-V\ge c_\varepsilon^{\rm geo}$ on $K_\varepsilon$ (geometric) & \Rig & def.\ $K_\varepsilon$ \\
+$\lambda_n-V\ge c_\varepsilon^{\rm geo}$ (geometric) & \Rig & strict monotonicity \\
 $E_n(h)\to\lambda_n$ smoothly (spectral) & \Cond & SL analyticity \\
-$p\ge\delta_\xi$ on $K_\varepsilon$ (combined) & \Cond & Rem.~\ref{rem:p-positivity} \\
-$x_0(h)\to x_0^{(0)}$ (IFT) & \Cond & $V'\ne 0$ \\
-Spectral gap~\eqref{eq:specgap} & \Cond & SL asymptotics \\
-(A1) $c_3(h)\ge\delta_0$ & \Cond & Olver + eigenbranch \\
+$p\ge\delta_\xi>0$ on $K_\varepsilon$ (combined) & \Cond & Rem.~\ref{rem:p-positivity} \\
+$x_0(h)\to x_0^{(0)}$ (IFT) & \Cond & $V'\ne 0$ on half-interval \\
+Spectral gap via Bohr--Sommerfeld & \Cond & Rem.~\ref{rem:p3} + \cite{Zworski2012} \\
+(A1) $c_3\ge\delta_0$ & \Cond & Olver + eigenbranch \\
 $\mathrm{WF}_h\subset\{\xi^2+V=E_n\}$ & \Cond & Zworski Ch.~12 \\
 Branch separation $\delta_\xi>0$ & \Cond & Rem.~\ref{rem:p-positivity} \\
-(P2) single-branch on $K_\varepsilon$ & \Cond & Prop.~\ref{prop:branch-selection} \\
+(P2) single branch on $K_\varepsilon$ & \Cond & Prop.~\ref{prop:branch-selection} \\
 (P1) global gen.\ fn. & \Cond & single branch \\
 CFU on $K_\varepsilon^\pm$ separately & \Rig & Rem.~\ref{rem:cfu-components} \\
-(P3) unique TP & \Rig & monotone $V$ \\
 Monotonicity of $I$ & \Rig & $p>0$ \\
 Energy comparison $A_\varepsilon=\mathcal{O}(h)$ & \Cond & Lem.~\ref{lem:energy-comparison} \\
 Integral stability $\tilde A_\varepsilon=\mathcal{O}(h)$ & \Cond & Lem.~\ref{lem:integral-stability} \\
 Non-degeneracy $|I|,|\phi|\ge c>0$ & \Cond & Lem.~\ref{lem:nondeg} \\
 $C^0$-stability $B_\varepsilon=\mathcal{O}(h)$ & \Cond & Lem.~\ref{lem:phi-C0} \\
 $C^1$-stability $\inf|\phi'|\ge\delta>0$ & \Cond & Lem.~\ref{lem:phi-C1} \\
-CFU Jacobian reduction ($\phi'$ in 1D) & \Cond & Lem.~\ref{lem:cfu-jacobian-1d} \\
-(A2) $|\det(dt/d\beta)|\ge\delta_1>0$ & \Cond & Prop.~\ref{prop:a2-from-lemmas} \\
+CFU Jacobian $=|\phi'|$ in norm.\ coords. & \Cond & Lem.~\ref{lem:cfu-jacobian-1d}, Rem.~\ref{rem:cfu-coords} \\
+(A2) $|\det(dt/d\beta)|\ge\delta_1$ & \Cond & Prop.~\ref{prop:a2-from-lemmas} \\
 \textup{hyp:rigidity} & \Cond & Prop.~\ref{prop:a2-from-lemmas} \\
 \hline
 \end{tabular}
 \end{center}
 
-\begin{remark}[Remaining tasks for Paper~XVII]
-Two nontrivial tasks:
-(1) Full writeout of
-Lemmas~\ref{lem:energy-comparison}--\ref{lem:phi-C1}
-and Lemma~\ref{lem:cfu-jacobian-1d}
-(all arguments complete in this skeleton).
-(2) Proof of spectral gap~\eqref{eq:specgap}
-via SL eigenvalue asymptotics.
+\begin{remark}[Remaining tasks]
+All entries are \Cond\ or \Rig.
+Two tasks remain for the full Paper~XVII:
+(1) Write out Lemmas~\ref{lem:energy-comparison}--\ref{lem:phi-C1}
+and Lemma~\ref{lem:cfu-jacobian-1d} in full detail.
+(2) Prove spectral gap~\eqref{eq:specgap}
+from Bohr--Sommerfeld: $T(E_n)=\int_{x_-}^{x_+}p^{-1}\,dx$ finite and nonzero.
 \end{remark}
 
 %% ============================================================
@@ -430,32 +435,27 @@ via SL eigenvalue asymptotics.
 \begin{theorem}[PSWF A$_2$-stability, \Cond]
 \label{thm:xvii-main}
 Under Assumption~\ref{ass:boundary-away},
-the smooth-eigenbranch hypothesis, and~\eqref{eq:specgap},
+smooth-eigenbranch hypothesis, and~\eqref{eq:specgap},
 the PSWF amplitude satisfies Assumption~A2 of Paper~XVI
 uniformly on $K_\varepsilon$ as $h\to 0$.
 \end{theorem}
 
 \begin{remark}[Dependency chain]
 \[
-  \bigl[\lambda_n{-}V\ge c^{\rm geo}_{\varepsilon},\;
+  \bigl[\lambda_n{-}V\ge c^{\rm geo},\;
   E_n\to\lambda_n,\;
-  V'(x_0^{(0)})\ne 0,\;
+  V'\ne 0,\;
   \text{\eqref{eq:specgap}},\;
   \mathrm{WF}_h\subset\Lambda_h^\pm\bigr]
-  \;\Rightarrow\;
+  \Rightarrow
   \bigl[\text{Lems.}~\ref{lem:energy-comparison}\text{--}\ref{lem:phi-C1}\bigr]
-  \;\Rightarrow\;
+  \Rightarrow
   \text{Lem.}~\ref{lem:cfu-jacobian-1d}
-  \;\Rightarrow\;
+  \Rightarrow
   \text{Prop.}~\ref{prop:a2-from-lemmas}
-  \;\Rightarrow\;
+  \Rightarrow
   \text{Thm.}~\ref{thm:xvii-main}.
 \]
-\end{remark}
-
-\begin{remark}[Scope]
-Paper~XVII does not address the full inverse microlocal conjecture,
-global PSWF bounds, or concentration-of-energy.
 \end{remark}
 
 \begin{thebibliography}{9}
