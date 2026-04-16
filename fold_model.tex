@@ -41,10 +41,7 @@ $\beta^{-1/2}$ induces a phase transition at $\alpha=\tfrac{1}{2}$,
 separating a classical Erd\'elyi regime from a CFU-type
 coalescence regime.
 We prove the uniform bound
-\[
-  |\Phi_\alpha(u)| = O(|u|^{-1/2}) \quad (u\to-\infty)
-\]
-for all $\alpha\ge 0$.
+$|\Phi_\alpha(u)| = O(|u|^{-1/2})$ for all $\alpha\ge 0$.
 For $\alpha<\tfrac{1}{2}$ this decay is sharp
 ($\Theta(|u|^{-1/2})$) with leading constant $\sqrt{\pi}$.
 For $\alpha\ge\tfrac{1}{2}$, no limit of the rescaled amplitude
@@ -58,8 +55,8 @@ are shown to be artifacts of an incorrect scaling regime.
 
 \maketitle
 
-\begin{theorem}[Main Theorem]
-\label{thm:main}
+\begin{theorem}[Universal decay]
+\label{thm:decay}
 Let $\alpha\ge 0$, $c_3>0$, $u\to-\infty$.
 \begin{enumerate}[\rm(i)]
 \item \textup{(Uniform bound)}
@@ -71,13 +68,19 @@ Let $\alpha\ge 0$, $c_3>0$, $u\to-\infty$.
     |\Phi_\alpha(u)| = \Theta(|u|^{-1/2}),
     \quad\text{with leading constant }\sqrt{\pi}.
   \]
-\item \textup{(Non-convergent amplitude, $\alpha\ge\tfrac{1}{2}$)}
-  \[
-    \limsup_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 2\sqrt{\pi},
-    \qquad
-    \liminf_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 0.
-  \]
 \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Non-existence of limit amplitude]
+\label{thm:nolimit}
+For $\alpha\ge\tfrac{1}{2}$, $c_3>0$, $u\to-\infty$:
+\[
+  \limsup_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 2\sqrt{\pi},
+  \qquad
+  \liminf_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 0.
+\]
+In particular, no constant $C$ satisfies
+$|\Phi_\alpha(u)|\sim C|u|^{-1/2}$.
 \end{theorem}
 
 \section{Phase Boundary}
@@ -322,17 +325,6 @@ oscillates between $0$ and $2$
 without converging;
 this oscillation is the sole source
 of non-convergence of the rescaled amplitude.
-Therefore:
-\begin{itemize}
-\item $|\Phi_\alpha(u)|=O(|u|^{-1/2})$
-  (rigorous, all regions);
-\item no limit of
-  $|u|^{1/2}|\Phi_\alpha(u)|$
-  exists for $\alpha\ge\tfrac{1}{2}$;
-\item consequently,
-  no single constant $C$ satisfies
-  $|\Phi_\alpha(u)|\sim C|u|^{-1/2}$.
-\end{itemize}
 This is distinct from
 ``no power law'': the exponent
 $-1/2$ is correct;
@@ -340,43 +332,47 @@ it is the \emph{coefficient}
 that fails to converge.
 \end{remark}
 
-\begin{remark}[Proof of extremal oscillation]
+\begin{remark}[Proof of Theorem~\ref{thm:nolimit}]
 \label{rem:extremal}
-We justify the claims
-\[
-  \limsup_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 2\sqrt{\pi},
-  \qquad
-  \liminf_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)| = 0.
-\]
-From~\eqref{eq:twoterm} and Remark~\ref{rem:nolimit}:
+From~\eqref{eq:twoterm} and Remark~\ref{rem:nolimit},
+writing $\theta:=\tfrac{2}{3}\lambda(u)$:
 \[
   |u|^{1/2}|\Phi_\alpha(u)|
-  = \sqrt{\pi}
-  \Bigl|e^{-i\pi/4}+e^{-2i\lambda(u)/3+i\pi/4}\Bigr|
-  + O(|u|^{-1}),
-  \qquad
-  \lambda(u)=|u|^{3/2}(3c_3)^{-1/2}.
+  = \sqrt{\pi}\,
+  \bigl|e^{-i\pi/4}+e^{-i\theta+i\pi/4}\bigr|
+  + O(|u|^{-1}).
 \]
-The phase $\theta(u):=\tfrac{2}{3}\lambda(u)$
-is continuous and strictly increasing
-with $\theta(u)\to+\infty$ as $u\to-\infty$.
+\noindent\textbf{Extremal values.}
+Factor out $e^{-i\pi/4}$:
+\[
+  \bigl|e^{-i\pi/4}+e^{-i\theta+i\pi/4}\bigr|
+  = \bigl|1 + e^{-i(\theta - \pi/2)}\bigr|.
+\]
+This equals $2$ when $\theta\equiv\tfrac{\pi}{2}\pmod{2\pi}$
+(constructive interference)
+and $0$ when $\theta\equiv\tfrac{3\pi}{2}\pmod{2\pi}$
+(destructive interference).
+
+\medskip
+\noindent\textbf{Density argument.}
+The function $\theta(u)=\tfrac{2}{3}\lambda(u)
+=\tfrac{2}{3}|u|^{3/2}(3c_3)^{-1/2}$
+is continuous and strictly increasing with
+$\theta(u)\to+\infty$ as $u\to-\infty$.
 Since $\theta$ is continuous and its image
 $\theta((-\infty,u_0])$ is an unbounded interval,
-$\theta(u)\bmod 2\pi$ is dense in $[0,2\pi)$;
+it contains intervals of length $>2\pi$,
+hence $\theta(u)\bmod 2\pi$ is dense in $[0,2\pi)$;
 no number-theoretic assumptions are required.
-Consequently:
-\begin{itemize}
-\item There exist sequences $u_n\to-\infty$ with
-  $\theta(u_n)\equiv \tfrac{\pi}{4}\pmod{2\pi}$,
-  giving constructive interference:
-  $|u_n|^{1/2}|\Phi_\alpha(u_n)|\to 2\sqrt{\pi}$.
-\item There exist sequences $u_n\to-\infty$ with
-  $\theta(u_n)\equiv \tfrac{\pi}{4}+\pi\pmod{2\pi}$,
-  giving destructive interference:
-  $|u_n|^{1/2}|\Phi_\alpha(u_n)|\to 0$.
-\end{itemize}
-This completes the proof of
-Theorem~\ref{thm:main}\,(iii).
+
+\medskip
+\noindent\textbf{Conclusion.}
+By density, there exist sequences $u_n\to-\infty$ realising
+each target phase, giving:
+$\limsup |u_n|^{1/2}|\Phi_\alpha(u_n)|=2\sqrt{\pi}$
+and
+$\liminf |u_n|^{1/2}|\Phi_\alpha(u_n)|=0$.
+This proves Theorem~\ref{thm:nolimit}.
 \end{remark}
 
 \begin{remark}[Retraction of
