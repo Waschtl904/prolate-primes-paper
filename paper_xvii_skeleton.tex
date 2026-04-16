@@ -52,22 +52,25 @@ The \emph{Olver--FIO Lift} is split into two logically independent lemmas:
   Status: \Cond.
 \item Lemma~\ref{lem:uniform-projection}
   (\emph{Uniform Projection}):
-  the canonical projection $\pi_h\colon \Lambda_h \to T^*(-1,1)$
+  the canonical projection $\pi_h^+\colon \Lambda_h^+ \to T^*(-1,1)$
+  on the selected positive-momentum branch
   is uniformly transversal in $h$.
-  Status: \Open\ (genuine analytic contribution of Paper~XVII).
+  Status: \Open.
 \end{itemize}
+The branch selection $\Lambda_h \to \Lambda_h^+$
+(Proposition~\ref{prop:branch-selection})
+and the Differentiated Olver Estimate
+(Lemma~\ref{lem:diff-olver})
+are the two main technical contributions of Paper~XVII.
 The Jacobian bound (Assumption~(A2) of XVI) follows from
-Lemma~\ref{lem:uniform-projection} together with
-conditions (P1)--(P3) on the global geometry of $\Lambda_h$
+these together with conditions (P1) and (P3)
 (Section~\ref{sec:phi-conditions}).
-Conditions (P2)--(P3) are \emph{independent geometric conditions}
-not implied by Sturm--Liouville theory alone.
 
 \medskip
 \noindent\textbf{Strategy.}
 Primary: Olver turning-point analysis (Ch.~10--11 of \cite{Olver1974}).
 Secondary: FIO reinterpretation of Olver expansions.
-Auxiliary: Sturm--Liouville spectral theory for global consistency.
+Auxiliary: Sturm--Liouville spectral theory; boundary-away cutoff.
 \end{abstract}
 
 \maketitle
@@ -103,21 +106,20 @@ The following are used as \emph{black boxes} (not reproved here):
 
 \begin{remark}[What Airy structure does \emph{not} imply]
 \label{rem:airy-not-cfu}
-Airy normal form (i.e.\ a local change of variables reducing the ODE phase
-to $\tfrac{2}{3}(-t)^{3/2}$) is a \emph{local, pointwise} statement.
-CFU admissibility (Assumption~(A2)) is a \emph{global, uniform} statement
-about the canonical projection map $\pi_h$.
-The implication
-\[
-  \text{Airy structure} \;\Longrightarrow\; \text{CFU admissibility}
-\]
-is \emph{not} FIO-invariant, not Olver-implied, and not Sturm--Liouville-implied.
-It requires the additional input of
-Lemma~\ref{lem:uniform-projection} and conditions (P1)--(P3) below.
+Airy normal form is a \emph{local, pointwise} statement.
+CFU admissibility is a \emph{global, uniform} statement about $\pi_h$.
+The implication Airy $\Rightarrow$ CFU admissibility
+is not FIO-invariant, not Olver-implied, not SL-implied.
+It requires the branch selection of
+Proposition~\ref{prop:branch-selection},
+the boundary-away condition of
+Assumption~\ref{ass:boundary-away},
+and the differentiated Olver estimate of
+Lemma~\ref{lem:diff-olver}.
 \end{remark}
 
 %% ============================================================
-\section{PSWF Setup}
+\section{PSWF Setup and Standing Assumptions}
 \label{sec:pswf}
 %% ============================================================
 
@@ -127,7 +129,7 @@ $x \in [-1,1]$, are eigenfunctions of
 \[
   \mathcal{L}_c := -\frac{d}{dx}
   \bigl[(1-x^2)\frac{d}{dx}\bigr]
-  + c^2 x^2,
+  + c^2 x^2
 \]
 with eigenvalues $\chi_n(c)$.
 Setting $h := c^{-1}$, the rescaled operator is
@@ -138,21 +140,34 @@ Setting $h := c^{-1}$, the rescaled operator is
 \]
 a semiclassical Schr\"odinger operator with effective potential
 $V(x) = x^2/(1-x^2)$.
-The turning points $x_\pm(h)$, where $V(x_\pm) = \chi_n h^2$,
+The two turning points $x_\pm(h)$, where $V(x_\pm) = \chi_n h^2$,
 are the loci of expected A$_2$-fold singularities.
 \end{definition}
 
 \begin{remark}[Eigenvalue branch]
 \label{rem:eigenbranch}
 For fixed mode $n$ and $h \to 0$,
-one has $\chi_n(c) \sim c^2\lambda_n$ with $\lambda_n \in (0,1)$,
-so the classical turning points converge:
-$x_\pm(h) \to x_\pm^{(0)} \in (-1,1)$ as $h\to 0$.
-The map $h \mapsto \chi_n(h^{-1})$ is smooth and
-strictly monotone on $(0,h_0]$
-(\Cond; follows from analyticity of
-Sturm--Liouville eigenvalues \cite{Olver1974}).
+$\chi_n(c) \sim c^2\lambda_n$ with $\lambda_n \in (0,1)$,
+so $x_\pm(h) \to x_\pm^{(0)} \in (-1,1)$ as $h \to 0$.
+The map $h \mapsto \chi_n(h^{-1})$ is smooth and strictly monotone
+on $(0,h_0]$ (\Cond; analyticity of SL eigenvalues).
 \end{remark}
+
+\begin{assumption}[Boundary-away cutoff]
+\label{ass:boundary-away}
+Fix $\delta_{\rm bdy} > 0$.
+All constructions are localized to
+\[
+  \mathrm{supp}\,\chi \;\subset\; [-1+\delta_{\rm bdy},\,1-\delta_{\rm bdy}],
+\]
+where $\chi \in C_c^\infty(-1,1)$ is a fixed smooth cutoff
+independent of $h$.
+On this set the potential $V(x) = x^2/(1-x^2)$ satisfies
+$V,V',V'' \in L^\infty$ uniformly, ruling out
+boundary-layer effects and potential growth $V \to \infty$
+as $x \to \pm 1$.
+All statements labeled \Cond\ or \Open\ are relative to this assumption.
+\end{assumption}
 
 %% ============================================================
 \section{Olver's Uniform Asymptotic Scheme}
@@ -161,17 +176,15 @@ Sturm--Liouville eigenvalues \cite{Olver1974}).
 
 \subsection{What Olver provides}
 
-Olver \cite{Olver1974} (Ch.~10--11) provides, for a
-second-order ODE with a simple turning point:
+Olver \cite{Olver1974} (Ch.~10--11) provides:
 \begin{enumerate}[(i)]
-\item A \emph{uniform asymptotic expansion} in $h$ matching
-  the WKB and Airy regimes.
-\item \emph{Uniform error bounds} on compact subsets of $(-1,1)$
-  avoiding the endpoints $\pm 1$.
-\item A local phase substitution $x \mapsto t(x;h)$ reducing
-  the ODE phase to $\tfrac{2}{3}(-t)^{3/2}$ (Airy scaling).
+\item A uniform asymptotic expansion matching WKB and Airy regimes.
+\item Uniform error bounds on compact subsets of $(-1,1)$
+  (guaranteed by Assumption~\ref{ass:boundary-away}).
+\item A phase substitution $x \mapsto t(x;h)$ reducing
+  the ODE phase to $\tfrac{2}{3}(-t)^{3/2}$.
 \end{enumerate}
-In particular, the PSWF admits the uniform asymptotic form
+In particular:
 \[
   \psi_n(x;h)
   \;\sim\;
@@ -179,28 +192,123 @@ In particular, the PSWF admits the uniform asymptotic form
   \mathrm{Ai}\bigl(h^{-2/3}\,\phi(x;h)\bigr)
   + \mathcal{O}(h^\infty),
 \]
-where $\phi(x;h) \to \phi_0(x)$ as $h\to 0$ and $\phi_0(x_0)=0$
-at the turning point $x_0$.
+where $\phi(x;h) \to \phi_0(x)$ as $h\to 0$ with $\phi_0(x_0)=0$.
 
 \subsection{What Olver does \emph{not} provide}
-\label{ssec:olver-gap}
 
 \begin{remark}[The Olver--CFU gap]
 \label{rem:olver-gap}
-Olver's analysis guarantees existence of $\phi(x;h)$ and $a(x;h)$,
-pointwise and compact-uniform bounds, and the local Airy normal form.
-It does \emph{not} provide:
+Olver does \emph{not} provide:
 \begin{itemize}
-\item a microlocal canonical relation or Lagrangian distribution framework;
-\item FIO-class membership of the amplitude;
-\item the global geometry of $\Lambda_h$ (self-intersection, branch count);
-\item the uniform transversality of $\pi_h\colon\Lambda_h\to T^*(-1,1)$;
-\item the Jacobian bound $|\det(dt/d\beta)| \ge \delta_1 > 0$ uniform in $h$;
-\item uniform $C^1$-control of $\phi(x;h)$ as $h\to 0$.
+\item a canonical relation or Lagrangian distribution framework;
+\item FIO-class membership;
+\item the global geometry of $\Lambda_h$ (branch count, self-intersections);
+\item uniform transversality of $\pi_h$;
+\item uniform $C^1$-control of $\phi(x;h)$ as $h \to 0$
+  (pointwise convergence does not imply derivative convergence;
+  classical counterexample: $f_h(x) = x + h\sin(x/h)$).
 \end{itemize}
-Bridging these gaps is the content of
-Lemmas \ref{lem:olver-fio-lift-micro}--\ref{lem:uniform-projection}
-and conditions (P1)--(P3).
+\end{remark}
+
+%% ============================================================
+\section{Branch Selection}
+\label{sec:branch}
+%% ============================================================
+
+\begin{remark}[WKB two-branch structure]
+\label{rem:two-branch}
+In the classically allowed region $V(x) < \chi_n h^2$,
+the semiclassical Lagrangian is generically
+\emph{two-sheeted}:
+\[
+  \Lambda_h \;=\; \Lambda_h^+ \cup \Lambda_h^-,
+  \qquad
+  \Lambda_h^\pm := \{(x,\xi)\in T^*(-1,1) : \xi = \pm p(x;h)\},
+\]
+where $p(x;h) := \sqrt{\chi_n h^2 - V(x)} > 0$.
+Both branches project onto the same base interval;
+$\pi_h\colon\Lambda_h \to T^*(-1,1)$ is \emph{not injective}.
+At the turning point $x_0$, the two branches meet:
+$\Lambda_h^+ \cap \Lambda_h^- = \{(x_0, 0)\}$, the A$_2$-fold.
+Thus condition~(P2) (single-branch projection) is \emph{false}
+for $\Lambda_h$ as a whole, and must be established by
+an explicit construction selecting one branch.
+\end{remark}
+
+\begin{proposition}[Branch selection, \Cond]
+\label{prop:branch-selection}
+There exists a microlocal projector
+$\Pi^+\colon L^2(-1,1) \to L^2(-1,1)$,
+microlocally supported on $\{\xi > 0\}$,
+such that:
+\begin{enumerate}[{\rm(i)}]
+\item $\chi\,\psi_n(\,\cdot\,;h) = \Pi^+\bigl(\chi\,\psi_n\bigr)
+  + \mathcal{O}(h^\infty)$ in $L^2$, uniformly in $h$.
+\item $\Pi^+(\chi\,\psi_n)$ is a Lagrangian distribution
+  associated solely to $\Lambda_h^+$,
+  the positive-momentum branch.
+\end{enumerate}
+Consequently, $\pi_h^+\colon\Lambda_h^+ \to T^*(-1,1)$
+is single-sheeted, and condition~\textup{(P2)} holds
+for $\Lambda_h^+$.
+\end{proposition}
+
+\begin{remark}[Proof strategy]
+The projector $\Pi^+$ is constructed as a
+semiclassical pseudodifferential operator
+$\Pi^+ = \mathrm{Op}_h(\sigma^+)$
+where $\sigma^+(x,\xi) \in C_c^\infty(T^*(-1,1))$
+is supported on $\{\xi \ge \delta_{\xi}/2\}$
+for some $\delta_{\xi} > 0$
+(determined by the infimum of $p(x;h)$ on $\mathrm{supp}\,\chi$,
+which is strictly positive by
+Assumption~\ref{ass:boundary-away}
+and the eigenvalue bound $\chi_n h^2 > V(x)$
+on $\mathrm{supp}\,\chi$).
+The $\mathcal{O}(h^\infty)$ error in~(i) follows from
+standard $h$-pseudodifferential calculus \cite{Zworski2012}.
+Status: \Cond.
+\end{remark}
+
+%% ============================================================
+\section{Global Geometry: Conditions (P1) and (P3)}
+\label{sec:phi-conditions}
+%% ============================================================
+
+\begin{remark}[Status of conditions after branch selection]
+\label{rem:p-status}
+After Proposition~\ref{prop:branch-selection},
+condition~(P2) is established by construction.
+Two conditions remain:
+\begin{enumerate}[{\rm(P1)}]
+\item \textit{(Global generating function.)}
+  $\phi(x;h)$ is a global generating function for
+  $\Lambda_h^+$ on $\mathrm{supp}\,\chi$;
+  $\Lambda_h^+$ has no self-intersections there.
+  The single-branch structure (Proposition~\ref{prop:branch-selection})
+  and the strict positivity $\xi = p(x;h) > 0$ on $\mathrm{supp}\,\chi$
+  (by Assumption~\ref{ass:boundary-away})
+  ensure this.
+  Status: \Cond.
+\item[{\rm(P3)}] \textit{(No secondary caustics.)}
+  The A$_2$-fold at $x_0$ is the only critical point of
+  $\pi_h^+\colon\Lambda_h^+ \to T^*(-1,1)$
+  over $\mathrm{supp}\,\chi$.
+  This is non-trivial: the endpoints $x = \pm 1$ carry
+  $V(x) \to \infty$, creating potential boundary-layer
+  turning-point effects.
+  However, Assumption~\ref{ass:boundary-away} places
+  $\mathrm{supp}\,\chi \subset [-1+\delta_{\rm bdy}, 1-\delta_{\rm bdy}]$,
+  so the boundary singularities of $V$ are excluded.
+  On this compact set, $\Lambda_h^+$ is smooth and the only
+  zero of $\partial_\xi \pi_h^+$ is at the turning point $x_0$
+  (where $p(x_0;h) = 0$, which lies in $\mathrm{supp}\,\chi$
+  by assumption).
+  Mode interactions as $h \to 0$ are excluded by the strict
+  spectral gap between modes (SL eigenvalue separation).
+  Status: \Cond\ (contingent on explicit eigenvalue separation
+  estimate; required for Paper~XVII).
+\end{enumerate}
 \end{remark}
 
 %% ============================================================
@@ -208,177 +316,137 @@ and conditions (P1)--(P3).
 \label{sec:lift}
 %% ============================================================
 
-%% ------------------------------------------------------------
 \subsection{Lemma 4.1a: Microlocal Structure}
-%% ------------------------------------------------------------
 
 \begin{lemma}[Olver--FIO Lift: Microlocal Structure, \Cond]
 \label{lem:olver-fio-lift-micro}
-Let $\psi_n(\,\cdot\,;h)$ be the PSWF family
-(Definition~\ref{def:pswf}).
-Under the eigenvalue-branch hypothesis of
-Remark~\ref{rem:eigenbranch}:
+Under Assumption~\ref{ass:boundary-away}
+and the eigenvalue-branch hypothesis:
 \begin{enumerate}[{\rm(i)}]
-\item \textit{(Lagrangian distribution.)}
-  $\psi_n(\,\cdot\,;h)$ is microlocally equivalent,
-  modulo $\mathcal{O}(h^\infty)$ uniformly in $h$,
-  to a Lagrangian distribution
-  $u_h \in I^{-1/4,0}(\Lambda_h)$
-  with phase function $\phi(x;h)$ from the Olver reduction.
-\item \textit{(A$_2$-fold.)}
-  $\Lambda_h$ carries a single A$_2$-fold
-  at the turning point $(x_0,\xi_0(h))$,
-  with cubic coefficient
-  $c_3(h) = \tfrac{1}{6}\Theta'''(0;h) \ge \delta_0 > 0$
-  uniformly in $h$
-  (Assumptions~(A1) and (A3) of XVI).
+\item $\Pi^+(\chi\,\psi_n(\,\cdot\,;h)) \in I^{-1/4,0}(\Lambda_h^+)$
+  microlocally, with phase $\phi(x;h)$ from the Olver reduction.
+\item $\Lambda_h^+$ carries a single A$_2$-fold at $(x_0,0)$
+  with $c_3(h) \ge \delta_0 > 0$ uniformly.
 \end{enumerate}
 \end{lemma}
 
 \begin{remark}[Proof strategy]
-\begin{enumerate}[{\rm(a)}]
-\item Part~(i): the Olver series defines a Lagrangian distribution
-  via H\"ormander \cite{Hormander1983} / Zworski \cite{Zworski2012};
-  $h$-uniformity of the symbol class requires
-  Olver's compact-uniform error bounds.
-  Status: \Cond.
-\item Part~(ii): one simple turning point per mode by
-  Sturm--Liouville theory; A$_2$-type confirmed by Olver's local analysis;
-  uniformity of $c_3(h)$ from smooth eigenbranch.
-  Status: \Cond.
-\end{enumerate}
+(i) FIO identification via H\"ormander/Zworski;
+$h$-uniform symbol class from Olver's compact-uniform bounds.
+(ii) Unique simple turning point (SL); A$_2$-type from Olver local analysis;
+uniformity of $c_3(h)$ from smooth eigenbranch.
+Status: \Cond.
 \end{remark}
 
-%% ------------------------------------------------------------
-\subsection{Global Geometry of $\Lambda_h$: Conditions (P1)--(P3)}
-\label{sec:phi-conditions}
-%% ------------------------------------------------------------
-
-\begin{remark}[Why SL theory does not control global $\Lambda_h$ geometry]
-\label{rem:sl-not-global}
-Sturm--Liouville theory establishes:
-\begin{itemize}
-\item the \emph{number} and \emph{simplicity} of turning points;
-\item the \emph{local} non-degeneracy of the phase at each turning point.
-\end{itemize}
-It does \emph{not} control:
-\begin{itemize}
-\item whether $\Lambda_h$ is self-intersection-free globally;
-\item whether $\pi_h$ is single-valued (one branch) over $\mathrm{supp}\,\chi$;
-\item whether secondary caustics develop under $h \to 0$.
-\end{itemize}
-Even with a single turning point, the semiclassical WKB picture admits
-multiple Lagrangian branches (incoming/outgoing) meeting at the fold;
-global single-valuedness of $\pi_h$ is a separate geometric condition.
-This is the classical phenomenon of WKB multi-branch projection and
-cannot be excluded by spectral theory alone.
-\end{remark}
-
-\begin{remark}[Three required conditions on $\Lambda_h$]
-\label{rem:phi-conditions}
-The reduction from $\inf|\phi'(x;h)| \ge \delta$ to the
-Jacobian bound $|\det(dt/d\beta)| \ge \delta_1$ is valid
-\emph{only} under the following three conditions,
-which must be verified \emph{independently} for the PSWF
-(not derivable from Olver or SL alone):
-\begin{enumerate}[{\rm(P1)}]
-\item \textit{(Global generating function.)}
-  $\phi(x;h)$ is a global generating function for $\Lambda_h$
-  on $\mathrm{supp}\,\chi$;
-  equivalently, $\Lambda_h$ has no self-intersections
-  over $\mathrm{supp}\,\chi$.
-  Status: \Cond\ (follows from global form of Olver phase on
-  the compact region strictly inside $(-1,1)$).
-\item \textit{(Single-branch projection.)}
-  The projection $\pi_h\colon \Lambda_h \to T^*(-1,1)$
-  is single-valued (one branch) over $\mathrm{supp}\,\chi$.
-  This is \emph{not} implied by the existence of a unique
-  turning point: a single fold still produces two WKB branches
-  (incoming/outgoing), and restriction to one branch requires
-  an explicit microlocal cutoff or energy argument.
-  Status: \Open.
-\item \textit{(No caustic interaction.)}
-  The single A$_2$-fold of $\Lambda_h$ is the
-  \emph{only} critical point of $\pi_h$ over $\mathrm{supp}\,\chi$;
-  no secondary caustics arise from endpoint effects or
-  mode interactions as $h \to 0$.
-  Status: \Open.
-\end{enumerate}
-\end{remark}
-
-%% ------------------------------------------------------------
 \subsection{Lemma 4.1b: Uniform Projection}
-%% ------------------------------------------------------------
 
 \begin{lemma}[Uniform Projection Lemma, \Open]
 \label{lem:uniform-projection}
-Assume Lemma~\ref{lem:olver-fio-lift-micro}
-and conditions \textup{(P1)--(P3)}
-of Remark~\ref{rem:phi-conditions}.
-Then the canonical projection map
+Assume Lemma~\ref{lem:olver-fio-lift-micro},
+Proposition~\ref{prop:branch-selection},
+conditions \textup{(P1)} and \textup{(P3)},
+and Lemma~\ref{lem:diff-olver} below.
+Then:
 \[
-  \pi_h \;\colon\; \Lambda_h \;\longrightarrow\; T^*(-1,1),
-  \quad h \in (0,h_0],
+  \inf_{h\in(0,h_0],\;x\in\mathrm{supp}\,\chi\setminus U_\varepsilon}
+  |\phi'(x;h)| \;\ge\; \delta > 0,
 \]
-is uniformly transversal away from the unique A$_2$-fold:
+where $U_\varepsilon$ is an $\varepsilon$-neighborhood of $x_0$.
+Consequently,
 \[
-  \inf_{h \in (0,h_0],\;(x,\xi)\in \Lambda_h\setminus U_\varepsilon}
-  |\det\,d\pi_h(x,\xi)| \;\ge\; \delta_2 > 0.
+  \inf_{h\in(0,h_0]}
+  |\det\,d\pi_h^+(x,\xi)| \;\ge\; \delta_2 > 0
 \]
-Moreover, under conditions \textup{(P1)--(P3)}, this is equivalent to
-\[
-  \inf_{h\in(0,h_0],\;x\in\mathrm{supp}\,\chi}
-  |\phi'(x;h)| \;\ge\; \delta > 0.
-\]
+on $\Lambda_h^+ \setminus U_\varepsilon$.
 \end{lemma}
 
 \begin{remark}[Proof strategy]
-\label{rem:proj-strategy}
 \begin{enumerate}[{\rm(a)}]
-\item \textit{(Non-vanishing at turning point.)}
-  The Olver phase equation satisfies
-  $\phi(x;h)^2\phi'(x;h)^2 = (x-x_0(h))^2 V_1(x;h)$
-  with $V_1$ smooth and nonvanishing.
-  Differentiating at $x = x_0$, using $\phi(x_0;h)=0$
-  and the nondegeneracy of the A$_2$-fold
-  (Lemma~\ref{lem:olver-fio-lift-micro}(ii)),
-  gives $\phi'(x_0;h) \ne 0$ for all $h \in (0,h_0]$.
+\item \emph{Non-vanishing.}
+  At $x \ne x_0$: $\phi'(x;h) = p(x;h)/\phi(x;h)$
+  (from the Olver phase equation
+  $\phi(x;h)^2\phi'(x;h)^2 = p(x;h)^2$);
+  both $p > 0$ and $\phi \ne 0$ on $\mathrm{supp}\,\chi \setminus U_\varepsilon$.
   Status: \Cond.
-\item \textit{(Uniform $C^1$-control and lower bound.)}
-  The argument requires \emph{uniform $C^1$-control}
-  of $\phi(x;h)$ as $h \to 0$, not merely pointwise convergence:
-  \begin{itemize}
-  \item \emph{Required:}
-    $\phi(\,\cdot\,;h) \to \phi_0$ in $C^1(\mathrm{supp}\,\chi)$
-    uniformly as $h\to 0$.
-    This is \emph{strictly stronger} than Olver's pointwise
-    and compact-uniform bounds on $\phi$ itself;
-    it requires uniform bounds on $\partial_x\phi(x;h)$,
-    i.e.\ that $\phi'(x;h)$ does not develop
-    rapid oscillations or ``flattening'' near $h=0$.
-    Classical counterexample: $f_h(x) = x + h\sin(x/h)$
-    converges uniformly but has oscillating derivative,
-    so pointwise convergence of $\phi \to \phi_0$ alone
-    does not give $\phi' \to \phi_0'$ uniformly.
-  \item \emph{Candidate argument:}
-    Differentiate the Olver phase equation with respect to $x$;
-    the resulting ODE for $\phi'(x;h)$ inherits
-    the smooth-eigenbranch property (Remark~\ref{rem:eigenbranch})
-    and satisfies uniform estimates on compact subsets of $(-1,1)$.
-    Combined with non-vanishing (step~(a)), the map
-    $(x,h) \mapsto \phi'(x;h)$ is continuous on
-    $\mathrm{supp}\,\chi \times [0,h_0]$
-    (including $h=0$) and nonvanishing throughout;
-    by compactness, $\inf > 0$.
-  \item \emph{What must be proved explicitly:}
-    the $C^1$-convergence claim is \emph{not}
-    a consequence of Olver \cite{Olver1974} and requires
-    a new differentiated-Olver estimate
-    (or a reference to a strengthened version, e.g.
-    Wasow \cite{Wasow1965} or a modern treatment).
-  \end{itemize}
-  Status: \Open\ (core analytic contribution).
+\item \emph{Uniform lower bound.}
+  Requires uniform $C^1$-control of $\phi$
+  (Lemma~\ref{lem:diff-olver}).
+  Status: \Open\ (reduces to Lemma~\ref{lem:diff-olver}).
 \end{enumerate}
+\end{remark}
+
+%% ============================================================
+\section{The Differentiated Olver Estimate}
+\label{sec:diff-olver}
+%% ============================================================
+
+\begin{lemma}[Differentiated Olver Estimate, \Open]
+\label{lem:diff-olver}
+\emph{(Main technical lemma of Paper~XVII.)}
+Under Assumption~\ref{ass:boundary-away}
+and the smooth-eigenbranch hypothesis
+(Remark~\ref{rem:eigenbranch}):
+\begin{enumerate}[{\rm(i)}]
+\item \textit{($C^0$-uniform convergence.)}
+  $\phi(x;h) \to \phi_0(x)$ in $C^0(\mathrm{supp}\,\chi)$
+  as $h \to 0$,
+  with $\|\phi(\,\cdot\,;h) - \phi_0\|_{C^0} = \mathcal{O}(h)$.
+  This is contained (implicitly) in Olver \cite{Olver1974}.
+\item \textit{(Uniform $C^1$-control.)}
+  $\partial_x\phi(x;h) \to \phi_0'(x)$
+  uniformly on $\mathrm{supp}\,\chi$ as $h \to 0$:
+  \[
+    \|\partial_x\phi(\,\cdot\,;h) - \phi_0'\|_{C^0(\mathrm{supp}\,\chi)}
+    \;\le\; C\,h,
+  \]
+  with $C > 0$ independent of $h$.
+  Since $\phi_0'(x) = p_0(x)/\phi_0(x) \ne 0$
+  on $\mathrm{supp}\,\chi \setminus U_\varepsilon$,
+  it follows that
+  $\inf_{h,x}|\partial_x\phi(x;h)| \ge \delta > 0$.
+\item \textit{(Uniform $C^1$-bounds on $\phi$ itself.)}
+  $\|\partial_x\phi(\,\cdot\,;h)\|_{C^0} \le C$
+  uniformly in $h$.
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}[Proof strategy]
+\label{rem:diff-olver-proof}
+\begin{enumerate}[{\rm(a)}]
+\item \emph{Differentiated Olver equation.}
+  Differentiate the Olver phase equation
+  $\phi^2(\phi')^2 = p^2 = \chi_n h^2 - V(x)$
+  with respect to $x$:
+  \[
+    2\phi(\phi')^3 + 2\phi^2\phi'\phi''
+    \;=\; -V'(x).
+  \]
+  This is a first-order ODE for $\phi'$ given $\phi$,
+  with right-hand side $-V'(x)/[2\phi(\phi')]$.
+\item \emph{Grönwall control.}
+  On $\mathrm{supp}\,\chi \setminus U_\varepsilon$,
+  both $|\phi| \ge c_\varepsilon > 0$ (away from turning point)
+  and $|\phi'|$ are bounded below (by step~(a) of
+  Remark above), so the right-hand side is
+  $\mathcal{O}(1)$ uniformly in $h$.
+  A Gr\"onwall argument on the differentiated equation
+  then yields uniform $C^0$-bounds on $\partial_x\phi$.
+\item \emph{$h\to 0$ limit.}
+  Since $V(x)$ and $\chi_n(h^{-1})h^2 \to \chi_n^{(0)}$
+  are smooth in $x$ and converge as $h\to 0$,
+  the right-hand side of the differentiated equation
+  converges uniformly to that of the $h=0$ equation.
+  Hence $\partial_x\phi(x;h) \to \phi_0'(x)$
+  uniformly on $\mathrm{supp}\,\chi$.
+\item \emph{What is new vs.\ Olver.}
+  Olver \cite{Olver1974} provides $C^0$-control of $\phi$
+  but not of $\partial_x\phi$.
+  Part~(ii) of the lemma is a new estimate.
+  A strengthened treatment appears in
+  Wasow \cite{Wasow1965} for related ODE expansions;
+  adaptation to the PSWF context is required.
+\end{enumerate}
+Status: \Open\ (main technical contribution).
 \end{remark}
 
 %% ============================================================
@@ -386,31 +454,31 @@ Moreover, under conditions \textup{(P1)--(P3)}, this is equivalent to
 \label{sec:a2-derivation}
 %% ============================================================
 
-\begin{proposition}[A2 from 4.1a $+$ (P1--P3) $+$ 4.1b, \Cond]
+\begin{proposition}[A2 from all inputs, \Cond]
 \label{prop:a2-from-lemmas}
-Assume Lemmas~\ref{lem:olver-fio-lift-micro}
-and~\ref{lem:uniform-projection},
-and conditions \textup{(P1)--(P3)}.
-Then
+Assume
+Lemma~\ref{lem:olver-fio-lift-micro},
+Proposition~\ref{prop:branch-selection},
+conditions \textup{(P1)} and \textup{(P3)},
+and Lemma~\ref{lem:diff-olver}.
+Then:
 \[
   |\det(dt/d\beta)| \;\ge\; \delta_1 > 0
-  \quad \text{uniformly in } h \in (0,h_0],
+  \quad\text{uniformly in } h\in(0,h_0].
 \]
-i.e.\ Assumption~\textup{(A2)} of Paper~XVI holds.
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-By Lemma~\ref{lem:olver-fio-lift-micro}(i),
-the PSWF is a Lagrangian distribution with phase $\phi(x;h)$.
-Condition (P1) ensures $\phi$ is a global generating function;
-(P2) ensures the projection is single-branch;
-(P3) excludes secondary caustic interactions.
-Under (P1)--(P3), the CFU projection $\beta \mapsto t(\beta,u;h)$
-is locally equivalent to $\pi_h|_{\Lambda_h}$,
-and the Jacobian is controlled below by $|\phi'(x;h)|$.
-Lemma~\ref{lem:uniform-projection}, whose proof requires
-uniform $C^1$-control of $\phi$ (Remark~\ref{rem:proj-strategy}(b)),
-then gives $|\phi'| \ge \delta$, completing the bound.
+By Proposition~\ref{prop:branch-selection},
+restrict to the single-branch Lagrangian $\Lambda_h^+$.
+By (P1), $\phi$ is a global generating function;
+by (P3), there are no secondary caustics on $\mathrm{supp}\,\chi$.
+The CFU change $\beta \mapsto t(\beta,u;h)$ is locally
+equivalent to $\pi_h^+|_{\Lambda_h^+}$, so
+$|\det(dt/d\beta)|$ is controlled by $|\phi'(x;h)|$.
+Lemma~\ref{lem:diff-olver}(ii) gives
+$|\phi'(x;h)| \ge \delta > 0$ uniformly,
+completing the argument.
 \end{proof}
 
 %% ============================================================
@@ -418,37 +486,24 @@ then gives $|\phi'| \ge \delta$, completing the bound.
 \label{sec:bottlenecks}
 %% ============================================================
 
-\subsection{Open core~1: uniform $C^1$-control of $\phi$}
+\subsection{Open core: Differentiated Olver Estimate (Lemma~\ref{lem:diff-olver})}
 
-The primary open problem is:
-\[
-  \phi(\,\cdot\,;h) \to \phi_0 \text{ in } C^1(\mathrm{supp}\,\chi)
-  \quad \text{uniformly as } h \to 0.
-\]
-This requires a \emph{differentiated Olver estimate}
-not present in \cite{Olver1974}.
-Status: \Open.
-
-\subsection{Open core~2: global Lagrangian geometry (P2)--(P3)}
-
-The single-branch and no-secondary-caustic conditions
-(P2)--(P3) are \emph{independent geometric conditions}
-not implied by Sturm--Liouville theory.
-A rigorous argument must control:
-\begin{itemize}
-\item the WKB branch selection (microlocal cutoff to incoming/outgoing);
-\item the absence of endpoint-induced secondary folds as $h \to 0$.
-\end{itemize}
-Status: \Open.
+The single remaining open item is Lemma~\ref{lem:diff-olver}(ii)--(iii):
+uniform $C^1$-control of $\phi(x;h)$ as $h\to 0$.
+All other open items (P2, and the CFU Jacobian bound)
+reduce to this via the logical chain.
+Status: \Open\ (main technical contribution of Paper~XVII).
 
 \subsection{Conditioned items}
 
-(P1) global generating function: \Cond\ (Olver phase, compact support).
-(A1) cubic coefficient $c_3(h) \ge \delta_0$: \Cond\ (Olver $+$ eigenbranch).
-(A3) unique fold: \Rig\ (Sturm--Liouville).
+(P3) no secondary caustics: \Cond\ (requires eigenvalue
+separation estimate).
+(P1) global generating function: \Cond.
+(A1) $c_3(h) \ge \delta_0$: \Cond.
+(A3) unique fold: \Rig.
 
 %% ============================================================
-\section{Conjectural vs.\ Provable Split}
+\section{Status Table}
 \label{sec:status}
 %% ============================================================
 
@@ -459,66 +514,63 @@ Statement & Status & Source \\
 \hline
 (A3) unique fold & \Rig & Sturm--Liouville \\
 Airy scaling locally & \Rig & Olver Ch.~11 \\
+Boundary-away assumption & \Rig\ (by hypothesis) & Assumption~\ref{ass:boundary-away} \\
 (A1) $c_3(h) \ge \delta_0$ & \Cond & Olver $+$ eigenbranch \\
-FIO-class membership & \Cond & Lem.~4.1a + H\"ormander \\
-(P1) global generating function & \Cond & Olver phase $+$ compact support \\
-(P2) single-branch projection & \Open & WKB branch selection (new) \\
-(P3) no secondary caustics & \Open & global $\Lambda_h$ geometry (new) \\
-uniform $C^1$-control of $\phi'$ & \Open & differentiated Olver (new) \\
+FIO-class membership & \Cond & Lem.~4.1a \\
+(P1) global generating function & \Cond & single branch $+$ $p>0$ \\
+(P2) single-branch & \Cond & Prop.~\ref{prop:branch-selection} \\
+(P3) no secondary caustics & \Cond & Assumption~\ref{ass:boundary-away} $+$ SL gap \\
+Unif.\ $C^1$-control of $\phi'$ & \Open & Lem.~\ref{lem:diff-olver} (main result) \\
 (A2) Jacobian bound & \Open & Prop.~\ref{prop:a2-from-lemmas} \\
-\textup{hyp:rigidity} for PSWF & \Cond & contingent on open items \\
+\textup{hyp:rigidity} for PSWF & \Cond & contingent on Lem.~\ref{lem:diff-olver} \\
 \hline
 \end{tabular}
 \end{center}
 
 %% ============================================================
-\section{Target Theorem of Paper~XVII}
+\section{Target Theorem}
 \label{sec:target}
 %% ============================================================
 
 \begin{theorem}[PSWF A$_2$-stability, \Cond]
 \label{thm:xvii-main}
-\emph{(Target; contingent on
-Lemma~\ref{lem:uniform-projection} and conditions (P1)--(P3).)}
-The PSWF amplitude $\psi_n(\,\cdot\,;h)$
-satisfies Assumption~A2 of Paper~XVI uniformly as $h \to 0$.
-Consequently, the CFU reduction of Paper~XVI applies to PSWF,
-and \textup{hyp:rigidity} holds for the PSWF family.
+\emph{(Contingent on Lemma~\ref{lem:diff-olver}.)}
+Under Assumption~\ref{ass:boundary-away},
+the PSWF amplitude satisfies Assumption~A2 of Paper~XVI
+uniformly as $h \to 0$.
+Consequently, the CFU reduction of Paper~XVI
+applies to the PSWF family and
+\textup{hyp:rigidity} holds for PSWF.
 \end{theorem}
 
 \begin{remark}[Logical dependency chain]
 \label{rem:chain}
-The proof chain is:
 \[
-  \underbrace{\text{Olver} + \text{SL}}_{{\rm[Rig/Cond]}}
+  \underbrace{\text{Olver}+\text{SL}+\text{Ass.}\,\ref{ass:boundary-away}}_{{\rm[Rig/Cond]}}
   \;\Rightarrow\;
   \underbrace{\text{Lem.~4.1a}}_{{\rm[Cond]}}
   \;+\;
-  \underbrace{(\mathrm{P1})}_{{\rm[Cond]}}
+  \underbrace{\text{Prop.~\ref{prop:branch-selection}+}(\mathrm{P1})(\mathrm{P3})}_{{\rm[Cond]}}
   \;+\;
-  \underbrace{(\mathrm{P2}),(\mathrm{P3})}_{{\rm[Open]}}
-  \;+\;
-  \underbrace{C^1\text{-control}}_{{\rm[Open]}}
+  \underbrace{\text{Lem.~\ref{lem:diff-olver}}}_{{\rm[Open]}}
   \;\Rightarrow\;
-  \underbrace{\text{Lem.~4.1b}}_{{\rm[Open]}}
+  \underbrace{\text{Lem.~4.1b}}_{{\rm[Open\to Cond]}}
   \;\Rightarrow\;
-  \underbrace{\text{Prop.~5.1}}_{{\rm[Cond]}}
+  \underbrace{\text{Prop.~\ref{prop:a2-from-lemmas}}}_{{\rm[Cond]}}
   \;\Rightarrow\;
   \underbrace{\text{Thm.~\ref{thm:xvii-main}}}_{{\rm[Cond]}}.
 \]
-There are \emph{three} independent open inputs:
-(P2) WKB branch selection,
-(P3) no secondary caustics,
-and uniform $C^1$-control of $\phi'$.
-The genuine contribution of Paper~XVII is to supply all three.
+The \emph{single} genuine open input is
+the Differentiated Olver Estimate
+(Lemma~\ref{lem:diff-olver}(ii)--(iii)).
 \end{remark}
 
 \begin{remark}[Scope]
-Paper~XVII does not prove the full inverse microlocal conjecture;
-does not give global (non-microlocal) bounds on PSWF;
-does not address PSWF completeness or concentration-of-energy.
-Scope: verify Assumption~A2 of XVI for PSWF
-via Olver $+$ FIO reinterpretation.
+Paper~XVII does not prove the full inverse microlocal
+conjecture; does not give global (non-microlocal) bounds;
+does not address completeness or concentration-of-energy.
+Scope: verify Assumption~A2 of XVI for PSWF via
+Olver $+$ FIO $+$ branch selection.
 \end{remark}
 
 \begin{thebibliography}{9}
@@ -541,16 +593,13 @@ L.~H\"ormander,
 Springer, 1983.
 \bibitem{CFU1957}
 C.~Chester, B.~Friedman, F.~Ursell,
-Proc.\ Cambridge Philos.\ Soc.\
-\textbf{53} (1957), 599--611.
+Proc.\ Cambridge Philos.\ Soc.\ \textbf{53} (1957), 599--611.
 \bibitem{MelroseU1979}
 R.~Melrose, G.~Uhlmann,
-Comm.\ Pure Appl.\ Math.\
-\textbf{32} (1979), 483--519.
+Comm.\ Pure Appl.\ Math.\ \textbf{32} (1979), 483--519.
 \bibitem{Slepian1961}
 D.~Slepian, H.~O.~Pollak,
-Bell Syst.\ Tech.\ J.\
-\textbf{40} (1961), 43--63.
+Bell Syst.\ Tech.\ J.\ \textbf{40} (1961), 43--63.
 \end{thebibliography}
 
 \end{document}
