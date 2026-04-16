@@ -1,4 +1,3 @@
-
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -44,19 +43,27 @@ the PSWF amplitude satisfies Assumption~A2 of Paper~XVI
 (conditions (A1)--(A3)) uniformly as $h := c^{-1} \to 0$.
 
 \medskip
-\noindent\textbf{Central new object.}
-The \emph{Olver--FIO Lift Lemma}
-(Section~\ref{sec:lift}):
-uniform Olver asymptotics define a Lagrangian distribution
-whose associated canonical relation carries a single A$_2$-fold,
-and whose CFU Jacobian admits a uniform lower bound in $h$.
-This is not available in the standard literature
-and constitutes the real analytic contribution of Paper~XVII.
+\noindent\textbf{Central new objects.}
+The \emph{Olver--FIO Lift} is split into two logically independent lemmas:
+\begin{itemize}
+\item Lemma~\ref{lem:olver-fio-lift-micro}
+  (\emph{Microlocal Structure}):
+  Lagrangian structure and A$_2$-fold from Olver $+$ Sturm--Liouville.
+\item Lemma~\ref{lem:uniform-projection}
+  (\emph{Uniform Projection}):
+  the canonical projection $\pi_h\colon \Lambda_h \to T^*[-1,1]$
+  is uniformly transversal in $h$;
+  this is the genuine analytic contribution of Paper~XVII.
+\end{itemize}
+The Jacobian bound (Assumption~(A2) of XVI) follows from
+Lemma~\ref{lem:uniform-projection} together with
+three explicit additional conditions on the generating function
+$\phi(x;h)$ (Section~\ref{sec:phi-conditions}).
 
 \medskip
 \noindent\textbf{Strategy.}
-Primary: Olver turning-point analysis (Strategy~B).
-Secondary: FIO reinterpretation of Olver expansions (Strategy~A).
+Primary: Olver turning-point analysis (Ch.~10--11 of \cite{Olver1974}).
+Secondary: FIO reinterpretation of Olver expansions.
 Auxiliary: Sturm--Liouville spectral theory for global consistency.
 \end{abstract}
 
@@ -64,8 +71,10 @@ Auxiliary: Sturm--Liouville spectral theory for global consistency.
 
 \tableofcontents
 
+%% ============================================================
 \section{Input from Paper~XVI}
 \label{sec:input}
+%% ============================================================
 
 The following are used as \emph{black boxes} (not reproved here):
 
@@ -77,213 +86,343 @@ The following are used as \emph{black boxes} (not reproved here):
   $I^{-1/4,0}(\Lambda_0,\Lambda_1) \to S^{-1/2}_{1,0}(h)$
   under $\kappa$, uniform in $h$.
 \item \textbf{Assumption~A2} (XVI):
-  Three conditions required for CFU reduction:
   \begin{enumerate}[{\rm(A1)}]
   \item Single nondegenerate fold:
     $c_3(h) \ge \delta_0 > 0$ uniformly.
   \item CFU admissibility:
-    $|\det(dt/d\beta)| \ge \delta_1 > 0$ uniformly in $h$
-    (the hard bottleneck).
+    $|\det(dt/d\beta)| \ge \delta_1 > 0$ uniformly in $h$.
   \item Unique fold on $\mathrm{supp}\,\chi$.
   \end{enumerate}
 \item \textbf{hyp:rigidity} (XVI, conjectural):
   Airy class $\Rightarrow$ A$_2$-fold uniform in $h$
-  (the inverse direction to be verified here for PSWF).
+  (the inverse direction, verified here for PSWF).
 \end{itemize}
 
+\begin{remark}[What Airy structure does \emph{not} imply]
+\label{rem:airy-not-cfu}
+A key conceptual point:
+Airy normal form (i.e.\ a local change of variables reducing the ODE phase
+to $\tfrac{2}{3}(-t)^{3/2}$) is a \emph{local, pointwise} statement.
+CFU admissibility (Assumption~(A2)) is a \emph{global, uniform} statement
+about the canonical projection map $\pi_h$.
+The implication
+\[
+  \text{Airy structure} \;\Longrightarrow\; \text{CFU admissibility}
+\]
+is \emph{not} FIO-invariant, not Olver-implied, and not Sturm--Liouville-implied.
+It requires the additional input of
+Lemma~\ref{lem:uniform-projection} below.
+\end{remark}
+
+%% ============================================================
 \section{PSWF Setup}
 \label{sec:pswf}
+%% ============================================================
 
 \begin{definition}[PSWF as semiclassical eigenfamily]\label{def:pswf}
 The prolate spheroidal wave functions $\psi_n(x;c)$,
-$x \in [-1,1]$, are eigenfunctions of the
-differential operator
+$x \in [-1,1]$, are eigenfunctions of
 \[
   \mathcal{L}_c := -\frac{d}{dx}
   \bigl[(1-x^2)\frac{d}{dx}\bigr]
   + c^2 x^2,
 \]
 with eigenvalues $\chi_n(c)$.
-Setting $h := c^{-1}$, the operator becomes
+Setting $h := c^{-1}$, the rescaled operator is
 \[
   h^2 \mathcal{L}_{h^{-1}}
   = -h^2\frac{d}{dx}\bigl[(1-x^2)\frac{d}{dx}\bigr]
   + x^2,
 \]
-a semiclassical Schr\"odinger operator with
-potential $V(x) = x^2/(1-x^2)$ and
-semiclassical parameter $h \to 0$.
-The turning points (where $V(x) = \chi_n h^2$)
-are the loci of A$_2$-fold singularities.
+a semiclassical Schr\"odinger operator with effective potential
+$V(x) = x^2/(1-x^2)$.
+The turning points $x_\pm(h)$, where $V(x_\pm) = \chi_n h^2$,
+are the loci of expected A$_2$-fold singularities.
 \end{definition}
 
-\begin{remark}[Turning point structure]
-\label{rem:turning}
+\begin{remark}[Eigenvalue branch]
+\label{rem:eigenbranch}
 For fixed mode $n$ and $h \to 0$,
-the eigenvalue $\chi_n(c) \sim c^2 \lambda_n$
-for some $\lambda_n \in (0,1)$.
-The turning points $x_\pm(h)$ satisfy
-$V(x_\pm) = \chi_n h^2$
-and converge to the classical turning points
-as $h \to 0$.
-Each turning point is expected to be an
-A$_2$-fold (Olver \cite{Olver1974}, Ch.~10--11);
-verification of uniformity is the task of
-Section~\ref{sec:lift}.
+one has $\chi_n(c) \sim c^2\lambda_n$ with $\lambda_n \in (0,1)$,
+so the classical turning points $x_\pm(h)$ converge to
+limits $x_\pm^{(0)} \in (-1,1)$ as $h\to 0$.
+The smoothness and strict monotonicity of the eigenvalue branch
+$h \mapsto \chi_n(h^{-1})$ on $(0,h_0]$
+is a standing hypothesis (\Cond; follows from analyticity of
+Sturm--Liouville eigenvalues \cite{Olver1974}).
 \end{remark}
 
-\section{Core Strategy: Olver Turning-Point Analysis}
+%% ============================================================
+\section{Olver's Uniform Asymptotic Scheme}
 \label{sec:olver}
+%% ============================================================
 
-\subsection{Olver's uniform asymptotic scheme}
+\subsection{What Olver provides}
 
-Olver \cite{Olver1974} (Ch.~10--11) provides,
-for second-order ODEs with a simple turning point:
+Olver \cite{Olver1974} (Ch.~10--11) provides, for a
+second-order ODE with a simple turning point:
 \begin{enumerate}[(i)]
-\item A \emph{uniform asymptotic expansion}
-  matching bulk (WKB) and turning-point (Airy) regimes.
-\item \emph{Controlled error bounds}
-  uniform in $h$ on compact subsets avoiding endpoints.
-\item A local change of variables $x \mapsto t(x;h)$
-  reducing the ODE phase to
-  $\frac{2}{3}(-t)^{3/2}$ (classical Airy scaling).
+\item A \emph{uniform asymptotic expansion} in $h$ matching
+  the WKB and Airy regimes.
+\item \emph{Uniform error bounds} on compact subsets of $(-1,1)$
+  avoiding the endpoints $\pm 1$.
+\item A local phase substitution $x \mapsto t(x;h)$ reducing
+  the ODE phase to $\tfrac{2}{3}(-t)^{3/2}$ (Airy scaling).
 \end{enumerate}
 
-\begin{remark}[What Olver does \emph{not} give]
-\label{rem:olver-gap}
-Olver guarantees the \emph{existence} of the
-change of variables $x \mapsto t(x;h)$
-and the asymptotic structure of eigenfunctions,
-but does \emph{not} directly provide:
-\begin{itemize}
-\item a lower bound $|\det(dt/d\beta)| \ge \delta_1 > 0$
-  uniform in $h$ (this is Assumption (A2) of XVI);
-\item a microlocal canonical relation framework;
-\item the FIO-class membership of the amplitude.
-\end{itemize}
-Bridging this gap is the content of
-Lemma~\ref{lem:olver-fio-lift} below.
-\end{remark}
-
-\subsection{FIO reinterpretation of Olver expansions}
-
-The Olver expansion can be read as defining
-a semiclassical Lagrangian distribution.
-Specifically, the PSWF admits (schematically)
+In particular, the PSWF admits the uniform asymptotic form
 \[
   \psi_n(x;h)
-  \sim h^{-1/4}\,
-  a(x;h)\,
+  \;\sim\;
+  h^{-1/4}\,a(x;h)\,
   \mathrm{Ai}\bigl(h^{-2/3}\,\phi(x;h)\bigr)
-  + \text{(oscillatory tail)},
+  + \mathcal{O}(h^\infty),
 \]
-where $\phi(x;h) \to \phi_0(x)$ as $h \to 0$
-and $\phi_0(x_0) = 0$ at the turning point $x_0$.
-The amplitude $a(x;h)$ carries the
-$I^{m,l}$-structure of Paper~XVI.
-Making this identification rigorous is the
-central task.
+where $\phi(x;h) \to \phi_0(x)$ as $h\to 0$ and $\phi_0(x_0)=0$
+at the turning point $x_0$.
 
-\section{The Olver--FIO Lift Lemma}
+\subsection{What Olver does \emph{not} provide}
+\label{ssec:olver-gap}
+
+\begin{remark}[The Olver--CFU gap]
+\label{rem:olver-gap}
+Olver's analysis guarantees:
+\begin{itemize}
+\item existence of the phase $\phi(x;h)$ and amplitude $a(x;h)$;
+\item pointwise and compact-uniform bounds on both;
+\item the local Airy normal form near $x_0$.
+\end{itemize}
+It does \emph{not} provide:
+\begin{itemize}
+\item a microlocal canonical relation or Lagrangian distribution framework;
+\item FIO-class membership of the amplitude;
+\item the uniform transversality of the projection $\pi_h\colon\Lambda_h\to T^*[-1,1]$;
+\item the Jacobian bound $|\det(dt/d\beta)| \ge \delta_1 > 0$ uniform in $h$.
+\end{itemize}
+The Olver--FIO bridge (Lemmas \ref{lem:olver-fio-lift-micro}
+and \ref{lem:uniform-projection}) fills exactly these gaps.
+\end{remark}
+
+%% ============================================================
+\section{The Olver--FIO Lift: Split Formulation}
 \label{sec:lift}
+%% ============================================================
 
-This section contains the central new object of Paper~XVII.
+This section contains the two central new objects of Paper~XVII.
+The previous monolithic Lemma~4.1 is now split into two
+logically independent lemmas with clearly separated proof strategies.
 
-\begin{lemma}[Olver--FIO Lift, \Skel]
-\label{lem:olver-fio-lift}
-\emph{(Skeleton formulation; proof to be elaborated.)}
+%% ------------------------------------------------------------
+\subsection{Lemma 4.1a: Microlocal Structure}
+%% ------------------------------------------------------------
+
+\begin{lemma}[Olver--FIO Lift: Microlocal Structure, \Skel]
+\label{lem:olver-fio-lift-micro}
 Let $\psi_n(\,\cdot\,;h)$ be the PSWF family
 (Definition~\ref{def:pswf}).
-Under suitable uniformity conditions on the
-eigenvalue branch $\chi_n(c)$
-(to be made precise):
+Under the eigenvalue-branch hypothesis of
+Remark~\ref{rem:eigenbranch}:
 \begin{enumerate}[{\rm(i)}]
 \item \textit{(Lagrangian distribution.)}
   $\psi_n(\,\cdot\,;h)$ is microlocally equivalent,
-  modulo $S^{-\infty}$ uniformly in $h$,
-  to a Lagrangian distribution associated to a
-  canonical relation $\mathcal{C}_n \subset
-  T^*[-1,1] \times T^*\mathbb{R}$.
+  modulo $\mathcal{O}(h^\infty)$ in $L^2$ uniformly in $h$,
+  to a Lagrangian distribution
+  $u_h \in I^{-1/4,0}(\Lambda_h)$
+  associated to a canonical relation
+  $\mathcal{C}_n \subset T^*(-1,1) \times T^*\mathbb{R}$,
+  with phase function $\phi(x;h)$ from the Olver reduction.
 \item \textit{(A$_2$-fold.)}
-  $\mathcal{C}_n$ has a single A$_2$-fold
-  at the turning point $(x_0,\xi_0)$
-  (Assumption~(A1) and~(A3) of XVI),
-  with $c_3(h) \ge \delta_0 > 0$ uniformly in $h$.
-\item \textit{(Uniform Jacobian bound.)}
-  The CFU change of variables
-  $\beta \mapsto t(\beta,u;h)$ extracted from the
-  Olver reduction satisfies
-  $|\det(dt/d\beta)| \ge \delta_1 > 0$
+  $\Lambda_h$ carries a single A$_2$-fold
+  at the turning point $(x_0,\xi_0(h))$,
+  with cubic coefficient
+  $c_3(h) = \tfrac{1}{6}\Theta'''(0;h) \ge \delta_0 > 0$
   uniformly in $h$
-  (Assumption~(A2) of XVI).
+  (Assumptions~(A1) and (A3) of XVI).
 \end{enumerate}
-Consequently, the PSWF amplitude satisfies
-Assumption~A2 of Paper~XVI uniformly in $h \to 0$,
-and \textup{hyp:rigidity} holds for the PSWF family.
 \end{lemma}
 
-\begin{remark}[Proof strategy for Lemma~\ref{lem:olver-fio-lift}]
-\label{rem:lift-strategy}
+\begin{remark}[Proof strategy for Lemma~\ref{lem:olver-fio-lift-micro}]
 \begin{enumerate}[{\rm(a)}]
-\item Part~(i): identify Olver's asymptotic series
-  as a Lagrangian distribution via the FIO calculus
-  of H\"ormander \cite{Hormander1983} / Zworski \cite{Zworski2012}.
-  The phase function is $\phi(x;h)$ from the
-  Olver reduction.
-\item Part~(ii): use Sturm--Liouville theory
-  (unique simple turning point per mode)
-  + Olver's local analysis to confirm A$_2$-type.
-\item Part~(iii) is the hard step:
-  requires controlling the Jacobian
-  $|\partial t/\partial\beta|$ in the Olver
-  change of variables uniformly in $h$.
-  Candidate approach:
-  explicit formula for $dt/d\beta$
-  from the Olver phase and a lower bound
-  via non-vanishing of $\phi'(x_0;h)$ uniformly.
-  This requires a new estimate not in Olver \cite{Olver1974}.
+\item Part~(i): the Olver asymptotic series defines a Lagrangian distribution
+  via the FIO calculus of H\"ormander \cite{Hormander1983} / Zworski \cite{Zworski2012}.
+  The phase function $\phi(x;h)$ is that of the Olver reduction;
+  the symbol $a(x;h)$ lies in the class $S^{-1/4}_{1,0}(h)$ by Olver's bounds.
+  Status: \Cond\ (standard FIO identification, careful in $h$-uniformity).
+\item Part~(ii): Sturm--Liouville theory gives a unique simple turning point
+  per mode; Olver's local analysis confirms A$_2$-type.
+  Uniformity of $c_3(h) \ge \delta_0$ follows from
+  the smooth dependence of the Olver phase on the eigenvalue branch.
+  Status: \Cond.
 \end{enumerate}
 \end{remark}
 
+%% ------------------------------------------------------------
+\subsection{Necessary Conditions on $\phi(x;h)$}
+\label{sec:phi-conditions}
+%% ------------------------------------------------------------
+
+\begin{remark}[Three required conditions on $\phi$]
+\label{rem:phi-conditions}
+The reduction from $|\phi'(x;h)| \ge \delta$ to the Jacobian bound
+$|\det(dt/d\beta)| \ge \delta_1$ is valid \emph{only} if $\phi$ satisfies
+the following three additional conditions, which are
+\emph{not} implied by Olver's analysis alone and must be
+verified separately for the PSWF:
+\begin{enumerate}[{\rm(P1)}]
+\item \textit{(Global generating function.)}
+  $\phi(x;h)$ is a global generating function for $\Lambda_h$
+  on $\mathrm{supp}\,\chi$; in particular, $\Lambda_h$ has
+  no self-intersections over $\mathrm{supp}\,\chi$.
+\item \textit{(Single-branch projection.)}
+  The canonical projection
+  $\pi_h\colon \Lambda_h \to T^*(-1,1)$
+  has exactly one branch over $\mathrm{supp}\,\chi$,
+  i.e.~no multi-valued fiber above any base point.
+\item \textit{(No caustic interaction.)}
+  The single A$_2$-fold of $\Lambda_h$ (from
+  Lemma~\ref{lem:olver-fio-lift-micro}(ii))
+  is the \emph{only} critical point of $\pi_h$
+  over $\mathrm{supp}\,\chi$;
+  there are no secondary caustics or fold interactions.
+\end{enumerate}
+For the PSWF: (P1) follows from the global form of the Olver phase;
+(P2) and (P3) follow from Sturm--Liouville theory (one turning point per mode)
+combined with the topology of $\mathcal{C}_n$.
+Status of all three: \Cond.
+\end{remark}
+
+%% ------------------------------------------------------------
+\subsection{Lemma 4.1b: Uniform Projection}
+%% ------------------------------------------------------------
+
+\begin{lemma}[Uniform Projection Lemma, \Open]
+\label{lem:uniform-projection}
+Assume Lemma~\ref{lem:olver-fio-lift-micro}
+and conditions \textup{(P1)--(P3)}
+of Remark~\ref{rem:phi-conditions}.
+Then the canonical projection map
+\[
+  \pi_h \;\colon\; \Lambda_h \;\longrightarrow\; T^*(-1,1),
+  \quad h \in (0,h_0],
+\]
+is uniformly transversal away from the unique A$_2$-fold:
+\[
+  \inf_{h \in (0,h_0],\;(x,\xi)\in \Lambda_h\setminus U_\varepsilon}
+  |\det\,d\pi_h(x,\xi)| \;\ge\; \delta_2 > 0,
+\]
+where $U_\varepsilon$ is an $\varepsilon$-neighborhood of the fold locus.
+Moreover, under conditions \textup{(P1)--(P3)}, this is equivalent to
+\[
+  \inf_{h\in(0,h_0],\;x\in\mathrm{supp}\,\chi}
+  |\phi'(x;h)| \;\ge\; \delta > 0.
+\]
+\end{lemma}
+
+\begin{remark}[Proof strategy for Lemma~\ref{lem:uniform-projection}]
+\label{rem:proj-strategy}
+The proof requires two steps:
+\begin{enumerate}[{\rm(a)}]
+\item \textit{(Non-vanishing at the turning point.}
+  Show $\phi'(x_0;h) \ne 0$ for all $h \in (0,h_0]$
+  by differentiating the Olver phase equation
+  $\phi(x;h)^2 \phi'(x;h)^2 = (x-x_0(h))^2 V_1(x;h)$
+  (with $V_1$ smooth and nonvanishing) with respect to $x$ at $x_0$.
+  Note: at the turning point, $\phi(x_0;h)=0$ and the
+  nondegeneracy of the A$_2$-fold gives $\phi'(x_0;h) \ne 0$
+  directly from the Olver normal form.
+\item \textit{(Uniform lower bound via compactness.)}
+  Since $\phi'(\,\cdot\,;h)$ is continuous in $(x,h)$
+  on the compact set $\mathrm{supp}\,\chi \times [h_1,h_0]$,
+  the infimum is attained and positive for $h$ away from $0$.
+  For $h \to 0$, the limit $\phi'(x;0) := \lim_{h\to 0}\phi'(x;h)$
+  is nonvanishing on $\mathrm{supp}\,\chi$ by the
+  uniform convergence of the Olver expansion;
+  hence the infimum over all $h \in (0,h_0]$ is positive.
+  This requires: smooth dependence of $\phi$ on $h$
+  (follows from smooth eigenvalue branch, Remark~\ref{rem:eigenbranch})
+  and the compact support of $\chi$ staying strictly inside
+  $(-1,1)$ (standard cutoff assumption).
+\end{enumerate}
+Status: \Open\ (core analytic contribution of Paper~XVII).
+The argument in (b) is the new estimate not present in
+Olver \cite{Olver1974}.
+\end{remark}
+
+%% ============================================================
+\section{Derivation of Assumption~A2 from Lemmas 4.1a--4.1b}
+\label{sec:a2-derivation}
+%% ============================================================
+
+\begin{proposition}[A2 follows from 4.1a $+$ 4.1b, \Cond]
+\label{prop:a2-from-lemmas}
+Assume Lemmas~\ref{lem:olver-fio-lift-micro}
+and~\ref{lem:uniform-projection}
+and conditions \textup{(P1)--(P3)}.
+Then the CFU change of variables
+$\beta \mapsto t(\beta,u;h)$ extracted from the Olver reduction
+satisfies
+\[
+  |\det(dt/d\beta)| \;\ge\; \delta_1 > 0
+  \quad \text{uniformly in } h \in (0,h_0],
+\]
+i.e.\ Assumption~\textup{(A2)} of Paper~XVI holds for the PSWF family.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+By Lemma~\ref{lem:olver-fio-lift-micro}(i), the PSWF
+is a Lagrangian distribution with phase $\phi(x;h)$.
+By conditions (P1)--(P3), $\phi$ is a global single-branch
+generating function with no secondary caustics,
+so the CFU projection map $\beta \mapsto t(\beta,u;h)$
+is locally equivalent to the projection $\pi_h$
+restricted to the relevant Lagrangian.
+The Jacobian $|\det(dt/d\beta)|$ is then controlled
+from below by $|\phi'(x;h)|$, which is uniformly
+bounded below by Lemma~\ref{lem:uniform-projection}.
+\end{proof}
+
+%% ============================================================
 \section{Critical Bottlenecks}
 \label{sec:bottlenecks}
+%% ============================================================
 
-\subsection{(A2) Uniform Jacobian bound: the hard core}
+\subsection{(A2) Uniform Projection: the hard core}
 
-The only genuinely new analytic input required is:
+The only genuinely new analytic input is:
 \[
   \inf_{h \in (0,h_0],\; x \in \mathrm{supp}\,\chi}
-  |\phi'(x;h)| \ge \delta > 0.
+  |\phi'(x;h)| \ge \delta > 0,
 \]
-This would imply the Jacobian bound in
-Lemma~\ref{lem:olver-fio-lift}(iii)
-via the implicit function theorem.
-Candidate proof:
-\begin{itemize}
-\item Show $\phi'(x_0;h) \ne 0$ for all $h \in (0,h_0]$
-  by differentiating the Olver phase equation.
-\item Uniform control via compactness argument
-  on the eigenvalue branch.
-\end{itemize}
+\emph{subject to conditions (P1)--(P3)}.
+The proof strategy is given in
+Remark~\ref{rem:proj-strategy}(a)--(b).
 Status: \Open.
 
-\subsection{(A1) Geometric stability of fold}
+\subsection{(P1)--(P3) Verification for PSWF}
 
-Follows from Olver's local analysis if
-$c_3(h) = \frac{1}{6}\Theta'''(0;h) \ge \delta_0 > 0$.
-Expected from the turning-point expansion;
-uniform remainder control needed.
-Status: \Cond\ (expected provable).
+As noted in Remark~\ref{rem:phi-conditions},
+all three conditions are expected to hold for PSWF
+by a combination of Sturm--Liouville theory and
+the global form of the Olver phase.
+Status: \Cond.
+
+\subsection{(A1) Cubic coefficient positivity}
+
+$c_3(h) = \tfrac{1}{6}\Theta'''(0;h) \ge \delta_0$
+follows from the Olver turning-point expansion,
+conditioned on uniform control of the eigenvalue branch.
+Status: \Cond.
 
 \subsection{(A3) Uniqueness of fold}
 
-Follows from Sturm--Liouville theory:
-for fixed mode $n$, exactly one simple turning point
-per interval $(-1,1)$.
-Status: \Rig\ (standard).
+Exactly one simple turning point per mode in $(-1,1)$
+by Sturm--Liouville theory.
+Status: \Rig.
 
+%% ============================================================
 \section{Conjectural vs.\ Provable Split}
 \label{sec:status}
+%% ============================================================
 
 \begin{center}
 \begin{tabular}{lll}
@@ -292,41 +431,63 @@ Statement & Status & Source \\
 \hline
 (A3) unique fold & \Rig & Sturm--Liouville \\
 Airy scaling locally & \Rig & Olver Ch.~11 \\
-(A1) $c_3(h) \ge \delta_0$ & \Cond & Olver + uniformity \\
-FIO-class membership & \Cond & new argument needed \\
-(A2) Jacobian bound & \Open & core of XVII \\
-\textup{hyp:rigidity} for PSWF & \Cond & follows from (A1--A3) \\
+(A1) $c_3(h) \ge \delta_0$ & \Cond & Olver $+$ eigenbranch \\
+FIO-class membership & \Cond & Lem.~4.1a + H\"ormander \\
+(P1) global generating function & \Cond & Olver phase + SL \\
+(P2) single-branch projection & \Cond & SL (one turning point) \\
+(P3) no caustic interaction & \Cond & SL $+$ topology of $\mathcal{C}_n$ \\
+uniform projection / transversality & \Open & Lem.~4.1b (core) \\
+(A2) Jacobian bound & \Open & Prop.~\ref{prop:a2-from-lemmas} \\
+\textup{hyp:rigidity} for PSWF & \Cond & (A1)--(A3) + Lem.~4.1a--4.1b \\
 \hline
 \end{tabular}
 \end{center}
 
+%% ============================================================
 \section{Target Theorem of Paper~XVII}
 \label{sec:target}
+%% ============================================================
 
 \begin{theorem}[PSWF A$_2$-stability, \Cond]
 \label{thm:xvii-main}
 \emph{(Target; proof contingent on
-Lemma~\ref{lem:olver-fio-lift}(iii).)}
+Lemma~\ref{lem:uniform-projection}.}
 The PSWF amplitude $\psi_n(\,\cdot\,;h)$
 satisfies Assumption~A2 of Paper~XVI
 uniformly as $h \to 0$.
 Consequently, the CFU reduction
 (Theorems~thm:CFU-geom, thm:CFU-symbol of XVI)
 applies to the PSWF family,
-and \textup{hyp:rigidity} (XVI)
-holds for PSWF.
+and \textup{hyp:rigidity} (XVI) holds for PSWF.
 \end{theorem}
 
-\begin{remark}[What Paper~XVII does not claim]
+\begin{remark}[Logical dependency chain]
+The derivation is:
+\[
+  \underbrace{\text{Olver} + \text{SL}}_{{\rm[Rig/Cond]}}
+  \;\Rightarrow\;
+  \underbrace{\text{Lem.~4.1a}}_{{\rm[Cond]}}
+  \;+\;
+  \underbrace{(\text{P1--P3})}_{{\rm[Cond]}}
+  \;\Rightarrow\;
+  \underbrace{\text{Lem.~4.1b}}_{{\rm[Open]}}
+  \;\Rightarrow\;
+  \underbrace{\text{Prop.~5.1}}_{{\rm[Cond]}}
+  \;\Rightarrow\;
+  \underbrace{\text{Thm.~\ref{thm:xvii-main}}}_{{\rm[Cond]}}.
+\]
+The single open gap is Lemma~\ref{lem:uniform-projection}(b):
+uniform lower bound on $\phi'$ via smooth eigenbranch
+$+$ compactness.
+\end{remark}
+
+\begin{remark}[Scope]
 Paper~XVII does not attempt to:
-prove the full inverse microlocal conjecture
-in general (this remains open);
+prove the full inverse microlocal conjecture in general;
 give global (non-microlocal) bounds on PSWF;
-resolve the PSWF completeness or
-concentration-of-energy problem.
-The scope is strictly:
-verify Assumption~A2 of XVI for PSWF
-via Olver + FIO reinterpretation.
+resolve PSWF completeness or concentration-of-energy.
+Scope: verify Assumption~A2 of XVI for PSWF
+strictly via Olver $+$ FIO reinterpretation.
 \end{remark}
 
 \begin{thebibliography}{9}
