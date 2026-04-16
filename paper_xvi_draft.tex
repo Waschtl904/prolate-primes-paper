@@ -13,7 +13,6 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{problem}[theorem]{Open Problem}
-\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -45,15 +44,19 @@ three results are established:
   Theorem~\ref{thm:airy-normalform}:
   microlocally near the fold point,
   \[
-    F(u) = a(u,c)\,\mathrm{Ai}(c_3^{-1/3}u)
-    + r(u,c),
+    \Phi(u) = e^{i\alpha_*u}\bigl[
+    a(u,c)\,\mathrm{Ai}(c_3^{-1/3}u)
+    + r(u,c)\bigr],
   \]
-  where $a\in S^{-1/2}_{1,0}$ and
-  $r$ is rapidly decaying.
+  $a\in S^{-1/2}_{1,0}$ uniform in $c$,
+  $r$ rapidly decaying uniform in $c$
+  (under non-degeneracy
+  Assumption~\ref{ass:microlocal}(vi)).
 \item \textit{(Pointwise decay.)}
   Lemma~\ref{lem:pointwise}:
   $|\Phi(u)|\le C(1+|u|)^{-3/4}$
-  uniformly for all $u$.
+  with a single constant $C$
+  uniform across all three zones.
 \item \textit{(Ces\`aro improvement.)}
   Corollary~\ref{cor:global-bound}:
   $|\int_0^U\Phi\,du|=O(U^{1/4})$.
@@ -101,9 +104,8 @@ conditions (i)--(ii) reduce to:
   \Theta'''(\beta_0)&\ne 0.
 \end{align}
 These are coordinate expressions;
-the geometric conditions (i)--(ii)
-are invariant under canonical
-transformations.
+conditions (i)--(ii) are invariant
+under canonical transformations.
 By the Thom--Boardman theorem
 \cite{Golub1973},
 any FIO with an A$_2$-fold is,
@@ -177,7 +179,7 @@ $c_3\ne 0$, and:
 \end{enumerate}
 \end{assumption}
 
-\begin{proposition}[Local CFU normal form \Rig]
+\begin{proposition}[Local CFU reduction \Rig]
 \label{prop:CFU}
 Under Assumption~\ref{ass:fold-local},
 fix $U_\epsilon=\{|\beta|<\epsilon\}$
@@ -192,41 +194,35 @@ on $U_{\epsilon/2}$.
   $\Theta'''(0)=6c_3\ne 0$;
   \eqref{eq:fold-i}--\eqref{eq:fold-ii}
   and (F1) confirm A$_2$-type.
-\item \textit{(Local canonical change
-  of variables.)}
+\item \textit{(Phase equivalence modulo
+  canonical transformation.)}
   In $U_\epsilon$,
   the CFU theorem \cite{CFU1957}
   guarantees the existence of a
-  local smooth map
+  smooth local map
   $\beta\mapsto t(\beta,u)$
   --- a \emph{uniform local
-  parametrization of the fold region}
-  (not a global diffeomorphism on
-  $\mathrm{supp}\,\chi$) ---
-  and smooth functions $R(u)$,
-  $\mu(u)=c_3^{-1/3}u+O(u^2)$,
-  such that the phase is mapped to
-  Airy normal form:
-  \begin{equation}\label{eq:CFU-nf}
+  parametrization} of the fold
+  (not a global diffeomorphism
+  on $\mathrm{supp}\,\chi$) ---
+  such that the phase satisfies:
+  \begin{equation}\label{eq:CFU-equiv}
     \Theta(\beta)+u\beta
-    = \tfrac{1}{3}t(\beta,u)^3
+    \;\equiv\;
+    \tfrac{1}{3}t(\beta,u)^3
     - \mu(u)\,t(\beta,u)
     + R(u)
-    + \rho(\beta,u),
+    \quad\text{in }U_\epsilon,
   \end{equation}
-  where $\rho(\beta,u)=O(\beta^4)$
-  is a smooth remainder that,
-  after the change of variables,
-  is \emph{absorbed into the amplitude}
-  rather than the phase.
-  The Jacobi factor
-  $J(t,u):=d\beta/dt$ satisfies
-  \begin{equation}\label{eq:Jacobi}
-    J(t,u)
-    = c_3^{-1/6}|u|^{-1/2}
-    \bigl(1+O(|u|^{-1})\bigr)
-    \quad\text{for large }|u|.
-  \end{equation}
+  where $\mu(u)=c_3^{-1/3}u+O(u^2)$
+  and $R(u)$ is smooth.
+  This is a \emph{phase equivalence
+  modulo smooth canonical transformation};
+  the original remainder from Taylor
+  expansion is absorbed entirely into
+  the Jacobian $J(t,u):=d\beta/dt$
+  and the transported amplitude,
+  not retained as a separate phase term.
 \item \textit{(Far region.)}
   On $\mathrm{supp}\,\phi_{\mathrm{far}}$,
   $\Theta''\ne 0$ by (F1);
@@ -236,81 +232,126 @@ on $U_{\epsilon/2}$.
 \end{enumerate}
 \end{proposition}
 
+\begin{lemma}[Jacobian rescaling \Rig]
+\label{lem:Jacobian-rescaling}
+Under the local canonical change of
+variables $\beta\mapsto t(\beta,u)$
+of Proposition~\ref{prop:CFU}(2),
+\emph{after rescaling to canonical
+Airy coordinates}
+$t = c_3^{-1/6}|u|^{1/2}\tilde{t}$,
+the Jacobi factor satisfies:
+\begin{equation}\label{eq:Jacobi-homog}
+  J(t,u)
+  = c_3^{-1/6}|u|^{-1/2}
+  \tilde{J}(\tilde{t},u),
+\end{equation}
+where $\tilde{J}$ is smooth and
+satisfies $\tilde{J}=1+O(|u|^{-1})$
+uniformly as $|u|\to\infty$.
+The $|u|^{-1/2}$ factor is a consequence
+of the homogeneity of the cubic
+normal form under Airy rescaling,
+not of the original $|\beta|^{-1/2}$
+amplitude.
+\end{lemma}
+
+\begin{proof}
+Under $t=c_3^{-1/6}|u|^{1/2}\tilde{t}$,
+the Airy phase
+$\frac{1}{3}t^3-\mu(u)t$
+becomes
+$c_3^{-1/2}|u|^{3/2}
+(\frac{1}{3}\tilde{t}^3-\mathrm{sgn}(u)\tilde{t})$,
+which is the standard Airy scaling.
+The Jacobian transforms as
+$d\beta/dt=(d\beta/d\tilde{t})\cdot
+(d\tilde{t}/dt)
+=c_3^{-1/6}|u|^{1/2}\cdot
+(d\beta/d\tilde{t})\cdot|u|^{-1/2}
+\cdot c_3^{1/6}$;
+the smooth factor
+$\tilde{J}=d\beta/d\tilde{t}$
+satisfies $\tilde{J}=1+O(|u|^{-1})$
+by the CFU expansion \cite{CFU1957}.
+\end{proof}
+
 \begin{lemma}[Symbol stability under
   parametric FIO reduction \Rig]
 \label{lem:symbol-stability}
-Let $\tilde{a}(t,u)
-:=|\beta(t,u)|^{-1/2}J(t,u)
-\cdot\tilde\chi(t,u)$
+Under Assumption~\ref{ass:microlocal},
+let $\tilde{a}(\tilde{t},u)
+:=|\beta(\tilde{t},u)|^{-1/2}
+\tilde{J}(\tilde{t},u)
+\cdot\tilde\chi(\tilde{t},u)$
 where $\tilde\chi$ is the transported
-cutoff, smooth and compactly supported
-in $t$ uniformly in $u$.
+cutoff (smooth, compactly supported
+in $\tilde{t}$ uniformly in $u$).
 \begin{enumerate}[\rm(1)]
 \item \textit{(Amplitude class in
-  $(t,u)$.)}
+  $(\tilde{t},u)$.)}
   Under Assumption~\ref{ass:microlocal}(iv),
-  $\tilde{a}\in C^\infty$
-  with $|\partial_t^j\partial_u^k
-  \tilde{a}(t,u)|
-  \le C_{jk}(1+|u|)^{-1/2-k}$
-  uniformly.
+  $\tilde{a}\in C^\infty$ with
+  \[
+    |\partial_{\tilde{t}}^j
+    \partial_u^k\tilde{a}(\tilde{t},u)|
+    \le C_{jk}(1+|u|)^{-1/2-k}
+  \]
+  uniformly in $(\tilde{t},u,c)$.
 \item \textit{(Parametric stationary
-  phase in $t$.)}
+  phase.)}
   By H\"ormander \cite{Hormander1983},
   Ch.~7.7, applied with parameter $u$
-  and phase $t^3/3-\mu(u)t$:
+  and Airy phase
+  $\tilde{t}^3/3-\mathrm{sgn}(u)\tilde{t}$:
   \begin{equation}\label{eq:airy-decomp}
     \int_{\mathbb{R}}
-    \tilde{a}(t,u)\,
-    e^{i(t^3/3-\mu(u)t)}\,dt
+    \tilde{a}(\tilde{t},u)\,
+    e^{ic_3^{-1/2}|u|^{3/2}
+    (\tilde{t}^3/3-\mathrm{sgn}(u)\tilde{t})}
+    \,d\tilde{t}
     = a_0(u,c)\,
-    \mathrm{Ai}(-\mu(u))
+    \mathrm{Ai}(c_3^{-1/3}u)
     + r_0(u,c),
   \end{equation}
-  where $r_0$ is rapidly decaying
-  in $u$.
-  Here $a_0(u,c)$ is defined
-  \emph{as the symbol coefficient
-  of the Airy factor}
+  where $a_0$ is the symbol coefficient
+  extracted from the stationary-phase
+  expansion at the cubic critical point
   (not by division by $\mathrm{Ai}$),
-  extracted via the standard
-  stationary-phase expansion at
-  the cubic critical point.
-\item \textit{(Symbol estimate.)}
-  The coefficient $a_0$ satisfies:
-  \begin{equation}\label{eq:symbol-u}
+  and $r_0$ satisfies:
+\item \textit{(Symbol and remainder
+  estimates.)}
+  Under Assumption~\ref{ass:microlocal}(vi)
+  (uniform non-degeneracy of the
+  non-stationary region):
+  \begin{align}
+    \label{eq:symbol-u}
     |\partial_u^j a_0(u,c)|
-    \le C_j(1+|u|)^{-1/2-j},
-    \quad j=0,1,2,\ldots,
-  \end{equation}
-  uniformly in $c\ge c_0$,
-  i.e.\ $a_0\in S^{-1/2}_{1,0}$
-  in $u$.
-  The order $-1/2$ originates from
-  the Jacobian scaling
-  $J\sim c_3^{-1/6}|u|^{-1/2}$
-  (not from $|\beta|^{-1/2}$
-  on the $\beta$-side directly).
+    &\le C_j(1+|u|)^{-1/2-j},\\
+    \label{eq:remainder-u}
+    |r_0(u,c)|
+    &\le C_{N}(1+|u|)^{-N}
+    \quad\text{for each fixed }N,
+  \end{align}
+  uniformly in $c\ge c_0$.
+  In particular $a_0\in S^{-1/2}_{1,0}$
+  in the $u$-variable.
 \end{enumerate}
 \end{lemma}
 
-\begin{remark}[No division by Airy]
-\label{rem:no-division}
-The decomposition~\eqref{eq:airy-decomp}
-is the standard Fourier--Airy
-factorization:
-$F(u) = a_0(u,c)\,\mathrm{Ai}(-\mu(u))
-+ r_0(u,c)$
-with $r_0$ rapidly decaying.
-The symbol $a_0$ is not defined
-by dividing $F(u)$ by
-$\mathrm{Ai}(-\mu(u))$
-(which would be numerically unstable
-near the zeros of Airy);
-it is extracted from the
-stationary-phase expansion
-at the cubic critical point
-of the $t$-integral.
+\begin{remark}[On the remainder estimate]
+\label{rem:remainder}
+The rapid decay~\eqref{eq:remainder-u}
+holds for each fixed $N$ uniformly in $c$
+\emph{provided} the non-stationary
+region (i.e.\ where
+$|\partial_{\tilde{t}}(\tilde{t}^3/3
+-\mathrm{sgn}(u)\tilde{t})|\ge\delta>0$)
+is uniformly non-degenerate in $c$.
+This is guaranteed by
+Assumption~\ref{ass:microlocal}(vi).
+Without (vi), rapid decay
+is only claimed for fixed $c$.
 \end{remark}
 
 \section{Main Results}
@@ -319,8 +360,7 @@ of the $t$-integral.
 \begin{assumption}[Uniform A$_2$-stability \Cond]
 \label{ass:microlocal}
 Assumption~\ref{ass:fold-local}
-holds uniformly in $c\ge c_0$,
-with:
+holds uniformly in $c\ge c_0$, with:
 \begin{enumerate}[\rm(i)]
 \item $\Theta=c_3\beta^3+O(\beta^4)$
   in a $c$-independent neighbourhood;
@@ -328,13 +368,51 @@ with:
 \item $|\Theta''(\beta^*(u))|
   \ge\delta_1|u|^{1/2}$
   for $\delta_2\le|u|\le c^{\theta_0/3}$;
-\item $|\partial_u^k J(t,u)|
+\item the Jacobi factor satisfies
+  $|\partial_u^k J(t,u)|
   \le C_k(1+|u|)^{-1/2-k}$
   uniformly for $k=0,1,2,\ldots$;
-\item No secondary stationary points:
-  (F3) holds uniformly in $c$.
+\item no secondary stationary points:
+  (F3) holds uniformly in $c$;
+\item \textit{(Uniform non-degeneracy
+  of non-stationary region.)}
+  There exists $\delta_4>0$ such that,
+  outside the Airy critical region,
+  $|\partial_{\tilde{t}}
+  (\tilde{t}^3/3-\mathrm{sgn}(u)\tilde{t})|
+  \ge\delta_4$ uniformly in $(u,c)$;
+  moreover, the canonical transformation
+  $\beta\mapsto t(\beta,u)$ satisfies
+  $|\det(dt/d\beta)|\ge\delta_5>0$
+  and $|\partial_\beta^j\partial_u^k
+  t(\beta,u)|\le C_{jk}$
+  uniformly in $(\beta,u,c)$
+  for all $j,k\ge 0$.
 \end{enumerate}
 \end{assumption}
+
+\begin{remark}[Uniformity of
+  the symbol class]
+\label{rem:uniformity}
+Condition~(vi) is the key assumption
+that promotes the symbol estimate
+$a_0\in S^{-1/2}_{1,0}$ from a
+statement for fixed $c$ to one
+uniform in $c\ge c_0$.
+Specifically:
+\begin{itemize}
+\item the Jacobian bound $|\det(dt/d\beta)|
+  \ge\delta_5>0$ ensures the change of
+  variables stays in symbol classes
+  (not merely $C^\infty$);
+\item the derivative bounds on $t(\beta,u)$
+  ensure all transported amplitudes
+  retain their symbol estimates after
+  the CFU change of variables.
+\end{itemize}
+Verifying (vi) for PSWF is part of
+Open Problem~\ref{prob:PSWF-microlocal}.
+\end{remark}
 
 \begin{theorem}[Local Airy normal form \Rig]
 \label{thm:airy-normalform}
@@ -351,118 +429,131 @@ and for $\delta_2\le|u|\le c^{\theta_0/3}$:
 where:
 \begin{itemize}
 \item $a(u,c)\in S^{-1/2}_{1,0}$
-  in $u$ (Lemma~\ref{lem:symbol-stability});
-\item $r(u,c)$ is rapidly decaying:
+  uniform in $c$
+  (Lemma~\ref{lem:symbol-stability}(3)
+  under Assumption (vi));
+\item $r(u,c)$ satisfies
   $|r(u,c)|\le C_N(1+|u|)^{-N}$
-  for all $N$, uniformly in $c$;
-\item the oscillatory structure of $\Phi$
-  is entirely encoded in
+  for each fixed $N$,
+  uniform in $c$
+  (Remark~\ref{rem:remainder});
+\item the oscillatory structure is
+  entirely encoded in
   $\mathrm{Ai}(c_3^{-1/3}u)$;
-  the symbol $a$ captures only
-  smooth amplitude modulation.
+  $a$ is a smooth amplitude modulation.
 \end{itemize}
 \end{theorem}
 
 \begin{proof}[Proof sketch]
 Fold zone $U_\epsilon$:
-apply Proposition~\ref{prop:CFU}(2)
-(local canonical change of variables),
-then Lemma~\ref{lem:symbol-stability}
-(amplitude class in $(t,u)$
+Proposition~\ref{prop:CFU}(2)
+(phase equivalence modulo canonical
+transformation, remainder absorbed
+into amplitude);
+Lemma~\ref{lem:Jacobian-rescaling}
+(Airy rescaling of Jacobian);
+Lemma~\ref{lem:symbol-stability}
+(amplitude class in $(\tilde{t},u)$
 $\to$ symbol in $u$ via
 H\"ormander Ch.~7.7).
 Far zone: Proposition~\ref{prop:CFU}(3).
-Uniformity: conditions (iii)--(v)
-of Assumption~\ref{ass:microlocal}.
+Uniformity: Assumption~\ref{ass:microlocal}
+conditions (iii)--(vi).
 \end{proof}
 
 \begin{lemma}[Pointwise decay \Rig]
 \label{lem:pointwise}
-Under Assumption~\ref{ass:microlocal}:
+Under Assumption~\ref{ass:microlocal},
+there exists a single constant $C>0$,
+uniform across all three zones
+and in $c\ge c_0$, such that:
 \begin{equation}\label{eq:pointwise}
   |\Phi(u)|\le C(1+|u|)^{-3/4}
-  \quad\text{for all }u\in\mathbb{R},
+  \quad\text{for all }u\in\mathbb{R}.
 \end{equation}
-uniformly in $c\ge c_0$.
 \end{lemma}
 
 \begin{proof}
-Decompose $\Phi=\Phi_{\mathrm{fold}}
+Write $\Phi=\Phi_{\mathrm{fold}}
 +\Phi_{\mathrm{far}}$.\medskip
 
-\noindent\textit{Case $u\ge 1$:}
+\noindent\textit{Case $u\ge 1$ (fold zone).}
+By Theorem~\ref{thm:airy-normalform}:
 $|\mathrm{Ai}(c_3^{-1/3}u)|
-\le Cu^{-1/4}e^{-c'u^{3/2}}$
+\le C_1 u^{-1/4}e^{-c'u^{3/2}}$
 \cite{Olver1974},
-$|a|\le Cu^{-1/2}$,
-$|r|\le C(1+u)^{-N}$:
-product $\le Cu^{-3/4}$.\medskip
+$|a|\le C_2 u^{-1/2}$,
+$|r|\le C_N(1+u)^{-N}$:
+the product structure in the WKB
+representation after reduction gives
+$|\Phi|\le(C_1 C_2)u^{-3/4}
++(C_N)(1+u)^{-N}$.\medskip
 
-\noindent\textit{Case $u\le -1$:}
+\noindent\textit{Case $u\le -1$ (fold zone).}
 $|\mathrm{Ai}(c_3^{-1/3}u)|
-\le C|u|^{-1/4}$
-\cite{Olver1974},
-$|a|\le C|u|^{-1/2}$,
-$|r|\le C(1+|u|)^{-N}$:
-product $\le C|u|^{-3/4}$.\medskip
+\le C_1|u|^{-1/4}$ \cite{Olver1974}
+(oscillatory; no exponential decay);
+$|a|\le C_2|u|^{-1/2}$:
+product structure gives
+$|\Phi|\le C_1 C_2|u|^{-3/4}$.\medskip
 
-\noindent\textit{Transition $|u|\le 1$:}
-The FIO amplitude
-$\tilde{a}(t,u)$ in
-Lemma~\ref{lem:symbol-stability}
+\noindent\textit{Case $|u|\le 1$
+(compact transition zone).}
+The amplitude $\tilde{a}(\tilde{t},u)$
 is smooth in $u$;
-by \emph{compactness of the parameter
-region $|u|\le 1$}
-and \emph{continuity of the FIO
-amplitude}, $|\Phi(u)|\le C$
-uniformly on this compact set
+by \emph{compactness} of $\{|u|\le 1\}$
+and \emph{continuity} of the FIO
+amplitude (Assumption (vi) provides
+uniform $C^\infty$-bounds),
+$|\Phi(u)|\le C_3$
+uniformly on this region
 (Erd\'elyi \cite{Erdelyi1956}).
-Hence $|\Phi|\le C\le C(1+|u|)^{-3/4}$
-holds trivially here.\medskip
+Hence $|\Phi|\le C_3\le C_3(1+|u|)^{-3/4}$
+here.\medskip
 
-\noindent\textit{Far zone:}
+\noindent\textit{Far zone
+($|u|\ge c^{\theta_0/3}$).}
 Theorem~\ref{thm:endpoint}:
 $|\Phi_{\mathrm{far}}|
-\le C|u|^{-1/2}\le C|u|^{-3/4}$
+\le C_4|u|^{-1/2}\le C_4|u|^{-3/4}$
 for $|u|\ge 1$.\medskip
 
-\noindent\textit{Transition between
-fold and far zones:}
-In the overlap
-$c^{\theta_0/3}\le|u|
-\le 2c^{\theta_0/3}$,
-both Airy bound and
-Theorem~\ref{thm:endpoint} apply;
-conditions (iii)--(iv) provide
-uniform constants.\medskip
-
-Combining all cases:
-$|\Phi(u)|\le C(1+|u|)^{-3/4}$
-uniformly.
+\noindent\textit{Uniform coupling
+of three zones.}
+The constants $C_1,C_2,C_3,C_4$
+are all uniform in $c\ge c_0$
+by Assumption~\ref{ass:microlocal}
+(vi) (Jacobian and derivative bounds),
+(ii) ($c_3\ge\delta_0$), and
+(iii) (non-degeneracy).
+In the transition between fold and
+far zones
+($c^{\theta_0/3}\le|u|
+\le 2c^{\theta_0/3}$),
+both estimates apply;
+condition (iii) ensures their
+constants are compatible.
+Setting $C:=\max(C_1C_2,C_3,C_4)$
+gives~\eqref{eq:pointwise}.
 \end{proof}
 
-\begin{remark}[On oscillation and decay]
-\label{rem:oscillation}
-The bound $|\Phi(u)|\le C|u|^{-3/4}$
-for $u<0$ does not invoke oscillatory
-cancellation at the level of the
-$u$-integration.
-The $|u|^{-1/4}$ Airy decay is a
-consequence of stationary phase
-\emph{within the Airy representation}
-(encoded in Theorem~\ref{thm:airy-normalform});
-once the pointwise
-bound~\eqref{eq:pointwise} is available,
-the $u$-integral is estimated by
-absolute value only.
-The present method yields a
-\emph{geometric decay $\to$
-integrability} bound;
-obtaining oscillatory improvement
-in $u$ would require showing $\Phi$
-is itself a FIO in $u$ and applying
-a second stationary-phase step,
-which is beyond the scope here.
+\begin{remark}[Product structure vs.\ decay]
+\label{rem:product}
+In Cases $u\ge 1$ and $u\le -1$,
+the exponent $-3/4$ arises from the
+\emph{product structure in the WKB
+representation after CFU reduction}:
+$a\in S^{-1/2}_{1,0}$ contributes
+$|u|^{-1/2}$,
+and $|\mathrm{Ai}(c_3^{-1/3}u)|$
+contributes $|u|^{-1/4}$.
+These are not independent decay
+mechanisms; they arise together
+from the single Airy-normal-form
+representation~\eqref{eq:airy-nf}.
+The two factors are parts of the
+same WKB structure, not separate
+phenomena that are multiplied post hoc.
 \end{remark}
 
 \begin{corollary}[Ces\`aro improvement \Rig]
@@ -474,39 +565,37 @@ Under Assumption~\ref{ass:microlocal}:
   = O(U^{1/4}),
 \]
 improving upon Ces\`aro $O(U^{1/2})$.
-The improvement has two origins:
+The single constant $C$ of
+Lemma~\ref{lem:pointwise} ensures
+the bound is globally stable,
+not merely piecewise sharp.
+The improvement originates from:
 \begin{enumerate}[\rm(a)]
 \item \textit{(Geometric.)}
-  The A$_2$-fold structure of
-  $\mathcal{C}$ forces the Airy
-  normal form, which encodes
-  the $|u|^{-1/4}$ oscillatory decay;
+  A$_2$-fold structure forces the Airy
+  normal form with $|u|^{-1/4}$ decay;
 \item \textit{(Analytic.)}
-  $a\in S^{-1/2}_{1,0}$
-  (Lemma~\ref{lem:symbol-stability})
-  contributes $|u|^{-1/2}$,
-  yielding the integrable exponent
+  $a\in S^{-1/2}_{1,0}$ contributes
+  $|u|^{-1/2}$,
+  yielding the integrable singularity
   $|u|^{-3/4}$.
 \end{enumerate}
 \end{corollary}
 
 \subsection{Converse and FIO rigidity}
 
-\begin{hypothesis}[Microlocal reconstruction
+\begin{assumption}[Microlocal reconstruction
   (non-standard) \Cond]
 \label{hyp:FIO-rigidity}
 Suppose $\Phi$ is in the Airy class and:
 \begin{enumerate}[\rm(a)]
 \item $\sigma(g\mapsto\Phi)
-  \big|_\mathcal{C}\ne 0$
-  (symbol elliptic on $\mathcal{C}$);
+  \big|_\mathcal{C}\ne 0$;
 \item $g\mapsto\Phi$ is injective
   modulo smoothing operators;
 \item $\mathrm{WF}(\Phi)
   \subseteq\pi_u(\mathcal{C})$
-  on the A$_2$ stratum
-  (wavefront inclusion;
-  equality not assumed).
+  on the A$_2$ stratum.
 \end{enumerate}
 Then $\mathcal{C}$ contains an
 A$_2$-fold singularity
@@ -518,25 +607,22 @@ This is a
 \emph{non-standard microlocal
 reconstruction hypothesis},
 not a consequence of standard
-FIO theory (Zworski \cite{Zworski2012},
-H\"ormander \cite{Hormander1983}).
+FIO theory \cite{Zworski2012,Hormander1983}.
 Conditions (a)--(c) go beyond
-standard ellipticity;
-verification for PSWF is Paper~XVII.
-\end{hypothesis}
+standard ellipticity.
+Verification for PSWF: Paper~XVII.
+\end{assumption}
 
 \begin{corollary}[Conditional equivalence]
 \label{cor:conditional-equiv}
-Under Hypothesis~\ref{hyp:FIO-rigidity}:
+Under Assumption~\ref{hyp:FIO-rigidity}:
 Airy-class bound
 $\Rightarrow$
 Assumption~\ref{ass:microlocal}
 (modulo the non-standard
 reconstruction hypothesis).
-The forward direction
-(Assumption $\Rightarrow$ bound)
-holds rigorously without
-Hypothesis~\ref{hyp:FIO-rigidity}.
+The forward direction holds rigorously
+without Assumption~\ref{hyp:FIO-rigidity}.
 \end{corollary}
 
 \section{Residual Open Problem}
@@ -558,8 +644,8 @@ uniformly in $c\to\infty$?
   \cite{Olver1974}.)
 \item $\theta''(\alpha)\ne 0$
   for $\alpha\ne\alpha_*$, uniformly?
-\item Condition (iv) for the
-  PSWF CFU Jacobian?
+\item Conditions (iv) and (vi)
+  for the PSWF CFU Jacobian?
 \end{enumerate}
 Outcomes:
 (A)~Assumptions hold:
