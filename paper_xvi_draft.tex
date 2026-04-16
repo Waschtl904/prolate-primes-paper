@@ -24,64 +24,78 @@
 
 \begin{document}
 
-\title[Airy Normal Form under Fourier Singularization]{%
-  Airy Normal Form under Fourier Singularization:\\
-  Cubic WKB Phases Map to Legendre-Dual
-  $|u|^{3/2}$-Phases,\\
-  Not to Cubic Phases in the Dual Variable}
+\title[Lagrangian Singularity Transport under Fourier Duality]{%
+  Lagrangian Singularity Transport under Fourier Duality:\\ 
+  Cubic WKB Phases Map to Airy-Class Distributions\\
+  via A$_2$-Fold Structure}
 
 \author{[Author]}
 
 \begin{abstract}
 Paper~XV reduces the intermediate-regime
-problem to the single 1D question
-whether the fold amplitude~$\Phi$
+problem to whether the fold amplitude~$\Phi$
 satisfies a uniform oscillatory estimate
 improving upon Ces\`aro
 (Assumption~XV.\ref{ass:Phi-cubic}).
-This paper clarifies the microlocal
-mechanism governing~$\Phi$
-and establishes three results:
+This paper establishes the microlocal
+mechanism governing~$\Phi$:
+the Fourier transform does not preserve
+polynomial phase classes,
+but transports Lagrangian singularity classes
+between Arnold strata.
+Concretely:
+\[
+  \widehat{\phantom{x}}
+  \;:\;
+  \mathcal{FIO}(A_2)\longrightarrow\mathcal{FIO}(A_2),
+\]
+where $\mathcal{FIO}(A_2)$ denotes
+Fourier integral operators whose
+canonical relation has an A$_2$-fold singularity.
+The cubic WKB phase $c_3\beta^3$ is not
+``preserved'' under Fourier duality;
+it is \emph{reclassified}:
+its image is an Airy-class distribution
+whose oscillatory phase is the
+Legendre dual $S(u)\sim C|u|^{3/2}$,
+not a cubic polynomial in $u$.
+\medskip
+
+\noindent Three results are proved:
 \begin{enumerate}[\rm(1)]
 \item \emph{Endpoint decay}
   (Theorem~\ref{thm:endpoint}):
-  $|\Phi(u)|=O(|u|^{-1/2})$,
-  with explicit leading term for
-  the pure endpoint case.
-\item \emph{Non-preservation of cubic phase}
+  $|\Phi(u)|=O(|u|^{-1/2})$.
+\item \emph{Non-preservation of polynomial
+  phase classes}
   (Proposition~\ref{prop:nonpreservation}):
-  the Fourier transform of an amplitude
-  with cubic WKB phase $c_3\beta^3$
-  is \emph{not} an amplitude with cubic
-  phase in $u$; it is instead an
-  Airy-class distribution whose
-  oscillatory phase is the
-  Legendre dual $S(u)\sim C|u|^{3/2}$.
+  cubic $\beta$-phase maps to
+  $|u|^{3/2}$-Airy phase,
+  effecting a change of singularity class,
+  not a duplication of phase structure.
 \item \emph{Airy normal form theorem}
   (Theorem~\ref{thm:airy-normalform}):
-  under the microlocal fold structure
-  Assumption~\ref{ass:microlocal},
+  under the A$_2$-stability condition
+  (Assumption~\ref{ass:microlocal}),
   the fold amplitude satisfies
   \[
     \Phi(u)
-    = |u|^{-1/2}\,
-    \mathrm{Ai}\!\bigl(c_3^{-1/3}u\bigr)\,
-    e^{i\alpha_* u}
-    \bigl(1+O(|u|^{-1})\bigr),
+    = e^{i\alpha_* u}\,
+    a(u,c)\,
+    \mathrm{Ai}\!\bigl(c_3^{-1/3}u\bigr),
+    \quad
+    a(u,c)\in S^{-1/2},
   \]
-  so that $\Phi$ lies in the
-  \emph{Airy FIO class},
-  not in any cubic polynomial phase class.
+  and
+  (Lemma~\ref{lem:airy-integral})
+  $|\int_0^U\Phi(u)\,du|=O(U^{1/4})$,
+  strictly improving upon Ces\`aro.
 \end{enumerate}
-The converse direction
-(Assumption~XV.\ref{ass:Phi-cubic}
-$\Rightarrow$ microlocal structure)
-requires an additional
-\emph{FIO inversion hypothesis}
-(Hypothesis~\ref{hyp:FIO-rigidity})
-and is not claimed to hold in general.
+The converse requires the additional
+FIO inversion hypothesis
+(Hypothesis~\ref{hyp:FIO-rigidity}).
 The core open problem for the PSWF case
-remains Problem~\ref{prob:PSWF-microlocal}.
+is Problem~\ref{prob:PSWF-microlocal}.
 \end{abstract}
 
 \maketitle
@@ -130,8 +144,7 @@ satisfying the fold condition:
   c_3:=\tfrac{1}{6}\theta'''(\alpha_*)\ne 0.
 \end{equation}
 Setting $\beta=\alpha-\alpha_*$
-and writing $\Theta(\beta)
-:=\theta(\alpha_*+\beta)$,
+and $\Theta(\beta):=\theta(\alpha_*+\beta)$:
 \begin{equation}\label{eq:Phi-WKB}
   \Phi(u)
   = e^{i\alpha_* u}
@@ -155,147 +168,138 @@ For $\Phi$ defined by~\eqref{eq:Phi-def}
   |u|^{-1/2}e^{-i\pi/4}
   + O(|u|^{-3/2}),
 \]
-and in particular $|\Phi(u)|=O(|u|^{-1/2})$.
+and $|\Phi(u)|=O(|u|^{-1/2})$.
 For $\Phi$ defined by~\eqref{eq:Phi-WKB}
 with $\theta\in C^\infty$ arbitrary,
 still $|\Phi(u)|=O(|u|^{-1/2})$.
 \end{theorem}
 
 \begin{proof}
-Pure endpoint: Erd\'elyi's lemma
-applied to $|\beta|^{-1/2}\chi(\beta)
-e^{i\beta u}$ at $\beta=0$.
+Pure endpoint: Erd\'elyi's lemma at $\beta=0$.
 WKB case: $e^{i\Theta(\beta)}\chi(\alpha_*+\beta)$
 is a smooth bounded amplitude;
-the $O(|u|^{-1/2})$ bound follows
-from van~der~Corput with singular weight
-$|\beta|^{-1/2}$.
+van~der~Corput with singular weight
+$|\beta|^{-1/2}$ gives the bound.
 \end{proof}
 
-\section{Non-Preservation of
-  Cubic Phase Structure}
+\section{Non-Preservation of Polynomial
+  Phase Classes}
 \label{sec:nonpreservation}
 
-\begin{proposition}[Cubic $\beta$-phase
-  maps to Airy $u$-phase, not cubic
-  $u$-phase \Rig]
+\begin{proposition}[Cubic $\beta$-phase maps
+  to Airy $|u|^{3/2}$-phase:
+  a change of singularity class \Rig]
 \label{prop:nonpreservation}
 Let $\Theta(\beta)
 =c_3\beta^3+O(\beta^4)$
 with $c_3\ne 0$.
-Then the Fourier integral
+Then:
 \begin{equation}\label{eq:airy-FT}
   F(u):=\int_{\mathbb{R}}
   |\beta|^{-1/2}
   e^{i(c_3\beta^3+\beta u)}
   \chi(\beta)\,d\beta
-\end{equation}
-satisfies, for $|u|\to\infty$:
-\[
-  F(u)
-  \sim
+  \;\sim\;
   c_3^{-1/6}\,
   \mathrm{Ai}\!\bigl(-c_3^{-1/3}u\bigr)
   \cdot P(u),
-\]
-where $\mathrm{Ai}$ is the Airy function
-and $P$ is a polynomial amplitude prefactor.
-In particular, the oscillatory phase of
-$F(u)$ for large $|u|$ is
+  \quad|u|\to\infty,
+\end{equation}
+where $P$ is a polynomial amplitude prefactor.
+The oscillatory phase of $F(u)$ is
 \begin{equation}\label{eq:legendre-dual}
   S(u)
   = -\tfrac{2}{3}|c_3|^{-1/2}|u|^{3/2}
   + O(|u|^{1/2}),
 \end{equation}
-which is the \emph{Legendre dual} of
-$\Theta(\beta)=c_3\beta^3$:
-if $\Theta'(\beta^*)=-u$, then
-$S(u)=\Theta(\beta^*)+u\beta^*
-\big|_{\beta^*=(-u/3c_3)^{1/2}}$.
-\medskip
-
-\noindent Thus: a \emph{cubic phase
-in $\beta$} maps under Fourier
-singularization to a
-\emph{$|u|^{3/2}$-type Airy phase in $u$},
-\emph{not} to a cubic phase $c_3' u^3$.
-The Fourier transform is not
-self-dual on cubic phase classes.
+which is the Legendre dual of $\Theta(\beta)=c_3\beta^3$:
+setting $\Theta'(\beta^*)=-u$,
+i.e.\ $\beta^*(u)=(-u/3c_3)^{1/2}$,
+\[
+  S(u)
+  = \bigl[\Theta(\beta^*)+u\beta^*\bigr]
+  \big|_{\beta^*=(-u/3c_3)^{1/2}}
+  = c_3\!\left(\tfrac{-u}{3c_3}\right)^{\!3/2}
+  \!+ u\!\left(\tfrac{-u}{3c_3}\right)^{\!1/2}
+  = -\tfrac{2}{3}c_3^{-1/2}(-u)^{3/2}.
+\]
+Thus: the Fourier transform maps the
+polynomial class $\{e^{ic_3\beta^3}\}$
+not to a polynomial class $\{e^{ic_3'u^3}\}$,
+but to the Airy class $\{\mathrm{Ai}(c_3^{-1/3}u)\}$.
+This is a \emph{change of singularity class},
+not a duplication of phase structure.
 \end{proposition}
 
 \begin{proof}
-For $c_3>0$ and $u<0$
-the stationary point of
-$c_3\beta^3+\beta u$ satisfies
-$3c_3\beta^2+u=0$,
-giving $\beta^*(u)=(-u/3c_3)^{1/2}$.
-The standard Airy integral evaluation
-(Chester--Friedman--Ursell \cite{CFU1957},
-Olver \cite{Olver1974})
-applied to~\eqref{eq:airy-FT}
-yields the stated Airy function form.
-The phase $S(u)$ in~\eqref{eq:legendre-dual}
-is obtained by evaluating
-$c_3(\beta^*)^3+\beta^* u
-=c_3(-u/3c_3)^{3/2}+(-u/3c_3)^{1/2}u
-=-\frac{2}{3}c_3^{-1/2}(-u)^{3/2}$.
+Chester--Friedman--Ursell \cite{CFU1957}
+applied to~\eqref{eq:airy-FT},
+or equivalently the standard integral
+representation of the Airy function
+(Olver \cite{Olver1974}, Ch.~11).
+The phase~\eqref{eq:legendre-dual}
+is the generating function of the
+canonical relation in the dual parametrisation.
 \end{proof}
 
-\begin{remark}[Geometrical interpretation]
+\begin{remark}[Geometric interpretation: A$_2$-fold]
 \label{rem:geometry}
 The canonical relation of~\eqref{eq:airy-FT}
-as a Fourier integral operator is
-$\mathcal{C}=\{(\beta,\xi):\xi=\Theta'(\beta)
+is $\mathcal{C}=\{(\beta,\xi):\xi=\Theta'(\beta)
 =3c_3\beta^2\}$.
 The projection $\pi_u:\mathcal{C}\to T^*_u$
-given by $(\beta,\xi)\mapsto\xi$
-has a \emph{fold singularity} at $\beta=0$
-(where $\partial_\beta\Theta'=6c_3\beta=0$).
+has a \emph{fold singularity}
+(A$_2$-catastrophe in Arnold's classification
+\cite{Arnold1972})
+at $\beta=0$ where $\partial_\beta\Theta'=6c_3\beta=0$.
+The Airy function is the universal
+normal form of this A$_2$ singularity.
 The Legendre dual phase~\eqref{eq:legendre-dual}
-is the generating function of
-$\mathcal{C}$ in the dual
-$(u,\beta^*(u))$ parametrisation.
-This fold is an A$_2$-catastrophe
-in Arnold's classification;
-the resulting normal form is
-universally the Airy function.
+is the generating function of $\mathcal{C}$
+in the $(u,\beta^*(u))$ parametrisation.
+\medskip
+
+\noindent In particular: there is no hierarchy
+of polynomial phase classes under Fourier duality.
+Instead, the Fourier transform
+transports singularity classes between
+Arnold strata:
+\[
+  \widehat{\phantom{x}}
+  \;:\;
+  \mathcal{FIO}(A_1)\to\mathcal{FIO}(A_1),
+  \qquad
+  \widehat{\phantom{x}}
+  \;:\;
+  \mathcal{FIO}(A_2)\to\mathcal{FIO}(A_2).
+\]
 \end{remark}
 
 \begin{remark}[Consequence for
   Assumption~XV.\ref{ass:Phi-cubic}]
 \label{rem:consequence}
 Assumption~XV.\ref{ass:Phi-cubic}
-postulates a cubic polynomial phase
-$c_3 u^3$ in the exponent of $\Phi(u)$.
+postulates a cubic polynomial phase $c_3u^3$.
 Proposition~\ref{prop:nonpreservation}
-shows that this form \emph{cannot}
-arise from the local Taylor expansion
-$\Theta(\beta)=c_3\beta^3+O(\beta^4)$
-alone:
-the correct dual phase is $|u|^{3/2}$,
-not $u^3$.
+shows this cannot arise from the local
+cubic WKB phase alone.
+The correct output phase is $S(u)\sim C|u|^{3/2}$.
 Assumption~XV.\ref{ass:Phi-cubic}
-should therefore be read as a
-structural regularity hypothesis,
-not as a prediction derivable
-from the cubic WKB phase.
+should be read as a structural proxy
+for the Airy-class bound,
+not as a literal cubic exponential.
 \end{remark}
 
 \section{Airy Normal Form Theorem}
 \label{sec:normalform}
 
-\begin{assumption}[Microlocal
-  fold structure \Cond]
+\begin{assumption}[A$_2$-stability:
+  microlocal fold structure \Cond]
 \label{ass:microlocal}
 The WKB amplitude $g$ of~\eqref{eq:g-def}
 satisfies, near $\alpha_*$,
-a \emph{uniform microlocal
-decomposition}:
-\[
-  g(\alpha_*+\beta)
-  = A(\beta)\,
-  e^{i\Theta(\beta)},
-\]
+a uniform microlocal decomposition
+$g(\alpha_*+\beta)=A(\beta)\,e^{i\Theta(\beta)}$,
 where:
 \begin{enumerate}[\rm(i)]
 \item $A(\beta)=|\beta|^{-1/2}\tilde\chi(\beta)$
@@ -308,7 +312,7 @@ where:
 \item the Fourier transform
   $\widehat{A}(u)$ satisfies
   $|\widehat{A}(u)|=O(|u|^{-1/2})$;
-\item the \emph{stationary point}
+\item the stationary point
   $\beta^*(u)=(-u/3c_3)^{1/2}$
   of $\Theta(\beta)+u\beta$ satisfies
   \[
@@ -319,23 +323,18 @@ where:
   uniformly in $(u,c)$ for
   $\delta_2\le |u|\le c^{\theta_0/3}$.
 \end{enumerate}
-\end{assumption}
-
-\begin{remark}[Role of condition (iv)]
-\label{rem:iv}
+Condition~(ii) ($c_3(c)\ge\delta_0>0$)
+is the \emph{A$_2$-stability condition}:
+the Lagrange manifold $\mathcal{C}_c$
+remains uniformly in the fold stratum
+as $c\to\infty$.
 Condition~(iv) is the uniform
-non-degeneracy of the fold projection:
-$\Theta''(\beta^*(u))$ is the
-Jacobian of $\pi_u:\mathcal{C}\to T^*_u$
-at the critical point.
-It equals zero precisely at $u=0$
-(where the A$_2$ fold is located)
-and at any $u$ where $c_3(c)\to 0$.
-The bound $\ge\delta_1|u|^{1/2}$
-is the minimal growth rate
-consistent with the Airy scaling
-$\xi\sim c^{-\theta_0/3}$.
-\end{remark}
+non-degeneracy of the fold projection,
+i.e.\ the Jacobian of
+$\pi_u:\mathcal{C}_c\to T^*_u$
+stays bounded away from zero
+in the stated region.
+\end{assumption}
 
 \begin{theorem}[Airy normal form \Rig]
 \label{thm:airy-normalform}
@@ -345,129 +344,170 @@ satisfies:
 \begin{equation}\label{eq:airy-normalform}
   \Phi(u)
   = e^{i\alpha_* u}\,
-  |u|^{-1/2}\,
-  \mathrm{Ai}\!\bigl(c_3^{-1/3}u\bigr)\,
-  \bigl(1+r(u,c)\bigr),
-  \quad
-  |r(u,c)|\le C|u|^{-1},
+  a(u,c)\,
+  \mathrm{Ai}\!\bigl(c_3^{-1/3}u\bigr),
 \end{equation}
-uniformly in $c\ge c_0$ and
-$\delta_2\le|u|\le c^{\theta_0/3}$.
-The oscillatory phase of $\Phi(u)$
-for large $|u|$ is thus
-$S(u)\sim -\frac{2}{3}c_3^{-1/2}|u|^{3/2}$
-(the Legendre dual of $\Theta$),
-not a cubic polynomial in $u$.
-\medskip
-
-\noindent In particular, if
-Assumption~\ref{ass:microlocal} holds,
-then for large $U$:
+where $a(u,c)$ is a symbol of order $-1/2$:
 \[
-  \left|\int_0^U \Phi(u)\,du\right|
-  = O(U^{1/4}),
+  a(u,c)\in S^{-1/2},
+  \quad
+  \text{i.e.}\quad
+  |a(u,c)|\le C(1+|u|)^{-1/2},
+  \quad
+  |\partial_u a|\le C(1+|u|)^{-3/2},
 \]
-using the decay $|\mathrm{Ai}(t)|=O(|t|^{-1/4})$
-for $t\to+\infty$.
-This gives $|\Phi|$-cancellation strictly
-stronger than the Ces\`aro bound $U^{1/2}$,
-and in particular
-establishes~\eqref{eq:Phi-question}.
+uniformly in $c\ge c_0$
+and $\delta_2\le|u|\le c^{\theta_0/3}$.
+The factor $e^{i\alpha_*u}$ is a global
+Fourier shift (translation of $\alpha_*$
+to the origin) and carries no microlocal
+information about the fold.
+The oscillatory phase of $\Phi(u)$
+for large $|u|$ is
+$S(u)\sim -\frac{2}{3}c_3^{-1/2}|u|^{3/2}$,
+the Legendre dual of $\Theta$
+(Proposition~\ref{prop:nonpreservation}).
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Apply the Chester--Friedman--Ursell
-normal form reduction \cite{CFU1957}
-to the integral~\eqref{eq:Phi-WKB}.
-Under conditions~(i)--(iv) of
-Assumption~\ref{ass:microlocal},
-one performs the change of variables
-$\beta\mapsto t(\beta,u)$ such that
-$\Theta(\beta)+u\beta
-= \tfrac{1}{3}t^3 - c_3^{-1/3}u\,t$
-(the Airy normal form of the cubic phase).
-Condition~(iv) ensures this change
-of variables is a diffeomorphism
-uniformly in $(u,c)$ in the stated range.
-The singular amplitude $|\beta|^{-1/2}$
+Apply the Chester--Friedman--Ursell normal
+form reduction \cite{CFU1957} to~\eqref{eq:Phi-WKB}.
+Conditions~(i)--(iv) of
+Assumption~\ref{ass:microlocal}
+ensure the change of variables
+$\beta\mapsto t(\beta,u)$ satisfying
+\[
+  \Theta(\beta)+u\beta
+  = \tfrac{1}{3}t^3 - c_3^{-1/3}u\,t
+\]
+is a smooth diffeomorphism,
+uniformly in $(u,c)$ in the stated range
+(condition~(iv) is exactly the
+uniform non-degeneracy of this
+coordinate change).
+Under this map, $|\beta|^{-1/2}$
 transforms to $|t|^{-1/2}$
-times a smooth bounded Jacobian
-(condition~(i)).
-The resulting integral is
-the standard Airy representation,
-giving~\eqref{eq:airy-normalform}.
-The error bound $r=O(|u|^{-1})$
-follows from the $O(\beta^4)$-remainder
-in condition~(ii) via Erd\'elyi's lemma.
-The integral bound $O(U^{1/4})$
-follows from $|\mathrm{Ai}(t)|
-=O(|t|^{-1/4})\cdot e^{-\frac{2}{3}|t|^{3/2}}$
-for $t>0$ and oscillatory cancellation
-for $t<0$ (cf.\ Olver \cite{Olver1974}).
+times a smooth nonvanishing Jacobian
+(from condition~(i)).
+The resulting integral is the
+standard Airy representation,
+giving $\mathrm{Ai}(c_3^{-1/3}u)$
+times the amplitude symbol $a(u,c)$.
+The symbol bounds for $a$ follow
+from the $O(\beta^4)$ remainder in~(ii)
+via Erd\'elyi's lemma.
 \end{proof}
 
-\begin{remark}[What the theorem does
-  not say]
-\label{rem:notcubic}
-Theorem~\ref{thm:airy-normalform}
-does \emph{not} assert a cubic polynomial
-phase $e^{ic_3 u^3}$ in the output.
-The correct output phase is
-$S(u)\sim C|u|^{3/2}$,
-as established in
-Proposition~\ref{prop:nonpreservation}.
-This is consistent with
-Assumption~XV.\ref{ass:Phi-cubic}
-only in the weaker sense that
-$\Phi$ has a specific oscillatory structure;
-that assumption should be understood
-as a proxy for the Airy-class bound,
-not as a literal cubic exponential.
+\begin{lemma}[Airy integral estimate:
+  Airy class $\Rightarrow$ improved Ces\`aro \Rig]
+\label{lem:airy-integral}
+Under the conclusion of
+Theorem~\ref{thm:airy-normalform}:
+\begin{equation}\label{eq:airy-integral}
+  \left|\int_0^U
+  \Phi(u)\,du\right|
+  = O(U^{1/4}),
+  \quad U\to\infty.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $\Phi(u)=e^{i\alpha_*u}a(u,c)
+\mathrm{Ai}(c_3^{-1/3}u)$.
+The global phase $e^{i\alpha_*u}$
+contributes via the Riemann--Lebesgue
+mechanism: integration by parts
+in $u$ with $e^{i\alpha_*u}$
+produces boundary terms of order
+$|a(U,c)\mathrm{Ai}(c_3^{-1/3}U)|
+= O(U^{-1/2}\cdot U^{-1/4})
+= O(U^{-3/4})$
+(using $a\in S^{-1/2}$ and
+$|\mathrm{Ai}(t)|\le C|t|^{-1/4}$
+for $t\to+\infty$, Olver~\cite{Olver1974})
+plus lower-order symbol derivative terms.
+The dominant contribution
+for large $U$ is:
+\begin{align*}
+  \left|\int_1^U
+  a(u,c)\mathrm{Ai}(c_3^{-1/3}u)\,du\right|
+  &\le
+  \int_1^U |a(u,c)|\,
+  |\mathrm{Ai}(c_3^{-1/3}u)|\,du
+  \\
+  &\le
+  C\int_1^U u^{-1/2}\cdot u^{-1/4}\,du
+  = C\int_1^U u^{-3/4}\,du
+  = O(U^{1/4}).
+\end{align*}
+For $t<0$ (oscillatory Airy region),
+the oscillations of $\mathrm{Ai}(t)$
+give additional cancellation;
+the bound $O(U^{1/4})$ is therefore
+not improved but also not worsened
+by the oscillatory regime.
+This gives~\eqref{eq:airy-integral},
+strictly improving over the
+Ces\`aro bound $O(U^{1/2})$.
+\end{proof}
+
+\begin{remark}[Three distinct mechanisms]
+\label{rem:three-mechanisms}
+The proof of Lemma~\ref{lem:airy-integral}
+uses three separate components:
+\begin{enumerate}[\rm(a)]
+\item \emph{Symbol decay}: $a\in S^{-1/2}$
+  gives $|a(u,c)|=O(u^{-1/2})$;
+  this is amplitude control.
+\item \emph{Airy decay}: $|\mathrm{Ai}(t)|=O(|t|^{-1/4})$
+  for $t\to+\infty$;
+  this is the FIO class output.
+\item \emph{Global phase cancellation}:
+  the $e^{i\alpha_*u}$ factor
+  is a pure translation shift
+  and contributes only at the
+  boundary of the integration region.
+\end{enumerate}
+None of these three factors alone
+suffices; the $O(U^{1/4})$ bound
+requires all three simultaneously.
+In particular, the improvement over
+Ces\`aro is \emph{not}
+a purely local (pointwise) phenomenon,
+but requires global control of the
+symbol $a(u,c)$ uniformly in $c$.
 \end{remark}
 
 \subsection{The converse direction
   and FIO rigidity}
 \label{subsec:converse}
 
-The converse --- whether
-Assumption~XV.\ref{ass:Phi-cubic}
-(or the Airy-class bound on $\Phi$)
-implies the microlocal fold structure
-of $g$ --- requires an additional hypothesis.
-
 \begin{hypothesis}[FIO inversion
   rigidity \Cond]
 \label{hyp:FIO-rigidity}
-The Fourier integral operator
-$g\mapsto\Phi=\widehat{g}$
-is injective on the class of
-Lagrangian distributions
-with stable fold-type canonical relation,
-in the following sense:
+The map $g\mapsto\Phi=\widehat{g}$
+is injective on the class of Lagrangian
+distributions with stable fold-type
+canonical relation, in the sense that:
 if $\Phi$ lies in the Airy FIO class
 (i.e.\ $\Phi$ has microlocal phase
-$S(u)\sim C|u|^{3/2}$ uniformly
-in $c$),
+$S(u)\sim C|u|^{3/2}$ uniformly in $c$),
 then the wavefront set and canonical
-relation of $g$ must contain
-an A$_2$-fold singularity
-uniformly in $c$.
+relation of $g$ contain an A$_2$-fold
+singularity uniformly in $c$.
 \end{hypothesis}
 
 \begin{remark}[Status of
   Hypothesis~\ref{hyp:FIO-rigidity}]
 \label{rem:rigidity-status}
-Hypothesis~\ref{hyp:FIO-rigidity}
-is a global FIO injectivity statement.
-It is \emph{not} a consequence of
-local stationary phase alone,
-since the inverse Fourier transform
-only recovers $g$ up to
-microlocal equivalence.
-In particular, it is possible in principle
-for $\Phi$ to have Airy-type oscillations
-for $c$-dependent reasons unrelated
-to the fold structure of $g$.
+This is a global FIO injectivity statement,
+not a consequence of local stationary
+phase: the inverse Fourier transform
+recovers $g$ only up to microlocal
+equivalence, and it is possible in
+principle for $\Phi$ to have Airy-type
+oscillations for $c$-dependent reasons
+unrelated to the fold structure of $g$.
 Hypothesis~\ref{hyp:FIO-rigidity}
 rules this out by assumption.
 Its verification for the PSWF case
@@ -484,68 +524,58 @@ Under Hypothesis~\ref{hyp:FIO-rigidity}:
   \text{Assumption~\ref{ass:microlocal}}.
 \]
 Without Hypothesis~\ref{hyp:FIO-rigidity},
-only the implication
+only the forward implication
 $\text{Assumption~\ref{ass:microlocal}}
 \Rightarrow
 \text{Airy-class bound on }\Phi$
 is established
-(Theorem~\ref{thm:airy-normalform}).
+(Theorem~\ref{thm:airy-normalform}
+and Lemma~\ref{lem:airy-integral}).
 \end{corollary}
 
 \section{The Residual Open Problem}
 \label{sec:open}
 
-\begin{problem}[Microlocal
-  fold structure for PSWF \Open]
+\begin{problem}[A$_2$-stability for PSWF \Open]
 \label{prob:PSWF-microlocal}
 Does the WKB amplitude
 $g(\alpha)=|\alpha-\alpha_*|^{-1/2}
 e^{i\theta(\alpha)}$
-arising from the PSWF spectral
-expansion satisfy
-Assumption~\ref{ass:microlocal},
+from the PSWF spectral expansion
+satisfy Assumption~\ref{ass:microlocal},
 uniformly in $c\to\infty$?
-
-\medskip
-\noindent Specifically:
+Specifically:
 \begin{enumerate}[\rm(a)]
-\item Does $c_3(c)
-  =\tfrac{1}{6}\theta'''(\alpha_*(c);c)$
-  satisfy $c_3(c)\ge\delta_0>0$
-  uniformly in $c$?
-  (This is the A$_2$-stability condition:
-  the Lagrange manifold $\mathcal{C}_c$
-  remains in the fold stratum uniformly.)
-\item Does the non-degeneracy
-  bound in condition~(iv) hold
-  down to the Airy scale
-  $|u|\sim c^{-\theta_0/3}$?
+\item (\emph{A$_2$-stability})
+  Does $c_3(c)=\frac{1}{6}\theta'''(\alpha_*(c);c)
+  \ge\delta_0>0$ uniformly?
+  The natural approach is Olver's
+  turning-point WKB \cite{Olver1974}
+  applied to the PSWF ODE,
+  which yields $\theta'''(\alpha_*;c)$
+  in terms of the curvature of the
+  classical trajectory at $\alpha_*(c)$.
+\item (\emph{Uniform fold projection})
+  Does condition~(iv) hold down to
+  the Airy scale $|u|\sim c^{-\theta_0/3}$?
 \end{enumerate}
-The natural approach to~(a)
-is via Olver's turning-point
-WKB theory \cite{Olver1974}
-applied to the PSWF differential
-equation, which gives an explicit
-formula for $\theta'''(\alpha_*;c)$
-in terms of the curvature of the
-classical trajectory at the
-turning point $\alpha_*$.
 
 \medskip
 \noindent Two possible outcomes:
 \begin{enumerate}[\rm(A)]
 \item If Assumption~\ref{ass:microlocal}
-  holds: by Theorem~\ref{thm:airy-normalform},
+  holds: by Theorem~\ref{thm:airy-normalform}
+  and Lemma~\ref{lem:airy-integral},
   $|\int_0^U\Phi(u)du|=O(U^{1/4})$,
   giving $I_0=O(c^{3\theta_0/4}/|x|^{3/4})$
   and $S(c)=O(c^{\theta_0/2})$
   (up to log corrections).
-\item If Assumption~\ref{ass:microlocal}
-  fails (specifically if $c_3(c)\to 0$):
-  no stable Airy normal form exists;
+\item If $c_3(c)\to 0$:
+  the Lagrange manifold $\mathcal{C}_c$
+  exits the A$_2$ stratum;
+  no stable Airy normal form exists,
   a lower bound
-  $|\int_0^U\Phi(u)du|
-  =\Theta(U^{1/2})$
+  $|\int_0^U\Phi(u)du|=\Theta(U^{1/2})$
   becomes plausible,
   and Ces\`aro is sharp.
 \end{enumerate}
@@ -561,23 +591,20 @@ analyses the model integral
   :=\int_0^\infty
   \beta^{-1/2}
   \chi(\beta/|u|^\alpha)
-  e^{i(-|u|\beta+c_3\beta^3)}d\beta
+  e^{i(-|u|\beta+c_3\beta^3)}d\beta.
 \]
-with scaling cutoff and cubic phase.
-This is \emph{not} the same as
-$\Phi(u)$ from Paper~XV.
-It is a model for the integrand
-\emph{after} the CFU change of variables
+This lives in the $t$-variable
+after the CFU coordinate change
 in the proof of
-Theorem~\ref{thm:airy-normalform}
-has been applied:
-it lives in the $t$-variable
-(the Airy normal form coordinate),
-not in the original $\beta$-variable.
-Thus \texttt{fold\_model.tex}
-describes the \emph{output} of the
-CFU normal form reduction,
-not the object $\Phi$ itself.
+Theorem~\ref{thm:airy-normalform};
+it describes the integrand
+in Airy normal form coordinates,
+not the original $\Phi(u)$.
+\texttt{fold\_model.tex} is thus
+a model for the \emph{output}
+of the CFU normal form reduction,
+i.e.\ the integrand of the Airy
+representation, not for $\Phi$ itself.
 \end{remark}
 
 \begin{thebibliography}{9}
@@ -608,7 +635,7 @@ of steepest descents},
 Proc.\ Cambridge Philos.\ Soc.\
 \textbf{53} (1957), 599--611.
 
-\bibitem{Arnold1975}
+\bibitem{Arnold1972}
 V.~I.~Arnold,
 \textit{Normal forms for functions
 near degenerate critical points,
