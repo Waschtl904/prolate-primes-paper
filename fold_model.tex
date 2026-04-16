@@ -140,8 +140,15 @@ where
 $I(\lambda)
 := \int_0^{X(\lambda)}
 t^{-1/2}\,e^{i\lambda(t^3/3-t)}\,dt$
-and $X(\lambda)=|u|^{\alpha-1/2}\to\infty$
-for $\alpha>\tfrac{1}{2}$.
+and $X(\lambda)=|u|^{\alpha-1/2}$.
+For $\alpha>\tfrac{1}{2}$, $X(\lambda)\to\infty$
+and the integral is asymptotically equivalent
+to its extension to $[0,\infty)$.
+For $\alpha=\tfrac{1}{2}$, $X(\lambda)=1$ is fixed;
+the saddle $t=1$ lies at the boundary of integration,
+yielding a half-saddle contribution
+(factor $\tfrac{1}{2}$ relative to an interior saddle~\cite{Olver1974});
+the order $O(\lambda^{-1/2})$ is unchanged.
 
 \medskip
 \noindent\textbf{Jacobian:}
@@ -165,8 +172,8 @@ confirming $\lambda=|u|^{3/2}(3c_3)^{-1/2}$.
 
 \medskip
 \noindent\textbf{Two-term asymptotics of $I(\lambda)$.}
-For large $\lambda$, $I(\lambda)$ receives
-two competing contributions:
+For large $\lambda$ (equivalently $\alpha>\tfrac{1}{2}$),
+$I(\lambda)$ receives two competing contributions:
 \begin{itemize}
 \item \emph{Endpoint} $t=0$
   (Erd\'elyi, weight $t^{-1/2}$):
@@ -204,6 +211,19 @@ By the triangle inequality:
   \le 2\sqrt{\pi}\,\lambda^{-1/2}.
 \end{equation}
 
+\begin{remark}[Boundary saddle at $\alpha=\tfrac{1}{2}$]
+\label{rem:halfsaddle}
+For $\alpha=\tfrac{1}{2}$, the upper limit $X(\lambda)=1$
+coincides with the saddle $t=1$.
+The stationary-phase contribution from a saddle
+at the endpoint of integration is halved relative
+to an interior saddle contribution~\cite{Olver1974}.
+This modifies only the constant in~\eqref{eq:twoterm},
+not the decay rate. In particular,
+$|I(\lambda)|=O(\lambda^{-1/2})$ still holds,
+and the final bound~\eqref{eq:final} is unaffected.
+\end{remark}
+
 \medskip
 \noindent\textbf{Final bound.}
 Combining~\eqref{eq:cfu}
@@ -237,10 +257,25 @@ and $|I(\lambda)|=O(\lambda^{-1/2})
 \begin{remark}[No limit amplitude in
   Region~III \Warn]
 \label{rem:nolimit}
-From~\eqref{eq:twoterm},
+
+\noindent\textbf{Coefficient.}
+From~\eqref{eq:cfu} we have
+\[
+  \beta_0^{1/2}\lambda^{-1/2}
+  =
+  \Bigl(\frac{|u|}{3c_3}\Bigr)^{1/4}
+  \cdot
+  \Bigl(\frac{(3c_3)^{1/2}}{|u|^{3/2}}\Bigr)^{1/2}
+  =
+  |u|^{-1/2},
+\]
+so all $c_3$-dependence cancels in the leading term.
+
+\medskip
+Combining with~\eqref{eq:twoterm}:
 \[
   |u|^{1/2}|\Phi_\alpha(u)|
-  = (3c_3)^{-1/6}\sqrt{\pi}
+  = \sqrt{\pi}
   \cdot
   \Bigl|e^{-i\pi/4}
   +e^{-2i\lambda/3+i\pi/4}\Bigr|
@@ -249,7 +284,9 @@ From~\eqref{eq:twoterm},
 where $\lambda=|u|^{3/2}(3c_3)^{-1/2}\to\infty$.
 The factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
 oscillates between $0$ and $2$
-without converging.
+without converging;
+this oscillation is the sole source
+of non-convergence of the amplitude.
 Therefore:
 \begin{itemize}
 \item $|\Phi_\alpha(u)|=O(|u|^{-1/2})$
@@ -320,6 +357,10 @@ depending on the interval,
 this factor can be near $0$ or near $2$,
 giving apparent exponents
 far from $-1/2$.
+The extreme value $\gamma\approx-1.235$
+for $\alpha=0.5$ on $[50,200]$ reflects
+proximity to a near-zero of the oscillating
+amplitude factor in that interval.
 \end{proposition}
 
 \section{The PSWF Open Problem}
