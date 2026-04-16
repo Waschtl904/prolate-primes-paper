@@ -810,26 +810,69 @@ and across all three zones, such that:
 \\end{corollary}
 
 \\begin{proof}
-$C:=\\max(C_1C_2,\\,C_3,\\,C_4)$:
+Set $C:=\\max(C_1C_2,\\,C_3,\\,C_4)$
+and treat three zones:
 \\begin{itemize}
-\\item \\textit{Fold zone $|u|\\ge\\delta_2$:}
-  Lemma~\\ref{lem:product-estimate}.
+\\item \\textit{Fold zone
+  $\\delta_2\\le|u|\\le c^{\\theta_0/3}$:}
+  Lemma~\\ref{lem:product-estimate}
+  gives $|\\Phi|\\le C_1C_2|u|^{-3/4}$.
 \\item \\textit{Compact zone $|u|\\le 1$:}
-  compactness + continuity
-  (condition (vi))
-  $\\Rightarrow$ $|\\Phi|\\le C_3$
-  (Erd\\'elyi \\cite{Erdelyi1956}).
-\\item \\textit{Far zone:}
-  $|\\Phi|\\le C_4|u|^{-1/2}
-  \\le C_4|u|^{-3/4}$
-  (Theorem~\\ref{thm:endpoint}).
+  Continuity of $\\Phi(\\cdot;c)$
+  and condition (vi) give
+  $|\\Phi|\\le C_3$;
+  since $(1+|u|)^{-3/4}\\ge 2^{-3/4}$
+  on $|u|\\le 1$,
+  we have $|\\Phi|\\le C_3\\le
+  2^{3/4}C_3(1+|u|)^{-3/4}$.
+\\item \\textit{Far zone
+  $|u|\\ge c^{\\theta_0/3}$:}
+  Theorem~\\ref{thm:endpoint}
+  gives $|\\Phi|\\le C_4|u|^{-1/2}$.
+  Since $|u|^{-1/2}\\le|u|^{-3/4}$
+  for $|u|\\ge 1$,
+  this yields
+  $|\\Phi|\\le C_4|u|^{-3/4}$.
 \\end{itemize}
-Transition
-($c^{\\theta_0/3}\\le|u|
-\\le 2c^{\\theta_0/3}$):
-conditions (iii)--(iv)
-make constants compatible;
-$C$ is uniform by (ii) and (vi).
+
+\\noindent\\textit{Transition zone
+$c^{\\theta_0/3}\\le|u|\\le 2c^{\\theta_0/3}$
+(fold/far overlap).}
+Both estimates are valid here
+simultaneously:
+Lemma~\\ref{lem:product-estimate}
+applies (fold zone upper boundary)
+and Theorem~\\ref{thm:endpoint}
+applies (far zone lower boundary).
+We claim the constants are compatible:
+\\begin{enumerate}[\\rm(a)]
+\\item
+  The fold-zone constant $C_1C_2$
+  depends on $\\delta_0$ from (ii)
+  and the symbol bound from
+  $a\\in S^{-1/2}_{1,0}(c)$;
+  both are uniform in $c\\ge c_0$
+  by condition (vi).
+\\item
+  The far-zone constant $C_4$
+  comes from van~der~Corput
+  with non-degeneracy
+  $|\\Theta''|\\ge\\delta_1|u|^{1/2}$;
+  at $|u|\\sim c^{\\theta_0/3}$,
+  condition (iii) provides exactly
+  this lower bound with the same
+  $\\delta_1$, uniformly in $c$.
+\\item
+  In the overlap region,
+  $|u|^{-3/4}\\le|u|^{-1/2}$,
+  so the fold-zone bound is sharper;
+  both bounds are dominated by
+  $\\max(C_1C_2,C_4)|u|^{-3/4}$.
+\\end{enumerate}
+Hence $C:=\\max(C_1C_2,\\,2^{3/4}C_3,\\,C_4)$
+works uniformly across all zones
+and all $c\\ge c_0$,
+giving~\\eqref{eq:pointwise}.
 \\end{proof}
 
 \\begin{remark}[Integrability,
