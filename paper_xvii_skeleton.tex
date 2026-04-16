@@ -61,14 +61,20 @@ The \emph{Differentiated Olver Estimate}
 Its proof proceeds via the \emph{integral representation}
 \[
   \phi(x;h)
-  = \Bigl(\tfrac{3}{2}\int_{x_0(h)}^x p(s;h)\,ds\Bigr)^{2/3},
+  = \mathrm{sgn}(x-x_0(h))\cdot
+    \Bigl(\tfrac{3}{2}\int_{x_0(h)}^x p(s;h)\,ds\Bigr)^{2/3},
   \quad
-  p(x;h) := \sqrt{\chi_n h^2 - V(x)},
+  p(x;h) := \sqrt{E_n(h)-V(x)},
 \]
-reducing all $C^1$-control of $\phi$ to uniform control
-of the momentum function $p(x;h)$ and its integral.
-The ODE/Gr\"onwall approach is \emph{not} used:
-it is singular near the turning point and not required.
+reducing all $C^1$-control of $\phi$ to
+uniform control of the momentum function $p(x;h)$ and its integral.
+No ODE, no Gr\"onwall inequality, and no Wasow-type expansion is needed.
+
+\medskip
+\noindent\textbf{Strategy.}
+Primary: Olver turning-point analysis (Ch.~10--11 of \cite{Olver1974}).
+Secondary: FIO reinterpretation of Olver expansions.
+Auxiliary: Sturm--Liouville spectral theory; boundary-away cutoff.
 \end{abstract}
 
 \maketitle
@@ -126,23 +132,26 @@ With $h = c^{-1}$:
   h^2\mathcal{L}_{h^{-1}}
   = -h^2\tfrac{d}{dx}[(1-x^2)\tfrac{d}{dx}] + x^2,
 \]
-a semiclassical Schr\"odinger operator with potential
+a semiclassical Schr\"odinger operator with effective potential
 $V(x) = x^2/(1-x^2)$.
-The turning points $x_\pm(h)$ solve $V(x_\pm) = \chi_n h^2$.
+The turning points $x_\pm(h)$ solve $V(x_\pm) = E_n(h)$,
+where $E_n(h) := \chi_n(h^{-1})\cdot h^2$.
 \end{definition}
 
-\begin{remark}[Eigenvalue branch]
+\begin{remark}[Eigenvalue branch and momentum limit]
 \label{rem:eigenbranch}
-$\chi_n(c) \sim c^2\lambda_n$, $\lambda_n\in(0,1)$;
-the rescaled eigenvalue $E_n(h) := \chi_n h^2 \to \lambda_n$
-smoothly and monotonically as $h\to 0$.
-In particular:
+$E_n(h) \to \lambda_n \in (0,1)$ smoothly and monotonically as $h\to 0$.
+Define the limiting momentum:
+$p_0(x) := \sqrt{\lambda_n - V(x)}$.
+On $\mathrm{supp}\,\chi$ (away from turning points;
+Assumption~\ref{ass:boundary-away}),
+the positive infimum
 \[
-  p(x;h)^2 = E_n(h) - V(x)
-  \;\longrightarrow\;
-  p_0(x)^2 := \lambda_n - V(x)
-  \quad \text{as } h\to 0.
+  \inf_{x\in K_\varepsilon} p_0(x) \;\ge\; c_\varepsilon > 0
 \]
+holds for every $\varepsilon > 0$,
+since $\lambda_n > V(x_\pm^{(0)})$ at the limiting turning points
+and $K_\varepsilon$ excludes an $\varepsilon$-neighborhood of $x_0^{(0)}$.
 \end{remark}
 
 \begin{assumption}[Boundary-away cutoff]
@@ -151,8 +160,8 @@ Fix $\delta_{\rm bdy}>0$.
 All constructions are localized to
 $\mathrm{supp}\,\chi \subset [-1+\delta_{\rm bdy},\,1-\delta_{\rm bdy}]$,
 where $\chi\in C_c^\infty(-1,1)$ is fixed independently of $h$.
-On this set: $V,V',V''\in L^\infty$ uniformly in $h$,
-ruling out boundary-layer effects and $V\to\infty$.
+On this set: $V, V', V'' \in L^\infty$ uniformly,
+ruling out boundary-layer effects and $V \to \infty$.
 All statements below are relative to this assumption.
 \end{assumption}
 
@@ -179,16 +188,14 @@ with uniform error bounds on $\mathrm{supp}\,\chi$
 \begin{remark}[Olver--CFU gap]
 \label{rem:olver-gap}
 Olver does not provide:
-\begin{itemize}
-\item a Lagrangian distribution / canonical relation framework;
-\item FIO-class membership;
-\item global geometry of $\Lambda_h$ (branch count, self-intersections);
-\item uniform transversality of $\pi_h$;
-\item uniform $C^1$-control of $\phi(x;h)$ as $h\to 0$.
-\end{itemize}
+a Lagrangian distribution framework;
+FIO-class membership;
+global geometry of $\Lambda_h$;
+uniform transversality of $\pi_h$;
+or uniform $C^1$-control of $\phi(x;h)$.
 Classical warning:
 $f_h(x) = x + h\sin(x/h)$ converges uniformly
-but $f_h' = 1 + \cos(x/h)$ does not ---
+but $f_h'(x) = 1 + \cos(x/h)$ does not ---
 pointwise convergence of $\phi$ does not imply
 uniform convergence of $\phi'$.
 \end{remark}
@@ -207,21 +214,18 @@ In the classically allowed region $E_n(h) > V(x)$:
   \Lambda_h^\pm = \{\xi = \pm p(x;h)\}.
 \]
 Both branches project to the same base interval;
-$\pi_h\colon\Lambda_h\to T^*(-1,1)$ is not injective.
-At the turning point $x_0$: $\Lambda_h^+\cap\Lambda_h^- = \{(x_0,0)\}$
-(the A$_2$-fold).
-Condition (P2) is \emph{false} for $\Lambda_h$ as a whole;
-it must be achieved by explicit branch selection.
+$\pi_h$ is not injective on $\Lambda_h$.
+Condition (P2) is false for $\Lambda_h$ as a whole
+and must be achieved by explicit construction.
 \end{remark}
 
 \begin{proposition}[Branch selection, \Cond]
 \label{prop:branch-selection}
-There exists a semiclassical pseudodifferential operator
+There exists $\delta_\xi > 0$ and a
+semiclassical pseudodifferential operator
 $\Pi^+ = \mathrm{Op}_h(\sigma^+)$
 with $\sigma^+\in C_c^\infty(T^*(-1,1))$
-supported on $\{\xi\ge \delta_\xi/2\}$
-(where $\delta_\xi := \inf_{h,x\in\mathrm{supp}\,\chi} p(x;h) > 0$
-by Assumption~\ref{ass:boundary-away})
+supported on $\{\xi\ge \delta_\xi/2\}$,
 such that:
 \begin{enumerate}[{\rm(i)}]
 \item $\chi\,\psi_n(\cdot;h) = \Pi^+(\chi\psi_n) + \mathcal{O}(h^\infty)$
@@ -229,16 +233,18 @@ such that:
 \item $\Pi^+(\chi\psi_n)$ is a Lagrangian distribution
   on $\Lambda_h^+$ alone.
 \end{enumerate}
-Consequently $\pi_h^+\colon\Lambda_h^+\to T^*(-1,1)$
-is single-sheeted (condition~(P2) holds for $\Lambda_h^+$).
+Here $\delta_\xi := \tfrac{1}{2}\inf_{h\in(0,h_0],\,x\in\mathrm{supp}\,\chi} p(x;h) > 0$,
+where positivity follows from Assumption~\ref{ass:boundary-away}
+and the fact that $E_n(h) > V(x)$ on $\mathrm{supp}\,\chi$
+uniformly for small $h$.
 \end{proposition}
 
 \begin{remark}[Proof]
 $\delta_\xi > 0$ because
-$p(x;h)^2 = E_n(h) - V(x) \ge E_n(h) - \|V\|_{L^\infty(\mathrm{supp}\,\chi)}$
-$> 0$ uniformly by Assumption~\ref{ass:boundary-away}.
-The $\mathcal{O}(h^\infty)$ error is standard $h$-pseudodifferential
-calculus \cite{Zworski2012}.
+$p(x;h)^2 = E_n(h) - V(x) \ge \lambda_n - \|V\|_{L^\infty} - o(1) > 0$
+on $\mathrm{supp}\,\chi$ (strict inequality preserved for $h\le h_0$).
+The $\mathcal{O}(h^\infty)$ error is standard
+$h$-pseudodifferential calculus \cite{Zworski2012}.
 Status: \Cond.
 \end{remark}
 
@@ -251,22 +257,19 @@ Status: \Cond.
 \label{rem:p-status}
 \begin{enumerate}[{\rm(P1)}]
 \item \textit{(Global generating function.)}\;
-  On $\Lambda_h^+$, the positive branch,
-  $\xi = p(x;h) > 0$ is a well-defined single-valued
-  function of $x$ on $\mathrm{supp}\,\chi$.
-  Hence $\phi(x;h)$ (defined via the integral representation
-  below) is a global generating function for $\Lambda_h^+$.
+  On $\Lambda_h^+$, $\xi = p(x;h) > 0$ is single-valued.
+  Hence $\phi(x;h)$ (via the integral representation below)
+  is a global generating function.
   Status: \Cond.
 \item[{\rm(P3)}]
   \textit{(No secondary caustics.)}\;
-  On $\mathrm{supp}\,\chi\subset[-1+\delta_{\rm bdy},1-\delta_{\rm bdy}]$,
-  $V$ is bounded and smooth;
-  the only zero of $p(x;h)$ on $\mathrm{supp}\,\chi$
-  is the turning point $x_0(h)$ (the A$_2$-fold).
-  Mode interactions as $h\to 0$ are excluded by the spectral
-  gap between adjacent SL eigenvalues,
-  which must be estimated explicitly (required for XVII).
-  Status: \Cond\ (eigenvalue separation estimate needed).
+  On $\mathrm{supp}\,\chi \subset
+  [-1+\delta_{\rm bdy}, 1-\delta_{\rm bdy}]$,
+  the only zero of $p(x;h)$ is the turning point $x_0(h)$.
+  Boundary singularities of $V$ are excluded.
+  Mode interactions excluded by the SL spectral gap
+  (eigenvalue separation estimate required).
+  Status: \Cond.
 \end{enumerate}
 \end{remark}
 
@@ -283,7 +286,7 @@ Under Assumption~\ref{ass:boundary-away}
 and the smooth-eigenbranch hypothesis:
 \begin{enumerate}[{\rm(i)}]
 \item $\Pi^+(\chi\psi_n(\cdot;h))\in I^{-1/4,0}(\Lambda_h^+)$
-  with phase $\phi(x;h)$ from the Olver reduction.
+  with phase $\phi(x;h)$.
 \item $\Lambda_h^+$ carries a single A$_2$-fold at $(x_0,0)$
   with $c_3(h)\ge\delta_0>0$ uniformly.
 \end{enumerate}
@@ -296,22 +299,22 @@ and the smooth-eigenbranch hypothesis:
 Assume Lemma~\ref{lem:olver-fio-lift-micro},
 Proposition~\ref{prop:branch-selection},
 (P1), (P3), and Lemma~\ref{lem:diff-olver}.
-Then, on $\mathrm{supp}\,\chi\setminus U_\varepsilon$:
+Then, on $K_\varepsilon = \mathrm{supp}\,\chi\setminus U_\varepsilon$:
 \[
-  \inf_{h\in(0,h_0],\,x}|\phi'(x;h)| \ge \delta > 0,
+  \inf_{h\in(0,h_0],\,x\in K_\varepsilon}|\phi'(x;h)| \ge \delta > 0,
 \]
-hence $|\det\,d\pi_h^+|\ge\delta_2>0$ uniformly.
+hence $|\det\,d\pi_h^+|\ge\delta_2>0$ uniformly on $\Lambda_h^+\setminus U_\varepsilon$.
 \end{lemma}
 
 \begin{remark}[Reduction to Lemma~\ref{lem:diff-olver}]
 Away from the turning point:
 $\phi'(x;h) = p(x;h)/\phi(x;h)$.
-Numerator: $p(x;h)>0$ uniformly (Proposition~\ref{prop:branch-selection}).
-Denominator: $|\phi(x;h)|\ge c_\varepsilon'>0$
+Numerator: $p(x;h) > 0$ uniformly
+(Proposition~\ref{prop:branch-selection}).
+Denominator: $|\phi(x;h)| \ge c_\varepsilon' > 0$
 (Lemma~\ref{lem:diff-olver}(C)).
-Uniform convergence $\phi'(\cdot;h)\to\phi_0'$
-from Lemma~\ref{lem:diff-olver}(D).
-Status: \Cond\ (contingent on Lemma~\ref{lem:diff-olver}).
+Uniform convergence $\phi'\to\phi_0'$ from Lemma~\ref{lem:diff-olver}(D).
+Status: \Cond.
 \end{remark}
 
 %% ============================================================
@@ -323,91 +326,119 @@ Status: \Cond\ (contingent on Lemma~\ref{lem:diff-olver}).
 \label{lem:diff-olver}
 \emph{(Main technical lemma of Paper~XVII.)}
 Assume Assumption~\ref{ass:boundary-away}
-and the smooth-eigenbranch hypothesis (Remark~\ref{rem:eigenbranch}).
-Fix $\varepsilon>0$ and set
-$K_\varepsilon := \mathrm{supp}\,\chi\setminus U_\varepsilon$.
-Define the \emph{momentum function} and its integral:
+and the smooth-eigenbranch hypothesis.
+Fix $\varepsilon > 0$ and let
+$K_\varepsilon := \mathrm{supp}\,\chi\setminus U_\varepsilon$,
+where $U_\varepsilon$ is an open $\varepsilon$-neighborhood of $x_0(h)$.
+Define:
 \[
   p(x;h) := \sqrt{E_n(h)-V(x)},
   \qquad
   I(x;h) := \int_{x_0(h)}^x p(s;h)\,ds,
 \]
-where the positive square root is chosen (consistent
-with the branch selection of
-Proposition~\ref{prop:branch-selection}).
-Define the Olver phase via the integral representation:
 \[
-  \phi(x;h) := \mathrm{sgn}(x-x_0(h))
-  \cdot\Bigl(\tfrac{3}{2}\,I(x;h)\Bigr)^{2/3}.
+  \phi(x;h) := \mathrm{sgn}(x-x_0(h))\cdot
+  \Bigl(\tfrac{3}{2}\,I(x;h)\Bigr)^{2/3},
 \]
-Then:
+where the positive branch of $\sqrt{\,\cdot\,}$ is chosen,
+consistent with the branch selection of
+Proposition~\ref{prop:branch-selection}.
+Then the following hold:
+
 \begin{enumerate}[{\rm(A)}]
-\item \textit{(Uniform convergence of $p$.)}
-  As $h\to 0$:
+\item \textit{(Uniform convergence of $p$, with Lipschitz bound.)}
+  On $K_\varepsilon$:
   \[
-    \sup_{x\in\mathrm{supp}\,\chi}|p(x;h)-p_0(x)| \to 0,
+    \inf_{h\in(0,h_0],\,x\in K_\varepsilon} p_0(x) \;\ge\; c_\varepsilon > 0,
   \]
-  where $p_0(x) = \sqrt{\lambda_n - V(x)}$.
-  Indeed:
-  $|p(x;h)^2 - p_0(x)^2| = |E_n(h)-\lambda_n| \to 0$
-  uniformly since $V\in L^\infty(\mathrm{supp}\,\chi)$
+  since $K_\varepsilon$ is bounded away from both the turning point
+  (where $p_0 = 0$) and the endpoints $\pm 1$
   (Assumption~\ref{ass:boundary-away}).
-\item \textit{(Uniform convergence of $I$.)}
-  As $h\to 0$:
+  Since $t\mapsto\sqrt{t}$ is Lipschitz on $[c_\varepsilon^2,\infty)$
+  with constant $L_\varepsilon = (2c_\varepsilon)^{-1}$:
   \[
-    \sup_{x\in K_\varepsilon}|I(x;h) - I_0(x)| \to 0,
+    \|p(\cdot;h) - p_0\|_{C^0(K_\varepsilon)}
+    \;\le\; L_\varepsilon \cdot |E_n(h) - \lambda_n|
+    \;=\; \mathcal{O}(h).
+  \]
+
+\item \textit{(Uniform convergence of $I$.)}
+  \[
+    \|I(\cdot;h) - I_0\|_{C^0(K_\varepsilon)} \to 0
+    \quad\text{as } h\to 0,
   \]
   where $I_0(x) = \int_{x_0^{(0)}}^x p_0(s)\,ds$.
-  Follows from (A) by uniform convergence of the integrand,
-  compactness of $K_\varepsilon$,
-  and $x_0(h)\to x_0^{(0)}$ (smooth eigenbranch).
+  Proof: $\|I(\cdot;h)-I_0\|\le\|p(\cdot;h)-p_0\|_{C^0}\cdot|K_\varepsilon|
+  + p_0^{\max}\cdot|x_0(h)-x_0^{(0)}|$,
+  both $\mathcal{O}(h)$ by (A) and the smooth eigenbranch.
+
 \item \textit{(Denominator bounded away from zero.)}
-  On $K_\varepsilon$, $|I(x;h)|\ge c_\varepsilon > 0$ uniformly,
-  hence
-  $|\phi(x;h)| = (\tfrac{3}{2}|I(x;h)|)^{2/3} \ge c_\varepsilon' > 0$.
-  Follows from (B) and $|I_0(x)|\ge c_0 > 0$ on $K_\varepsilon$
-  (since $p_0>0$ on $\mathrm{supp}\,\chi$ and
-  $x$ is bounded away from $x_0^{(0)}$ on $K_\varepsilon$).
-\item \textit{(Uniform $C^1$-control of $\phi$.)}
+  On $K_\varepsilon$, since $p > 0$ and
+  $|x - x_0(h)| \ge \varepsilon/2$ for $h$ small:
+  \[
+    I(x;h) = \int_{x_0(h)}^x p(s;h)\,ds
+    \;\ge\; \tfrac{\varepsilon}{2}\cdot
+    \inf_{s\in K_\varepsilon} p(s;h)
+    \;\ge\; \tfrac{\varepsilon}{2}\cdot c_\varepsilon' > 0
+  \]
+  uniformly in $h$ (where $c_\varepsilon' > 0$ follows from (A)
+  for $h$ small).
+  Hence
+  $|\phi(x;h)| = (\tfrac{3}{2}|I(x;h)|)^{2/3}
+  \ge (\tfrac{3}{4}\varepsilon c_\varepsilon')^{2/3} =: c_\varepsilon'' > 0$
+  uniformly.
+
+\item \textit{(Uniform $C^1$-control via quotient estimate.)}
   On $K_\varepsilon$:
   \[
     \phi'(x;h) = \frac{p(x;h)}{\phi(x;h)},
-    \quad
+    \qquad
     \phi_0'(x) = \frac{p_0(x)}{\phi_0(x)}.
   \]
   Therefore:
-  \[
+  \begin{align*}
     |\phi'(x;h) - \phi_0'(x)|
-    = \Bigl|\frac{p(x;h)}{\phi(x;h)}-\frac{p_0(x)}{\phi_0(x)}\Bigr|
-    \le
+    &= \Bigl|\frac{p(x;h)}{\phi(x;h)}-\frac{p_0(x)}{\phi_0(x)}\Bigr| \\
+    &\le
     \frac{|p(x;h)-p_0(x)|}{|\phi(x;h)|}
-    + p_0(x)\cdot\frac{|\phi(x;h)-\phi_0(x)|}{|\phi(x;h)|\cdot|\phi_0(x)|}.
-  \]
-  Both terms $\to 0$ uniformly on $K_\varepsilon$ by
-  (A), (B), (C) and the lower bound on $|\phi_0|$.
-  In particular:
+    +
+    p_0(x)\cdot
+    \frac{|\phi(x;h)-\phi_0(x)|}{|\phi(x;h)|\cdot|\phi_0(x)|}.
+  \end{align*}
+  First term: $\le L_\varepsilon|E_n(h)-\lambda_n|/c_\varepsilon'' \to 0$ by (A),(C).
+  Second term: $\to 0$ uniformly by (B),(C).
+  Consequently:
   \[
-    \inf_{h\in(0,h_0],\,x\in K_\varepsilon}
-    |\phi'(x;h)| \;\ge\; \delta > 0.
+    \sup_{x\in K_\varepsilon}|\phi'(x;h)-\phi_0'(x)| \to 0
+    \quad\text{as } h\to 0.
+  \]
+  Since $\phi_0'(x) = p_0(x)/\phi_0(x) \ge c_\varepsilon/c_\varepsilon'' > 0$
+  on $K_\varepsilon$:
+  \[
+    \inf_{h\in(0,h_0],\,x\in K_\varepsilon}|\phi'(x;h)|
+    \;\ge\; \tfrac{1}{2}\inf_{K_\varepsilon}|\phi_0'| > 0.
   \]
 \end{enumerate}
 \end{lemma}
 
-\begin{remark}[Contrast with ODE/Gr\"onwall]
+\begin{remark}[Why this proof is robust]
 \label{rem:no-gronwall}
-The proof uses only:
+The argument uses only:
 \begin{enumerate}[(i)]
-\item smooth dependence of $E_n(h)$ on $h$
-  (eigenbranch hypothesis);
-\item $V\in L^\infty$ on $\mathrm{supp}\,\chi$
-  (Assumption~\ref{ass:boundary-away});
-\item elementary analysis of integrals and quotients.
+\item Smooth convergence $E_n(h)\to\lambda_n$ (eigenbranch).
+\item $V\in L^\infty$ on $\mathrm{supp}\,\chi$ (Assumption~\ref{ass:boundary-away}).
+\item Lipschitz continuity of $t\mapsto\sqrt{t}$ on $[c_\varepsilon^2,\infty)$.
+\item Monotonicity of $I(x;h)$ in $x$ (since $p > 0$)
+  giving the lower bound on $|I|$ from the distance to the turning point.
+\item Elementary quotient estimates.
 \end{enumerate}
 \emph{No} differentiated ODE, \emph{no} Gr\"onwall inequality,
-and \emph{no} Wasow-type asymptotic expansion is required.
-The integral representation avoids all singularities
-near the turning point by restricting to $K_\varepsilon$.
-This is the structural reason the argument is robust.
+\emph{no} Wasow-type expansion is required.
+The key structural point:
+$\phi$ has a zero of order $3/2$ at $x_0$, but
+$\phi' = p/\phi$ remains controlled \emph{outside}
+$U_\varepsilon$ because both $p \ge c_\varepsilon' > 0$
+and $|\phi| \ge c_\varepsilon'' > 0$ hold there uniformly.
 \end{remark}
 
 %% ============================================================
@@ -417,8 +448,7 @@ This is the structural reason the argument is robust.
 
 \begin{proposition}[A2 from all inputs, \Cond]
 \label{prop:a2-from-lemmas}
-Under
-Lemma~\ref{lem:olver-fio-lift-micro},
+Under Lemma~\ref{lem:olver-fio-lift-micro},
 Proposition~\ref{prop:branch-selection},
 (P1), (P3), and Lemma~\ref{lem:diff-olver}:
 \[
@@ -452,32 +482,29 @@ Statement & Status & Source \\
 Airy scaling locally & \Rig & Olver Ch.~11 \\
 Boundary-away hypothesis & \Rig\ (by assumption) & Ass.~\ref{ass:boundary-away} \\
 $E_n(h)\to\lambda_n$ smoothly & \Cond & SL analyticity \\
+$\inf_{K_\varepsilon} p_0 \ge c_\varepsilon>0$ & \Cond & Rem.~\ref{rem:eigenbranch}, $K_\varepsilon$ def. \\
 (A1) $c_3(h)\ge\delta_0$ & \Cond & Olver $+$ eigenbranch \\
 FIO-class membership & \Cond & Lem.~\ref{lem:olver-fio-lift-micro} \\
 $\delta_\xi>0$ (branch gap) & \Cond & Ass.~\ref{ass:boundary-away} \\
 (P2) branch selection & \Cond & Prop.~\ref{prop:branch-selection} \\
 (P1) global gen.\ function & \Cond & single branch $+$ $p>0$ \\
 (P3) no secondary caustics & \Cond & Ass.~\ref{ass:boundary-away} $+$ SL gap \\
-Unif.\ convergence of $p(x;h)$ & \Cond & Lem.~\ref{lem:diff-olver}(A) \\
-Unif.\ convergence of $I(x;h)$ & \Cond & Lem.~\ref{lem:diff-olver}(B) \\
-$|\phi|\ge c_\varepsilon'>0$ on $K_\varepsilon$ & \Cond & Lem.~\ref{lem:diff-olver}(C) \\
-Unif.\ $C^1$-control: $\phi'\to\phi_0'$ & \Cond & Lem.~\ref{lem:diff-olver}(D) \\
+(A) Unif.\ conv.\ of $p$, Lipschitz bound & \Cond & Lem.~\ref{lem:diff-olver}(A) \\
+(B) Unif.\ conv.\ of $I$ & \Cond & Lem.~\ref{lem:diff-olver}(B) \\
+(C) $|\phi|\ge c_\varepsilon''>0$ on $K_\varepsilon$ & \Cond & Lem.~\ref{lem:diff-olver}(C) \\
+(D) Unif.\ $\phi'\to\phi_0'$;\ $\inf|\phi'|\ge\delta$ & \Cond & Lem.~\ref{lem:diff-olver}(D) \\
 (A2) Jacobian bound & \Cond & Prop.~\ref{prop:a2-from-lemmas} \\
 \textup{hyp:rigidity} for PSWF & \Cond & (A1)--(A3) $+$ chain above \\
 \hline
 \end{tabular}
 \end{center}
 
-\begin{remark}[No remaining open items]
-All items are now \Cond\ (conditioned on the
-boundary-away and smooth-eigenbranch hypotheses)
-or \Rig.
-The logical chain is closed.
-The sole remaining task for Paper~XVII is to
-write out the full proofs of
+\begin{remark}[Logical closure]
+All items are \Cond\ or \Rig.
+The proof architecture is logically closed.
+Paper~XVII supplies the full proofs of
 Lemma~\ref{lem:diff-olver}
-and Proposition~\ref{prop:branch-selection}
-with complete details.
+and Proposition~\ref{prop:branch-selection}.
 \end{remark}
 
 %% ============================================================
@@ -499,10 +526,12 @@ applies to the PSWF family and
 \begin{remark}[Logical dependency chain]
 \label{rem:chain}
 \[
-  \underbrace{E_n(h)\to\lambda_n\ (\text{smooth}),\;
+  \underbrace{E_n(h)\to\lambda_n,\;
   V\in L^\infty\ (\text{Ass.}~\ref{ass:boundary-away})}_{{\rm [Rig/Cond]}}
   \;\Rightarrow\;
-  \underbrace{\text{Lem.}~\ref{lem:diff-olver}\,(A)\text{-}(D)}_{{\rm [Cond]}}
+  \underbrace{\text{Lem.}~\ref{lem:diff-olver}\,(A){-}(D)}_{{\rm [Cond]}}
+  \;+\;
+  \underbrace{\text{Prop.}~\ref{prop:branch-selection}}_{{\rm [Cond]}}
   \;\Rightarrow\;
   \underbrace{\text{Lem.}~\ref{lem:uniform-projection}}_{{\rm [Cond]}}
   \;\Rightarrow\;
@@ -510,11 +539,6 @@ applies to the PSWF family and
   \;\Rightarrow\;
   \underbrace{\text{Thm.}~\ref{thm:xvii-main}}_{{\rm [Cond]}}.
 \]
-All gaps are closed.
-The content of Paper~XVII is to supply the complete
-proofs of
-Lemma~\ref{lem:diff-olver} and
-Proposition~\ref{prop:branch-selection}.
 \end{remark}
 
 \begin{remark}[Scope]
