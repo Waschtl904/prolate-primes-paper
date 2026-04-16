@@ -1,9 +1,9 @@
-# Series Context Summary — Papers I–XV
+# Series Context Summary — Papers I–XVI
 
-> **Purpose:** Paste this at the top of any new AI chat before working on Paper XV or later.
-> Provides the full logical chain without needing Papers I–XIV in full.
-> **Current working file:** `paper15_DRAFT.tex` on GitHub (`Waschtl904/prolate-primes-paper`).
-> **Last updated:** April 2026, after Paper XV draft (Weyl equidistribution / mesoscopic kernel estimates).
+> **Purpose:** Paste this at the top of any new AI chat before working on Paper XVII or later.
+> Provides the full logical chain without needing Papers I–XV in full.
+> **Current working file:** `paper_xvi_draft.tex` on GitHub (`Waschtl904/prolate-primes-paper`).
+> **Last updated:** April 2026, after Paper XVI draft (Lagrangian Singularity Transport / Airy Normal Form).
 
 ---
 
@@ -17,7 +17,8 @@ bandwidth decay → rigorous peak-width upper bounds → crossover asymptotics
 → lower bounds + spectral-zeta connection → domain & self-adjointness (conditional framework)
 → Mosco form convergence & Friedrichs extension → spectral inclusion & density criterion
 → localization principle for spectral projection stability
-→ completeness (planned, Paper XIII) → coefficient stability / HS-norm estimates (Papers XIII–XV).
+→ completeness (planned, Paper XIII) → coefficient stability / HS-norm estimates (Papers XIII–XV)
+→ **microlocal Lagrangian singularity transport / Airy normal form (Paper XVI)**.
 
 ---
 
@@ -43,6 +44,10 @@ bandwidth decay → rigorous peak-width upper bounds → crossover asymptotics
 - `I_c(k)`: oscillatory model kernel coefficient `int e^{ik*theta(xi)/c} w(xi) dxi` (Paper XV)
 - `Sigma_model(c)`: `sum_{k=1}^{K(c)} |I_c(k)|^2`, the key intermediate-regime sum (Paper XV)
 - `theta(xi)`: WKB phase extracted from PSWF ODE; `theta'(xi) = p(xi/c; alpha) > 0`; `theta''(xi) != 0` for `xi != 0` (Paper XV Lem. 4.2)
+- `Phi(u;c)` (Paper XVI): fold amplitude `e^{i alpha_* u} int |beta|^{-1/2} e^{i(Theta(beta;c)+beta u)} chi d beta`
+- `c_3(c)` (Paper XVI): cubic WKB coefficient `(1/6) theta'''(alpha_*;c) != 0`
+- `C ⊂ T*R_beta × T*R_u` (Paper XVI): canonical relation, locally `{(beta, Theta'(beta;c)+u; u, beta)}`
+- `S^m_{1,0}(c)` (Paper XVI): parameter-dependent symbol class in u, uniform in c (external parameter, NOT phase-space variable; no polyhomogeneous expansion assumed)
 
 ### ⚠️ Critical distinction (established after Paper IX referee process, confirmed through Paper XII)
 
@@ -53,7 +58,7 @@ bandwidth decay → rigorous peak-width upper bounds → crossover asymptotics
 
 ### ⚠️ Riesz-basis status (updated after Paper XII)
 
-`{Phi_n^(inf)}` is an orthonormal system (ONS) along `c_k`. It is trivially a Riesz basis **with bounds 1,1** due to orthonormality (Paper XII Cor. 7.1). This is **NOT a nontrivial result** — it does not imply completeness, does not resolve the Bridge theorem, and does not close any open problem. The Riesz-basis approach mentioned in older summaries as the "recommended path" is **no longer operative** as a standalone strategy.
+`{Phi_n^(inf)}` is an orthonormal system (ONS) along `c_k`. It is trivially a Riesz basis **with bounds 1,1** due to orthonormality (Paper XII Cor. 7.1). This is **NOT a nontrivial result** — it does not imply completeness, does not resolve the Bridge theorem, and does not close any open problem.
 
 ---
 
@@ -107,16 +112,9 @@ Note: Paper VII does **not** prove operator-norm convergence `||H_c - H_SOT|| ->
 
 ### Unconditional Results
 
-- **Lem 3.1 (PSWF precompactness):** `{Phi_n^(c)}` precompact in L2; every subsequence has a further subsequence converging strongly to a unit vector.
-- **Prop 2.2:** `||Phi_n^(inf)|| = 1` (used at exactly one point in Paper XI).
+- **Lem 3.1 (PSWF precompactness):** `{Phi_n^(c)}` precompact in L2.
+- **Prop 2.2:** `||Phi_n^(inf)|| = 1`.
 - **Thm 3.3 (Closability + symmetry of H_spec):** H_spec closable and symmetric.
-
-### Hypotheses (none proved in Paper IX)
-
-- **Hyp 1:** H_SOT has purely discrete spectrum with simple eigenvalues — central black box.
-- **Hyp 2:** Norm-resolvent convergence.
-- **Hyp 3:** Completeness of `{Phi_n^(inf)}`.
-- **Hyp 4:** Uniform alignment `sup_{n<=kappa c} ||Phi_n^(c) - Phi_n^(inf)|| <= C_kappa c^{-1/4}`.
 
 ### Open Problem 7 (THE central open problem of the series)
 
@@ -126,203 +124,189 @@ Note: Paper VII does **not** prove operator-norm convergence `||H_c - H_SOT|| ->
 
 ## Paper X — Mosco Form Convergence & Friedrichs Extension (DRAFT, v46)
 
-**Architecture:** Works entirely with H_SOT as **bounded**. All main results **unconditional** except the Bridge theorem.
-
 ### Unconditional Results
 
-- **Lem `lem:ftb`:** `<H_c f, f> = ||B_c(P*Pf)||^2`
-- **Thread A:** SOT-limit `H_str` exists uniquely in B(L2) — UNCONDITIONAL
-- **Thread B:** Mosco convergence `q_c ->^M q_lim` — UNCONDITIONAL
-- **Thm `thm:friedrichs`:** `T_{q_lim} = H_str` — UNCONDITIONAL
-- **Cor `cor:resolvent`:** Strong resolvent convergence `(H_c - z)^{-1} ->^s (H_lim - z)^{-1}` — UNCONDITIONAL
-- **Thm `thm:rate-ext`:** `0 <= q_lim - q_c <= C_kappa c^{-1/4} ||f||^2` (from Paper VIII Cor 4.3 only) — UNCONDITIONAL
+- **Thread A:** SOT-limit `H_str` exists uniquely in B(L2)
+- **Thread B:** Mosco convergence `q_c ->^M q_lim`
+- **Thm `thm:friedrichs`:** `T_{q_lim} = H_str`
+- **Cor `cor:resolvent`:** Strong resolvent convergence `(H_c - z)^{-1} ->^s (H_lim - z)^{-1}`
+- **Thm `thm:rate-ext`:** `0 <= q_lim - q_c <= C_kappa c^{-1/4} ||f||^2`
 
 ### Conditional Result
 
-- **Thm `thm:bridge` [Hyp.(IX.b)]:** `H_str = closure(H_spec)` — CONDITIONAL on Paper IX Open Problem 7.
+- **Thm `thm:bridge` [Hyp.(IX.b)]:** `H_str = closure(H_spec)` — CONDITIONAL.
 
 ---
 
 ## Paper XI — Spectral Structure and Density (FINAL)
 
-**Architecture:** Establishes spectral geometry of `H_lim` along the fixed diagonal subsequence `c_k`.
-
 ### Unconditional Results (along c_k)
 
-- **Lem `lem:diagonal` (Cantor diagonal):** Fixed subsequence `c_k` s.t. `Phi_n^(c_k) -> Phi_n^(inf)` strongly (uses `||Phi_n^(inf)||=1` from Paper IX Prop 2.2), `lambda_n^(c_k) -> lambda_n^(inf)`, `H_{c_k} ->^SOT H_lim`. `{Phi_n^(inf)}` is ONS.
-- **Lem `lem:eigenvalue-eq`:** `H_lim Phi_n^(inf) = lambda_n^(inf) Phi_n^(inf)` — **H_lim has a genuine eigenstructure** (unconditional along c_k). Proof uses 3-term decomposition (A_k + B_k + C_k -> 0) bypassing non-commutation of limits.
-- **Thm `thm:spectral-inclusion`:** `closure({lambda_n^(inf)}) ⊂ sigma_p(H_lim) ⊂ sigma(H_lim) ⊂ [0,1]` — UNCONDITIONAL.
+- **Lem `lem:diagonal`:** Fixed subsequence `c_k`; `{Phi_n^(inf)}` is ONS.
+- **Lem `lem:eigenvalue-eq`:** `H_lim Phi_n^(inf) = lambda_n^(inf) Phi_n^(inf)`.
+- **Thm `thm:spectral-inclusion`:** `closure({lambda_n^(inf)}) ⊂ sigma_p(H_lim) ⊂ sigma(H_lim) ⊂ [0,1]`.
 - **Thm `thm:density-criterion`:** Density of `{lambda_n^(inf)}` in [0,1] implies `sigma(H_lim) = [0,1]`.
-
-### Conditional Result
-
-- **Thm `thm:weyl` (Semiclassical spectral transfer) [Hyp. NAcc]:** For each `lambda in (0,1)`, there exists `n(lambda)` s.t. `lambda_{n(lambda)}^(inf) = lambda + O(c(lambda)^{-1/4})` and `n(lambda) = floor(2c(lambda)/pi) + O(log c(lambda))`. This is an **inverse spectral localization result, NOT a Weyl counting law**.
-
-### Key new feature vs. older summaries
-
-- `H_lim` is **confirmed to have actual eigenvectors `{Phi_n^(inf)}`** with corresponding eigenvalues `{lambda_n^(inf)}` (unconditionally along c_k).
-- The spectral inclusion `sigma_p(H_lim) != empty` is **proved**.
-- Subsequence-independence (`Phi_n^(inf)` and `lambda_n^(inf)` independent of diagonal subsequence up to phase) remains **Open Problem (XI Prob. 3)**.
 
 ### Open Problems in Paper XI
 
-1. Density of `{lambda_n^(inf)}` in [0,1] (Conj. XI density)
-2. No Accumulation / gap lower bound `|lambda_n^(c) - lambda_{n+1}^(c)| >= C_kappa c^{-3/4}`
-3. **Uniqueness** (subsequence-independence) — all XI statements currently hold only along c_k
-4. Form rate sharpness
-5. Completeness of `{Phi_n^(inf)}`
+1. Density of `{lambda_n^(inf)}` in [0,1]
+2. Gap lower bound `|lambda_n^(c) - lambda_{n+1}^(c)| >= C_kappa c^{-3/4}`
+3. Subsequence-independence — all XI statements hold only along c_k
+4. Completeness of `{Phi_n^(inf)}`
 
 ---
 
 ## Paper XII — Localization Principle for Spectral Projection Stability (DRAFT)
 
-**Architecture:** Abstract operator-theoretic result + conditional PSWF application.
-
 ### Fully Proved Abstract Results
 
-- **Thm `thm:mechanism` (Exact Mechanism Factorization):** Scalar invariant
-  `R_k := ||(A_k - A)phi|| / gamma_k + |lambda_k - lambda| / gamma_k`
-  controls spectral projection stability via 3 exact steps:
-  - (M1) Rank-one scalar reduction: `||P_k - P^inf|| = ||(I - P_k)phi||`
-  - (M2) Spectral gap resolvent bound: `||(I-P_k)phi|| <= ||(A_k - lambda_k)phi|| / gamma_k`
-  - (M3) SOT residual triangle: `||(A_k - lambda_k)phi|| <= ||(A_k - A)phi|| + |lambda_k - lambda|`
-- **Thm `thm:abstract`:** `R_k -> 0 => ||P_k - P^inf|| -> 0` (sufficient).
-- **Thm `thm:necessary-bounded-gap`:** Necessary when `gamma_k >= c_0 > 0`.
-- **Prop `prop:no-go`:** Bypassing a gap condition is provably impossible.
-- **Prop `prop:separation`:** `||A_k - A|| ≡ 1` but full projection stability — Davis–Kahan is incompatible with this regime.
-- **Cor `cor:riesz` (trivial):** `{Phi_n^(inf)}` is a Riesz basis with bounds 1,1. Follows trivially from orthonormality. **Not a nontrivial contribution.**
+- **Thm `thm:mechanism`:** Exact Mechanism Factorization.
+- **Thm `thm:abstract`:** `R_k -> 0 => ||P_k - P^inf|| -> 0`.
+- **Prop `prop:no-go`:** Bypassing gap condition is provably impossible.
 
-### Conditional PSWF Results (conditional on Gap-S and SOT-Faster)
+### Two remaining open hypotheses for PSWF projection stability
 
-- **Cor `cor:convergence`:** `||P_n^(c_k) - P_n^(inf)|| -> 0` (spectral projection convergence).
-- **Cor `cor:rate`:** Rate `O(c_k^{-1/4} / g(c_k))`.
-
-### Two sole remaining open hypotheses for PSWF projection stability
-
-- **Gap-S (Hyp. XII.1):** `|lambda_n^(c) - lambda_{n+1}^(c)| >= g(c)` with `c^{-1/4}/g(c) -> 0`. Conjectured `g(c) ~ (log c)^{-1}` via sine-kernel repulsion. **OPEN.**
-- **SOT-Faster (Hyp. XII.2):** `||(H_{c_k} - H_lim) Phi_n^(inf)|| = o(g(c_k))`. Strictly weaker than any uniform rate. **OPEN.**
+- **Gap-S (Hyp. XII.1):** `|lambda_n^(c) - lambda_{n+1}^(c)| >= g(c)` with `c^{-1/4}/g(c) -> 0`. **OPEN.**
+- **SOT-Faster (Hyp. XII.2):** `||(H_{c_k} - H_lim) Phi_n^(inf)|| = o(g(c_k))`. **OPEN.**
 
 ---
 
 ## Papers XIII–XIV — Coefficient Stability and HS-Norm Estimates (DRAFT)
 
-*(Full text not yet in summary — reconstructed from Paper XV references.)*
-
-### Reduction Chain (Paper XIV)
-
-```
-(C) + (D-strong)  =>  S_N^{(M(c))}(c) ~ c_0*beta > 0  =>  H3 fails  =>  H1 fails
-```
-
-- **HS decomposition** (Paper XIV): `||A_N^(c,(M)) - D^(M)||_HS^2 = Sigma_near + Sigma_int + Sigma_far`
-- `Sigma_near = O(1/c) = o(1)` — **proved** (conditional on (C))
-- `Sigma_far = o(1)` — **accessible** via stationary phase
-- `Sigma_int = o(1)` — **the sole remaining obstruction** (target of Paper XV)
-
-### Condition (C) — Local Weyl Law
-
-Uniformly in `n in T_{alpha,kappa}(c)`:
-`mu_{n,c}([-c_0, c_0]) = c_0/c + o(1/c)`
-
-Required for frozen weight approximation and near-diagonal control. **Remains open** (Paper XV Prob. 7.1).
-
-### Condition (D-strong) — Off-diagonal HS decay
-
-`Sigma_int = sum_{C < |n-m| <= c^{theta_0}} |(A_N^(c,(M)))_{nm}|^2 = o(1)` for `M(c) ~ beta*c`.
+- **HS decomposition:** `||A_N^(c,(M)) - D^(M)||_HS^2 = Sigma_near + Sigma_int + Sigma_far`
+- `Sigma_near = O(1/c)` — proved (conditional on (C))
+- `Sigma_far = o(1)` — accessible via stationary phase
+- `Sigma_int = o(1)` — sole remaining obstruction (target of Paper XV)
 
 ---
 
 ## Paper XV — Intermediate-Regime Kernel Estimates (DRAFT)
 
-**Title:** *Intermediate-Regime Kernel Estimates for the PSWF Compression Operator: Mesoscopic Scaling, WKB Phase Extraction, and Weyl Equidistribution*
+**Main achievement:** `Sigma_model(c) = o(1)` proved (Cor. 5.3).
 
-**Main achievement:** Resolves the sole remaining analytic obstruction from Paper XIV: `Sigma_model(c) = o(1)`.
+### Key Results
 
-### Key Results (proved in Paper XV)
-
-- **WKB phase extraction (Lem. 4.1):** Phase `theta(xi) = c * int_0^{xi/c} p(zeta; alpha) dzeta` explicitly identified from PSWF ODE, where `p(zeta; alpha) = sqrt((lambda(alpha) - zeta^2)/(1 - zeta^2))`.
-- **Phase non-degeneracy (Lem. 4.2):**
-  - `theta'(xi) = p(xi/c; alpha) > 0` for all `|xi| < c*sqrt(lambda(alpha))`
-  - `theta''(xi) != 0` for `xi != 0` (since `lambda(alpha) in (0,1)` for `alpha in (0,1)`)
-  - `theta''(0) = 0` but `theta'''(0) != 0` (cubic non-degeneracy; handled by Airy-type control)
-- **No-go for linear phase (Cor. 3.2):** Frozen-phase model gives `Sigma_strip = Theta(c^{2-theta_0}) -> inf`. Nonlinear phase (`theta'' != 0`) is essential.
-- **Uniform Degenerate Phase Lemma (UDPL, Lem. 5.1):** Provides uniform oscillatory integral bound `C * mu_1^{-3/5} * mu_3^{-1/5}` handling both the away-from-zero (IBP) and near-zero (Airy) regimes simultaneously, uniformly in the parameter h.
-- **Joint k/xi_0 Decoupling (Prop. 5.2):** `|T(c)| = O(c^{3*theta_0/4 + eps}) = o(c^{theta_0})` via Weyl-differencing (Stage 1) + UDPL (Stage 2) + optimisation H ~ c^{(1+theta_0)/2} (Stage 3).
+- **WKB phase extraction (Lem. 4.1):** `theta(xi)` identified from PSWF ODE.
+- **Phase non-degeneracy (Lem. 4.2):** `theta''(0)=0`, `theta'''(0)!=0` (cubic non-degeneracy; Airy-type control needed).
+- **UDPL (Lem. 5.1):** Uniform degenerate phase bound handling Airy + IBP regimes.
 - **Cor. 5.3:** `Sigma_model(c) = o(1)` unconditionally (given theta non-degeneracy).
 
-### Status of Paper XV targets
+### Open problems (Paper XV)
 
-| Target | Status |
-|---|---|
-| `Sigma_model(c) = o(1)` | **PROVED** (Cor. 5.3) |
-| Lipschitz regularity of PSWF amplitude (Prob. 6.1) | **OPEN** (critical) |
-| Local Weyl law (C) uniformly in n (Prob. 7.1) | **OPEN** (critical, inherited from Paper XIV) |
-| `Sigma_int = o(1)` (full) | **Conditional** on Prob. 6.1 + Prob. 7.1 |
-| (D-strong) | **Conditional** on Sigma_int |
-| H3 fails, H1 fails | **Conditional** on (C) + (D-strong) |
-
-### Logical status summary for Paper XV
-
-```
-theta identified + theta' != 0 + theta'' != 0 (xi != 0)     PROVED
-Linear phase => Model-Sigma fails                             PROVED (no-go)
-Naive van der Corput insufficient                             PROVED
-Weyl for fixed beta: O(c^{theta_0/2})                        AVAILABLE (W1)
-Joint k/xi_0 decoupling                                       PROVED (Prop. 5.2)
-Sigma_model = o(1)                                            PROVED (Cor. 5.3)
-Lipschitz regularity (amplitude)                              OPEN
-Local Weyl law (C)                                            OPEN
-Sigma_int = o(1)                                              CONDITIONAL
-```
+- **Prob. 6.1:** Lipschitz regularity of PSWF amplitude. **OPEN (critical).**
+- **Prob. 7.1:** Local Weyl law (C). **OPEN (critical).**
 
 ---
 
-## The Central Open Problems of the Series (as of Paper XV)
+## Paper XVI — Lagrangian Singularity Transport under Fourier Duality (DRAFT, referee-ready)
 
-After Papers I–XV, the programme reduces to the following distinct open fronts:
+**Full title:** *Lagrangian Singularity Transport under Fourier Duality: Cubic WKB Phases, A₂-Fold Singularities, and the Airy Normal Form*
 
-### Front A — Operator Identification (from Papers IX–XII)
+**Setting:** One-dimensional throughout (`beta, u ∈ R`).
+
+**Role in series:** Provides the rigorous microlocal foundation for the Airy normal form used in Papers VI–VII. Translates the conormal singularity + cubic WKB phase structure (already identified in Paper XV Lem. 4.2) into the language of FIO theory, A₂ stable Lagrange singularities, and Hörmander's conormal distributions.
+
+### Architecture
+
+Three results, each conditional on Assumption 4.1 (uniform A₂-stability, conditions (i)–(vi)).
+
+**Assumption 4.1 (uniform A₂-stability) — conditions:**
+- (i) `Theta(beta;c) = c_3(c) beta^3 + O(beta^4)` in c-independent neighbourhood
+- (ii) `c_3(c) >= delta_0 > 0`
+- (iii) Uniform van der Corput: `|Theta''(beta^*(u);c)| >= delta_1 |u|^{1/2}`
+- (iv) Uniform Jacobian decay: `|d^k_u J| <= C_k (1+|u|)^{-1/2-k}`
+- (v) No secondary stationary points uniformly in c
+- (vi) **Critical:** uniform symbol-type bounds of order 0 on CFU map t(beta,u;c); `|det(dt/dbeta)| >= delta_5 > 0`; uniform non-stationary phase bound `delta_4 > 0` outside Airy critical region
+
+**Condition (vi) is the key hypothesis** — upgrades all estimates from "fixed c" to "uniform in c ≥ c_0". Its verification for PSWF is **Open Problem (XVI, prob:PSWF-microlocal)**, the primary target of Paper XVII.
+
+### Main Results
+
+- **Thm `thm:endpoint` [Rig]:** `|Phi(u;c)| = O(|u|^{-1/2})` — endpoint decay, unconditional under Assumption `ass:fold-local`.
+- **Thm `thm:airy-normalform` [Rig, conditional (i)–(vi)]:** Phi(u;c) is microlocally equivalent (in a conic neighbourhood of the fold point), modulo smoothing operators, to `e^{i(alpha_* u + R(u;c))} [a(u;c) Ai(c_3(c)^{-1/3} u) + r(u;c)]`, where `a ∈ S^{-1/2}_{1,0}(c)` and `|r| = O((1+|u|)^{-N})` uniformly in c.
+- **Cor `cor:pointwise` [Cond, (i)–(vi)]:** `|Phi(u;c)| <= C(1+|u|)^{-3/4}` uniformly in c.
+- **Cor `cor:global-bound` [Cond, (i)–(vi)]:** `|int_0^U Phi| = O(U^{1/4})` (Cesàro improvement over O(U^{1/2})).
+- **Hypothesis `hyp:FIO-rigidity` [non-standard]:** Airy-class bound => A₂-fold in canonical relation. Correctly labelled as inverse reconstruction conjecture, not standard FIO.
+
+### Key microlocal constructions
+
+- **Conormal amplitude:** `|beta|^{-1/2} chi ∈ I^{-1/4}(R, {0})` — Hörmander Ch. 18.2 / Guillemin–Uhlmann framework
+- **CFU as FIO:** Chester–Friedman–Ursell reduction treated as microlocal equivalence modulo `Psi^{-inf}`, NOT as a pointwise phase identity. Remainder `R_c ∈ Psi^{-inf}(R)` with `R_c: H^s -> H^{s+N}` uniformly in c (requires (vi)).
+- **Canonical relation:** locally `C = {(beta, Theta'(beta;c)+u; u, beta)}` using standard sign convention `eta = d_u Psi`. Fourier transform = symplectic involution `(beta,xi;u,eta) -> (u,-eta;beta,-xi)`.
+- **Joint scaling:** `-3/4` exponent arises from a single stationary-phase expansion in `t_tilde` (not product of two mechanisms). `a ∈ S^{-1/2}` = leading coefficient; `Ai(...)` = oscillatory envelope. Both bounds are a posteriori estimates only.
+- **Symbol class `S^m_{1,0}(c)`:** parameter-dependent family in u, uniform in c. `c` is external parameter, NOT phase-space variable. No polyhomogeneous expansion assumed. Does NOT correspond to `S^m_{1,0}(R_{u,c})`.
+- **Maslov phase:** absorbed into `R(u;c)` in the normal form; computed from Maslov index of C following Hörmander Ch. 25.1.
+
+### Critical Assumption — Open Problem
+
+**Open Problem (`prob:PSWF-microlocal`):** Does the PSWF amplitude `g(alpha;c) = |alpha - alpha_*|^{-1/2} e^{i theta(alpha;c)}` satisfy Assumptions `ass:fold-local` and `ass:microlocal` uniformly in c → ∞?
+- Sub-question (a): `c_3(c) >= delta_0 > 0` (Olver WKB)?
+- Sub-question (b): `theta''(alpha;c) != 0` for `alpha != alpha_*`, uniformly?
+- Sub-question (c): Conditions (iv) and (vi) for the PSWF CFU Jacobian?
+
+This is the **primary target of Paper XVII**.
+
+### Key references added in Paper XVI
+
+- **Arnold (1972):** Normal forms near degenerate critical points — A₂ classification
+- **Golubitsky–Guillemin (1973):** Stable Mappings — coordinate-free stability conditions
+- **Guillemin–Uhlmann (1981):** Oscillatory integrals with singular symbols — conormal distributions
+- **Melrose–Uhlmann (1979):** Lagrangian intersection and Cauchy problem
+- **Chester–Friedman–Ursell (1957):** CFU steepest descent extension
+- Hörmander (1983) Ch. 18.1–18.2 (conormal), Ch. 7.7 (stationary phase), Ch. 25.1 (Maslov)
+- Zworski (2012), Olver (1974) — already in series references
+
+---
+
+## The Central Open Problems of the Series (as of Paper XVI)
+
+### Front A — Operator Identification (Papers IX–XII)
 
 ```
 H_SOT  =?=  closure(H_spec)
 ```
-Still the central structural problem. Paper X Bridge Theorem is conditional on this.
+Still the central structural problem.
 
-### Front B — Spectral Completeness & Uniqueness (from Papers XI–XII)
+### Front B — Spectral Completeness & Uniqueness (Papers XI–XII)
 
 - Completeness of `{Phi_n^(inf)}` in L2
-- Subsequence-independence of `Phi_n^(inf)`, `lambda_n^(inf)` (up to phase)
-- Gap lower bound `|lambda_n^(c) - lambda_{n+1}^(c)| >= C_kappa c^{-3/4}` (implies NAcc)
+- Subsequence-independence of `Phi_n^(inf)`, `lambda_n^(inf)`
+- Gap lower bound `|lambda_n^(c) - lambda_{n+1}^(c)| >= C_kappa c^{-3/4}`
 
 ### Front C — Coefficient Stability / HS Programme (Papers XIII–XV)
 
-Two critical open problems remain before `Sigma_int = o(1)` is fully established:
-1. **Lipschitz regularity of PSWF amplitude (Paper XV Prob. 6.1):**
-   `||Phi_hat_{n+k}^(c) - Phi_hat_n^(c)||_{L2([-c_0,c_0])} = O(k/c)` uniformly in `n in T_{alpha,kappa}(c)`, `|k| <= c^{theta_0}`.
-   Plausible from WKB smooth `n/c`-dependence of amplitude; rigorous L2-control of semiclassical transport equation needed.
-2. **Local Weyl Law (C) (Paper XV Prob. 7.1):**
-   `mu_{n,c}([-c_0,c_0]) = c_0/c + o(1/c)` uniformly in `n in T_{alpha,kappa}(c)`.
-   Main difficulty: uniformity near turning point as `n/c -> alpha`.
+- **Prob. 6.1 (Paper XV):** Lipschitz regularity of PSWF amplitude. **OPEN.**
+- **Prob. 7.1 (Paper XV):** Local Weyl law (C). **OPEN.**
+
+### Front D — Microlocal PSWF Verification (Paper XVI → XVII) ⬅ NEW
+
+- **Prob. `prob:PSWF-microlocal` (Paper XVI):** Verify A₂-stability Assumption 4.1 (especially (vi)) for PSWF uniformly in c → ∞.
+  - (a) `c_3(c) >= delta_0`: probably accessible via Olver WKB
+  - (b) `theta'' != 0` away from alpha_*: plausible from Paper XV Lem. 4.2
+  - (c) Uniform CFU Jacobian bounds (vi): **hardest sub-problem**, requires explicit PSWF phase control
 
 ---
 
-## Correct Logical Dependencies (Papers IX–XV)
+## Correct Logical Dependencies (Papers IX–XVI)
 
 | What later papers use | Source | Status |
 |---|---|---|
 | Rate `|lambda_n^(c) - lambda_n^(inf)| <= C c^{-1/4}` | Paper VIII Cor 4.3 | Unconditional |
 | `||Phi_n^(inf)|| = 1` | Paper IX Prop 2.2 | Unconditional |
-| `H_spec` closable, symmetric | Paper IX Thm 3.3 | Unconditional |
-| SOT-limit `H_lim` exists, `Dom = L^2`, `||H_lim|| <= 1` | Paper X Thread A | Unconditional |
-| Mosco convergence, Friedrichs, strong resolvent conv. | Paper X | Unconditional |
-| `H_lim Phi_n^(inf) = lambda_n^(inf) Phi_n^(inf)` (along c_k) | Paper XI Lem eigenvalue-eq | Unconditional (along c_k) |
-| Spectral inclusion `sigma_p(H_lim) != empty` | Paper XI Thm spectral-inclusion | Unconditional (along c_k) |
+| SOT-limit `H_lim` exists | Paper X Thread A | Unconditional |
+| `H_lim Phi_n^(inf) = lambda_n^(inf) Phi_n^(inf)` | Paper XI Lem eigenvalue-eq | Unconditional (along c_k) |
+| Spectral inclusion | Paper XI Thm spectral-inclusion | Unconditional (along c_k) |
 | Localization principle (abstract) | Paper XII Thm mechanism | Fully proved |
-| `H_SOT = closure(H_spec)` — Bridge | Paper IX Open Problem 7 | **Structural hypothesis, NOT proved** |
+| `theta''(0)=0`, `theta'''(0)!=0` (cubic non-deg.) | Paper XV Lem. 4.2 | Unconditional |
+| Sigma_model = o(1) | Paper XV Cor. 5.3 | Unconditional (given theta non-deg.) |
+| Airy normal form microlocally | Paper XVI Thm airy-normalform | Conditional on (i)–(vi) |
+| `|Phi(u;c)| <= C(1+|u|)^{-3/4}` | Paper XVI Cor pointwise | Conditional on (i)–(vi) |
+| Cesàro `O(U^{1/4})` | Paper XVI Cor global-bound | Conditional on (i)–(vi) |
+| A₂-stability (vi) for PSWF | Paper XVI Open Problem | **OPEN — target of Paper XVII** |
+| `H_SOT = closure(H_spec)` | Paper IX Open Problem 7 | **NOT proved** |
 | Subsequence-independence | Paper XI Open Problem 3 | **OPEN** |
 | Gap-S | Paper XII Hyp. 3.1 | **OPEN** |
-| SOT-Faster | Paper XII Hyp. 3.4 | **OPEN** |
-| Lipschitz regularity of PSWF amplitude | Paper XV Prob. 6.1 | **OPEN** |
+| Lipschitz regularity (amplitude) | Paper XV Prob. 6.1 | **OPEN** |
 | Local Weyl law (C) | Paper XV Prob. 7.1 | **OPEN** |
 
 ---
@@ -340,21 +324,23 @@ Two critical open problems remain before `Sigma_int = o(1)` is fully established
 
 ## Key References
 
-- **Olver (1974):** *Asymptotics and Special Functions*, Academic Press — turning points, Airy asymptotics, Ch. 11
-- **Osipov–Rokhlin–Xiao (2013):** *Prolate Spheroidal Wave Functions of Order Zero*, Springer
-- **Bonami–Karoui (2014):** Uniform bounds of PSWFs and eigenvalue decay, C.R. Math. 352
-- **Slepian–Pollak (1961):** Bell Syst. Tech. J. 40 — original PSWF paper
-- **CCM2025:** Connes–Consani–Moscovici, *Zeta Spectral Triples*, arXiv:2511.22755
-- **Kato (1966):** *Perturbation Theory for Linear Operators*, Springer
-- **Reed–Simon (1975):** *Methods of Modern Mathematical Physics, Vol. II*, Academic Press
-- **Mosco (1969):** *Convergence of convex sets*, Adv. Math. 3, 510–585
-- **Kuwae–Shioya (2003):** *Convergence of spectral structures*, Comm. Anal. Geom. 11, 599–673
-- **Widom (1964):** *Asymptotic behavior of eigenvalues II*, Arch. Ration. Mech. Anal. 17 — average gap density `~ (log c)^{-1}`
-- **Davis–Kahan (1970):** SIAM J. Numer. Anal. 7 — rotation of eigenvectors (incompatible with Paper XII regime)
-- **Stein (1993):** *Harmonic Analysis*, Princeton — van der Corput, Airy bounds
-- **Titchmarsh (1986):** *Theory of the Riemann Zeta-Function*, Oxford — Weyl differencing, exponent pairs
-- **Weyl (1916):** Equidistribution mod 1, Math. Ann. 77
-- **Rudin (1991):** *Functional Analysis*, 2nd ed., McGraw-Hill
+- **Olver (1974):** *Asymptotics and Special Functions* — turning points, Airy, Ch. 11
+- **Osipov–Rokhlin–Xiao (2013):** *Prolate Spheroidal Wave Functions of Order Zero*
+- **Bonami–Karoui (2014):** Uniform bounds of PSWFs
+- **Slepian–Pollak (1961):** Original PSWF paper
+- **CCM2025:** Connes–Consani–Moscovici, arXiv:2511.22755
+- **Kato (1966):** *Perturbation Theory for Linear Operators*
+- **Reed–Simon (1975):** *Methods of Modern Mathematical Physics, Vol. II*
+- **Mosco (1969):** Convergence of convex sets
+- **Widom (1964):** Asymptotic behavior of eigenvalues II
+- **Stein (1993):** *Harmonic Analysis* — van der Corput, Airy bounds
+- **Titchmarsh (1986):** *Theory of the Riemann Zeta-Function* — Weyl differencing
 - **Zworski (2012):** *Semiclassical Analysis*, AMS
-- **Böttcher–Silbermann (1990):** *Analysis of Toeplitz Operators*, Springer
-- **Simon (2011):** *Szegő's Theorem and Its Descendants*, Princeton
+- **Hörmander (1983):** *Analysis of Linear PDE I*, Springer — Ch. 7.7, 18.1–18.2, 25.1
+- **Arnold (1972):** Normal forms near degenerate critical points — A₂ classification
+- **Golubitsky–Guillemin (1973):** *Stable Mappings and Their Singularities*
+- **Guillemin–Uhlmann (1981):** Oscillatory integrals with singular symbols, Duke Math. J. 48
+- **Melrose–Uhlmann (1979):** Lagrangian intersection and Cauchy problem, CPAM 32
+- **Chester–Friedman–Ursell (1957):** Extension of steepest descents, Proc. Cambridge Philos. Soc. 53
+- **Böttcher–Silbermann (1990):** *Analysis of Toeplitz Operators*
+- **Simon (2011):** *Szegő's Theorem and Its Descendants*
