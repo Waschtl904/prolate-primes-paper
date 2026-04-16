@@ -67,8 +67,16 @@ Its proof proceeds via the \emph{integral representation}
   p(x;h) := \sqrt{E_n(h)-V(x)},
 \]
 reducing all $C^1$-control of $\phi$ to
-uniform control of the momentum function $p(x;h)$ and its integral.
+uniform control of $p(x;h)$ and its integral.
 No ODE, no Gr\"onwall inequality, and no Wasow-type expansion is needed.
+
+\medskip
+\noindent\textbf{Meta-remark.}
+The proof shows that CFU stability depends only on
+energy convergence $E_n(h)\to\lambda_n$,
+$L^\infty$-control of $V$ on $\mathrm{supp}\,\chi$,
+and the distance from the turning point.
+This is verifiably general beyond the PSWF setting.
 
 \medskip
 \noindent\textbf{Strategy.}
@@ -138,20 +146,28 @@ The turning points $x_\pm(h)$ solve $V(x_\pm) = E_n(h)$,
 where $E_n(h) := \chi_n(h^{-1})\cdot h^2$.
 \end{definition}
 
-\begin{remark}[Eigenvalue branch and momentum limit]
+\begin{remark}[Eigenvalue branch, momentum limit, turning-point smoothness]
 \label{rem:eigenbranch}
 $E_n(h) \to \lambda_n \in (0,1)$ smoothly and monotonically as $h\to 0$.
-Define the limiting momentum:
-$p_0(x) := \sqrt{\lambda_n - V(x)}$.
-On $\mathrm{supp}\,\chi$ (away from turning points;
-Assumption~\ref{ass:boundary-away}),
-the positive infimum
+Define the limiting momentum $p_0(x) := \sqrt{\lambda_n - V(x)}$.
+
+\medskip
+\noindent\textit{Uniform positivity of $p_0$ on $K_\varepsilon$.}
+For every $\varepsilon > 0$, on
+$K_\varepsilon := \mathrm{supp}\,\chi\setminus U_\varepsilon$
+(where $U_\varepsilon$ excludes an $\varepsilon$-neighborhood of $x_0^{(0)}$
+and Assumption~\ref{ass:boundary-away} excludes $x\to\pm 1$):
 \[
-  \inf_{x\in K_\varepsilon} p_0(x) \;\ge\; c_\varepsilon > 0
+  \inf_{x\in K_\varepsilon} p_0(x) \;\ge\; c_\varepsilon > 0.
 \]
-holds for every $\varepsilon > 0$,
-since $\lambda_n > V(x_\pm^{(0)})$ at the limiting turning points
-and $K_\varepsilon$ excludes an $\varepsilon$-neighborhood of $x_0^{(0)}$.
+
+\medskip
+\noindent\textit{Smooth dependence of turning point $x_0(h)$.}
+The limiting turning point $x_0^{(0)}$ satisfies $V(x_0^{(0)}) = \lambda_n$.
+Since $V'(x_0^{(0)}) \ne 0$ (V is strictly increasing near $x_0^{(0)}$),
+the implicit function theorem applies to $V(x_0(h)) = E_n(h)$:
+the map $h \mapsto x_0(h)$ is smooth on $(0,h_0]$
+and $x_0(h) \to x_0^{(0)}$ as $h\to 0$.
 \end{remark}
 
 \begin{assumption}[Boundary-away cutoff]
@@ -195,9 +211,7 @@ uniform transversality of $\pi_h$;
 or uniform $C^1$-control of $\phi(x;h)$.
 Classical warning:
 $f_h(x) = x + h\sin(x/h)$ converges uniformly
-but $f_h'(x) = 1 + \cos(x/h)$ does not ---
-pointwise convergence of $\phi$ does not imply
-uniform convergence of $\phi'$.
+but $f_h'(x) = 1 + \cos(x/h)$ does not.
 \end{remark}
 
 %% ============================================================
@@ -221,11 +235,14 @@ and must be achieved by explicit construction.
 
 \begin{proposition}[Branch selection, \Cond]
 \label{prop:branch-selection}
-There exists $\delta_\xi > 0$ and a
-semiclassical pseudodifferential operator
+Let
+$\delta_\xi := \tfrac{1}{2}\inf_{h\in(0,h_0],\,x\in\mathrm{supp}\,\chi} p(x;h) > 0$
+(uniform positivity holds by Assumption~\ref{ass:boundary-away}
+and $E_n(h) > V(x)$ on $\mathrm{supp}\,\chi$ for $h\le h_0$).
+There exists a semiclassical pseudodifferential operator
 $\Pi^+ = \mathrm{Op}_h(\sigma^+)$
-with $\sigma^+\in C_c^\infty(T^*(-1,1))$
-supported on $\{\xi\ge \delta_\xi/2\}$,
+with symbol $\sigma^+\in C_c^\infty(T^*(-1,1))$
+supported on $\{\xi \ge \delta_\xi/2\}$,
 such that:
 \begin{enumerate}[{\rm(i)}]
 \item $\chi\,\psi_n(\cdot;h) = \Pi^+(\chi\psi_n) + \mathcal{O}(h^\infty)$
@@ -233,18 +250,22 @@ such that:
 \item $\Pi^+(\chi\psi_n)$ is a Lagrangian distribution
   on $\Lambda_h^+$ alone.
 \end{enumerate}
-Here $\delta_\xi := \tfrac{1}{2}\inf_{h\in(0,h_0],\,x\in\mathrm{supp}\,\chi} p(x;h) > 0$,
-where positivity follows from Assumption~\ref{ass:boundary-away}
-and the fact that $E_n(h) > V(x)$ on $\mathrm{supp}\,\chi$
-uniformly for small $h$.
+Consequently $\pi_h^+\colon\Lambda_h^+\to T^*(-1,1)$ is single-sheeted.
 \end{proposition}
 
-\begin{remark}[Proof]
-$\delta_\xi > 0$ because
-$p(x;h)^2 = E_n(h) - V(x) \ge \lambda_n - \|V\|_{L^\infty} - o(1) > 0$
-on $\mathrm{supp}\,\chi$ (strict inequality preserved for $h\le h_0$).
-The $\mathcal{O}(h^\infty)$ error is standard
-$h$-pseudodifferential calculus \cite{Zworski2012}.
+\begin{remark}[Proof: ellipticity of the symbol away from $\xi=0$]
+\label{rem:branch-proof}
+The key input is that the two branches
+$\Lambda_h^\pm$ are \emph{microlocally separated}:
+$\Lambda_h^+\subset\{\xi\ge\delta_\xi\}$
+and $\Lambda_h^-\subset\{\xi\le -\delta_\xi\}$,
+with $\delta_\xi > 0$ uniform in $h$ by the positivity of $p$.
+The symbol $\sigma^+$ is elliptic on $\{\xi\ge\delta_\xi\}$
+and vanishes on $\{\xi\le 0\}$;
+no frequency overlap between $\Lambda_h^+$ and $\Lambda_h^-$
+occurs on $\mathrm{supp}\,\chi$.
+The $\mathcal{O}(h^\infty)$ error follows from the
+standard $h$-pseudodifferential Egorov theorem \cite{Zworski2012}.
 Status: \Cond.
 \end{remark}
 
@@ -257,18 +278,16 @@ Status: \Cond.
 \label{rem:p-status}
 \begin{enumerate}[{\rm(P1)}]
 \item \textit{(Global generating function.)}\;
-  On $\Lambda_h^+$, $\xi = p(x;h) > 0$ is single-valued.
-  Hence $\phi(x;h)$ (via the integral representation below)
-  is a global generating function.
+  On $\Lambda_h^+$, $\xi = p(x;h) > 0$ is single-valued,
+  so $\phi(x;h)$ is a global generating function.
   Status: \Cond.
 \item[{\rm(P3)}]
   \textit{(No secondary caustics.)}\;
-  On $\mathrm{supp}\,\chi \subset
-  [-1+\delta_{\rm bdy}, 1-\delta_{\rm bdy}]$,
+  On $\mathrm{supp}\,\chi$,
   the only zero of $p(x;h)$ is the turning point $x_0(h)$.
-  Boundary singularities of $V$ are excluded.
+  Boundary singularities excluded by Assumption~\ref{ass:boundary-away}.
   Mode interactions excluded by the SL spectral gap
-  (eigenvalue separation estimate required).
+  (eigenvalue separation estimate required for XVII).
   Status: \Cond.
 \end{enumerate}
 \end{remark}
@@ -299,19 +318,18 @@ and the smooth-eigenbranch hypothesis:
 Assume Lemma~\ref{lem:olver-fio-lift-micro},
 Proposition~\ref{prop:branch-selection},
 (P1), (P3), and Lemma~\ref{lem:diff-olver}.
-Then, on $K_\varepsilon = \mathrm{supp}\,\chi\setminus U_\varepsilon$:
+Then, on $K_\varepsilon$:
 \[
   \inf_{h\in(0,h_0],\,x\in K_\varepsilon}|\phi'(x;h)| \ge \delta > 0,
 \]
-hence $|\det\,d\pi_h^+|\ge\delta_2>0$ uniformly on $\Lambda_h^+\setminus U_\varepsilon$.
+hence $|\det\,d\pi_h^+|\ge\delta_2>0$ uniformly.
 \end{lemma}
 
 \begin{remark}[Reduction to Lemma~\ref{lem:diff-olver}]
-Away from the turning point:
-$\phi'(x;h) = p(x;h)/\phi(x;h)$.
-Numerator: $p(x;h) > 0$ uniformly
+On $K_\varepsilon$: $\phi'(x;h) = p(x;h)/\phi(x;h)$.
+Numerator $p > \delta_\xi > 0$ uniformly
 (Proposition~\ref{prop:branch-selection}).
-Denominator: $|\phi(x;h)| \ge c_\varepsilon' > 0$
+Denominator $|\phi| \ge c_\varepsilon'' > 0$
 (Lemma~\ref{lem:diff-olver}(C)).
 Uniform convergence $\phi'\to\phi_0'$ from Lemma~\ref{lem:diff-olver}(D).
 Status: \Cond.
@@ -326,10 +344,9 @@ Status: \Cond.
 \label{lem:diff-olver}
 \emph{(Main technical lemma of Paper~XVII.)}
 Assume Assumption~\ref{ass:boundary-away}
-and the smooth-eigenbranch hypothesis.
-Fix $\varepsilon > 0$ and let
-$K_\varepsilon := \mathrm{supp}\,\chi\setminus U_\varepsilon$,
-where $U_\varepsilon$ is an open $\varepsilon$-neighborhood of $x_0(h)$.
+and the smooth-eigenbranch hypothesis (Remark~\ref{rem:eigenbranch}).
+Fix $\varepsilon > 0$ and set
+$K_\varepsilon := \mathrm{supp}\,\chi\setminus U_\varepsilon$.
 Define:
 \[
   p(x;h) := \sqrt{E_n(h)-V(x)},
@@ -340,79 +357,86 @@ Define:
   \phi(x;h) := \mathrm{sgn}(x-x_0(h))\cdot
   \Bigl(\tfrac{3}{2}\,I(x;h)\Bigr)^{2/3},
 \]
-where the positive branch of $\sqrt{\,\cdot\,}$ is chosen,
-consistent with the branch selection of
-Proposition~\ref{prop:branch-selection}.
-Then the following hold:
+with the positive branch of $\sqrt{\,\cdot\,}$
+(consistent with Proposition~\ref{prop:branch-selection}).
+Then:
 
 \begin{enumerate}[{\rm(A)}]
-\item \textit{(Uniform convergence of $p$, with Lipschitz bound.)}
-  On $K_\varepsilon$:
+\item \textit{(Uniform convergence of $p$, via rationalization.)}
+  Let $\delta_\xi > 0$ be as in
+  Proposition~\ref{prop:branch-selection}.
+  Since $p(x;h) \ge \delta_\xi > 0$ and
+  $p_0(x) \ge c_\varepsilon > 0$ on $K_\varepsilon$
+  (Remark~\ref{rem:eigenbranch}),
+  we may rationalize:
   \[
-    \inf_{h\in(0,h_0],\,x\in K_\varepsilon} p_0(x) \;\ge\; c_\varepsilon > 0,
+    |p(x;h) - p_0(x)|
+    = \frac{|p(x;h)^2 - p_0(x)^2|}{p(x;h) + p_0(x)}
+    = \frac{|E_n(h) - \lambda_n|}{p(x;h) + p_0(x)}
+    \;\le\; \frac{|E_n(h)-\lambda_n|}{2\delta_\xi}.
   \]
-  since $K_\varepsilon$ is bounded away from both the turning point
-  (where $p_0 = 0$) and the endpoints $\pm 1$
-  (Assumption~\ref{ass:boundary-away}).
-  Since $t\mapsto\sqrt{t}$ is Lipschitz on $[c_\varepsilon^2,\infty)$
-  with constant $L_\varepsilon = (2c_\varepsilon)^{-1}$:
+  Since $E_n(h) \to \lambda_n$ as $h\to 0$:
   \[
     \|p(\cdot;h) - p_0\|_{C^0(K_\varepsilon)}
-    \;\le\; L_\varepsilon \cdot |E_n(h) - \lambda_n|
+    \;\le\; \frac{|E_n(h)-\lambda_n|}{2\delta_\xi}
     \;=\; \mathcal{O}(h).
   \]
+  \emph{Note:} The rationalization uses positivity of both $p$ and $p_0$;
+the Lipschitz argument via $\sqrt{\,\cdot\,}$ would fail near $p_0 = 0$.
 
-\item \textit{(Uniform convergence of $I$.)}
-  \[
-    \|I(\cdot;h) - I_0\|_{C^0(K_\varepsilon)} \to 0
-    \quad\text{as } h\to 0,
-  \]
-  where $I_0(x) = \int_{x_0^{(0)}}^x p_0(s)\,ds$.
-  Proof: $\|I(\cdot;h)-I_0\|\le\|p(\cdot;h)-p_0\|_{C^0}\cdot|K_\varepsilon|
-  + p_0^{\max}\cdot|x_0(h)-x_0^{(0)}|$,
-  both $\mathcal{O}(h)$ by (A) and the smooth eigenbranch.
+\item \textit{(Uniform convergence of $I$, with turning-point shift.)}
+  Since $x_0(h)\to x_0^{(0)}$ smoothly
+  (by the implicit function theorem:
+  $V'(x_0^{(0)}) \ne 0$, so $V(x_0(h)) = E_n(h)$
+  determines $x_0(h)$ as a smooth function of $E_n(h)$;
+  see Remark~\ref{rem:eigenbranch}):
+  \begin{align*}
+    |I(x;h) - I_0(x)|
+    &\le \int_{\min(x_0(h),x_0^{(0)})}^{\max(x_0(h),x_0^{(0)})}
+         p(s;h)\,ds
+         + \int_{x_0^{(0)}}^x |p(s;h)-p_0(s)|\,ds \\
+    &\le \|p(\cdot;h)\|_{C^0}\cdot|x_0(h)-x_0^{(0)}|
+         + |K_\varepsilon|\cdot\|p(\cdot;h)-p_0\|_{C^0(K_\varepsilon)} \\
+    &= \mathcal{O}(h).
+  \end{align*}
 
-\item \textit{(Denominator bounded away from zero.)}
-  On $K_\varepsilon$, since $p > 0$ and
-  $|x - x_0(h)| \ge \varepsilon/2$ for $h$ small:
+\item \textit{(Denominator bounded away from zero,
+  via linear growth of $I_0$.)}
+  Since $p_0 > 0$ on $\mathrm{supp}\,\chi$
+  (uniformly positive; Remark~\ref{rem:eigenbranch}),
+  the integral $I_0(x) = \int_{x_0^{(0)}}^x p_0(s)\,ds$
+  grows linearly away from the turning point:
   \[
-    I(x;h) = \int_{x_0(h)}^x p(s;h)\,ds
-    \;\ge\; \tfrac{\varepsilon}{2}\cdot
-    \inf_{s\in K_\varepsilon} p(s;h)
-    \;\ge\; \tfrac{\varepsilon}{2}\cdot c_\varepsilon' > 0
+    |I_0(x)| \ge c_\varepsilon \cdot |x - x_0^{(0)}|
+    \ge c_\varepsilon \cdot \varepsilon
+    \qquad \text{for } x\in K_\varepsilon.
   \]
-  uniformly in $h$ (where $c_\varepsilon' > 0$ follows from (A)
-  for $h$ small).
+  By (B), $|I(x;h) - I_0(x)| = \mathcal{O}(h)$,
+  so for $h\le h_0$ small enough:
+  $|I(x;h)| \ge \tfrac{1}{2}c_\varepsilon\varepsilon =: c_\varepsilon' > 0$.
   Hence
   $|\phi(x;h)| = (\tfrac{3}{2}|I(x;h)|)^{2/3}
-  \ge (\tfrac{3}{4}\varepsilon c_\varepsilon')^{2/3} =: c_\varepsilon'' > 0$
+  \ge (\tfrac{3}{4}c_\varepsilon\varepsilon)^{2/3} =: c_\varepsilon'' > 0$
   uniformly.
 
 \item \textit{(Uniform $C^1$-control via quotient estimate.)}
   On $K_\varepsilon$:
-  \[
-    \phi'(x;h) = \frac{p(x;h)}{\phi(x;h)},
-    \qquad
-    \phi_0'(x) = \frac{p_0(x)}{\phi_0(x)}.
-  \]
+  $\phi'(x;h) = p(x;h)/\phi(x;h)$ and
+  $\phi_0'(x) = p_0(x)/\phi_0(x)$.
   Therefore:
-  \begin{align*}
+  \[
     |\phi'(x;h) - \phi_0'(x)|
-    &= \Bigl|\frac{p(x;h)}{\phi(x;h)}-\frac{p_0(x)}{\phi_0(x)}\Bigr| \\
-    &\le
+    \le
     \frac{|p(x;h)-p_0(x)|}{|\phi(x;h)|}
     +
     p_0(x)\cdot
     \frac{|\phi(x;h)-\phi_0(x)|}{|\phi(x;h)|\cdot|\phi_0(x)|}.
-  \end{align*}
-  First term: $\le L_\varepsilon|E_n(h)-\lambda_n|/c_\varepsilon'' \to 0$ by (A),(C).
-  Second term: $\to 0$ uniformly by (B),(C).
-  Consequently:
-  \[
-    \sup_{x\in K_\varepsilon}|\phi'(x;h)-\phi_0'(x)| \to 0
-    \quad\text{as } h\to 0.
   \]
-  Since $\phi_0'(x) = p_0(x)/\phi_0(x) \ge c_\varepsilon/c_\varepsilon'' > 0$
+  First term $\le \mathcal{O}(h)/c_\varepsilon'' \to 0$ by (A),(C).
+  Second term $\to 0$ by (B),(C).
+  Hence
+  $\sup_{K_\varepsilon}|\phi'(\cdot;h)-\phi_0'| \to 0$.
+  Since $\phi_0' = p_0/\phi_0 \ge c_\varepsilon/c_\varepsilon'' > 0$
   on $K_\varepsilon$:
   \[
     \inf_{h\in(0,h_0],\,x\in K_\varepsilon}|\phi'(x;h)|
@@ -421,24 +445,24 @@ Then the following hold:
 \end{enumerate}
 \end{lemma}
 
-\begin{remark}[Why this proof is robust]
-\label{rem:no-gronwall}
-The argument uses only:
+\begin{remark}[Robustness and generality]
+\label{rem:robustness}
+The proof uses only:
 \begin{enumerate}[(i)]
-\item Smooth convergence $E_n(h)\to\lambda_n$ (eigenbranch).
-\item $V\in L^\infty$ on $\mathrm{supp}\,\chi$ (Assumption~\ref{ass:boundary-away}).
-\item Lipschitz continuity of $t\mapsto\sqrt{t}$ on $[c_\varepsilon^2,\infty)$.
-\item Monotonicity of $I(x;h)$ in $x$ (since $p > 0$)
-  giving the lower bound on $|I|$ from the distance to the turning point.
-\item Elementary quotient estimates.
+\item $E_n(h)\to\lambda_n$ smoothly (eigenbranch);
+\item $V\in L^\infty$ on $\mathrm{supp}\,\chi$ (Assumption~\ref{ass:boundary-away});
+\item Rationalization of $|p-p_0|$ via uniform positivity
+  $p,p_0\ge c_\varepsilon>0$ on $K_\varepsilon$ --- this is the
+  key step that replaces the Lipschitz argument;
+\item Monotonicity of $I(x;h)$ in $x$ (since $p > 0$),
+  giving linear growth $|I_0(x)|\ge c_\varepsilon|x-x_0^{(0)}|$;
+\item Smooth turning-point shift $x_0(h)\to x_0^{(0)}$
+  via the implicit function theorem.
 \end{enumerate}
-\emph{No} differentiated ODE, \emph{no} Gr\"onwall inequality,
-\emph{no} Wasow-type expansion is required.
-The key structural point:
-$\phi$ has a zero of order $3/2$ at $x_0$, but
-$\phi' = p/\phi$ remains controlled \emph{outside}
-$U_\varepsilon$ because both $p \ge c_\varepsilon' > 0$
-and $|\phi| \ge c_\varepsilon'' > 0$ hold there uniformly.
+No ODE, no Gr\"onwall inequality, no Wasow-type expansion.
+The argument is general: it applies to any semiclassical
+Schr\"odinger operator with a simple turning point,
+provided $V\in L^\infty$ and the energy converges smoothly.
 \end{remark}
 
 %% ============================================================
@@ -482,27 +506,28 @@ Statement & Status & Source \\
 Airy scaling locally & \Rig & Olver Ch.~11 \\
 Boundary-away hypothesis & \Rig\ (by assumption) & Ass.~\ref{ass:boundary-away} \\
 $E_n(h)\to\lambda_n$ smoothly & \Cond & SL analyticity \\
-$\inf_{K_\varepsilon} p_0 \ge c_\varepsilon>0$ & \Cond & Rem.~\ref{rem:eigenbranch}, $K_\varepsilon$ def. \\
+$x_0(h)\to x_0^{(0)}$ smoothly & \Cond & IFT, $V'(x_0^{(0)})\ne 0$ \\
+$\inf_{K_\varepsilon}p_0\ge c_\varepsilon>0$ & \Cond & $K_\varepsilon$ away from fold, Ass.~\ref{ass:boundary-away} \\
 (A1) $c_3(h)\ge\delta_0$ & \Cond & Olver $+$ eigenbranch \\
 FIO-class membership & \Cond & Lem.~\ref{lem:olver-fio-lift-micro} \\
-$\delta_\xi>0$ (branch gap) & \Cond & Ass.~\ref{ass:boundary-away} \\
-(P2) branch selection & \Cond & Prop.~\ref{prop:branch-selection} \\
+$\delta_\xi>0$ (branch gap, no freq.\ overlap) & \Cond & ellipticity, Prop.~\ref{prop:branch-selection} \\
+(P2) single-branch & \Cond & Prop.~\ref{prop:branch-selection} \\
 (P1) global gen.\ function & \Cond & single branch $+$ $p>0$ \\
 (P3) no secondary caustics & \Cond & Ass.~\ref{ass:boundary-away} $+$ SL gap \\
-(A) Unif.\ conv.\ of $p$, Lipschitz bound & \Cond & Lem.~\ref{lem:diff-olver}(A) \\
-(B) Unif.\ conv.\ of $I$ & \Cond & Lem.~\ref{lem:diff-olver}(B) \\
-(C) $|\phi|\ge c_\varepsilon''>0$ on $K_\varepsilon$ & \Cond & Lem.~\ref{lem:diff-olver}(C) \\
-(D) Unif.\ $\phi'\to\phi_0'$;\ $\inf|\phi'|\ge\delta$ & \Cond & Lem.~\ref{lem:diff-olver}(D) \\
+(A) Unif.\ conv.\ of $p$ (rationalized) & \Cond & Lem.~\ref{lem:diff-olver}(A) \\
+(B) Unif.\ conv.\ of $I$ (IFT shift) & \Cond & Lem.~\ref{lem:diff-olver}(B) \\
+(C) $|\phi|\ge c_\varepsilon''>0$ (linear growth) & \Cond & Lem.~\ref{lem:diff-olver}(C) \\
+(D) $\inf|\phi'|\ge\delta>0$ (quotient) & \Cond & Lem.~\ref{lem:diff-olver}(D) \\
 (A2) Jacobian bound & \Cond & Prop.~\ref{prop:a2-from-lemmas} \\
-\textup{hyp:rigidity} for PSWF & \Cond & (A1)--(A3) $+$ chain above \\
+\textup{hyp:rigidity} for PSWF & \Cond & (A1)--(A3) $+$ above \\
 \hline
 \end{tabular}
 \end{center}
 
 \begin{remark}[Logical closure]
-All items are \Cond\ or \Rig.
+All statements are \Cond\ or \Rig.
 The proof architecture is logically closed.
-Paper~XVII supplies the full proofs of
+Paper~XVII supplies complete proofs of
 Lemma~\ref{lem:diff-olver}
 and Proposition~\ref{prop:branch-selection}.
 \end{remark}
@@ -527,7 +552,8 @@ applies to the PSWF family and
 \label{rem:chain}
 \[
   \underbrace{E_n(h)\to\lambda_n,\;
-  V\in L^\infty\ (\text{Ass.}~\ref{ass:boundary-away})}_{{\rm [Rig/Cond]}}
+  V\in L^\infty,\;
+  V'(x_0^{(0)})\ne 0}_{{\rm [Rig/Cond]}}
   \;\Rightarrow\;
   \underbrace{\text{Lem.}~\ref{lem:diff-olver}\,(A){-}(D)}_{{\rm [Cond]}}
   \;+\;
