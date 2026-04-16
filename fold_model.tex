@@ -198,13 +198,14 @@ confirming $\lambda=|u|^{3/2}(3c_3)^{-1/2}$.
 
 \medskip
 \noindent\textbf{Role of CFU rescaling.}
-For $\alpha\ge\tfrac{1}{2}$, the classical Erd\'elyi-type expansions
-do not capture the interaction between the stationary point
-and the singular endpoint, as the phase and amplitude singularity
-scale on the same asymptotic order in this regime.
+For $\alpha\ge\tfrac{1}{2}$, classical Erd\'elyi-type expansions
+are not uniform near the coalescence regime:
+the phase and amplitude singularity scale on the same asymptotic
+order, so a single Erd\'elyi-type expansion does not
+capture both contributions uniformly as $u\to-\infty$.
 The CFU-type substitution $\beta\mapsto\beta_0 x$ is natural here:
-it simultaneously resolves the scaling of the large parameter
-to $\lambda\sim|u|^{3/2}$ and disentangles endpoint
+it simultaneously resolves the large parameter
+to $\lambda\sim|u|^{3/2}$ and separates endpoint
 from saddle contributions.
 
 \medskip
@@ -314,14 +315,14 @@ this reflects a scaling invariance of the cubic phase.
 
 \medskip
 Combining with~\eqref{eq:twoterm}:
-\[
+\begin{equation}\label{eq:rescaled}
   |u|^{1/2}|\Phi_\alpha(u)|
   = \sqrt{\pi}
   \cdot
   \Bigl|e^{-i\pi/4}
   +e^{-2i\lambda/3+i\pi/4}\Bigr|
   + O(|u|^{-1}),
-\]
+\end{equation}
 where $\lambda=|u|^{3/2}(3c_3)^{-1/2}\to\infty$.
 The factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
 oscillates between $0$ and $2$
@@ -337,65 +338,61 @@ that fails to converge.
 
 \begin{remark}[Proof of Theorem~\ref{thm:nolimit}]
 \label{rem:extremal}
-From~\eqref{eq:twoterm} and Remark~\ref{rem:nolimit},
-writing $\theta:=\tfrac{2}{3}\lambda(u)$:
+From~\eqref{eq:rescaled}, writing
+$\theta:=\tfrac{2}{3}\lambda(u)=\tfrac{2}{3(3c_3)^{1/2}}|u|^{3/2}$:
 \[
   |u|^{1/2}|\Phi_\alpha(u)|
   = \sqrt{\pi}\,
-  \bigl|e^{-i\pi/4}+e^{-i\theta+i\pi/4}\bigr|
+  \bigl|1 + e^{-i(\theta-\pi/2)}\bigr|
   + O(|u|^{-1}).
 \]
 
-\noindent\textbf{Extremal values.}
-Factoring out $e^{-i\pi/4}$:
-\[
-  \bigl|e^{-i\pi/4}+e^{-i\theta+i\pi/4}\bigr|
-  = \bigl|1 + e^{-i(\theta - \pi/2)}\bigr|.
-\]
-This equals $2$ when $\theta\equiv\tfrac{\pi}{2}\pmod{2\pi}$
+\noindent\textbf{Extremal values of the main term.}
+The factor $|1+e^{-i(\theta-\pi/2)}|$
+equals $2$ when $\theta\equiv\tfrac{\pi}{2}\pmod{2\pi}$
 (constructive interference)
 and $0$ when $\theta\equiv\tfrac{3\pi}{2}\pmod{2\pi}$
 (destructive interference).
+Since $O(|u|^{-1})=o(1)$,
+the error term does not affect the
+asymptotic extremal values:
+the $\limsup$ and $\liminf$ of~\eqref{eq:rescaled}
+coincide with those of the main term.
 
 \medskip
-\noindent\textbf{Explicit phase sequences.}
-Since $\theta(u)=\tfrac{2}{3}|u|^{3/2}(3c_3)^{-1/2}$
-is strictly increasing and continuous,
-for any target phase $\varphi\in[0,2\pi)$
-we may invert explicitly:
-the sequence
+\noindent\textbf{Surjectivity of the phase.}
+The function $\theta:(−\infty,u_0]\to(0,\infty)$
+is continuous and strictly increasing,
+hence its image is the unbounded interval $(0,\theta(u_0))^c$;
+in particular $\theta$ traverses every interval
+$[k\cdot 2\pi,(k+1)\cdot 2\pi]$ for all large $k$,
+so every phase value in $[0,2\pi)$ is
+\emph{surjectively attained} by $\theta(u)\bmod 2\pi$.
+No density or number-theoretic argument is required.
+
+\medskip
+\noindent\textbf{Explicit sequences.}
+For any target $\varphi\in[0,2\pi)$,
+the exact inversion $\theta(u_n)=2\pi n+\varphi$ gives
 \[
-  u_n^{(\varphi)}
-  := -\Bigl(\tfrac{3c_3}{2}\Bigr)^{1/3}
-  \bigl(2\pi n + \varphi\bigr)^{2/3},
-  \qquad n\in\mathbb{N},
+  |u_n^{(\varphi)}|
+  = \Bigl(\tfrac{3}{2}(3c_3)^{1/2}(2\pi n+\varphi)\Bigr)^{2/3},
+  \qquad
+  u_n^{(\varphi)}\to-\infty.
 \]
-satisfies $u_n^{(\varphi)}\to-\infty$ and
-$\theta(u_n^{(\varphi)})\equiv\varphi\pmod{2\pi}$ exactly.
-No density or number-theoretic argument is needed.
-
-\medskip
-\noindent\textbf{Error term stability.}
-Since the error in Remark~\ref{rem:nolimit} satisfies
-$O(|u|^{-1})=o(1)$ as $u\to-\infty$,
-it does not affect the extremal limits:
-for the constructive sequence ($\varphi=\tfrac{\pi}{2}$)
-the main term equals $2\sqrt{\pi}$ exactly,
-and for the destructive sequence ($\varphi=\tfrac{3\pi}{2}$)
-it equals $0$ exactly,
-so both extremal values persist under the $o(1)$ perturbation.
+For $\varphi=\tfrac{\pi}{2}$: constructive interference,
+$|u_n|^{1/2}|\Phi_\alpha(u_n)|\to 2\sqrt{\pi}$.
+For $\varphi=\tfrac{3\pi}{2}$: destructive interference,
+$|u_n|^{1/2}|\Phi_\alpha(u_n)|\to 0$.
+These limits are asymptotic (not pointwise exact)
+due to the $O(|u|^{-1})$ error in~\eqref{eq:rescaled}.
 
 \medskip
 \noindent\textbf{Conclusion.}
-Here $\limsup$ and $\liminf$ are taken with respect
+$\limsup$ and $\liminf$ are taken with respect
 to the continuous variable $u\to-\infty$.
-The sequences above yield:
-\[
-  \limsup_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)|=2\sqrt{\pi},
-  \qquad
-  \liminf_{u\to-\infty}|u|^{1/2}|\Phi_\alpha(u)|=0.
-\]
-This proves Theorem~\ref{thm:nolimit}.
+The sequences above yield
+Theorem~\ref{thm:nolimit}. \qed
 \end{remark}
 
 \begin{remark}[Retraction of
@@ -421,7 +418,8 @@ and $\sim|u|^{-1/3}$ arose from:
 
 \begin{proposition}[\Num]
 Fitted exponents $\gamma$ from
-log-log regression of $|\Phi_\alpha(u)|$,
+non-uniform log-log regression of $|\Phi_\alpha(u)|$
+(inherently unstable due to phase cancellation),
 $c_3=R_0=1$:
 \begin{center}
 \begin{tabular}{c|c|c|c|c}
@@ -440,18 +438,15 @@ $1.00$ & III & $-0.558$ & $+0.175$ & $-0.343$
 Only $\alpha=0$ shows convergence
 of the fitted exponent.
 For $\alpha\ge\tfrac{1}{2}$,
-the wildly varying fits are
-directly explained by the oscillating
-factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
-in Remark~\ref{rem:nolimit}:
-depending on the interval,
-this factor can be near $0$ or near $2$,
-giving apparent exponents
-far from $-1/2$.
+the wildly varying fits reflect non-uniform log-log
+regression in the presence of phase cancellation:
+the oscillating factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
+can be near $0$ or near $2$ on any given interval,
+giving apparent exponents far from $-1/2$.
 The extreme value $\gamma\approx-1.235$
 for $\alpha=0.5$ on $[50,200]$ reflects
-proximity to a near-zero of the oscillating
-amplitude factor in that interval.
+proximity to a near-zero of the amplitude factor;
+these regression values are heuristic only.
 \end{proposition}
 
 \section{The PSWF Open Problem}
