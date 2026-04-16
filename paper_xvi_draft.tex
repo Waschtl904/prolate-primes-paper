@@ -1,4 +1,3 @@
-
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -31,6 +30,8 @@
 \author{[Author]}
 
 \begin{abstract}
+This paper works in the \emph{one-dimensional setting} throughout
+($\beta,u\in\mathbb{R}$).
 A cubic WKB phase $c_3(c)\beta^3$
 produces a degenerate stationary point
 of order~2, which is an A$_2$-fold
@@ -65,7 +66,8 @@ conditions (i)--(vi)):
   (parameter-dependent symbol family
   in $u$, uniform in $c\ge c_0$;
   $c$ is an external parameter,
-  not a phase-space variable)
+  not a phase-space variable;
+  see Definition~\ref{def:symbol-class})
   and rapidly decaying remainder
   (conditional on (i)--(vi)).
 \item \textit{(Pointwise decay.)}
@@ -91,6 +93,8 @@ Hypothesis~\ref{hyp:FIO-rigidity}.
 
 \begin{definition}[A$_2$-fold singularity]
 \label{def:A2-class}
+We work throughout in one spatial
+dimension ($\beta,u\in\mathbb{R}$).
 Let $\mathcal{C}\subset T^*\mathbb{R}_\beta
 \times T^*\mathbb{R}_u$ be a Lagrangian
 submanifold,
@@ -115,14 +119,25 @@ with non-degenerate unfolding).
 \medskip
 
 \noindent\textit{Coordinate reduction.}
-For phase $\Psi(\beta,u)
-=\Theta(\beta;c)+u\beta$,
+For the phase
+$\Psi(\beta,u)=\Theta(\beta;c)+u\beta$,
 conditions (i)--(ii) reduce to
 $\Theta''(0;c)=0$,
 $\Theta'''(0;c)\ne 0$.
 These are coordinate expressions;
 conditions (i)--(ii) are invariant
 under canonical transformations.
+The associated canonical relation is
+locally given by
+\[
+  \mathcal{C} = \bigl\{(\beta,\,\partial_\beta\Psi;\,
+  u,\,-\partial_u\Psi)\bigr\}
+  = \bigl\{(\beta,\,\Theta'(\beta;c)+u;\,
+  u,\,-\beta)\bigr\}.
+\]
+At the fold point $\beta=0$,
+$\partial_\beta(\Theta'(\beta;c)+u)=\Theta''(0;c)=0$,
+confirming the degeneration of $\pi_u$.
 \medskip
 
 \noindent\textit{Normal form.}
@@ -174,6 +189,12 @@ microlocal equivalence locally;
 all Taylor remainders from the
 change of variables are absorbed
 into the amplitude.
+The Maslov phase factor is absorbed
+into $R(u;c)$ in~\eqref{eq:airy-nf};
+its computation from the
+Maslov index of $\mathcal{C}$
+follows H\"ormander
+\cite{Hormander1983}, Ch.~25.1.
 \end{remark}
 
 \begin{remark}[Microlocal transport]
@@ -270,7 +291,7 @@ gives exact asymptotics.
 For general $\theta$,
 van~der~Corput in the
 non-standard distributional setting
-(H\"{o}rmander \cite{Hormander1983},
+(H\"ormander \cite{Hormander1983},
 Ch.~7.7 + 18.1)
 gives $O(|u|^{-1/2})$,
 provided $\Theta''(\beta^*;c)
@@ -395,27 +416,41 @@ $1=\phi_{\mathrm{fold}}
   \end{align}
   where $\tilde{a}\in I^{-1/4}
   (\mathbb{R},\{0\})$
-  (Lemma~\ref{lem:conormal-stability})
-  and $\mathcal{R}(u;c)$ is a
-  \emph{smoothing remainder}:
-  $|\mathcal{R}(u;c)|
-  \le C_N(1+|u|)^{-N}$
-  for each fixed $N$.
-  \emph{Uniformity in $c$:}
-  this bound holds uniformly in
-  $c\ge c_0$ \emph{if and only if}
-  condition~(vi) of
-  Assumption~\ref{ass:microlocal}
-  holds; without~(vi), the bound
+  (Lemma~\ref{lem:conormal-stability}).
+
+  \noindent\textit{Smoothing remainder.}
+  There exists a family of operators
+  $R_c\in\Psi^{-\infty}(\mathbb{R})$
+  such that
+  $\mathcal{R}(u;c)=(R_c\,1)(u)$,
+  and for every $N\in\mathbb{N}$
+  and $s\in\mathbb{R}$,
+  \[
+    R_c: H^s(\mathbb{R})\to H^{s+N}(\mathbb{R})
+  \]
+  with operator norms bounded
+  uniformly in $c\ge c_0$.
+  Equivalently, for each fixed $N$,
+  \[
+    |\mathcal{R}(u;c)|
+    \le C_N(1+|u|)^{-N}
+    \quad\text{uniformly in }c\ge c_0.
+  \]
+  \textit{Dependence on (vi):}
+  both the $\Psi^{-\infty}$-membership
+  and the uniform operator-norm bounds
+  require condition~(vi) of
+  Assumption~\ref{ass:microlocal};
+  without~(vi), $R_c\in\Psi^{-\infty}$
   holds for each fixed $c$ only.
-  The remainder $\mathcal{R}$ arises
-  from the far tail of the
-  $\tilde{t}$-integral (cut-off
-  outside the Airy critical region)
-  and from the CFU Taylor residual;
-  both are controlled uniformly
-  by the $\delta_4$- and
-  $C_{jk}$-bounds in (vi).
+  The remainder arises from the
+  far tail of the $\tilde{t}$-integral
+  (cut off outside the Airy critical
+  region) and from the CFU Taylor
+  residual; both are controlled
+  uniformly by the $\delta_4$-
+  and $C_{jk}$-bounds in (vi).
+
   This is a
   \emph{microlocal equivalence
   modulo smoothing operators},
@@ -456,35 +491,50 @@ $\tilde{J}=1+O(|u|^{-1})$
 by CFU \cite{CFU1957}.
 \end{proof}
 
+\begin{definition}[Parameter-dependent
+  symbol class]
+\label{def:symbol-class}
+\emph{Throughout, $c\ge c_0$ is an
+external parameter, not a phase-space
+variable.}
+We define
+\begin{equation}\label{eq:symbol-class-c-refined}
+  S^m_{1,0}(c)
+  :=
+  \Bigl\{ a(u;c)\in C^\infty(\mathbb{R}_u)
+  \;\Big|\;
+  |\partial_u^\alpha a(u;c)|
+  \le C_\alpha (1+|u|)^{m-|\alpha|}
+  \text{ for all }\alpha,
+  \text{ uniformly in } c\ge c_0
+  \Bigr\}.
+\end{equation}
+
+\noindent\textit{Interpretation.}
+This is a \emph{parameter-dependent
+symbol class in the variable $u$},
+uniform in $c$, and \emph{not} a
+H\"ormander symbol class on an
+extended phase space.
+In particular:
+\begin{itemize}[nosep]
+\item no derivatives in $c$
+  are included;
+\item $c$ does not play the role
+  of a dual or phase variable;
+\item the class does \emph{not}
+  correspond to
+  $S^m_{1,0}(\mathbb{R}_{u,c})$.
+\end{itemize}
+All symbol estimates are to be
+understood as uniform families of
+classical $S^m_{1,0}(\mathbb{R}_u)$
+symbols parametrised by $c$.
+\end{definition}
+
 \begin{lemma}[Parameter-dependent
   symbol stability \Rig]
 \label{lem:symbol-stability}
-\emph{Throughout this lemma,
-$c\ge c_0$ is an \emph{external parameter},
-not a phase-space variable.
-The class $S^m_{1,0}(c)$ defined below
-is a parameter-dependent family of
-symbol estimates in the variable $u$;
-it is \emph{not} a classical
-H\"ormander symbol class in the sense
-of \cite{Hormander1983}, Ch.~7,
-since $c$ does not enter as a
-phase-space variable.
-The notation is chosen to record
-that all symbol-in-$u$ bounds
-are \emph{uniform in} $c\ge c_0$.}
-
-Define the
-\emph{parameter-dependent symbol class}:
-\begin{equation}\label{eq:symbol-class-c}
-  S^m_{1,0}(c)
-  := \bigl\{a(u;c):\,
-  |\partial_u^j a(u;c)|
-  \le C_{j}(1+|u|)^{m-j}
-  \;\text{for all }j\ge 0,
-  \;\text{uniformly in }c\ge c_0
-  \bigr\}.
-\end{equation}
 Under Assumption~\ref{ass:microlocal},
 let
 $\tilde{a}(\tilde{t},u;c)
@@ -501,6 +551,7 @@ $\tilde{a}(\tilde{t},u;c)
   in particular
   $\tilde{a}(\tilde{t},\cdot;c)
   \in S^{-1/2}_{1,0}(c)$
+  (Definition~\ref{def:symbol-class})
   uniformly in $\tilde{t}$.
 \item \textit{(Parametric stationary
   phase.)}
@@ -578,6 +629,7 @@ holds uniformly in $c\ge c_0$, with:
   (placing $t(\cdot,u;c)$
   in the parameter-dependent
   class $S^0_{1,0}(c)$
+  of Definition~\ref{def:symbol-class},
   as a family of canonical
   transformations, uniform in $c$;
   recall $c$ is an external parameter,
@@ -604,14 +656,17 @@ from ``fixed $c$'' to
   enables
   Lemma~\ref{lem:conormal-stability};
 \item $t(\cdot,u;c)\in S^0_{1,0}(c)$
-  (as a parameter-dependent family)
+  (as a parameter-dependent family;
+  Definition~\ref{def:symbol-class})
   ensures transported amplitudes
   stay in $S^m_{1,0}(c)$;
 \item $\delta_4$-bound provides the
   uniform non-stationary phase
   hypothesis required by
   H\"ormander Ch.~7.7
-  for uniform remainder
+  for uniform operator-norm bounds
+  on $R_c\in\Psi^{-\infty}$
+  and uniform pointwise remainder
   estimates~\eqref{eq:remainder-u}.
 \end{itemize}
 Verifying (vi) for PSWF:
@@ -641,11 +696,14 @@ where
 $a(u;c)\in S^{-1/2}_{1,0}(c)$
 (parameter-dependent symbol family
 in $u$, uniform in $c\ge c_0$;
+Definition~\ref{def:symbol-class};
 Lemma~\ref{lem:symbol-stability}(3),
-requires (vi))
-and
+requires (vi)),
 $|r(u;c)|\le C_N(1+|u|)^{-N}$
-for each fixed $N$ (requires (vi)).
+for each fixed $N$ (requires (vi)),
+and $R(u;c)$ absorbs the Maslov
+phase factor
+(Remark~\ref{rem:FIO-language}).
 \end{theorem}
 
 \begin{proof}[Proof sketch]
@@ -675,39 +733,47 @@ for $|u|\ge\delta_2$:
 \le C_1 C_2\,|u|^{-3/4}.
 \]
 
-\noindent\textit{Origin of the $-3/4$ exponent.}
-The exponent $-3/4$ is \emph{not}
-the product of two independent
-mechanisms ($|u|^{-1/4}$ from Airy
-times $|u|^{-1/2}$ from the symbol).
-Rather, both factors arise jointly
-from a \emph{single} stationary-phase
-expansion of the
-$\tilde{t}$-integral~\eqref{eq:airy-decomp}
-in Lemma~\ref{lem:symbol-stability}(2):
-after Airy rescaling, the full
-amplitude $\tilde{a}(\tilde{t},u;c)$
-and the cubic phase are expanded
-together, and the leading-order
-stationary-phase contribution
-at $\tilde{t}_0=\mathrm{sgn}(u)$
-produces the combined factor
-$c_3(c)^{1/12}|u|^{-3/4}$
-(from the Hessian determinant
-of the cubic at $\tilde{t}_0$
-and the leading value of $\tilde{a}$).
-The symbol bound
-$a_0\in S^{-1/2}_{1,0}(c)$
-reflects the \emph{leading-order
-coefficient} of this expansion;
-$\mathrm{Ai}(c_3(c)^{-1/3}u)$
-captures the \emph{oscillatory
-envelope}.
-Multiplying their individual bounds
-gives the correct estimate, but the
-underlying derivation is a single
-expansion in $\tilde{t}$, not two
-separate mechanisms.
+\medskip
+\noindent\textit{Interpretation of the
+exponent $-3/4$.}
+The decay exponent $-3/4$ should be
+understood as arising from a
+\emph{single degenerate stationary
+phase expansion} of the oscillatory
+integral in the Airy normal form,
+and not as a product of two independent
+decay mechanisms.
+
+More precisely, after the canonical
+Airy rescaling, the integral
+\eqref{eq:airy-decomp} is governed
+by a cubic phase with a non-degenerate
+critical point in the rescaled
+variable $\tilde{t}$.
+Applying stationary phase in $\tilde{t}$
+yields a leading contribution
+of size $|u|^{-3/4}$,
+where the exponent reflects the
+combined scaling of:
+\begin{itemize}
+\item the cubic degeneracy of
+  the phase (A$_2$-fold), and
+\item the conormal structure of
+  the amplitude transported under CFU.
+\end{itemize}
+
+The factorisation
+\[
+  |a(u;c)| \lesssim |u|^{-1/2},
+  \qquad
+  |\mathrm{Ai}(c_3(c)^{-1/3}u)|
+  \lesssim |u|^{-1/4}
+\]
+is therefore only an
+\emph{a posteriori} bound at the
+level of estimates, and does not
+reflect the mechanism by which
+the exponent is produced.
 \end{lemma}
 
 \begin{corollary}[Pointwise decay \Cond]
@@ -729,7 +795,8 @@ $C:=\max(C_1C_2,\,C_3,\,C_4)$:
 \item \textit{Fold zone $|u|\ge\delta_2$:}
   Lemma~\ref{lem:product-estimate}.
 \item \textit{Compact zone $|u|\le 1$:}
-  compactness + continuity (condition (vi))
+  compactness + continuity
+  (condition (vi))
   $\Rightarrow$ $|\Phi|\le C_3$
   (Erd\'elyi \cite{Erdelyi1956}).
 \item \textit{Far zone:}
