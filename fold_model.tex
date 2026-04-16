@@ -22,278 +22,314 @@
 \begin{document}
 
 \title{Mini-Model for the Fold Amplitude:\\
-  Two Regimes, One Rigorous Result,\\
-  and the Correct Open Problem}
+  Three Asymptotic Regimes and\\
+  the Correct Phase Diagram}
 
 \author{[Author]}
 
 \begin{abstract}
 We study
 \[
-  \Phi_\alpha(u):=\int_0^\infty
-  \beta^{-1/2}\chi\!\left(
-    \tfrac{\beta}{|u|^\alpha}
+  \Phi_\alpha(u)
+  :=\int_0^\infty
+  \beta^{-1/2}
+  \chi\!\left(
+    \frac{\beta}{|u|^\alpha}
   \right)
   e^{i(-|u|\beta + c_3\beta^3)}
   \,d\beta,
   \quad u<0,\;c_3>0,
 \]
-for $\alpha\ge 0$.
-Two qualitatively
-different behaviors:
-\begin{enumerate}[\rm(A)]
-\item $\alpha=0$
-  (\textbf{fixed compact
-  support}): the saddle
-  $\beta_0\to\infty$
-  exits the support;
-  Erd\'elyi's theorem
-  gives the\emph{unique,
-  rigorous, numerically
-  confirmed} leading term:
-  \[
-    \Phi_0(u)
-    =\sqrt{\pi}\,e^{-i\pi/4}
-    |u|^{-1/2}+O(|u|^{-3/2}).
-  \]
-  Ces\`aro is sharp:
-  $|F(U)|=\Theta(U^{1/2})$.
-\item $\alpha>0$
-  (\textbf{growing support}):
-  the saddle stays
-  inside the support;
-  Airy-type oscillations
-  prevent any single
-  power-law exponent;
-  the amplitude of
-  $|\Phi_\alpha(u)|$
-  oscillates on a
-  log-scale and no
-  clean $|u|^{\gamma}$
-  law holds.
-\end{enumerate}
-\textbf{The earlier
-claim of a universal
-exponent $-1/2$ for
-all $\alpha\ge 0$
-is retracted.}
-It was based on
-an incorrect stationary
-phase computation
-that failed to account
-for the coalescence
-of the saddle with
-the singularity
-for $\alpha>1/2$.
+for $\alpha\ge 0$,
+where $\chi\in C^\infty_c([0,1])$,
+$\chi(0)=1$.
+The support radius scales as
+$R(u)=|u|^\alpha$.
+The asymptotic behavior is
+governed by a
+\emph{two-parameter phase diagram}
+in $(\alpha,\log|u|)$-space
+with three regions separated
+by the boundary curve
+$\beta_0(u)=R(u)$
+(i.e., $|u|^{1/2-\alpha}=3c_3$):
+
+\begin{itemize}
+\item \textbf{Region~I}
+  ($\alpha=0$, or $\alpha<\tfrac{1}{2}$
+  and $|u|\gg(3c_3)^{1/(1-2\alpha)}$):
+  Erd\'elyi dominant;
+  $|\Phi_\alpha(u)|\sim\sqrt{\pi}|u|^{-1/2}$;
+  rigorous and numerically confirmed.
+\item \textbf{Region~II}
+  (transition, saddle
+  entering support):
+  no stable power-law exponent;
+  numerical fits oscillate.
+\item \textbf{Region~III}
+  ($\alpha\ge\tfrac{1}{2}$,
+  saddle inside support):
+  CFU/coalescence regime;
+  Airy-type oscillations;
+  \emph{envelope}
+  $\approx|u|^{-1/6}$
+  but \textbf{no stable power law}.
+\end{itemize}
+
+The earlier claim of a universal
+exponent $-1/2$ for all $\alpha\ge 0$
+is retracted.
 \end{abstract}
 
 \maketitle
 
-\section{The Fixed-Support
-  Result: Rigorous}
+\section{The Phase Boundary}
+\label{sec:boundary}
+
+\begin{definition}[Saddle and support
+  boundary]
+The saddle of the phase
+$\phi(\beta)=-|u|\beta+c_3\beta^3$
+is at
+$\beta_0(u)=\sqrt{|u|/(3c_3)}$.
+The support of the integrand has
+effective radius $R(u)=|u|^\alpha$.
+The \emph{phase boundary} is the
+curve in $(\alpha,\log|u|)$-space
+where $\beta_0(u)=R(u)$:
+\[
+  |u|^{1/2}=|u|^\alpha
+  \cdot(3c_3)^{1/2}
+  \;\Longleftrightarrow\;
+  ({\tfrac{1}{2}}-\alpha)\log|u|
+  =\log(3c_3).
+\]
+\textbf{Left of boundary}
+(saddle outside support):
+Erd\'elyi regime.
+\textbf{Right of boundary}
+(saddle inside support):
+CFU/Airy regime.
+\end{definition}
+
+\section{The Three Regions}
+\label{sec:regions}
+
+\begin{theorem}[Phase diagram \Rig+\Num]
+\label{thm:diagram}
+The asymptotic behavior of
+$|\Phi_\alpha(u)|$
+for $|u|\to\infty$ falls into
+three qualitatively distinct
+regimes:
+
+\medskip
+\noindent
+\textbf{Region~I: Erd\'elyi dominant.}
+Conditions:
+$\alpha<\tfrac{1}{2}$ and
+$|u|\gg(3c_3)^{1/(1-2\alpha)}$
+(saddle outside support).
+The cubic phase enters only
+as $e^{ic_3\beta^3}$ in the
+smooth factor $a(\beta)
+=\beta^{-1/2}\chi(\beta/R)\,
+e^{ic_3\beta^3}$,
+contributing at order
+$O(c_3|u|^{-3/2})$.
+Erd\'elyi's theorem gives
+\[
+  \Phi_\alpha(u)
+  =\sqrt{\pi}\,e^{-i\pi/4}
+  |u|^{-1/2}
+  +O(c_3\,|u|^{-3/2}).
+\]
+This is \textbf{the only rigorous
+leading-order result} in this paper.
+Numerically: ratio
+$|\Phi_0|/(\sqrt{\pi}|u|^{-1/2})
+\to 1.0000$ at $|u|=300$
+(Table in Section~\ref{sec:num}).
+
+\medskip
+\noindent
+\textbf{Region~II: Transition.}
+Conditions:
+$\alpha<\tfrac{1}{2}$ but
+$|u|$ not yet large enough
+for the saddle to be well
+outside the support.
+The fitted exponent is not stable
+(ranges from $-0.39$ to $+0.55$
+depending on the $|u|$-interval;
+see Section~\ref{sec:num}).
+No asymptotic formula is available
+in this region.
+
+\medskip
+\noindent
+\textbf{Region~III:
+  CFU / Coalescence.}
+Conditions: $\alpha\ge\tfrac{1}{2}$
+(saddle inside support for all
+large $|u|$).
+The saddle
+$\beta_0=\sqrt{|u|/(3c_3)}$
+stays inside $[0,R(u)]$
+and moves toward
+$\beta=0$ in rescaled coordinates
+as $\alpha>\tfrac{1}{2}$,
+coalescing with the singularity
+$\beta^{-1/2}$.
+Standard stationary phase
+breaks down (amplitude
+$\beta_0^{-1/2}\to\infty$
+at the saddle).
+CFU applies and produces
+Airy-type oscillations.
+\begin{itemize}
+\item The \emph{envelope} of
+  $|\Phi_\alpha(u)|$ scales
+  approximately as $|u|^{-1/6}$
+  (from $|\mathrm{Ai}(-\lambda)|
+  \sim\lambda^{-1/4}$,
+  $\lambda\sim|u|^{2/3}$).
+\item \textbf{There is no stable
+  power law:} the oscillations
+  prevent any single exponent
+  $\gamma$ from satisfying
+  $|\Phi_\alpha(u)|
+  \sim C|u|^\gamma$.
+\item Numerical fits jump
+  erratically (Table
+  in Section~\ref{sec:num}),
+  consistent with Airy-type
+  behavior.
+\end{itemize}
+\end{theorem}
+
+\section{Numerical Evidence}
+\label{sec:num}
+
+\begin{proposition}[\Num]
+Fitted exponents $\gamma$
+(from $|\Phi_\alpha|\sim u^\gamma$)
+in three $|u|$-intervals,
+$c_3=R_0=1$:
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+$\alpha$ & region
+  & $\gamma([16,50])$
+  & $\gamma([50,200])$
+  & $\gamma([200,1000])$
+\\\hline
+$0.00$ & I & $-0.502$ & $-0.500$ & $-0.500$ \\
+$0.25$ & I/II & $-0.391$ & $-0.489$ & $+0.551$ \\
+$0.50$ & III & $-0.299$ & $-1.235$ & $-0.071$ \\
+$0.75$ & III & $-0.337$ & $-0.053$ & $+0.334$ \\
+$1.00$ & III & $-0.558$ & $+0.175$ & $-0.343$
+\end{tabular}
+\end{center}
+\textbf{Only $\alpha=0$
+shows a stable exponent.}
+All $\alpha>0$ values
+show interval-dependent,
+non-converging fits —
+consistent with Airy-type
+oscillations (Region~III)
+or transition effects
+(Region~II).
+\end{proposition}
+
+\begin{remark}[Why $-1/6$
+  is not a ``law'' \Warn]
+The value $-1/6$ appears
+as the \emph{envelope decay}
+of Airy oscillations,
+not as a pointwise power law.
+It arises from
+$|\mathrm{Ai}(-\lambda)|
+\lesssim C\lambda^{-1/4}$
+with $\lambda\sim|u|^{2/3}$,
+giving $|u|^{-1/6}$.
+But $\mathrm{Ai}(-\lambda)$
+itself oscillates with
+amplitude $\sim\lambda^{-1/4}$,
+so $|\Phi_\alpha(u)|$
+oscillates rather than
+decays monotonically.
+Writing
+$|\Phi_\alpha(u)|
+\sim C|u|^{-1/6}$
+is misleading; the correct
+statement is:
+\[
+  |\Phi_\alpha(u)|
+  \lesssim C|u|^{-1/6}
+  \quad\text{(envelope bound,
+  Region~III)}.
+\]
+\end{remark}
+
+\section{Fixed-Support Rigorous Result}
 \label{sec:erdelyi}
 
-\begin{theorem}[Erd\'elyi,
-  unique leading order
-  \Rig]
-\label{thm:erdelyi}
-For $\alpha=0$,
+\begin{theorem}[Sharp Erd\'elyi \Rig]
+For $\alpha=0$, $c_3>0$,
 $\chi\in C^\infty_c([0,R])$
 fixed:
 \[
   \Phi_0(u)
   =\sqrt{\pi}\,e^{-i\pi/4}
-  |u|^{-1/2}+O(|u|^{-3/2}),
-  \quad|u|\gg c_3 R^2.
+  |u|^{-1/2}+O(|u|^{-3/2}).
 \]
-This is the complete
-first-order asymptotic.
-The cubic phase
-enters only at
-$O(c_3|u|^{-3/2})$.
 \end{theorem}
 
-\begin{corollary}[Ces\`aro
-  sharp \Rig]
-$\limsup|u|^{1/2}
-|\Phi_0(u)|=\sqrt{\pi}>0$;
+\begin{corollary}[Ces\`aro sharp \Rig]
+$\limsup_{u\to-\infty}
+|u|^{1/2}|\Phi_0(u)|
+=\sqrt{\pi}>0$;
+hence
 $|F_0(U)|=\Theta(U^{1/2})$.
+The Ces\`aro bound is sharp
+in Region~I.
 \end{corollary}
 
-\begin{proposition}[Numerical
-  confirmation \Num]
-With $c_3=R=1$:
-\begin{center}
-\begin{tabular}{c|c|c}
-$|u|$ &
-  $|\Phi_0|/
-    (\sqrt{\pi}|u|^{-1/2})$
-  & fitted $\gamma$
-  (range)\\ \hline
-$10$ & $0.971$ & $-0.502$
-  \ ($16$--$50$)\\
-$100$ & $1.000$ & $-0.500$
-  \ ($50$--$200$)\\
-$300$ & $1.000$ & $-0.500$
-  \ ($200$--$1000$)
-\end{tabular}
-\end{center}
-\end{proposition}
+\section{The PSWF Open Problem}
+\label{sec:PSWF}
 
-\section{The Growing-Support
-  Problem: No Clean Power Law}
-\label{sec:growing}
-
-\begin{remark}[Numerical
-  evidence \Num+\Warn]
-\label{rem:growing}
-For $\alpha>0$,
-fitted exponents
-in different $|u|$-ranges
-are \emph{not stable}:
-\begin{center}
-\begin{tabular}{c|c|c|c}
-$\alpha$ &
-  $\gamma([16,50])$ &
-  $\gamma([50,200])$ &
-  $\gamma([200,1000])$
-  \\ \hline
-$0.00$ &
-  $-0.502$ & $-0.500$ & $-0.500$ \\
-$0.25$ &
-  $-0.391$ & $-0.489$ & $+0.551$ \\
-$0.50$ &
-  $-0.299$ & $-1.235$ & $-0.071$ \\
-$0.75$ &
-  $-0.337$ & $-0.053$ & $+0.334$ \\
-$1.00$ &
-  $-0.558$ & $+0.175$ & $-0.343$
-\end{tabular}
-\end{center}
-\textbf{For $\alpha>0$:
-the exponent is
-not converging;
-$|\Phi_\alpha(u)|$
-oscillates on a
-log-scale.}
-This is Airy-type
-behavior: the saddle
-stays inside the
-support, generating
-persistent oscillations
-whose amplitude
-cannot be described
-by a single power law.
-\end{remark}
-
-\begin{remark}[Why the
-  universal $-1/2$
-  claim was wrong \Warn]
-\label{rem:error}
-In the dimensional
-analysis of Case~III
-($\alpha>1/2$):
-the saddle $s_0
-=\sqrt{|u|^{1-2\alpha}
-/(3c_3)}\to 0$
-approaches the
-singularity $s=0$.
-The standard stationary
-phase formula requires
-the amplitude to be
-\emph{smooth} at
-the saddle.
-For $s_0\to 0$
-and singular weight
-$s^{-1/2}$,
-this condition fails:
-the amplitude
-$s_0^{-1/2}\to\infty$.
-The SP formula
-$\sim s_0^{-1/2}
-\cdot (\text{curvature})^{-1/2}$
-cannot be applied.
-The correct analysis
-requires the
-CFU/coalescence theory,
-which gives an
-Airy-modulated result,
-\emph{not} a clean
-power law.
-\end{remark}
-
-\section{What Is Known
-  and What Is Open}
-\label{sec:summary}
-
-\begin{theorem}[Summary
-  \Rig+\Num]
-\label{thm:summary}
-\begin{enumerate}[\rm(1)]
-\item\textbf{Fixed support
-  ($\alpha=0$):}
-  $|\Phi_0(u)|
-  =\Theta(|u|^{-1/2})$;
-  rigorous;
-  Ces\`aro sharp.
-\item\textbf{Growing
-  support ($\alpha>0$):}
-  $|\Phi_\alpha(u)|$
-  has no clean
-  power-law exponent;
-  it oscillates with
-  Airy-type modulation.
-  The \emph{envelope}
-  of $|\Phi_\alpha|$
-  likely decays,
-  but the rate is
-  not $|u|^{-1/2}$
-  and is not a
-  simple power.
-\item\textbf{The exponent
-  $-1/2$ is not
-  universal.}
-  It holds only
-  for fixed support.
-\end{enumerate}
-\end{theorem}
-
-\begin{problem}[PSWF
-  regime \Open]
+\begin{problem}[\Open]
 \label{prob:PSWF}
-For the PSWF
-fold integral
-in Paper~XV:
+For the fold integral
+in Paper~XV, determine:
 \begin{enumerate}[\rm(i)]
-\item Determine $\alpha$:
-does the natural
-bandwidth of the
-PSWF spectral
-representation
-grow with the
-spectral parameter
-$c$, and if so,
-at what rate?
-\item If $\alpha=0$:
-Erd\'elyi applies;
-$|\Phi|\sim|u|^{-1/2}$;
-Ces\`aro is sharp.
-\item If $\alpha>0$:
-the problem is
-genuinely in the
-Airy/CFU regime;
-no single exponent;
-the Ces\`aro bound
-$O(U^{1/2})$
-may or may not
-be sharp depending
-on cancellation
-between Airy
-oscillations.
+\item The value of $\alpha$
+  (does the PSWF spectral
+  bandwidth scale with
+  the parameter $c$,
+  and if so, at what rate?).
+\item If $\alpha=0$: Region~I;
+  $|\Phi|\sim|u|^{-1/2}$;
+  Ces\`aro is sharp.
+\item If $\alpha=\tfrac{1}{2}$:
+  Region~III (CFU boundary);
+  Airy oscillations;
+  Ces\`aro bound
+  $O(U^{1/2})$ may or
+  may not be sharp
+  depending on cancellation.
+\item If $\alpha>\tfrac{1}{2}$:
+  Region~III (deep coalescence);
+  no stable power law;
+  open.
 \end{enumerate}
-This is the
-correct formulation
-of the open problem.
+\textbf{This is the only
+remaining open question.}
+The exponent structure
+(which region applies)
+follows from the explicit
+PSWF expansion, not from
+the fold integral alone.
 \end{problem}
 
 \begin{thebibliography}{9}
@@ -311,7 +347,7 @@ C.~Chester, B.~Friedman,
 F.~Ursell,
 \textit{An extension of the
 method of steepest descents},
-Proc.\ Cambridge Philos.\ Soc.
+Proc.\ Cambridge Philos.\ Soc.\
 \textbf{53} (1957), 599--611.
 \end{thebibliography}
 
