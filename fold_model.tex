@@ -43,25 +43,22 @@ We study
 \]
 for $\alpha\ge 0$.
 The support radius scales as $R(u)=|u|^\alpha$.
-The asymptotic behavior is governed by a
-two-parameter phase diagram in
-$(\alpha,\log|u|)$-space with three regions.
 
 \medskip
 \noindent\textbf{Main result.}
-In all three regions,
+In all three regions of the phase diagram,
 \[
   |\Phi_\alpha(u)| = O(|u|^{-1/2}).
 \]
-In Region~I this bound is sharp
-($\Theta(|u|^{-1/2})$, Erd\'elyi).
-In Region~III (CFU/coalescence,
-$\alpha\ge\tfrac{1}{2}$),
-the exponent $-1/2$ is still correct
-but the \emph{amplitude oscillates}:
-there is no stable power law.
+In Region~I this is sharp
+($\Theta(|u|^{-1/2})$).
+In Region~III ($\alpha\ge\tfrac{1}{2}$),
+the bound is still $O(|u|^{-1/2})$,
+but no limit amplitude exists:
+$|u|^{1/2}|\Phi_\alpha(u)|$
+does not converge.
 The earlier claims of
-$|u|^{-1/6}$ or $|u|^{-1/3}$
+$|u|^{-1/6}$ and $|u|^{-1/3}$
 are retracted.
 \end{abstract}
 
@@ -108,7 +105,7 @@ not the asymptotic boundary.
 
 \begin{theorem}[Sharp Erd\'elyi \Rig]
 \label{thm:erdelyi}
-For $\alpha=0$ (fixed support) and $c_3>0$:
+For $\alpha=0$ and $c_3>0$:
 \[
   \Phi_0(u)
   =\sqrt{\pi}\,e^{-i\pi/4}
@@ -140,45 +137,36 @@ reduces $\Phi_\alpha(u)$ to
   := \frac{|u|^{3/2}}{(3c_3)^{1/2}},
 \end{equation}
 where
-\[
-  I(\lambda)
-  := \int_0^{X(\lambda)}
-  t^{-1/2}\,
-  e^{i\lambda(t^3/3-t)}
-  \,dt,
-\]
-and $X(\lambda)=R(u)/\beta_0(u)
-=|u|^{\alpha-1/2}/(3c_3)^{1/2}\cdot(3c_3)^{1/2}
-=|u|^{\alpha-1/2}$.
-For $\alpha>\tfrac{1}{2}$,
-$X(\lambda)\to\infty$.
+$I(\lambda)
+:= \int_0^{X(\lambda)}
+t^{-1/2}\,e^{i\lambda(t^3/3-t)}\,dt$
+and $X(\lambda)=|u|^{\alpha-1/2}\to\infty$
+for $\alpha>\tfrac{1}{2}$.
 
 \medskip
-\noindent\textbf{Jacobian factor:}
+\noindent\textbf{Jacobian:}
 \[
   \beta^{-1/2}\,d\beta
-  = (\beta_0 x)^{-1/2}\cdot\beta_0\,dx
   = \beta_0^{1/2}\cdot x^{-1/2}\,dx,
-  \quad
+  \qquad
   \beta_0^{1/2}
-  = \left(\frac{|u|}{3c_3}\right)^{1/4}
+  = \Bigl(\frac{|u|}{3c_3}\Bigr)^{1/4}
   \sim |u|^{1/4}.
 \]
 
 \medskip
-\noindent\textbf{Phase reduction:}
+\noindent\textbf{Phase:}
 \[
   -|u|\beta+c_3\beta^3
-  = \underbrace{|u|\beta_0}_{=|u|^{3/2}(3c_3)^{-1/2}}
-  \!\left(-x+\tfrac{1}{3}x^3\right)
-  = \lambda\left(\tfrac{x^3}{3}-x\right),
+  = |u|\beta_0\bigl(-x+\tfrac{1}{3}x^3\bigr)
+  = \lambda\bigl(\tfrac{x^3}{3}-x\bigr),
 \]
 confirming $\lambda=|u|^{3/2}(3c_3)^{-1/2}$.
 
 \medskip
-\noindent\textbf{Two-term asymptotics of $I(\lambda)$:}
-The integral $I(\lambda)$ has two competing
-contributions for large $\lambda$:
+\noindent\textbf{Two-term asymptotics of $I(\lambda)$.}
+For large $\lambda$, $I(\lambda)$ receives
+two competing contributions:
 \begin{itemize}
 \item \emph{Endpoint} $t=0$
   (Erd\'elyi, weight $t^{-1/2}$):
@@ -190,9 +178,8 @@ contributions for large $\lambda$:
   \]
 \item \emph{Saddle} $t=1$
   (stationary phase,
-  $\phi'(t)=t^2-1=0$,
-  amplitude $1^{-1/2}=1$,
   phase $\lambda(-\tfrac{2}{3})$,
+  amplitude $1^{-1/2}=1$,
   curvature $2$):
   \[
     I_{\rm sad}(\lambda)
@@ -202,7 +189,7 @@ contributions for large $\lambda$:
   \]
 \end{itemize}
 Both are $O(\lambda^{-1/2})$.
-The two-term formula is:
+By the triangle inequality:
 \begin{equation}\label{eq:twoterm}
   I(\lambda)
   = \sqrt{\pi}\,\lambda^{-1/2}
@@ -210,123 +197,96 @@ The two-term formula is:
     e^{-i\pi/4}
     + e^{-2i\lambda/3+i\pi/4}
   \Bigr]
-  + O(\lambda^{-3/2}).
+  + O(\lambda^{-3/2}),
 \end{equation}
-The modulus satisfies
-\[
+\begin{equation}\label{eq:Ibound}
   |I(\lambda)|
-  \le \sqrt{2\pi}\,\lambda^{-1/2}
-  \quad\text{and}\quad
-  |I(\lambda)|
-  = O(\lambda^{-1/2}).
-\]
+  \le 2\sqrt{\pi}\,\lambda^{-1/2}.
+\end{equation}
 
 \medskip
-\noindent\textbf{Final exponent.}
+\noindent\textbf{Final bound.}
 Combining~\eqref{eq:cfu}
 with $\beta_0^{1/2}\sim|u|^{1/4}$
-and $\lambda^{-1/2}\sim|u|^{-3/4}$:
+and $|I(\lambda)|=O(\lambda^{-1/2})
+=O(|u|^{-3/4})$:
 \begin{equation}\label{eq:final}
   \boxed{
   |\Phi_\alpha(u)|
-  \sim |u|^{1/4}\cdot|u|^{-3/4}
-  = |u|^{-1/2}.
+  = O\bigl(|u|^{1/4}\cdot|u|^{-3/4}\bigr)
+  = O\bigl(|u|^{-1/2}\bigr).
   }
 \end{equation}
-The exponent $-1/2$ holds
-in Region~III as well.
 
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{
-  \textbf{Key structural result:}
-  The endpoint singularity $\beta^{-1/2}$
-  (via Jacobian $\beta_0^{1/2}\sim|u|^{1/4}$)
-  and the saddle ($\lambda^{-1/2}\sim|u|^{-3/4}$)
-  combine to give $|u|^{-1/2}$
-  in all regions.
-  The saddle does not improve the bound;
+  \textbf{Structural result:}
+  In the presence of the boundary
+  singularity $\beta^{-1/2}$,
+  the saddle contributes at the
+  same order $O(\lambda^{-1/2})$
+  as the endpoint.
+  It does not improve the decay rate;
   it only modulates the amplitude
   through the oscillating factor
-  $e^{-2i\lambda/3}$
-  in~\eqref{eq:twoterm}.
+  $e^{-2i\lambda/3}$ in~\eqref{eq:twoterm}.
 }}
 \end{center}
 \end{theorem}
 
-\begin{remark}[Retraction of $-1/6$
-  and $-1/3$ \Warn]
-\label{rem:retract}
-The earlier claims
-$|\Phi_\alpha|\lesssim|u|^{-1/6}$
-and $|\Phi_\alpha|\sim|u|^{-1/3}$
-arose from two errors:
-\begin{enumerate}[{\rm(i)}]
-\item Using the standard Airy
-  parameter $\lambda\sim|u|^{2/3}$
-  (which applies when the phase
-  has been normalized without
-  the singular weight $\beta^{-1/2}$).
-  Here the correct large parameter
-  is $\lambda=|u|^{3/2}(3c_3)^{-1/2}$.
-\item Ignoring the Jacobian
-  $\beta_0^{1/2}\sim|u|^{1/4}$
-  which upgrades
-  $\lambda^{-1/2}\sim|u|^{-3/4}$
-  to the final exponent $-1/2$.
-\end{enumerate}
-The bound $|\mathrm{Ai}(-\lambda)|
-\lesssim\lambda^{-1/4}$
-with $\lambda\sim|u|^{2/3}$
-is valid only for the pure
-Airy function (no singular weight).
-In the present model,
-the singularity $\beta^{-1/2}$
-at the origin
-changes the scaling completely.
-\end{remark}
-
-\section{No Stable Power Law in Region III}
-\label{sec:nolaw}
-
-\begin{proposition}[\Rig+\Num]
-For $\alpha\ge\tfrac{1}{2}$,
-the amplitude $|\Phi_\alpha(u)|$
-oscillates:
+\begin{remark}[No limit amplitude in
+  Region~III \Warn]
+\label{rem:nolimit}
+From~\eqref{eq:twoterm},
 \[
-  |\Phi_\alpha(u)|
-  = C(u)\cdot|u|^{-1/2},
-\]
-where $C(u)$ is a bounded,
-oscillating function with
-\[
-  C(u)
-  \sim (3c_3)^{-1/6}\sqrt{\pi}
+  |u|^{1/2}|\Phi_\alpha(u)|
+  = (3c_3)^{-1/6}\sqrt{\pi}
   \cdot
-  \left|
-    e^{-i\pi/4}
-    + e^{-2i\lambda/3+i\pi/4}
-  \right|,
-  \quad
-  \lambda=|u|^{3/2}(3c_3)^{-1/2}.
+  \Bigl|e^{-i\pi/4}
+  +e^{-2i\lambda/3+i\pi/4}\Bigr|
+  + O(|u|^{-1}),
 \]
-The factor $|e^{-i\pi/4}
-+e^{-2i\lambda/3+i\pi/4}|$
-oscillates between $0$ and $\sqrt{2}$
-as $u\to-\infty$.
+where $\lambda=|u|^{3/2}(3c_3)^{-1/2}\to\infty$.
+The factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
+oscillates between $0$ and $2$
+without converging.
 Therefore:
 \begin{itemize}
 \item $|\Phi_\alpha(u)|=O(|u|^{-1/2})$
-  (hard upper bound, all regions).
-\item $|\Phi_\alpha(u)|
-  \ne C|u|^{-1/2}$
-  for any fixed constant $C$
-  (amplitude oscillates).
-\item No single exponent $\gamma$
-  satisfies $|\Phi_\alpha(u)|
-  \sim C|u|^\gamma$
-  for $\alpha\ge\tfrac{1}{2}$.
+  (rigorous, all regions);
+\item $\lim_{u\to-\infty}
+  |u|^{1/2}|\Phi_\alpha(u)|$
+  does not exist
+  for $\alpha\ge\tfrac{1}{2}$
+  (\emph{no limit amplitude});
+\item consequently,
+  no single constant $C$ satisfies
+  $|\Phi_\alpha(u)|\sim C|u|^{-1/2}$.
 \end{itemize}
-\end{proposition}
+This is distinct from
+``no power law'': the exponent
+$-1/2$ is correct;
+it is the \emph{coefficient}
+that fails to converge.
+\end{remark}
+
+\begin{remark}[Retraction of
+  $-1/6$ and $-1/3$ \Warn]
+\label{rem:retract}
+The claims $|\Phi_\alpha|\lesssim|u|^{-1/6}$
+and $\sim|u|^{-1/3}$ arose from:
+\begin{enumerate}[{\rm(i)}]
+\item Using the standard Airy
+  parameter $\lambda\sim|u|^{2/3}$
+  (valid without singular weight).
+  Here $\lambda=|u|^{3/2}(3c_3)^{-1/2}$.
+\item Ignoring the Jacobian
+  $\beta_0^{1/2}\sim|u|^{1/4}$
+  which upgrades $\lambda^{-1/2}
+  \sim|u|^{-3/4}$ to
+  the correct $|u|^{-1/2}$.
+\end{enumerate}
+\end{remark}
 
 \section{Numerical Evidence}
 \label{sec:num}
@@ -351,10 +311,15 @@ $1.00$ & III & $-0.558$ & $+0.175$ & $-0.343$
 \end{center}
 Only $\alpha=0$ shows convergence
 of the fitted exponent.
-For $\alpha>0$, interval-dependent
-non-converging fits are consistent
-with the oscillating factor $C(u)$
-in Proposition~4.1.
+For $\alpha\ge\tfrac{1}{2}$,
+the wildly varying fits are
+directly explained by the oscillating
+factor $|e^{-i\pi/4}+e^{-2i\lambda/3+i\pi/4}|$
+in Remark~\ref{rem:nolimit}:
+depending on the interval,
+this factor can be near $0$ or near $2$,
+giving apparent exponents
+far from $-1/2$.
 \end{proposition}
 
 \section{The PSWF Open Problem}
@@ -365,19 +330,17 @@ in Proposition~4.1.
 For the fold integral in Paper~XV,
 determine $\alpha$:
 \begin{enumerate}[{\rm(i)}]
-\item If $\alpha<\tfrac{1}{2}$
-  (Region~I for large $|u|$):
-  $|\Phi|\sim\sqrt{\pi}|u|^{-1/2}$;
+\item If $\alpha<\tfrac{1}{2}$:
+  $|\Phi|=\Theta(|u|^{-1/2})$;
   Ces\`aro bound sharp.
-\item If $\alpha\ge\tfrac{1}{2}$
-  (Region~III):
+\item If $\alpha\ge\tfrac{1}{2}$:
   $|\Phi|=O(|u|^{-1/2})$;
-  amplitude oscillates;
+  no limit amplitude;
   Ces\`aro sharpness depends
   on cancellation in $F(U)$.
 \end{enumerate}
-The value of $\alpha$ is determined
-by the PSWF spectral expansion.
+$\alpha$ is determined by the
+PSWF spectral expansion.
 \end{problem}
 
 \begin{thebibliography}{9}
