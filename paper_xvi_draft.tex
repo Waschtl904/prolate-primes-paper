@@ -1,3 +1,4 @@
+
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage{amsmath,amssymb,amsthm}
@@ -40,7 +41,15 @@ Arnol'd's classification
 The Airy distribution is the universal
 local normal form of this singularity,
 in the sense of microlocal equivalence
-modulo smoothing operators.
+modulo smoothing operators,
+via the CFU reduction
+\cite{CFU1957} treated as
+a Fourier integral operator construction
+with canonical relation
+$\mathcal{C}\subset
+T^*\mathbb{R}_\beta\times T^*\mathbb{R}_u$
+equivalent to the Airy Lagrangian
+(Remark~\ref{rem:FIO-language}).
 Three results are established,
 each explicitly conditional on
 Assumption~\ref{ass:microlocal}
@@ -53,7 +62,10 @@ conditions (i)--(vi)):
   modulo smoothing operators,
   to an Airy model integral
   with $a\in S^{-1/2}_{1,0}(c)$
-  (symbol in $u$, uniform in $c$)
+  (parameter-dependent symbol family
+  in $u$, uniform in $c\ge c_0$;
+  $c$ is an external parameter,
+  not a phase-space variable)
   and rapidly decaying remainder
   (conditional on (i)--(vi)).
 \item \textit{(Pointwise decay.)}
@@ -145,6 +157,9 @@ mean precisely:
 $\Phi$ is microlocally equivalent,
 modulo smoothing operators,
 to an Airy model integral,
+in the sense of Fourier integral
+operators with canonical relation
+equivalent to the Airy Lagrangian,
 via a local canonical transformation
 $\beta\mapsto t(\beta,u;c)$.}
 This is \emph{never} a pointwise
@@ -207,7 +222,7 @@ oscillatory integral with
   |\beta|^{-1/2}\chi
   \in I^{-1/4}(\mathbb{R},\{0\}),
 \]
-in the sense of Hörmander
+in the sense of H\"ormander
 \cite{Hormander1983}, Ch.~18.2,
 and Guillemin--Uhlmann
 \cite{GuillemU1981}.
@@ -228,7 +243,7 @@ conormal amplitude singularity
 at the critical point},
 as developed in
 Melrose--Uhlmann \cite{MelroseU1979}
-and Hörmander \cite{Hormander1983},
+and H\"ormander \cite{Hormander1983},
 Ch.~18.1--18.2.
 All stationary-phase and FIO
 operations in this paper are
@@ -247,10 +262,10 @@ $a_0=|\beta|^{-1/2}\chi
 \in I^{-1/4}(\mathbb{R},\{0\})$;
 all operations are distributional
 (Melrose--Uhlmann \cite{MelroseU1979};
-Hörmander \cite{Hormander1983},
+H\"ormander \cite{Hormander1983},
 Ch.~18.1--18.2).
 For $\theta\equiv 0$,
-Erdélyi \cite{Erdelyi1956}
+Erd\'elyi \cite{Erdelyi1956}
 gives exact asymptotics.
 For general $\theta$,
 van~der~Corput in the
@@ -323,12 +338,20 @@ Pushforward of conormal
 distributions under local
 diffeomorphisms preserves
 the $I^m$ class
-(Hörmander \cite{Hormander1983},
+(H\"ormander \cite{Hormander1983},
 Ch.~18.2;
 Guillemin--Uhlmann \cite{GuillemU1981},
 Lemma~2.1);
 uniformity in $(u,c)$
-follows from condition (vi).
+follows from condition (vi):
+the uniform lower bound $\delta_5$
+and the uniform derivative bounds
+$|\partial_\beta^j\partial_u^k t|\le C_{jk}$
+ensure that the pushforward construction
+(which depends on derivatives of the
+diffeomorphism) produces
+$I^{-1/4}$-bounds that are
+\emph{independent of $(u,c)$}.
 The Jacobian $J\in C^\infty$
 with bounded derivatives,
 so multiplication preserves $I^m$.
@@ -377,8 +400,22 @@ $1=\phi_{\mathrm{fold}}
   \emph{smoothing remainder}:
   $|\mathcal{R}(u;c)|
   \le C_N(1+|u|)^{-N}$
-  for each fixed $N$
-  (uniform in $c$ under condition (vi)).
+  for each fixed $N$.
+  \emph{Uniformity in $c$:}
+  this bound holds uniformly in
+  $c\ge c_0$ \emph{if and only if}
+  condition~(vi) of
+  Assumption~\ref{ass:microlocal}
+  holds; without~(vi), the bound
+  holds for each fixed $c$ only.
+  The remainder $\mathcal{R}$ arises
+  from the far tail of the
+  $\tilde{t}$-integral (cut-off
+  outside the Airy critical region)
+  and from the CFU Taylor residual;
+  both are controlled uniformly
+  by the $\delta_4$- and
+  $C_{jk}$-bounds in (vi).
   This is a
   \emph{microlocal equivalence
   modulo smoothing operators},
@@ -422,6 +459,21 @@ by CFU \cite{CFU1957}.
 \begin{lemma}[Parameter-dependent
   symbol stability \Rig]
 \label{lem:symbol-stability}
+\emph{Throughout this lemma,
+$c\ge c_0$ is an \emph{external parameter},
+not a phase-space variable.
+The class $S^m_{1,0}(c)$ defined below
+is a parameter-dependent family of
+symbol estimates in the variable $u$;
+it is \emph{not} a classical
+H\"ormander symbol class in the sense
+of \cite{Hormander1983}, Ch.~7,
+since $c$ does not enter as a
+phase-space variable.
+The notation is chosen to record
+that all symbol-in-$u$ bounds
+are \emph{uniform in} $c\ge c_0$.}
+
 Define the
 \emph{parameter-dependent symbol class}:
 \begin{equation}\label{eq:symbol-class-c}
@@ -433,10 +485,6 @@ Define the
   \;\text{uniformly in }c\ge c_0
   \bigr\}.
 \end{equation}
-This is a symbol class
-\emph{in the variable $u$},
-with estimates \emph{uniform in
-the parameter $c\ge c_0$}.
 Under Assumption~\ref{ass:microlocal},
 let
 $\tilde{a}(\tilde{t},u;c)
@@ -456,7 +504,7 @@ $\tilde{a}(\tilde{t},u;c)
   uniformly in $\tilde{t}$.
 \item \textit{(Parametric stationary
   phase.)}
-  By Hörmander \cite{Hormander1983},
+  By H\"ormander \cite{Hormander1983},
   Ch.~7.7,
   applied with uniform parameter
   bounds from condition (vi)
@@ -527,10 +575,13 @@ holds uniformly in $c\ge c_0$, with:
   $|\partial_\beta^j\partial_u^k
   t(\beta,u;c)|\le C_{jk}$
   for all $j,k\ge 0$
-  (placing $t(\cdot,u;c)
-  \in S^0_{1,0}(c)$
-  as a parameter-dependent
-  canonical transformation);
+  (placing $t(\cdot,u;c)$
+  in the parameter-dependent
+  class $S^0_{1,0}(c)$
+  as a family of canonical
+  transformations, uniform in $c$;
+  recall $c$ is an external parameter,
+  not a phase-space variable);
   and
   $|\partial_{\tilde{t}}
   (\tilde{t}^3/3
@@ -538,7 +589,7 @@ holds uniformly in $c\ge c_0$, with:
   \ge\delta_4>0$
   outside the Airy critical region
   (uniform non-stationary phase
-  bound for Hörmander Ch.~7.7).
+  bound for H\"ormander Ch.~7.7).
 \end{enumerate}
 \end{assumption}
 
@@ -553,12 +604,13 @@ from ``fixed $c$'' to
   enables
   Lemma~\ref{lem:conormal-stability};
 \item $t(\cdot,u;c)\in S^0_{1,0}(c)$
+  (as a parameter-dependent family)
   ensures transported amplitudes
   stay in $S^m_{1,0}(c)$;
 \item $\delta_4$-bound provides the
   uniform non-stationary phase
   hypothesis required by
-  Hörmander Ch.~7.7
+  H\"ormander Ch.~7.7
   for uniform remainder
   estimates~\eqref{eq:remainder-u}.
 \end{itemize}
@@ -587,9 +639,11 @@ to:
 \end{equation}
 where
 $a(u;c)\in S^{-1/2}_{1,0}(c)$
-(symbol in $u$, uniform in $c$;
+(parameter-dependent symbol family
+in $u$, uniform in $c\ge c_0$;
 Lemma~\ref{lem:symbol-stability}(3),
-requires (vi)) and
+requires (vi))
+and
 $|r(u;c)|\le C_N(1+|u|)^{-N}$
 for each fixed $N$ (requires (vi)).
 \end{theorem}
@@ -609,27 +663,51 @@ Far zone:
 Proposition~\ref{prop:CFU}(3).
 \end{proof}
 
-\begin{lemma}[Airy-symbol estimate
-  in fold zone \Rig]
+\begin{lemma}[Joint scaling in fold zone \Rig]
 \label{lem:product-estimate}
 \textit{Valid in the fold zone
 after canonical Airy rescaling;
 not a global statement.}
 Under Theorem~\ref{thm:airy-normalform},
 for $|u|\ge\delta_2$:
-$|a\cdot\mathrm{Ai}(c_3(c)^{-1/3}u)|
-\le C_1C_2\,|u|^{-3/4}$.
-The exponent $-3/4$ is the
-\emph{joint scaling factor of the
-full asymptotic expansion}
-after CFU reduction and Airy rescaling:
-$|u|^{-1/4}$ (Airy \cite{Olver1974})
-and $|u|^{-1/2}$
-(symbol $a\in S^{-1/2}_{1,0}(c)$)
-both arise from a single
-stationary-phase expansion
-in $\tilde{t}$,
-not from two independent mechanisms.
+\[
+|a(u;c)\cdot\mathrm{Ai}(c_3(c)^{-1/3}u)|
+\le C_1 C_2\,|u|^{-3/4}.
+\]
+
+\noindent\textit{Origin of the $-3/4$ exponent.}
+The exponent $-3/4$ is \emph{not}
+the product of two independent
+mechanisms ($|u|^{-1/4}$ from Airy
+times $|u|^{-1/2}$ from the symbol).
+Rather, both factors arise jointly
+from a \emph{single} stationary-phase
+expansion of the
+$\tilde{t}$-integral~\eqref{eq:airy-decomp}
+in Lemma~\ref{lem:symbol-stability}(2):
+after Airy rescaling, the full
+amplitude $\tilde{a}(\tilde{t},u;c)$
+and the cubic phase are expanded
+together, and the leading-order
+stationary-phase contribution
+at $\tilde{t}_0=\mathrm{sgn}(u)$
+produces the combined factor
+$c_3(c)^{1/12}|u|^{-3/4}$
+(from the Hessian determinant
+of the cubic at $\tilde{t}_0$
+and the leading value of $\tilde{a}$).
+The symbol bound
+$a_0\in S^{-1/2}_{1,0}(c)$
+reflects the \emph{leading-order
+coefficient} of this expansion;
+$\mathrm{Ai}(c_3(c)^{-1/3}u)$
+captures the \emph{oscillatory
+envelope}.
+Multiplying their individual bounds
+gives the correct estimate, but the
+underlying derivation is a single
+expansion in $\tilde{t}$, not two
+separate mechanisms.
 \end{lemma}
 
 \begin{corollary}[Pointwise decay \Cond]
@@ -653,7 +731,7 @@ $C:=\max(C_1C_2,\,C_3,\,C_4)$:
 \item \textit{Compact zone $|u|\le 1$:}
   compactness + continuity (condition (vi))
   $\Rightarrow$ $|\Phi|\le C_3$
-  (Erdélyi \cite{Erdelyi1956}).
+  (Erd\'elyi \cite{Erdelyi1956}).
 \item \textit{Far zone:}
   $|\Phi|\le C_4|u|^{-1/2}
   \le C_4|u|^{-3/4}$
@@ -684,7 +762,7 @@ require a second stationary-phase
 step in $u$, beyond the scope here.
 \end{remark}
 
-\begin{corollary}[Cesàro improvement
+\begin{corollary}[Ces\`aro improvement
   \Cond]
 \label{cor:global-bound}
 \textit{Conditional on
@@ -694,12 +772,12 @@ Assumption~\ref{ass:microlocal}(i)--(vi).}
   \le C\int_0^U(1+u)^{-3/4}\,du
   = O(U^{1/4}),
 \]
-improving upon Cesàro $O(U^{1/2})$
+improving upon Ces\`aro $O(U^{1/2})$
 by integrability gain
 (Remark~\ref{rem:oscillation}).
-The exponent $-3/4$ is the joint
-scaling factor
-(Lemma~\ref{lem:product-estimate}).
+The exponent $-3/4$ is the
+joint scaling factor from
+Lemma~\ref{lem:product-estimate}.
 \end{corollary}
 
 \subsection{Converse and FIO rigidity}
@@ -775,7 +853,7 @@ Outcomes:
 (A)~All hold:
 $|\int_0^U\Phi|=O(U^{1/4})$.
 (B)~$c_3(c)\to 0$:
-Cesàro sharp.
+Ces\`aro sharp.
 \end{problem}
 
 \begin{thebibliography}{9}
@@ -785,7 +863,7 @@ Intermediate-Regime Kernel Estimates},
 2026.
 
 \bibitem{Erdelyi1956}
-A.~Erdélyi,
+A.~Erd\'elyi,
 \textit{Asymptotic Expansions},
 Dover, 1956.
 
@@ -801,7 +879,7 @@ M.~Zworski,
 AMS, 2012.
 
 \bibitem{Hormander1983}
-L.~Hörmander,
+L.~H\"ormander,
 \textit{The Analysis of Linear PDE~I},
 Springer, 1983.
 
