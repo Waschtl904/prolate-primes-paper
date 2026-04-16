@@ -1,334 +1,363 @@
-\\documentclass[12pt,a4paper]{amsart}
+\documentclass[12pt,a4paper]{amsart}
 
-\\usepackage{amsmath,amssymb,amsthm}
-\\usepackage{mathtools}
-\\usepackage{enumitem}
-\\usepackage{hyperref}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
 
-\\newtheorem{theorem}{Theorem}[section]
-\\newtheorem{lemma}[theorem]{Lemma}
-\\newtheorem{proposition}[theorem]{Proposition}
-\\newtheorem{corollary}[theorem]{Corollary}
-\\theoremstyle{definition}
-\\newtheorem{definition}[theorem]{Definition}
-\\newtheorem{assumption}[theorem]{Assumption}
-\\newtheorem{problem}[theorem]{Open Problem}
-\\theoremstyle{remark}
-\\newtheorem{remark}[theorem]{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
 
-\\newcommand{\\Rig}{\\textup{[Rig]}}
-\\newcommand{\\Cond}{\\textup{[Cond]}}
-\\newcommand{\\Open}{\\textup{[Open]}}
+\newcommand{\Rig}{\textup{[Rig]}}
+\newcommand{\Cond}{\textup{[Cond]}}
+\newcommand{\Open}{\textup{[Open]}}
 
-\\begin{document}
+\begin{document}
 
-\\title[Lagrangian Singularity Transport under Fourier Duality]{%
-  Lagrangian Singularity Transport under Fourier Duality:\\\\
-  Cubic WKB Phases, A$_2$-Fold Singularities,\\\\
+\title[Lagrangian Singularity Transport under Fourier Duality]{%
+  Lagrangian Singularity Transport under Fourier Duality:\\
+  Cubic WKB Phases, A$_2$-Fold Singularities,\\
   and the Airy Normal Form}
 
-\\author{[Author]}
+\author{[Author]}
 
-\\begin{abstract}
-This paper works in the \\emph{one-dimensional setting}
-($\\beta,u\\in\\mathbb{R}$).
-A cubic WKB phase $c_3\\beta^3$ produces an A$_2$-fold
-singularity of the canonical relation (Arnol'd \\cite{Arnold1972}).
-Setting $h := c^{-1} \\to 0$, we work semiclassically throughout.
+\begin{abstract}
+This paper works in the \emph{one-dimensional setting}
+($\beta,u\in\mathbb{R}$).
+A cubic WKB phase $c_3\beta^3$ produces an A$_2$-fold
+singularity of the canonical relation (Arnol'd \cite{Arnold1972}).
+Setting $h := c^{-1} \to 0$, we work semiclassically throughout;
+all estimates are uniform in $h$ in the sense of rescaled
+phase space $(\beta,\xi)\sim(1,h^{-1})$.
 
-The analysis rests on two theorems:
-Theorem~\\ref{thm:CFU-geom} reduces an A$_2$-fold phase
-to Airy normal form via canonical transformation (geometry);
-Theorem~\\ref{thm:CFU-symbol} transports the conormal amplitude
-$|\\beta|^{-1/2} \\in I^{-1/4,0}(\\Lambda_0,\\Lambda_1)$
-to a principal symbol $a_{\\mathrm{CFU}} \\in S^{-1/2}_{1,0}(h)$
-uniformly in $h$ (analysis).
+The analysis rests on two theorems and one proposition
+forming an acyclic proof chain:
+Theorem~\ref{thm:CFU-geom} (geometric): reduces an A$_2$-fold
+phase to Airy normal form via canonical transformation;
+Theorem~\ref{thm:CFU-symbol} (analytic): transports the conormal
+amplitude $|\beta|^{-1/2}\in I^{-1/4,0}(\Lambda_0,\Lambda_1)$
+over the already-reduced Airy phase to
+$a_{\mathrm{CFU}}\in S^{-1/2}_{1,0}(h)$ uniformly in $h$;
+Proposition~\ref{prop:airy-id} (identification): identifies the
+model integral with the Airy function microlocally.
 
-Three consequences follow:
-(I)~$|\\Phi(u;h)| \\le C(1+|u|)^{-3/4}$ uniformly in $h$
-(Corollary~\\ref{cor:pointwise});
-(II)~$|\\int_0^U \\Phi| = O(U^{1/4})$
-(Corollary~\\ref{cor:cesaro});
-(III)~A$_2$-stability for PSWF as $h\\to 0$ remains open
-(Open Problem~\\ref{prob:PSWF}).
-The forward direction is rigorous under
-Assumption~\\ref{ass:A2};
-the converse requires the non-standard
-Hypothesis~\\ref{hyp:rigidity}.
-\\end{abstract}
+Three consequences:
+(I)~$|\Phi(u;h)|\le C(1+|u|)^{-3/4}$ uniformly in $h$;
+(II)~$|\int_0^U\Phi|=O(U^{1/4})$;
+(III)~A$_2$-stability for PSWF as $h\to 0$ remains open
+(Open Problem~\ref{prob:PSWF}).
+\end{abstract}
 
-\\maketitle
+\maketitle
 
-\\section{Definitions}
-\\label{sec:defs}
+\section{Definitions}
+\label{sec:defs}
 
-\\begin{definition}[A$_2$-fold singularity]\\label{def:A2}
-Let $\\mathcal{C} \\subset T^*\\mathbb{R}_\\beta \\times T^*\\mathbb{R}_u$
-be Lagrangian, $\\pi_u:\\mathcal{C}\\to T^*\\mathbb{R}_u$ the projection.
-$\\mathcal{C}$ has an \\emph{A$_2$-fold at $p_0$} if
-$\\det d\\pi_u|_{p_0}=0$ and $d(\\det d\\pi_u)|_{p_0}\\ne 0$
-(Arnol'd \\cite{Arnold1972}).
-For phase $\\Psi(\\beta,u)=\\Theta(\\beta;h^{-1})+u\\beta$
-this reduces to $\\Theta''(0)=0$, $\\Theta'''(0)\\ne 0$.
-\\end{definition}
+\begin{definition}[A$_2$-fold singularity]\label{def:A2}
+Let $\mathcal{C}\subset T^*\mathbb{R}_\beta\times T^*\mathbb{R}_u$
+be Lagrangian, $\pi_u:\mathcal{C}\to T^*\mathbb{R}_u$ the projection.
+$\mathcal{C}$ has an \emph{A$_2$-fold at $p_0$} if
+$\det d\pi_u|_{p_0}=0$ and $d(\det d\pi_u)|_{p_0}\ne 0$
+(Arnol'd \cite{Arnold1972}).
+For phase $\Psi(\beta,u)=\Theta(\beta;h^{-1})+u\beta$
+this reduces to $\Theta''(0)=0$, $\Theta'''(0)\ne 0$.
+\end{definition}
 
-\\begin{definition}[Conormal amplitude class]\\label{def:Iml}
+\begin{definition}[Conormal amplitude class]\label{def:Iml}
 The Melrose--Uhlmann class
-$I^{m,l}(\\Lambda_0,\\Lambda_1)$ \\cite{MelroseU1979}
+$I^{m,l}(\Lambda_0,\Lambda_1)$ \cite{MelroseU1979}
 consists of distributions with conormal singularities
 at intersecting Lagrangians.
-The amplitude $|\\beta|^{-1/2}\\chi$ belongs to
-$I^{-1/4,0}(\\Lambda_0,\\Lambda_1)$,
-where $\\Lambda_0$ is the zero-section and
-$\\Lambda_1$ is the conormal to $\\{\\beta=0\\}$.
+The amplitude $|\beta|^{-1/2}\chi$ belongs to
+$I^{-1/4,0}(\Lambda_0,\Lambda_1)$,
+where $\Lambda_0$ is the zero-section and
+$\Lambda_1$ the conormal to $\{\beta=0\}$.
 Standard FIO class $I^m$ is insufficient here
 since the amplitude singularity coincides with
 the critical point.
-\\end{definition}
+\end{definition}
 
-\\begin{definition}[Semiclassical parameter]\\label{def:h}
-Set $h:=c^{-1}$, $h\\to 0$ as $c\\to\\infty$.
-\\[
-  S^m_{1,0}(h) := \\bigl\\{a(u;h)\\in C^\\infty(\\mathbb{R}_u)
-  \\;\\big|\\;
-  |\\partial_u^\\alpha a|\\le C_\\alpha(1+|u|)^{m-|\\alpha|},\\;
-  \\text{uniformly in }h\\in(0,h_0]\\bigr\\}
-\\]
-(Zworski \\cite{Zworski2012}, Ch.~4).
-The \\emph{transported principal symbol}
-$a_{\\mathrm{CFU}}(u;h)$ is defined in
-Theorem~\\ref{thm:CFU-symbol}.
-\\end{definition}
+\begin{definition}[Semiclassical parameter]\label{def:h}
+Set $h:=c^{-1}$, $h\to 0$ as $c\to\infty$.
+All symbol estimates below are uniform in $h\in(0,h_0]$
+in the sense of rescaled phase space
+$(\beta,\xi)\sim(1,h^{-1})$, i.e.\
+$h$-dependent rescaling is implicit in the
+$S^m_{1,0}(h)$-norm:
+\[
+  S^m_{1,0}(h) := \bigl\{a(u;h)\in C^\infty(\mathbb{R}_u)
+  \;\big|\;
+  |\partial_u^\alpha a|\le C_\alpha(1+|u|)^{m-|\alpha|},\;
+  \text{uniformly in }h\in(0,h_0]\bigr\}
+\]
+(Zworski \cite{Zworski2012}, Ch.~4).
+\end{definition}
 
-\\section{Two CFU Theorems}
-\\label{sec:CFU}
+\section{Two CFU Theorems and the Airy Identification}
+\label{sec:CFU}
 
-\\begin{assumption}[A$_2$-fold conditions, \\Cond]
-\\label{ass:A2}
-\\begin{enumerate}[\\rm(A1)]
-\\item \\textit{(Single nondegenerate fold.)}
-  $\\Theta(\\beta;h^{-1}) = c_3(h)\\beta^3 + O(\\beta^4)$
-  with $c_3(h)\\ge\\delta_0>0$ uniformly in $h$,
-  and $\\Theta''(\\beta)\\ne 0$ for $\\beta\\ne 0$ near $0$.
-\\item \\textit{(CFU admissibility.)}
-  The CFU change of variables $\\beta\\mapsto t(\\beta,u;h)$
-  has $|\\det(dt/d\\beta)|\\ge\\delta_1>0$
-  with $|\\partial^\\alpha_{\\beta,u} t|\\le C_\\alpha$
+\begin{assumption}[A$_2$-fold conditions, \Cond]
+\label{ass:A2}
+\begin{enumerate}[\rm(A1)]
+\item \textit{(Single nondegenerate fold.)}
+  $\Theta(\beta;h^{-1})=c_3(h)\beta^3+O(\beta^4)$
+  with $c_3(h)\ge\delta_0>0$ uniformly in $h$,
+  and $\Theta''(\beta)\ne 0$ for $\beta\ne 0$ near $0$.
+\item \textit{(CFU admissibility.)}
+  The CFU change of variables $\beta\mapsto t(\beta,u;h)$
+  has $|\det(dt/d\beta)|\ge\delta_1>0$
+  with $|\partial^\alpha_{\beta,u}t|\le C_\alpha$
   uniformly in $h$.
-\\item \\textit{(Unique fold.)}
-  $\\beta=0$ is the only critical point on
-  $\\mathrm{supp}\\,\\chi$.
-\\end{enumerate}
-\\end{assumption}
+\item \textit{(Unique fold.)}
+  $\beta=0$ is the only critical point on
+  $\mathrm{supp}\,\chi$.
+\end{enumerate}
+\end{assumption}
 
-\\begin{theorem}[CFU: geometric normal form, \\Rig]
-\\label{thm:CFU-geom}
+\begin{theorem}[CFU: geometric normal form, \Rig]
+\label{thm:CFU-geom}
 Under (A1) and (A3),
 there exists a smooth local canonical transformation
-$\\beta\\mapsto t(\\beta,u;h)$,
-a phase parameter $\\mu(u;h)$,
-and a real phase $R(u;h)$
-such that, in a fixed conic neighbourhood of the fold,
-\\[
-  \\Theta(\\beta;h^{-1}) + u\\beta
-  = \\tfrac{1}{3}t^3 - \\mu(u;h)\\,t + R(u;h)
-  + O(t^\\infty),
-\\]
-with $|\\mu(u;h)|\\sim|u|^{1/2}$ uniformly in $h$.
-This is the \\emph{Airy normal form} of the A$_2$-fold
-(Chester--Friedman--Ursell \\cite{CFU1957};
-Arnol'd \\cite{Arnold1972}).
-\\end{theorem}
+$\kappa:(\beta,\xi)\mapsto(t,\tau)$
+in a fixed conic neighbourhood of the fold point $p_0$,
+a real function $\mu(u;h)$ with $|\mu|\sim|u|^{1/2}$
+uniformly in $h$,
+and a real phase $R(u;h)$,
+such that
+\[
+  \Theta(\beta;h^{-1})+u\beta
+  = \tfrac{1}{3}t^3-\mu(u;h)\,t+R(u;h)
+  +O(t^\infty).
+\]
+This is the \emph{Airy phase normal form} of the A$_2$-fold.
+This theorem involves only the phase function;
+no amplitude or integral is referenced here.
+\end{theorem}
 
-\\begin{proof}
-Standard CFU reduction \\cite{CFU1957}:
-the A$_2$-condition (A1) guarantees $\\Theta''(0)=0$,
-$\\Theta'''(0)\\ne 0$, so the phase is locally equivalent
-to $\\frac{1}{3}t^3 - \\mu t$ by Morse-type normal form theory
-(Golubitsky--Guillemin \\cite{Golub1973}).
-The $\\mu\\sim|u|^{1/2}$ scaling follows from the
+\begin{proof}
+Standard CFU reduction \cite{CFU1957}:
+(A1) gives $\Theta''(0)=0$, $\Theta'''(0)\ne 0$,
+so the phase is locally equivalent to
+$\frac{1}{3}t^3-\mu t$ by Morse-type normal form theory
+(Golubitsky--Guillemin \cite{Golub1973}).
+The scaling $|\mu|\sim|u|^{1/2}$ follows from the
 fold geometry.
-Uniformity in $h$ is automatic since $c_3(h)\\ge\\delta_0>0$ (A1).
-\\end{proof}
+Uniformity in $h$ follows from $c_3(h)\ge\delta_0>0$ (A1).
+\end{proof}
 
-\\begin{theorem}[CFU: symbol transport, \\Rig]
-\\label{thm:CFU-symbol}
-Under Assumption~\\ref{ass:A2},
-the amplitude $|\\beta|^{-1/2}\\chi
-\\in I^{-1/4,0}(\\Lambda_0,\\Lambda_1)$
-(Definition~\\ref{def:Iml})
-is transported by the CFU canonical transformation
-(Theorem~\\ref{thm:CFU-geom}) as follows:
-\\begin{enumerate}[\\rm(i)]
-\\item The $I^{m,l}$-class is preserved under CFU
-  (Melrose--Uhlmann \\cite{MelroseU1979};
-  Guillemin--Uhlmann \\cite{GuillemU1981}, Lemma~2.1).
-\\item Restriction to the stationary set $t=0$
-  yields the transported principal symbol
-  $a_{\\mathrm{CFU}}(u;h) \\in S^{-1/2}_{1,0}(h)$,
-  satisfying $|a_{\\mathrm{CFU}}(u;h)|\\le C|u|^{-1/2}$
+\begin{theorem}[CFU: symbol transport, \Rig]
+\label{thm:CFU-symbol}
+Under Assumption~\ref{ass:A2},
+with the phase already in Airy normal form
+(Theorem~\ref{thm:CFU-geom}),
+the amplitude $|\beta|^{-1/2}\chi
+\in I^{-1/4,0}(\Lambda_0,\Lambda_1)$
+(Definition~\ref{def:Iml})
+is transported by the canonical transformation $\kappa$
+as follows:
+\begin{enumerate}[\rm(i)]
+\item The $I^{m,l}$-class is preserved under $\kappa$
+  (Melrose--Uhlmann \cite{MelroseU1979};
+  Guillemin--Uhlmann \cite{GuillemU1981}, Lemma~2.1).
+\item Restriction of the transported distribution to
+  the stationary set $t=0$ yields the
+  \emph{transported principal symbol}
+  $a_{\mathrm{CFU}}(u;h)\in S^{-1/2}_{1,0}(h)$,
+  satisfying $|a_{\mathrm{CFU}}(u;h)|\le C|u|^{-1/2}$
   uniformly in $h$.
-\\item The fold-zone oscillatory integral satisfies,
-  modulo $S^{-\\infty}$ uniformly in $h$:
-  \\begin{equation}\\label{eq:CFU}
-    \\Phi_{\\mathrm{fold}}(u;h)
-    = e^{i(\\alpha_* u + R(u;h))}
-    \\bigl[
-      a_{\\mathrm{CFU}}(u;h)\\,\\mathrm{Ai}(\\mu(u;h))
+\item The fold-zone integral satisfies,
+  modulo $S^{-\infty}$ uniformly in $h$:
+  \begin{equation}\label{eq:CFU}
+    \Phi_{\mathrm{fold}}(u;h)
+    = e^{i(\alpha_*u+R(u;h))}
+    \bigl[
+      a_{\mathrm{CFU}}(u;h)\cdot F(u;h)
       + r(u;h)
-    \\bigr],
-  \\end{equation}
-  with $|r(u;h)|\\le C_N(1+|u|)^{-N}$ for all $N$.
-\\end{enumerate}
+    \bigr],
+  \end{equation}
+  where $F(u;h)$ is the Airy model integral
+  (Proposition~\ref{prop:airy-id})
+  and $|r(u;h)|\le C_N(1+|u|)^{-N}$ for all $N$.
+\end{enumerate}
 Schematically:
-$\\mathrm{CFU}:\\,(\\mathcal{C},\\,I^{-1/4,0})
-\\longrightarrow
-(\\text{Airy phase},\\,S^{-1/2}(h),\\,S^{-\\infty}).$
-\\end{theorem}
+$\mathrm{CFU}:(\mathcal{C},I^{-1/4,0})
+\longrightarrow
+(\text{Airy phase},S^{-1/2}(h),S^{-\infty}).$
+\end{theorem}
 
-\\begin{proof}
-(i) holds by (A2) and \\cite{MelroseU1979,GuillemU1981}.
-(ii) The $I^{-1/4,0}$-order of $|\\beta|^{-1/2}$
-maps to $S^{-1/2}$ under restriction to the stationary
-set, by the principal symbol calculus for
-$I^{m,l}$-distributions.
-(iii) Combining Theorem~\\ref{thm:CFU-geom} with (i)--(ii)
+\begin{proof}
+(i): (A2) + \cite{MelroseU1979,GuillemU1981}.
+(ii): The $I^{-1/4,0}$-order maps to $S^{-1/2}$
+under restriction to the stationary set,
+by the principal symbol calculus for $I^{m,l}$-distributions.
+(iii): Combining (i)--(ii) with Theorem~\ref{thm:CFU-geom}
 and absorbing the Maslov factor into $R$
-(H\\\"ormander \\cite{Hormander1983}, Ch.~25.1)
-gives~\\eqref{eq:CFU}.
-Remainder bounds follow from $S^{-\\infty}$ remainder
-in the CFU asymptotic expansion \\cite{CFU1957}.
-\\end{proof}
+(H\"ormander \cite{Hormander1983}, Ch.~25.1).
+Remainder bounds from the CFU asymptotic expansion \cite{CFU1957}.
+\end{proof}
 
-\\section{Main Results}
-\\label{sec:results}
+\begin{proposition}[Airy model identification, \Rig]
+\label{prop:airy-id}
+The Airy model integral
+\[
+  F(u;h) :=
+  \int_\mathbb{R}
+  e^{i(\frac{1}{3}t^3-\mu(u;h)\,t)}
+  \,dt
+\]
+satisfies $F(u;h)=\mathrm{Ai}(\mu(u;h))$
+(up to a universal constant factor).
+For $|\mu|\ge 1$,
+$|\mathrm{Ai}(\mu)|\le C|\mu|^{-1/4}$
+(Olver \cite{Olver1974}, Ch.~11).
+This identification is purely a special function fact;
+it is the only point where the Airy function enters
+the argument.
+\end{proposition}
 
-\\begin{lemma}[Degenerate stationary phase
-  with conormal weight, \\Rig]
-\\label{lem:degenerate-phase}
-For $I(\\mu):=\\int_\\mathbb{R}|t|^{-1/2}
-e^{i(\\frac{1}{3}t^3-\\mu t)}\\,dt$,
-$|\\mu|\\ge 1$:
-$|I(\\mu)|\\le C|\\mu|^{-3/4}$.
-\\end{lemma}
+\section{Main Results}
+\label{sec:results}
 
-\\begin{proof}
-Theorem~\\ref{thm:CFU-symbol} gives
-$I(\\mu) = a_{\\mathrm{CFU}}(\\mu)\\,\\mathrm{Ai}(\\mu) + r(\\mu)$
-with $|a_{\\mathrm{CFU}}|\\le C'|\\mu|^{-1/2}$
-and $|r|\\le C_N|\\mu|^{-N}$.
-Airy asymptotics (Olver \\cite{Olver1974}, Ch.~11)
-give $|\\mathrm{Ai}(\\mu)|\\le C|\\mu|^{-1/4}$.
+\begin{lemma}[Degenerate stationary phase
+  with conormal weight, \Rig]
+\label{lem:degenerate-phase}
+For $I(\mu):=\int_\mathbb{R}|t|^{-1/2}
+e^{i(\frac{1}{3}t^3-\mu t)}\,dt$,
+$|\mu|\ge 1$:
+$|I(\mu)|\le C|\mu|^{-3/4}$.
+\end{lemma}
+
+\begin{proof}
+By Theorems~\ref{thm:CFU-geom}--\ref{thm:CFU-symbol}
+and Proposition~\ref{prop:airy-id},
+\[
+  I(\mu) = a_{\mathrm{CFU}}(\mu)\cdot\mathrm{Ai}(\mu) + r(\mu)
+\]
+with $|a_{\mathrm{CFU}}|\le C'|\mu|^{-1/2}$
+(Theorem~\ref{thm:CFU-symbol}(ii))
+and $|r|\le C_N|\mu|^{-N}$.
+By Proposition~\ref{prop:airy-id},
+$|\mathrm{Ai}(\mu)|\le C|\mu|^{-1/4}$.
 Hence
-\\[
-  |I(\\mu)|
-  \\le C'|\\mu|^{-1/2}\\cdot C|\\mu|^{-1/4}
-  + C_N|\\mu|^{-N}
-  = C''|\\mu|^{-3/4}.
-\\]
-The exponent $-3/4 = (-1/2)+(-1/4)$:
-the $(-1/2)$ comes from the conormal symbol order
-(Theorem~\\ref{thm:CFU-symbol}(ii));
-the $(-1/4)$ from the A$_2$-fold Airy decay
-(Theorem~\\ref{thm:CFU-geom}).
+\[
+  |I(\mu)|
+  \le C'|\mu|^{-1/2}\cdot C|\mu|^{-1/4}
+  + C_N|\mu|^{-N}
+  = C''|\mu|^{-3/4}.
+\]
+The exponent $-3/4=(-1/2)+(-1/4)$:
+$(-1/2)$ from conormal symbol order
+(Theorem~\ref{thm:CFU-symbol}(ii));
+$(-1/4)$ from A$_2$-fold Airy decay
+(Proposition~\ref{prop:airy-id}).
 Both are determined by the same fold geometry.
-\\end{proof}
+\end{proof}
 
-\\begin{corollary}[Pointwise decay, \\Cond]
-\\label{cor:pointwise}
-Under Assumption~\\ref{ass:A2},
-$|\\Phi(u;h)|\\le C(1+|u|)^{-3/4}$
-uniformly in $h\\in(0,h_0]$.
-\\end{corollary}
+\begin{corollary}[Pointwise decay, \Cond]
+\label{cor:pointwise}
+Under Assumption~\ref{ass:A2},
+$|\Phi(u;h)|\le C(1+|u|)^{-3/4}$
+uniformly in $h\in(0,h_0]$.
+\end{corollary}
 
-\\begin{proof}
-Fold zone: Theorems~\\ref{thm:CFU-geom},
-\\ref{thm:CFU-symbol} + Lemma~\\ref{lem:degenerate-phase}.
-Far zone ($|\\partial_\\beta^2\\Psi|\\ge c_0'>0$):
+\begin{proof}
+Fold zone: Theorems~\ref{thm:CFU-geom},
+\ref{thm:CFU-symbol},
+Proposition~\ref{prop:airy-id},
+Lemma~\ref{lem:degenerate-phase}.
+Far zone ($|\partial_\beta^2\Psi|\ge c_0'>0$):
 standard stationary phase gives $O(|u|^{-1/2})$.
-Compact zone $|u|\\le 1$: continuity.
-\\end{proof}
+Compact zone $|u|\le 1$: continuity.
+\end{proof}
 
-\\begin{corollary}[Ces\\`aro improvement, \\Cond]
-\\label{cor:cesaro}
-Under Assumption~\\ref{ass:A2},
-$|\\int_0^U\\Phi(u;h)\\,du| = O(U^{1/4})$,
+\begin{corollary}[Ces\`aro improvement, \Cond]
+\label{cor:cesaro}
+Under Assumption~\ref{ass:A2},
+$|\int_0^U\Phi(u;h)\,du|=O(U^{1/4})$,
 improving $O(U^{1/2})$ by pure $L^1$-integrability
 of $(1+|u|)^{-3/4}$.
-\\end{corollary}
+\end{corollary}
 
-\\subsection{Converse and rigidity}
+\subsection{Converse and rigidity}
 
-\\begin{assumption}[Inverse reconstruction,
-  conjectural, \\Cond]
-\\label{hyp:rigidity}
-\\textit{Forward (rigorous):}
-Theorems~\\ref{thm:CFU-geom}--\\ref{thm:CFU-symbol}
-give A$_2$-fold $\\Rightarrow$ Airy class.
-\\textit{Inverse (conjectural):}
-If $\\Phi$ is in the Airy class,
-$\\sigma(g\\mapsto\\Phi)|_\\mathcal{C}\\ne 0$,
-$g\\mapsto\\Phi$ is injective mod smoothing,
-and $\\mathrm{WF}(\\Phi)\\subseteq\\pi_u(\\mathcal{C})$
+\begin{assumption}[Inverse reconstruction,
+  conjectural, \Cond]
+\label{hyp:rigidity}
+\textit{Forward (rigorous):}
+Theorems~\ref{thm:CFU-geom}--\ref{thm:CFU-symbol}
+give A$_2$-fold $\Rightarrow$ Airy class.
+\textit{Inverse (conjectural):}
+If $\Phi$ is in the Airy class,
+$\sigma(g\mapsto\Phi)|_\mathcal{C}\ne 0$,
+$g\mapsto\Phi$ injective mod smoothing,
+and $\mathrm{WF}(\Phi)\subseteq\pi_u(\mathcal{C})$
 on the A$_2$ stratum,
-then $\\mathcal{C}$ has an A$_2$-fold uniformly in $h$.
+then $\mathcal{C}$ has an A$_2$-fold uniformly in $h$.
 Verification for PSWF: Paper~XVII.
-\\end{assumption}
+\end{assumption}
 
-\\begin{corollary}[Conditional equivalence]
-\\label{cor:equiv}
-Under Assumption~\\ref{hyp:rigidity}:
-Airy normal form $\\Rightarrow$ Assumption~\\ref{ass:A2}.
+\begin{corollary}[Conditional equivalence]
+\label{cor:equiv}
+Under Assumption~\ref{hyp:rigidity}:
+Airy normal form $\Rightarrow$ Assumption~\ref{ass:A2}.
 The forward direction holds without
-Assumption~\\ref{hyp:rigidity}.
-\\end{corollary}
+Assumption~\ref{hyp:rigidity}.
+\end{corollary}
 
-\\section{Open Problem}
-\\label{sec:open}
+\section{Open Problem}
+\label{sec:open}
 
-\\begin{problem}[A$_2$-stability for PSWF, \\Open]
-\\label{prob:PSWF}
+\begin{problem}[A$_2$-stability for PSWF, \Open]
+\label{prob:PSWF}
 Does the PSWF amplitude satisfy
-Assumption~\\ref{ass:A2} uniformly as $h\\to 0$?
-(a)~$c_3(h)\\ge\\delta_0$: expected from Olver \\cite{Olver1974};
+Assumption~\ref{ass:A2} uniformly as $h\to 0$?
+(a)~$c_3(h)\ge\delta_0$: expected from Olver \cite{Olver1974};
 uniform remainder bounds required.
 (b)~Unique fold uniformly: plausible, not established.
-(c)~CFU Jacobian bound (A2) uniformly in $h$:
+(c)~CFU admissibility (A2) uniformly in $h$:
 technically hardest; no result currently available.
-\\end{problem}
+\end{problem}
 
-\\begin{thebibliography}{9}
-\\bibitem{PaperXV}
-[Author], \\textit{Paper~XV}, 2026.
-\\bibitem{Olver1974}
+\begin{thebibliography}{9}
+\bibitem{PaperXV}
+[Author], \textit{Paper~XV}, 2026.
+\bibitem{Olver1974}
 F.~W.~J.~Olver,
-\\textit{Asymptotics and Special Functions},
+\textit{Asymptotics and Special Functions},
 Academic Press, 1974.
-\\bibitem{Zworski2012}
+\bibitem{Zworski2012}
 M.~Zworski,
-\\textit{Semiclassical Analysis}, AMS, 2012.
-\\bibitem{Hormander1983}
-L.~H\\\"ormander,
-\\textit{The Analysis of Linear PDE~I},
+\textit{Semiclassical Analysis}, AMS, 2012.
+\bibitem{Hormander1983}
+L.~H\"ormander,
+\textit{The Analysis of Linear PDE~I},
 Springer, 1983.
-\\bibitem{CFU1957}
+\bibitem{CFU1957}
 C.~Chester, B.~Friedman, F.~Ursell,
-Proc.\\ Cambridge Philos.\\ Soc.\\
-\\textbf{53} (1957), 599--611.
-\\bibitem{Arnold1972}
+Proc.\ Cambridge Philos.\ Soc.\
+\textbf{53} (1957), 599--611.
+\bibitem{Arnold1972}
 V.~I.~Arnol'd,
-Funct.\\ Anal.\\ Appl.\\
-\\textbf{6} (1972), 254--272.
-\\bibitem{Golub1973}
+Funct.\ Anal.\ Appl.\
+\textbf{6} (1972), 254--272.
+\bibitem{Golub1973}
 M.~Golubitsky, V.~Guillemin,
-\\textit{Stable Mappings}, Springer, 1973.
-\\bibitem{GuillemU1981}
+\textit{Stable Mappings}, Springer, 1973.
+\bibitem{GuillemU1981}
 V.~Guillemin, G.~Uhlmann,
-Duke Math.\\ J.\\ \\textbf{48} (1981), 251--267.
-\\bibitem{MelroseU1979}
+Duke Math.\ J.\ \textbf{48} (1981), 251--267.
+\bibitem{MelroseU1979}
 R.~Melrose, G.~Uhlmann,
-Comm.\\ Pure Appl.\\ Math.\\
-\\textbf{32} (1979), 483--519.
-\\end{thebibliography}
+Comm.\ Pure Appl.\ Math.\
+\textbf{32} (1979), 483--519.
+\end{thebibliography}
 
-\\end{document}
+\end{document}
