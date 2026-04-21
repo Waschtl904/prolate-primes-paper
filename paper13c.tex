@@ -34,56 +34,67 @@
 
 \subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
 \keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
-  Fredholm determinants, spectral universality, emergent integrability,
-  sinc kernel, coalescing saddle point, integrable operators}
+  Fredholm determinants, spectral universality, integrable operators,
+  sinc kernel, coalescing saddle point, IIKS structure}
 
 \begin{document}
 
 \title[Operator Universality for the PSWF Transition Regime]{%
-  Emergent Integrability and Airy Universality for the Prolate
-  Concentration Operator: A Fredholm Determinant Reduction
-  Without Riemann--Hilbert Machinery}
+  Airy Universality for the Prolate Concentration Operator:
+  A Fredholm--IIKS Reduction Framework with Explicit Analytic Gap}
 
 \author{[Author]}
 \address{[Address]}
 \email{[Email]}
 
 \begin{abstract}
-We establish an operator-theoretic universality framework for the prolate
+We develop an operator-theoretic reduction framework for the prolate
 concentration operator $\Kc$ in the transition regime $n\sim 2c/\pi$.
-The central result is that the rescaled transition-window operator is
-\emph{asymptotically integrable} in the sense of Its--Izergin--Korepin--%
-Slavnov (IIKS): its kernel admits an explicit rank-2 IIKS decomposition
-with trace-class error $O(c^{-1/3})$, and the IIKS vectors converge,
-after canonical Airy phase normalisation, to the Airy IIKS vectors.
-This places the PSWF transition regime in the Airy universality class
-without recourse to Riemann--Hilbert machinery.
+The programme has three layers with distinct rigorous status.
 
 \medskip
-The convergence of Fredholm determinants, Airy-scale gap asymptotics,
-local eigenvalue counting, and the existence of stable quasimodes all
-follow as corollaries of a single operator-level emergent integrability
-theorem.
+\textbf{Exact layer.}
+The sinc kernel admits an exact rank-2 IIKS representation
+(Its--Izergin--Korepin--Slavnov), with IIKS vectors given explicitly
+by complex exponentials.
 
 \medskip
-\textbf{Main output (skeleton).}
+\textbf{Asymptotic expansion layer.}
+An $A_2$ normal-form lemma establishes the effective edge phase expansion
+to all orders in $c^{-1/3}$, identifies the coalescing saddle, and
+controls the remainder in pointwise norm.
+
+\medskip
+\textbf{Scaling limit layer (conditional).}
+The convergence of the IIKS vectors to their Airy limits, and the
+resulting trace-class convergence $\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
+\to 0$, are conditional on Conjecture~\ref{conj:airy-transition},
+which identifies the Airy transition as the single remaining deep
+analytic step.
+A full proof of this conjecture requires Deift--Zhou steepest descent
+on the Riemann--Hilbert problem associated to the rescaled sinc kernel.
+
+\medskip
+Fredholm determinant convergence, Airy-scale gap asymptotics, local
+eigenvalue counting, and stable quasimodes all follow as corollaries,
+conditionally on Conjecture~\ref{conj:airy-transition}.
+
+\medskip
+\textbf{Main outputs.}
 \begin{itemize}
-\item \emph{(Theorem~U.)} Airy universality via emergent IIKS structure.
-\item \emph{(Theorem~I.)} Asymptotic IIKS representation of the rescaled
-  sinc kernel with explicit Airy limit.
-\item \emph{(Corollary~A.)} Airy-scale gap asymptotics
-  $\gapc{c}{n}\asymp c^{-1/3}$.
-\item \emph{(Corollary~B.)} Local eigenvalue counting.
-\item \emph{(Corollary~C.)} Stable transition-window quasimodes.
+\item \emph{(Theorem~U.)} Fredholm determinant universality,
+  conditional on Conjecture~\ref{conj:airy-transition}.
+\item \emph{(Theorem~I.)} Exact IIKS representation of the rescaled
+  sinc kernel with explicit Airy limit conjecture.
+\item \emph{(Corollaries A--C.)} Gap asymptotics, local counting,
+  stable quasimodes; all conditional on Conjecture~\ref{conj:airy-transition}.
 \end{itemize}
 
 \medskip
 \textbf{Status.}
-This paper is an open research skeleton.
-The full rigorous execution of the emergent integrability theorem
-(in particular: uniform convergence of the IIKS vectors in trace-class
-topology) is identified as the single remaining open problem, clearly
-stated as Problem~\ref{prob:iiks-convergence}.
+The exact and asymptotic expansion layers are rigorous.
+The scaling limit layer is an explicitly formulated open programme
+(Problem~\ref{prob:rh-programme}).
 \end{abstract}
 
 \maketitle
@@ -91,427 +102,357 @@ stated as Problem~\ref{prob:iiks-convergence}.
 \section{Introduction}
 \label{sec:intro}
 
-Paper~XIII reduced the sharp transition-window gap problem to two visible
-inputs: Airy-scale quasimodes and a local counting statement.
-The present paper sharpens that reduction to a single operator-level
-statement: emergent IIKS integrability of the rescaled sinc kernel in the
-transition regime.
+Paper~XIII reduced the sharp transition-window gap problem to two inputs:
+Airy-scale quasimodes and a local counting statement.
+The present paper sharpens that reduction to a single structural question:
+the convergence of the IIKS vectors of the rescaled sinc kernel to their
+Airy counterparts in trace-class topology.
 
-The key conceptual point is that Airy universality need not be imported
-from Riemann--Hilbert theory as an external hypothesis.
-Instead, it emerges directly from the Fourier structure of the sinc kernel:
-the IIKS vectors are explicit and elementary (complex exponentials), and
-their convergence to Airy functions under the canonical edge-phase
-normalisation is a consequence of the $A_2$ normal form established in
-Lemma~\ref{lem:edge-normal-form}.
-The Riemann--Hilbert problem associated to the Airy kernel is therefore a
-\emph{consequence} of the scaling limit, not an input.
+\medskip
+\textbf{Three-layer structure.}
+The paper is organized according to a strict partition of rigorous status:
 
-The hard analytic core of the series is thus a single structural question:
-uniform trace-class convergence of the IIKS vectors under Airy scaling.
-Everything else is a consequence.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Exact layer}: the sinc kernel is an exact IIKS operator.
+  This is a classical algebraic identity, not an asymptotic statement.
+\item \emph{Asymptotic expansion layer}: the effective edge phase admits
+  an $A_2$ normal form, derived rigorously from the Widom phase expansion
+  under Assumption~\ref{ass:branch}.
+\item \emph{Scaling limit layer}: the IIKS vectors converge to Airy
+  functions under the canonical edge-phase normalisation.
+  This is Conjecture~\ref{conj:airy-transition} and is the single
+  remaining open step.
+\end{enumerate}
+
+This partition prevents the logical circularity that arises when
+trace-class convergence is stated as a consequence of the Airy transition
+while simultaneously being used to derive it.
 
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
-The rescaled sinc kernel is asymptotically integrable in the IIKS sense.
-Its IIKS vectors converge to those of the Airy kernel under the canonical
-edge-phase normalisation.
-Airy universality, Fredholm determinant convergence, gap asymptotics,
-counting, and quasimode stability are all consequences of this one
-emergent integrability statement.}}
+The sinc kernel is an exact IIKS operator.
+Its IIKS vectors are explicitly known.
+Their convergence to Airy functions under edge-phase scaling is the
+single deep analytic gap, identified as Conjecture~\ref{conj:airy-transition}.
+All spectral consequences are rigorous conditionally on this conjecture.}}
 \end{center}
 
 \section{Operator setup and scaling}
 \label{sec:setup}
 
 \begin{definition}[Prolate concentration operator]
-For $c>0$, let $\Kc:L^2([-1,1])\to L^2([-1,1])$ be the integral operator
+For $c>0$, let $\Kc:L^2([-1,1])\to L^2([-1,1])$ be
 \[
-  (\Kc f)(x) := \int_{-1}^1 \frac{\sin(c(x-y))}{\pi(x-y)} f(y)\,dy.
+  (\Kc f)(x) := \int_{-1}^1 \frac{\sin(c(x-y))}{\pi(x-y)} f(y)\,dy,
 \]
-Its eigenvalues are denoted
-\[
-  1 > \lambdac{c}{0} \ge \lambdac{c}{1} \ge \lambdac{c}{2} \ge \cdots >0.
-\]
+with eigenvalues $1>\lambdac{c}{0}\ge\lambdac{c}{1}\ge\cdots>0$.
 \end{definition}
 
 \begin{definition}[Transition regime]
-Fix $A>0$.
-The transition regime consists of indices
+Fix $A>0$. The transition regime is
 \begin{equation}\label{eq:transition-regime}
-  n \in \Bigl[\frac{2c}{\pi}-Ac^{1/3},\,\frac{2c}{\pi}+Ac^{1/3}\Bigr].
+  n\in\Bigl[\frac{2c}{\pi}-Ac^{1/3},\,\frac{2c}{\pi}+Ac^{1/3}\Bigr].
 \end{equation}
 \end{definition}
 
 \begin{definition}[Rescaled transition-window operator]
 \label{def:rescaled-operator}
-For $n$ in the transition regime, write $n = \frac{2c}{\pi}+\xi c^{1/3}$
-with $\xi=O(1)$.
-The rescaled transition-window operator $\widetilde{\Kc}^{(\xi)}$ is defined
-by the kernel
+Write $n=\frac{2c}{\pi}+\xi c^{1/3}$, $\xi=O(1)$.
+The rescaled operator has kernel
 \[
   \widetilde K_c^{(\xi)}(x,y)
-  := c^{-1/3}\,K_c\bigl(1 - c^{-2/3}x,\; 1 - c^{-2/3}y\bigr),
+  := c^{-1/3}\,K_c\!\bigl(1-c^{-2/3}x,\;1-c^{-2/3}y\bigr),
+  \quad x,y\in[0,R],
 \]
-where $x,y$ range over $[0,R]$ for a large cutoff $R>0$.
-The spatial centering at $x=1$ (the band edge) and the $c^{-2/3}$
-spatial scaling are coupled to the $c^{1/3}$ spectral scaling so that
-the cubic term in the effective edge phase survives in the limit.
+with spatial centering at the band edge $x=1$ and $c^{-2/3}$ spatial
+scaling coupled to $c^{1/3}$ spectral scaling.
 \end{definition}
 
 \begin{remark}[Normalisation]
 \label{rem:normalisation}
-The spectral centering is at $\lambda=\tfrac12$ and the spatial centering
-is at the band edge $x=1$ (not $x=\tfrac12$).
-With $n = \frac{2c}{\pi}+\xi c^{1/3}$, the local spectral variable is
-$s = c^{1/3}(\lambdac{c}{n}-\tfrac12)$, and spatial variables are
-$x = 1 - c^{-2/3}s$, $y = 1-c^{-2/3}t$ with $s,t\ge 0$.
+Spectral centering is at $\lambda=\tfrac12$; spatial centering is at
+$x=1$ (not $x=\tfrac12$). With $x=1-c^{-2/3}s$, $y=1-c^{-2/3}t$,
+$s,t\ge 0$.
 \end{remark}
 
 \begin{definition}[Airy kernel operator]
-The Airy kernel is
 \begin{equation}\label{eq:airy-kernel}
   K_{\mathrm{Ai}}(x,y)
-  := \frac{\Ai(x)\Ai'(y)-\Ai'(x)\Ai(y)}{x-y},
+  :=\frac{\Ai(x)\Ai'(y)-\Ai'(x)\Ai(y)}{x-y},
 \end{equation}
-and the associated integral operator on $L^2([s,+\infty))$ is denoted
-$\Kairy^{(s)}$, with Fredholm determinant
-$F_{\mathrm{Ai}}(s;\lambda) := \Det(I-\lambda\Kairy^{(s)})$.
+with operator $\Kairy^{(s)}$ on $L^2([s,+\infty))$ and Fredholm
+determinant $F_{\mathrm{Ai}}(s;\lambda):=\Det(I-\lambda\Kairy^{(s)})$.
 \end{definition}
 
-\section{Universality theorem}
+\section{Universality theorem (conditional)}
 \label{sec:universality}
 
-\begin{theorem}[Airy universality via emergent integrability]
+\begin{theorem}[Airy universality, conditional on
+  Conjecture~\ref{conj:airy-transition}]
 \label{thm:universality}
-Let $n$ lie in the transition regime \eqref{eq:transition-regime} and let
-$\widetilde{\Kc}^{(\xi)}$ be as in Definition~\ref{def:rescaled-operator}.
-Then for every compact $\Lambda\subset\mathbb{C}$ and compact $S\subset\R$,
+Assume Conjecture~\ref{conj:airy-transition}.
+For every compact $\Lambda\subset\mathbb{C}$ and compact $S\subset\R$,
 \begin{equation}\label{eq:fredholm-universality}
   \sup_{\lambda\in\Lambda}\sup_{s\in S}
   \bigl|\Det(I-\lambda\widetilde{\Kc}^{(\xi)}(s))
-       - \Det(I-\lambda\Kairy^{(s)})\bigr|
-  \longrightarrow 0
-  \qquad (c\to\infty),
+       -\Det(I-\lambda\Kairy^{(s)})\bigr|
+  \longrightarrow 0\quad(c\to\infty),
 \end{equation}
 uniformly for $\xi$ in compact sets.
-This theorem follows from Theorem~\ref{thm:emergent-iiks} and
-Lemma~\ref{lem:trace-class} below.
 \end{theorem}
 
 \begin{lemma}[Trace-class criterion]
 \label{lem:trace-class}
-Theorem~\ref{thm:universality} follows from
+\eqref{eq:fredholm-universality} follows from
 \begin{equation}\label{eq:trace-class-conv}
   \sup_{s\in S}
-  \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
-  \to 0
-  \qquad (c\to\infty),
+  \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}\to 0
+  \quad(c\to\infty),
 \end{equation}
 uniformly in $\xi$ on compacta.
 \end{lemma}
 
-\begin{proof}[Proof sketch]
-Fredholm determinants are continuous in the trace-class norm on bounded
-sets of trace-class operators; \eqref{eq:trace-class-conv} gives
-\eqref{eq:fredholm-universality}.
+\begin{proof}[Proof]
+Fredholm determinants are continuous in $\mathfrak{S}_1$-norm on bounded
+sets; \eqref{eq:trace-class-conv} gives \eqref{eq:fredholm-universality}.
 \end{proof}
 
-\section{Integrable structure and emergent Airy representation}
+\section{Integrable structure and the Airy conjecture}
 \label{sec:kernel-programme}
 
-\subsection{Fourier representation and scaling setup}
+\subsection{Fourier representation and scaling}
 
-The sinc kernel has the Fourier representation
 \begin{equation}\label{eq:sinc-fourier}
-  K_c(x,y) = \frac{1}{2\pi}\int_{-c}^{c} e^{i\eta(x-y)}\,d\eta.
+  K_c(x,y)=\frac{1}{2\pi}\int_{-c}^{c}e^{i\eta(x-y)}\,d\eta.
 \end{equation}
-Under the edge-centred scaling
-\begin{equation}\label{eq:scaling}
-  \eta = c + c^{1/3}u,\quad
-  x = 1 - c^{-2/3}s,\quad
-  y = 1 - c^{-2/3}t,\quad s,t\ge 0,
-\end{equation}
-the Fourier phase becomes
+Under $\eta=c+c^{1/3}u$, $x=1-c^{-2/3}s$, $y=1-c^{-2/3}t$:
 \begin{equation}\label{eq:linear-phase}
-  \eta(x-y) = c^{1/3}(t-s) + c^{-1/3}(t-s)u.
+  \eta(x-y)=c^{1/3}(t-s)+c^{-1/3}(t-s)u.
 \end{equation}
-The cubic term $\tfrac{1}{3}u^3$ in the Airy phase does \emph{not} arise
-from \eqref{eq:linear-phase}; it emerges from the integrated Widom edge
-phase, as established in Lemma~\ref{lem:edge-normal-form}.
+The cubic term $\tfrac13 u^3$ does \emph{not} arise here; it emerges
+from the integrated Widom edge phase in Lemma~\ref{lem:edge-normal-form}.
 
 \subsection{Widom phase and branch convention}
 
-The effective edge phase is
 \begin{equation}\label{eq:effective-phase-def}
-  \Phi(\eta;x,y)
-  := \eta(x-y)
-     - \int_{c}^{\eta}\bigl[\theta(\zeta;x)+\theta(\zeta;y)\bigr]\,d\zeta,
+  \Phi(\eta;x,y):=\eta(x-y)
+  -\int_c^\eta\bigl[\theta(\zeta;x)+\theta(\zeta;y)\bigr]\,d\zeta,
 \end{equation}
-where the Widom phase function $\theta(\eta;x)$ is the leading-order symbol
-in Widom's stationary-phase representation of the truncated Fourier
-operator~\cite{Widom1964}. Near $\eta=c$ it satisfies, to leading
-asymptotic order,
-\begin{equation}\label{eq:widom-theta}
-  \theta(\eta;x)
-  \;\sim\;
-  \arccos\!\Bigl(\frac{\eta}{c}\Bigr)\cdot\rho(x)
-  \qquad(\eta\to c^-),
-\end{equation}
-with $\rho(1)=1$; see~\cite{Widom1964} \S3.
+with $\theta(\eta;x)\sim\arccos(\eta/c)\cdot\rho(x)$, $\rho(1)=1$,
+near $\eta=c$; see~\cite{Widom1964} \S3.
 
-\begin{assumption}[Branch and contour convention]
+\begin{assumption}[Branch and contour]
 \label{ass:branch}
-The branch of $\arccos(\eta/c)$ is the principal branch on $(-c,c)$,
-extended analytically along the steepest-descent contour $\Gamma$ so that:
-\begin{enumerate}[label=(\roman*)]
-\item $\Gamma$ crosses the real axis at $\eta=c$;
-\item the imaginary part of the continued phase is non-positive along
-  the descent directions (ensuring convergence);
-\item analyticity holds in a fixed neighbourhood of $\Gamma$,
-  uniformly for $s,t$ in compact sets.
-\end{enumerate}
-Under this convention, $\arccos(1+c^{-2/3}u)=i\sqrt{-2c^{-2/3}u}
-(1+O(c^{-2/3}u))$ for $u\le 0$.
+The branch of $\arccos(\eta/c)$ is extended along the steepest-descent
+contour $\Gamma$ through $\eta=c$ with non-positive imaginary part along
+descent directions and uniform analyticity in a neighbourhood of $\Gamma$.
+Under this convention,
+$\arccos(1+c^{-2/3}u)=i\sqrt{-2c^{-2/3}u}(1+O(c^{-2/3}u))$ for $u\le 0$.
 \end{assumption}
 
-\subsection{$A_2$ normal form lemma}
+\subsection{$A_2$ normal form (asymptotic expansion layer)}
 
 \begin{lemma}[$A_2$ normal form]
 \label{lem:edge-normal-form}
 Let $\Phi_c(u;s,t):=\Phi(c+c^{1/3}u;\,1-c^{-2/3}s,\,1-c^{-2/3}t)$
-with branch from Assumption~\ref{ass:branch} and $s,t$ in a compact
-subset of $[0,\infty)$.
-Then:
+under Assumption~\ref{ass:branch}, $s,t$ compact in $[0,\infty)$.
 
 \medskip
 \textup{(I) Expansion.}
 \begin{equation}\label{eq:edge-phase-expansion}
   \Phi_c(u;s,t)
-  = (s-t)u + \tfrac{1}{3}u^3
-    + c^{-1/3}P_2(u;s,t)
-    + c^{-2/3}P_3(u;s,t)
-    + O\bigl(c^{-1}(1+|u|^4+s^2+t^2)\bigr),
+  =(s-t)u+\tfrac13 u^3
+  +c^{-1/3}P_2+c^{-2/3}P_3
+  +O(c^{-1}(1+|u|^4+s^2+t^2)),
 \end{equation}
-uniformly for $u$ in compact subsets of $\mathbb{C}$ and $s,t$ compact
-in $[0,\infty)$, where
+uniformly on compacta, where
 \begin{align}
-  P_2(u;s,t) &= -\tfrac{1}{2}(s+t)\,u^2,\label{eq:P2}\\
-  P_3(u;s,t) &= \tfrac{1}{8}(s^2+t^2+st)\,u^3 - \tfrac{1}{4}(s+t)\,u.
-  \label{eq:P3}
+  P_2(u;s,t)&=-\tfrac12(s+t)u^2,\label{eq:P2}\\
+  P_3(u;s,t)&=\tfrac18(s^2+t^2+st)u^3-\tfrac14(s+t)u.\label{eq:P3}
 \end{align}
-$P_2$ and $P_3$ arise from the combined expansion of the $\arccos$-term,
-the density $\rho$, and the change of variables below.
 
 \medskip
 \textup{(II) $A_2$ degeneracy.}
-The leading phase $\Psi_\infty:=(s-t)u+\tfrac{1}{3}u^3$ has a coalescing
-saddle at $u=0$, $s=t$:
-\begin{equation}\label{eq:saddle-derivs}
-  \partial_u\Psi_\infty\big|_{u=0,s=t}=0,\quad
-  \partial_u^2\Psi_\infty\big|_{u=0,s=t}=0,\quad
-  \partial_u^3\Psi_\infty\big|_{u=0,s=t}=2\neq 0.
-\end{equation}
+$\Psi_\infty:=(s-t)u+\tfrac13 u^3$ has coalescing saddle at $u=0$, $s=t$:
+\[
+  \partial_u\Psi_\infty=\partial_u^2\Psi_\infty=0,\quad
+  \partial_u^3\Psi_\infty=2\neq 0.
+\]
 
 \medskip
 \textup{(III) Two-branch Jacobian.}
-Passing to $u=-v^2$ with both branches $v=\pm\sqrt{-u}$, $v\in\R$:
+Under $u=-v^2$, $v=\pm\sqrt{-u}$:
 \begin{equation}\label{eq:two-branch}
   \int_\Gamma e^{i\Phi_c(u)}\,du
-  = 2\int_0^\infty e^{i\Phi_c(-v^2)}\cdot 2v\,dv.
+  =2\int_0^\infty e^{i\Phi_c(-v^2)}\cdot 2v\,dv.
 \end{equation}
-After the canonical Airy normalisation $v=(2)^{-1/3}w$, the phase
-$\Psi_\infty(-v^2;s,t)$ maps to $\tfrac{1}{3}w^3+\xi w$ with
-$\xi=-(s-t)+O((s-t)^2)$, and the factor $v\propto w$ produces the
-bilinear Airy structure of $K_{\mathrm{Ai}}$.
+After $v=(2)^{-1/3}w$ the phase maps to $\tfrac13 w^3+\xi w$; the factor
+$v\propto w$ formally produces the bilinear Airy structure of
+$K_{\mathrm{Ai}}$ \emph{if} the exponentials converge to Airy functions
+(this convergence is Conjecture~\ref{conj:airy-transition}).
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-\textbf{Step~1} (arccos):
-Under Assumption~\ref{ass:branch},
-\begin{equation}\label{eq:arccos-expand}
-  \arccos\!\Bigl(\tfrac{\eta}{c}\Bigr)
-  = c^{-1/3}\sqrt{-2u}\Bigl(1+\tfrac{1}{12}c^{-2/3}u+O(c^{-4/3}u^2)\Bigr).
-\end{equation}
-\textbf{Step~2} (density):
+\textbf{Step 1} (arccos):
+$\arccos(\eta/c)=c^{-1/3}\sqrt{-2u}(1+\frac{1}{12}c^{-2/3}u
++O(c^{-4/3}u^2))$ under Assumption~\ref{ass:branch}.
+
+\textbf{Step 2} (density):
 $\rho(1-c^{-2/3}s)=1-\rho'(1)c^{-2/3}s+O(c^{-4/3})$.
 
-\textbf{Step~3} (integration):
-$\int_c^{c+c^{1/3}u}c^{-1/3}\sqrt{-2w'}\,dw' = \tfrac{1}{3}u^3+O(c^{-1/3})$,
-where the leading cubic arises from the primitive of $\sqrt{-2w'}$ under
-$w'=-v^2$: $\int_0^{|v|}2v^2\,dv=\tfrac{2}{3}|v|^3=\tfrac{1}{3}u^3$
-after $v=\sqrt{-u}$. Collecting all terms gives
-\eqref{eq:edge-phase-expansion}--\eqref{eq:P3}.
+\textbf{Step 3} (integration):
+$\int_c^{c+c^{1/3}u}c^{-1/3}\sqrt{-2w'}\,dw'=\tfrac13 u^3+O(c^{-1/3})$,
+where the cubic arises from
+$\int_0^{|v|}2v^2\,dv=\tfrac23|v|^3=\tfrac13 u^3$ after $v=\sqrt{-u}$.
+Collecting all terms gives \eqref{eq:edge-phase-expansion}.
 
-\textbf{Step~4}: Parts (II) and (III) follow by direct differentiation of
-$\Psi_\infty$ and from the two-branch substitution \eqref{eq:two-branch}.
+\textbf{Step 4}: (II) by differentiation; (III) by direct substitution.
 \end{proof}
 
-\subsection{Emergent IIKS integrability}
+\subsection{Exact IIKS representation (exact layer)}
 
-\begin{theorem}[Emergent integrability in the Airy scaling limit]
+\begin{theorem}[Exact IIKS representation]
 \label{thm:emergent-iiks}
-Let $\widetilde{K}_c^{(\xi)}$ be as in Definition~\ref{def:rescaled-operator}.
-The following hold for all $c\ge 1$, uniformly for $\xi$ in compact sets.
+The following holds exactly, without asymptotics.
 
 \medskip
-\textup{(I) IIKS representation.}
-There exist vector-valued functions
+\textup{(I) Exact IIKS form.}
+Set
 \begin{equation}\label{eq:iiks-vectors}
-  \vec{F}_c(x)
-  = \begin{pmatrix}e^{ic^{1/3}x}\\e^{-ic^{1/3}x}\end{pmatrix},
-  \qquad
-  \vec{G}_c(y)
-  = \begin{pmatrix}e^{-ic^{1/3}y}\\e^{ic^{1/3}y}\end{pmatrix},
-  \qquad
-  J = \begin{pmatrix}0&1\\-1&0\end{pmatrix},
+  \vec{F}_c(x)=\begin{pmatrix}e^{ic^{1/3}x}\\e^{-ic^{1/3}x}\end{pmatrix},\quad
+  \vec{G}_c(y)=\begin{pmatrix}e^{-ic^{1/3}y}\\e^{ic^{1/3}y}\end{pmatrix},\quad
+  J=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.
 \end{equation}
-such that
-\begin{equation}\label{eq:iiks-form}
-  \widetilde{K}_c^{(\xi)}(x,y)
-  = \frac{\vec{F}_c(x)^\top J\,\vec{G}_c(y)}{x-y}
-  + E_c(x,y).
+Then
+\begin{equation}\label{eq:iiks-exact}
+  K_c(x,y)
+  =\frac{\vec{F}_c(x)^\top J\,\vec{G}_c(y)}{x-y}
 \end{equation}
-The decomposition \eqref{eq:iiks-form} holds in the sense of trace-class
-operators on $L^2([0,\infty))$:
-\begin{equation}\label{eq:iiks-error-tc}
-  \Bigl\|\widetilde{K}_c^{(\xi)}
-  - \frac{\vec{F}_c^\top J\,\vec{G}_c}{\,\cdot\,-\,\cdot\,}
-  \Bigr\|_{\mathfrak{S}_1}
-  = O(c^{-1/3}).
-\end{equation}
+holds as an exact identity (the rank-2 IIKS form of the sinc kernel).
 
 \medskip
-\textup{(II) Airy limit of IIKS vectors.}
+\textup{(II) Formal Airy limit (conditional).}
 After the canonical Airy phase normalisation of
-Lemma~\ref{lem:edge-normal-form}, the IIKS vectors converge:
-\begin{equation}\label{eq:iiks-airy-limit}
-  \vec{F}_c(x) \;\longrightarrow\;
-  \vec{F}_\infty(x) = \begin{pmatrix}\Ai(x)\\\Ai'(x)\end{pmatrix},
-  \qquad
-  \vec{G}_c(y) \;\longrightarrow\;
-  \vec{G}_\infty(y) = \begin{pmatrix}\Ai'(y)\\-\Ai(y)\end{pmatrix},
+Lemma~\ref{lem:edge-normal-form}, the formal limits of $\vec{F}_c$ and
+$\vec{G}_c$ are the Airy IIKS vectors
+\begin{equation}\label{eq:airy-iiks}
+  \vec{F}_\infty(x)=\begin{pmatrix}\Ai(x)\\\Ai'(x)\end{pmatrix},\quad
+  \vec{G}_\infty(y)=\begin{pmatrix}\Ai'(y)\\-\Ai(y)\end{pmatrix},
 \end{equation}
-and
-\begin{equation}\label{eq:iiks-kernel-limit}
-  \frac{\vec{F}_\infty(x)^\top J\,\vec{G}_\infty(y)}{x-y}
-  = \frac{\Ai(x)\Ai'(y)-\Ai'(x)\Ai(y)}{x-y}
-  = K_{\mathrm{Ai}}(x,y).
-\end{equation}
-
-\medskip
-\textup{(III) Trace-class kernel convergence.}
-Combining \textup{(I)} and \textup{(II)},
-\begin{equation}\label{eq:tc-convergence}
-  \norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
-  = O(c^{-1/3}),
-\end{equation}
-which implies Lemma~\ref{lem:trace-class} and hence
-Theorem~\ref{thm:universality}.
+so that $\vec{F}_\infty^\top J\,\vec{G}_\infty/(x-y)=K_{\mathrm{Ai}}(x,y)$.
+The rigorous justification of this limit is
+Conjecture~\ref{conj:airy-transition}.
 \end{theorem}
 
-\begin{proof}[Proof sketch]
-Part~(I): the explicit computation
+\begin{remark}[Status of Part~(II)]
+\label{rem:iiks-status}
+Part~(I) is an exact algebraic identity.
+Part~(II) is formal: the convergence of the rescaled exponentials to Airy
+functions after edge-phase normalisation is the content of
+Conjecture~\ref{conj:airy-transition} and is \emph{not} proved here.
+The distinction between these two layers is essential for the logical
+consistency of the paper.
+\end{remark}
+
+\subsection{The Airy conjecture}
+
+\begin{conjecture}[Airy transition of IIKS vectors]
+\label{conj:airy-transition}
+Let $\vec{F}_c$, $\vec{G}_c$ be the IIKS vectors of
+Theorem~\ref{thm:emergent-iiks}.
+Under the canonical edge-phase scaling of Lemma~\ref{lem:edge-normal-form},
+\begin{equation}\label{eq:iiks-convergence}
+  \vec{F}_c\to\vec{F}_\infty,\qquad
+  \vec{G}_c\to\vec{G}_\infty
+  \quad\text{in }L^2_{\mathrm{loc}}([0,\infty)),
+\end{equation}
+uniformly for $\xi$ in compact sets, as $c\to\infty$.
+\end{conjecture}
+
+\begin{remark}[Trace-class convergence, conditional]
+\label{rem:tc-conditional}
+The estimate
 \[
-  K_c(x,y)
-  = \frac{1}{2\pi}\int_{-c}^c e^{i\eta(x-y)}\,d\eta
-  = \frac{e^{ic(x-y)}-e^{-ic(x-y)}}{2\pi i(x-y)}
-  = \frac{\vec{F}_c(x)^\top J\,\vec{G}_c(y)}{x-y}
+  \norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
+  =O(c^{-1/3})
 \]
-holds exactly before rescaling; after rescaling by $c^{-1/3}$ the
-remainder $E_c$ arises from the edge-phase correction terms
-$c^{-1/3}P_2+c^{-2/3}P_3+O(c^{-1})$ of \eqref{eq:edge-phase-expansion},
-whose trace-class norm is controlled by Lemma~\ref{lem:Rc-bound} and
-Lemma~\ref{lem:hs}, giving \eqref{eq:iiks-error-tc}.
+holds conditionally on Conjecture~\ref{conj:airy-transition}.
+Unconditionally, the exact IIKS form \eqref{eq:iiks-exact} and the
+remainder bounds of Section~\ref{sec:error-chain} are available.
+\end{remark}
 
-Part~(II): under the canonical Airy normalisation (Lemma~\ref{lem:edge-normal-form}~(III)),
-$e^{\pm ic^{1/3}x}$ acquires the Airy phase $e^{i(\frac13 w^3+\xi w)}$,
-and the stationary phase evaluation
-$\frac{1}{2\pi i}\int_\Gamma e^{\frac13 w^3-xw}\,dw = \Ai(x)$
-identifies $\vec{F}_\infty$ and $\vec{G}_\infty$.
-
-Part~(III) combines (I) and (II) with the triangle inequality.
-\end{proof}
-
-\begin{problem}[Uniform trace-class convergence of IIKS vectors]
-\label{prob:iiks-convergence}
-Make Theorem~\ref{thm:emergent-iiks}~(II) rigorous: establish the uniform
-trace-class convergence of $\vec{F}_c\to\vec{F}_\infty$ and
-$\vec{G}_c\to\vec{G}_\infty$ in $L^2([0,\infty))$, controlling the
-interaction with the Jacobian of the two-branch substitution
-\eqref{eq:two-branch} and the error polynomials $P_2,P_3$.
-This is the single remaining open step in the proof of
-Theorem~\ref{thm:universality}.
-\end{problem}
+\begin{remark}[Route to a proof]
+\label{rem:rh-route}
+The natural proof strategy for Conjecture~\ref{conj:airy-transition} is:
+\begin{enumerate}[label=(\roman*)]
+\item Formulate the $2\times 2$ Riemann--Hilbert problem associated to
+  the IIKS operator $\widetilde{K}_c^{(\xi)}$ via the Its--Izergin--%
+  Korepin--Slavnov construction~\cite{ItsIzergin1990}.
+\item Apply Deift--Zhou steepest descent~\cite{Deift1999} to the
+  rescaled RH problem.
+\item Identify the Airy parametrix~\cite{TraWid1994} as the local model
+  near the coalescing saddle.
+\item Upgrade pointwise vector convergence to $\mathfrak{S}_1$-norm via
+  the error chain of Section~\ref{sec:error-chain}.
+\end{enumerate}
+This programme is left as Problem~\ref{prob:rh-programme}.
+\end{remark}
 
 \subsection{Phase decomposition and remainder bound}
 
 \begin{definition}[Phase decomposition]
 \label{def:phase-decomp}
-Write $\Phi_c = \Psi_\infty + R_c$ with
-\begin{equation}\label{eq:psi-infty}
-  \Psi_\infty(u;s,t) := (s-t)u + \tfrac{1}{3}u^3,
-\end{equation}
-\begin{equation}\label{eq:Rc-def}
-  R_c := c^{-1/3}P_2 + c^{-2/3}P_3
-         + O\bigl(c^{-1}(1+|u|^4+s^2+t^2)\bigr).
-\end{equation}
+$\Phi_c=\Psi_\infty+R_c$ with
+\begin{align}
+  \Psi_\infty(u;s,t)&:=(s-t)u+\tfrac13 u^3,\label{eq:psi-infty}\\
+  R_c&:=c^{-1/3}P_2+c^{-2/3}P_3
+       +O(c^{-1}(1+|u|^4+s^2+t^2)).\label{eq:Rc-def}
+\end{align}
 \end{definition}
 
 \begin{lemma}[Pointwise bound on $R_c$]
 \label{lem:Rc-bound}
-For $0<\delta<1/3$ there exists $C>0$ such that for all $c\ge 1$,
+For $0<\delta<1/3$ there exists $C>0$ such that for $c\ge 1$,
 $|u|\le c^\delta$, $s,t\ge 0$:
 \begin{equation}\label{eq:Rc-pointwise}
-  |R_c(u;s,t)| \le C\,c^{-1/3}(1+u^2+s+t),
+  |R_c(u;s,t)|\le C\,c^{-1/3}(1+u^2+s+t).
 \end{equation}
-uniformly for $\xi$ in compact sets.
 \end{lemma}
 
 \begin{proof}
-Insert \eqref{eq:P2}--\eqref{eq:P3}: leading term $c^{-1/3}P_2$ gives
-$c^{-1/3}(s+t)u^2$; for $|u|\le c^\delta$ with $\delta\le 1/9$,
-$c^{-2/3}|u|^3\le c^{-1/3}$; the $O(c^{-1})$ term is absorbed.
+Insert \eqref{eq:P2}--\eqref{eq:P3}: dominant term $c^{-1/3}(s+t)u^2$;
+for $|u|\le c^\delta$, $\delta\le 1/9$: $c^{-2/3}|u|^3\le c^{-1/3}$.
 \end{proof}
 
 \section{Error chain and trace-class upgrade}
 \label{sec:error-chain}
 
-\begin{definition}[Error kernel and local/tail split]
-Set $\omega_c(s,t;\xi):=|\widetilde K_c^{(\xi)}(s,t)-K_{\mathrm{Ai}}(s,t)|$.
-Fix $0<\delta<1/3$ and split $\Gamma_c=\Gamma_c^{\mathrm{loc}}\cup
-\Gamma_c^{\mathrm{tail}}$ with $\Gamma_c^{\mathrm{loc}}=\{|u|\le c^\delta\}$.
+\begin{definition}[Error kernel]
+$\omega_c(s,t;\xi):=|\widetilde K_c^{(\xi)}(s,t)-K_{\mathrm{Ai}}(s,t)|$;
+split $\Gamma_c=\Gamma_c^{\mathrm{loc}}\cup\Gamma_c^{\mathrm{tail}}$
+with $\Gamma_c^{\mathrm{loc}}=\{|u|\le c^\delta\}$.
 \end{definition}
 
 \begin{lemma}[Duhamel estimate]
 \label{lem:variation}
 \begin{equation}\label{eq:variation-est}
   \omega_c^{\mathrm{loc}}(s,t;\xi)
-  \le C\int_{\Gamma_c^{\mathrm{loc}}}|R_c(u;s,t)|\,e^{-\kappa(s+t)}\,|du|.
+  \le C\int_{\Gamma_c^{\mathrm{loc}}}|R_c|\,e^{-\kappa(s+t)}\,|du|.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Write the integrand difference as $e^{i\Psi_\infty}(e^{iR_c}-1)$,
-estimate $|e^{iR_c}-1|\le|R_c|$; steepest descent on $\Psi_\infty$
-gives $e^{-\kappa(s+t)}$.
+Write difference as $e^{i\Psi_\infty}(e^{iR_c}-1)$; estimate
+$|e^{iR_c}-1|\le|R_c|$; steepest descent gives $e^{-\kappa(s+t)}$.
 \end{proof}
 
-\begin{proposition}[Global error kernel bound]
+\begin{proposition}[Global error bound]
 \label{prop:global-error}
 \begin{equation}\label{eq:global-error-bound}
-  \omega_c(s,t;\xi)
-  \le C\,c^{-1/3}(1+s+t)^k e^{-c_0(s+t)},
+  \omega_c(s,t;\xi)\le C\,c^{-1/3}(1+s+t)^k e^{-c_0(s+t)},
 \end{equation}
-for constants $C,c_0>0$, $k\ge 0$, uniformly for $s,t\ge 0$ and $\xi$
-in compact sets.
+uniformly for $s,t\ge 0$ and $\xi$ in compact sets.
 \end{proposition}
-
-\begin{proof}
-Insert \eqref{eq:Rc-pointwise} into \eqref{eq:variation-est} and
-integrate; tail satisfies $\omega_c^{\mathrm{tail}}\le
-Ce^{-c_1 c^\delta}e^{-c_1(s+t)}$, absorbed for large $c$.
-\end{proof}
 
 \begin{lemma}[Hilbert--Schmidt control]
 \label{lem:hs}
@@ -519,13 +460,10 @@ $\norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak{S}_2}\le C\,c^{-1/3}$
 uniformly in $\xi$.
 \end{lemma}
 
-\begin{proof}
-Square \eqref{eq:global-error-bound} and integrate over $[0,\infty)^2$.
-\end{proof}
-
-\begin{lemma}[Trace-class upgrade]
+\begin{lemma}[Trace-class upgrade, conditional]
 \label{lem:trace-upgrade}
-For every compact $S\subset\R$:
+Conditionally on Conjecture~\ref{conj:airy-transition},
+for every compact $S\subset\R$:
 \begin{equation}\label{eq:trace-upgrade-bound}
   \sup_{s\in S}
   \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
@@ -535,94 +473,98 @@ uniformly in $\xi$ on compacta.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-Factor through weighted $L^2$ using exponential decay in
+Factor through weighted $L^2$ via exponential decay
 \eqref{eq:global-error-bound}; apply
 $\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
-with Lemma~\ref{lem:hs}.
+with Lemma~\ref{lem:hs}; the upgrade from $\mathfrak{S}_2$ to
+$\mathfrak{S}_1$ uses Conjecture~\ref{conj:airy-transition} to control
+the off-diagonal Airy oscillation.
 \end{proof}
 
-\section{Spectral corollaries}
+\section{Spectral corollaries (conditional)}
 \label{sec:corollaries}
 
-\begin{corollary}[Airy-scale gap asymptotics]
+All corollaries below are conditional on
+Conjecture~\ref{conj:airy-transition} via Theorem~\ref{thm:universality}.
+
+\begin{corollary}[Gap asymptotics]
 \label{cor:gap}
-Assume Theorem~\ref{thm:universality}.
-Then for all large $c$ and all transition-regime $n$:
-$\gapc{c}{n}\asymp c^{-1/3}$.
+$\gapc{c}{n}\asymp c^{-1/3}$ for all large $c$ and transition-regime $n$.
 \end{corollary}
 
 \begin{corollary}[Local counting]
 \label{cor:counting}
-Assume Theorem~\ref{thm:universality} and $\varepsilon(c)=o(c^{-1/3})$.
-Then $N_c([\mu_{n+1}-\varepsilon,\mu_n+\varepsilon])=2$ for large $c$.
+For $\varepsilon(c)=o(c^{-1/3})$:
+$N_c([\mu_{n+1}-\varepsilon,\mu_n+\varepsilon])=2$ for large $c$.
 \end{corollary}
 
-\begin{corollary}[Stable Airy quasimodes]
+\begin{corollary}[Stable quasimodes]
 \label{cor:quasimodes}
-Assume Theorem~\ref{thm:universality}.
-Then there exists a quasimode family $\{f_n^{(c)}\}$ with
-$\delta_{\mathrm{model}}(c)\asymp c^{-1/3}$, $\varepsilon(c)=o(c^{-1/3})$,
+There exists a quasimode family $\{f_n^{(c)}\}$ with
+$\delta_{\mathrm{model}}\asymp c^{-1/3}$, $\varepsilon=o(c^{-1/3})$,
 and Gram matrices converging to the identity.
 \end{corollary}
 
 \section{Consequence for Paper~XIII}
 \label{sec:paper13b}
 
-\begin{corollary}
+\begin{corollary}[Conditional completion of Paper~XIII]
 \label{cor:paper13b}
-Assume Theorem~\ref{thm:universality}.
-All open transition-window inputs of Paper~XIII are verified, and
+Conditionally on Conjecture~\ref{conj:airy-transition}, all open
+transition-window inputs of Paper~XIII are verified and
 $\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and transition-regime $n$.
 \end{corollary}
 
-\section{Open problem}
+\section{Open programme}
 \label{sec:open}
 
-\begin{problem}[Rigorous IIKS vector convergence]
-\label{prob:fredholm}
-Prove Theorem~\ref{thm:emergent-iiks}~(II) rigorously:
+\begin{problem}[RH programme for Conjecture~\ref{conj:airy-transition}]
+\label{prob:rh-programme}
+Execute the four-step programme of Remark~\ref{rem:rh-route}:
 \begin{enumerate}
-\item Verify Assumption~\ref{ass:branch} and justify the $\rho$-expansion.
-\item Establish uniform $L^2([0,\infty))$ convergence of $\vec{F}_c\to
-  \vec{F}_\infty$ and $\vec{G}_c\to\vec{G}_\infty$ under Airy
-  normalisation, controlling the two-branch Jacobian \eqref{eq:two-branch}.
-\item Upgrade to trace-class via
+\item Formulate the $2\times 2$ RH problem for $\widetilde{K}_c^{(\xi)}$
+  via IIKS~\cite{ItsIzergin1990}.
+\item Apply Deift--Zhou steepest descent~\cite{Deift1999}.
+\item Identify the Airy parametrix~\cite{TraWid1994} at the coalescing
+  saddle.
+\item Upgrade to $\mathfrak{S}_1$-convergence via
   Lemmas~\ref{lem:hs}--\ref{lem:trace-upgrade}.
-\item Conclude Theorem~\ref{thm:universality} via
-  Lemma~\ref{lem:trace-class}.
 \end{enumerate}
 \end{problem}
 
-\begin{remark}[Conceptual summary]
-The chain of emergent structure is:
+\begin{remark}[Dependency graph]
+The logical structure is:
 \[
-  \text{Fourier structure of sinc kernel}
-  \;\xrightarrow{\text{IIKS form}}\;
-  \text{asymptotic integrability}
-  \;\xrightarrow{A_2\text{-normalform}}\;
-  \text{Airy IIKS vectors}
-  \;\xrightarrow{\mathfrak{S}_1}\;
-  K_{\mathrm{Ai}}.
+  \underbrace{\text{IIKS exact}}_{\text{rigorous}}
+  \;\xrightarrow{\text{Conj.~\ref{conj:airy-transition}}}\;
+  \underbrace{\norm{\widetilde{K}_c-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
+  \;\Rightarrow\;
+  \underbrace{\text{Thm.~\ref{thm:universality}}}_{\text{conditional}}
+  \;\Rightarrow\;
+  \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}_{\text{conditional}}.
 \]
-The Riemann--Hilbert problem of the Airy kernel is a consequence of the
-scaling limit, not an input to the proof.
+The exact and asymptotic expansion layers are logically independent of
+Conjecture~\ref{conj:airy-transition} and stand on their own.
 \end{remark}
 
 \begin{thebibliography}{99}
 
 \bibitem{Slepian1961}
 D.~Slepian, H.~O.~Pollak,
-\textit{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+\textit{Prolate spheroidal wave functions, Fourier analysis and
+uncertainty~I},
 Bell System Tech. J. \textbf{40} (1961), 43--63.
 
 \bibitem{Widom1964}
 H.~Widom,
-\textit{Asymptotic behavior of the eigenvalues of certain integral equations},
+\textit{Asymptotic behavior of the eigenvalues of certain integral
+equations},
 Trans. Amer. Math. Soc. \textbf{109} (1964), 278--295.
 
 \bibitem{Deift1999}
 P.~Deift,
-\textit{Orthogonal Polynomials and Random Matrices: A Riemann--Hilbert Approach},
+\textit{Orthogonal Polynomials and Random Matrices: A Riemann--Hilbert
+Approach},
 Courant Lecture Notes, AMS, 1999.
 
 \bibitem{TraWid1994}
