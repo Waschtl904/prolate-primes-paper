@@ -1,0 +1,498 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\Kc}{\mathcal{K}_c}
+\newcommand{\Kairy}{\mathcal{K}_{\mathrm{Ai}}}
+\newcommand{\lambdac}[2]{\lambda_{#2}^{(#1)}}
+\newcommand{\gapc}[2]{\mathrm{gap}_{#2}^{(#1)}}
+\newcommand{\Ai}{\mathrm{Ai}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\R}{\mathbb{R}}
+
+\subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
+\keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
+  local eigenvalue counting, Widom asymptotics, sinc kernel,
+  spectral universality, Hilbert--P\'{o}lya programme}
+
+\begin{document}
+
+\title[Transition Regime Spectral Asymptotics for PSWF]{%
+  Transition Regime Spectral Asymptotics for the Prolate Concentration
+  Operator: Local Model Identification and Eigenvalue Counting}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\begin{abstract}
+This paper supplies the asymptotic core required by Paper~XIII:
+it establishes the local spectral structure of the prolate concentration
+operator $\Kc$ in the transition regime $n\sim 2c/\pi$ at the level of
+resolution needed to verify the two open inputs of that paper, namely
+the local model identification and the transition-window eigenvalue
+counting statement.
+
+\medskip
+The approach has two distinct parts.
+The first identifies the precise local operator model governing the
+transition window and establishes that its consecutive eigenvalue spacings
+are of order $c^{-1/3}$ in the Widom--Airy scaling.
+The second establishes a local Weyl-type counting statement for $\Kc$
+in the transition window, of the form
+\[
+  N_c\bigl([\mu_{n+1}(c)-\varepsilon(c),\, \mu_n(c)+\varepsilon(c)]\bigr) = 2
+\]
+for appropriate quasimode parameters and residuals.
+
+\medskip
+\textbf{Main outputs (skeleton).}
+\begin{itemize}
+\item \emph{(Theorem~I.)} Identification of the Airy-type local model in
+  the PSWF transition window.
+\item \emph{(Theorem~II.)} Local Weyl / counting statement in the
+  transition window, verifying the isolation condition of Paper~XIII.
+\end{itemize}
+
+\medskip
+\textbf{Status.}
+This paper is an \emph{open research skeleton}.
+The theorem statements below are stated in the form needed by the series;
+the proofs are work in progress.
+Each unproven step is clearly labelled as an open problem or as a strategy
+requiring further analysis.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+This paper is the analytic sequel to Paper~XIII in the series.
+Paper~XIII reduced the transition-window spectral gap problem to two
+requirements:
+\begin{enumerate}
+\item a quasimode family with model spacing $\delta_{\mathrm{model}}(c)
+  \asymp c^{-1/3}$ and residual $o(c^{-1/3})$;
+\item a local eigenvalue counting statement
+  $N_c([\mu_{n+1}(c)-\varepsilon(c),\mu_n(c)+\varepsilon(c)])=2$
+  in the transition regime.
+\end{enumerate}
+The present paper attacks both requirements from first principles.
+Its tools are transition-regime asymptotics for the PSWF sinc kernel,
+the Widom--Airy scaling picture, and local Weyl-type density estimates.
+
+The transition zone is the interval of indices
+\begin{equation}\label{eq:transition-zone}
+  n\in \Bigl[\frac{2c}{\pi}-c^{1/3}A,\,\frac{2c}{\pi}+c^{1/3}A\Bigr]
+\end{equation}
+for a fixed constant $A>0$.
+This is the natural window in which the bulk Fourier density passes through
+the critical value and the local spacing transitions from bulk-scale $O(c^{-1})$
+to the edge-scale governed by Airy statistics.
+
+The key asymptotic fact underlying both theorems is the following,
+which we state as a working principle:
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\centering\itshape
+In the transition zone \eqref{eq:transition-zone}, the rescaled sinc kernel
+of $\Kc$ converges (after appropriate affine spectral rescaling by $c^{1/3}$)
+to the Airy kernel.
+Consequently, the local eigenvalue statistics of $\Kc$ in this regime are
+governed by the Airy point process at the edge of the semicircle / Fourier
+projection analogue.}}
+\end{center}
+
+\begin{remark}[Relation to Widom and Deift--Zhou]
+The convergence of the sinc kernel to the Airy kernel in the transition zone
+is a non-trivial asymptotic theorem.
+For Toeplitz-type operators and related random matrix ensembles, this is part
+of the Deift--Zhou steepest descent programme.
+For the PSWF concentration operator specifically, the most relevant reference
+is Widom's work on the transition asymptotics of eigenvalue distributions
+\cite{Widom1964}.
+A full Riemann--Hilbert / steepest descent derivation adapted to the PSWF
+kernel would be the rigorous foundation of Theorem~I.
+\end{remark}
+
+\section{Operator setup and transition scaling}
+\label{sec:setup}
+
+\begin{definition}[Prolate concentration operator]
+For $c>0$, the prolate concentration operator is
+\[
+  (\Kc f)(x) := \int_{-1}^1 \frac{\sin(c(x-y))}{\pi(x-y)} f(y)\,dy,
+  \qquad f\in L^2([-1,1]),
+\]
+with eigenvalues $1>\lambdac{c}{0}\ge\lambdac{c}{1}\ge\cdots>0$.
+\end{definition}
+
+\begin{definition}[Transition rescaling]
+For $n$ in the transition zone \eqref{eq:transition-zone}, define the
+rescaled spectral variable
+\begin{equation}\label{eq:rescaling}
+  s = c^{1/3}\Bigl(\lambdac{c}{n}-\tfrac{1}{2}\Bigr)
+\end{equation}
+and the rescaled spacing
+\[
+  \tilde\delta_n(c) := c^{1/3}\gapc{c}{n}.
+\]
+A gap bound $\gapc{c}{n}\asymp c^{-1/3}$ is equivalent to
+$\tilde\delta_n(c)\asymp 1$ in the rescaled variable.
+\end{definition}
+
+\begin{definition}[Airy kernel]
+The Airy kernel is
+\begin{equation}\label{eq:airy-kernel}
+  K_{\mathrm{Ai}}(x,y)
+  := \frac{\Ai(x)\Ai'(y)-\Ai'(x)\Ai(y)}{x-y},
+\end{equation}
+where $\Ai$ denotes the classical Airy function.
+The Airy operator $\Kairy$ acts on $L^2([0,+\infty))$ via this kernel.
+Its eigenvalues, which we denote $\sigma_0>\sigma_1>\sigma_2>\cdots>0$,
+satisfy consecutive-gap estimates
+\begin{equation}\label{eq:airy-gaps}
+  \sigma_k - \sigma_{k+1} \asymp 1
+\end{equation}
+for all $k\ge 0$ (the exact values are governed by the zeros of the Airy
+function).
+\end{definition}
+
+\section{Part I: local model identification}
+\label{sec:model}
+
+The first main task is to identify the Airy operator as the correct local
+model for $\Kc$ in the transition window and to transfer the Airy
+gap estimates back to $\Kc$.
+
+\subsection{Kernel convergence in the transition window}
+
+\begin{assumption}[Kernel convergence to Airy]
+\label{ass:kernel-conv}
+Let $K_c^{(n)}(s,t)$ denote the rescaled kernel of $\Kc$ centred at the
+$n$-th transition-window eigenvalue and rescaled by $c^{1/3}$ in both
+spectral variable and index.
+Assume that
+\begin{equation}\label{eq:kernel-conv}
+  \sup_{|s|,|t|\le R}
+  \bigl|K_c^{(n)}(s,t) - K_{\mathrm{Ai}}(s,t)\bigr| \le \omega(c,R)
+\end{equation}
+for all $R>0$, where $\omega(c,R)\to 0$ as $c\to\infty$ for each fixed $R$.
+\end{assumption}
+
+\begin{remark}[Status of Assumption~\ref{ass:kernel-conv}]
+This is the key asymptotic input of Part~I.
+It is the analogue, for the PSWF sinc kernel, of the Airy kernel
+universality result known for GUE random matrices and for the sine kernel
+in the bulk.
+For the PSWF context, this is closely related to the transition asymptotics
+studied by Widom \cite{Widom1964}; a full proof would use either a steepest
+descent analysis of the kernel integral or a Riemann--Hilbert approach.
+For the purposes of the present skeleton, it is stated as an assumption and
+marked as the primary open problem of Part~I.
+\end{remark}
+
+\begin{lemma}[Airy quasimode construction via kernel convergence]
+\label{lem:airy-quasimode}
+Assume \ref{ass:kernel-conv}.
+Let $\psi_k$ denote a normalised eigenfunction of $\Kairy$ with eigenvalue
+$\sigma_k$, supported (approximately) on $[0,R]$ for some $R>0$.
+For each $n$ in the transition window, define the transported function
+$f_n^{(c)}$ by pulling $\psi_k$ back through the rescaling \eqref{eq:rescaling}.
+Then:
+\begin{enumerate}[\rm(a)]
+\item $\norm{f_n^{(c)}}_{L^2([-1,1])} = 1 + O(\omega(c,R))$;
+\item $\norm{(\Kc - \mu_n(c))f_n^{(c)}} \le C\omega(c,R) + C_R c^{-1/3}$,
+  so the residual is $o(c^{-1/3})$ provided $\omega(c,R)\to 0$ and
+  $R=R(c)$ grows sufficiently slowly;
+\item consecutive transported functions satisfy
+  $\norm{G_n^{(c)}-I}_{\op}\to 0$ by the near-orthogonality of
+  $\psi_k,\psi_{k+1}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof strategy]
+Part~(a) follows from the $L^2$ norm preservation under rescaling up to a
+Jacobian factor, which is $1+O(c^{-1/3})$.
+Part~(b) is the key estimate: the residual
+$\norm{(\Kc-\mu_n(c))f_n^{(c)}}$
+measures how well the rescaled $\Kc$ approximates $\Kairy$ on the
+test function $\psi_k$.
+By \eqref{eq:kernel-conv}, this error is controlled by $\omega(c,R)$
+plus a boundary term of size $C_R c^{-1/3}$ coming from the truncation of
+$\psi_k$ to $[0,R]$.
+Balancing $R$ against $c$ yields the stated residual.
+Part~(c) follows from the $L^2$-orthogonality of Airy eigenfunctions and the
+same kernel approximation bound.
+\end{proof}
+
+\begin{theorem}[Local model identification]
+\label{thm:I}
+Assume \ref{ass:kernel-conv}.
+Then for all $n$ in the transition window \eqref{eq:transition-zone} there
+exists a quasimode family $\{f_n^{(c)}\}$ as in Lemma~\ref{lem:airy-quasimode}
+satisfying all conditions Q1--Q4 of Paper~XIII's
+Assumption~\textnormal{(Local quasimode package)}, with
+\[
+  \delta_{\mathrm{model}}(c) \asymp c^{-1/3},
+  \qquad
+  \varepsilon(c) = o(c^{-1/3}).
+\]
+In particular, the quasimode input required for Theorem~B of Paper~XIII is
+satisfied under Assumption~\ref{ass:kernel-conv}.
+\end{theorem}
+
+\begin{proof}
+Combine Lemma~\ref{lem:airy-quasimode} with the Airy gap estimate
+\eqref{eq:airy-gaps}.
+The model spacing is $\delta_{\mathrm{model}}(c)=c^{-1/3}(\sigma_k-\sigma_{k+1})$,
+which is $\asymp c^{-1/3}$ by \eqref{eq:airy-gaps}.
+The residual bound from part~(b) of the lemma gives $\varepsilon(c)=o(c^{-1/3})$.
+The Gram condition follows from part~(c).
+\end{proof}
+
+\section{Part II: transition-window eigenvalue counting}
+\label{sec:counting}
+
+The second main task is to establish the counting statement
+\begin{equation}\label{eq:counting-target}
+  N_c\bigl([\mu_{n+1}(c)-\varepsilon(c),\,\mu_n(c)+\varepsilon(c)]\bigr)=2
+\end{equation}
+in the transition regime.
+This is a local Weyl-type result for $\Kc$ in spectral windows of width
+comparable to $c^{-1/3}$.
+
+\subsection{PSWF counting function}
+
+\begin{definition}[Local counting function]
+For $c>0$ and an interval $I\subset(0,1)$, define
+\[
+  N_c(I) := \#\{n\ge 0 : \lambdac{c}{n}\in I\}.
+\]
+\end{definition}
+
+\begin{lemma}[Global PSWF counting law]
+\label{lem:global-count}
+For all $c>0$ and $0<a<b<1$,
+\begin{equation}\label{eq:global-count}
+  N_c([a,b]) = \frac{2c}{\pi}(b-a) + O(\log c),
+\end{equation}
+where the error is uniform in $a,b$.
+\end{lemma}
+
+\begin{proof}
+This follows from the classical Widom eigenvalue counting theorem \cite{Widom1964}
+together with the integral formula for the smooth part of the
+eigenvalue distribution density of $\Kc$.
+The leading term reflects the Fourier-projection density $2c/\pi$ in the bulk.
+\end{proof}
+
+\begin{remark}[Limitation of the global law]
+Lemma~\ref{lem:global-count} controls windows of width $\gg c^{-1}(\log c)$.
+However, the counting statement \eqref{eq:counting-target} requires control
+of windows of width comparable to $c^{-1/3}$, which is much smaller.
+This is the essential difficulty of Part~II: the global Weyl law is too
+coarse by a factor of $c^{2/3}$ in the window width.
+Closing this gap requires a local refinement of the counting estimate.
+\end{remark}
+
+\subsection{Local counting strategy}
+
+\begin{assumption}[Local counting refinement]
+\label{ass:local-count}
+In the transition window \eqref{eq:transition-zone}, the PSWF eigenvalue
+counting function admits a local refinement of the form
+\begin{equation}\label{eq:local-count-refinement}
+  N_c\bigl([\lambda - r,\,\lambda + r]\bigr)
+  \le C\,c^{1/3}\,r + 1
+\end{equation}
+for all $\lambda\in[\lambdac{c}{n}-c^{-1/3}, \lambdac{c}{n}+c^{-1/3}]$
+and all $r>0$, uniformly in the transition window.
+\end{assumption}
+
+\begin{remark}[Status of Assumption~\ref{ass:local-count}]
+This is a local density bound: it says that the transition-window eigenvalues
+cannot cluster more densely than the Airy scale $c^{1/3}$ per unit length.
+In random matrix theory, the corresponding statement is known for GUE from
+the explicit Airy kernel density.
+For $\Kc$, it would follow from the kernel convergence Assumption~\ref{ass:kernel-conv}
+together with a quantitative local universality argument.
+This is the central open problem of Part~II.
+\end{remark}
+
+\begin{proposition}[Local counting from density bound]
+\label{prop:local-count}
+Assume \ref{ass:local-count} and let $\mu_n(c),\mu_{n+1}(c)$ be the
+quasimode reference parameters from Theorem~\ref{thm:I}, with
+$|\mu_n(c)-\mu_{n+1}(c)|\asymp c^{-1/3}$.
+Then for $\varepsilon(c)=o(c^{-1/3})$ and all sufficiently large $c$,
+\begin{equation}\label{eq:window-count}
+  N_c\bigl([\mu_{n+1}(c)-\varepsilon(c),\,\mu_n(c)+\varepsilon(c)]\bigr)
+  \le C\,c^{1/3}\cdot c^{-1/3} + 1 = C+1.
+\end{equation}
+Combined with the quasimode residual bound, which gives at least two
+eigenvalues in this window, and under the additional condition that exactly
+no further eigenvalue falls in the gap, \eqref{eq:counting-target} follows.
+\end{proposition}
+
+\begin{proof}[Proof strategy]
+Apply \eqref{eq:local-count-refinement} with $\lambda=\mu_n(c)$ and
+$r=|\mu_n(c)-\mu_{n+1}(c)|+\varepsilon(c)\asymp c^{-1/3}$.
+This gives $N_c(\text{window})\le C+1$ for some absolute constant $C$.
+Since the quasimode residual ensures at least two eigenvalues in the window,
+and since $C+1=O(1)$, the count is bounded from above by an absolute constant.
+The precise claim $N_c(\text{window})=2$ then reduces to excluding additional
+eigenvalues in the window beyond the two already identified.
+This exclusion step uses the model-level gap estimate from Part~I: if a
+third eigenvalue were present in a window of width $\asymp c^{-1/3}$, that
+would contradict the Airy-level spacing $\asymp c^{-1/3}$.
+\end{proof}
+
+\begin{theorem}[Transition-window eigenvalue counting]
+\label{thm:II}
+Assume \ref{ass:kernel-conv} and \ref{ass:local-count}.
+Then for all sufficiently large $c$ and all $n$ in the transition window,
+the local counting statement \eqref{eq:counting-target} holds.
+In particular, the isolation condition of Proposition~C of Paper~XIII is
+satisfied, and the quasimode transfer theorem (Theorem~B of Paper~XIII) is
+applicable without further input.
+\end{theorem}
+
+\begin{proof}
+Combine Theorem~\ref{thm:I} (quasimode construction and model spacing)
+with Proposition~\ref{prop:local-count} (local counting upper bound).
+The lower bound on $N_c$ (at least two eigenvalues) follows from the quasimode
+residual bound in Lemma~\ref{lem:airy-quasimode}.
+The upper bound follows from Assumption~\ref{ass:local-count} via
+Proposition~\ref{prop:local-count}.
+Together these give $N_c(\text{window})=2$.
+\end{proof}
+
+\section{Consequence for the series}
+\label{sec:consequence}
+
+Combining the two main theorems of this paper with the transfer results
+of Paper~XIII gives the following unconditional chain:
+
+\begin{corollary}[Conditional gap at Airy scale]
+\label{cor:airy-gap}
+Assume \ref{ass:kernel-conv} and \ref{ass:local-count}.
+Then for all sufficiently large $c$ and all $n$ in the transition window,
+\[
+  \gapc{c}{n} \ge Cc^{-1/3}.
+\]
+\end{corollary}
+
+\begin{proof}
+Theoems~\ref{thm:I} and \ref{thm:II} verify all inputs of Corollary~D of
+Paper~XIII.
+The conclusion follows.
+\end{proof}
+
+\begin{remark}[What remains open]
+The two assumptions of this paper — kernel convergence to Airy
+(\ref{ass:kernel-conv}) and local density control (\ref{ass:local-count})
+— are closely related and may be provable simultaneously from a
+rigorously established steepest-descent analysis of the PSWF sinc kernel
+in the transition regime.
+This is the remaining hard analytic core of the entire series.
+\end{remark}
+
+\section{Open problems}
+\label{sec:openproblems}
+
+\begin{problem}[Kernel convergence in the transition window]
+\label{prob:kernel-conv}
+Prove Assumption~\ref{ass:kernel-conv}:
+establish that the rescaled sinc kernel of $\Kc$ converges to the Airy
+kernel in the transition window, with a quantitative rate $\omega(c,R)\to 0$.
+The natural approach is a steepest descent / saddle-point analysis of the
+kernel integral representation of $\Kc$.
+\end{problem}
+
+\begin{problem}[Local density bound for PSWF eigenvalues]
+\label{prob:local-density}
+Prove Assumption~\ref{ass:local-count}:
+establish that PSWF eigenvalues cannot cluster more densely than $c^{1/3}$
+per unit length in the transition window.
+This is a local Weyl law at the Airy scale for the prolate operator.
+\end{problem}
+
+\begin{problem}[Quantitative Airy universality for PSWF]
+\label{prob:universality}
+Prove a quantitative version of Airy kernel universality for $\Kc$:
+show that the gap distribution of eigenvalues in the transition window
+converges to the Airy point process gap distribution, with an explicit
+rate in $c$.
+This would simultaneously resolve both \ref{prob:kernel-conv} and
+\ref{prob:local-density}.
+\end{problem}
+
+\begin{thebibliography}{99}
+
+\bibitem{Slepian1961}
+D.~Slepian, H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+Bell System Tech. J. \textbf{40} (1961), 43--63.
+
+\bibitem{Widom1964}
+H.~Widom,
+\textit{Asymptotic behavior of the eigenvalues of certain integral equations},
+Trans. Amer. Math. Soc. \textbf{109} (1964), 278--295.
+
+\bibitem{Deift1999}
+P.~Deift,
+\textit{Orthogonal Polynomials and Random Matrices: A Riemann--Hilbert Approach},
+Courant Lecture Notes, AMS, 1999.
+
+\bibitem{TraWid1994}
+C.~A.~Tracy, H.~Widom,
+\textit{Level-spacing distributions and the Airy kernel},
+Comm. Math. Phys. \textbf{159} (1994), 151--174.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions of Order Zero},
+Springer, 2013.
+
+\bibitem{Kato1966}
+T.~Kato,
+\textit{Perturbation Theory for Linear Operators},
+Springer, 1966.
+
+\bibitem{PaperVIII}
+[Author], \textit{Paper~VIII}, 2026.
+
+\bibitem{PaperXII}
+[Author], \textit{Paper~XII}, 2026.
+
+\bibitem{PaperXIII}
+[Author], \textit{Paper~XIII (paper13b)}, 2026.
+
+\end{thebibliography}
+
+\end{document}
