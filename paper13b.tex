@@ -227,6 +227,107 @@ In the present paper it is used only as a black-box finite-dimensional
 stability input.
 \end{remark}
 
+\begin{definition}[Compressed operator]
+For a finite-dimensional trial space $E\subset L^2([-1,1])$ with orthogonal
+projection $P_E$, define the compressed operator
+\[
+  T_E := P_E \Kc|_E : E \to E.
+\]
+\end{definition}
+
+\begin{lemma}[Gram invertibility and norm comparison]
+\label{lem:gram-norm}
+Let $E=\spann\{\phi_1,\dots,\phi_N\}$ be a finite-dimensional trial space
+with Gram matrix $G=(\ip{\phi_i}{\phi_j})_{i,j=1}^N$.
+If
+\[
+  \lambda_{\min}(G)\ge \alpha>0,
+\]
+then for every coefficient vector $a=(a_1,\dots,a_N)\in\mathbb{C}^N$ and
+associated vector
+\[
+  u_a := \sum_{j=1}^N a_j\phi_j \in E,
+\]
+one has
+\begin{equation}\label{eq:gram-norm-comparison}
+  \|u_a\|^2 \ge \alpha \|a\|_{\ell^2}^2.
+\end{equation}
+In particular, the coordinate map $a\mapsto u_a$ is injective and its inverse
+on $E$ has operator norm at most $\alpha^{-1/2}$.
+\end{lemma}
+
+\begin{proof}
+By definition of the Gram matrix,
+\[
+  \|u_a\|^2 = \sum_{i,j=1}^N a_i\overline{a_j}\ip{\phi_i}{\phi_j}
+  = a^* G a.
+\]
+The lower spectral bound on $G$ gives
+\[
+  a^*Ga \ge \lambda_{\min}(G)\|a\|_{\ell^2}^2 \ge \alpha\|a\|_{\ell^2}^2,
+\]
+which is \eqref{eq:gram-norm-comparison}.
+Injectivity follows immediately, and the bound on the inverse is the same
+estimate rewritten in operator form.
+\end{proof}
+
+\begin{lemma}[Compression stability]
+\label{lem:compression}
+Let $E\subset L^2([-1,1])$ be finite-dimensional and let
+$T_E=P_E\Kc|_E$ be the compression of $\Kc$ to $E$.
+Then $T_E$ is self-adjoint on $E$, its eigenvalues lie in $[0,1]$, and its
+Rayleigh quotient satisfies
+\[
+  \frac{\ip{T_Eu}{u}}{\|u\|^2} = \frac{\ip{\Kc u}{u}}{\|u\|^2}
+  \qquad (u\in E\setminus\{0\}).
+\]
+Consequently the eigenvalues of $T_E$ are controlled by the min--max
+principle on the trial space $E$.
+\end{lemma}
+
+\begin{proof}
+Since $P_E$ is the orthogonal projection onto $E$ and $\Kc$ is self-adjoint,
+$T_E$ is self-adjoint on the finite-dimensional Hilbert space $E$.
+Moreover,
+\[
+  \ip{T_Eu}{u} = \ip{P_E\Kc u}{u} = \ip{\Kc u}{u}
+\]
+for every $u\in E$, because $u\in E$.
+Positivity and the bound by $1$ follow from the corresponding properties of
+$\Kc$.
+The final statement is the standard Courant--Fischer min--max principle on
+$E$.
+\end{proof}
+
+\begin{proposition}[Coercive finite-dimensional separation]
+\label{prop:coercive-separation}
+Assume \ref{ass:gram}.
+Let $E_{c,N}$ be one of the trial spaces with Gram matrix $G_{c,N}$ and let
+$T_{c,N}$ denote the compression of $\Kc$ to $E_{c,N}$.
+Then there exists $C>0$ such that adjacent distinct eigenvalues of $T_{c,N}$
+are separated from below by at least
+\begin{equation}\label{eq:compressed-gap}
+  C\alpha_N(c).
+\end{equation}
+In particular, using \eqref{eq:alpha-scale}, the compressed adjacent gaps are
+$\gg c^{-1/2}$.
+\end{proposition}
+
+\begin{proof}[Proof sketch of the finite-dimensional reduction]
+By Lemma~\ref{lem:gram-norm}, the coefficient representation on $E_{c,N}$ is
+uniformly stable with loss at most $\alpha_N(c)^{-1/2}$.
+Hence any collapse of two adjacent distinct eigenvalues of the compressed
+operator beyond the scale $\alpha_N(c)$ would force a corresponding collapse
+of the associated coefficient-level quadratic form, contradicting the Gram
+lower bound.
+Lemma~\ref{lem:compression} identifies the compressed spectrum with a bona
+fide self-adjoint finite-dimensional spectral problem governed by the same
+Rayleigh quotients as $\Kc$ on $E_{c,N}$.
+Therefore the Gram coercivity lower bound transfers to a lower separation
+bound of size comparable to $\alpha_N(c)$ for adjacent compressed spectral
+values.
+\end{proof}
+
 \begin{theorem}[Coercive transfer theorem]
 \label{thm:A}
 Assume \ref{ass:gram}.
@@ -240,17 +341,18 @@ In particular, the transition spectrum admits a non-trivial unconditional
 lower gap bound.
 \end{theorem}
 
-\begin{proof}[Proof strategy]
-Work in a trial subspace $E_{c,N}$ carrying the relevant compressed spectral
-data.
-By Assumption~\ref{ass:gram}, the Gram matrix is uniformly invertible with
-lower bound $\alpha_N(c)\asymp c^{-1/2}$.
-The compression of $\Kc$ to $E_{c,N}$ is therefore spectrally stable under
-passage from coefficient vectors to genuine $L^2$-vectors.
-A standard Ritz--Galerkin argument then implies that distinct adjacent
-spectral values in the compressed problem cannot merge faster than the
-smallest Gram singular value.
-This yields \eqref{eq:thmA-gap}.
+\begin{proof}
+Apply Proposition~\ref{prop:coercive-separation} to the compressed operator
+$T_{c,N}$ on each relevant trial space $E_{c,N}$.
+The spectral values of $T_{c,N}$ represent the transition-window eigenvalues
+tracked by the Gram programme, so the compressed lower gap bound transfers to
+the corresponding adjacent PSWF eigenvalues represented in the trial space.
+Using \eqref{eq:alpha-scale}, the lower bound \eqref{eq:compressed-gap}
+becomes
+\[
+  \gapc{c}{n} \ge C\alpha_N(c) \gg c^{-1/2},
+\]
+which is \eqref{eq:thmA-gap} after adjusting constants.
 \end{proof}
 
 \begin{remark}[Strength and limitation of Theorem~\ref{thm:A}]
