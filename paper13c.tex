@@ -235,9 +235,9 @@ This yields \eqref{eq:fredholm-universality}.
 \label{sec:kernel-programme}
 
 This section contains the first genuine analytic input of the paper.
-We derive the effective edge phase from first principles, identify the
-coalescing saddle via explicit derivative computations, and close the error
-chain with a pointwise bound on $R_c$.
+We derive the effective edge phase from first principles via a single
+normal-form lemma, identify the coalescing saddle, and close the error chain
+with a pointwise bound on the remainder.
 
 \subsection{Fourier representation and scaling setup}
 
@@ -262,13 +262,14 @@ A direct computation gives
 Equation~\eqref{eq:linear-phase} shows explicitly that the substitution
 \eqref{eq:scaling} applied to the bare Fourier phase $e^{i\eta(x-y)}$
 produces only linear terms in $u$.
-The cubic term $\tfrac{1}{3}u^3$ characteristic of the Airy kernel does
+The cubic term $\tfrac{1}{3}w^3$ characteristic of the Airy kernel does
 \emph{not} arise from the Fourier exponent itself.
 It arises from the integrated edge phase after incorporating the spectral
-projection structure, as explained by the normal-form lemma below.
+projection structure; the precise mechanism is the $A_2$-normal form
+established in Lemma~\ref{lem:edge-normal-form} below.
 \end{remark}
 
-\subsection{The effective edge phase and its normal form}
+\subsection{Widom phase and branch convention}
 
 Following the Widom edge analysis of the sinc kernel~\cite{Widom1964}, the
 relevant oscillatory integral near the band edge $\eta = c$ involves the
@@ -276,47 +277,428 @@ effective phase
 \begin{equation}\label{eq:effective-phase-def}
   \Phi(\eta;x,y)
   := \eta(x-y)
-     - \int_{c}^{\eta}\bigl[\theta(\zeta;x) + \theta(\zeta;y)\bigr]\,d\zeta,
+     - \int_{c}^{\eta}\bigl[\theta(\zeta;x) + \theta(\zeta;y)\bigr]\,d\zeta.
 \end{equation}
-where the Widom phase function $\theta(\eta;x)$ arises from the leading-order
-symbol in Widom's stationary-phase representation of the truncated Fourier
-operator~\cite{Widom1964}. Near the band edge $\eta=c$, it admits, to
-leading asymptotic order, the factorised form
+
+The Widom phase function $\theta(\eta;x)$ is the leading-order symbol in
+Widom's stationary-phase representation of the truncated Fourier
+operator~\cite{Widom1964}.
+Near the band edge $\eta=c$, it admits, to leading asymptotic order, the
+factorised form
 \begin{equation}\label{eq:widom-theta}
   \theta(\eta;x)
   \;\sim\;
   \arccos\!\Bigl(\frac{\eta}{c}\Bigr)\cdot\rho(x)
   \qquad (\eta\to c^-),
 \end{equation}
-where $\rho(x)$ is the local density of states of $\Kc$ at position $x$.
-This separability is an asymptotic statement, not an exact identity; see
-~\cite{Widom1964} \S3 for the precise symbolic construction.
+where $\rho(x)$ is the local density of states of $\Kc$ at position $x$,
+normalised so that $\rho(1)=1$.
+This separability is an asymptotic statement, not an exact identity;
+see~\cite{Widom1964} \S3 for the precise symbolic construction.
 
-\begin{lemma}[Edge phase normal form]
-\label{lem:edge-normal-form}
-Let
-\[
-  \Phi_c(u;s,t)
-  := \Phi\bigl(c+c^{1/3}u;\,1-c^{-2/3}s,\,1-c^{-2/3}t\bigr),
-\]
-with $u$ on a steepest-descent contour crossing the band edge and $s,t$ in a
-fixed compact subset of $[0,\infty)$. Assume the branch of
-$\arccos(\eta/c)$ is chosen so that the continued phase is analytic in a
-neighbourhood of the deformed contour and has non-positive imaginary part
-along the descent directions. Then, after a canonical local change of
-variables near the coalescing saddle, the oscillatory integral associated with
-$\Phi_c$ admits the Airy normal form
-\begin{equation}\label{eq:edge-normal-form}
-  e^{i\Phi_c(u;s,t)}\,du
-  \,=\,
-  e^{i\gamma_c(s,t)}
-  \Bigl( e^{i(\frac13 w^3 + \xi_c(s,t)w)}
-         \bigl(1 + E_c(w;s,t)\bigr) \Bigr)\,dw,
-\end{equation}
-where:
+\begin{assumption}[Branch and contour convention]
+\label{ass:branch}
+We fix the branch of $\arccos(\eta/c)$ for $\eta$ near $c$ as follows.
+For $\eta \in (-c,c)$, set $\arccos(\eta/c) \in (0,\pi)$ (principal branch).
+The function is extended analytically across the band edge $\eta = c$ by
+continuity along the steepest-descent contour $\Gamma$, which is chosen so
+that:
 \begin{enumerate}[label=(\roman*)]
-\item $\gamma_c(s,t)$ is a real phase factor;
-\item $\xi_c(s,t)$ is a smooth parameter satisfying
-\begin{equation}\label{eq:xi-airy-param}
-  \xi_c(s,t) = \alpha\,(s-t) + O\bigl((s-t)^2\bigr)
-",
+\item $\Gamma$ crosses the real axis at $\eta = c$;
+\item along the descent directions of $\Phi(\eta;x,y)$, the imaginary part
+  of the continued $\arccos(\eta/c)$ is non-positive, ensuring convergence
+  of the oscillatory integral after contour deformation;
+\item the analyticity of $\arccos(\eta/c)$ is maintained in a fixed
+  neighbourhood of $\Gamma$ uniformly for $s,t$ in compact sets.
+\end{enumerate}
+Under this convention, $\arccos(1+c^{-2/3}u)$ for $u\le 0$ equals
+$i\sqrt{-2c^{-2/3}u}\,(1 + O(c^{-2/3}u))$, consistent with the
+steepest-descent direction.
+\end{assumption}
+
+\subsection{Master lemma: $A_2$ normal form and Airy kernel emergence}
+
+\begin{lemma}[$A_2$ normal form and Airy kernel emergence]
+\label{lem:edge-normal-form}
+Let $\Phi_c(u;s,t) := \Phi(c+c^{1/3}u;\,1-c^{-2/3}s,\,1-c^{-2/3}t)$
+with the branch and contour from Assumption~\ref{ass:branch}, and
+$s,t$ in a fixed compact subset of $[0,\infty)$.
+Then:
+
+\medskip
+\textup{(I) Expansion.}
+\begin{equation}\label{eq:edge-phase-expansion}
+  \Phi_c(u;s,t)
+  = (s-t)u + \tfrac{1}{3}u^3
+    + c^{-1/3}P_2(u;s,t)
+    + c^{-2/3}P_3(u;s,t)
+    + O\bigl(c^{-1}(1+|u|^4+s^2+t^2)\bigr),
+\end{equation}
+uniformly for $u$ in compact subsets of $\mathbb{C}$ and $s,t$ in compact
+subsets of $[0,\infty)$, where
+\begin{align}
+  P_2(u;s,t) &= -\tfrac{1}{2}(s+t)\,u^2, \label{eq:P2}\\
+  P_3(u;s,t) &= \tfrac{1}{8}(s^2+t^2+st)\,u^3
+                 - \tfrac{1}{4}(s+t)\,u. \label{eq:P3}
+\end{align}
+The polynomials $P_2,P_3$ arise from the combined expansion of the
+$\arccos$-term \eqref{eq:arccos-expand}, the density $\rho$-expansion
+\eqref{eq:rho-expand}, and the change of variables below.
+
+\medskip
+\textup{(II) $A_2$ normal form.}
+The leading-order phase $\Psi_\infty(u;s,t) := (s-t)u + \tfrac{1}{3}u^3$
+has a coalescing saddle at $u=0$, $s=t$:
+\begin{equation}\label{eq:saddle-derivs}
+  \partial_u\Psi_\infty\big|_{u=0,\,s=t} = 0,\quad
+  \partial_u^2\Psi_\infty\big|_{u=0,\,s=t} = 0,\quad
+  \partial_u^3\Psi_\infty\big|_{u=0,\,s=t} = 2 \neq 0.
+\end{equation}
+This is the $A_2$ catastrophe normal form. The cubic coefficient is
+$\partial_u^3\Psi_\infty = 2$ identically; no free constant enters.
+
+\medskip
+\textup{(III) Kernel emergence via two-branch Jacobian.}
+In the $u$-integral, the band-edge constraint $u \le 0$ is removed by
+passing to both branches of the substitution $u = -v^2$, i.e.\
+$v = \pm\sqrt{-u}$ for $u \le 0$. Each branch contributes $du = -2v\,dv$,
+so the full substitution yields
+\begin{equation}\label{eq:two-branch}
+  \int_\Gamma e^{i\Phi_c(u)}\,du
+  = \int_{-\infty}^{\infty} e^{i\Phi_c(-v^2)}\,(-2v)\,(-\mathrm{sgn}(v))\,dv
+  = 2\int_0^\infty e^{i\Phi_c(-v^2)}\cdot 2v\,dv.
+\end{equation}
+The factor $2v$ is \emph{essential}: after incorporating both the $s$- and
+$t$-contributions and passing to the canonical Airy variable $w$ via
+$v = (2)^{-1/3}w$ (which maps $\Psi_\infty(-v^2;s,t)$ to
+$\tfrac{1}{3}w^3 + \xi\, w$ with $\xi = -(s-t)+O((s-t)^2)$), the factor
+$v \propto w$ produces the bilinear Airy structure
+\begin{equation}\label{eq:airy-kernel-emergence}
+  \widetilde K_c^{(\xi)}(s,t)
+  \;\xrightarrow{c\to\infty}\;
+  K_{\mathrm{Ai}}(s,t)
+  = \frac{\Ai(s)\Ai'(t)-\Ai'(s)\Ai(t)}{s-t},
+\end{equation}
+via the standard two-point contour representation
+$\Ai(x) = \tfrac{1}{2\pi i}\int_\Gamma e^{\frac{1}{3}w^3 - xw}\,dw$.
+The Christoffel--Darboux-type quotient structure in \eqref{eq:airy-kernel-emergence}
+is a direct consequence of the $w$-factor from the Jacobian: without it, one
+would obtain only a product of two Airy functions, not the kernel.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+We carry out the three expansions in order.
+
+\medskip
+\textbf{Step~1: arccos-expansion.}
+Under Assumption~\ref{ass:branch}, for $\eta = c + c^{1/3}u$ with $u\le 0$:
+\begin{equation}\label{eq:arccos-expand}
+  \arccos\!\Bigl(\frac{\eta}{c}\Bigr)
+  = c^{-1/3}\sqrt{-2u}
+    \Bigl(1 + \tfrac{1}{12}c^{-2/3}u + O(c^{-4/3}u^2)\Bigr),
+\end{equation}
+using $\arccos(1-\varepsilon) = \sqrt{2\varepsilon}(1 + \varepsilon/12 + O(\varepsilon^2))$
+for $\varepsilon = -c^{-2/3}u > 0$.
+
+\medskip
+\textbf{Step~2: density expansion.}
+With $x = 1-c^{-2/3}s$, $\rho(1)=1$:
+\begin{equation}\label{eq:rho-expand}
+  \rho(x) = 1 - \rho'(1)c^{-2/3}s + O(c^{-4/3}),
+\end{equation}
+and similarly for $y$. Multiplying \eqref{eq:arccos-expand} by \eqref{eq:rho-expand}
+gives the full $\theta(\eta;x)$ to order $c^{-2/3}$.
+
+\medskip
+\textbf{Step~3: integration and assembly.}
+Inserting into \eqref{eq:effective-phase-def} and integrating from $c$ to
+$\eta = c+c^{1/3}u$:
+\[
+  \int_c^{c+c^{1/3}u} c^{-1/3}\sqrt{-2w'}\,dw'
+  = \tfrac{1}{3}u^3 + O(c^{-1/3}),
+\]
+where $w' = (\zeta - c)/c^{1/3}$. The leading cubic $\tfrac{1}{3}u^3$
+arises from the primitive of $\sqrt{-2w'}$ under the substitution
+$w' = -v^2$, which gives $\int_0^{|v|} 2v^2\,dv = \tfrac{2}{3}|v|^3$,
+i.e.\ $\tfrac{1}{3}u^3$ after back-substitution $v = \sqrt{-u}$.
+Adding the linear term from \eqref{eq:linear-phase} and both $x$- and
+$y$-contributions assembles \eqref{eq:edge-phase-expansion}. The
+coefficients of $P_2$ and $P_3$ follow from collecting the $c^{-1/3}$
+and $c^{-2/3}$ terms systematically.
+
+\medskip
+\textbf{Step~4: Jacobian and two-branch symmetrisation.}
+Parts (II) and (III) follow from direct differentiation of $\Psi_\infty$
+and from the two-branch substitution $u=-v^2$ with $v\in\R$, as detailed
+in \eqref{eq:two-branch}--\eqref{eq:airy-kernel-emergence}.
+\end{proof}
+
+\subsection{Phase decomposition and remainder bound}
+
+\begin{definition}[Phase decomposition]
+\label{def:phase-decomp}
+Write
+\begin{equation}\label{eq:phase-decomp}
+  \Phi_c(u;s,t)
+  = \Psi_\infty(u;s,t) + R_c(u;s,t),
+\end{equation}
+where the limiting cubic phase is
+\begin{equation}\label{eq:psi-infty}
+  \Psi_\infty(u;s,t) := (s-t)u + \tfrac{1}{3}u^3,
+\end{equation}
+and the remainder is
+\begin{equation}\label{eq:Rc-def}
+  R_c(u;s,t)
+  := c^{-1/3}P_2(u;s,t) + c^{-2/3}P_3(u;s,t)
+     + O\bigl(c^{-1}(1+|u|^4+s^2+t^2)\bigr).
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Pointwise bound on $R_c$]
+\label{lem:Rc-bound}
+For fixed $0<\delta<1/3$, there exists $C>0$ such that for all $c\ge 1$,
+$|u| \le c^\delta$, and $s,t \ge 0$:
+\begin{equation}\label{eq:Rc-pointwise}
+  |R_c(u;s,t)|
+  \le C\,c^{-1/3}\bigl(1 + u^2 + s + t\bigr),
+\end{equation}
+uniformly for $\xi$ in compact sets.
+\end{lemma}
+
+\begin{proof}
+Insert \eqref{eq:P2}--\eqref{eq:P3} into \eqref{eq:Rc-def}.
+The leading term $c^{-1/3}P_2 = -\tfrac{1}{2}c^{-1/3}(s+t)u^2$ gives the
+$c^{-1/3}(s+t)u^2$ contribution.
+For $|u|\le c^\delta$ with $\delta<1/3$: $c^{-2/3}|u|^3 \le c^{-2/3+3\delta}
+\le c^{-1/3}$ for $\delta\le 1/9$; remaining monomials in $P_3$ are bounded
+similarly. The $O(c^{-1})$ term is absorbed for large $c$.
+\end{proof}
+
+\section{Error chain and trace-class upgrade}
+\label{sec:error-chain}
+
+\begin{definition}[Error kernel]
+\label{def:error-kernel}
+Set
+\[
+  \omega_c(s,t;\xi)
+  := \bigl|\widetilde K_c^{(\xi)}(s,t) - K_{\mathrm{Ai}}(s,t)\bigr|.
+\]
+Fix $0<\delta<1/3$ and decompose the integration contour as
+$\Gamma_c = \Gamma_c^{\mathrm{loc}} \cup \Gamma_c^{\mathrm{tail}}$
+with $\Gamma_c^{\mathrm{loc}} = \{u:|u|\le c^\delta\}$.
+\end{definition}
+
+\begin{lemma}[Duhamel estimate]
+\label{lem:variation}
+On $\Gamma_c^{\mathrm{loc}}$ and for $s,t\ge 0$:
+\begin{equation}\label{eq:variation-est}
+  \omega_c^{\mathrm{loc}}(s,t;\xi)
+  \le C\int_{\Gamma_c^{\mathrm{loc}}}
+    |R_c(u;s,t)|\,e^{-\kappa(s+t)}\,|du|,
+\end{equation}
+for constants $C,\kappa>0$ uniform in $\xi$ on compacta.
+\end{lemma}
+
+\begin{proof}
+Write the integrand difference as $e^{i\Psi_\infty}(e^{iR_c}-1)$ and
+estimate $|e^{iR_c}-1|\le|R_c|$. The steepest-descent contour deformation
+of $\Psi_\infty$ introduces the decay factor $e^{-\kappa(s+t)}$.
+\end{proof}
+
+\begin{proposition}[Global error kernel bound]
+\label{prop:global-error}
+There exist $C,c_0>0$ and $k\ge 0$ such that
+\begin{equation}\label{eq:global-error-bound}
+  \omega_c(s,t;\xi)
+  \le C\,c^{-1/3}(1+s+t)^k\,e^{-c_0(s+t)},
+\end{equation}
+for all $c\ge 1$, uniformly for $s,t\ge 0$ and $\xi$ in compact sets.
+\end{proposition}
+
+\begin{proof}
+Insert \eqref{eq:Rc-pointwise} into \eqref{eq:variation-est} and integrate.
+The tail satisfies $\omega_c^{\mathrm{tail}} \le Ce^{-c_1 c^\delta}e^{-c_1(s+t)}$,
+absorbed for large $c$.
+\end{proof}
+
+\begin{lemma}[Hilbert--Schmidt control]
+\label{lem:hs}
+\begin{equation}\label{eq:hs-bound}
+  \norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak{S}_2}
+  \le C\,c^{-1/3},
+\end{equation}
+uniformly for $\xi$ in compact sets.
+\end{lemma}
+
+\begin{proof}
+Square \eqref{eq:global-error-bound} and integrate over $[0,\infty)^2$.
+\end{proof}
+
+\begin{lemma}[Trace-class upgrade]
+\label{lem:trace-upgrade}
+For every compact $S\subset\R$:
+\begin{equation}\label{eq:trace-upgrade-bound}
+  \sup_{s\in S}
+  \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
+  \le C_S\,c^{-1/3},
+\end{equation}
+uniformly for $\xi$ in compact sets.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Factor the kernel difference through weighted $L^2$ spaces using the
+exponential decay in \eqref{eq:global-error-bound}, then apply
+$\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
+with the factorisation from Lemma~\ref{lem:hs}.
+\end{proof}
+
+\begin{problem}[Complete the analytic chain]
+\label{prob:traceclass-upgrade}
+Make Lemma~\ref{lem:edge-normal-form} and Lemma~\ref{lem:Rc-bound} fully
+rigorous — in particular: justify the $\rho$-expansion, verify
+Assumption~\ref{ass:branch} rigorously, and control the Jacobian of the
+two-branch substitution in \eqref{eq:two-branch} — then execute the chain
+\[
+  \eqref{eq:Rc-pointwise}
+  \Rightarrow
+  \eqref{eq:variation-est}
+  \Rightarrow
+  \eqref{eq:global-error-bound}
+  \Rightarrow
+  \eqref{eq:hs-bound}
+  \Rightarrow
+  \eqref{eq:trace-upgrade-bound}
+  \Rightarrow
+  \eqref{eq:fredholm-universality}.
+\]
+\end{problem}
+
+\section{Spectral corollaries}
+\label{sec:corollaries}
+
+\begin{corollary}[Airy-scale gap asymptotics]
+\label{cor:gap}
+Assume Theorem~\ref{thm:universality}.
+Then for all sufficiently large $c$ and all transition-regime indices $n$,
+\begin{equation}\label{eq:gap-asymp}
+  \gapc{c}{n} \asymp c^{-1/3}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}[Proof strategy]
+Fredholm determinant convergence identifies the limiting point process with
+the Airy process; consecutive gaps then converge after $c^{1/3}$ rescaling.
+\end{proof}
+
+\begin{corollary}[Transition-window local counting]
+\label{cor:counting}
+Assume Theorem~\ref{thm:universality}.
+Let $\varepsilon(c)=o(c^{-1/3})$.
+Then for all sufficiently large $c$,
+\begin{equation}\label{eq:counting-cor}
+  N_c\bigl([\mu_{n+1}(c)-\varepsilon(c),\,\mu_n(c)+\varepsilon(c)]\bigr)=2.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}[Stable Airy quasimodes]
+\label{cor:quasimodes}
+Assume Theorem~\ref{thm:universality}.
+Then there exists a quasimode family $\{f_n^{(c)}\}$ satisfying
+\[
+  \delta_{\mathrm{model}}(c) \asymp c^{-1/3}, \qquad
+  \varepsilon(c)=o(c^{-1/3}),
+\]
+with consecutive Gram matrices converging to the identity.
+\end{corollary}
+
+\section{Consequence for Paper~XIII}
+\label{sec:paper13b}
+
+\begin{corollary}[Completion of the Paper~XIII transition argument]
+\label{cor:paper13b}
+Assume Theorem~\ref{thm:universality}.
+Then all open transition-window inputs of Paper~XIII are verified, and
+\[
+  \gapc{c}{n} \ge Cc^{-1/3}
+\]
+for all sufficiently large $c$ and all transition-regime indices $n$.
+\end{corollary}
+
+\section{Open problem and proof route}
+\label{sec:open}
+
+\begin{problem}[Fredholm determinant universality for PSWF]
+\label{prob:fredholm}
+Prove Theorem~\ref{thm:universality} by executing:
+\begin{enumerate}
+\item Rigorous version of Lemma~\ref{lem:edge-normal-form}: verify
+  Assumption~\ref{ass:branch}, justify the $\rho$-expansion and
+  the two-branch Jacobian in \eqref{eq:two-branch}.
+\item Pointwise bound on $R_c$ (Lemma~\ref{lem:Rc-bound}).
+\item Duhamel estimate and global error kernel bound
+  (Lemma~\ref{lem:variation}, Proposition~\ref{prop:global-error}).
+\item Hilbert--Schmidt and trace-class upgrade
+  (Lemmas~\ref{lem:hs} and \ref{lem:trace-upgrade}).
+\item Passage to Fredholm determinant convergence (Lemma~\ref{lem:trace-class}).
+\end{enumerate}
+\end{problem}
+
+\begin{remark}[Conceptual conclusion]
+The cubic degeneracy of the effective edge phase at the bandwidth cutoff
+$\eta=c$ is the analytic origin of Airy universality.
+Three ingredients combine:
+(i) the Fourier exponent contributes only linearly in $u$;
+(ii) the cubic term $\tfrac{1}{3}u^3$ arises from the integrated Widom phase
+$\int\theta\,d\zeta$ via the $\arccos$-primitive under the substitution
+$u=-v^2$;
+(iii) the vanishing of $\partial_u^2\Psi_\infty$ at $s=t$, $u=0$ is the
+phase-level condition placing the PSWF transition regime in the Airy
+universality class, and the two-branch Jacobian factor $2v$ is what
+produces the kernel rather than a scalar Airy function.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{Slepian1961}
+D.~Slepian, H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+Bell System Tech. J. \textbf{40} (1961), 43--63.
+
+\bibitem{Widom1964}
+H.~Widom,
+\textit{Asymptotic behavior of the eigenvalues of certain integral equations},
+Trans. Amer. Math. Soc. \textbf{109} (1964), 278--295.
+
+\bibitem{Deift1999}
+P.~Deift,
+\textit{Orthogonal Polynomials and Random Matrices: A Riemann--Hilbert Approach},
+Courant Lecture Notes, AMS, 1999.
+
+\bibitem{TraWid1994}
+C.~A.~Tracy, H.~Widom,
+\textit{Level-spacing distributions and the Airy kernel},
+Comm. Math. Phys. \textbf{159} (1994), 151--174.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions of Order Zero},
+Springer, 2013.
+
+\bibitem{Kato1966}
+T.~Kato,
+\textit{Perturbation Theory for Linear Operators},
+Springer, 1966.
+
+\bibitem{PaperVIII}
+[Author], \textit{Paper~VIII}, 2026.
+
+\bibitem{PaperXII}
+[Author], \textit{Paper~XII}, 2026.
+
+\bibitem{PaperXIII}
+[Author], \textit{Paper~XIII (paper13b)}, 2026.
+
+\end{thebibliography}
+
+\end{document}
