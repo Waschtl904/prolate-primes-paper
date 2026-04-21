@@ -255,158 +255,298 @@ This is the true analytic heart of the entire series.
 
 This section constitutes the first genuine analytic input:
 we derive the phase structure of the sinc kernel in the transition regime,
-identify the coalescing saddle point, and exhibit the cubic degeneracy that
-is the analytic origin of the Airy kernel.
+identify the coalescing saddle point, and isolate a concrete error kernel
+that can be estimated in Hilbert--Schmidt and trace norms.
 
-\subsection{Integral representation and phase function}
+\subsection{Integral representation and phase decomposition}
 
 Using the Fourier representation of the sinc function,
 \begin{equation}\label{eq:sinc-fourier}
   \frac{\sin(c(x-y))}{\pi(x-y)}
-  = \frac{1}{2\pi}\int_{-c}^{c} e^{i\xi(x-y)}\,d\xi,
+  = \frac{1}{2\pi}\int_{-c}^{c} e^{i\eta(x-y)}\,d\eta,
 \end{equation}
 the kernel of $\Kc$ becomes
 \[
-  K_c(x,y) = \frac{1}{2\pi}\int_{-c}^{c} e^{i\xi(x-y)}\,d\xi,
+  K_c(x,y) = \frac{1}{2\pi}\int_{-c}^{c} e^{i\eta(x-y)}\,d\eta,
   \qquad x,y\in[-1,1].
 \]
-Introduce transition-window spatial variables centred near the boundary:
+Introduce transition-window spatial variables centred near the boundary,
 \[
-  x = 1 - c^{-2/3}s,
+  x = 1-c^{-2/3}s,
   \qquad
-  y = 1 - c^{-2/3}t,
-  \qquad s,t > 0.
+  y = 1-c^{-2/3}t,
+  \qquad s,t\ge 0,
 \]
-Substitute into \eqref{eq:sinc-fourier} and change variables
-$\xi = c + c^{1/3}u$ to centre the integration variable at the
-bandwidth endpoint $\xi=c$:
-\begin{equation}\label{eq:phase-expansion}
-  K_c\bigl(1-c^{-2/3}s,\;1-c^{-2/3}t\bigr)
-  = \frac{c^{1/3}}{2\pi}\int_{-\infty}^{0}
-    e^{i\Phi_c(u;s,t)}\,du
-  \;+\; (\text{conjugate term}),
+and write the rescaled spectral parameter as
+\[
+  \xi = c^{1/3}\Bigl(\lambda-\frac12\Bigr).
+\]
+After the change of variables $\eta = c + c^{1/3}u$, the rescaled kernel
+admits a local oscillatory representation of the form
+\begin{equation}\label{eq:kernel-local-repr}
+  \widetilde K_c^{(\xi)}(s,t)
+  = \int_{\Gamma_c} \mathcal A_c(u;s,t,\xi)
+    e^{i\Psi_c(u;s,t,\xi)}\,du
+  \;+
+  \mathcal E_c^{\mathrm{tail}}(s,t,\xi),
 \end{equation}
-where the phase function is
-\begin{equation}\label{eq:phase-def}
-  \Phi_c(u;s,t) := c^{-2/3}(s-t)\bigl(c+c^{1/3}u\bigr)
-  \;=\; c^{1/3}(s-t) + c^{-1/3}(s-t)u.
+where $\Gamma_c$ is the local contour, $\mathcal A_c$ is a smooth amplitude,
+and $\mathcal E_c^{\mathrm{tail}}$ is the contribution of the complement of
+the critical region.
+
+\begin{definition}[Limiting phase and remainder]
+\label{def:phase-remainder}
+We decompose the phase as
+\begin{equation}\label{eq:phase-split}
+  \Psi_c(u;s,t,\xi) = \Psi_\infty(u;s,t,\xi) + R_c(u;s,t,\xi),
 \end{equation}
-
-\begin{remark}
-Equation~\eqref{eq:phase-expansion} is the first layer of the asymptotic
-reduction.
-It expresses the rescaled kernel as an oscillatory integral in the new
-variable $u$, integrating from $-\infty$ to $0$.
-The regime $u\in(-\infty,0)$ corresponds to the transition from within the
-bandwidth ($\xi<c$) to the edge ($\xi=c$).
-\end{remark}
-
-\subsection{Coalescing saddle point}
-
-For the Airy limit we need the phase to exhibit a degenerate critical point.
-Introduce the combined variable integrating spatial and spectral structure.
-With $x = 1-c^{-2/3}s$ near the boundary, define
-\begin{equation}\label{eq:combined-phase}
-  \Psi_c(u;s,t,\xi)
+with limiting cubic phase
+\begin{equation}\label{eq:phase-infty}
+  \Psi_\infty(u;s,t,\xi)
   := \frac{1}{3}u^3 + (s-t)u - \xi(s+t),
 \end{equation}
-where $\xi$ now plays the role of the rescaled spectral offset
-$\xi = c^{1/3}(\lambda - \tfrac12)$.
-The critical points of $\Psi_c$ in $u$ satisfy
+and remainder term of the form
+\begin{equation}\label{eq:phase-remainder-bound}
+  R_c(u;s,t,\xi)
+  = c^{-1/3}\Bigl(\alpha_1 u^2 + \alpha_2 u(s+t) + \alpha_3\Bigr)
+    + c^{-2/3}Q_c(u;s,t,\xi),
+\end{equation}
+where $\alpha_1,\alpha_2,\alpha_3$ are bounded coefficients on compact
+$(s,t,\xi)$-sets and $Q_c$ is polynomially bounded in $u,s,t$.
+\end{definition}
+
+\begin{remark}
+The decomposition \eqref{eq:phase-split} is the correct starting point for
+error analysis.
+The target object is the two-variable Airy kernel $K_{\mathrm{Ai}}(s,t)$, not
+the one-variable function $\Ai(s-t)$.
+The latter appears only as an intermediate oscillatory profile; the full Airy
+kernel emerges after the projection/half-line integration implicit in the
+operator formulation.
+\end{remark}
+
+\subsection{Coalescing saddle point and cubic degeneracy}
+
+The critical points of the limiting phase satisfy
 \begin{equation}\label{eq:saddle-eq}
-  \frac{\partial\Psi_c}{\partial u} = u^2 + (s-t) = 0,
-  \qquad \text{i.e.}\quad u = \pm i\sqrt{s-t}.
+  \partial_u\Psi_\infty(u;s,t,\xi) = u^2 + (s-t) = 0.
 \end{equation}
-The two critical points coalesce at $u=0$ exactly when
-\begin{equation}\label{eq:coalescence}
-  s - t = 0,
-\end{equation}
-i.e.\ on the diagonal $s=t$.
-At the coalescence point, the second derivative
+Hence the stationary points are
 \[
-  \frac{\partial^2\Psi_c}{\partial u^2}\Big|_{u=0} = 2u\Big|_{u=0} = 0
+  u_\pm = \pm i\sqrt{s-t},
 \]
-vanishes, while the third derivative
+which coalesce at $u_*=0$ when $s=t$.
+At the coalescence point one has
 \[
-  \frac{\partial^3\Psi_c}{\partial u^3}\Big|_{u=0} = 2 \neq 0.
+  \partial_u^2\Psi_\infty(0;s,s,\xi)=0,
+  \qquad
+  \partial_u^3\Psi_\infty(0;s,s,\xi)=2\neq 0.
 \]
-This is exactly the signature of a coalescing saddle point of Airy type.
+This is exactly the Airy-type cubic degeneracy.
 
 \begin{proposition}[Heuristic cubic phase reduction]
 \label{prop:cubic-reduction}
-After the normalisation of Remark~\ref{rem:normalisation}, the phase function
-of the rescaled sinc kernel admits a local expansion of the form
+On compact subsets of $(s,t,\xi)$-space, the local phase admits the expansion
 \begin{equation}\label{eq:cubic-phase}
   \Psi_c(u;s,t,\xi)
-  = \frac{1}{3}u^3 + (s-t)u - \xi(s+t) + O\bigl(c^{-1/3}\bigr)
+  = \frac13 u^3 + (s-t)u - \xi(s+t)
+    + c^{-1/3}\Bigl(\alpha_1 u^2 + \alpha_2 u(s+t) + \alpha_3\Bigr)
+    + O\bigl(c^{-2/3}(1+|u|+|s|+|t|)^m\bigr)
 \end{equation}
-uniformly for $s,t,\xi$ in compact sets, where the error term is bounded in
-a suitable space of test functions.
-The quadratic term in $u$ is absent at leading order (it vanishes at the
-coalescence point $s=t$), and the first non-trivial term is cubic.
-Consequently, the rescaled kernel is expressible, to leading order, as
-\begin{equation}\label{eq:airy-integral-form}
-  \widetilde K_c^{(\xi)}(s,t)
-  \approx \frac{1}{2\pi}\int_{-\infty}^{+\infty}
-  e^{i(\frac{1}{3}u^3+(s-t)u)}\,du
-  = \Ai(s-t),
-\end{equation}
-and the two-variable Airy kernel
-\[
-  K_{\mathrm{Ai}}(s,t) = \frac{\Ai(s)\Ai'(t)-\Ai'(s)\Ai(t)}{s-t}
-\]
-arises in the bilinear form of the operator from integration over the
-spectral parameter.
+for some fixed exponent $m\ge 1$.
+In particular, the quadratic term is lower order and the cubic term is the
+leading non-trivial contribution at the coalescing saddle.
 \end{proposition}
 
-\begin{remark}[Status of Proposition~\ref{prop:cubic-reduction}]
-This proposition is heuristic: the phase expansion~\eqref{eq:cubic-phase}
-is the expected form, but making it rigorous requires:
-\begin{enumerate}[\rm(i)]
-\item a precise statement of the space in which $O(c^{-1/3})$ holds
-  (e.g.\ pointwise on compacta, or in $L^2$ for the kernel as a function);
-\item a global error bound showing that the contribution from $|u|\gg 1$
-  is trace-class negligible after rescaling;
-\item a passage from this pointwise kernel estimate to the trace-class
-  convergence required in Lemma~\ref{lem:trace-class}.
-\end{enumerate}
-These three steps constitute the proof programme for Theorem~\ref{thm:universality}.
+\begin{remark}[Analytic origin of the Airy kernel]
+The Airy universality class is determined by the cubic degeneracy in
+\eqref{eq:cubic-phase}.
+The bandwidth edge $\eta=c$ of the sinc kernel plays the role of the soft
+edge in random matrix theory, and the vanishing of the quadratic term at the
+coalescence point is the phase-level mechanism behind the Airy limit.
 \end{remark}
 
-\begin{remark}[Why the Airy kernel emerges]
-The cubic degeneracy \eqref{eq:cubic-phase} is the analytic origin of the
-Airy kernel.
-The fact that $\Psi_c''=0$ and $\Psi_c'''\neq 0$ at the coalescence point is
-exactly the condition that distinguishes the Airy universality class from
-bulk (Gaussian/sine kernel) and deeper degenerate cases.
-In the random matrix context (GUE soft edge), the same cubic phase arises
-from the three-term recurrence of orthogonal polynomials near the edge.
-In the present PSWF context, the cubic phase arises from the bandwidth
-cutoff of the sinc kernel at $\xi=c$, which plays the role of the spectral
-edge.
-\end{remark}
+\subsection{Local error kernel}
 
-\subsection{Proof programme for trace-class upgrade}
+We now isolate the error term that must be controlled.
+Let
+\begin{equation}\label{eq:error-kernel-def}
+  \omega_c(s,t;\xi)
+  := \bigl|\widetilde K_c^{(\xi)}(s,t) - K_{\mathrm{Ai}}(s,t)\bigr|.
+\end{equation}
+The analysis is based on a local/tail decomposition in the $u$-integral.
+Fix $0<\delta<1/3$ and split
+\begin{equation}\label{eq:local-tail-split}
+  \Gamma_c = \Gamma_c^{\mathrm{loc}} \cup \Gamma_c^{\mathrm{tail}},
+  \qquad
+  \Gamma_c^{\mathrm{loc}} := \{u:|u|\le c^\delta\}.
+\end{equation}
+Then
+\begin{equation}\label{eq:error-split}
+  \omega_c(s,t;\xi)
+  \le \omega_c^{\mathrm{loc}}(s,t;\xi)
+     + \omega_c^{\mathrm{tail}}(s,t;\xi).
+\end{equation}
 
-\begin{problem}[From kernel asymptotics to trace-class convergence]
-\label{prob:traceclass-upgrade}
-Make Proposition~\ref{prop:cubic-reduction} rigorous and upgrade it to
-trace-class convergence:
-establish
+\begin{lemma}[Variation estimate for the local error]
+\label{lem:variation}
+Assume the amplitude satisfies
 \[
-  \sup_{s\in S}\norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
-  \to 0
+  |\mathcal A_c(u;s,t,\xi)-\mathcal A_\infty(u;s,t,\xi)|
+  \le Cc^{-1/3}(1+|u|+|s|+|t|)^m
 \]
-by:
-\begin{enumerate}[\rm(1)]
-\item Deriving a pointwise kernel error bound
-  $|\widetilde K_c^{(\xi)}(s,t)-K_{\mathrm{Ai}}(s,t)|\le \omega_c(s,t)$
-  with explicit $\omega_c\to 0$ on compacta.
-\item Showing that $\omega_c$ is integrable over the relevant domain with
-  $L^2$ and $L^1$ bounds compatible with trace-class estimates.
-\item Controlling the tail contribution from $|u|\gg c^{1/3}$ by an
-  exponential decay argument.
-\end{enumerate}
+on $\Gamma_c^{\mathrm{loc}}$, and let the phase decomposition be as in
+Definition~\ref{def:phase-remainder}.
+Then on compact subsets of $(s,t,\xi)$ one has
+\begin{equation}\label{eq:variation-est}
+  \omega_c^{\mathrm{loc}}(s,t;\xi)
+  \le C\int_{\Gamma_c^{\mathrm{loc}}}
+    \bigl(|R_c(u;s,t,\xi)| + c^{-1/3}(1+|u|+|s|+|t|)^m\bigr)
+    e^{-\kappa (s+t)}\,|du|
+\end{equation}
+for some constants $C,\kappa>0$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Write the difference between the local rescaled kernel and the limiting Airy
+representation as amplitude error plus phase error.
+For the phase part, use
+\[
+  e^{i(\Psi_\infty+R_c)} - e^{i\Psi_\infty}
+  = e^{i\Psi_\infty}(e^{iR_c}-1)
+\]
+and the elementary estimate
+\[
+  |e^{iR_c}-1|\le |R_c|.
+\]
+This yields a Duhamel-type bound by integrating the absolute value of the
+phase remainder and the amplitude discrepancy against the limiting oscillatory
+weight.
+The factor $e^{-\kappa(s+t)}$ records the standard Airy decay after contour
+deformation to a steepest-descent path.
+\end{proof}
+
+\begin{corollary}[Model local kernel bound]
+\label{cor:model-bound}
+Under the hypotheses of Lemma~\ref{lem:variation}, there exist constants
+$C,c_0>0$ and an integer $k\ge 0$ such that
+\begin{equation}\label{eq:model-bound}
+  \omega_c^{\mathrm{loc}}(s,t;\xi)
+  \le C c^{-1/3}(1+|s|+|t|)^k e^{-c_0(s+t)}
+\end{equation}
+uniformly for $\xi$ in compact sets and $s,t\ge 0$.
+\end{corollary}
+
+\begin{proof}[Proof sketch]
+Insert the explicit form \eqref{eq:phase-remainder-bound} of $R_c$ into
+\eqref{eq:variation-est}.
+The resulting integrals involve moments of $u$ against the Airy-type
+oscillatory weight on $|u|\le c^\delta$.
+These moments are bounded by a polynomial in $s,t$ times the exponential
+Airy decay, giving \eqref{eq:model-bound}.
+\end{proof}
+
+\begin{lemma}[Tail estimate]
+\label{lem:tail}
+There exist constants $C,c_1>0$ such that
+\begin{equation}\label{eq:tail-bound}
+  \omega_c^{\mathrm{tail}}(s,t;\xi)
+  \le C e^{-c_1 c^{\delta}} e^{-c_1(s+t)}
+\end{equation}
+uniformly for $\xi$ in compact sets and $s,t\ge 0$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+After contour deformation, the real part of the phase is strictly negative on
+$\Gamma_c^{\mathrm{tail}}$.
+The cubic term dominates there and produces exponential decay in $|u|$.
+Since $|u|\ge c^\delta$ on the tail, the contribution is exponentially small
+in $c^\delta$, uniformly in $s,t$ up to the standard Airy decay factor.
+\end{proof}
+
+\begin{proposition}[Global error kernel bound]
+\label{prop:global-error}
+Assume Lemma~\ref{lem:variation} and Lemma~\ref{lem:tail}.
+Then there exist constants $C,c_0>0$ and an integer $k\ge 0$ such that
+\begin{equation}\label{eq:global-error-bound}
+  \omega_c(s,t;\xi)
+  \le C c^{-1/3}(1+|s|+|t|)^k e^{-c_0(s+t)}
+\end{equation}
+for all sufficiently large $c$, uniformly for $\xi$ in compact sets and
+$s,t\ge 0$.
+\end{proposition}
+
+\begin{proof}
+Combine the local/tail decomposition \eqref{eq:error-split} with
+Corollary~\ref{cor:model-bound} and Lemma~\ref{lem:tail}.
+For large $c$, the exponential tail term is absorbed into the
+$c^{-1/3}$ contribution.
+\end{proof}
+
+\subsection{Hilbert--Schmidt and trace-class upgrade}
+
+\begin{lemma}[Hilbert--Schmidt control]
+\label{lem:hs}
+Assume Proposition~\ref{prop:global-error}.
+Then
+\begin{equation}\label{eq:hs-bound}
+  \int_0^{\infty}\!\int_0^{\infty}
+  \omega_c(s,t;\xi)^2\,ds\,dt
+  \le C c^{-2/3}
+\end{equation}
+uniformly for $\xi$ in compact sets.
+In particular,
+\[
+  \norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak S_2}
+  \le C c^{-1/3}.
+\]
+\end{lemma}
+
+\begin{proof}
+Square the bound \eqref{eq:global-error-bound} and integrate over
+$[0,\infty)^2$.
+The exponential factor makes the integral finite, while the polynomial factor
+is harmless.
+\end{proof}
+
+\begin{lemma}[Trace-class upgrade]
+\label{lem:trace-upgrade}
+Assume Proposition~\ref{prop:global-error}.
+Then for every compact interval $S\subset\R$,
+\begin{equation}\label{eq:trace-upgrade-bound}
+  \sup_{s\in S}
+  \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak S_1}
+  \le C_S c^{-1/3}
+\end{equation}
+uniformly for $\xi$ in compact sets.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Use the exponential decay in \eqref{eq:global-error-bound} to factor the
+kernel difference through weighted $L^2$ spaces.
+The Hilbert--Schmidt bound from Lemma~\ref{lem:hs}, together with the
+standard inequality $\norm{AB}_{\mathfrak S_1}
+\le \norm{A}_{\mathfrak S_2}\norm{B}_{\mathfrak S_2}$ for an appropriate
+factorisation, yields the trace-class estimate.
+\end{proof}
+
+\begin{problem}[From local phase analysis to determinant convergence]
+\label{prob:traceclass-upgrade}
+Make Proposition~\ref{prop:cubic-reduction} rigorous and prove the sequence
+of estimates
+\[
+  \eqref{eq:variation-est}
+  \Rightarrow
+  \eqref{eq:model-bound}
+  \Rightarrow
+  \eqref{eq:global-error-bound}
+  \Rightarrow
+  \eqref{eq:trace-upgrade-bound}
+  \Rightarrow
+  \eqref{eq:fredholm-universality}.
+\]
+This is the full analytic route from coalescing saddle-point asymptotics to
+Fredholm determinant universality.
 \end{problem}
 
 \section{Spectral corollaries}
@@ -523,25 +663,27 @@ now fully laid out in Section~\ref{sec:kernel-programme}.
 
 \begin{problem}[Fredholm determinant universality for PSWF]
 \label{prob:fredholm}
-Prove Theorem~\ref{thm:universality} by executing the three-step programme
-of Problem~\ref{prob:traceclass-upgrade}:
+Prove Theorem~\ref{thm:universality} by executing the following chain:
 \begin{enumerate}
-\item Rigorous coalescing saddle-point asymptotics for the rescaled sinc kernel
-  (Proposition~\ref{prop:cubic-reduction} with error bounds).
-\item Trace-class upgrade via $L^1$/$L^2$ kernel error estimates and tail
-  control.
-\item Passage from trace-class convergence to Fredholm determinant convergence
-  (Lemma~\ref{lem:trace-class}).
+\item Rigorous local phase decomposition
+  \eqref{eq:phase-split}--\eqref{eq:phase-remainder-bound}.
+\item Variation estimate for the local error kernel
+  (Lemma~\ref{lem:variation}).
+\item Global error kernel bound
+  (Proposition~\ref{prop:global-error}).
+\item Hilbert--Schmidt and trace-class upgrade
+  (Lemmas~\ref{lem:hs} and \ref{lem:trace-upgrade}).
+\item Passage to Fredholm determinant convergence
+  via Lemma~\ref{lem:trace-class}.
 \end{enumerate}
 \end{problem}
 
 \begin{remark}[Conceptual conclusion]
 The sharp PSWF transition problem is a single universality problem.
-The cubic degeneracy of the sinc phase at the bandwidth edge $\xi=c$
-is the analytic origin of the Airy universality class.
-Paper~XIII is the operator-theoretic reduction layer.
-The present paper identifies the exact phase-level mechanism and provides
-the complete proof programme.
+The cubic degeneracy of the sinc phase at the bandwidth edge is the analytic
+origin of the Airy universality class, and the decisive missing object is the
+error kernel bound \eqref{eq:global-error-bound}.
+Once that bound is proved, the determinant convergence machinery is standard.
 \end{remark}
 
 \begin{thebibliography}{99}
