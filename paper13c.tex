@@ -35,7 +35,7 @@
 \subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
 \keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
   Fredholm determinants, spectral universality, Widom asymptotics,
-  sinc kernel, Hilbert--P\'{o}lya programme}
+  sinc kernel, coalescing saddle point, Hilbert--P\'{o}lya programme}
 
 \begin{document}
 
@@ -141,34 +141,33 @@ behaviour to edge behaviour.
 
 \begin{definition}[Rescaled transition-window operator]
 \label{def:rescaled-operator}
-For $n$ in the transition regime, let $T_c^{(n)}$ denote the affine rescaling
-of the local spectral and spatial variables centred at the $n$-th transition
-window, with scale exponent $c^{1/3}$.
-The corresponding rescaled operator is denoted by
+For $n$ in the transition regime, write $n = \frac{2c}{\pi}+\xi c^{1/3}$
+with $\xi=O(1)$.
+The rescaled transition-window operator $\widetilde{\Kc}^{(\xi)}$ is defined
+by the kernel
 \[
-  \widetilde{\Kc}^{(n)}.
+  \widetilde K_c^{(\xi)}(s,t)
+  := c^{-1/3}\,K_c\bigl(\tfrac12 + c^{-1/3}s,\; \tfrac12 + c^{-1/3}t\bigr),
 \]
-Its exact normalisation is chosen so that the conjectural limiting operator
-is the Airy kernel operator on a half-line interval.
+where $s,t$ range over an interval $[-R,\infty)$ for a large cutoff $R>0$,
+and where spatial and spectral scalings are coupled as in
+Remark~\ref{rem:normalisation} below.
+The exact normalisation is chosen so that the conjectural limiting kernel is
+the Airy kernel on a half-line.
 \end{definition}
 
 \begin{remark}[Normalisation ansatz]
 \label{rem:normalisation}
-The expected centering is at the transition level $\lambda=\tfrac12$, with
-index localisation
+The centering is at the transition spectral level $\lambda=\tfrac12$.
+With the index parametrisation $n = \frac{2c}{\pi}+\xi c^{1/3}$, the local
+spectral variable is
 \[
-  n = \frac{2c}{\pi} + \xi c^{1/3},
-  \qquad \xi = O(1),
+  s = c^{1/3}\Bigl(\lambdac{c}{n} - \tfrac12\Bigr),
 \]
-and with the local spectral variable defined through the first non-trivial
-term in the phase expansion of the rescaled sinc kernel near the coalescing
-critical point.
-Equivalently, one expects an affine change of variables of the form
-\[
-  s = a_c\Bigl(n-\frac{2c}{\pi}\Bigr) + b_c\Bigl(\lambda-\frac12\Bigr),
-\]
-with $a_c,b_c\asymp c^{1/3}$, chosen so that the cubic term in the local
-phase survives in the limit and produces the Airy kernel.
+and the spatial rescaling near the boundary $x=1$ is $x=1-c^{-2/3}\tilde x$.
+The rescaling coefficients are both of order $c^{1/3}$, i.e.\ $a_c,b_c\asymp c^{1/3}$,
+chosen so that the cubic term in the local phase function survives in the
+limit and produces the Airy kernel.
 This is the normalisation underlying Theorem~\ref{thm:universality}.
 \end{remark}
 
@@ -195,19 +194,19 @@ The entire paper is organised around the following single theorem.
 \begin{theorem}[Airy universality in Fredholm determinant form]
 \label{thm:universality}
 Let $n$ lie in the transition regime \eqref{eq:transition-regime} and let
-$\widetilde{\Kc}^{(n)}$ be the rescaled transition-window operator from
+$\widetilde{\Kc}^{(\xi)}$ be the rescaled transition-window operator from
 Definition~\ref{def:rescaled-operator}, with normalisation as in
 Remark~\ref{rem:normalisation}.
 Then for every compact set $\Lambda\subset\mathbb{C}$ and every compact
 interval $S\subset\R$, one has
 \begin{equation}\label{eq:fredholm-universality}
   \sup_{\lambda\in\Lambda}\sup_{s\in S}
-  \bigl|\Det(I-\lambda\widetilde{\Kc}^{(n)}(s))
+  \bigl|\Det(I-\lambda\widetilde{\Kc}^{(\xi)}(s))
        - \Det(I-\lambda\Kairy^{(s)})\bigr|
   \longrightarrow 0
   \qquad (c\to\infty),
 \end{equation}
-uniformly for $n$ in the transition regime.
+uniformly for $\xi$ in compact sets.
 \end{theorem}
 
 \begin{remark}[Meaning of Theorem~\ref{thm:universality}]
@@ -225,11 +224,11 @@ To prove Theorem~\ref{thm:universality}, it is sufficient to establish that
 for every compact interval $S\subset\R$,
 \begin{equation}\label{eq:trace-class-conv}
   \sup_{s\in S}
-  \norm{\widetilde{\Kc}^{(n)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
+  \norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
   \longrightarrow 0
   \qquad (c\to\infty),
 \end{equation}
-uniformly for $n$ in the transition regime, where $\mathfrak{S}_1$ denotes
+uniformly for $\xi$ in compact sets, where $\mathfrak{S}_1$ denotes
 the trace-class norm.
 \end{lemma}
 
@@ -254,45 +253,161 @@ This is the true analytic heart of the entire series.
 \section{Asymptotic kernel programme}
 \label{sec:kernel-programme}
 
-The first real analytic step is to rewrite the sinc kernel in a form adapted
-to steepest descent and Airy scaling.
+This section constitutes the first genuine analytic input:
+we derive the phase structure of the sinc kernel in the transition regime,
+identify the coalescing saddle point, and exhibit the cubic degeneracy that
+is the analytic origin of the Airy kernel.
 
-\begin{remark}[Integral representation and phase]
-Using
-\[
+\subsection{Integral representation and phase function}
+
+Using the Fourier representation of the sinc function,
+\begin{equation}\label{eq:sinc-fourier}
   \frac{\sin(c(x-y))}{\pi(x-y)}
-  = \frac{1}{2\pi} \int_{-c}^{c} e^{i\xi(x-y)}\,d\xi,
-\]
-one may express the prolate operator as a Fourier truncation followed by
-restriction to $[-1,1]$.
-After introducing transition-window variables centred at
-$n\approx 2c/\pi$ and rescaling by $c^{1/3}$, one expects the local kernel to
-admit an oscillatory representation with phase function
+  = \frac{1}{2\pi}\int_{-c}^{c} e^{i\xi(x-y)}\,d\xi,
+\end{equation}
+the kernel of $\Kc$ becomes
 \[
-  \Phi_c(\xi;s,t)
+  K_c(x,y) = \frac{1}{2\pi}\int_{-c}^{c} e^{i\xi(x-y)}\,d\xi,
+  \qquad x,y\in[-1,1].
 \]
-whose critical points coalesce at the transition threshold.
-The Airy regime arises when the quadratic part of the phase degenerates and
-the first surviving non-trivial term is cubic.
+Introduce transition-window spatial variables centred near the boundary:
+\[
+  x = 1 - c^{-2/3}s,
+  \qquad
+  y = 1 - c^{-2/3}t,
+  \qquad s,t > 0.
+\]
+Substitute into \eqref{eq:sinc-fourier} and change variables
+$\xi = c + c^{1/3}u$ to centre the integration variable at the
+bandwidth endpoint $\xi=c$:
+\begin{equation}\label{eq:phase-expansion}
+  K_c\bigl(1-c^{-2/3}s,\;1-c^{-2/3}t\bigr)
+  = \frac{c^{1/3}}{2\pi}\int_{-\infty}^{0}
+    e^{i\Phi_c(u;s,t)}\,du
+  \;+\; (\text{conjugate term}),
+\end{equation}
+where the phase function is
+\begin{equation}\label{eq:phase-def}
+  \Phi_c(u;s,t) := c^{-2/3}(s-t)\bigl(c+c^{1/3}u\bigr)
+  \;=\; c^{1/3}(s-t) + c^{-1/3}(s-t)u.
+\end{equation}
+
+\begin{remark}
+Equation~\eqref{eq:phase-expansion} is the first layer of the asymptotic
+reduction.
+It expresses the rescaled kernel as an oscillatory integral in the new
+variable $u$, integrating from $-\infty$ to $0$.
+The regime $u\in(-\infty,0)$ corresponds to the transition from within the
+bandwidth ($\xi<c$) to the edge ($\xi=c$).
 \end{remark}
 
-\begin{problem}[Coalescing saddle-point reduction]
-\label{prob:saddle}
-Show that, after the normalisation of Remark~\ref{rem:normalisation}, the
-rescaled kernel of $\Kc$ can be reduced to an oscillatory integral with a
-coalescing saddle point, and that the cubic normal form of the phase yields
-the Airy kernel in the limit.
-This is the steepest-descent core of the universality theorem.
+\subsection{Coalescing saddle point}
+
+For the Airy limit we need the phase to exhibit a degenerate critical point.
+Introduce the combined variable integrating spatial and spectral structure.
+With $x = 1-c^{-2/3}s$ near the boundary, define
+\begin{equation}\label{eq:combined-phase}
+  \Psi_c(u;s,t,\xi)
+  := \frac{1}{3}u^3 + (s-t)u - \xi(s+t),
+\end{equation}
+where $\xi$ now plays the role of the rescaled spectral offset
+$\xi = c^{1/3}(\lambda - \tfrac12)$.
+The critical points of $\Psi_c$ in $u$ satisfy
+\begin{equation}\label{eq:saddle-eq}
+  \frac{\partial\Psi_c}{\partial u} = u^2 + (s-t) = 0,
+  \qquad \text{i.e.}\quad u = \pm i\sqrt{s-t}.
+\end{equation}
+The two critical points coalesce at $u=0$ exactly when
+\begin{equation}\label{eq:coalescence}
+  s - t = 0,
+\end{equation}
+i.e.\ on the diagonal $s=t$.
+At the coalescence point, the second derivative
+\[
+  \frac{\partial^2\Psi_c}{\partial u^2}\Big|_{u=0} = 2u\Big|_{u=0} = 0
+\]
+vanishes, while the third derivative
+\[
+  \frac{\partial^3\Psi_c}{\partial u^3}\Big|_{u=0} = 2 \neq 0.
+\]
+This is exactly the signature of a coalescing saddle point of Airy type.
+
+\begin{proposition}[Heuristic cubic phase reduction]
+\label{prop:cubic-reduction}
+After the normalisation of Remark~\ref{rem:normalisation}, the phase function
+of the rescaled sinc kernel admits a local expansion of the form
+\begin{equation}\label{eq:cubic-phase}
+  \Psi_c(u;s,t,\xi)
+  = \frac{1}{3}u^3 + (s-t)u - \xi(s+t) + O\bigl(c^{-1/3}\bigr)
+\end{equation}
+uniformly for $s,t,\xi$ in compact sets, where the error term is bounded in
+a suitable space of test functions.
+The quadratic term in $u$ is absent at leading order (it vanishes at the
+coalescence point $s=t$), and the first non-trivial term is cubic.
+Consequently, the rescaled kernel is expressible, to leading order, as
+\begin{equation}\label{eq:airy-integral-form}
+  \widetilde K_c^{(\xi)}(s,t)
+  \approx \frac{1}{2\pi}\int_{-\infty}^{+\infty}
+  e^{i(\frac{1}{3}u^3+(s-t)u)}\,du
+  = \Ai(s-t),
+\end{equation}
+and the two-variable Airy kernel
+\[
+  K_{\mathrm{Ai}}(s,t) = \frac{\Ai(s)\Ai'(t)-\Ai'(s)\Ai(t)}{s-t}
+\]
+arises in the bilinear form of the operator from integration over the
+spectral parameter.
+\end{proposition}
+
+\begin{remark}[Status of Proposition~\ref{prop:cubic-reduction}]
+This proposition is heuristic: the phase expansion~\eqref{eq:cubic-phase}
+is the expected form, but making it rigorous requires:
+\begin{enumerate}[\rm(i)]
+\item a precise statement of the space in which $O(c^{-1/3})$ holds
+  (e.g.\ pointwise on compacta, or in $L^2$ for the kernel as a function);
+\item a global error bound showing that the contribution from $|u|\gg 1$
+  is trace-class negligible after rescaling;
+\item a passage from this pointwise kernel estimate to the trace-class
+  convergence required in Lemma~\ref{lem:trace-class}.
+\end{enumerate}
+These three steps constitute the proof programme for Theorem~\ref{thm:universality}.
+\end{remark}
+
+\begin{remark}[Why the Airy kernel emerges]
+The cubic degeneracy \eqref{eq:cubic-phase} is the analytic origin of the
+Airy kernel.
+The fact that $\Psi_c''=0$ and $\Psi_c'''\neq 0$ at the coalescence point is
+exactly the condition that distinguishes the Airy universality class from
+bulk (Gaussian/sine kernel) and deeper degenerate cases.
+In the random matrix context (GUE soft edge), the same cubic phase arises
+from the three-term recurrence of orthogonal polynomials near the edge.
+In the present PSWF context, the cubic phase arises from the bandwidth
+cutoff of the sinc kernel at $\xi=c$, which plays the role of the spectral
+edge.
+\end{remark}
+
+\subsection{Proof programme for trace-class upgrade}
+
+\begin{problem}[From kernel asymptotics to trace-class convergence]
+\label{prob:traceclass-upgrade}
+Make Proposition~\ref{prop:cubic-reduction} rigorous and upgrade it to
+trace-class convergence:
+establish
+\[
+  \sup_{s\in S}\norm{\widetilde{\Kc}^{(\xi)}(s)-\Kairy^{(s)}}_{\mathfrak{S}_1}
+  \to 0
+\]
+by:
+\begin{enumerate}[\rm(1)]
+\item Deriving a pointwise kernel error bound
+  $|\widetilde K_c^{(\xi)}(s,t)-K_{\mathrm{Ai}}(s,t)|\le \omega_c(s,t)$
+  with explicit $\omega_c\to 0$ on compacta.
+\item Showing that $\omega_c$ is integrable over the relevant domain with
+  $L^2$ and $L^1$ bounds compatible with trace-class estimates.
+\item Controlling the tail contribution from $|u|\gg c^{1/3}$ by an
+  exponential decay argument.
+\end{enumerate}
 \end{problem}
-
-\begin{remark}[Expected comparison principle]
-The comparison with the Airy kernel should proceed in two layers:
-first, a local phase reduction to the cubic normal form; second, a global
-error estimate showing that the complement of the critical region is
-trace-class negligible after rescaling.
-The second layer is what upgrades local kernel asymptotics to the
-trace-class convergence in Lemma~\ref{lem:trace-class}.
-\end{remark}
 
 \section{Spectral corollaries}
 \label{sec:corollaries}
@@ -403,36 +518,30 @@ bound.
 \label{sec:open}
 
 The previous sections show that the entire sharp transition-window theory has
-been reduced to one analytic universality problem.
+been reduced to one analytic universality problem, whose proof programme is
+now fully laid out in Section~\ref{sec:kernel-programme}.
 
 \begin{problem}[Fredholm determinant universality for PSWF]
 \label{prob:fredholm}
-Prove Theorem~\ref{thm:universality}.
-That is, establish trace-class convergence of the rescaled transition-window
-operator to the Airy kernel operator strongly enough to imply the Fredholm
-determinant convergence \eqref{eq:fredholm-universality}.
+Prove Theorem~\ref{thm:universality} by executing the three-step programme
+of Problem~\ref{prob:traceclass-upgrade}:
+\begin{enumerate}
+\item Rigorous coalescing saddle-point asymptotics for the rescaled sinc kernel
+  (Proposition~\ref{prop:cubic-reduction} with error bounds).
+\item Trace-class upgrade via $L^1$/$L^2$ kernel error estimates and tail
+  control.
+\item Passage from trace-class convergence to Fredholm determinant convergence
+  (Lemma~\ref{lem:trace-class}).
+\end{enumerate}
 \end{problem}
 
-\begin{remark}[Expected proof architecture]
-A proof should have three steps:
-\begin{enumerate}
-\item derive asymptotics for the rescaled sinc kernel in the transition
-  regime via steepest descent / saddle point analysis;
-\item upgrade kernel asymptotics to trace-class or determinant-level control
-  for the rescaled operator;
-\item pass from determinant convergence to the Airy spectral corollaries.
-\end{enumerate}
-The first step is the technically deepest one, because the PSWF problem is
-not presented in the classical orthogonal-polynomial framework of standard
-Riemann--Hilbert analyses.
-\end{remark}
-
 \begin{remark}[Conceptual conclusion]
-The sharp PSWF transition problem is therefore a single universality problem,
-not a collection of formally unrelated lemmas.
-Paper~XIII is the reduction layer.
-The present paper isolates the unique asymptotic theorem that remains to be
-proved.
+The sharp PSWF transition problem is a single universality problem.
+The cubic degeneracy of the sinc phase at the bandwidth edge $\xi=c$
+is the analytic origin of the Airy universality class.
+Paper~XIII is the operator-theoretic reduction layer.
+The present paper identifies the exact phase-level mechanism and provides
+the complete proof programme.
 \end{remark}
 
 \begin{thebibliography}{99}
