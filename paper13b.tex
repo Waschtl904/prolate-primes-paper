@@ -80,7 +80,9 @@ three mechanisms:
 \item \emph{(Theorem~B.)} Under local quasimode hypotheses and an explicit
   index-stability principle in the transition window, one obtains a
   conditional gap lower bound at the model scale.
-\item \emph{(Corollary~C.)} Under known-type Airy transition asymptotics,
+\item \emph{(Proposition~C.)} A transition-window spectral isolation
+  principle reduces the indexing hypothesis to a local counting statement.
+\item \emph{(Corollary~D.)} Under known-type Airy transition asymptotics,
   the conditional gap scale is $c^{-1/3}$.
 \end{itemize}
 
@@ -151,8 +153,8 @@ The paper contains two distinct transfer theorems.
 The first is unconditional and uses Gram coercivity.
 The second is conditional and uses quasimodes for a local model operator,
 together with an explicit spectral index-stability lemma.
-The latter becomes effective once Airy-type transition asymptotics are
-available in the relevant window.
+A separate isolation proposition identifies the remaining counting input
+needed to make that indexing step verifiable in the PSWF transition window.
 
 \section{Operator Setup}
 \label{sec:setup}
@@ -303,9 +305,8 @@ spectral parameters $\mu_n(c)$ such that:
     \qquad \eta(c)\to 0;
   \end{equation}
 \item\label{Q5}
-  the spectral window around $\mu_n(c)$ and $\mu_{n+1}(c)$ contains no
-  additional eigenvalues beyond the targeted consecutive pair, in the sense
-  formalised in Lemma~\ref{lem:index} below.
+  the spectral window around $\mu_n(c)$ and $\mu_{n+1}(c)$ satisfies the
+  isolation condition formalised in Proposition~\ref{prop:isolation} below.
 \end{enumerate}
 \end{assumption}
 
@@ -359,11 +360,66 @@ Ordering gives
 and subtraction yields \eqref{eq:index-gap}.
 \end{proof}
 
+\section{Transition-window spectral isolation}
+\label{sec:isolation}
+
+The only genuinely spectral input needed beyond quasimode construction is an
+isolation principle ensuring that the quasimode window contains exactly the
+targeted adjacent eigenvalues and no others.
+In the PSWF setting, this is naturally a local counting problem.
+
+\begin{assumption}[Transition-window counting control]
+\label{ass:counting}
+There exists a local eigenvalue counting function $N_c(I)$ for intervals
+$I\subset(0,1)$ together with asymptotic control in the transition regime,
+strong enough to determine the number of eigenvalues of $\Kc$ in windows of
+width comparable to the quasimode accuracy around the pair
+$(\mu_n(c),\mu_{n+1}(c))$.
+\end{assumption}
+
+\begin{proposition}[Transition-window spectral isolation]
+\label{prop:isolation}
+Assume \ref{ass:counting}.
+Let $n$ lie in the transition regime and suppose that for some
+$\varepsilon(c)>0$ one has
+\[
+  \mu_n(c) > \mu_{n+1}(c),
+\]
+and that the counting function satisfies
+\begin{equation}\label{eq:isolation-count}
+  N_c\bigl([\mu_{n+1}(c)-\varepsilon(c),\,\mu_n(c)+\varepsilon(c)]\bigr)=2.
+\end{equation}
+Then the interval
+\[
+  [\mu_{n+1}(c)-\varepsilon(c),\,\mu_n(c)+\varepsilon(c)]
+\]
+contains exactly two eigenvalues of $\Kc$ counted with multiplicity.
+Consequently Assumption~\ref{ass:quasimode}\ref{Q5} holds.
+\end{proposition}
+
+\begin{proof}
+This is immediate from the definition of the local counting function.
+Equation~\eqref{eq:isolation-count} states precisely that the relevant
+spectral window contains two eigenvalues counted with multiplicity.
+Thus the isolation hypothesis required in Lemma~\ref{lem:index} is reduced
+entirely to a local counting statement.
+\end{proof}
+
+\begin{remark}[Status of Proposition~\ref{prop:isolation}]
+Proposition~\ref{prop:isolation} does not itself prove the required PSWF
+counting asymptotic.
+Its role is to isolate the exact place where Widom-type counting input or a
+local Weyl law must enter.
+This removes the hidden circularity from the quasimode indexing step: the
+needed ingredient is no longer concealed inside Lemma~\ref{lem:index}, but
+is stated explicitly as a separate local counting problem.
+\end{remark}
+
 \begin{theorem}[Quasimode transfer theorem]
 \label{thm:B}
-Assume \ref{ass:quasimode}.
+Assume \ref{ass:quasimode} and \ref{ass:counting}.
 Then for all sufficiently large $c$ and all relevant transition-window
-indices $n$,
+indices $n$ satisfying \eqref{eq:isolation-count},
 \begin{equation}\label{eq:gap-transfer}
   \gapc{c}{n} \ge \delta_{\mathrm{model}}(c) - 2\varepsilon(c).
 \end{equation}
@@ -379,9 +435,13 @@ for all sufficiently large $c$.
 \end{theorem}
 
 \begin{proof}
-Fix $n$ in the transition window and apply Lemma~\ref{lem:index} to
+Fix $n$ in the transition window.
+By Proposition~\ref{prop:isolation}, condition \eqref{eq:isolation-count}
+verifies Assumption~\ref{ass:quasimode}\ref{Q5}.
+Now apply Lemma~\ref{lem:index} to
 $A=\Kc$, $\mu_n=\mu_n(c)$, and $\mu_{n+1}=\mu_{n+1}(c)$.
-Assumptions \ref{Q1}--\ref{Q5} verify the hypotheses of the lemma.
+Assumptions \ref{Q1}--\ref{Q4} together with the isolation conclusion give
+all hypotheses of the lemma.
 Hence
 \[
   \gapc{c}{n}
@@ -424,15 +484,17 @@ model spacing
 \end{equation}
 and residual size
 \begin{equation}\label{eq:airy-error}
-  \varepsilon(c) = o(c^{-1/3}).
+  \varepsilon(c) = o(c^{-1/3}),
 \end{equation}
+for which the local counting condition \eqref{eq:isolation-count} holds.
 \end{assumption}
 
 \begin{remark}[Status of Assumption~\ref{ass:airy}]
 This assumption should be read as a non-trivial transition asymptotic input,
 not as a formal consequence of the present abstract setup.
 Its verification would require a genuine steepest-descent or equivalent
-semiclassical analysis of the PSWF transition kernel.
+semiclassical analysis of the PSWF transition kernel, together with local
+counting control in the Widom transition regime.
 The present paper isolates this input rather than claiming to prove it.
 \end{remark}
 
@@ -460,7 +522,8 @@ Corollary~\ref{cor:airy} identifies the genuinely difficult missing input:
 one needs transition-window quasimodes whose residual is smaller than the
 Airy spacing scale.
 Once that is available, the gap estimate itself is automatic.
-Thus the sharp problem is not gap transfer but quasimode construction.
+Thus the sharp problem is not gap transfer but quasimode construction plus
+local spectral counting.
 \end{remark}
 
 \section{Comparison of mechanisms}
@@ -477,7 +540,8 @@ Mechanism & Input & Output scale & Status \\
 \midrule
 Coercive transfer & Gram coercivity & $c^{-1/2}$ & Unconditional \\
 Quasimode transfer & residual + index stability & $\delta_{\mathrm{model}}(c)$ & Abstract \\
-Airy quasimodes & Airy spacing + $o(c^{-1/3})$ residual & $c^{-1/3}$ & Conditional \\
+Isolation principle & local counting law & window uniqueness & Conditional \\
+Airy quasimodes & Airy spacing + counting + $o(c^{-1/3})$ residual & $c^{-1/3}$ & Conditional \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -487,6 +551,8 @@ The unconditional theorem guarantees a genuine non-collapse statement for
 adjacent eigenvalues in the transition window.
 The conditional theorem identifies the exact missing semiclassical input
 needed for the sharper Airy-scale conclusion.
+The isolation proposition singles out the only genuinely spectral
+counting ingredient needed to make the indexing step verifiable.
 This split makes the paper both mathematically honest and modular for later
 papers in the series.
 \end{remark}
@@ -498,7 +564,7 @@ Paper~XII isolates Gap-S as one of the two hypotheses needed for projection
 stability.
 The present paper shows that the gap problem decomposes into a robust part
 already handled by coercivity and a sharp part reducible to local Airy-type
-quasimodes.
+quasimodes together with a local counting law.
 In particular, the obstruction is no longer the transfer from local model to
 true spectrum, but the construction of sufficiently accurate local model
 states together with stable spectral indexing.
@@ -511,11 +577,11 @@ localised states with residual $o(c^{-1/3})$ and model spacing of order
 $c^{-1/3}$.
 \end{problem}
 
-\begin{problem}[Spectral index stability in the PSWF window]
+\begin{problem}[Transition-window spectral counting]
 \label{prob:index}
-Verify Assumption~\ref{ass:quasimode}\ref{Q5} for the transition-window
-quasimodes arising from the PSWF local model.
-This is the precise indexing step required to convert local quasimodes into
+Establish the local counting statement \eqref{eq:isolation-count} in the
+PSWF transition regime.
+This is the precise isolation input required to convert local quasimodes into
 adjacent global eigenvalue gaps.
 \end{problem}
 
@@ -543,8 +609,8 @@ spectral gap problem for prolate operators.
 The coercive route is unconditional and robust; the quasimode route is sharp
 and conditional.
 Consequently, the sharp transition-window gap problem has been reduced to an
-explicit semiclassical quasimode problem with a separate, explicit spectral
-index-stability requirement.
+explicit semiclassical quasimode problem with separate, explicit spectral
+index-stability and local-counting requirements.
 
 \begin{thebibliography}{99}
 
