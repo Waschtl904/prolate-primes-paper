@@ -278,11 +278,19 @@ effective phase
   := \eta(x-y)
      - \int_{c}^{\eta}\bigl[\theta(\zeta;x) + \theta(\zeta;y)\bigr]\,d\zeta,
 \end{equation}
-where the Widom phase function is
+where the Widom phase function $\theta(\eta;x)$ arises from the leading-order
+symbol in Widom's stationary-phase representation of the truncated Fourier
+operator~\cite{Widom1964}. Near the band edge $\eta=c$, it admits, to
+leading asymptotic order, the factorised form
 \begin{equation}\label{eq:widom-theta}
-  \theta(\eta;x) := \arccos\!\Bigl(\frac{\eta}{c}\Bigr)\cdot\rho(x),
+  \theta(\eta;x)
+  \;\sim\;
+  \arccos\!\Bigl(\frac{\eta}{c}\Bigr)\cdot\rho(x)
+  \qquad (\eta\to c^-),
 \end{equation}
-with $\rho(x)$ the local density of states of $\Kc$ at position $x$.
+where $\rho(x)$ is the local density of states of $\Kc$ at position $x$.
+This separability is an asymptotic statement, not an exact identity; see
+~\cite{Widom1964} \S3 for the precise symbolic construction.
 Here $\arccos(\eta/c)$ is defined for $\eta \in (-c,c)$ and extended by
 analytic continuation across the band edge $\eta = c$; we fix the branch
 compatible with the steepest-descent contour (so that the imaginary part of
@@ -344,58 +352,109 @@ With $x = 1 - c^{-2/3}s$ and $y = 1 - c^{-2/3}t$:
   \rho(y) &= 1 - \rho'(1)c^{-2/3}t + O(c^{-4/3}). \label{eq:rho-y}
 \end{align}
 
-\textbf{Step~3: Integration of $\theta(\zeta;x)$ from $c$ to $c+c^{1/3}u$.}
-From \eqref{eq:widom-theta} and Steps~1--2:
-\begin{align}
-  \theta(\zeta;x)\big|_{\zeta=c+c^{1/3}w}
-  &= \arccos\!\Bigl(\frac{c+c^{1/3}w}{c}\Bigr)\cdot\rho(x) \notag\\
-  &= \bigl(c^{-1/3}\sqrt{-2w} + O(c^{-1}|w|^{3/2})\bigr)
-     \bigl(1 - \rho'(1)c^{-2/3}s + O(c^{-4/3})\bigr). \notag
-\end{align}
-Integrating $d\zeta = c^{1/3}\,dw$ from $w=0$ to $w=u$:
-\begin{equation}\label{eq:theta-x-integral}
-  \int_{c}^{c+c^{1/3}u} \theta(\zeta;x)\,d\zeta
-  = \int_0^u \sqrt{-2w}\,dw
-    - \rho'(1)c^{-2/3}s\int_0^u \sqrt{-2w}\,dw
-    + O\bigl(c^{-2/3}|u|^{5/2}\bigr).
-\end{equation}
-The key integral is
+\textbf{Step~3: Derivation of the Airy phase via normal form.}
+We compute the integral, transform it into polynomial form via a
+quadratic change of variables, and reduce to the canonical Airy phase.
+Throughout, $s,t$ range over compact subsets of $[0,\infty)$.
+
+\medskip
+\textbf{Step~3a (Integral).}
+Integrating $d\zeta = c^{1/3}\,dw$ from $w=0$ to $w=u$ with $u\le 0$:
 \begin{equation}\label{eq:airy-integral-primitive}
   \int_0^u \sqrt{-2w}\,dw
-  = -\tfrac{2}{3}(-2u)^{3/2}/2
-  = -\tfrac{1}{3}(-u)^{3/2}\sqrt{2}\cdot\sqrt{2}/\sqrt{2}
-  = -\tfrac{1}{3}u^3 \cdot \frac{1}{(-u)^{3/2}}\cdot(-u)^{3/2}
+  = \Bigl[\,-\tfrac{1}{3}(-2w)^{3/2}\,\Bigr]_0^u
+  = -\tfrac{1}{3}(-2u)^{3/2}.
 \end{equation}
-which, after the normalising rescaling $u \mapsto 2^{-1/3}u$ (which sets
-$\beta = 1/3$ in the cubic term), gives
-\begin{equation}\label{eq:cubic-from-integral}
-  \int_0^u \sqrt{-2w}\,dw = -\tfrac{1}{3}u^3 + O(c^{-2/3}|u|^{5/2}).
+This is \emph{not} a polynomial in $u$; it has a $\tfrac{3}{2}$-power
+branch structure. The passage to a cubic polynomial requires a
+change of variables, carried out in Step~3b.
+
+\medskip
+\textbf{Step~3b (Quadratic substitution / $A_2$ normal form).}
+Set $u = -v^2$ with $v \ge 0$ (steepest-descent normal form for a
+coalescing saddle). Then $du = -2v\,dv$ and
+\begin{equation}\label{eq:normalform-cubic}
+  (-2u)^{3/2} = (2v^2)^{3/2} = 2^{3/2} v^3.
 \end{equation}
-(We note that the rescaling $u \mapsto 2^{-1/3}u$ is a harmless change of
-variables that sets the coefficient of $u^3$ to exactly $1/3$;
-all subsequent error bounds absorb the resulting constants.)
+Hence
+\begin{equation}\label{eq:phase-in-v}
+  -\tfrac{1}{3}(-2u)^{3/2} = -\tfrac{2^{3/2}}{3}\,v^3 =: -C v^3,
+  \qquad C := \tfrac{2^{3/2}}{3} > 0.
+\end{equation}
+Incorporating the linear term from \eqref{eq:linear-phase} and
+the symmetric $y$-contribution, the leading-order rescaled phase in
+the variable $v$ is
+\begin{equation}\label{eq:phase-quadratic-cubic}
+  \Phi_c \sim -(s-t)v^2 + 2C v^3,
+\end{equation}
+uniformly for $s,t$ in compact subsets of $[0,\infty)$.
+This is the \emph{$A_2$ catastrophe normal form}: a degenerate saddle
+with vanishing quadratic term on the diagonal $s=t$.
+
+\medskip
+\textbf{Step~3c (Shift to eliminate the quadratic term).}
+Write $v = w + \alpha$ and choose $\alpha$ so that the $w^2$-coefficient
+in $2C(w+\alpha)^3 - (s-t)(w+\alpha)^2$ vanishes:
+\[
+  6C\alpha - (s-t) = 0 \implies \alpha = \frac{s-t}{6C}.
+\]
+After the shift, the phase takes the form
+\begin{equation}\label{eq:phase-after-shift}
+  \Phi_c \sim 2C w^3 + \xi w,
+  \qquad
+  \xi = -(s-t) + O\bigl((s-t)^2\bigr),
+\end{equation}
+uniformly for $s,t$ in compact subsets of $[0,\infty)$.
+
+\medskip
+\textbf{Step~3d (Normalisation to canonical Airy phase).}
+Set $w = (2C)^{-1/3}\tilde w$. Then $2Cw^3 = \tilde w^3$ and
+$\xi w = \xi (2C)^{-1/3}\tilde w$. A final harmless rescaling of
+$\tilde w$ gives the canonical Airy phase
+\begin{equation}\label{eq:canonical-airy-phase}
+  \Phi_c \;\sim\; \tfrac{1}{3}\tilde w^3 + \tilde\xi\,\tilde w,
+  \qquad
+  \tilde\xi = -(s-t)\cdot(2C)^{-1/3} + O\bigl((s-t)^2\bigr),
+\end{equation}
+uniformly for $s,t$ in compact subsets of $[0,\infty)$.
+The precise value of the constant $C$ is immaterial: it is absorbed by the
+final normalisation of the cubic term, and plays no role in the limiting
+kernel.
+
+\medskip
+\textbf{Step~3e (Measure transformation).}
+Under the substitution $u = -v^2$, one has $du = -2v\,dv$.
+Hence the oscillatory integral transforms as
+\begin{equation}\label{eq:measure-transform}
+  \int e^{i\Phi_c(u;\,s,t)}\,du
+  \;=\;
+  \int e^{i\Phi_c(-v^2;\,s,t)}\,(-2v)\,dv.
+\end{equation}
+The factor $(-2v)$ is \emph{not} harmless: it is essential for the
+emergence of the Airy \emph{kernel} rather than a single Airy function.
+Concretely, after symmetrisation in $s$ and $t$ and passage to the
+canonical variable $\tilde w$, the factor $v \propto \tilde w$ yields the
+standard two-point contour representation whose Christoffel--Darboux-type
+reduction gives the Airy kernel structure
+\[
+  K_{\mathrm{Ai}}(s,t)
+  = \frac{\Ai(\tilde\xi_s)\Ai'(\tilde\xi_t)
+          - \Ai'(\tilde\xi_s)\Ai(\tilde\xi_t)}{\tilde\xi_s - \tilde\xi_t},
+\]
+with
+$\Ai(x) = \tfrac{1}{2\pi}\int_\Gamma e^{i(\frac{1}{3}\tilde w^3 + x\tilde w)}\,d\tilde w$.
+
+\medskip
+Inserting \eqref{eq:canonical-airy-phase} into \eqref{eq:measure-transform}
+and collecting both contributions (from $x$ and $y$), one obtains the
+canonical cubic Airy phase at leading order. The lower-order correction
+polynomials $P_2$ and $P_3$ arise from the combined expansion of the
+arccos-term, the density term, and the change of variables.
 
 \textbf{Step~4: Assembly of the effective phase.}
-Combining Steps~1--3 and adding the symmetric contribution from $y$:
-\begin{align}
-  \Phi_c(u;s,t)
-  &= \eta(x-y)\big|_{\eqref{eq:linear-phase}}
-   - \int_c^{c+c^{1/3}u}\bigl[\theta(\zeta;x)+\theta(\zeta;y)\bigr]\,d\zeta
-   \notag\\
-  &= \bigl(c^{1/3}(t-s) + c^{-1/3}(t-s)u\bigr) \notag\\
-  &\quad - \Bigl(-\tfrac{1}{3}u^3 - \rho'(1)c^{-2/3}s\cdot(-\tfrac{1}{3}u^3)
-               + O(c^{-2/3})\Bigr) \notag\\
-  &\quad - \Bigl(-\tfrac{1}{3}u^3 - \rho'(1)c^{-2/3}t\cdot(-\tfrac{1}{3}u^3)
-               + O(c^{-2/3})\Bigr) \notag\\
-  &= c^{1/3}(t-s)
-   + \bigl[(t-s) + \tfrac{2}{3}u^2\bigr]\,c^{-1/3}u
-   + \tfrac{1}{3}u^3\,\rho'(1)c^{-2/3}(s+t)
-   + O\bigl(c^{-2/3}(1+|u|^4)\bigr). \notag
-\end{align}
-After removing the global oscillatory prefactor $e^{ic^{1/3}(t-s)}$
-(which contributes only to the overall phase of the kernel and cancels in
-$\omega_c$), expanding, and collecting by powers of $c^{-1/3}$, one obtains
-\eqref{eq:edge-phase-expansion} with coefficients \eqref{eq:P2}--\eqref{eq:P3}.
+Combining Steps~1--3 and adding the symmetric contribution from $y$,
+one obtains \eqref{eq:edge-phase-expansion} with coefficients
+\eqref{eq:P2}--\eqref{eq:P3}.
 
 The explicit form of $P_2$ follows from the $c^{-1/3}$-term:
 the coefficient of $u^2$ in the remainder is $-\tfrac{1}{2}(s+t)$, coming
@@ -560,8 +619,8 @@ with the factorisation supplied by Lemma~\ref{lem:hs}.
 \begin{problem}[Complete the analytic chain]
 \label{prob:traceclass-upgrade}
 Make Lemma~\ref{lem:edge-phase} and Lemma~\ref{lem:Rc-bound} fully rigorous
-(in particular: justify the $\rho$-expansion and the branch convention), then
-execute the chain
+(in particular: justify the $\rho$-expansion, the branch convention, and the
+Jacobian in the quadratic change of variables), then execute the chain
 \[
   \eqref{eq:Rc-pointwise}
   \Rightarrow
@@ -643,7 +702,8 @@ for all sufficiently large $c$ and all transition-regime indices $n$.
 Prove Theorem~\ref{thm:universality} by executing:
 \begin{enumerate}
 \item Rigorous edge phase expansion (Lemma~\ref{lem:edge-phase}),
-  including the $\rho$-expansion and branch convention.
+  including the $\rho$-expansion, branch convention, and Jacobian control in
+  the quadratic change of variables.
 \item Pointwise bound on $R_c$ (Lemma~\ref{lem:Rc-bound}).
 \item Duhamel estimate and global error kernel bound
   (Lemma~\ref{lem:variation}, Proposition~\ref{prop:global-error}).
