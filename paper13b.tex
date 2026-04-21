@@ -77,10 +77,10 @@ three mechanisms:
 \begin{itemize}
 \item \emph{(Theorem~A.)} An unconditional coercive gap bound is obtained
   from finite-dimensional Gram coercivity.
-\item \emph{(Theorem~B.)} Under local quasimode hypotheses in the
-  transition window, one obtains a conditional gap lower bound at the
-  model scale.
-\item \emph{(Corollary~C.)} Under Airy-type local spectral input,
+\item \emph{(Theorem~B.)} Under local quasimode hypotheses and an explicit
+  index-stability principle in the transition window, one obtains a
+  conditional gap lower bound at the model scale.
+\item \emph{(Corollary~C.)} Under known-type Airy transition asymptotics,
   the conditional gap scale is $c^{-1/3}$.
 \end{itemize}
 
@@ -130,7 +130,8 @@ A coercive transfer uses only finite-dimensional stability and yields a
 robust unconditional lower bound.
 A quasimode transfer uses local model eigenstructure and yields the
 sharp conditional Airy-scale lower bound, provided one can construct
-sufficiently accurate transition-window quasimodes.}}
+sufficiently accurate transition-window quasimodes and control their
+spectral indexing.}}
 \end{center}
 
 \subsection{Why operator norm is not the correct topology}
@@ -148,9 +149,10 @@ and quasimode transfer become natural.
 
 The paper contains two distinct transfer theorems.
 The first is unconditional and uses Gram coercivity.
-The second is conditional and uses quasimodes for a local model operator.
-The latter becomes effective once Airy-type local spectral information is
-available in the transition regime.
+The second is conditional and uses quasimodes for a local model operator,
+together with an explicit spectral index-stability lemma.
+The latter becomes effective once Airy-type transition asymptotics are
+available in the relevant window.
 
 \section{Operator Setup}
 \label{sec:setup}
@@ -287,10 +289,75 @@ spectral parameters $\mu_n(c)$ such that:
 \item\label{Q3}
   $|\mu_n(c)-\mu_{n+1}(c)|\ge \delta_{\mathrm{model}}(c)$;
 \item\label{Q4}
-  the family is asymptotically orthogonal in the sense required to identify
-  consecutive eigenvalues through the min--max principle.
+  for each consecutive pair $(f_n^{(c)},f_{n+1}^{(c)})$, the associated
+  Gram matrix
+  \[
+    G_n^{(c)} := \begin{pmatrix}
+      1 & \ip{f_n^{(c)}}{f_{n+1}^{(c)}} \\
+      \ip{f_{n+1}^{(c)}}{f_n^{(c)}} & 1
+    \end{pmatrix}
+  \]
+  satisfies
+  \begin{equation}\label{eq:gram-near-id}
+    \norm{G_n^{(c)}-I}_{\op} \le \eta(c),
+    \qquad \eta(c)\to 0;
+  \end{equation}
+\item\label{Q5}
+  the spectral window around $\mu_n(c)$ and $\mu_{n+1}(c)$ contains no
+  additional eigenvalues beyond the targeted consecutive pair, in the sense
+  formalised in Lemma~\ref{lem:index} below.
 \end{enumerate}
 \end{assumption}
+
+\begin{lemma}[Spectral index stability]
+\label{lem:index}
+Let $A$ be compact self-adjoint with decreasing eigenvalues
+$\lambda_0\ge\lambda_1\ge\cdots$.
+Suppose $\mu_n>\mu_{n+1}$ and there exist unit vectors $f_n,f_{n+1}$ such
+that
+\[
+  \norm{(A-\mu_n)f_n}\le \varepsilon,
+  \qquad
+  \norm{(A-\mu_{n+1})f_{n+1}}\le \varepsilon,
+\]
+with
+\[
+  \norm{G-I}_{\op}\le \eta <1,
+\]
+where $G$ is the $2\times 2$ Gram matrix of $(f_n,f_{n+1})$.
+Assume moreover that the interval
+\[
+  [\mu_{n+1}-\varepsilon,\,\mu_n+\varepsilon]
+\]
+contains exactly two eigenvalues of $A$ counted with multiplicity.
+Then those eigenvalues are consecutive, say $\lambda_n$ and $\lambda_{n+1}$,
+and
+\begin{equation}\label{eq:index-gap}
+  \lambda_n-\lambda_{n+1}
+  \ge (\mu_n-\mu_{n+1}) - 2\varepsilon.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By the residual bound and the spectral theorem, the distance from each
+$\mu_j$ to $\sigma(A)$ is at most $\varepsilon$.
+Hence the interval
+$[\mu_{n+1}-\varepsilon,\,\mu_n+\varepsilon]$ contains at least two
+eigenvalues of $A$.
+The Gram condition $\norm{G-I}_{\op}<1$ implies linear independence of
+$f_n,f_{n+1}$, so the corresponding approximate spectral subspace has
+dimension two.
+By hypothesis, the same interval contains exactly two eigenvalues counted
+with multiplicity; they must therefore be the unique pair attached to these
+quasimodes.
+Ordering gives
+\[
+  \lambda_n \ge \mu_n-\varepsilon,
+  \qquad
+  \lambda_{n+1} \le \mu_{n+1}+\varepsilon,
+\]
+and subtraction yields \eqref{eq:index-gap}.
+\end{proof}
 
 \begin{theorem}[Quasimode transfer theorem]
 \label{thm:B}
@@ -312,20 +379,10 @@ for all sufficiently large $c$.
 \end{theorem}
 
 \begin{proof}
-Fix $n$ in the transition window.
-By \eqref{eq:quasimode} and the spectral theorem for compact self-adjoint
-operators, the distance from $\mu_n(c)$ to the spectrum of $\Kc$ is at most
-$\varepsilon(c)$.
-Hence there exists an eigenvalue $\nu_n(c)\in\sigma(\Kc)$ such that
-\[
-  |\nu_n(c)-\mu_n(c)| \le \varepsilon(c).
-\]
-Likewise there exists $\nu_{n+1}(c)\in\sigma(\Kc)$ with
-$|\nu_{n+1}(c)-\mu_{n+1}(c)|\le\varepsilon(c)$.
-Under the asymptotic orthogonality and ordering hypothesis \ref{Q4},
-these spectral points can be identified with the consecutive eigenvalues
-$\lambdac{c}{n}$ and $\lambdac{c}{n+1}$.
-Therefore
+Fix $n$ in the transition window and apply Lemma~\ref{lem:index} to
+$A=\Kc$, $\mu_n=\mu_n(c)$, and $\mu_{n+1}=\mu_{n+1}(c)$.
+Assumptions \ref{Q1}--\ref{Q5} verify the hypotheses of the lemma.
+Hence
 \[
   \gapc{c}{n}
   = \lambdac{c}{n}-\lambdac{c}{n+1}
@@ -355,10 +412,13 @@ The purpose of this section is not to claim a full derivation of the Airy
 model from scratch, but to state precisely what additional ingredient would
 upgrade Theorem~\ref{thm:B} to the expected local scale.
 
-\begin{assumption}[Airy transition input]
+\begin{assumption}[Known-type Airy transition asymptotics]
 \label{ass:airy}
-In the transition regime $n\sim 2c/\pi$, there exists a quasimode family as
-in Assumption~\ref{ass:quasimode} with model spacing
+In the transition regime $n\sim 2c/\pi$, assume that the local PSWF kernel
+admits the standard Airy-type asymptotic description of the Widom--Deift
+transition regime, in the following concrete sense:
+there exists a quasimode family as in Assumption~\ref{ass:quasimode} with
+model spacing
 \begin{equation}\label{eq:airy-gap}
   \delta_{\mathrm{model}}(c) \asymp c^{-1/3}
 \end{equation}
@@ -367,6 +427,14 @@ and residual size
   \varepsilon(c) = o(c^{-1/3}).
 \end{equation}
 \end{assumption}
+
+\begin{remark}[Status of Assumption~\ref{ass:airy}]
+This assumption should be read as a non-trivial transition asymptotic input,
+not as a formal consequence of the present abstract setup.
+Its verification would require a genuine steepest-descent or equivalent
+semiclassical analysis of the PSWF transition kernel.
+The present paper isolates this input rather than claiming to prove it.
+\end{remark}
 
 \begin{corollary}[Conditional Airy-scale gap]
 \label{cor:airy}
@@ -408,7 +476,7 @@ It is useful to display them explicitly.
 Mechanism & Input & Output scale & Status \\
 \midrule
 Coercive transfer & Gram coercivity & $c^{-1/2}$ & Unconditional \\
-Quasimode transfer & local residual control & $\delta_{\mathrm{model}}(c)$ & Abstract \\
+Quasimode transfer & residual + index stability & $\delta_{\mathrm{model}}(c)$ & Abstract \\
 Airy quasimodes & Airy spacing + $o(c^{-1/3})$ residual & $c^{-1/3}$ & Conditional \\
 \bottomrule
 \end{tabular}
@@ -433,7 +501,7 @@ already handled by coercivity and a sharp part reducible to local Airy-type
 quasimodes.
 In particular, the obstruction is no longer the transfer from local model to
 true spectrum, but the construction of sufficiently accurate local model
-states.
+states together with stable spectral indexing.
 
 \begin{problem}[Transition-window quasimodes]
 \label{prob:quasimodes}
@@ -441,6 +509,14 @@ Construct a quasimode family satisfying Assumption~\ref{ass:airy}.
 Equivalently, show that in the transition regime $n\sim 2c/\pi$ there exist
 localised states with residual $o(c^{-1/3})$ and model spacing of order
 $c^{-1/3}$.
+\end{problem}
+
+\begin{problem}[Spectral index stability in the PSWF window]
+\label{prob:index}
+Verify Assumption~\ref{ass:quasimode}\ref{Q5} for the transition-window
+quasimodes arising from the PSWF local model.
+This is the precise indexing step required to convert local quasimodes into
+adjacent global eigenvalue gaps.
 \end{problem}
 
 \begin{problem}[Model identification]
@@ -467,7 +543,8 @@ spectral gap problem for prolate operators.
 The coercive route is unconditional and robust; the quasimode route is sharp
 and conditional.
 Consequently, the sharp transition-window gap problem has been reduced to an
-explicit semiclassical quasimode problem.
+explicit semiclassical quasimode problem with a separate, explicit spectral
+index-stability requirement.
 
 \begin{thebibliography}{99}
 
