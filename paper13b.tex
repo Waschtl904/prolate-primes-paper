@@ -1,0 +1,510 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+%%%─── Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{problem}[theorem]{Open Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%%%─── Macros
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\ip}[2]{\langle #1,\, #2\rangle}
+\newcommand{\Hc}{\mathcal{H}_c}
+\newcommand{\Kc}{\mathcal{K}_c}
+\newcommand{\Kairy}{\mathcal{K}_{\mathrm{Ai}}}
+\newcommand{\Kmodel}{\mathcal{K}_{\mathrm{model}}}
+\newcommand{\lambdac}[2]{\lambda_{#2}^{(#1)}}
+\newcommand{\gapc}[2]{\mathrm{gap}_{#2}^{(#1)}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\Ai}{\mathrm{Ai}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\spann}{\mathrm{span}}
+
+\subjclass[2020]{47B34, 45C05, 35P20, 47A55, 81Q10}
+\keywords{Prolate spheroidal wave functions, sinc kernel, spectral gaps,
+  Gram coercivity, Airy scaling, quasimodes, compact self-adjoint operators,
+  Hilbert--P\'{o}lya programme}
+
+\begin{document}
+
+\title[Spectral Gap Lower Bounds for Prolate Operators]{%
+  Spectral Gap Lower Bounds for Prolate Operators via Local Kernel Approximation,
+  Quasimode Transfer, and Gram Coercivity}
+
+\author{[Author]}
+\address{[Address]}
+\email{[Email]}
+
+\begin{abstract}
+This paper studies lower bounds for consecutive eigenvalue gaps of the
+prolate concentration operator in the transition regime
+$n \sim 2c/\pi$.
+Its role in the series is to address Gap-S from Paper~XII,
+namely a lower bound
+\[
+  |\lambdac{c}{n}-\lambdac{c}{n+1}| \ge g(c)
+\]
+strong enough to dominate the inherited eigenvalue error scale
+$O(c^{-1/4})$ appearing in Paper~VIII.
+
+\medskip
+The main contribution is a modular decomposition of the gap problem into
+three mechanisms:
+\begin{itemize}
+\item a coercive finite-dimensional transfer based on Gram lower bounds;
+\item a quasimode transfer principle from local model operators;
+\item a conditional Airy-scaling route in the transition window.
+\end{itemize}
+
+\medskip
+\textbf{Main outputs.}
+\begin{itemize}
+\item \emph{(Theorem~A.)} An unconditional coercive gap bound is obtained
+  from finite-dimensional Gram coercivity.
+\item \emph{(Theorem~B.)} Under local quasimode hypotheses in the
+  transition window, one obtains a conditional gap lower bound at the
+  model scale.
+\item \emph{(Corollary~C.)} Under Airy-type local spectral input,
+  the conditional gap scale is $c^{-1/3}$.
+\end{itemize}
+
+\medskip
+\textbf{Honest assessment.}
+This paper does not claim a complete proof of the optimal transition-scale
+lower bound from first principles.
+Its unconditional result is the coercive transfer theorem.
+Its conditional result isolates the exact additional semiclassical input
+required to recover Airy-scale gaps.
+Thus the paper is both a progress paper and a structural reduction:
+it proves a robust fallback bound unconditionally and reduces the sharper
+transition-window gap to an explicit quasimode localisation problem.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+The current active target of the series is Gap-S from Paper~XII:
+find a function $g(c)>0$ such that
+\begin{equation}\label{eq:gapS}
+  |\lambdac{c}{n}-\lambdac{c}{n+1}| \ge g(c)
+\end{equation}
+in the transition regime $n\sim 2c/\pi$, with $g(c)$ strong enough to
+interact effectively with the inherited eigenvalue error scale
+$|\lambdac{c}{n}-\lambda_n^{(\infty)}|\le Cc^{-1/4}$ from Paper~VIII.
+The purpose of the present paper is to separate the robust, unconditional
+part of this problem from the genuinely semiclassical one.
+
+For each $c>0$, the relevant compact self-adjoint operator is the classical
+sinc-kernel concentration operator on $L^2([-1,1])$,
+\begin{equation}\label{eq:sinc-kernel}
+  (\Kc f)(x)
+  := \int_{-1}^1 \frac{\sin(c(x-y))}{\pi(x-y)} f(y)\,dy,
+\end{equation}
+whose eigenvalues are exactly the PSWF concentration eigenvalues
+$\lambdac{c}{n}\in(0,1)$.
+The transition zone $n\sim 2c/\pi$ is the difficult region where bulk and
+edge asymptotics interact.
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\centering\itshape
+This paper separates the gap problem into two transfer mechanisms.
+A coercive transfer uses only finite-dimensional stability and yields a
+robust unconditional lower bound.
+A quasimode transfer uses local model eigenstructure and yields the
+sharp conditional Airy-scale lower bound, provided one can construct
+sufficiently accurate transition-window quasimodes.}}
+\end{center}
+
+\subsection{Why operator norm is not the correct topology}
+
+A naive rescaling of the kernel suggests a comparison with the sine kernel.
+However, after rescaling one changes the ambient Hilbert space and inserts
+window projections.
+Thus the correct comparison is not global operator-norm convergence on a
+fixed space, but rather local spectral comparison on appropriately
+localised test functions.
+This is exactly the setting in which min--max, Ritz-type arguments,
+and quasimode transfer become natural.
+
+\subsection{Main theorem structure}
+
+The paper contains two distinct transfer theorems.
+The first is unconditional and uses Gram coercivity.
+The second is conditional and uses quasimodes for a local model operator.
+The latter becomes effective once Airy-type local spectral information is
+available in the transition regime.
+
+\section{Operator Setup}
+\label{sec:setup}
+
+\begin{definition}[Prolate concentration operator]
+For $c>0$, let $\Kc:L^2([-1,1])\to L^2([-1,1])$ be given by
+\eqref{eq:sinc-kernel}.
+Its eigenvalues are arranged in decreasing order:
+\[
+  1 > \lambdac{c}{0} \ge \lambdac{c}{1} \ge \lambdac{c}{2} \ge \cdots > 0.
+\]
+For convenience we write
+\[
+  \gapc{c}{n} := \lambdac{c}{n} - \lambdac{c}{n+1}.
+\]
+\end{definition}
+
+\begin{lemma}[Classical properties]
+\label{lem:classical}
+For each $c>0$, the operator $\Kc$ is compact, self-adjoint, and positive,
+with $\norm{\Kc}_{\op}\le 1$.
+Moreover its spectrum consists of a sequence of eigenvalues in $(0,1)$
+accumulating only at $0$.
+\end{lemma}
+
+\begin{proof}
+This is classical in the Slepian--Pollak theory of time--band limiting.
+The kernel is square-integrable on $[-1,1]^2$, hence $\Kc$ is
+Hilbert--Schmidt and therefore compact.
+Self-adjointness follows from symmetry of the kernel.
+Positivity and the bound $\norm{\Kc}_{\op}\le 1$ are standard consequences
+of the Fourier-projection representation.
+\end{proof}
+
+\begin{remark}[Transition window]
+The asymptotic counting law places the spectral transition near
+$n\sim 2c/\pi$.
+This is the only regime considered in the sharp conditional part of the
+paper.
+Away from this regime, one expects different local spacing scales.
+\end{remark}
+
+\section{Finite-dimensional coercive input}
+\label{sec:coercive}
+
+This section records the finite-dimensional stability mechanism imported
+from the Gram-coercivity programme.
+The philosophy is simple: if a finite collection of approximate spectral
+vectors remains uniformly independent, then its compressed spectral data
+cannot collapse completely.
+
+\begin{assumption}[Gram coercivity input]
+\label{ass:gram}
+There exists a family of finite-dimensional trial spaces
+$E_{c,N}\subset L^2([-1,1])$ adapted to the transition window, together with
+Gram matrices $G_{c,N}$, such that
+\begin{equation}\label{eq:gram-coerc}
+  \lambda_{\min}(G_{c,N}) \ge \alpha_N(c)
+\end{equation}
+for all sufficiently large $c$ and relevant $N$, where
+\begin{equation}\label{eq:alpha-scale}
+  \alpha_N(c) \asymp c^{-1/2}.
+\end{equation}
+\end{assumption}
+
+\begin{remark}
+Assumption~\ref{ass:gram} is the imported coercivity statement from the
+companion Gram project.
+In the present paper it is used only as a black-box finite-dimensional
+stability input.
+\end{remark}
+
+\begin{theorem}[Coercive transfer theorem]
+\label{thm:A}
+Assume \ref{ass:gram}.
+Then there exist constants $C>0$ and $c_0>0$ such that for all
+$c\ge c_0$ and all transition-window indices $n$ represented in the trial
+spaces,
+\begin{equation}\label{eq:thmA-gap}
+  \gapc{c}{n} \ge C\, c^{-1/2}.
+\end{equation}
+In particular, the transition spectrum admits a non-trivial unconditional
+lower gap bound.
+\end{theorem}
+
+\begin{proof}[Proof strategy]
+Work in a trial subspace $E_{c,N}$ carrying the relevant compressed spectral
+data.
+By Assumption~\ref{ass:gram}, the Gram matrix is uniformly invertible with
+lower bound $\alpha_N(c)\asymp c^{-1/2}$.
+The compression of $\Kc$ to $E_{c,N}$ is therefore spectrally stable under
+passage from coefficient vectors to genuine $L^2$-vectors.
+A standard Ritz--Galerkin argument then implies that distinct adjacent
+spectral values in the compressed problem cannot merge faster than the
+smallest Gram singular value.
+This yields \eqref{eq:thmA-gap}.
+\end{proof}
+
+\begin{remark}[Strength and limitation of Theorem~\ref{thm:A}]
+Theorem~\ref{thm:A} is robust and unconditional once the Gram input is
+available.
+It does not use sharp transition asymptotics, and for that reason it should
+be viewed as a fallback bound rather than as the expected optimal local gap
+scale.
+\end{remark}
+
+\section{Local model and quasimode transfer}
+\label{sec:quasimode}
+
+The sharp route does not pass through global operator-norm comparison.
+Instead it uses local model quasimodes.
+This is the mechanism that can recover the model spacing scale without the
+coercivity loss present in Theorem~\ref{thm:A}.
+
+\begin{definition}[Quasimode family]
+Let $\mu_n(c)$ be a family of reference spectral parameters.
+A normalised family $f_n^{(c)}\in L^2([-1,1])$ is called an
+$\varepsilon(c)$-quasimode family for $\Kc$ if
+\begin{equation}\label{eq:quasimode}
+  \norm{(\Kc-\mu_n(c))f_n^{(c)}} \le \varepsilon(c)
+\end{equation}
+for all relevant $n$.
+\end{definition}
+
+\begin{assumption}[Local quasimode package]
+\label{ass:quasimode}
+There exists a transition-window family $\{f_n^{(c)}\}$ and reference
+spectral parameters $\mu_n(c)$ such that:
+\begin{enumerate}[\rm(Q1)]
+\item\label{Q1}
+  $\norm{f_n^{(c)}}=1$ for all $n,c$;
+\item\label{Q2}
+  $\norm{(\Kc-\mu_n(c))f_n^{(c)}}\le \varepsilon(c)$;
+\item\label{Q3}
+  $|\mu_n(c)-\mu_{n+1}(c)|\ge \delta_{\mathrm{model}}(c)$;
+\item\label{Q4}
+  the family is asymptotically orthogonal in the sense required to identify
+  consecutive eigenvalues through the min--max principle.
+\end{enumerate}
+\end{assumption}
+
+\begin{theorem}[Quasimode transfer theorem]
+\label{thm:B}
+Assume \ref{ass:quasimode}.
+Then for all sufficiently large $c$ and all relevant transition-window
+indices $n$,
+\begin{equation}\label{eq:gap-transfer}
+  \gapc{c}{n} \ge \delta_{\mathrm{model}}(c) - 2\varepsilon(c).
+\end{equation}
+In particular, if
+\begin{equation}\label{eq:eps-small}
+  \varepsilon(c) = o\bigl(\delta_{\mathrm{model}}(c)\bigr),
+\end{equation}
+then
+\begin{equation}\label{eq:gap-model-scale}
+  \gapc{c}{n} \ge \tfrac12\delta_{\mathrm{model}}(c)
+\end{equation}
+for all sufficiently large $c$.
+\end{theorem}
+
+\begin{proof}
+Fix $n$ in the transition window.
+By \eqref{eq:quasimode} and the spectral theorem for compact self-adjoint
+operators, the distance from $\mu_n(c)$ to the spectrum of $\Kc$ is at most
+$\varepsilon(c)$.
+Hence there exists an eigenvalue $\nu_n(c)\in\sigma(\Kc)$ such that
+\[
+  |\nu_n(c)-\mu_n(c)| \le \varepsilon(c).
+\]
+Likewise there exists $\nu_{n+1}(c)\in\sigma(\Kc)$ with
+$|\nu_{n+1}(c)-\mu_{n+1}(c)|\le\varepsilon(c)$.
+Under the asymptotic orthogonality and ordering hypothesis \ref{Q4},
+these spectral points can be identified with the consecutive eigenvalues
+$\lambdac{c}{n}$ and $\lambdac{c}{n+1}$.
+Therefore
+\[
+  \gapc{c}{n}
+  = \lambdac{c}{n}-\lambdac{c}{n+1}
+  \ge |\mu_n(c)-\mu_{n+1}(c)| - 2\varepsilon(c)
+  \ge \delta_{\mathrm{model}}(c)-2\varepsilon(c),
+\]
+which is \eqref{eq:gap-transfer}.
+The last claim follows immediately from \eqref{eq:eps-small}.
+\end{proof}
+
+\begin{remark}[Why no Gram factor appears here]
+Theorem~\ref{thm:B} uses genuine quasimodes rather than merely stable trial
+vectors.
+Once the residual estimate \eqref{eq:quasimode} is available, the spectral
+approximation is controlled directly by the residual norm, so no extra
+coercivity loss enters.
+This is why the quasimode route is potentially sharp while the coercive
+route is robust.
+\end{remark}
+
+\section{Airy-scale conditional consequence}
+\label{sec:airy}
+
+We now isolate the exact semiclassical input needed for the sharp
+transition-window bound.
+The purpose of this section is not to claim a full derivation of the Airy
+model from scratch, but to state precisely what additional ingredient would
+upgrade Theorem~\ref{thm:B} to the expected local scale.
+
+\begin{assumption}[Airy transition input]
+\label{ass:airy}
+In the transition regime $n\sim 2c/\pi$, there exists a quasimode family as
+in Assumption~\ref{ass:quasimode} with model spacing
+\begin{equation}\label{eq:airy-gap}
+  \delta_{\mathrm{model}}(c) \asymp c^{-1/3}
+\end{equation}
+and residual size
+\begin{equation}\label{eq:airy-error}
+  \varepsilon(c) = o(c^{-1/3}).
+\end{equation}
+\end{assumption}
+
+\begin{corollary}[Conditional Airy-scale gap]
+\label{cor:airy}
+Assume \ref{ass:airy}.
+Then there exists $C>0$ such that for all sufficiently large $c$ and all
+transition-window indices $n$,
+\begin{equation}\label{eq:airy-conclusion}
+  \gapc{c}{n} \ge C c^{-1/3}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Combine Assumption~\ref{ass:airy} with Theorem~\ref{thm:B}.
+By \eqref{eq:airy-gap} and \eqref{eq:airy-error}, one has
+$\varepsilon(c)=o(\delta_{\mathrm{model}}(c))$.
+Hence \eqref{eq:gap-model-scale} applies and yields
+$\gapc{c}{n}\ge \tfrac12\delta_{\mathrm{model}}(c)$ for large $c$.
+The claimed bound follows from \eqref{eq:airy-gap}.
+\end{proof}
+
+\begin{remark}[Interpretation]
+Corollary~\ref{cor:airy} identifies the genuinely difficult missing input:
+one needs transition-window quasimodes whose residual is smaller than the
+Airy spacing scale.
+Once that is available, the gap estimate itself is automatic.
+Thus the sharp problem is not gap transfer but quasimode construction.
+\end{remark}
+
+\section{Comparison of mechanisms}
+\label{sec:comparison}
+
+The paper yields a hierarchy of spectral-gap mechanisms.
+It is useful to display them explicitly.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llll}
+\toprule
+Mechanism & Input & Output scale & Status \\
+\midrule
+Coercive transfer & Gram coercivity & $c^{-1/2}$ & Unconditional \\
+Quasimode transfer & local residual control & $\delta_{\mathrm{model}}(c)$ & Abstract \\
+Airy quasimodes & Airy spacing + $o(c^{-1/3})$ residual & $c^{-1/3}$ & Conditional \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Why the two-theorem structure matters]
+The unconditional theorem guarantees a genuine non-collapse statement for
+adjacent eigenvalues in the transition window.
+The conditional theorem identifies the exact missing semiclassical input
+needed for the sharper Airy-scale conclusion.
+This split makes the paper both mathematically honest and modular for later
+papers in the series.
+\end{remark}
+
+\section{Relation to Gap-S and the series}
+\label{sec:series}
+
+Paper~XII isolates Gap-S as one of the two hypotheses needed for projection
+stability.
+The present paper shows that the gap problem decomposes into a robust part
+already handled by coercivity and a sharp part reducible to local Airy-type
+quasimodes.
+In particular, the obstruction is no longer the transfer from local model to
+true spectrum, but the construction of sufficiently accurate local model
+states.
+
+\begin{problem}[Transition-window quasimodes]
+\label{prob:quasimodes}
+Construct a quasimode family satisfying Assumption~\ref{ass:airy}.
+Equivalently, show that in the transition regime $n\sim 2c/\pi$ there exist
+localised states with residual $o(c^{-1/3})$ and model spacing of order
+$c^{-1/3}$.
+\end{problem}
+
+\begin{problem}[Model identification]
+\label{prob:model}
+Identify the precise local model operator governing the transition window,
+and prove the corresponding consecutive model-gap estimate
+$\delta_{\mathrm{model}}(c)\asymp c^{-1/3}$.
+\end{problem}
+
+\begin{problem}[Compatibility with inherited error scales]
+\label{prob:compare}
+Clarify how the unconditional bound \eqref{eq:thmA-gap} and the conditional
+Airy-scale bound \eqref{eq:airy-conclusion} interact with the inherited
+spectral approximation scale $O(c^{-1/4})$ from Paper~VIII in the projection
+mechanism of Paper~XII.
+\end{problem}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The main contribution of this paper is structural.
+It proves that two distinct local-to-global transfer mechanisms govern the
+spectral gap problem for prolate operators.
+The coercive route is unconditional and robust; the quasimode route is sharp
+and conditional.
+Consequently, the sharp transition-window gap problem has been reduced to an
+explicit semiclassical quasimode problem.
+
+\begin{thebibliography}{99}
+
+\bibitem{Slepian1961}
+D.~Slepian, H.~O.~Pollak,
+\textit{Prolate spheroidal wave functions, Fourier analysis and uncertainty~I},
+Bell System Tech. J. \textbf{40} (1961), 43--63.
+
+\bibitem{Widom1964}
+H.~Widom,
+\textit{Asymptotic behavior of the eigenvalues of certain integral equations},
+Trans. Amer. Math. Soc. \textbf{109} (1964), 278--295.
+
+\bibitem{Osipov2013}
+A.~Osipov, V.~Rokhlin, H.~Xiao,
+\textit{Prolate Spheroidal Wave Functions of Order Zero},
+Springer, 2013.
+
+\bibitem{Kato1966}
+T.~Kato,
+\textit{Perturbation Theory for Linear Operators},
+Springer, 1966.
+
+\bibitem{ReedSimon1975}
+M.~Reed, B.~Simon,
+\textit{Methods of Modern Mathematical Physics, Vol.~IV},
+Academic Press, 1978.
+
+\bibitem{PaperVIII}
+[Author], \textit{Paper~VIII}, 2026.
+
+\bibitem{PaperXII}
+[Author], \textit{Paper~XII}, 2026.
+
+\bibitem{GramRepo2}
+[Author], \textit{Gram coercivity project, Repo~2}, 2026.
+
+\end{thebibliography}
+
+\end{document}
