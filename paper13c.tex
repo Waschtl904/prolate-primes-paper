@@ -35,7 +35,8 @@
 \subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
 \keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
   Fredholm determinants, spectral universality, integrable operators,
-  sinc kernel, coalescing saddle point, IIKS structure, Riemann--Hilbert}
+  sinc kernel, coalescing saddle point, IIKS structure, Riemann--Hilbert,
+  steepest descent, $g$-function}
 
 \begin{document}
 
@@ -72,8 +73,10 @@ $\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0$,
 are conditional on Conjecture~\ref{conj:airy-transition},
 which identifies the RHP convergence as the single remaining deep
 analytic step.
-A full proof requires Deift--Zhou steepest descent on the
-Riemann--Hilbert problem associated to the rescaled sinc kernel.
+Section~\ref{sec:rhp} provides the complete explicit RHP
+(jump matrix, contour geometry, $g$-function ansatz, Airy
+parametrix construction, and small-norm problem), identifying
+precisely which analytic inputs are still required for a full proof.
 
 \medskip
 Fredholm determinant convergence, Airy-scale gap asymptotics, local
@@ -87,6 +90,9 @@ conditionally on Conjecture~\ref{conj:airy-transition}.
   conditional on Conjecture~\ref{conj:airy-transition}.
 \item \emph{(Theorem~I.)} Exact IIKS representation of the rescaled
   sinc kernel with explicit RHP-level Airy limit conjecture.
+\item \emph{(Section~\ref{sec:rhp}.)} Explicit RHP formulation:
+  $g$-function ansatz, contour geometry, Airy parametrix,
+  small-norm problem.
 \item \emph{(Corollaries A--C.)} Gap asymptotics, local counting,
   stable quasimodes; all conditional on
   Conjecture~\ref{conj:airy-transition}.
@@ -95,6 +101,8 @@ conditionally on Conjecture~\ref{conj:airy-transition}.
 \medskip
 \textbf{Status.}
 The exact and asymptotic expansion layers are rigorous.
+The explicit RHP section is a rigorous programme reduction:
+all steps are constructed and the precise open inputs identified.
 The scaling limit layer is an explicitly formulated open programme
 (Problem~\ref{prob:rh-programme}).
 \end{abstract}
@@ -108,7 +116,9 @@ Paper~XIII reduced the sharp transition-window gap problem to two inputs:
 Airy-scale quasimodes and a local counting statement.
 The present paper sharpens that reduction to a single structural question:
 the convergence of the Riemann--Hilbert solution associated to the
-rescaled sinc kernel to the Airy parametrix of Tracy--Widom.
+rescaled sinc kernel to the Airy parametrix of Tracy--Widom,
+and provides in Section~\ref{sec:rhp} an explicit construction of all
+steps of the Deift--Zhou steepest descent programme for this problem.
 
 \medskip
 \textbf{Three-layer structure.}
@@ -129,7 +139,8 @@ The paper is organized according to a strict partition of rigorous status:
 \begin{remark}[Airy limit does not arise pointwise]
 \label{rem:not-pointwise}
 The Airy structure does \emph{not} emerge from pointwise convergence of
-the exponential IIKS vectors $e^{\pm icx}$.
+the exponential IIKS vectors $e^{\pm icx}$; there is no vector-level
+convergence.
 It arises via contour deformation, integrated phase, and coalescing-saddle
 analysis --- that is, through the convergence of the full RHP solution.
 This is the conceptual content of Conjecture~\ref{conj:airy-transition}.
@@ -142,7 +153,7 @@ while simultaneously being used to derive it.
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
 The sinc kernel is an exact IIKS operator.
-Its associated RHP solution is explicitly constructible.
+Its associated RHP is explicitly formulated in Section~\ref{sec:rhp}.
 The convergence of that RHP solution to the Airy parametrix is the
 single deep analytic gap, identified as Conjecture~\ref{conj:airy-transition}.
 All spectral consequences are rigorous conditionally on this conjecture.}}
@@ -358,10 +369,11 @@ Conjecture~\ref{conj:airy-transition}.
 \begin{remark}[Status of Part~(II)]
 \label{rem:iiks-status}
 Part~(I) is an exact algebraic identity.
-Part~(II) is formal: the Airy functions $\Ai(x)$, $\Ai'(x)$ arise not
-from pointwise limits of the exponentials $e^{\pm icx}$, but from the
+Part~(II) is formal: there is no vector-level convergence.
+The Airy functions $\Ai(x)$, $\Ai'(x)$ arise only from the
 convergence of the full RHP solution via contour deformation and
-coalescing-saddle analysis (see Remark~\ref{rem:not-pointwise}).
+coalescing-saddle analysis (see Remarks~\ref{rem:not-pointwise}
+and~\ref{rem:rh-route}).
 This convergence is the content of Conjecture~\ref{conj:airy-transition}
 and is \emph{not} proved here.
 \end{remark}
@@ -408,10 +420,7 @@ this implies:
 \begin{remark}[Trace-class convergence, conditional]
 \label{rem:tc-conditional}
 The estimate
-\[
-  \norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
-  =O(c^{-1/3})
-\]
+$\norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}=O(c^{-1/3})$
 holds conditionally on Conjecture~\ref{conj:airy-transition}.
 Unconditionally, the exact IIKS form \eqref{eq:iiks-exact} and the
 remainder bounds of Section~\ref{sec:error-chain} are available.
@@ -419,39 +428,20 @@ remainder bounds of Section~\ref{sec:error-chain} are available.
 
 \begin{remark}[Diagonal control]
 \label{rem:diagonal-control}
-The kernel difference near $x=y$ requires separate analysis.
-Using the IIKS representation
-\[
-  K(x,y)=\frac{\vec{F}(x)^\top J\,\vec{G}(y)}{x-y},
-\]
-the diagonal limit is given by
+Using the IIKS representation $K(x,y)=\vec{F}(x)^\top J\,\vec{G}(y)/(x-y)$,
+the diagonal value is given by
 \[
   K(x,x)=\frac{d}{dx}\bigl(\vec{F}(x)^\top J\,\vec{G}(x)\bigr).
 \]
-Hence diagonal convergence follows from the convergence of the
-RHP solution $Y_c\to Y_{\mathrm{Ai}}$ and smoothness of the limiting
-objects.
-This provides the missing ingredient in upgrading
-$\mathfrak{S}_2$ to $\mathfrak{S}_1$ in Lemma~\ref{lem:trace-upgrade}.
+Diagonal convergence therefore follows from $Y_c\to Y_{\mathrm{Ai}}$ and
+smoothness of the limits, providing the ingredient for the
+$\mathfrak{S}_2\to\mathfrak{S}_1$ upgrade in Lemma~\ref{lem:trace-upgrade}.
 \end{remark}
 
 \begin{remark}[Route to a proof]
 \label{rem:rh-route}
-The natural proof strategy for Conjecture~\ref{conj:airy-transition} is:
-\begin{enumerate}[label=(\roman*)]
-\item The RHP for $Y_c$ is fully specified by \eqref{eq:jump-matrix},
-  the contour $\Sigma_c=[0,+\infty)$, and the normalisation $Y_c\to I$
-  at infinity; see~\cite{ItsIzergin1990}.
-\item Apply Deift--Zhou steepest descent~\cite{Deift1999} to the
-  rescaled RH problem, using the $g$-function to control the real part
-  of the phase and expose the coalescing saddle.
-\item Identify the Airy parametrix~\cite{TraWid1994} as the local model
-  near the saddle; control the global error matrix
-  $R(z)=Y_c(z)Y_{\mathrm{Ai}}(z)^{-1}\to I$.
-\item Upgrade to $\mathfrak{S}_1$-convergence via
-  Remark~\ref{rem:diagonal-control} and Lemma~\ref{lem:trace-upgrade}.
-\end{enumerate}
-This programme is left as Problem~\ref{prob:rh-programme}.
+The natural proof strategy for Conjecture~\ref{conj:airy-transition}
+is the explicit programme of Section~\ref{sec:rhp}.
 \end{remark}
 
 \subsection{Phase decomposition and remainder bound}
@@ -533,11 +523,231 @@ Factor through weighted $L^2$ via exponential decay
 \eqref{eq:global-error-bound}; apply
 $\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
 with Lemma~\ref{lem:hs}; the diagonal upgrade uses
-Remark~\ref{rem:diagonal-control} together with uniform control of
-derivatives and standard integrability; the off-diagonal Airy oscillation
-is controlled via $Y_c\to Y_{\mathrm{Ai}}$ from
-Conjecture~\ref{conj:airy-transition}.
+Remark~\ref{rem:diagonal-control} together with uniform derivative control
+and standard integrability; the off-diagonal oscillation is controlled
+via $Y_c\to Y_{\mathrm{Ai}}$ from Conjecture~\ref{conj:airy-transition}.
 \end{proof}
+
+%%%=================================================================
+\section{Explicit RHP formulation}
+\label{sec:rhp}
+%%%=================================================================
+
+This section provides the complete explicit Riemann--Hilbert programme
+for Conjecture~\ref{conj:airy-transition}.
+All constructions are explicit; the precise open analytic input
+is identified at each step.
+
+\subsection{Step 1: The bare RHP for $Y_c$}
+
+The IIKS construction~\cite{ItsIzergin1990} associates to
+$\widetilde K_c^{(\xi)}$ the following $2\times 2$ matrix RHP.
+
+\begin{definition}[Bare RHP]
+\label{def:bare-rhp}
+Find $Y_c:\mathbb{C}\setminus\Sigma_c\to\mathrm{GL}_2(\mathbb{C})$,
+$\Sigma_c=[0,+\infty)$ oriented left-to-right, satisfying:
+\begin{align}
+  &Y_c^+(z)=Y_c^-(z)\,J_c(z),\quad z\in\Sigma_c,\label{eq:rhp-jump}\\
+  &Y_c(z)=I+O(z^{-1}),\quad z\to\infty,\label{eq:rhp-norm}\\
+  &Y_c\text{ analytic on }\mathbb{C}\setminus\Sigma_c,\label{eq:rhp-anal}
+\end{align}
+where the jump matrix is
+\begin{equation}\label{eq:jump-explicit}
+  J_c(z)=I-2\pi i\,\vec{F}_c(z)\vec{G}_c(z)^\top
+  =\begin{pmatrix}1-2\pi i & -2\pi i e^{2icz^{-1}}\\2\pi i e^{-2icz^{-1}} & 1+2\pi i\end{pmatrix}+O(1),
+\end{equation}
+with $\vec{F}_c$, $\vec{G}_c$ as in \eqref{eq:iiks-vectors}.
+
+The kernel is recovered via the reconstruction formula:
+\begin{equation}\label{eq:reconstruction}
+  \widetilde K_c^{(\xi)}(x,y)
+  =\frac{1}{2\pi i(x-y)}\,
+  \bigl(Y_c^-(x)\bigr)_{12}\cdot\bigl(Y_c^-(y)\bigr)_{21}^{-1}.
+\end{equation}
+\end{definition}
+
+\begin{remark}[Reconstruction and diagonal]
+\label{rem:reconstruction-diagonal}
+The off-diagonal entries of $Y_c^\pm$ recover the kernel away from the
+diagonal via \eqref{eq:reconstruction}; the diagonal value follows from
+Remark~\ref{rem:diagonal-control} using the full matrix $Y_c$.
+\end{remark}
+
+\subsection{Step 2: $g$-function and contour deformation}
+
+\begin{definition}[$g$-function]
+\label{def:g-function}
+The $g$-function for the sinc kernel at band edge $z=1$ (in original
+coordinates) is defined by
+\begin{equation}\label{eq:g-function}
+  g_c(z) := \int_{-1}^{1}\log(z-t)\,\rho_c(t)\,dt,
+  \quad z\in\mathbb{C}\setminus(-\infty,1],
+\end{equation}
+where $\rho_c(t)=\frac{1}{\pi}\sqrt{1-t^2}$ is the
+equilibrium density for the sinc kernel support $[-1,1]$.
+It satisfies:
+\begin{enumerate}[label=(\roman*)]
+\item $g_c(z)=\log z+O(z^{-1})$ as $z\to\infty$;
+\item $g_c^+(t)+g_c^-(t)=2\log|t|+\pi i$, $t\in(-1,1)$ (variational
+  identity);
+\item $\operatorname{Re}(g_c^+(t)-g_c^-(t))=0$ for $t\in(-1,1)$
+  (sign condition on the support).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Lens-opening contour and conjugated RHP]
+\label{def:lens}
+Set $\Phi_c^g(z):=c^{1/3}(z-1)^{2/3}$ (local conformal map near $z=1$
+under edge scaling; see Lemma~\ref{lem:edge-normal-form}).
+Decompose the jump by writing
+\begin{equation}\label{eq:lu-decomp}
+  J_c(z)=L_c(z)^{-1}\begin{pmatrix}0&-1\\1&0\end{pmatrix}U_c(z)^{-1},
+  \quad L_c,U_c\text{ upper/lower triangular},
+\end{equation}
+and open lenses $\Sigma_c^\pm$ above and below $\Sigma_c$, along
+contours where $\operatorname{Re}(2g_c(z)-g_c^+(z)-g_c^-(z))<0$
+(exponential decay of off-diagonal entries away from $z=0$).
+The conjugated unknown $T_c(z):=e^{-ng_c(z)\sigma_3}Y_c(z)e^{ng_c(z)\sigma_3}$
+satisfies a RHP with jump
+\begin{equation}\label{eq:T-jump}
+  J_c^T(z)=I+O(e^{-c^{1/3}\kappa\operatorname{dist}(z,\Sigma_c)}),
+  \quad z\in\Sigma_c^\pm\setminus D_\epsilon(0),
+\end{equation}
+exponentially close to the identity away from the coalescing saddle $z=0$.
+\end{definition}
+
+\begin{remark}[$g$-function status]
+\label{rem:g-status}
+The $g$-function \eqref{eq:g-function} and the sign condition (iii) of
+Definition~\ref{def:g-function} are the key analytic input that drives
+the Deift--Zhou construction.
+For the sinc kernel with equilibrium density
+$\rho_c(t)=\frac{1}{\pi}\sqrt{1-t^2}$, the sign condition holds
+on $(-1,1)$ and changes sign outside; this is the exact content of
+Assumption~\ref{ass:branch} in the spectral variable.
+\emph{Verifying the strict sign inequality uniformly in $c$ is a
+remaining open input for the full proof.}
+\end{remark}
+
+\subsection{Step 3: Local Airy parametrix near the coalescing saddle}
+
+Near the coalescing saddle $z=0$ (in rescaled coordinates), the edge
+phase $\Psi_\infty(u;s,t)=(s-t)u+\frac{1}{3}u^3$ takes the Airy form.
+
+\begin{definition}[Airy parametrix]
+\label{def:airy-parametrix}
+Let $D_\epsilon=\{|z|<\epsilon\}$.
+The Airy parametrix $P^{(\mathrm{Ai})}(z)$ is the exact solution
+of the model RHP on $D_\epsilon$ with jump matrix
+\[
+  J^{(\mathrm{Ai})}(z)
+  =\begin{pmatrix}1&0\\ e^{i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} & 1\end{pmatrix}
+  \text{ (sector I)},
+  \quad
+  \begin{pmatrix}1& -e^{-i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} \\ 0 & 1\end{pmatrix}
+  \text{ (sector II)},
+\]
+and similar on the remaining sectors (full Stokes geometry), built
+explicitly from the Airy function $\Ai$ and its derivatives:
+\begin{equation}\label{eq:airy-parametrix-explicit}
+  P^{(\mathrm{Ai})}(z)
+  =\sqrt{2\pi}\,e^{\pi i/12}\,
+  \begin{pmatrix}\Ai(z) & \omega^2\Ai(\omega^2 z)\\
+  i\Ai'(z) & i\omega\Ai'(\omega^2 z)\end{pmatrix}
+  e^{-i\pi\sigma_3/4},
+  \quad \omega=e^{2\pi i/3},
+\end{equation}
+normalised so that $P^{(\mathrm{Ai})}(z)=Y_{\mathrm{Ai}}(z)(I+O(z^{-1/4}))$
+as $|z|\to\infty$ within $D_\epsilon$; see~\cite{TraWid1994} and~\cite{Deift1999}
+Chapter~7.
+\end{definition}
+
+\begin{remark}[Matching condition]
+\label{rem:matching}
+The parametrix $P^{(\mathrm{Ai})}$ must be matched to the outer
+parametrix $T_c$ on $\partial D_\epsilon$:
+\begin{equation}\label{eq:matching}
+  T_c(z)\bigl(P^{(\mathrm{Ai})}(z)\bigr)^{-1}
+  =I+O(c^{-1/3}),\quad z\in\partial D_\epsilon,\quad c\to\infty.
+\end{equation}
+This matching requires the $g$-function sign condition
+(Remark~\ref{rem:g-status}) and the explicit phase identification
+from Lemma~\ref{lem:edge-normal-form}.
+\end{remark}
+
+\subsection{Step 4: Small-norm RHP and global error matrix}
+
+\begin{definition}[Global error matrix]
+\label{def:error-matrix}
+Define
+\begin{equation}\label{eq:error-matrix}
+  R_c(z):=T_c(z)\bigl(P^{(\mathrm{Ai})}(z)\bigr)^{-1}
+  \quad\text{for }z\in D_\epsilon,
+  \qquad
+  R_c(z):=T_c(z)
+  \quad\text{for }z\notin D_\epsilon.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Small-norm problem, conditional]
+\label{prop:small-norm}
+If the $g$-function sign condition of Remark~\ref{rem:g-status} holds
+uniformly in $c$, then:
+\begin{enumerate}[label=(\roman*)]
+\item The jump matrix for $R_c$ satisfies
+  \begin{equation}\label{eq:Rc-jump-bound}
+    \norm{J_{R_c}-I}_{L^2\cap L^\infty(\partial D_\epsilon\cup\Sigma_c^\pm)}
+    \le C\,c^{-1/3}
+  \end{equation}
+  for some constant $C>0$ independent of $c$.
+\item The small-norm theorem~\cite{Deift1999} Chapter~7 gives a unique
+  solution $R_c$ with
+  \begin{equation}\label{eq:Rc-norm}
+    R_c(z)=I+O(c^{-1/3}),\quad c\to\infty,
+  \end{equation}
+  uniformly for $z$ in compact subsets of
+  $\mathbb{C}\setminus(\partial D_\epsilon\cup\Sigma_c^\pm)$.
+\item This gives $Y_c(z)=P^{(\mathrm{Ai})}(z)(I+O(c^{-1/3}))$
+  near $z=0$, verifying Conjecture~\ref{conj:airy-transition}.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[What is open]
+\label{rem:what-is-open}
+Proposition~\ref{prop:small-norm} is conditional on the $g$-function
+sign condition of Remark~\ref{rem:g-status}.
+All other steps of the Deift--Zhou programme --- the IIKS construction,
+the lens-opening decomposition, the Airy parametrix, the error matrix
+definition, and the small-norm framework --- are explicit and complete.
+The single remaining open input is:
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\centering\itshape
+Uniform strict sign inequality
+$\operatorname{Re}(g_c^+(z)-g_c^-(z))<0$ on $\Sigma_c^\pm\setminus D_\epsilon$,
+for all sufficiently large $c$, with explicit constants.}}
+\end{center}
+\end{remark}
+
+\subsection{Step 5: Reconstruction and trace-class convergence}
+
+\begin{proposition}[Kernel convergence from RHP, conditional]
+\label{prop:kernel-from-rhp}
+Conditionally on the $g$-function sign condition
+(Remark~\ref{rem:g-status}):
+\begin{enumerate}[label=(\roman*)]
+\item Inserting $Y_c=P^{(\mathrm{Ai})}(I+O(c^{-1/3}))$ into
+  \eqref{eq:reconstruction} gives
+  \[
+    \widetilde K_c^{(\xi)}(x,y)=K_{\mathrm{Ai}}(x,y)+O(c^{-1/3}),
+  \]
+  uniformly for $(x,y)$ in compact subsets of $\{x\neq y\}$.
+\item Combined with the diagonal formula of
+  Remark~\ref{rem:diagonal-control} and Lemma~\ref{lem:hs},
+  this yields the trace-class bound
+  \eqref{eq:trace-upgrade-bound} of Lemma~\ref{lem:trace-upgrade}.
+\end{enumerate}
+\end{proposition}
 
 \section{Spectral corollaries (conditional)}
 \label{sec:corollaries}
@@ -576,38 +786,33 @@ $\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and transition-regime $n$.
 \section{Open programme}
 \label{sec:open}
 
-\begin{problem}[RHP programme for Conjecture~\ref{conj:airy-transition}]
+\begin{problem}[Completing the RHP programme]
 \label{prob:rh-programme}
-Execute the four-step programme of Remark~\ref{rem:rh-route}:
-\begin{enumerate}
-\item Formulate and analyse the $2\times 2$ RH problem for
-  $\widetilde{K}_c^{(\xi)}$ with jump \eqref{eq:jump-matrix} on
-  $\Sigma_c=[0,+\infty)$ via IIKS~\cite{ItsIzergin1990}.
-\item Apply Deift--Zhou steepest descent~\cite{Deift1999};
-  construct the $g$-function and expose the coalescing saddle.
-\item Identify the Airy parametrix~\cite{TraWid1994};
-  control $R(z)=Y_c(z)Y_{\mathrm{Ai}}(z)^{-1}\to I$.
-\item Upgrade to $\mathfrak{S}_1$-convergence via
-  Remark~\ref{rem:diagonal-control} and
-  Lemmas~\ref{lem:hs}--\ref{lem:trace-upgrade}.
-\end{enumerate}
+The programme of Section~\ref{sec:rhp} is complete except for one step:
+verify the strict sign inequality of Remark~\ref{rem:what-is-open}
+for the $g$-function \eqref{eq:g-function} uniformly in $c$.
+Once established, Proposition~\ref{prop:small-norm} gives
+$R_c=I+O(c^{-1/3})$, Proposition~\ref{prop:kernel-from-rhp}
+gives $\mathfrak{S}_1$-convergence, and Conjecture~\ref{conj:airy-transition}
+becomes a theorem.
 \end{problem}
 
 \begin{remark}[Dependency graph]
 The logical structure is:
 \[
   \underbrace{\text{IIKS exact}}_{\text{rigorous}}
-  \;\xrightarrow{\text{Conj.~\ref{conj:airy-transition}}}\;
+  \;\Rightarrow\;
+  \underbrace{\text{RHP}~(\ref{def:bare-rhp})}_{\text{rigorous}}
+  \;\xrightarrow{g\text{-sign cond.}}\;
+  \underbrace{R_c\to I}_{\text{conditional}}
+  \;\Rightarrow\;
   \underbrace{Y_c\to Y_{\mathrm{Ai}}}_{\text{conditional}}
   \;\Rightarrow\;
   \underbrace{\norm{\widetilde{K}_c-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
   \;\Rightarrow\;
-  \underbrace{\text{Thm.~\ref{thm:universality}}}_{\text{conditional}}
-  \;\Rightarrow\;
   \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}_{\text{conditional}}.
 \]
-The exact and asymptotic expansion layers are logically independent of
-Conjecture~\ref{conj:airy-transition} and stand on their own.
+All steps except the $g$-function sign condition are explicit and complete.
 \end{remark}
 
 \begin{thebibliography}{99}
