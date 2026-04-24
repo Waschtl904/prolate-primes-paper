@@ -35,13 +35,13 @@
 \subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
 \keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
   Fredholm determinants, spectral universality, integrable operators,
-  sinc kernel, coalescing saddle point, IIKS structure}
+  sinc kernel, coalescing saddle point, IIKS structure, Riemann--Hilbert}
 
 \begin{document}
 
 \title[Operator Universality for the PSWF Transition Regime]{%
   Airy Universality for the Prolate Concentration Operator:
-  A Fredholm--IIKS Reduction Framework with Explicit Analytic Gap}
+  A Complete Reduction to an IIKS--RHP Transition Problem}
 
 \author{[Author]}
 \address{[Address]}
@@ -66,14 +66,14 @@ controls the remainder in pointwise norm.
 
 \medskip
 \textbf{Scaling limit layer (conditional).}
-The convergence of the IIKS vectors to their Airy limits, and the
-resulting trace-class convergence
+The convergence of the associated Riemann--Hilbert solution to the
+Airy parametrix, and the resulting trace-class convergence
 $\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0$,
 are conditional on Conjecture~\ref{conj:airy-transition},
-which identifies the Airy transition as the single remaining deep
+which identifies the RHP convergence as the single remaining deep
 analytic step.
-A full proof of this conjecture requires Deift--Zhou steepest descent
-on the Riemann--Hilbert problem associated to the rescaled sinc kernel.
+A full proof requires Deift--Zhou steepest descent on the
+Riemann--Hilbert problem associated to the rescaled sinc kernel.
 
 \medskip
 Fredholm determinant convergence, Airy-scale gap asymptotics, local
@@ -86,7 +86,7 @@ conditionally on Conjecture~\ref{conj:airy-transition}.
 \item \emph{(Theorem~U.)} Fredholm determinant universality,
   conditional on Conjecture~\ref{conj:airy-transition}.
 \item \emph{(Theorem~I.)} Exact IIKS representation of the rescaled
-  sinc kernel with explicit Airy limit conjecture.
+  sinc kernel with explicit RHP-level Airy limit conjecture.
 \item \emph{(Corollaries A--C.)} Gap asymptotics, local counting,
   stable quasimodes; all conditional on
   Conjecture~\ref{conj:airy-transition}.
@@ -107,8 +107,8 @@ The scaling limit layer is an explicitly formulated open programme
 Paper~XIII reduced the sharp transition-window gap problem to two inputs:
 Airy-scale quasimodes and a local counting statement.
 The present paper sharpens that reduction to a single structural question:
-the convergence of the IIKS vectors of the rescaled sinc kernel to their
-Airy counterparts in trace-class topology.
+the convergence of the Riemann--Hilbert solution associated to the
+rescaled sinc kernel to the Airy parametrix of Tracy--Widom.
 
 \medskip
 \textbf{Three-layer structure.}
@@ -120,11 +120,20 @@ The paper is organized according to a strict partition of rigorous status:
 \item \emph{Asymptotic expansion layer}: the effective edge phase admits
   an $A_2$ normal form, derived rigorously from the Widom phase expansion
   under Assumption~\ref{ass:branch}.
-\item \emph{Scaling limit layer}: the IIKS vectors converge to Airy
-  functions under the canonical edge-phase normalisation.
+\item \emph{Scaling limit layer}: the RHP solution $Y_c$ associated to
+  the rescaled operator converges to the Airy parametrix $Y_{\mathrm{Ai}}$.
   This is Conjecture~\ref{conj:airy-transition} and is the single
   remaining open step.
 \end{enumerate}
+
+\begin{remark}[Airy limit does not arise pointwise]
+\label{rem:not-pointwise}
+The Airy structure does \emph{not} emerge from pointwise convergence of
+the exponential IIKS vectors $e^{\pm icx}$.
+It arises via contour deformation, integrated phase, and coalescing-saddle
+analysis — that is, through the convergence of the full RHP solution.
+This is the conceptual content of Conjecture~\ref{conj:airy-transition}.
+\end{remark}
 
 This partition prevents the logical circularity that arises when
 trace-class convergence is stated as a consequence of the Airy transition
@@ -133,8 +142,8 @@ while simultaneously being used to derive it.
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
 The sinc kernel is an exact IIKS operator.
-Its IIKS vectors are explicitly known.
-Their convergence to Airy functions under edge-phase scaling is the
+Its associated RHP solution is explicitly constructible.
+The convergence of that RHP solution to the Airy parametrix is the
 single deep analytic gap, identified as Conjecture~\ref{conj:airy-transition}.
 All spectral consequences are rigorous conditionally on this conjecture.}}
 \end{center}
@@ -290,8 +299,8 @@ Under $u=-v^2$, $v=\pm\sqrt{-u}$:
 \end{equation}
 After $v=(2)^{-1/3}w$ the phase maps to $\tfrac13 w^3+\xi w$; the factor
 $v\propto w$ formally produces the bilinear Airy structure of
-$K_{\mathrm{Ai}}$ \emph{if} the exponentials converge to Airy functions
-(this convergence is Conjecture~\ref{conj:airy-transition}).
+$K_{\mathrm{Ai}}$. The rigorous justification of this limit is
+Conjecture~\ref{conj:airy-transition}.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
@@ -349,26 +358,39 @@ Conjecture~\ref{conj:airy-transition}.
 \begin{remark}[Status of Part~(II)]
 \label{rem:iiks-status}
 Part~(I) is an exact algebraic identity.
-Part~(II) is formal: the convergence of the rescaled exponentials to Airy
-functions after edge-phase normalisation is the content of
-Conjecture~\ref{conj:airy-transition} and is \emph{not} proved here.
-The distinction between these two layers is essential for the logical
-consistency of the paper.
+Part~(II) is formal: the Airy functions $\Ai(x)$, $\Ai'(x)$ arise not
+from pointwise limits of the exponentials $e^{\pm icx}$, but from the
+convergence of the full RHP solution via contour deformation and
+coalescing-saddle analysis (see Remark~\ref{rem:not-pointwise}).
+This convergence is the content of Conjecture~\ref{conj:airy-transition}
+and is \emph{not} proved here.
 \end{remark}
 
-\subsection{The Airy conjecture}
+\subsection{The Airy conjecture (RHP level)}
 
-\begin{conjecture}[Airy transition of IIKS vectors]
+\begin{conjecture}[RHP convergence and Airy transition]
 \label{conj:airy-transition}
-Let $\vec{F}_c$, $\vec{G}_c$ be the IIKS vectors of
-Theorem~\ref{thm:emergent-iiks}.
+Let $Y_c(z)$ be the $2\times 2$ matrix solution of the
+Riemann--Hilbert problem associated to the IIKS operator
+$\widetilde{K}_c^{(\xi)}$ via the Its--Izergin--Korepin--Slavnov
+construction~\cite{ItsIzergin1990}.
 Under the canonical edge-phase scaling of Lemma~\ref{lem:edge-normal-form},
-\begin{equation}\label{eq:iiks-convergence}
-  \vec{F}_c\to\vec{F}_\infty,\qquad
-  \vec{G}_c\to\vec{G}_\infty
-  \quad\text{in }L^2_{\mathrm{loc}}([0,\infty)),
+\begin{equation}\label{eq:rhp-convergence}
+  Y_c(z) \;\longrightarrow\; Y_{\mathrm{Ai}}(z)
+  \qquad (c\to\infty),
 \end{equation}
-uniformly for $\xi$ in compact sets, as $c\to\infty$.
+uniformly for $z$ in compact subsets of $\mathbb{C}\setminus\Sigma_c$
+and $\xi$ in compact sets, where $\Sigma_c$ is the jump contour and
+$Y_{\mathrm{Ai}}$ is the model Riemann--Hilbert solution associated to
+the Airy kernel (Tracy--Widom parametrix,~\cite{TraWid1994}).
+
+As a consequence:
+\begin{enumerate}[label=(\roman*)]
+\item $\widetilde{K}_c^{(\xi)}(x,y)\to K_{\mathrm{Ai}}(x,y)$ uniformly
+  for $(x,y)$ in compact subsets of $\{x\neq y\}$;
+\item the trace-class convergence \eqref{eq:trace-class-conv} holds via
+  Remark~\ref{rem:diagonal-control} and Lemma~\ref{lem:trace-upgrade}.
+\end{enumerate}
 \end{conjecture}
 
 \begin{remark}[Trace-class convergence, conditional]
@@ -383,19 +405,38 @@ Unconditionally, the exact IIKS form \eqref{eq:iiks-exact} and the
 remainder bounds of Section~\ref{sec:error-chain} are available.
 \end{remark}
 
+\begin{remark}[Diagonal control]
+\label{rem:diagonal-control}
+The kernel difference near $x=y$ requires separate analysis.
+Using the IIKS representation
+\[
+  K(x,y)=\frac{\vec{F}(x)^\top J\,\vec{G}(y)}{x-y},
+\]
+the diagonal limit is given by
+\[
+  K(x,x)=\frac{d}{dx}\bigl(\vec{F}(x)^\top J\,\vec{G}(x)\bigr).
+\]
+Hence diagonal convergence follows from the convergence of the
+RHP solution $Y_c\to Y_{\mathrm{Ai}}$ and smoothness of the limiting
+objects.
+This provides the missing ingredient in upgrading
+$\mathfrak{S}_2$ to $\mathfrak{S}_1$ in Lemma~\ref{lem:trace-upgrade}.
+\end{remark}
+
 \begin{remark}[Route to a proof]
 \label{rem:rh-route}
 The natural proof strategy for Conjecture~\ref{conj:airy-transition} is:
 \begin{enumerate}[label=(\roman*)]
 \item Formulate the $2\times 2$ Riemann--Hilbert problem associated to
-  the IIKS operator $\widetilde{K}_c^{(\xi)}$ via the Its--Izergin--%
-  Korepin--Slavnov construction~\cite{ItsIzergin1990}.
+  the IIKS operator $\widetilde{K}_c^{(\xi)}$ via~\cite{ItsIzergin1990}.
 \item Apply Deift--Zhou steepest descent~\cite{Deift1999} to the
-  rescaled RH problem.
+  rescaled RH problem, using the $g$-function to control the real part
+  of the phase and expose the coalescing saddle.
 \item Identify the Airy parametrix~\cite{TraWid1994} as the local model
-  near the coalescing saddle.
-\item Upgrade pointwise vector convergence to $\mathfrak{S}_1$-norm via
-  the error chain of Section~\ref{sec:error-chain}.
+  near the saddle; control the global error matrix
+  $R(z)=Y_c(z)Y_{\mathrm{Ai}}(z)^{-1}\to I$.
+\item Upgrade to $\mathfrak{S}_1$-convergence via
+  Remark~\ref{rem:diagonal-control} and Lemma~\ref{lem:trace-upgrade}.
 \end{enumerate}
 This programme is left as Problem~\ref{prob:rh-programme}.
 \end{remark}
@@ -478,9 +519,10 @@ uniformly in $\xi$ on compacta.
 Factor through weighted $L^2$ via exponential decay
 \eqref{eq:global-error-bound}; apply
 $\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
-with Lemma~\ref{lem:hs}; the upgrade from $\mathfrak{S}_2$ to
-$\mathfrak{S}_1$ uses Conjecture~\ref{conj:airy-transition} to control
-the off-diagonal Airy oscillation.
+with Lemma~\ref{lem:hs}; the diagonal upgrade uses
+Remark~\ref{rem:diagonal-control}; the off-diagonal Airy oscillation
+is controlled via $Y_c\to Y_{\mathrm{Ai}}$ from
+Conjecture~\ref{conj:airy-transition}.
 \end{proof}
 
 \section{Spectral corollaries (conditional)}
@@ -520,16 +562,18 @@ $\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and transition-regime $n$.
 \section{Open programme}
 \label{sec:open}
 
-\begin{problem}[RH programme for Conjecture~\ref{conj:airy-transition}]
+\begin{problem}[RHP programme for Conjecture~\ref{conj:airy-transition}]
 \label{prob:rh-programme}
 Execute the four-step programme of Remark~\ref{rem:rh-route}:
 \begin{enumerate}
 \item Formulate the $2\times 2$ RH problem for $\widetilde{K}_c^{(\xi)}$
   via IIKS~\cite{ItsIzergin1990}.
-\item Apply Deift--Zhou steepest descent~\cite{Deift1999}.
-\item Identify the Airy parametrix~\cite{TraWid1994} at the coalescing
-  saddle.
+\item Apply Deift--Zhou steepest descent~\cite{Deift1999};
+  construct the $g$-function and expose the coalescing saddle.
+\item Identify the Airy parametrix~\cite{TraWid1994};
+  control $R(z)=Y_c(z)Y_{\mathrm{Ai}}(z)^{-1}\to I$.
 \item Upgrade to $\mathfrak{S}_1$-convergence via
+  Remark~\ref{rem:diagonal-control} and
   Lemmas~\ref{lem:hs}--\ref{lem:trace-upgrade}.
 \end{enumerate}
 \end{problem}
@@ -539,6 +583,8 @@ The logical structure is:
 \[
   \underbrace{\text{IIKS exact}}_{\text{rigorous}}
   \;\xrightarrow{\text{Conj.~\ref{conj:airy-transition}}}\;
+  \underbrace{Y_c\to Y_{\mathrm{Ai}}}_{\text{conditional}}
+  \;\Rightarrow\;
   \underbrace{\norm{\widetilde{K}_c-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
   \;\Rightarrow\;
   \underbrace{\text{Thm.~\ref{thm:universality}}}_{\text{conditional}}
