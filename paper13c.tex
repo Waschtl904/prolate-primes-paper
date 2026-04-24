@@ -131,7 +131,7 @@ The paper is organized according to a strict partition of rigorous status:
 The Airy structure does \emph{not} emerge from pointwise convergence of
 the exponential IIKS vectors $e^{\pm icx}$.
 It arises via contour deformation, integrated phase, and coalescing-saddle
-analysis — that is, through the convergence of the full RHP solution.
+analysis --- that is, through the convergence of the full RHP solution.
 This is the conceptual content of Conjecture~\ref{conj:airy-transition}.
 \end{remark}
 
@@ -373,23 +373,35 @@ and is \emph{not} proved here.
 Let $Y_c(z)$ be the $2\times 2$ matrix solution of the
 Riemann--Hilbert problem associated to the IIKS operator
 $\widetilde{K}_c^{(\xi)}$ via the Its--Izergin--Korepin--Slavnov
-construction~\cite{ItsIzergin1990}.
+construction~\cite{ItsIzergin1990}, with jump matrix
+\begin{equation}\label{eq:jump-matrix}
+  J_c(z) = I - 2\pi i\,\vec{F}_c(z)\,\vec{G}_c(z)^\top
+\end{equation}
+along the contour $\Sigma_c = [0,+\infty)$ (the support of the rescaled
+kernel after edge scaling), analyticity of $Y_c$ on
+$\mathbb{C}\setminus\Sigma_c$, and normalisation $Y_c(z)\to I$ as
+$z\to\infty$.
+
 Under the canonical edge-phase scaling of Lemma~\ref{lem:edge-normal-form},
 \begin{equation}\label{eq:rhp-convergence}
   Y_c(z) \;\longrightarrow\; Y_{\mathrm{Ai}}(z)
   \qquad (c\to\infty),
 \end{equation}
 uniformly for $z$ in compact subsets of $\mathbb{C}\setminus\Sigma_c$
-and $\xi$ in compact sets, where $\Sigma_c$ is the jump contour and
-$Y_{\mathrm{Ai}}$ is the model Riemann--Hilbert solution associated to
-the Airy kernel (Tracy--Widom parametrix,~\cite{TraWid1994}).
+and $\xi$ in compact sets, where $Y_{\mathrm{Ai}}$ is the model
+Riemann--Hilbert solution associated to the Airy kernel
+(Tracy--Widom parametrix,~\cite{TraWid1994}).
 
-As a consequence:
+Under standard reconstruction formulas for IIKS operators,
+this implies:
 \begin{enumerate}[label=(\roman*)]
 \item $\widetilde{K}_c^{(\xi)}(x,y)\to K_{\mathrm{Ai}}(x,y)$ uniformly
-  for $(x,y)$ in compact subsets of $\{x\neq y\}$;
-\item the trace-class convergence \eqref{eq:trace-class-conv} holds via
-  Remark~\ref{rem:diagonal-control} and Lemma~\ref{lem:trace-upgrade}.
+  for $(x,y)$ in compact subsets of $\{x\neq y\}$, with uniform control
+  of derivatives;
+\item the trace-class convergence \eqref{eq:trace-class-conv} holds by
+  combining the diagonal control of Remark~\ref{rem:diagonal-control}
+  with the Hilbert--Schmidt bounds of Lemma~\ref{lem:hs} and standard
+  integrability arguments.
 \end{enumerate}
 \end{conjecture}
 
@@ -427,8 +439,9 @@ $\mathfrak{S}_2$ to $\mathfrak{S}_1$ in Lemma~\ref{lem:trace-upgrade}.
 \label{rem:rh-route}
 The natural proof strategy for Conjecture~\ref{conj:airy-transition} is:
 \begin{enumerate}[label=(\roman*)]
-\item Formulate the $2\times 2$ Riemann--Hilbert problem associated to
-  the IIKS operator $\widetilde{K}_c^{(\xi)}$ via~\cite{ItsIzergin1990}.
+\item The RHP for $Y_c$ is fully specified by \eqref{eq:jump-matrix},
+  the contour $\Sigma_c=[0,+\infty)$, and the normalisation $Y_c\to I$
+  at infinity; see~\cite{ItsIzergin1990}.
 \item Apply Deift--Zhou steepest descent~\cite{Deift1999} to the
   rescaled RH problem, using the $g$-function to control the real part
   of the phase and expose the coalescing saddle.
@@ -520,7 +533,8 @@ Factor through weighted $L^2$ via exponential decay
 \eqref{eq:global-error-bound}; apply
 $\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
 with Lemma~\ref{lem:hs}; the diagonal upgrade uses
-Remark~\ref{rem:diagonal-control}; the off-diagonal Airy oscillation
+Remark~\ref{rem:diagonal-control} together with uniform control of
+derivatives and standard integrability; the off-diagonal Airy oscillation
 is controlled via $Y_c\to Y_{\mathrm{Ai}}$ from
 Conjecture~\ref{conj:airy-transition}.
 \end{proof}
@@ -566,8 +580,9 @@ $\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and transition-regime $n$.
 \label{prob:rh-programme}
 Execute the four-step programme of Remark~\ref{rem:rh-route}:
 \begin{enumerate}
-\item Formulate the $2\times 2$ RH problem for $\widetilde{K}_c^{(\xi)}$
-  via IIKS~\cite{ItsIzergin1990}.
+\item Formulate and analyse the $2\times 2$ RH problem for
+  $\widetilde{K}_c^{(\xi)}$ with jump \eqref{eq:jump-matrix} on
+  $\Sigma_c=[0,+\infty)$ via IIKS~\cite{ItsIzergin1990}.
 \item Apply Deift--Zhou steepest descent~\cite{Deift1999};
   construct the $g$-function and expose the coalescing saddle.
 \item Identify the Airy parametrix~\cite{TraWid1994};
