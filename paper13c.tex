@@ -730,23 +730,52 @@ exponentially close to the identity away from the coalescing saddle $z=0$.
 
 \begin{assumption}[Uniform steepest-descent inequality]
 \label{ass:g-sign}
-There exist $\kappa>0$ and $\epsilon>0$ such that for all sufficiently
+The following three conditions hold jointly for the candidate
+$g$-function of Definition~\ref{def:g-function} and the effective
+phase $\phi_c$ of \eqref{eq:effective-phase-def}, for all sufficiently
 large $c$:
+
+\begin{enumerate}[label=(\roman*)]
+\item \textup{(Real-part matching on the support.)}
+The candidate $g_c$ yields the correct real-part matching required
+for the LU-factorisation of the jump matrix $J_c(z)$ on the support
+$(-1,1)$, in the sense that
+\[
+  \operatorname{Re}\!\bigl(g_c^+(t) + g_c^-(t)\bigr)
+  = \operatorname{Re}\!\bigl(\phi_c(t)\bigr),
+  \quad t \in (-1,1).
+\]
+The imaginary part of the jump is automatically correct by
+Proposition~\ref{prop:g-properties}(iii), so that condition~(i)
+is the only nontrivial compatibility requirement for the
+conjugated jump $J_c^T$ to be of oscillatory off-diagonal form.
+
+\item \textup{(Strict sign condition.)}
+There exist $\kappa > 0$ and $\epsilon > 0$ such that
 \[
   \operatorname{Re}\!\bigl(2g_c(z) - \phi_c(z)\bigr)
   \le -\kappa < 0
 \]
-holds uniformly for $z \in \Sigma_c^\pm \setminus D_\epsilon$,
-where $\phi_c$ is the effective phase defined in
-\eqref{eq:effective-phase-def}, expressed in the rescaled spectral variable.
-Moreover, there exists a tubular neighbourhood $\mathcal{U} \supset \Sigma_c^\pm$
-such that the bound extends with uniform control of the first derivatives:
+holds uniformly for $z \in \Sigma_c^\pm \setminus D_\epsilon$.
+
+\item \textup{(First-derivative control.)}
+The lens contours $\Sigma_c^\pm$ can be chosen to be uniformly
+Lipschitz, with Lipschitz constants bounded independently of $c$.
+On the associated tubular neighbourhood
+$\mathcal{U} \supset \Sigma_c^\pm$ there exists a constant $C > 0$,
+independent of $c$, such that
 \[
   \bigl|\nabla_z \operatorname{Re}\!\bigl(2g_c(z) - \phi_c(z)\bigr)\bigr|
   \le C
 \]
-uniformly on $\mathcal{U} \setminus D_\epsilon$, for some constant $C>0$
-independent of $c$.
+uniformly on $\mathcal{U} \setminus D_\epsilon$.
+\end{enumerate}
+
+Conditions~(i)--(iii) are coupled: the choice of contour
+$\Sigma_c^\pm$ depends on the sign of $2g_c - \phi_c$,
+which in turn depends on the real-part matching of condition~(i).
+Together they constitute a single coupled condition on the pair
+$(g_c, \Sigma_c^\pm)$.
 \end{assumption}
 
 \begin{remark}[Status of Assumption~\ref{ass:g-sign}]
@@ -758,8 +787,12 @@ are explicit. The verification of the uniform inequality above
 requires a detailed control of the interplay between the equilibrium
 potential $g_c$ and the effective phase $\phi_c$ near the edge
 (corresponding to $z=0$ in rescaled coordinates).
-The additional first-derivative control is needed for the Cauchy operator
-estimates in the small-norm step (Proposition~\ref{prop:small-norm}).
+The additional first-derivative control in condition~(iii) is needed
+for the Cauchy operator estimates in the small-norm step
+(Proposition~\ref{prop:small-norm}); the uniform Lipschitz requirement
+on $\Sigma_c^\pm$ ensures that the associated singular integral
+operator $C_{\Sigma_c^\pm}$ is bounded on $L^2(\Sigma_c^\pm)$
+uniformly in $c$, by standard Muckenhoupt-type estimates.
 \end{remark}
 
 \begin{proposition}[Consequence of the sign condition]
@@ -867,15 +900,13 @@ definition, and the small-norm framework --- are explicit and complete.
 The single remaining open input is Assumption~\ref{ass:g-sign}:
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\centering\itshape
-Uniform strict steepest-descent inequality:
-\[
-  \operatorname{Re}\!\bigl(2g_c(z)-\phi_c(z)\bigr) < -\kappa < 0
-\]
-on $\Sigma_c^\pm \setminus D_\epsilon$, for all sufficiently large $c$,
-with uniform first-derivative control on a tubular neighbourhood,
-where $\phi_c$ is the effective Widom edge phase of
-\eqref{eq:effective-phase-def} restricted to the lens contours,
-and $\kappa>0$ is independent of $c$.}}
+The coupled condition $(g_c, \Sigma_c^\pm)$:
+real-part matching on the support (i),
+strict sign inequality $\operatorname{Re}(2g_c-\phi_c) < -\kappa < 0$
+on $\Sigma_c^\pm \setminus D_\epsilon$ (ii),
+and uniform first-derivative control on a uniformly Lipschitz
+tubular neighbourhood (iii),
+all for sufficiently large $c$ with constants independent of $c$.}}
 \end{center}
 \end{remark}
 
@@ -897,6 +928,46 @@ Conditionally on Assumption~\ref{ass:g-sign}:
   \eqref{eq:trace-upgrade-bound} of Lemma~\ref{lem:trace-upgrade}.
 \end{enumerate}
 \end{proposition}
+
+\begin{remark}[Stability of the IIKS reconstruction map]
+\label{rem:reconstruction-stability}
+The passage from RHP convergence to kernel convergence in
+Proposition~\ref{prop:kernel-from-rhp}(i) uses the following
+stability property of the IIKS reconstruction map
+\eqref{eq:reconstruction}: the map
+\[
+  Y_c \;\longmapsto\;
+  K_c(x,y) = \frac{1}{2\pi i(x-y)}\bigl(Y_c^-(x)^{-1}Y_c^-(y)\bigr)_{21}
+\]
+is continuous with respect to uniform matrix convergence on
+compact subsets of $\mathbb{C}\setminus\Sigma_c$.
+More precisely, if $\|Y_c - Y_{\mathrm{Ai}}\|_{L^\infty(\partial D_\epsilon)}
+= O(c^{-1/3})$, then the bilinearity of the reconstruction formula
+and the uniform invertibility of $Y_c^-$ (which follows from the
+small-norm bound \eqref{eq:Rc-norm} and the explicit invertibility
+of $P^{(\mathrm{Ai})}$) give the pointwise kernel bound directly.
+
+The subsequent upgrade to trace-class convergence in part~(ii) requires
+additionally:
+\begin{itemize}
+\item \emph{Bounded Cauchy operators:}
+  the Cauchy singular integral operator $C_{\Sigma_c^\pm}$ is bounded
+  on $L^2(\Sigma_c^\pm)$ uniformly in $c$; this follows from
+  Assumption~\ref{ass:g-sign}(iii), which ensures that the lens
+  contours $\Sigma_c^\pm$ are uniformly Lipschitz with constants
+  independent of $c$, enabling standard Muckenhoupt-type estimates
+  for singular integrals on Lipschitz curves;
+\item \emph{Resolvent stability:}
+  the operator $(I - C_{w_c})$ is invertible with uniformly bounded
+  inverse on $L^2(\Sigma_c^\pm)$, where $C_{w_c}$ is the weighted
+  Cauchy operator associated to $w_c := J_{R_c} - I$; this follows
+  from the small-norm bound \eqref{eq:Rc-jump-bound}.
+\end{itemize}
+Both ingredients are supplied by Assumption~\ref{ass:g-sign} and
+Proposition~\ref{prop:small-norm}. The present non-OP setting
+requires these steps to be verified directly, without recourse to
+orthogonal polynomial machinery.
+\end{remark}
 
 %%%=================================================================
 \section{Spectral corollaries (conditional)}
@@ -994,7 +1065,10 @@ It relies on:
 \item diagonal control via the IIKS structure,
 \item Hilbert--Schmidt bounds combined with a trace-class upgrade,
 \item uniform integrability of the error kernel
-  (Remark~\ref{rem:uniform-integrability}).
+  (Remark~\ref{rem:uniform-integrability}),
+\item bounded Cauchy operators and resolvent stability on uniformly
+  Lipschitz lens contours
+  (Remark~\ref{rem:reconstruction-stability}).
 \end{itemize}
 This mechanism is standard in integrable operator theory
 (see~\cite{ItsIzergin1990,Kato1966}) and is implemented here
@@ -1018,17 +1092,36 @@ the transition regime.
 
 \begin{problem}[Completing the RHP programme]
 \label{prob:rh-programme}
-The programme of Section~\ref{sec:rhp} is complete except for one step:
-verify Assumption~\ref{ass:g-sign}, i.e., the strict inequality
-\[
-  \operatorname{Re}\!\bigl(2g_c(z)-\phi_c(z)\bigr) < -\kappa < 0
-\]
-on $\Sigma_c^\pm\setminus D_\epsilon$, uniformly in $c$, together with
-the first-derivative control on a tubular neighbourhood of the contour.
-Once established, Proposition~\ref{prop:small-norm} gives
-$R_c=I+O(c^{-1/3})$, Proposition~\ref{prop:kernel-from-rhp}
-gives $\mathfrak{S}_1$-convergence, and Conjecture~\ref{conj:airy-transition}
-becomes a theorem.
+The programme of Section~\ref{sec:rhp} is complete except for the
+verification of Assumption~\ref{ass:g-sign} in its three coupled
+components:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Real-part matching:}
+confirm that the candidate $g_c$ of Definition~\ref{def:g-function}
+satisfies
+$\operatorname{Re}(g_c^+(t) + g_c^-(t)) = \operatorname{Re}(\phi_c(t))$
+for $t \in (-1,1)$, so that the conjugated jump $J_c^T$ is of
+oscillatory off-diagonal form;
+\item \emph{Correct contour:}
+confirm that lens contours $\Sigma_c^\pm$ satisfying
+$\operatorname{Re}(2g_c - \phi_c) < -\kappa < 0$ exist and can be
+chosen to be uniformly Lipschitz in $c$ with constants independent of $c$;
+\item \emph{Strict inequality with derivative control:}
+establish the uniform bound
+$\operatorname{Re}(2g_c(z)-\phi_c(z)) < -\kappa < 0$
+on $\Sigma_c^\pm \setminus D_\epsilon$, uniformly in $c$, together with
+the gradient bound $|\nabla_z \operatorname{Re}(2g_c - \phi_c)| \le C$
+on a tubular neighbourhood.
+\end{enumerate}
+These three conditions are coupled: the choice of contour depends on
+the sign of $2g_c - \phi_c$, which in turn depends on the real-part
+matching of~(i). Once all three are established,
+Proposition~\ref{prop:small-norm} gives $R_c = I + O(c^{-1/3})$,
+Remark~\ref{rem:reconstruction-stability} supplies the required
+Cauchy operator and resolvent bounds,
+Proposition~\ref{prop:kernel-from-rhp}
+gives $\mathfrak{S}_1$-convergence, and
+Conjecture~\ref{conj:airy-transition} becomes a theorem.
 \end{problem}
 
 \begin{remark}[Dependency graph]
@@ -1037,16 +1130,19 @@ The logical structure is:
   \underbrace{\text{IIKS exact}}_{\text{rigorous}}
   \;\Rightarrow\;
   \underbrace{\text{RHP}~(\ref{def:bare-rhp})}_{\text{rigorous}}
-  \;\xrightarrow{\text{Ass.}~\ref{ass:g-sign}}\;
+  \;\xrightarrow{\text{Ass.}~\ref{ass:g-sign}\text{(i)--(iii)}}
   \underbrace{R_c\to I}_{\text{conditional}}
   \;\Rightarrow\;
   \underbrace{Y_c\to Y_{\mathrm{Ai}}}_{\text{conditional}}
-  \;\Rightarrow\;
-  \underbrace{\norm{\widetilde{K}_c-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
+  \;\xrightarrow{\text{Rem.}~\ref{rem:reconstruction-stability}}
+  \underbrace{\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
   \;\Rightarrow\;
   \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}_{\text{conditional}}.
 \]
-All steps except Assumption~\ref{ass:g-sign} are explicit and complete.
+All steps except Assumption~\ref{ass:g-sign}(i)--(iii) are explicit
+and complete. Remark~\ref{rem:reconstruction-stability} makes the
+passage $Y_c \to K_c$ rigorous without OP machinery, using the
+uniform Lipschitz property of the lens contours.
 \end{remark}
 
 %%%=================================================================
@@ -1071,7 +1167,7 @@ revealing a coalescing $A_2$ saddle structure.
 \item \emph{Explicit programme.}
 All components of the Deift--Zhou steepest descent analysis
 are constructed explicitly, isolating the entire analytic difficulty
-in one well-posed inequality.
+in one well-posed coupled condition.
 \end{enumerate}
 
 Under Assumption~\ref{ass:g-sign}, the paper establishes:
@@ -1086,12 +1182,12 @@ Under Assumption~\ref{ass:g-sign}, the paper establishes:
 
 \begin{problem}[The prolate Airy transition]
 \label{prob:main}
-Verify Assumption~\ref{ass:g-sign}, i.e., the uniform inequality
-\[
-  \operatorname{Re}\bigl(2g_c(z)-\phi_c(z)\bigr) \le -\kappa < 0
-\]
-on the lens contours $\Sigma_c^\pm \setminus D_\epsilon$, together
-with uniform first-derivative control on a tubular neighbourhood.
+Verify Assumption~\ref{ass:g-sign} in its three coupled components:
+the real-part matching $\operatorname{Re}(g_c^+ + g_c^-) = \operatorname{Re}(\phi_c)$
+on $(-1,1)$, the existence of uniformly Lipschitz lens contours
+$\Sigma_c^\pm$ carrying the strict inequality
+$\operatorname{Re}(2g_c - \phi_c) < -\kappa < 0$,
+and the uniform gradient bound on a tubular neighbourhood.
 \end{problem}
 
 This problem appears amenable to detailed local analysis near the
