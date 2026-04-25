@@ -384,18 +384,24 @@ $\vec{G}_c$ are the Airy IIKS vectors
   \vec{G}_\infty(y)=\begin{pmatrix}\Ai'(y)\\-\Ai(y)\end{pmatrix},
 \end{equation}
 so that $\vec{F}_\infty^\top J\,\vec{G}_\infty/(x-y)=K_{\mathrm{Ai}}(x,y)$.
+\emph{However, the Airy vectors $\Ai(x)$, $\Ai'(x)$ do not arise as
+limits of the IIKS vectors $\vec{F}_c$, $\vec{G}_c$ themselves.
+They appear as columns of the model RHP solution $Y_{\mathrm{Ai}}$
+(the Tracy--Widom--Airy parametrix), which is the limit of the full
+RHP solution $Y_c$ under the steepest descent analysis.}
 The rigorous justification of this limit is
-Conjecture~\ref{conj:airy-transition}.
+Conjecture~\ref{conj:airy-transition}; in particular, there is
+no vector-level convergence.
 \end{theorem}
 
 \begin{remark}[Status of Part~(II)]
 \label{rem:iiks-status}
 Part~(I) is an exact algebraic identity.
 Part~(II) is formal: there is no vector-level convergence.
-The Airy functions $\Ai(x)$, $\Ai'(x)$ arise only from the
-convergence of the full RHP solution via contour deformation and
-coalescing-saddle analysis (see Remarks~\ref{rem:not-pointwise}
-and~\ref{rem:rh-route}).
+The Airy functions $\Ai(x)$, $\Ai'(x)$ arise only as columns of the
+model RHP solution $Y_{\mathrm{Ai}}$, via the convergence of the full
+RHP solution under contour deformation and coalescing-saddle analysis
+(see Remarks~\ref{rem:not-pointwise} and~\ref{rem:rh-route}).
 This convergence is the content of Conjecture~\ref{conj:airy-transition}
 and is \emph{not} proved here.
 \end{remark}
@@ -530,6 +536,20 @@ $|e^{iR_c}-1|\le|R_c|$; steepest descent gives $e^{-\kappa(s+t)}$.
 uniformly for $s,t\ge 0$ and $\xi$ in compact sets.
 \end{proposition}
 
+\begin{remark}[Uniform integrability of the error kernel]
+\label{rem:uniform-integrability}
+The exponential bound \eqref{eq:global-error-bound} implies in particular
+that the error kernel is uniformly integrable over $[0,\infty)^2$:
+\[
+  \int_0^\infty\!\int_0^\infty e^{-c_0(s+t)}\,ds\,dt
+  = \frac{1}{c_0^2} < \infty.
+\]
+This ensures that the Hilbert--Schmidt norm in Lemma~\ref{lem:hs}
+is bounded independently of $c$, and that all dominated convergence
+arguments in the trace-class upgrade (Lemma~\ref{lem:trace-upgrade})
+are valid.
+\end{remark}
+
 \begin{lemma}[Hilbert--Schmidt control]
 \label{lem:hs}
 $\norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak{S}_2}\le C\,c^{-1/3}$
@@ -554,7 +574,8 @@ Factor through weighted $L^2$ via exponential decay
 $\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
 with Lemma~\ref{lem:hs}; the diagonal upgrade uses
 Remark~\ref{rem:diagonal-control} together with uniform derivative control
-and standard integrability; the off-diagonal oscillation is controlled
+and standard integrability (guaranteed by Remark~\ref{rem:uniform-integrability});
+the off-diagonal oscillation is controlled
 via $Y_c\to Y_{\mathrm{Ai}}$ from Conjecture~\ref{conj:airy-transition}.
 \end{proof}
 
@@ -621,16 +642,24 @@ Remark~\ref{rem:diagonal-control} using the full matrix $Y_c$.
 \subsection{Step 2: The $g$-function and steepest-descent structure}
 \label{sec:g-function}
 
-\begin{definition}[$g$-function for the prolate kernel]
+\begin{definition}[$g$-function candidate for the prolate kernel]
 \label{def:g-function}
-Let
+Motivated by equilibrium measure considerations for orthogonal polynomial
+ensembles supported on $[-1,1]$ (see~\cite{Deift1999}), we introduce the
+following \emph{candidate $g$-function}:
 \[
   g_c(z) := \int_{-1}^{1} \log(z-t)\,\rho(t)\,dt,
   \quad z\in\mathbb{C}\setminus(-\infty,1],
 \]
-where $\rho(t)=\frac{1}{\pi}\sqrt{1-t^2}$ is the equilibrium density
+where $\rho(t)=\frac{1}{\pi}\sqrt{1-t^2}$ is the Wigner semicircle density
 on $[-1,1]$.
 The branch of $\log(z-t)$ is fixed by continuity from $\Im z>0$.
+
+This choice is not canonically determined by the prolate problem alone;
+it is motivated by the requirement that it yields the correct factorisation
+of the jump matrix $J_c(z)$ and that the resulting phase $2g_c - \phi_c$
+satisfies Assumption~\ref{ass:g-sign}. The validity of this choice
+is part of the analytic content of Assumption~\ref{ass:g-sign}.
 \end{definition}
 
 \begin{proposition}[Basic properties of $g_c$]
@@ -710,6 +739,14 @@ large $c$:
 holds uniformly for $z \in \Sigma_c^\pm \setminus D_\epsilon$,
 where $\phi_c$ is the effective phase defined in
 \eqref{eq:effective-phase-def}, expressed in the rescaled spectral variable.
+Moreover, there exists a tubular neighbourhood $\mathcal{U} \supset \Sigma_c^\pm$
+such that the bound extends with uniform control of the first derivatives:
+\[
+  \bigl|\nabla_z \operatorname{Re}\!\bigl(2g_c(z) - \phi_c(z)\bigr)\bigr|
+  \le C
+\]
+uniformly on $\mathcal{U} \setminus D_\epsilon$, for some constant $C>0$
+independent of $c$.
 \end{assumption}
 
 \begin{remark}[Status of Assumption~\ref{ass:g-sign}]
@@ -721,6 +758,8 @@ are explicit. The verification of the uniform inequality above
 requires a detailed control of the interplay between the equilibrium
 potential $g_c$ and the effective phase $\phi_c$ near the edge
 (corresponding to $z=0$ in rescaled coordinates).
+The additional first-derivative control is needed for the Cauchy operator
+estimates in the small-norm step (Proposition~\ref{prop:small-norm}).
 \end{remark}
 
 \begin{proposition}[Consequence of the sign condition]
@@ -833,6 +872,7 @@ Uniform strict steepest-descent inequality:
   \operatorname{Re}\!\bigl(2g_c(z)-\phi_c(z)\bigr) < -\kappa < 0
 \]
 on $\Sigma_c^\pm \setminus D_\epsilon$, for all sufficiently large $c$,
+with uniform first-derivative control on a tubular neighbourhood,
 where $\phi_c$ is the effective Widom edge phase of
 \eqref{eq:effective-phase-def} restricted to the lens contours,
 and $\kappa>0$ is independent of $c$.}}
@@ -952,7 +992,9 @@ It relies on:
 \begin{itemize}
 \item uniform off-diagonal decay,
 \item diagonal control via the IIKS structure,
-\item Hilbert--Schmidt bounds combined with a trace-class upgrade.
+\item Hilbert--Schmidt bounds combined with a trace-class upgrade,
+\item uniform integrability of the error kernel
+  (Remark~\ref{rem:uniform-integrability}).
 \end{itemize}
 This mechanism is standard in integrable operator theory
 (see~\cite{ItsIzergin1990,Kato1966}) and is implemented here
@@ -981,7 +1023,8 @@ verify Assumption~\ref{ass:g-sign}, i.e., the strict inequality
 \[
   \operatorname{Re}\!\bigl(2g_c(z)-\phi_c(z)\bigr) < -\kappa < 0
 \]
-on $\Sigma_c^\pm\setminus D_\epsilon$, uniformly in $c$.
+on $\Sigma_c^\pm\setminus D_\epsilon$, uniformly in $c$, together with
+the first-derivative control on a tubular neighbourhood of the contour.
 Once established, Proposition~\ref{prop:small-norm} gives
 $R_c=I+O(c^{-1/3})$, Proposition~\ref{prop:kernel-from-rhp}
 gives $\mathfrak{S}_1$-convergence, and Conjecture~\ref{conj:airy-transition}
@@ -1047,7 +1090,8 @@ Verify Assumption~\ref{ass:g-sign}, i.e., the uniform inequality
 \[
   \operatorname{Re}\bigl(2g_c(z)-\phi_c(z)\bigr) \le -\kappa < 0
 \]
-on the lens contours $\Sigma_c^\pm \setminus D_\epsilon$.
+on the lens contours $\Sigma_c^\pm \setminus D_\epsilon$, together
+with uniform first-derivative control on a tubular neighbourhood.
 \end{problem}
 
 This problem appears amenable to detailed local analysis near the
