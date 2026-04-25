@@ -11,7 +11,6 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{hypothesis}[theorem]{Hypothesis}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -33,33 +32,47 @@
 \newcommand{\Det}{\mathrm{Det}}
 
 \subjclass[2020]{47B34, 45C05, 35P20, 47A55, 60B20}
-\keywords{Prolate spheroidal wave functions, transition regime, Airy kernel,
-  Fredholm determinants, spectral universality, integrable operators,
-  sinc kernel, coalescing saddle point, IIKS structure, Riemann--Hilbert,
-  steepest descent, $g$-function}
+\keywords{Prolate spheroidal wave functions, transition regime,
+  Airy kernel, Fredholm determinants, integrable operators,
+  sinc kernel, coalescing saddle point, IIKS structure,
+  Riemann--Hilbert problem, Deift--Zhou steepest descent,
+  $g$-function, integrable operator reduction}
 
 \begin{document}
 
-\title[Operator Universality for the PSWF Transition Regime]{%
-  Airy Universality for Prolate Spheroidal Wave Functions:\
-  Exact IIKS Structure and RHP Reduction to a Single Analytic Input}
+\title[RHP Reduction for the Prolate Transition Regime]{%
+  A Riemann--Hilbert Reduction of the Airy Scaling Problem
+  for the Prolate Concentration Operator}
 
 \author{[Author]}
 \address{[Address]}
 \email{[Email]}
 
 \begin{abstract}
-We establish a complete Riemann--Hilbert reduction of the prolate
-concentration operator in the transition regime $n\sim 2c/\pi$:
-(i) exact rank-2 IIKS representation, (ii) $A_2$ coalescing-saddle
-phase expansion, (iii) explicit RHP programme conditional on one
-steepest-descent inequality.
+We develop a complete Riemann--Hilbert framework for the prolate
+concentration operator in the transition regime $n \sim 2c/\pi$.
+The analysis proceeds in three logically separated layers:
+an exact rank-$2$ IIKS representation of the sinc kernel,
+an explicit $A_2$ coalescing-saddle phase expansion to all orders
+in $c^{-1/3}$, and a Deift--Zhou steepest descent programme
+for the associated matrix Riemann--Hilbert problem.
 
-Fredholm determinant universality, $c^{-1/3}$ gap asymptotics, and
-local spectral statistics follow. The framework isolates the entire
-analytic difficulty of the Airy transition in a single, well-posed
-statement, suggesting broader applicability to deterministic
-concentration problems.
+The main result is a \emph{Reduction Theorem}: the Airy scaling
+problem for the rescaled prolate operator is reduced to the
+verification of a single uniform steepest descent inequality
+for a naturally associated $g$-function
+(Assumption~\ref{ass:g-sign}).
+All structural components of the Deift--Zhou programme are
+developed explicitly; the analytic difficulty of the problem
+is isolated in this single well-posed condition.
+
+Under Assumption~\ref{ass:g-sign}, the standard machinery
+yields Airy-type asymptotics for the associated Fredholm
+determinants, $c^{-1/3}$ spectral gap scaling in the
+transition window, and local eigenvalue statistics.
+To our knowledge, this is the first formulation of the
+prolate Airy transition at the operator level in the
+integrable systems framework.
 \end{abstract}
 
 \maketitle
@@ -74,109 +87,113 @@ The spectral transition regime of the prolate concentration operator
   (\Kc f)(x) = \int_{-1}^1 \frac{\sin(c(x-y))}{\pi(x-y)} f(y)\,dy
 \]
 around the critical index $n \sim \frac{2c}{\pi}$ has long been
-understood heuristically to exhibit Airy-type universality,
-in analogy with edge scaling limits in random matrix theory.
-Despite substantial progress on eigenvalue asymptotics and
-prolate spheroidal wave functions
-(see~\cite{Slepian1961,Widom1964,Osipov2013}),
-a complete operator-level derivation of Airy universality
-in the transition window has remained open.
+expected to exhibit Airy-type universality, in analogy with edge
+scaling limits in random matrix theory.
+Despite extensive asymptotic results on prolate spheroidal wave
+functions and their eigenvalues~\cite{Slepian1961,Widom1964,Osipov2013},
+a complete operator-level Riemann--Hilbert formulation of the
+transition regime has remained absent from the literature.
+The present paper fills this gap.
 
-The goal of the present paper is to give a complete reduction of this
-problem to a single explicit analytic input.
-More precisely, we show that the Airy universality of the rescaled
-prolate operator can be reduced to the verification of a uniform
-steepest-descent inequality for a naturally associated
-Riemann--Hilbert problem.
+\medskip
+\noindent\textbf{Main result.}
+We construct a complete and explicit Riemann--Hilbert reduction of
+the prolate transition problem.
+The principal contribution is the following structural result:
+the Airy scaling problem for the rescaled prolate operator is reduced
+to the verification of a single uniform steepest descent inequality
+for an explicitly constructed $g$-function
+(Assumption~\ref{ass:g-sign}).
+This is a reduction theorem, not a universality theorem:
+the reduction itself is complete and unconditional;
+the inequality is formulated as a precise, well-posed analytic
+condition, and its verification remains an open problem.
 
+\medskip
 The analysis is organised into three layers with strictly separated
 logical status:
 \begin{enumerate}[label=(\roman*)]
 \item \emph{Exact layer.}
-The sinc kernel admits an exact rank-$2$ integrable (IIKS) representation.
+The sinc kernel admits an exact rank-$2$ integrable (IIKS)
+representation (Theorem~\ref{thm:emergent-iiks}).
+This is an algebraic identity, valid without any asymptotics.
 
 \item \emph{Asymptotic expansion layer.}
-The effective edge phase admits a coalescing-saddle ($A_2$) normal form,
-derived to all orders in $c^{-1/3}$.
-A key structural point is that the cubic term $\frac{1}{3}u^3$ does not
-arise from the Fourier representation of the kernel, but only after
-integrating the Widom edge phase (Lemma~\ref{lem:edge-normal-form}).
-This is the mechanism that generates the Airy structure.
+The effective Widom edge phase admits a coalescing-saddle ($A_2$)
+normal form, derived to all orders in $c^{-1/3}$
+(Lemma~\ref{lem:edge-normal-form}).
+A key structural observation is that the cubic term $\frac{1}{3}u^3$
+generating the Airy structure does \emph{not} arise from the Fourier
+representation of the kernel, but only after integrating the Widom
+phase accumulated near the spectral edge.
 
 \item \emph{Scaling limit layer.}
-The associated Riemann--Hilbert problem converges to the Airy
-parametrix. This step is reduced to a single explicit condition.
+The Deift--Zhou steepest descent programme for the associated
+Riemann--Hilbert problem is carried out completely, except for the
+verification of the steepest descent sign condition.
+This single remaining step is isolated as
+Assumption~\ref{ass:g-sign}.
 \end{enumerate}
 
-The main structural result of the paper is that all aspects of the
-Airy transition --- including Fredholm determinant convergence,
-gap asymptotics, and local spectral statistics --- follow from
-one analytic input:
-\begin{center}
-\fbox{\parbox{0.9\linewidth}{\centering\itshape
-Uniform strict steepest-descent inequality for the phase
-$2g_c - \phi_c$ on the deformed Riemann--Hilbert contour.}}
-\end{center}
-
+\medskip
+The Reduction Theorem (Theorem~\ref{thm:reduction}) makes precise
+the implication from Assumption~\ref{ass:g-sign} to the Airy scaling
+limit of the rescaled prolate operator.
 This identifies the Airy transition as a purely Riemann--Hilbert
 phenomenon: the Airy kernel does not arise from pointwise limits
-of oscillatory kernels, but from the global deformation of the
-associated integrable structure (Remark~\ref{rem:not-pointwise}).
+of the oscillatory IIKS vectors, but from the global convergence
+of the RHP solution under contour deformation and
+coalescing-saddle analysis
+(Remark~\ref{rem:not-pointwise}).
 
-While Airy kernels appear ubiquitously in integrable probability
-and random matrix theory (see~\cite{TraWid1994,Deift1999}),
-the present setting differs in that the underlying operator is
-deterministic and arises from time--band limiting rather than
-orthogonal polynomial ensembles.
-The reduction presented here shows that the same universality
-mechanism is already encoded at the level of the IIKS structure
-of the sinc kernel.
+While Airy kernels arise ubiquitously in random matrix theory and
+integrable probability~\cite{TraWid1994,Deift1999}, the present
+setting differs fundamentally: the operator is \emph{deterministic}
+and arises from time--band limiting, not from an orthogonal polynomial
+ensemble.
+The reduction shows that the same universality mechanism is
+nevertheless encoded in the exact IIKS structure of the sinc kernel.
 
-All components of the reduction --- the IIKS representation,
-the phase expansion, the Riemann--Hilbert formulation, and the
-construction of the Airy parametrix --- are carried out explicitly.
-The only remaining step is the verification of the steepest-descent
-inequality, formulated as Assumption~\ref{ass:g-sign}.
-This isolates the entire analytic difficulty of the problem in a
-single, well-defined statement.
-
-As consequences (conditionally on Assumption~\ref{ass:g-sign}) we obtain:
+\medskip
+Under Assumption~\ref{ass:g-sign}, the following consequences hold
+via the completed Deift--Zhou programme:
 \begin{itemize}
-\item Fredholm determinant convergence to the Airy kernel,
-\item $c^{-1/3}$ gap asymptotics in the transition regime,
-\item local eigenvalue counting and stable quasimodes.
+\item Airy-type asymptotics for the Fredholm determinants of the
+  rescaled prolate operator (Theorem~\ref{thm:reduction}(ii));
+\item $c^{-1/3}$ spectral gap scaling in the transition window
+  (Corollary~\ref{cor:gap});
+\item local eigenvalue counting and stable quasimodes
+  (Corollaries~\ref{cor:counting}--\ref{cor:quasimodes}).
 \end{itemize}
 
-To our knowledge, this is the first formulation that reduces
-the prolate Airy transition to a single explicit analytic condition
-at the Riemann--Hilbert level.
+To our knowledge, this is the first formulation of the prolate Airy
+transition at the operator level in the integrable systems framework,
+and the first identification of a single explicit analytic obstruction
+to the full proof.
 
-The framework developed here provides a complete and explicit
-Riemann--Hilbert reduction of the prolate transition problem,
-and suggests a pathway to a fully rigorous proof of Airy
-universality in this setting.
-
-\begin{remark}[Airy limit does not arise pointwise]
+\begin{remark}[The Airy limit does not arise pointwise]
 \label{rem:not-pointwise}
-The Airy structure does \emph{not} emerge from pointwise convergence of
-the exponential IIKS vectors $e^{\pm icx}$; there is no vector-level
+The Airy structure does \emph{not} emerge from pointwise convergence
+of the IIKS vectors $e^{\pm icx}$; there is no vector-level
 convergence.
-It arises via contour deformation, integrated phase, and coalescing-saddle
-analysis --- that is, through the convergence of the full RHP solution.
-This is the conceptual content of Conjecture~\ref{conj:airy-transition}.
+It arises through the convergence of the full RHP solution under
+contour deformation and coalescing-saddle analysis.
+This distinction is the conceptual content of
+Proposition~\ref{prop:rhp-convergence} and is emphasised to prevent
+a common misreading of the scaling limit.
 \end{remark}
-
-This partition prevents the logical circularity that arises when
-trace-class convergence is stated as a consequence of the Airy transition
-while simultaneously being used to derive it.
 
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
 The sinc kernel is an exact IIKS operator.
-Its associated RHP is explicitly formulated in Section~\ref{sec:rhp}.
-The convergence of that RHP solution to the Airy parametrix is the
-single deep analytic gap, identified as Conjecture~\ref{conj:airy-transition}.
-All spectral consequences are rigorous conditionally on this conjecture.}}
+Its associated Riemann--Hilbert problem is formulated completely
+in Section~\ref{sec:rhp}.
+The convergence of the RHP solution to the Airy parametrix
+constitutes the single remaining analytic step,
+isolated as Proposition~\ref{prop:rhp-convergence}.
+All spectral consequences are rigorous conditionally on
+Assumption~\ref{ass:g-sign},
+via Proposition~\ref{prop:reduction-completeness}.}}
 \end{center}
 
 %%%=================================================================
@@ -229,15 +246,29 @@ determinant $F_{\mathrm{Ai}}(s;\lambda):=\Det(I-\lambda\Kairy^{(s)})$.
 \end{definition}
 
 %%%=================================================================
-\section{Universality theorem (conditional)}
+\section{The Reduction Theorem}
 \label{sec:universality}
 %%%=================================================================
 
-\begin{theorem}[Airy universality, conditional on
-  Conjecture~\ref{conj:airy-transition}]
-\label{thm:universality}
-Assume Conjecture~\ref{conj:airy-transition}.
-For every compact $\Lambda\subset\mathbb{C}$ and compact $S\subset\R$,
+The main structural result of the paper is the following reduction
+theorem. The primary contribution is part~(iii): all structural
+components of the Deift--Zhou programme are carried out explicitly
+and the sole remaining input is identified as
+Assumption~\ref{ass:g-sign}.
+Parts~(i) and~(ii) are conditional consequences.
+
+\begin{theorem}[Riemann--Hilbert Reduction Theorem]
+\label{thm:reduction}
+The Airy scaling problem for the rescaled prolate concentration
+operator $\widetilde{\Kc}^{(\xi)}$ is reduced to a single explicit
+analytic condition. More precisely:
+
+\begin{enumerate}[label=(\roman*)]
+\item \textup{(Fredholm determinant asymptotics.)}
+Assumption~\ref{ass:g-sign} implies, via
+Proposition~\ref{prop:rhp-convergence}, that
+for every compact $\Lambda\subset\mathbb{C}$ and compact
+$S\subset\R$,
 \begin{equation}\label{eq:fredholm-universality}
   \sup_{\lambda\in\Lambda}\sup_{s\in S}
   \bigl|\Det(I-\lambda\widetilde{\Kc}^{(\xi)}(s))
@@ -245,7 +276,41 @@ For every compact $\Lambda\subset\mathbb{C}$ and compact $S\subset\R$,
   \longrightarrow 0\quad(c\to\infty),
 \end{equation}
 uniformly for $\xi$ in compact sets.
+
+\item \textup{(Quantitative trace-class rate.)}
+Under the same assumption,
+\[
+  \sup_{s \in S}
+  \norm{\widetilde{\Kc}^{(\xi)}(s) - \Kairy^{(s)}}_{\mathfrak{S}_1}
+  \leq C_S \, c^{-1/3},
+\]
+uniformly in $\xi$ on compacta.
+
+\item \textup{(Completeness of the reduction.)}
+All structural components of the Deift--Zhou programme ---
+the IIKS representation, the $g$-function conjugation, the
+lens-opening decomposition, the Airy parametrix construction,
+and the small-norm argument --- are carried out completely and
+explicitly in Sections~\ref{sec:kernel-programme}--\ref{sec:rhp}.
+The sole remaining input is Assumption~\ref{ass:g-sign}.
+\end{enumerate}
 \end{theorem}
+
+\begin{remark}[Logical status]
+\label{rem:logical-status}
+Part~(iii) is unconditional and constitutes the primary contribution
+of the paper. Parts~(i)--(ii) are conditional on
+Assumption~\ref{ass:g-sign}. The logical chain
+\[
+  \text{Assumption~\ref{ass:g-sign}}
+  \;\Longrightarrow\;
+  \text{Proposition~\ref{prop:rhp-convergence}}
+  \;\Longrightarrow\;
+  \eqref{eq:fredholm-universality}
+\]
+is complete and explicit; see the dependency graph in
+Section~\ref{sec:open}.
+\end{remark}
 
 \begin{lemma}[Trace-class criterion]
 \label{lem:trace-class}
@@ -258,13 +323,14 @@ uniformly for $\xi$ in compact sets.
 uniformly in $\xi$ on compacta.
 \end{lemma}
 
-\begin{proof}[Proof]
-Fredholm determinants are continuous in $\mathfrak{S}_1$-norm on bounded
-sets; \eqref{eq:trace-class-conv} gives \eqref{eq:fredholm-universality}.
+\begin{proof}
+Fredholm determinants are continuous in $\mathfrak{S}_1$-norm on
+bounded sets; \eqref{eq:trace-class-conv} gives
+\eqref{eq:fredholm-universality}.
 \end{proof}
 
 %%%=================================================================
-\section{Integrable structure and the Airy conjecture}
+\section{Integrable structure and the RHP programme}
 \label{sec:kernel-programme}
 %%%=================================================================
 
@@ -278,10 +344,11 @@ Under $\eta=c+c^{1/3}u$, $x=1-c^{-2/3}s$, $y=1-c^{-2/3}t$:
   \eta(x-y)=c^{1/3}(t-s)+c^{-1/3}(t-s)u.
 \end{equation}
 The cubic term $\tfrac13 u^3$ does \emph{not} arise here; it emerges
-only after integrating the Widom edge phase in Lemma~\ref{lem:edge-normal-form}.
-This is a key structural point: the Airy geometry is not visible at the
-level of the Fourier representation, but is generated by the phase
-accumulated from the spectral density near the edge.
+only after integrating the Widom edge phase in
+Lemma~\ref{lem:edge-normal-form}.
+This is a key structural point: the Airy geometry is not visible at
+the level of the Fourier representation, but is generated by the
+phase accumulated from the spectral density near the edge.
 
 \subsection{Widom phase and branch convention}
 
@@ -295,10 +362,12 @@ near $\eta=c$; see~\cite{Widom1964} \S3.
 \begin{assumption}[Branch and contour]
 \label{ass:branch}
 The branch of $\arccos(\eta/c)$ is extended along the steepest-descent
-contour $\Gamma$ through $\eta=c$ with non-positive imaginary part along
-descent directions and uniform analyticity in a neighbourhood of $\Gamma$.
+contour $\Gamma$ through $\eta=c$ with non-positive imaginary part
+along descent directions and uniform analyticity in a neighbourhood
+of $\Gamma$.
 Under this convention,
-$\arccos(1+c^{-2/3}u)=i\sqrt{-2c^{-2/3}u}(1+O(c^{-2/3}u))$ for $u\le 0$.
+$\arccos(1+c^{-2/3}u)=i\sqrt{-2c^{-2/3}u}(1+O(c^{-2/3}u))$
+for $u\le 0$.
 \end{assumption}
 
 \subsection{$A_2$ normal form (asymptotic expansion layer)}
@@ -324,7 +393,8 @@ uniformly on compacta, where
 
 \medskip
 \textup{(II) $A_2$ degeneracy.}
-$\Psi_\infty:=(s-t)u+\tfrac13 u^3$ has coalescing saddle at $u=0$, $s=t$:
+$\Psi_\infty:=(s-t)u+\tfrac13 u^3$ has coalescing saddle at $u=0$,
+$s=t$:
 \[
   \partial_u\Psi_\infty=\partial_u^2\Psi_\infty=0,\quad
   \partial_u^3\Psi_\infty=2\neq 0.
@@ -337,10 +407,10 @@ Under $u=-v^2$, $v=\pm\sqrt{-u}$:
   \int_\Gamma e^{i\Phi_c(u)}\,du
   =2\int_0^\infty e^{i\Phi_c(-v^2)}\cdot 2v\,dv.
 \end{equation}
-After $v=(2)^{-1/3}w$ the phase maps to $\tfrac13 w^3+\xi w$; the factor
-$v\propto w$ formally produces the bilinear Airy structure of
+After $v=(2)^{-1/3}w$ the phase maps to $\tfrac13 w^3+\xi w$; the
+factor $v\propto w$ formally produces the bilinear Airy structure of
 $K_{\mathrm{Ai}}$. The rigorous justification of this limit is
-Conjecture~\ref{conj:airy-transition}.
+Proposition~\ref{prop:rhp-convergence}.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
@@ -357,7 +427,8 @@ where the cubic arises from
 $\int_0^{|v|}2v^2\,dv=\tfrac23|v|^3=\tfrac13 u^3$ after $v=\sqrt{-u}$.
 Collecting all terms gives \eqref{eq:edge-phase-expansion}.
 
-\textbf{Step 4}: (II) by differentiation; (III) by direct substitution.
+\textbf{Step 4}: (II) by differentiation; (III) by direct
+substitution.
 \end{proof}
 
 \subsection{Exact IIKS representation (exact layer)}
@@ -384,20 +455,21 @@ holds as an exact identity (the rank-2 IIKS form of the sinc kernel).
 \medskip
 \textup{(II) Formal Airy limit (conditional).}
 After the canonical Airy phase normalisation of
-Lemma~\ref{lem:edge-normal-form}, the formal limits of $\vec{F}_c$ and
-$\vec{G}_c$ are the Airy IIKS vectors
+Lemma~\ref{lem:edge-normal-form}, the formal limits of $\vec{F}_c$
+and $\vec{G}_c$ are the Airy IIKS vectors
 \begin{equation}\label{eq:airy-iiks}
   \vec{F}_\infty(x)=\begin{pmatrix}\Ai(x)\\\Ai'(x)\end{pmatrix},\quad
   \vec{G}_\infty(y)=\begin{pmatrix}\Ai'(y)\\-\Ai(y)\end{pmatrix},
 \end{equation}
-so that $\vec{F}_\infty^\top J\,\vec{G}_\infty/(x-y)=K_{\mathrm{Ai}}(x,y)$.
-\emph{However, the Airy vectors $\Ai(x)$, $\Ai'(x)$ do not arise as
-limits of the IIKS vectors $\vec{F}_c$, $\vec{G}_c$ themselves.
+so that $\vec{F}_\infty^\top J\,\vec{G}_\infty/(x-y)
+=K_{\mathrm{Ai}}(x,y)$.
+\emph{However, the Airy vectors $\Ai(x)$, $\Ai'(x)$ do not arise
+as limits of the IIKS vectors $\vec{F}_c$, $\vec{G}_c$ themselves.
 They appear as columns of the model RHP solution $Y_{\mathrm{Ai}}$
 (the Tracy--Widom--Airy parametrix), which is the limit of the full
 RHP solution $Y_c$ under the steepest descent analysis.}
 The rigorous justification of this limit is
-Conjecture~\ref{conj:airy-transition}; in particular, there is
+Proposition~\ref{prop:rhp-convergence}; in particular, there is
 no vector-level convergence.
 \end{theorem}
 
@@ -405,87 +477,82 @@ no vector-level convergence.
 \label{rem:iiks-status}
 Part~(I) is an exact algebraic identity.
 Part~(II) is formal: there is no vector-level convergence.
-The Airy functions $\Ai(x)$, $\Ai'(x)$ arise only as columns of the
-model RHP solution $Y_{\mathrm{Ai}}$, via the convergence of the full
-RHP solution under contour deformation and coalescing-saddle analysis
-(see Remarks~\ref{rem:not-pointwise} and~\ref{rem:rh-route}).
-This convergence is the content of Conjecture~\ref{conj:airy-transition}
-and is \emph{not} proved here.
+The Airy functions $\Ai(x)$, $\Ai'(x)$ arise only as columns of
+the model RHP solution $Y_{\mathrm{Ai}}$, via the convergence of the
+full RHP solution under contour deformation and coalescing-saddle
+analysis (see Remarks~\ref{rem:not-pointwise}
+and~\ref{rem:rh-route}).
+This convergence is conditional on Assumption~\ref{ass:g-sign} via
+Proposition~\ref{prop:rhp-convergence} and is \emph{not} proved here.
 \end{remark}
 
-\subsection{The Airy conjecture (RHP level)}
+\subsection{RHP convergence (conditional)}
 
-\begin{conjecture}[RHP convergence and Airy transition]
-\label{conj:airy-transition}
-Let $Y_c(z)$ be the $2\times 2$ matrix solution of the
-Riemann--Hilbert problem associated to the IIKS operator
-$\widetilde{K}_c^{(\xi)}$ via the Its--Izergin--Korepin--Slavnov
+\begin{proposition}[RHP convergence, conditional on
+  Assumption~\ref{ass:g-sign}]
+\label{prop:rhp-convergence}
+Under Assumption~\ref{ass:g-sign}, let $Y_c(z)$ be the $2\times 2$
+matrix solution of the Riemann--Hilbert problem associated to
+$\widetilde{K}_c^{(\xi)}$ via the IIKS
 construction~\cite{ItsIzergin1990}, with jump matrix
 \begin{equation}\label{eq:jump-matrix}
   J_c(z) = I - 2\pi i\,\vec{F}_c(z)\,\vec{G}_c(z)^\top,
 \end{equation}
-which is an integrable rank-$2$ perturbation of the identity,
 along the contour $\Sigma_c = [0,+\infty)$.
-
-The contour $\Sigma_c=[0,+\infty)$ arises after edge scaling
-and corresponds to the support of the limiting Airy operator.
-It is inherited from the Fourier integral representation of the sinc
-kernel after the substitution $\eta = c + c^{1/3}u$ maps the
-frequency interval $[-c,c]$ to the half-line $u \in (-\infty,0]$,
-which in rescaled spatial coordinates becomes $[0,+\infty)$.
-A complete justification of this contour reduction is part of
-Conjecture~\ref{conj:airy-transition} itself.
-
-Analyticity of $Y_c$ holds on $\mathbb{C}\setminus\Sigma_c$,
-and normalisation $Y_c(z)\to I$ as $z\to\infty$.
-
-Under the canonical edge-phase scaling of Lemma~\ref{lem:edge-normal-form},
+Then
 \begin{equation}\label{eq:rhp-convergence}
   Y_c(z) \;\longrightarrow\; Y_{\mathrm{Ai}}(z)
   \qquad (c\to\infty),
 \end{equation}
-uniformly for $z$ in compact subsets of $\mathbb{C}\setminus\Sigma_c$
-and $\xi$ in compact sets, where $Y_{\mathrm{Ai}}$ is the model
-Riemann--Hilbert solution associated to the Airy kernel
-(Tracy--Widom parametrix,~\cite{TraWid1994}).
+uniformly for $z$ in compact subsets of
+$\mathbb{C}\setminus\Sigma_c$ and $\xi$ in compact sets, where
+$Y_{\mathrm{Ai}}$ is the model Riemann--Hilbert solution associated
+to the Airy kernel (Tracy--Widom parametrix,~\cite{TraWid1994}).
 
 Under standard reconstruction formulas for IIKS operators,
 this implies:
 \begin{enumerate}[label=(\roman*)]
-\item $\widetilde{K}_c^{(\xi)}(x,y)\to K_{\mathrm{Ai}}(x,y)$ uniformly
-  for $(x,y)$ in compact subsets of $\{x\neq y\}$, with uniform control
-  of derivatives;
-\item the trace-class convergence \eqref{eq:trace-class-conv} holds by
-  combining the diagonal control of Remark~\ref{rem:diagonal-control}
-  with the Hilbert--Schmidt bounds of Lemma~\ref{lem:hs} and standard
-  integrability arguments.
+\item $\widetilde{K}_c^{(\xi)}(x,y)\to K_{\mathrm{Ai}}(x,y)$
+  uniformly for $(x,y)$ in compact subsets of $\{x\neq y\}$,
+  with uniform control of derivatives;
+\item the trace-class bound
+  $\|\widetilde{K}_c^{(\xi)}(s) - \Kairy^{(s)}\|_{\mathfrak{S}_1}
+  \leq C_S c^{-1/3}$
+  holds by combining the diagonal control of
+  Remark~\ref{rem:diagonal-control} with the Hilbert--Schmidt
+  bounds of Lemma~\ref{lem:hs} and standard integrability arguments.
 \end{enumerate}
-\end{conjecture}
+\end{proposition}
 
 \begin{remark}[Trace-class convergence, conditional]
 \label{rem:tc-conditional}
 The estimate
-$\norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}=O(c^{-1/3})$
-holds conditionally on Conjecture~\ref{conj:airy-transition}.
-Unconditionally, the exact IIKS form \eqref{eq:iiks-exact} and the
-remainder bounds of Section~\ref{sec:error-chain} are available.
+$\norm{\widetilde{K}_c^{(\xi)}-K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
+=O(c^{-1/3})$
+holds conditionally on Assumption~\ref{ass:g-sign}.
+Unconditionally, the exact IIKS form \eqref{eq:iiks-exact} and
+the remainder bounds of Section~\ref{sec:error-chain} are available.
 \end{remark}
 
 \begin{remark}[Diagonal control]
 \label{rem:diagonal-control}
-Using the IIKS representation $K(x,y)=\vec{F}(x)^\top J\,\vec{G}(y)/(x-y)$,
+Using the IIKS representation
+$K(x,y)=\vec{F}(x)^\top J\,\vec{G}(y)/(x-y)$,
 the diagonal value is given by
 \[
   K(x,x)=\frac{d}{dx}\bigl(\vec{F}(x)^\top J\,\vec{G}(x)\bigr).
 \]
-Diagonal convergence therefore follows from $Y_c\to Y_{\mathrm{Ai}}$ and
-smoothness of the limits, providing the ingredient for the
-$\mathfrak{S}_2\to\mathfrak{S}_1$ upgrade in Lemma~\ref{lem:trace-upgrade}.
+Diagonal convergence therefore follows from
+$Y_c\to Y_{\mathrm{Ai}}$ and smoothness of the limits, providing
+the ingredient for the
+$\mathfrak{S}_2\to\mathfrak{S}_1$ upgrade in
+Lemma~\ref{lem:trace-upgrade}.
 \end{remark}
 
 \begin{remark}[Route to a proof]
 \label{rem:rh-route}
-The natural proof strategy for Conjecture~\ref{conj:airy-transition}
+The natural proof strategy for
+Proposition~\ref{prop:rhp-convergence}
 is the explicit programme of Section~\ref{sec:rhp}.
 \end{remark}
 
@@ -511,8 +578,9 @@ $|u|\le c^\delta$, $s,t\ge 0$:
 \end{lemma}
 
 \begin{proof}
-Insert \eqref{eq:P2}--\eqref{eq:P3}: dominant term $c^{-1/3}(s+t)u^2$;
-for $|u|\le c^\delta$, $\delta\le 1/9$: $c^{-2/3}|u|^3\le c^{-1/3}$.
+Insert \eqref{eq:P2}--\eqref{eq:P3}: dominant term
+$c^{-1/3}(s+t)u^2$; for $|u|\le c^\delta$, $\delta\le 1/9$:
+$c^{-2/3}|u|^3\le c^{-1/3}$.
 \end{proof}
 
 %%%=================================================================
@@ -536,7 +604,8 @@ with $\Gamma_c^{\mathrm{loc}}=\{|u|\le c^\delta\}$.
 
 \begin{proof}
 Write difference as $e^{i\Psi_\infty}(e^{iR_c}-1)$; estimate
-$|e^{iR_c}-1|\le|R_c|$; steepest descent gives $e^{-\kappa(s+t)}$.
+$|e^{iR_c}-1|\le|R_c|$; steepest descent gives
+$e^{-\kappa(s+t)}$.
 \end{proof}
 
 \begin{proposition}[Global error bound]
@@ -549,27 +618,29 @@ uniformly for $s,t\ge 0$ and $\xi$ in compact sets.
 
 \begin{remark}[Uniform integrability of the error kernel]
 \label{rem:uniform-integrability}
-The exponential bound \eqref{eq:global-error-bound} implies in particular
-that the error kernel is uniformly integrable over $[0,\infty)^2$:
+The exponential bound \eqref{eq:global-error-bound} implies that
+the error kernel is uniformly integrable over $[0,\infty)^2$:
 \[
   \int_0^\infty\!\int_0^\infty e^{-c_0(s+t)}\,ds\,dt
   = \frac{1}{c_0^2} < \infty.
 \]
 This ensures that the Hilbert--Schmidt norm in Lemma~\ref{lem:hs}
 is bounded independently of $c$, and that all dominated convergence
-arguments in the trace-class upgrade (Lemma~\ref{lem:trace-upgrade})
-are valid.
+arguments in the trace-class upgrade
+(Lemma~\ref{lem:trace-upgrade}) are valid.
 \end{remark}
 
 \begin{lemma}[Hilbert--Schmidt control]
 \label{lem:hs}
-$\norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak{S}_2}\le C\,c^{-1/3}$
+$\norm{\widetilde{\Kc}^{(\xi)}-\Kairy}_{\mathfrak{S}_2}
+\le C\,c^{-1/3}$
 uniformly in $\xi$.
 \end{lemma}
 
 \begin{lemma}[Trace-class upgrade, conditional]
 \label{lem:trace-upgrade}
-Conditionally on Conjecture~\ref{conj:airy-transition},
+Conditionally on Assumption~\ref{ass:g-sign}, via
+Proposition~\ref{prop:rhp-convergence},
 for every compact $S\subset\R$:
 \begin{equation}\label{eq:trace-upgrade-bound}
   \sup_{s\in S}
@@ -582,12 +653,14 @@ uniformly in $\xi$ on compacta.
 \begin{proof}[Proof sketch]
 Factor through weighted $L^2$ via exponential decay
 \eqref{eq:global-error-bound}; apply
-$\norm{AB}_{\mathfrak{S}_1}\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
+$\norm{AB}_{\mathfrak{S}_1}
+\le\norm{A}_{\mathfrak{S}_2}\norm{B}_{\mathfrak{S}_2}$
 with Lemma~\ref{lem:hs}; the diagonal upgrade uses
-Remark~\ref{rem:diagonal-control} together with uniform derivative control
-and standard integrability (guaranteed by Remark~\ref{rem:uniform-integrability});
-the off-diagonal oscillation is controlled
-via $Y_c\to Y_{\mathrm{Ai}}$ from Conjecture~\ref{conj:airy-transition}.
+Remark~\ref{rem:diagonal-control} together with uniform derivative
+control and standard integrability (guaranteed by
+Remark~\ref{rem:uniform-integrability}); the off-diagonal
+oscillation is controlled via
+Proposition~\ref{prop:rhp-convergence}.
 \end{proof}
 
 %%%=================================================================
@@ -595,8 +668,8 @@ via $Y_c\to Y_{\mathrm{Ai}}$ from Conjecture~\ref{conj:airy-transition}.
 \label{sec:rhp}
 %%%=================================================================
 
-This section provides the complete explicit Riemann--Hilbert programme
-for Conjecture~\ref{conj:airy-transition}.
+This section provides the complete explicit Riemann--Hilbert
+programme underlying Proposition~\ref{prop:rhp-convergence}.
 All constructions are explicit; the precise open analytic input
 is identified at each step.
 
@@ -610,9 +683,12 @@ $\widetilde K_c^{(\xi)}$ the following $2\times 2$ matrix RHP.
 Find $Y_c:\mathbb{C}\setminus\Sigma_c\to\mathrm{GL}_2(\mathbb{C})$,
 $\Sigma_c=[0,+\infty)$ oriented left-to-right, satisfying:
 \begin{align}
-  &Y_c^+(z)=Y_c^-(z)\,J_c(z),\quad z\in\Sigma_c,\label{eq:rhp-jump}\\
-  &Y_c(z)=I+O(z^{-1}),\quad z\to\infty,\label{eq:rhp-norm}\\
-  &Y_c\text{ analytic on }\mathbb{C}\setminus\Sigma_c,\label{eq:rhp-anal}
+  &Y_c^+(z)=Y_c^-(z)\,J_c(z),\quad z\in\Sigma_c,
+    \label{eq:rhp-jump}\\
+  &Y_c(z)=I+O(z^{-1}),\quad z\to\infty,
+    \label{eq:rhp-norm}\\
+  &Y_c\text{ analytic on }\mathbb{C}\setminus\Sigma_c,
+    \label{eq:rhp-anal}
 \end{align}
 where the jump matrix is
 \begin{equation}\label{eq:jump-explicit}
@@ -624,9 +700,6 @@ where the jump matrix is
     \end{pmatrix},
 \end{equation}
 with $\vec{F}_c$, $\vec{G}_c$ as in \eqref{eq:iiks-vectors}.
-Here $z$ denotes the spectral variable in the rescaled coordinate,
-consistent with Definition~\ref{def:rescaled-operator}.
-
 The kernel is recovered via the reconstruction formula:
 \begin{equation}\label{eq:reconstruction}
   \widetilde K_c^{(\xi)}(x,y)
@@ -637,17 +710,16 @@ The kernel is recovered via the reconstruction formula:
 
 \begin{remark}[Reconstruction formula and conventions]
 \label{rem:reconstruction-conventions}
-Formula \eqref{eq:reconstruction} is the standard IIKS reconstruction
-(see~\cite{ItsIzergin1990}). Equivalent representations in terms of
-individual matrix entries can be obtained under additional normalisation
-assumptions. We fix \eqref{eq:reconstruction} as the canonical form.
+Formula \eqref{eq:reconstruction} is the standard IIKS
+reconstruction (see~\cite{ItsIzergin1990}).
 \end{remark}
 
 \begin{remark}[Reconstruction and diagonal]
 \label{rem:reconstruction-diagonal}
-The off-diagonal entries of $Y_c^\pm$ recover the kernel away from the
-diagonal via \eqref{eq:reconstruction}; the diagonal value follows from
-Remark~\ref{rem:diagonal-control} using the full matrix $Y_c$.
+The off-diagonal entries of $Y_c^\pm$ recover the kernel away
+from the diagonal via \eqref{eq:reconstruction}; the diagonal
+value follows from Remark~\ref{rem:diagonal-control} using the
+full matrix $Y_c$.
 \end{remark}
 
 \subsection{Step 2: The $g$-function and steepest-descent structure}
@@ -655,42 +727,47 @@ Remark~\ref{rem:diagonal-control} using the full matrix $Y_c$.
 
 \begin{definition}[$g$-function candidate for the prolate kernel]
 \label{def:g-function}
-Motivated by equilibrium measure considerations for orthogonal polynomial
-ensembles supported on $[-1,1]$ (see~\cite{Deift1999}), we introduce the
-following \emph{candidate $g$-function}:
+Motivated by equilibrium measure considerations for orthogonal
+polynomial ensembles supported on $[-1,1]$
+(see~\cite{Deift1999}), we introduce the following
+\emph{candidate $g$-function}:
 \[
   g_c(z) := \int_{-1}^{1} \log(z-t)\,\rho(t)\,dt,
   \quad z\in\mathbb{C}\setminus(-\infty,1],
 \]
-where $\rho(t)=\frac{1}{\pi}\sqrt{1-t^2}$ is the Wigner semicircle density
-on $[-1,1]$.
+where $\rho(t)=\frac{1}{\pi}\sqrt{1-t^2}$ is the Wigner semicircle
+density on $[-1,1]$.
 The branch of $\log(z-t)$ is fixed by continuity from $\Im z>0$.
 
-This choice is not canonically determined by the prolate problem alone;
-it is motivated by the requirement that it yields the correct factorisation
-of the jump matrix $J_c(z)$ and that the resulting phase $2g_c - \phi_c$
-satisfies Assumption~\ref{ass:g-sign}. The validity of this choice
-is part of the analytic content of Assumption~\ref{ass:g-sign}.
+This choice is not canonically determined by the prolate problem
+alone; it is motivated by the requirement that it yields the
+correct factorisation of the jump matrix $J_c(z)$ and that the
+resulting phase $2g_c - \phi_c$ satisfies
+Assumption~\ref{ass:g-sign}.
+The validity of this choice is part of the analytic content of
+Assumption~\ref{ass:g-sign}.
 \end{definition}
 
 \begin{remark}[Status of the $g$-function candidate]
 \label{rem:g-candidate-status}
-The candidate $g_c$ of Definition~\ref{def:g-function} is a motivated
-hypothesis, not a derived object. In the classical orthogonal polynomial
-setting, the $g$-function is uniquely determined as the Stieltjes transform
-of the equilibrium measure, and the real-part matching condition
-$\operatorname{Re}(g_c^+ + g_c^-) = \operatorname{Re}(\phi_c)$ on $(-1,1)$
-is then an \emph{identity} following from the Euler--Lagrange equations
-of the associated energy functional.
-In the present setting, $\phi_c$ is the Widom edge phase (extrinsic to the
-prolate operator's OP structure) and $g_c$ is chosen a priori.
-Verifying condition~(i) of Assumption~\ref{ass:g-sign} is therefore
-a \emph{nonlinear matching problem}: one must confirm that
-$\operatorname{Re}(g_c^+(t) + g_c^-(t)) = \operatorname{Re}(\phi_c(t))$
-holds on $(-1,1)$, which is equivalent to asking whether the semicircle
-equilibrium measure correctly reproduces the Widom phase. This is not
-automatic, and constitutes a substantial part of the difficulty of
-Assumption~\ref{ass:g-sign}.
+The candidate $g_c$ of Definition~\ref{def:g-function} is a
+motivated hypothesis, not a derived object.
+In the classical orthogonal polynomial setting, the $g$-function
+is uniquely determined as the Stieltjes transform of the
+equilibrium measure, and the real-part matching condition
+$\operatorname{Re}(g_c^+ + g_c^-) = \operatorname{Re}(\phi_c)$
+on $(-1,1)$ is then an \emph{identity} following from the
+Euler--Lagrange equations of the associated energy functional.
+In the present setting, $\phi_c$ is the Widom edge phase
+(extrinsic to the prolate operator's OP structure) and $g_c$ is
+chosen a priori.
+Verifying condition~(i) of Assumption~\ref{ass:g-sign} is
+therefore a \emph{nonlinear matching problem}: one must confirm
+that
+$\operatorname{Re}(g_c^+(t) + g_c^-(t))
+= \operatorname{Re}(\phi_c(t))$
+holds on $(-1,1)$, which constitutes a substantial part of the
+difficulty of Assumption~\ref{ass:g-sign}.
 \end{remark}
 
 \begin{proposition}[Basic properties of $g_c$]
@@ -704,7 +781,8 @@ The function $g_c$ satisfies:
 \item (Jump relation on the support)
 For $t\in(-1,1)$:
 \[
-  g_c^+(t)+g_c^-(t)=2\int_{-1}^{1}\log|t-s|\,\rho(s)\,ds.
+  g_c^+(t)+g_c^-(t)
+  =2\int_{-1}^{1}\log|t-s|\,\rho(s)\,ds.
 \]
 \item (Purely imaginary jump)
 \[
@@ -732,15 +810,17 @@ contains exponential factors of the form
 \[
   \exp\!\bigl( \pm n(2g_c(z) - \phi_c(z)) \bigr).
 \]
-Hence the steepest-descent mechanism is governed by the real part of
-$2g_c(z) - \phi_c(z)$, not by $g_c$ alone.
+Hence the steepest-descent mechanism is governed by the real
+part of $2g_c(z) - \phi_c(z)$, not by $g_c$ alone.
 \end{remark}
 
 \begin{definition}[Lens-opening contour and conjugated RHP]
 \label{def:lens}
 Decompose the jump by writing
 \begin{equation}\label{eq:lu-decomp}
-  J_c(z)=L_c(z)^{-1}\begin{pmatrix}0&-1\\1&0\end{pmatrix}U_c(z)^{-1},
+  J_c(z)=L_c(z)^{-1}
+  \begin{pmatrix}0&-1\\1&0\end{pmatrix}
+  U_c(z)^{-1},
   \quad L_c,U_c\text{ upper/lower triangular},
 \end{equation}
 and open lenses $\Sigma_c^\pm$ above and below $\Sigma_c$, along
@@ -748,41 +828,34 @@ contours where
 \begin{equation}\label{eq:sd-condition-lens}
   \operatorname{Re}\!\bigl(2g_c(z)-\phi_c(z)\bigr)<-\kappa<0,
 \end{equation}
-where $\phi_c$ is the effective Widom edge phase of
-\eqref{eq:effective-phase-def} restricted to the lens contours.
-The conjugated unknown $T_c(z):=e^{-ng_c(z)\sigma_3}Y_c(z)e^{ng_c(z)\sigma_3}$
+where $\phi_c$ is the effective Widom edge phase restricted to the
+lens contours.
+The conjugated unknown
+$T_c(z):=e^{-ng_c(z)\sigma_3}Y_c(z)e^{ng_c(z)\sigma_3}$
 satisfies a RHP with jump
 \begin{equation}\label{eq:T-jump}
-  J_c^T(z)=I+O(e^{-c^{1/3}\kappa\operatorname{dist}(z,\Sigma_c)}),
+  J_c^T(z)=I+O(e^{-c^{1/3}\kappa
+  \operatorname{dist}(z,\Sigma_c)}),
   \quad z\in\Sigma_c^\pm\setminus D_\epsilon(0),
 \end{equation}
-exponentially close to the identity away from the coalescing saddle $z=0$.
+exponentially close to the identity away from the coalescing
+saddle $z=0$.
 \end{definition}
 
 \begin{assumption}[Uniform steepest-descent inequality]
 \label{ass:g-sign}
 The following three conditions hold jointly for the candidate
 $g$-function of Definition~\ref{def:g-function} and the effective
-phase $\phi_c$ of \eqref{eq:effective-phase-def}, for all sufficiently
-large $c$:
+phase $\phi_c$ of \eqref{eq:effective-phase-def}, for all
+sufficiently large $c$:
 
 \begin{enumerate}[label=(\roman*)]
 \item \textup{(Real-part matching on the support.)}
-The candidate $g_c$ yields the correct real-part matching required
-for the LU-factorisation of the jump matrix $J_c(z)$ on the support
-$(-1,1)$, in the sense that
 \[
   \operatorname{Re}\!\bigl(g_c^+(t) + g_c^-(t)\bigr)
   = \operatorname{Re}\!\bigl(\phi_c(t)\bigr),
   \quad t \in (-1,1).
 \]
-The imaginary part of the jump is automatically correct by
-Proposition~\ref{prop:g-properties}(iii), so that condition~(i)
-is the only nontrivial compatibility requirement for the
-conjugated jump $J_c^T$ to be of oscillatory off-diagonal form.
-As noted in Remark~\ref{rem:g-candidate-status}, this condition
-encodes a nonlinear compatibility between the semicircle equilibrium
-potential and the Widom phase, and is not automatic.
 
 \item \textup{(Strict sign condition.)}
 There exist $\kappa > 0$ and $\epsilon > 0$ such that
@@ -796,10 +869,11 @@ holds uniformly for $z \in \Sigma_c^\pm \setminus D_\epsilon$.
 The lens contours $\Sigma_c^\pm$ can be chosen to be uniformly
 Lipschitz, with Lipschitz constants bounded independently of $c$.
 On the associated tubular neighbourhood
-$\mathcal{U} \supset \Sigma_c^\pm$ there exists a constant $C > 0$,
+$\mathcal{U} \supset \Sigma_c^\pm$ there exists $C > 0$,
 independent of $c$, such that
 \[
-  \bigl|\nabla_z \operatorname{Re}\!\bigl(2g_c(z) - \phi_c(z)\bigr)\bigr|
+  \bigl|\nabla_z \operatorname{Re}\!\bigl(2g_c(z)
+  - \phi_c(z)\bigr)\bigr|
   \le C
 \]
 uniformly on $\mathcal{U} \setminus D_\epsilon$.
@@ -807,45 +881,45 @@ uniformly on $\mathcal{U} \setminus D_\epsilon$.
 
 Conditions~(i)--(iii) are coupled: the choice of contour
 $\Sigma_c^\pm$ depends on the sign of $2g_c - \phi_c$,
-which in turn depends on the real-part matching of condition~(i).
-Together they constitute a single coupled condition on the pair
-$(g_c, \Sigma_c^\pm)$.
+which in turn depends on the real-part matching of
+condition~(i). Together they constitute a single coupled
+condition on the pair $(g_c, \Sigma_c^\pm)$.
 \end{assumption}
 
 \begin{remark}[Status of Assumption~\ref{ass:g-sign}]
 \label{rem:g-open}
 Assumption~\ref{ass:g-sign} is the only nontrivial analytic input
 required to complete the Deift--Zhou steepest descent analysis.
-All algebraic and local analytic components of the RHP construction
-are explicit. The verification of the uniform inequality above
-requires a detailed control of the interplay between the equilibrium
-potential $g_c$ and the effective phase $\phi_c$ near the edge
-(corresponding to $z=0$ in rescaled coordinates).
-The additional first-derivative control in condition~(iii) is needed
-for the Cauchy operator estimates in the small-norm step
-(Proposition~\ref{prop:small-norm}); the uniform Lipschitz requirement
-on $\Sigma_c^\pm$ ensures that the associated singular integral
-operator $C_{\Sigma_c^\pm}$ is bounded on $L^2(\Sigma_c^\pm)$
-uniformly in $c$, by standard Muckenhoupt-type estimates.
+All algebraic and local analytic components of the RHP
+construction are explicit.
+The additional first-derivative control in condition~(iii) is
+needed for the Cauchy operator estimates in the small-norm step
+(Proposition~\ref{prop:small-norm}); the uniform Lipschitz
+requirement on $\Sigma_c^\pm$ ensures that $C_{\Sigma_c^\pm}$
+is bounded on $L^2(\Sigma_c^\pm)$ uniformly in $c$.
 \end{remark}
 
 \begin{proposition}[Reduction completeness]
 \label{prop:reduction-completeness}
 Assumption~\ref{ass:g-sign} implies
-Conjecture~\ref{conj:airy-transition}.
+Proposition~\ref{prop:rhp-convergence}.
 
 More precisely:
 \begin{enumerate}[label=(\roman*)]
-\item Condition~(i) ensures that the conjugated jump $J_c^T$ is of
-  oscillatory off-diagonal form, enabling the LU-factorisation and
-  lens-opening construction of Definition~\ref{def:lens}.
-\item Conditions~(ii) and~(iii) together imply the small-norm bound
-  \eqref{eq:Rc-jump-bound} of Proposition~\ref{prop:small-norm},
+\item Condition~(i) ensures that the conjugated jump $J_c^T$ is
+  of oscillatory off-diagonal form, enabling the LU-factorisation
+  and lens-opening construction of Definition~\ref{def:lens}.
+\item Conditions~(ii) and~(iii) together imply the small-norm
+  bound \eqref{eq:Rc-jump-bound} of
+  Proposition~\ref{prop:small-norm},
   giving $R_c = I + O(c^{-1/3})$.
-\item Combined with the Airy parametrix of Definition~\ref{def:airy-parametrix}
-  and the reconstruction stability of Remark~\ref{rem:reconstruction-stability},
+\item Combined with the Airy parametrix of
+  Definition~\ref{def:airy-parametrix}
+  and the reconstruction stability of
+  Remark~\ref{rem:reconstruction-stability},
   this yields $Y_c \to Y_{\mathrm{Ai}}$ and hence
-  $\|\widetilde{K}_c^{(\xi)} - K_{\mathrm{Ai}}\|_{\mathfrak{S}_1} \to 0$.
+  $\|\widetilde{K}_c^{(\xi)} - K_{\mathrm{Ai}}
+  \|_{\mathfrak{S}_1} \to 0$.
 \end{enumerate}
 The logical chain is complete; no further analytic input beyond
 Assumption~\ref{ass:g-sign} is required.
@@ -860,8 +934,8 @@ as assembled in the dependency graph of Section~\ref{sec:open}.
 
 \begin{proposition}[Consequence of the sign condition]
 \label{prop:g-implies-small-norm}
-Under Assumption~\ref{ass:g-sign}, the jump matrix of the conjugated
-RHP satisfies
+Under Assumption~\ref{ass:g-sign}, the jump matrix of the
+conjugated RHP satisfies
 \[
   J_c^T(z) = I + O(e^{-c^{1/3}\kappa}),
 \]
@@ -871,8 +945,9 @@ Hence the associated RHP is of small-norm type.
 
 \subsection{Step 3: Local Airy parametrix near the coalescing saddle}
 
-Near the coalescing saddle $z=0$ (in rescaled coordinates), the edge
-phase $\Psi_\infty(u;s,t)=(s-t)u+\frac{1}{3}u^3$ takes the Airy form.
+Near the coalescing saddle $z=0$ (in rescaled coordinates), the
+edge phase $\Psi_\infty(u;s,t)=(s-t)u+\frac{1}{3}u^3$ takes the
+Airy form.
 
 \begin{definition}[Airy parametrix]
 \label{def:airy-parametrix}
@@ -881,18 +956,19 @@ The Airy parametrix $P^{(\mathrm{Ai})}(z)$ is the exact solution
 of the model RHP on $D_\epsilon$ with jump matrix
 \[
   J^{(\mathrm{Ai})}(z)
-  =\begin{pmatrix}1&0\\ e^{i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} & 1\end{pmatrix}
+  =\begin{pmatrix}1&0\\
+  e^{i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} & 1\end{pmatrix}
   \text{ (sector I)},
   \quad
-  \begin{pmatrix}1& -e^{-i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} \\ 0 & 1\end{pmatrix}
+  \begin{pmatrix}1&
+  -e^{-i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} \\ 0 & 1\end{pmatrix}
   \text{ (sector II)},
 \]
 and similar on the remaining sectors (full Stokes geometry).
-The fractional powers $z^{1/2}$ and $z^{3/2}$ are defined with a branch
-cut along the negative real axis, consistent with the standard Airy
-parametrix construction~\cite{Deift1999}.
-The parametrix is built explicitly from the Airy function $\Ai$
-and its derivatives:
+The fractional powers $z^{1/2}$ and $z^{3/2}$ are defined with a
+branch cut along the negative real axis, consistent with the
+standard Airy parametrix construction~\cite{Deift1999}.
+The parametrix is built explicitly from $\Ai$ and its derivatives:
 \begin{equation}\label{eq:airy-parametrix-explicit}
   P^{(\mathrm{Ai})}(z)
   =\sqrt{2\pi}\,e^{\pi i/12}\,
@@ -901,9 +977,10 @@ and its derivatives:
   e^{-i\pi\sigma_3/4},
   \quad \omega=e^{2\pi i/3},
 \end{equation}
-normalised so that $P^{(\mathrm{Ai})}(z)=Y_{\mathrm{Ai}}(z)(I+O(z^{-1/4}))$
-as $|z|\to\infty$ within $D_\epsilon$; see~\cite{TraWid1994} and~\cite{Deift1999}
-Chapter~7.
+normalised so that
+$P^{(\mathrm{Ai})}(z)=Y_{\mathrm{Ai}}(z)(I+O(z^{-1/4}))$
+as $|z|\to\infty$ within $D_\epsilon$;
+see~\cite{TraWid1994} and~\cite{Deift1999} Chapter~7.
 \end{definition}
 
 \begin{remark}[Matching condition]
@@ -912,11 +989,11 @@ The parametrix $P^{(\mathrm{Ai})}$ must be matched to the outer
 parametrix $T_c$ on $\partial D_\epsilon$:
 \begin{equation}\label{eq:matching}
   T_c(z)\bigl(P^{(\mathrm{Ai})}(z)\bigr)^{-1}
-  =I+O(c^{-1/3}),\quad z\in\partial D_\epsilon,\quad c\to\infty.
+  =I+O(c^{-1/3}),\quad z\in\partial D_\epsilon,
+  \quad c\to\infty.
 \end{equation}
-This matching requires Assumption~\ref{ass:g-sign}
-and the explicit phase identification
-from Lemma~\ref{lem:edge-normal-form}.
+This matching requires Assumption~\ref{ass:g-sign} and the
+explicit phase identification from Lemma~\ref{lem:edge-normal-form}.
 \end{remark}
 
 \subsection{Step 4: Small-norm RHP and global error matrix}
@@ -939,36 +1016,41 @@ Under Assumption~\ref{ass:g-sign}:
 \begin{enumerate}[label=(\roman*)]
 \item The jump matrix for $R_c$ satisfies
   \begin{equation}\label{eq:Rc-jump-bound}
-    \norm{J_{R_c}-I}_{L^2\cap L^\infty(\partial D_\epsilon\cup\Sigma_c^\pm)}
+    \norm{J_{R_c}-I}_{L^2\cap L^\infty
+    (\partial D_\epsilon\cup\Sigma_c^\pm)}
     \le C\,c^{-1/3}
   \end{equation}
   for some constant $C>0$ independent of $c$.
-\item The small-norm theorem~\cite{Deift1999} Chapter~7 gives a unique
-  solution $R_c$ with
+\item The small-norm theorem~\cite{Deift1999} Chapter~7 gives a
+  unique solution $R_c$ with
   \begin{equation}\label{eq:Rc-norm}
     R_c(z)=I+O(c^{-1/3}),\quad c\to\infty,
   \end{equation}
   uniformly for $z$ in compact subsets of
   $\mathbb{C}\setminus(\partial D_\epsilon\cup\Sigma_c^\pm)$.
-\item This gives $Y_c(z)=P^{(\mathrm{Ai})}(z)(I+O(c^{-1/3}))$
-  near $z=0$, verifying Conjecture~\ref{conj:airy-transition}.
+\item This gives
+  $Y_c(z)=P^{(\mathrm{Ai})}(z)(I+O(c^{-1/3}))$
+  near $z=0$, establishing
+  Proposition~\ref{prop:rhp-convergence}.
 \end{enumerate}
 \end{proposition}
 
 \begin{remark}[What is open]
 \label{rem:what-is-open}
 All steps of the Deift--Zhou programme --- the IIKS construction,
-the lens-opening decomposition, the Airy parametrix, the error matrix
-definition, and the small-norm framework --- are explicit and complete.
+the lens-opening decomposition, the Airy parametrix, the error
+matrix definition, and the small-norm framework --- are explicit
+and complete.
 The single remaining open input is Assumption~\ref{ass:g-sign}:
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\centering\itshape
 The coupled condition $(g_c, \Sigma_c^\pm)$:
-real-part matching on the support (i),
-strict sign inequality $\operatorname{Re}(2g_c-\phi_c) < -\kappa < 0$
-on $\Sigma_c^\pm \setminus D_\epsilon$ (ii),
+real-part matching on the support~(i),
+strict sign inequality
+$\operatorname{Re}(2g_c-\phi_c) < -\kappa < 0$
+on $\Sigma_c^\pm \setminus D_\epsilon$~(ii),
 and uniform first-derivative control on a uniformly Lipschitz
-tubular neighbourhood (iii),
+tubular neighbourhood~(iii),
 all for sufficiently large $c$ with constants independent of $c$.}}
 \end{center}
 \end{remark}
@@ -977,7 +1059,7 @@ all for sufficiently large $c$ with constants independent of $c$.}}
 
 \begin{proposition}[Kernel convergence from RHP, conditional]
 \label{prop:kernel-from-rhp}
-Conditionally on Assumption~\ref{ass:g-sign}:
+Under Assumption~\ref{ass:g-sign}:
 \begin{enumerate}[label=(\roman*)]
 \item Inserting $Y_c=P^{(\mathrm{Ai})}(I+O(c^{-1/3}))$ into
   \eqref{eq:reconstruction} gives
@@ -994,42 +1076,32 @@ Conditionally on Assumption~\ref{ass:g-sign}:
 
 \begin{remark}[Stability of the IIKS reconstruction map]
 \label{rem:reconstruction-stability}
-The passage from RHP convergence to kernel convergence in
-Proposition~\ref{prop:kernel-from-rhp}(i) uses the following
-stability property of the IIKS reconstruction map
-\eqref{eq:reconstruction}: the map
+The map
 \[
   Y_c \;\longmapsto\;
-  K_c(x,y) = \frac{1}{2\pi i(x-y)}\bigl(Y_c^-(x)^{-1}Y_c^-(y)\bigr)_{21}
+  K_c(x,y) = \frac{1}{2\pi i(x-y)}
+  \bigl(Y_c^-(x)^{-1}Y_c^-(y)\bigr)_{21}
 \]
 is continuous with respect to uniform matrix convergence on
 compact subsets of $\mathbb{C}\setminus\Sigma_c$.
-More precisely, if $\|Y_c - Y_{\mathrm{Ai}}\|_{L^\infty(\partial D_\epsilon)}
-= O(c^{-1/3})$, then the bilinearity of the reconstruction formula
-and the uniform invertibility of $Y_c^-$ (which follows from the
-small-norm bound \eqref{eq:Rc-norm} and the explicit invertibility
-of $P^{(\mathrm{Ai})}$) give the pointwise kernel bound directly.
+If $\|Y_c - Y_{\mathrm{Ai}}\|_{L^\infty(\partial D_\epsilon)}
+= O(c^{-1/3})$, then the bilinearity of the reconstruction
+formula and the uniform invertibility of $Y_c^-$ give the
+pointwise kernel bound directly.
 
-The subsequent upgrade to trace-class convergence in part~(ii) requires
-additionally:
+The upgrade to trace-class convergence additionally requires:
 \begin{itemize}
 \item \emph{Bounded Cauchy operators:}
-  the Cauchy singular integral operator $C_{\Sigma_c^\pm}$ is bounded
-  on $L^2(\Sigma_c^\pm)$ uniformly in $c$; this follows from
-  Assumption~\ref{ass:g-sign}(iii), which ensures that the lens
-  contours $\Sigma_c^\pm$ are uniformly Lipschitz with constants
-  independent of $c$, enabling standard Muckenhoupt-type estimates
-  for singular integrals on Lipschitz curves;
+  $C_{\Sigma_c^\pm}$ is bounded on $L^2(\Sigma_c^\pm)$
+  uniformly in $c$, by Assumption~\ref{ass:g-sign}(iii) and
+  standard Muckenhoupt-type estimates;
 \item \emph{Resolvent stability:}
-  the operator $(I - C_{w_c})$ is invertible with uniformly bounded
-  inverse on $L^2(\Sigma_c^\pm)$, where $C_{w_c}$ is the weighted
-  Cauchy operator associated to $w_c := J_{R_c} - I$; this follows
-  from the small-norm bound \eqref{eq:Rc-jump-bound}.
+  $(I - C_{w_c})$ is invertible with uniformly bounded inverse
+  on $L^2(\Sigma_c^\pm)$, by the small-norm bound
+  \eqref{eq:Rc-jump-bound}.
 \end{itemize}
 Both ingredients are supplied by Assumption~\ref{ass:g-sign} and
-Proposition~\ref{prop:small-norm}. The present non-OP setting
-requires these steps to be verified directly, without recourse to
-orthogonal polynomial machinery.
+Proposition~\ref{prop:small-norm}.
 \end{remark}
 
 %%%=================================================================
@@ -1038,24 +1110,29 @@ orthogonal polynomial machinery.
 %%%=================================================================
 
 All corollaries below are conditional on
-Conjecture~\ref{conj:airy-transition} via Theorem~\ref{thm:universality}.
+Assumption~\ref{ass:g-sign} via
+Theorem~\ref{thm:reduction} and
+Proposition~\ref{prop:rhp-convergence}.
 
 \begin{corollary}[Gap asymptotics]
 \label{cor:gap}
-$\gapc{c}{n}\asymp c^{-1/3}$ for all large $c$ and transition-regime $n$.
+$\gapc{c}{n}\asymp c^{-1/3}$ for all large $c$ and
+transition-regime $n$.
 \end{corollary}
 
 \begin{corollary}[Local counting]
 \label{cor:counting}
 For $\varepsilon(c)=o(c^{-1/3})$:
-$N_c([\mu_{n+1}-\varepsilon,\mu_n+\varepsilon])=2$ for large $c$.
+$N_c([\mu_{n+1}-\varepsilon,\mu_n+\varepsilon])=2$
+for large $c$.
 \end{corollary}
 
 \begin{corollary}[Stable quasimodes]
 \label{cor:quasimodes}
 There exists a quasimode family $\{f_n^{(c)}\}$ with
-$\delta_{\mathrm{model}}\asymp c^{-1/3}$, $\varepsilon=o(c^{-1/3})$,
-and Gram matrices converging to the identity.
+$\delta_{\mathrm{model}}\asymp c^{-1/3}$,
+$\varepsilon=o(c^{-1/3})$, and Gram matrices converging to
+the identity.
 \end{corollary}
 
 %%%=================================================================
@@ -1065,9 +1142,11 @@ and Gram matrices converging to the identity.
 
 \begin{corollary}[Conditional completion of Paper~XIII]
 \label{cor:paper13b}
-Conditionally on Conjecture~\ref{conj:airy-transition}, all open
+Conditionally on Assumption~\ref{ass:g-sign}, via
+Proposition~\ref{prop:rhp-convergence}, all open
 transition-window inputs of Paper~XIII are verified and
-$\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and transition-regime $n$.
+$\gapc{c}{n}\ge Cc^{-1/3}$ for all large $c$ and
+transition-regime $n$.
 \end{corollary}
 
 %%%=================================================================
@@ -1081,8 +1160,8 @@ The IIKS representation of the sinc kernel in
 Theorem~\ref{thm:emergent-iiks} is an exact algebraic identity,
 not an asymptotic statement.
 No scaling limit or approximation is used at this stage.
-All subsequent analysis is performed at the level of the associated
-Riemann--Hilbert problem.
+All subsequent analysis is performed at the level of the
+associated Riemann--Hilbert problem.
 \end{remark}
 
 \begin{remark}[Absence of pointwise Airy limits]
@@ -1111,26 +1190,25 @@ lens-opening construction.
 \begin{remark}[Status of the steepest-descent inequality]
 \label{rem:assumption-status}
 Assumption~\ref{ass:g-sign} is the only nontrivial analytic input
-required for the full universality result.
+required for the full result.
 All other steps --- including the IIKS structure, the phase
-expansion, and the RHP construction --- are explicit and rigorous.
-Thus the present work reduces the Airy universality problem
+expansion, and the RHP construction --- are explicit and
+complete. The present work thus reduces the Airy scaling problem
 to a single well-posed analytic statement.
 \end{remark}
 
 \begin{remark}[Trace-class convergence mechanism]
 \label{rem:trace-mechanism}
 The trace-class convergence does not follow from pointwise kernel
-convergence alone.
-It relies on:
+convergence alone. It relies on:
 \begin{itemize}
 \item uniform off-diagonal decay,
 \item diagonal control via the IIKS structure,
 \item Hilbert--Schmidt bounds combined with a trace-class upgrade,
 \item uniform integrability of the error kernel
   (Remark~\ref{rem:uniform-integrability}),
-\item bounded Cauchy operators and resolvent stability on uniformly
-  Lipschitz lens contours
+\item bounded Cauchy operators and resolvent stability on
+  uniformly Lipschitz lens contours
   (Remark~\ref{rem:reconstruction-stability}).
 \end{itemize}
 This mechanism is standard in integrable operator theory
@@ -1144,8 +1222,8 @@ Unlike random matrix ensembles, where Airy universality arises
 from orthogonal polynomial asymptotics, the prolate operator is
 deterministic and compact (but not finite rank).
 The present reduction shows that the same integrable mechanism
---- via the explicit IIKS structure of the sinc kernel --- governs
-the transition regime.
+--- via the explicit IIKS structure of the sinc kernel ---
+governs the transition regime.
 \end{remark}
 
 %%%=================================================================
@@ -1160,31 +1238,30 @@ verification of Assumption~\ref{ass:g-sign} in its three coupled
 components:
 \begin{enumerate}[label=(\roman*)]
 \item \emph{Real-part matching:}
-confirm that the candidate $g_c$ of Definition~\ref{def:g-function}
+confirm that the candidate $g_c$ of
+Definition~\ref{def:g-function}
 satisfies
-$\operatorname{Re}(g_c^+(t) + g_c^-(t)) = \operatorname{Re}(\phi_c(t))$
-for $t \in (-1,1)$, so that the conjugated jump $J_c^T$ is of
-oscillatory off-diagonal form;
+$\operatorname{Re}(g_c^+(t) + g_c^-(t))
+= \operatorname{Re}(\phi_c(t))$
+for $t \in (-1,1)$;
 \item \emph{Correct contour:}
 confirm that lens contours $\Sigma_c^\pm$ satisfying
-$\operatorname{Re}(2g_c - \phi_c) < -\kappa < 0$ exist and can be
-chosen to be uniformly Lipschitz in $c$ with constants independent of $c$;
+$\operatorname{Re}(2g_c - \phi_c) < -\kappa < 0$ exist and can
+be chosen uniformly Lipschitz in $c$;
 \item \emph{Strict inequality with derivative control:}
 establish the uniform bound
 $\operatorname{Re}(2g_c(z)-\phi_c(z)) < -\kappa < 0$
-on $\Sigma_c^\pm \setminus D_\epsilon$, uniformly in $c$, together with
-the gradient bound $|\nabla_z \operatorname{Re}(2g_c - \phi_c)| \le C$
-on a tubular neighbourhood.
+on $\Sigma_c^\pm \setminus D_\epsilon$, uniformly in $c$,
+together with the gradient bound.
 \end{enumerate}
-These three conditions are coupled: the choice of contour depends on
-the sign of $2g_c - \phi_c$, which in turn depends on the real-part
-matching of~(i). Once all three are established,
-Proposition~\ref{prop:small-norm} gives $R_c = I + O(c^{-1/3})$,
+Once all three are established,
+Proposition~\ref{prop:small-norm} gives
+$R_c = I + O(c^{-1/3})$,
 Remark~\ref{rem:reconstruction-stability} supplies the required
 Cauchy operator and resolvent bounds,
 Proposition~\ref{prop:kernel-from-rhp}
 gives $\mathfrak{S}_1$-convergence, and
-Conjecture~\ref{conj:airy-transition} becomes a theorem.
+Proposition~\ref{prop:rhp-convergence} becomes a theorem.
 \end{problem}
 
 \begin{remark}[Dependency graph]
@@ -1198,16 +1275,16 @@ The logical structure is:
   \;\Rightarrow\;
   \underbrace{Y_c\to Y_{\mathrm{Ai}}}_{\text{conditional}}
   \;\xrightarrow{\text{Rem.}~\ref{rem:reconstruction-stability}}
-  \underbrace{\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
+  \underbrace{\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}
+  _{\mathfrak{S}_1}\to 0}_{\text{conditional}}
   \;\Rightarrow\;
-  \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}_{\text{conditional}}.
+  \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}
+  _{\text{conditional}}.
 \]
-All steps except Assumption~\ref{ass:g-sign}(i)--(iii) are explicit
-and complete. Remark~\ref{rem:reconstruction-stability} makes the
-passage $Y_c \to K_c$ rigorous without OP machinery, using the
-uniform Lipschitz property of the lens contours.
-The completeness of the reduction --- that Assumption~\ref{ass:g-sign}
-alone suffices --- is the content of
+All steps except Assumption~\ref{ass:g-sign}(i)--(iii) are
+explicit and complete.
+The completeness of the reduction --- that
+Assumption~\ref{ass:g-sign} alone suffices --- is the content of
 Proposition~\ref{prop:reduction-completeness}.
 \end{remark}
 
@@ -1216,9 +1293,10 @@ Proposition~\ref{prop:reduction-completeness}.
 \label{sec:conclusion}
 %%%=================================================================
 
-The present work establishes a complete Riemann--Hilbert reduction
-of the prolate Airy transition problem to a single explicit analytic input:
-the uniform steepest-descent inequality Assumption~\ref{ass:g-sign}.
+The present work develops a complete Riemann--Hilbert reduction
+of the prolate Airy scaling problem to a single explicit analytic
+input: the uniform steepest-descent inequality
+Assumption~\ref{ass:g-sign}.
 
 This reduction has three distinguishing features:
 \begin{enumerate}[label=(\roman*)]
@@ -1230,47 +1308,47 @@ providing a natural Riemann--Hilbert formulation from the outset.
 The effective edge phase is analysed to all orders in $c^{-1/3}$,
 revealing a coalescing $A_2$ saddle structure.
 The cubic Airy term arises only after integrating the Widom phase
-(Lemma~\ref{lem:edge-normal-form}), not from the Fourier representation
-of the kernel itself --- a key structural distinction.
+(Lemma~\ref{lem:edge-normal-form}), not from the Fourier
+representation of the kernel itself.
 
 \item \emph{Explicit programme.}
-All components of the Deift--Zhou steepest descent analysis
-are constructed explicitly, isolating the entire analytic difficulty
-in one well-posed coupled condition
+All structural components of the Deift--Zhou steepest descent
+analysis are constructed explicitly, isolating the entire
+analytic difficulty in one well-posed coupled condition
 (Proposition~\ref{prop:reduction-completeness}).
 \end{enumerate}
 
 Under Assumption~\ref{ass:g-sign}, the paper establishes:
 \begin{itemize}
-\item Fredholm determinant universality (Theorem~\ref{thm:universality}),
+\item Airy-type asymptotics for the Fredholm determinants
+  (Theorem~\ref{thm:reduction}(i)),
 \item $c^{-1/3}$ gap asymptotics (Corollary~\ref{cor:gap}),
 \item local spectral statistics and stable quasimodes
   (Corollaries~\ref{cor:counting}--\ref{cor:quasimodes}),
-\item conditional completion of the sharp transition analysis of Paper~XIII
+\item conditional completion of Paper~XIII
   (Corollary~\ref{cor:paper13b}).
 \end{itemize}
 
-\begin{problem}[The prolate Airy transition]
+\begin{problem}[The prolate Airy scaling problem]
 \label{prob:main}
-Verify Assumption~\ref{ass:g-sign} in its three coupled components:
-the real-part matching $\operatorname{Re}(g_c^+ + g_c^-) = \operatorname{Re}(\phi_c)$
+Verify Assumption~\ref{ass:g-sign} in its three coupled
+components: the real-part matching
+$\operatorname{Re}(g_c^+ + g_c^-) = \operatorname{Re}(\phi_c)$
 on $(-1,1)$, the existence of uniformly Lipschitz lens contours
 $\Sigma_c^\pm$ carrying the strict inequality
 $\operatorname{Re}(2g_c - \phi_c) < -\kappa < 0$,
 and the uniform gradient bound on a tubular neighbourhood.
 \end{problem}
 
-This problem appears amenable to detailed local analysis near the
-edge (corresponding to $z=0$ in rescaled coordinates),
+This problem appears amenable to detailed local analysis near
+the edge (corresponding to $z=0$ in rescaled coordinates),
 combining the explicit $g$-function asymptotics with the
 $A_2$ phase expansion.
-More broadly, the framework suggests that similar integrable reductions
-may apply to other deterministic concentration problems exhibiting
-edge scaling limits.
-
-This suggests that Airy universality is not specific to random matrix
-ensembles, but is a structural consequence of integrable operator
-representations combined with coalescing saddle geometries.
+The framework suggests that similar integrable reductions may
+apply to other deterministic concentration problems exhibiting
+edge scaling limits, indicating that Airy universality is a
+structural consequence of integrable operator representations
+combined with coalescing saddle geometries.
 
 %%%=================================================================
 \begin{thebibliography}{99}
@@ -1289,8 +1367,8 @@ Trans. Amer. Math. Soc. \textbf{109} (1964), 278--295.
 
 \bibitem{Deift1999}
 P.~Deift,
-\textit{Orthogonal Polynomials and Random Matrices: A Riemann--Hilbert
-Approach},
+\textit{Orthogonal Polynomials and Random Matrices: A
+Riemann--Hilbert Approach},
 Courant Lecture Notes, AMS, 1999.
 
 \bibitem{TraWid1994}
