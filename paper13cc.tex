@@ -56,18 +56,23 @@ phase expansion, (iii) explicit RHP programme conditional on two
 separated assumptions.
 
 The structural core is isolated as a variational problem: Airy
-universality holds if and only if there exists a $g$-function
-compatible with the Widom edge phase via a scalar
-Riemann--Hilbert matching condition with nonlinear coupling.
-Given such a $g$-function, all steepest-descent geometry (sign
-condition, Lipschitz contours, no additional critical points)
-reduces to a second, purely analytic assumption.
+universality reduces to, and is implied by, the existence of a
+$g$-function compatible with the Widom edge phase via a nonlinear
+scalar Riemann--Hilbert matching condition. The nonlinearity arises
+because the Widom phase depends implicitly on $g_c$ through the
+spectral density near the edge, making the matching condition a
+genuine nonlinear constraint rather than a standard Hilbert-transform
+inversion. Given such a $g$-function, all steepest-descent geometry
+(sign condition, Lipschitz contours, no additional critical points)
+reduces to a second, purely analytic assumption --- which is standard
+in scope but nontrivial in practice without explicit control of $g_c$.
 
 Fredholm determinant universality, $c^{-1/3}$ gap asymptotics, and
 local spectral statistics follow conditionally on both assumptions.
 The framework identifies Airy universality for prolate operators as
-equivalent to a single variational compatibility problem, whose
-solvability is currently open.
+equivalent --- at the level of the Riemann--Hilbert mechanism --- to
+a single variational compatibility problem, whose solvability is
+currently open.
 \end{abstract}
 
 \maketitle
@@ -90,14 +95,15 @@ prolate spheroidal wave functions
 a complete operator-level derivation of Airy universality
 in the transition window has remained open.
 
+\subsection*{What this paper does}
+
 The goal of the present paper is to give a complete and explicit
 reduction of this problem to two logically separated analytic inputs.
 The first is structural: the existence of a $g$-function compatible
-with the Widom edge phase, characterised by a scalar
-Riemann--Hilbert equation with nonlinear coupling.
-The second is geometric: given such a $g$-function, the
-steepest-descent contours carry the required sign and regularity
-conditions.
+with the Widom edge phase, characterised by a nonlinear scalar
+Riemann--Hilbert equation. The second is geometric: given such a
+$g$-function, the steepest-descent contours carry the required
+sign and regularity conditions.
 
 The analysis is organised into three layers with strictly separated
 logical status:
@@ -111,26 +117,58 @@ derived to all orders in $c^{-1/3}$.
 A key structural point is that the cubic term $\frac{1}{3}u^3$ does not
 arise from the Fourier representation of the kernel, but only after
 integrating the Widom edge phase (Lemma~\ref{lem:edge-normal-form}).
-This is the mechanism that generates the Airy structure.
+This integration step is the precise mechanism that generates the
+Airy structure; it is not visible at the Fourier level.
 
 \item \emph{Scaling limit layer.}
 The associated Riemann--Hilbert problem converges to the Airy
 parametrix. This step is reduced to two explicit, separated conditions.
 \end{enumerate}
 
-The main structural result is the following equivalence:
+\subsection*{The Airy transition is a global RHP phenomenon}
+
+A central conceptual point of this paper is the following:
+the Airy kernel does \emph{not} arise from pointwise convergence
+of the oscillatory IIKS vectors $e^{\pm icx}$
+(Remark~\ref{rem:not-pointwise}).
+Instead, it emerges from the global deformation of the associated
+Riemann--Hilbert problem under contour deformation and
+coalescing-saddle analysis.
+This distinguishes the prolate setting sharply from heuristic
+scaling arguments, and is the reason a full RHP framework is needed.
+
+\subsection*{Prolate operators are not orthogonal polynomial ensembles}
+
+The present setting differs structurally from random matrix theory
+in a way that goes beyond mere generality.
+In the classical OP setting~\cite{Deift1999}, the $g$-function is
+uniquely determined as the Stieltjes transform of the equilibrium
+measure, and the real-part matching condition holds automatically
+as an identity.
+Here, the Widom phase $\phi_c$ is extrinsic to any orthogonal
+polynomial structure of the prolate operator, and the compatibility
+condition is a genuine open constraint.
+Moreover, the Widom phase depends implicitly on $g_c$ through the
+spectral density near the band edge, rendering the matching condition
+genuinely nonlinear --- schematically, $\phi_c(t) = \Phi(t, g_c(t), c)$.
+This nonlinear coupling is the structural difficulty that separates
+the PSWF transition problem from its random matrix analogues.
+
+\subsection*{Main result}
+
+The main structural result is the following:
 
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
-Airy universality for the prolate concentration operator holds
-if and only if there exists a function $g_c$ satisfying the
-variational matching condition
+Airy universality for the prolate concentration operator reduces to,
+and is implied by, the existence of a function $g_c$ satisfying the
+matching condition
 $2\operatorname{Re}(g_c^+(t)) = \operatorname{Re}(\phi_c(t))$
-on $(-1,1)$ with $g_c(z) = \log z + O(z^{-1})$ at infinity,
-whose solvability is currently open
+on $(-1,1)$ with $g_c(z) = \log z + O(z^{-1})$ at infinity
 (Assumption~A, Section~\ref{sec:g-function}).
 Given $g_c$, all remaining analytic difficulty reduces to
-steepest-descent geometry (Assumption~B, Section~\ref{sec:g-function}).}}
+steepest-descent geometry (Assumption~B, Section~\ref{sec:g-function}).
+The solvability of Assumption~A is currently open.}}
 \end{center}
 
 \begin{theorem}[Main Theorem]
@@ -142,19 +180,19 @@ Assumptions~A and~B are satisfied.
 
 More precisely:
 \begin{enumerate}[label=(\roman*)]
-\item \textup{(Sufficiency.)} Assumptions~A and~B imply
+\item \textup{(Sufficiency.)} Assumptions~A and~B together imply
   Conjecture~\ref{conj:airy-transition} and hence
   Theorem~\ref{thm:universality} and
   Corollaries~\ref{cor:gap}--\ref{cor:paper13b}.
   The logical chain is complete and explicit
   (Proposition~\ref{prop:reduction-completeness}).
-\item \textup{(Converse, heuristic.)} If Airy universality holds
-  in the sense of \eqref{eq:fredholm-universality}, then the
-  associated RHP solution $Y_c$ is expected to converge to the
-  Airy parametrix, which necessitates a function playing the role
-  of $g_c$ and satisfying \eqref{eq:g-matching} in the sense of
-  Assumption~A, together with the steepest-descent geometry of
-  Assumption~B. A rigorous converse is not established here.
+\item \textup{(Necessity, at the RHP level.)} If Airy universality
+  holds in the sense of \eqref{eq:fredholm-universality}, then the
+  RHP solution $Y_c$ is expected to converge to the Airy parametrix,
+  which at the level of the Deift--Zhou mechanism necessitates a
+  function playing the role of $g_c$ satisfying \eqref{eq:g-matching}.
+  A rigorous converse is not established here; part~(ii) is a
+  mechanistic statement about the RHP structure, not a proved theorem.
 \end{enumerate}
 In particular, Assumption~A is the only non-standard ingredient
 compared to classical steepest-descent analysis for orthogonal
@@ -164,21 +202,6 @@ and the analogue of \eqref{eq:core-problem} holds automatically.
 The entire additional difficulty of the prolate setting is encoded
 in the solvability of \eqref{eq:core-problem}.
 \end{theorem}
-
-This identifies the Airy transition as a purely Riemann--Hilbert
-phenomenon: the Airy kernel does not arise from pointwise limits
-of oscillatory kernels, but from the global deformation of the
-associated integrable structure (Remark~\ref{rem:not-pointwise}).
-
-The present setting differs from random matrix theory in that the
-underlying operator is deterministic and arises from time--band
-limiting rather than orthogonal polynomial ensembles
-(see~\cite{TraWid1994,Deift1999}).
-In the classical OP setting, the $g$-function is uniquely determined
-as the Stieltjes transform of the equilibrium measure; here it must
-be found as the solution of a compatibility equation between two
-a priori unrelated objects: the equilibrium potential and the Widom
-edge phase.
 
 All components of the reduction --- the IIKS representation,
 the phase expansion, the Riemann--Hilbert formulation, and the
@@ -205,8 +228,11 @@ The Airy structure does \emph{not} emerge from pointwise convergence of
 the exponential IIKS vectors $e^{\pm icx}$; there is no vector-level
 convergence.
 It arises via contour deformation, integrated phase, and coalescing-saddle
-analysis --- that is, through the convergence of the full RHP solution.
-This is the conceptual content of Conjecture~\ref{conj:airy-transition}.
+analysis --- that is, through the convergence of the full RHP solution
+under the Deift--Zhou steepest-descent mechanism.
+This is the conceptual content of Conjecture~\ref{conj:airy-transition},
+and it is why no purely local or pointwise argument can establish
+Airy universality in this setting.
 \end{remark}
 
 \begin{center}
@@ -238,53 +264,48 @@ satisfying
 \end{equation}
 where $\phi_c$ is the Widom edge phase \eqref{eq:effective-phase-def}.
 
-This can be viewed as a scalar Riemann--Hilbert problem with
-nonlinear coupling through the real-part constraint: given the
-boundary datum $\operatorname{Re}(\phi_c(\cdot))$ on $(-1,1)$
---- which depends on $g_c$ implicitly through the Widom phase ---
-find an analytic function with the prescribed real boundary values
-\eqref{eq:core-problem} and logarithmic growth at infinity.
-The coupling between $g_c$ and $\phi_c$ renders this a genuinely
-nonlinear problem, distinct from the classical linear scalar
-RHP arising in the OP setting.
+This is a nonlinear scalar Riemann--Hilbert problem.
+The nonlinearity arises because $\phi_c$ is not an externally given
+datum but depends implicitly on $g_c$ through the spectral density
+$\rho$ near the band edge --- schematically,
+$\phi_c(t) = \Phi(t, g_c(t), c)$
+(see \eqref{eq:effective-phase-def} and~\cite{Widom1964} \S3).
+This coupling distinguishes Problem~\ref{prob:core} from the classical
+linear scalar RHP arising in the orthogonal polynomial setting, where
+the analogue of $\phi_c$ is the equilibrium potential of a known
+measure and the matching condition holds automatically.
 
-Unlike the classical OP setting, where $\phi_c$ is the equilibrium
-potential of a known measure and \eqref{eq:core-problem} holds
-automatically, the Widom phase is extrinsic and \eqref{eq:core-problem}
-is a genuine constraint.
 The semicircle candidate fails to satisfy \eqref{eq:core-problem}
-to leading order in $c$ (Lemma~\ref{lem:semicircle-mismatch}).
+to leading order in $c$ (Lemma~\ref{lem:semicircle-mismatch}):
+the correct $g_c$ must be genuinely $c$-dependent, tracking the
+$O(c)$ growth of the Widom phase.
 
 We do not claim existence or uniqueness of $g_c$ satisfying
 \eqref{eq:core-problem} at this stage; Problem~\ref{prob:core}
-is formulated as an open problem, and its resolution is the
-subject of future work.
+is an open problem whose resolution is the subject of future work.
 \end{problem}
 
-\begin{remark}[Hilbert transform formulation]
+\begin{remark}[Hilbert transform formulation --- formal only]
 \label{rem:hilbert-formulation}
-In the regime where $\phi_c$ can be treated as a given external datum
-(i.e.\ independent of $g_c$, which is the case once Assumption~A is
-being verified for a specific candidate), Problem~\ref{prob:core}
-reduces to a linear scalar Riemann--Hilbert problem on $(-1,1)$
-and can be formally rewritten as follows.
-Set $h_c(t) := \tfrac{1}{2}\operatorname{Re}(\phi_c(t))$ for $t\in(-1,1)$.
-Then, provided $h_c$ has sufficient regularity on $(-1,1)$
-(e.g.\ $h_c \in L^2(-1,1)$) and the finite Hilbert transform
-$\mathcal{H}_{(-1,1)}$ is applied in the principal value sense,
-a compatible $g_c$ is formally given by
+If $\phi_c$ were a fixed external datum, independent of $g_c$,
+then Problem~\ref{prob:core} would reduce to a linear scalar
+Riemann--Hilbert problem on $(-1,1)$, formally solvable via
+the finite Hilbert transform:
+setting $h_c(t) := \tfrac{1}{2}\operatorname{Re}(\phi_c(t))$,
+a compatible $g_c$ would be formally given by
 \[
   g_c^+(t) = h_c(t)
   + i\,\mathcal{H}_{(-1,1)}[h_c](t) + iC_c,
 \]
-where $C_c \in \mathbb{R}$ is determined by the normalisation
-$g_c(z) = \log z + O(z^{-1})$ at infinity.
-Existence and uniqueness of $g_c$ thus reduce, in principle,
-to the invertibility properties of the finite Hilbert transform
-on $(-1,1)$ applied to $h_c$, together with the growth condition.
-This formulation makes Problem~\ref{prob:core} amenable to the
-classical theory of singular integral equations on an interval
-(Muskhelishvili~\cite{Muskhelishvili1953}, see also~\cite{Deift1999}).
+with $C_c \in \mathbb{R}$ fixed by $g_c(z) = \log z + O(z^{-1})$.
+This representation is \emph{formal only} and does not resolve
+the nonlinear coupling: in the actual problem, $\phi_c = \phi_c[g_c]$,
+and substituting the above formula into the right-hand side yields
+a fixed-point equation, not a closed-form solution.
+The formulation nevertheless makes Problem~\ref{prob:core} amenable
+in principle to the classical theory of singular integral equations
+on an interval (Muskhelishvili~\cite{Muskhelishvili1953},
+see also~\cite{Deift1999}), once the nonlinear coupling is handled.
 \end{remark}
 
 %%%=================================================================
@@ -389,16 +410,22 @@ The cubic term $\tfrac13 u^3$ does \emph{not} arise here; it emerges
 only after integrating the Widom edge phase in Lemma~\ref{lem:edge-normal-form}.
 This is a key structural point: the Airy geometry is not visible at the
 level of the Fourier representation, but is generated by the phase
-accumulated from the spectral density near the edge.
+accumulated from the spectral density near the edge. The integration
+step is the precise birthplace of the Airy structure.
 
 \subsection{Widom phase and branch convention}
 
+The Widom phase encodes the logarithmic derivative of the eigenvalue
+density of $\Kc$ accumulated near the spectral edge $\lambda = \tfrac{1}{2}$:
 \begin{equation}\label{eq:effective-phase-def}
   \Phi(\eta;x,y):=\eta(x-y)
   -\int_c^\eta\bigl[\theta(\zeta;x)+\theta(\zeta;y)\bigr]\,d\zeta,
 \end{equation}
 with $\theta(\eta;x)\sim\arccos(\eta/c)\cdot\rho(x)$, $\rho(1)=1$,
 near $\eta=c$; see~\cite{Widom1964} \S3.
+Note that $\phi_c$ depends on $g_c$ implicitly through $\rho$,
+which is the source of the nonlinear coupling in
+Problem~\ref{prob:core}.
 
 \begin{assumption}[Branch and contour]
 \label{ass:branch}
@@ -532,11 +559,8 @@ construction~\cite{ItsIzergin1990}, with jump matrix
 \begin{equation}\label{eq:jump-matrix}
   J_c(z) = I - 2\pi i\,\vec{F}_c(z)\,\vec{G}_c(z)^\top,
 \end{equation}
-which is an integrable rank-$2$ perturbation of the identity,
-along the contour $\Sigma_c = [0,+\infty)$.
-
-The contour $\Sigma_c=[0,+\infty)$ arises after edge scaling;
-see Lemma~\ref{lem:contour-reduction} for the explicit derivation.
+along the contour $\Sigma_c = [0,+\infty)$
+(see Lemma~\ref{lem:contour-reduction} for the derivation of this contour).
 
 Analyticity of $Y_c$ holds on $\mathbb{C}\setminus\Sigma_c$,
 and normalisation $Y_c(z)\to I$ as $z\to\infty$.
@@ -791,9 +815,9 @@ steepest-descent geometry}
 The steepest-descent analysis requires a $g$-function that conjugates
 the jump matrix into oscillatory off-diagonal form.
 We now separate this requirement into two logically distinct components:
-the existence of a compatible $g$-function (structural, open, variational)
+the existence of a compatible $g$-function (structural, open, nonlinear)
 and the geometric properties of the steepest-descent contour once such
-a $g$-function is given (analytic, conditional).
+a $g$-function is given (analytic, conditional, nontrivial).
 
 \subsubsection{The variational $g$-problem (Assumption~A)}
 
@@ -809,26 +833,26 @@ is \emph{compatible} with the Widom edge phase $\phi_c$ if and only if
 \end{equation}
 where $g_c^+$ denotes the boundary value from above.
 Equivalently, combining with the purely imaginary jump
-$g_c^+(t)-g_c^-(t) = 2\pi i\int_t^1\rho(s)\,ds$ (cf.\
-Proposition~\ref{prop:g-properties}(iii)), condition \eqref{eq:g-matching}
-is the \emph{real-part matching condition} required for the
-LU-factorisation of the conjugated jump $J_c^T$ to be of
-oscillatory off-diagonal form.
+$g_c^+(t)-g_c^-(t) = 2\pi i\int_t^1\rho(s)\,ds$
+(cf.\ Proposition~\ref{prop:g-properties}(iii)), condition
+\eqref{eq:g-matching} is the \emph{real-part matching condition}
+required for the LU-factorisation of the conjugated jump $J_c^T$
+to be of oscillatory off-diagonal form.
 
-This can be viewed as a scalar Riemann--Hilbert problem with
-nonlinear coupling through the real-part constraint: given
-$\phi_c$ (Widom phase, which depends on $g_c$ implicitly),
-find an analytic function with the prescribed real boundary values
-\eqref{eq:g-matching} and the correct normalisation at infinity.
-The coupling between $g_c$ and $\phi_c$ renders this genuinely
-nonlinear, distinct from the classical linear scalar RHP arising
-in the OP setting.
-The existence and uniqueness of a solution is an open problem.
+This is a nonlinear scalar Riemann--Hilbert problem: the Widom phase
+$\phi_c$ depends implicitly on $g_c$ through the spectral density
+$\rho$ near the band edge --- schematically,
+$\phi_c(t) = \Phi(t, g_c(t), c)$ --- making \eqref{eq:g-matching}
+a genuine nonlinear constraint rather than a standard linear
+Hilbert-transform inversion.
+The existence and uniqueness of a solution is currently open
+(see Problem~\ref{prob:g-existence}).
 \end{proposition}
 
 \begin{lemma}[Leading-order mismatch of the semicircle candidate]
 \label{lem:semicircle-mismatch}
-Let $g_c^{\mathrm{sc}}(z) = \int_{-1}^1 \log(z-t)\,\frac{\sqrt{1-t^2}}{\pi}\,dt$
+Let $g_c^{\mathrm{sc}}(z) =
+\int_{-1}^1 \log(z-t)\,\frac{\sqrt{1-t^2}}{\pi}\,dt$
 be the semicircle candidate.
 Then for $t \in (-1,1)$:
 \begin{equation}\label{eq:sc-potential}
@@ -839,9 +863,7 @@ Then for $t \in (-1,1)$:
 where $C_0 \in \mathbb{R}$ is an explicit real constant
 (the value of the logarithmic potential of the semicircle measure
 on $(-1,1)$, see e.g.~\cite{Deift1999} Appendix).
-The precise value of $C_0$ is irrelevant for the mismatch argument:
-what matters is that $2\operatorname{Re}((g_c^{\mathrm{sc}})^+(t))$
-is a fixed polynomial in $t$, independent of $c$.
+Crucially, the right-hand side is a polynomial in $t$, independent of $c$.
 
 On the other hand, the Widom edge phase satisfies
 \begin{equation}\label{eq:widom-phase-edge}
@@ -884,20 +906,12 @@ positive on $(t,1)$ for $t<1$; see~\cite{Widom1964} \S3.
 \label{rem:mismatch-consequence}
 Lemma~\ref{lem:semicircle-mismatch} shows that the correct $g$-function
 $g_c$ must be genuinely $c$-dependent: it cannot be a fixed equilibrium
-measure but must track the $O(c)$ growth of the Widom phase.
+measure imported from random matrix theory but must track the $O(c)$
+growth of the Widom phase.
 This confirms that Assumption~A is a genuine open variational problem
-involving a $c$-dependent family of analytic functions, not a
-verification of a known candidate.
-\end{remark}
-
-\begin{remark}[The semicircle candidate]
-\label{rem:semicircle-candidate}
-The function $g_c^{\mathrm{sc}}$ is motivated by the GUE $g$-function,
-but is an import from random matrix theory and is not derived from
-the prolate problem.
-Lemma~\ref{lem:semicircle-mismatch} shows it fails at leading order
-in $c$. A compatible $g_c$ must be constructed directly from
-the matching equation \eqref{eq:g-matching}.
+involving a $c$-dependent family of analytic functions.
+No known candidate from the OP literature satisfies
+\eqref{eq:g-matching} for large $c$.
 \end{remark}
 
 \begin{remark}[Comparison with the OP setting]
@@ -905,13 +919,15 @@ the matching equation \eqref{eq:g-matching}.
 In the classical orthogonal polynomial setting~\cite{Deift1999},
 the $g$-function is uniquely determined by the equilibrium measure:
 the real-part matching condition \eqref{eq:g-matching} holds
-automatically as an identity.
+automatically as an identity, because $\phi_c$ \emph{is} the
+equilibrium potential of a known measure.
 In the present setting, $\phi_c$ is the Widom edge phase, extrinsic
-to any orthogonal polynomial structure.
+to any orthogonal polynomial structure, and depends on $g_c$ implicitly.
 The compatibility condition \eqref{eq:g-matching} is therefore a
-genuine open constraint.
+genuine open nonlinear constraint.
 This is the structural difficulty that separates the PSWF transition
-from its random matrix analogues.
+problem from its random matrix analogues, and the reason
+Assumption~A cannot be bypassed.
 \end{remark}
 
 \begin{assumption}[Assumption~A: Existence of a compatible $g$-function]
@@ -919,17 +935,18 @@ from its random matrix analogues.
 There exists an analytic function
 $g_c:\mathbb{C}\setminus(-\infty,1]\to\mathbb{C}$
 with $g_c(z)=\log z + O(z^{-1})$ as $z\to\infty$,
-satisfying the variational matching condition \eqref{eq:g-matching}:
+satisfying the nonlinear matching condition \eqref{eq:g-matching}:
 \[
   2\operatorname{Re}(g_c^+(t)) = \operatorname{Re}(\phi_c(t)),
   \quad t\in(-1,1),
 \]
 for all sufficiently large $c$.
 
-This is a structural assumption. It asserts the solvability of the
-scalar Riemann--Hilbert problem with nonlinear coupling described in
-Proposition~\ref{prop:g-variational}, and cannot be replaced by
-the semicircle candidate $g_c^{\mathrm{sc}}$ (Lemma~\ref{lem:semicircle-mismatch}).
+This is a structural assumption asserting the solvability of a
+nonlinear scalar Riemann--Hilbert problem. It cannot be replaced by
+the semicircle candidate $g_c^{\mathrm{sc}}$
+(Lemma~\ref{lem:semicircle-mismatch}), nor by any fixed
+equilibrium measure from the OP setting.
 \end{assumption}
 
 \begin{proposition}[Basic properties of a compatible $g_c$]
@@ -937,23 +954,14 @@ the semicircle candidate $g_c^{\mathrm{sc}}$ (Lemma~\ref{lem:semicircle-mismatch
 Any $g_c$ satisfying Assumption~A also satisfies:
 \begin{enumerate}[label=(\roman*)]
 \item (Normalization at infinity)
-\[
-  g_c(z)=\log z + O(z^{-1}), \quad z\to\infty.
-\]
-\item (Jump relation on the support)
-For $t\in(-1,1)$:
-\[
-  g_c^+(t)+g_c^-(t)=2\int_{-1}^{1}\log|t-s|\,\rho(s)\,ds.
-\]
+$g_c(z)=\log z + O(z^{-1})$, $z\to\infty$.
+\item (Jump relation on the support) For $t\in(-1,1)$:
+$g_c^+(t)+g_c^-(t)=2\int_{-1}^{1}\log|t-s|\,\rho(s)\,ds$.
 \item (Purely imaginary jump)
-\[
-  g_c^+(t)-g_c^-(t)=2\pi i \int_t^1 \rho(s)\,ds.
-\]
+$g_c^+(t)-g_c^-(t)=2\pi i \int_t^1 \rho(s)\,ds$.
 \item (Stationarity on the support)
-\[
-  \operatorname{Re}\bigl(2g_c^+(t)\bigr) = \operatorname{Re}(\phi_c(t)),
-  \quad t\in(-1,1).
-\]
+$\operatorname{Re}(2g_c^+(t)) = \operatorname{Re}(\phi_c(t))$,
+$t\in(-1,1)$.
 \end{enumerate}
 \end{proposition}
 
@@ -967,18 +975,26 @@ reparametrisation to the RHP variable $z$.
 \begin{remark}[Phase governing exponential decay]
 \label{rem:phase-governs}
 After conjugation by $e^{-n g_c(z)\sigma_3}$, the jump matrix
-contains exponential factors $\exp(\pm n(2g_c(z) - \phi_c(z)))$.
+contains exponential factors of the form
+$\exp(\pm n(2g_c(z) - \phi_c(z)))$.
 The steepest-descent mechanism is governed by
 $\operatorname{Re}(2g_c(z) - \phi_c(z))$, not by $g_c$ alone.
-The interaction of $g_c$ and $\phi_c$ is the essential difficulty
-captured by Assumption~A.
+The function $g_c$ controls the equilibrium structure;
+$\phi_c$ encodes the oscillatory behaviour inherited from the
+Widom edge phase.
+The interaction of these two objects --- which are not independently
+specified but coupled through the nonlinear constraint of
+Assumption~A --- is the essential difficulty of the whole problem.
 \end{remark}
 
 \subsubsection{Steepest-descent geometry (Assumption~B)}
 
 Given a compatible $g_c$ as in Assumption~A, the lens-opening
 construction and the steepest-descent analysis require the following
-geometric conditions.
+geometric conditions. We emphasise that these conditions are standard
+in scope but nontrivial in practice: without explicit control of $g_c$
+(which requires Assumption~A first), the sign condition and Lipschitz
+estimates on $\Sigma_c^\pm$ cannot be verified directly.
 
 \begin{definition}[Lens-opening contour and conjugated RHP]
 \label{def:lens}
@@ -1007,7 +1023,10 @@ is part of Assumption~B.
 \begin{assumption}[Assumption~B: Steepest-descent geometry]
 \label{ass:g-sign}
 Given a compatible $g_c$ as in Assumption~A, the following
-geometric conditions hold for all sufficiently large $c$:
+geometric conditions hold for all sufficiently large $c$.
+These conditions are standard in the Deift--Zhou framework but
+remain nontrivial here, as the lack of explicit control of $g_c$
+(prior to establishing Assumption~A) prevents a direct verification.
 
 \begin{enumerate}[label=(\roman*)]
 \item \textup{(Strict sign condition.)}
@@ -1041,11 +1060,6 @@ This ensures that the only relevant saddle is the $A_2$ coalescing
 saddle at the band edge $z=0$; all other saddle contributions are
 exponentially suppressed.
 \end{enumerate}
-
-Conditions~(i)--(iii) are analytic in nature: given Assumption~A,
-they concern the geometry of the level sets of
-$\operatorname{Re}(2g_c - \phi_c)$ and are in principle accessible
-by local analysis near $z=0$.
 \end{assumption}
 
 \begin{remark}[Logical separation of Assumptions A and B]
@@ -1058,10 +1072,12 @@ since $2g_c - \phi_c$ is undefined.
 Assumption~B is \emph{geometric}: given Assumption~A, it concerns
 the sign and regularity of a known real-valued function on an
 explicitly constructed contour system.
+It is standard in scope within the Deift--Zhou framework, but
+nontrivial in practice due to the lack of explicit control of $g_c$
+prior to establishing Assumption~A.
 
-The deep difficulty is Assumption~A; the geometric conditions of
-Assumption~B are expected to follow by local analysis once
-Assumption~A is established.
+The deep difficulty is Assumption~A; Assumption~B is the
+expected next step once Assumption~A is established.
 \end{remark}
 
 \begin{remark}[Status of Assumption~B]
@@ -1072,7 +1088,10 @@ uniform Lipschitz lens contours ensure $C_{\Sigma_c^\pm}$ is bounded
 on $L^2(\Sigma_c^\pm)$ uniformly in $c$ by Muckenhoupt-type estimates.
 Condition~(iii) prevents cancellation from secondary saddle points
 and ensures the Airy parametrix near $z=0$ accounts for all relevant
-contributions.
+contributions to the small-norm error.
+Both conditions are expected to follow from local analysis near the
+$A_2$ saddle once Assumption~A is established, but this has not
+been verified.
 \end{remark}
 
 \begin{proposition}[Reduction completeness]
@@ -1128,10 +1147,12 @@ The Airy parametrix $P^{(\mathrm{Ai})}(z)$ is the exact solution
 of the model RHP on $D_\epsilon$ with jump matrix
 \[
   J^{(\mathrm{Ai})}(z)
-  =\begin{pmatrix}1&0\\ e^{i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} & 1\end{pmatrix}
+  =\begin{pmatrix}1&0\\ e^{i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} & 1
+  \end{pmatrix}
   \text{ (sector I)},
   \quad
-  \begin{pmatrix}1& -e^{-i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} \\ 0 & 1\end{pmatrix}
+  \begin{pmatrix}1& -e^{-i(\frac{4}{3}z^{3/2}+\xi z^{1/2})} \\ 0 & 1
+  \end{pmatrix}
   \text{ (sector II)},
 \]
 and similar on the remaining sectors (full Stokes geometry).
@@ -1162,7 +1183,8 @@ parametrix $T_c$ on $\partial D_\epsilon$:
 This requires Assumptions~A and~B and the phase identification
 from Lemma~\ref{lem:edge-normal-form}.
 Assumption~B(iii) ensures the Airy saddle at $z=0$ is the unique
-contributing saddle.
+contributing saddle, so the parametrix accounts for all relevant
+local behaviour.
 \end{remark}
 
 \subsection{Step 4: Small-norm RHP and global error matrix}
@@ -1206,16 +1228,18 @@ The two remaining open inputs are:
 
 \begin{center}
 \fbox{\parbox{0.85\linewidth}{\centering\itshape
-\textbf{Assumption~A} (structural / variational):\\
+\textbf{Assumption~A} (structural / nonlinear):\\
 Existence of $g_c$ satisfying
 $2\operatorname{Re}(g_c^+(t)) = \operatorname{Re}(\phi_c(t))$
-on $(-1,1)$, $g_c(z)=\log z + O(z^{-1})$.
-Solvability of this scalar RHP with nonlinear coupling
-is the central open problem.\\[6pt]
+on $(-1,1)$, $g_c(z)=\log z + O(z^{-1})$,
+where $\phi_c = \phi_c[g_c]$ implicitly.
+This is a nonlinear scalar RHP; its solvability is the
+central open problem.\\[6pt]
 \textbf{Assumption~B} (geometric / analytic, conditional on A):\\
 Strict sign, uniform Lipschitz lens contours, uniform gradient bound,
 and no additional critical points of
-$\operatorname{Re}(2g_c-\phi_c)$ on $\Sigma_c^\pm\setminus D_\epsilon$.}}
+$\operatorname{Re}(2g_c-\phi_c)$ on $\Sigma_c^\pm\setminus D_\epsilon$.
+Standard in scope but nontrivial without explicit control of $g_c$.}}
 \end{center}
 \end{remark}
 
@@ -1248,7 +1272,8 @@ The upgrade to trace-class convergence additionally requires:
 \begin{itemize}
 \item \emph{Bounded Cauchy operators:}
   $C_{\Sigma_c^\pm}$ bounded on $L^2(\Sigma_c^\pm)$ uniformly in $c$,
-  from Assumption~B(ii) and Muckenhoupt-type estimates;
+  from Assumption~B(ii) and Muckenhoupt-type estimates on uniformly
+  Lipschitz curves;
 \item \emph{Resolvent stability:}
   $(I - C_{w_c})$ invertible with uniformly bounded inverse,
   from the small-norm bound \eqref{eq:Rc-jump-bound}.
@@ -1320,17 +1345,20 @@ via contour deformation and coalescing saddle points.
 This mechanism is standard in integrable systems
 (see~\cite{Deift1999}), but is emphasized here to avoid
 misinterpretation of the scaling limit.
+No local or pointwise argument can substitute for the global
+RHP analysis.
 \end{remark}
 
 \begin{remark}[Role of the effective phase]
 \label{rem:phase-clarification}
 The exponential decay required for the steepest descent method
 is governed by the full effective phase $2g_c - \phi_c$.
-The $g$-function alone only captures the equilibrium structure,
-while $\phi_c$ encodes the oscillatory behaviour inherited from
-the original kernel.
-The interaction of these two components is essential for the
-lens-opening construction and is the content of Assumption~A.
+The $g$-function alone captures only the equilibrium structure;
+$\phi_c$ encodes the oscillatory behaviour inherited from the
+Widom edge phase and depends on $g_c$ implicitly.
+The interaction of these two coupled objects is the content of
+Assumption~A and cannot be resolved by treating $\phi_c$ as a
+fixed external datum.
 \end{remark}
 
 \begin{remark}[Status of the two open assumptions]
@@ -1339,20 +1367,19 @@ Assumptions~A and~B are the only nontrivial analytic inputs
 required for the full universality result.
 All other steps --- including the IIKS structure, the phase
 expansion, and the RHP construction --- are explicit and rigorous.
-Assumption~A is the deeper of the two: it is a variational
-existence problem for a scalar Riemann--Hilbert equation with
-nonlinear coupling.
+Assumption~A is the deeper of the two: it is a nonlinear variational
+existence problem with no counterpart in the OP setting.
 Assumption~B is geometric and expected to follow from local
-analysis near $z=0$ once Assumption~A is established.
+analysis near $z=0$ once Assumption~A is established, but
+this verification is nontrivial and has not been carried out.
 Thus the present work reduces Airy universality for the prolate
-operator to a single variational compatibility problem.
+operator to a single nonlinear variational compatibility problem.
 \end{remark}
 
 \begin{remark}[Trace-class convergence mechanism]
 \label{rem:trace-mechanism}
 The trace-class convergence does not follow from pointwise kernel
-convergence alone.
-It relies on:
+convergence alone. It relies on:
 \begin{itemize}
 \item uniform off-diagonal decay,
 \item diagonal control via the IIKS structure,
@@ -1378,8 +1405,11 @@ and no orthogonal polynomial structure is available.
 The present reduction shows that the same integrable mechanism
 --- via the explicit IIKS structure of the sinc kernel --- governs
 the transition regime, but the $g$-function must be found as the
-solution of an independent variational problem rather than
-being determined automatically.
+solution of an independent nonlinear variational problem rather than
+being determined automatically by a known measure.
+This combination of IIKS structure with Widom phase asymptotics
+constitutes a new class of spectral universality problems, distinct
+from both random matrix theory and classical integrable systems.
 \end{remark}
 
 %%%=================================================================
@@ -1387,28 +1417,28 @@ being determined automatically.
 \label{sec:open}
 %%%=================================================================
 
-\begin{problem}[Assumption~A: Solvability of the variational $g$-problem]
+\begin{problem}[Assumption~A: Solvability of the nonlinear $g$-problem]
 \label{prob:g-existence}
 Find an analytic function $g_c:\mathbb{C}\setminus(-\infty,1]\to\mathbb{C}$
-with $g_c(z)=\log z + O(z^{-1})$ satisfying the scalar
-Riemann--Hilbert equation with nonlinear coupling
+with $g_c(z)=\log z + O(z^{-1})$ satisfying the nonlinear matching
+condition
 \[
   2\operatorname{Re}(g_c^+(t)) = \operatorname{Re}(\phi_c(t)),
   \quad t\in(-1,1),
 \]
-for all sufficiently large $c$, where $\phi_c$ is the Widom edge phase.
+for all sufficiently large $c$, where $\phi_c = \phi_c[g_c]$
+is the Widom edge phase (implicitly depending on $g_c$).
 Establish existence (and, if possible, uniqueness) of such a $g_c$.
 
-By Lemma~\ref{lem:semicircle-mismatch}, the semicircle candidate
-$g_c^{\mathrm{sc}}$ fails at leading order in $c$ and cannot serve
-as a solution.
-The correct $g_c$ must track the $O(c)$ growth of $\phi_c$ and is
-genuinely $c$-dependent.
-A natural approach is via the finite Hilbert transform formulation
-of Remark~\ref{rem:hilbert-formulation}: once $\phi_c$ is known,
-the matching equation \eqref{eq:core-problem} can in principle be
-analysed using the classical theory of singular integral equations
-on an interval (Muskhelishvili~\cite{Muskhelishvili1953}).
+By Lemma~\ref{lem:semicircle-mismatch}, no fixed candidate from
+random matrix theory satisfies this condition for large $c$.
+The correct $g_c$ must be genuinely $c$-dependent, tracking the
+$O(c)$ growth of the Widom phase.
+A natural approach is to linearise the nonlinear coupling
+(treating $\phi_c$ as given for a fixed iterate) and apply the
+classical theory of singular integral equations on an interval
+(Muskhelishvili~\cite{Muskhelishvili1953}), iterating to a
+fixed point. Existence of a fixed point is the central open question.
 
 This is the central open problem of the present framework.
 \end{problem}
@@ -1440,7 +1470,7 @@ Conjecture~\ref{conj:airy-transition} becomes a theorem.
 \end{problem}
 
 \begin{remark}[Dependency graph]
-The logical structure is:
+The logical structure of the paper is:
 \[
   \underbrace{\text{IIKS exact}}_{\text{rigorous}}
   \;\Rightarrow\;
@@ -1452,14 +1482,17 @@ The logical structure is:
   \;\Rightarrow\;
   \underbrace{Y_c\to Y_{\mathrm{Ai}}}_{\text{conditional}}
   \;\xrightarrow{\text{Rem.}~\ref{rem:reconstruction-stability}}
-  \underbrace{\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}\to 0}_{\text{conditional}}
+  \underbrace{\norm{\widetilde{K}_c - K_{\mathrm{Ai}}}_{\mathfrak{S}_1}
+  \to 0}_{\text{conditional}}
   \;\Rightarrow\;
   \underbrace{\text{Cors.~\ref{cor:gap}--\ref{cor:paper13b}}}_{\text{conditional}}.
 \]
 Assumption~A is the structural bottleneck: it controls whether the
-Deift--Zhou programme can be initiated at all.
+Deift--Zhou programme can be initiated at all, and its nonlinear
+character means it has no counterpart in the classical OP setting.
 Assumption~B is the analytic completion: given~A, it delivers the
-exponential decay required for the small-norm argument.
+exponential decay required for the small-norm argument, but remains
+nontrivial without explicit control of $g_c$.
 The completeness of the reduction --- that Assumptions~A and~B
 together suffice --- is the content of
 Proposition~\ref{prop:reduction-completeness}.
@@ -1472,54 +1505,59 @@ Proposition~\ref{prop:reduction-completeness}.
 
 The present work establishes a complete Riemann--Hilbert reduction
 of the prolate Airy transition problem to two logically separated
-analytic inputs: a structural variational problem (Assumption~A)
-and a geometric steepest-descent condition (Assumption~B).
+analytic inputs: a structural nonlinear variational problem
+(Assumption~A) and a geometric steepest-descent condition
+(Assumption~B).
 
 This reduction has four distinguishing features:
 \begin{enumerate}[label=(\roman*)]
 \item \emph{Exact integrable structure.}
 The sinc kernel admits an explicit rank-2 IIKS representation,
 providing a natural Riemann--Hilbert formulation from the outset.
+This is not an approximation but an algebraic identity.
 
 \item \emph{Precise asymptotic control.}
 The effective edge phase is analysed to all orders in $c^{-1/3}$,
 revealing a coalescing $A_2$ saddle structure.
 The cubic Airy term arises only after integrating the Widom phase
 (Lemma~\ref{lem:edge-normal-form}), not from the Fourier representation
-of the kernel itself --- a key structural distinction.
+of the kernel itself --- a key structural distinction that explains
+why Airy universality is a global RHP phenomenon and cannot be
+seen locally.
 
 \item \emph{Variational identification of the core difficulty.}
 The central open problem is identified as the solvability of a
-scalar Riemann--Hilbert equation with nonlinear coupling for the
-compatible $g$-function (Assumption~A, Problem~\ref{prob:g-existence}).
-Unlike the classical OP setting, the $g$-function is not determined
-by the prolate operator itself but must be found as the solution of
-an independent compatibility equation between the equilibrium
-potential and the Widom edge phase.
+nonlinear scalar Riemann--Hilbert matching condition for the
+compatible $g$-function (Assumption~A,
+Problem~\ref{prob:g-existence}).
 By Lemma~\ref{lem:semicircle-mismatch}, no fixed candidate from
-random matrix theory can serve as a solution.
+random matrix theory can serve as a solution; the correct $g_c$
+is genuinely $c$-dependent and must track the $O(c)$ growth of
+the Widom phase.
+This is the structural difficulty that has no analogue in the
+classical OP setting, where $g$ is determined canonically.
 
 \item \emph{Explicit and modular programme.}
 All components of the Deift--Zhou steepest descent analysis
 are constructed explicitly and the two open inputs are
-logically separated: Assumption~A (structural) must be established
-first; Assumption~B (geometric) is then expected to follow by
-local analysis near the $A_2$ saddle.
+logically separated: Assumption~A (structural, nonlinear) must
+be established first; Assumption~B (geometric) is then the
+expected next step, standard in scope but nontrivial in practice.
 \end{enumerate}
 
-The main result can be stated as the following equivalence:
+The main result can be stated concisely:
 
 \begin{center}
 \fbox{\parbox{0.9\linewidth}{\centering\itshape
 Airy universality for the prolate concentration operator in the
-transition regime is equivalent to the existence of a $g$-function
-$g_c$ satisfying the variational matching condition
+transition regime reduces to, and is implied by, the existence of
+a $g$-function $g_c$ satisfying the nonlinear matching condition
 $2\operatorname{Re}(g_c^+(t)) = \operatorname{Re}(\phi_c(t))$
 on $(-1,1)$ (Assumption~A), together with the steepest-descent
 geometry of Assumption~B.
 The entire analytic difficulty of the Airy transition is encoded
-in the solvability of this scalar Riemann--Hilbert equation with
-nonlinear coupling, whose solvability is currently open.}}
+in the solvability of this nonlinear scalar Riemann--Hilbert
+equation, whose solvability is currently open.}}
 \end{center}
 
 Under Assumptions~A and~B, the paper establishes:
@@ -1532,12 +1570,16 @@ Under Assumptions~A and~B, the paper establishes:
   Paper~XIII (Corollary~\ref{cor:paper13b}).
 \end{itemize}
 
-The framework suggests that Airy universality is not specific to
-random matrix ensembles, but is a structural consequence of integrable
-operator representations combined with coalescing saddle geometries,
-provided a compatible $g$-function exists.
-The variational $g$-problem (Problem~\ref{prob:g-existence}) is the
-natural next step toward a fully rigorous proof.
+The combination of IIKS structure with Widom phase asymptotics
+identifies a new class of spectral universality problems: not
+random matrix ensembles, not classical integrable systems, but
+deterministic compact operators whose Airy transition is governed
+by a nonlinear compatibility equation between two a priori
+unrelated analytic objects --- the equilibrium potential and the
+Widom edge phase.
+The variational $g$-problem (Problem~\ref{prob:g-existence}) is
+the natural and necessary next step toward a fully rigorous proof
+of Airy universality for prolate spheroidal wave functions.
 
 %%%=================================================================
 \begin{thebibliography}{99}
